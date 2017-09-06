@@ -1,0 +1,91 @@
+{% extends "index.html" %}
+
+{% block pager %}
+    <div class="alert alert-info row">
+    <!--搜索框-->
+        {#        <div class="col-md-4 col-sm-4">#}
+        {#            <div class="input-group mySearch row">#}
+        {#                <input type="text" id="txt_search" class="form-control" value="{{ username }}" placeholder="请输入用户名搜索"/>#}
+        {#                <span class="input-group-btn">#}
+        {#                    <button type="button" class="btn btn-default" id="btn_search" onclick="show_resume()">#}
+        {#                        <span class="glyphicon glyphicon-search"></span>#}
+        {#                    </button>#}
+        {#                </span>#}
+        {#            </div>#}
+        {#        </div>#}
+        <div class="col-md-offset-4 col-sm-offset-4 col-lg-offset-4"><h4>个人简历</h4></div>
+    </div>
+    <div class="container">
+    {% if user_info or user_works or user_edus %}
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        基本信息
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <span>{{ user_info.real_name|default_if_none:" " }}&nbsp;</span>
+                    <span>{{ user_info.work_years }}年工作经验&nbsp;</span>
+                    <span>|&nbsp;{{ user_info.gender_name|default_if_none:" " }}&nbsp;</span>
+                    <span>|&nbsp;{{ user_info.age }}岁</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        工作经历
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    {% for user_work in user_works %}
+                    <p>{{ user_work.start_time }}--{{ user_work.end_time}}&nbsp;|&nbsp;{{ user_work.company }}</p>
+                    <p>
+                        <label for="word_title">工作岗位：</label>
+                            <span id="word_title">{{ user_work.title }}</span>
+                    </p>
+                    <p>
+                        <label for="content">工作内容：</label>
+                            <span id="content">{{ user_work.content }}</span>
+                    </p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        教育背景
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    {% for user_edu in user_edus %}
+                    <p>
+                        {{ user_edu.start_time }}--{{ user_edu.end_time }}|{{ user_edu.school }}
+                    </p>
+                    <p>
+                        <label for="major">专业名称:</label>
+                        <span id="major">{{ user_edu.major }}</span>
+                        <span>&nbsp;&nbsp;</span>
+                         <label for="edu_title">学历:</label>
+                        <span id="edu_titles">{{ user_edu.title }}</span>
+                    </p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <h4 class="text-danger">{{ msg }}</h4>
+    {% endif %}
+    </div>
+    <script>
+        function show_resume() {
+            var username = $("#txt_search").val();
+            var url = "{% url 'mz_common:resume_show'%}?username="+username
+            window.location.href = url;
+        }
+    </script>
+{% endblock %}

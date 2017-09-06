@@ -1,0 +1,116 @@
+{% extends "pager.html" %}
+{% block content %}
+<script type="text/javascript">
+    function  onQuery() {
+        var url = "{% url 'mz_course:homepagecourse_list' %}?action=query" + getPage();
+        window.location.href=url;
+    }
+
+
+
+    function editcareerlink(id) {
+        var urlkeyword = $("#txt_search").val();
+        var type = $("#type_id").val();
+        var url = "{% url 'mz_course:homepagecourse_edit' %}?action=edit&id=" + encodeURI(id) + "&keyword=" + encodeURI(urlkeyword) + "&type=" + encodeURI(type) + getPage();
+        window.location.href = url;
+    }
+
+
+
+
+
+
+    function careerlinkQuery() {
+        var keyword = encodeURIComponent($('#txt_search').val());
+        var url = "/course/homepagecourse/list/?action=search&keyword=" + keyword + "&page_index=1";
+        window.location.href = url;
+    }
+
+
+
+    $(document).ready(function () {
+        var settype = $("#type").val();
+        $("#type_id option[value='" + settype + "']").attr("selected", "selected");
+    })
+
+
+</script>
+    <!-- 搜索 -->
+    <form class="form-inline" action="{% url 'mz_course:homepagecourse_list' %}" method="get" style="margin-top: 7px;display: inline-block">
+        <input type="hidden" value="{{ type }}" id="type">
+        <div class="form-group">
+            <label for="txt_search">标题搜索</label>
+            <input type="text" class="form-control" id="txt_search" name="keyword" value="{{ keyword }}" placeholder="请输入课程名称">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail2">类型选择</label>
+            <select class="form-control" name="type" id="type_id">
+                <option value="0">请选择</option>
+                <option value="10">UI设计</option>
+                <option value="20">Web 前端开发</option>
+                <option value="30">Python Web 开发</option>
+                <option value="40">产品经理</option>
+                <option value="50">互联网运营</option>
+            </select>
+        </div>
+        <input type="hidden" value="1" name="page_index">
+        <button type="submit" class="btn btn-default">搜索</button>
+    </form>
+
+    <!-- 扩展功能栏  -->
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="onQuery()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th class="auto">课程名称</th>
+                <th width="200px">排序</th>
+                <th width="auto">分类名称</th>
+                <th width="auto">分类ID</th>
+                <th class="operate">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if homepagecourses %}
+                {% for homepagecourse in homepagecourses %}
+                    <tr class="text_over_flow">
+                        <td align="center">
+                            {{ homepagecourse.NAME|default_if_none:"<span class='text-danger'>请选择！</span>" }}
+                        </td>
+                        <td>
+                            {{ homepagecourse.INDEX }}
+                        </td>
+                        <td>
+                            {{ homepagecourse.careername }}
+                        </td>
+                        <td>
+                            {{ homepagecourse.careerid }}
+                        </td>
+                        <td data-id="{{ homepagecourse.id }}"><a
+                                href="javascript:void(0)" title="编辑" onclick="editcareerlink({{ homepagecourse.id }})"
+                                class="btn btn-default btn-success btn-sm  active"
+                                style="margin-right:3px;" role="button"><i class="glyphicon glyphicon-edit"
+                                                                           style="margin-right: 3px;"></i>编辑</a></td>
+                    </tr>
+                {% endfor %}
+
+            {% else %}
+                <label>查询到0条数据！</label>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+
+<!-- 删除警示框  -->
+{% endblock %}

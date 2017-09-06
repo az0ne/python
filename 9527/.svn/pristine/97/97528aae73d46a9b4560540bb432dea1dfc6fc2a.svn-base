@@ -1,0 +1,73 @@
+{% extends "index.html" %}
+{% block pager %}
+<script type="text/javascript">
+    function  onQuery() {
+        var url = "/rolemenu/list/?action=query";
+        window.location.href=url;
+    }
+
+    function  onEdit(id) {
+        var url = "/rolemenu/edit/?id=" +  encodeURI(id);
+
+        window.location.href=url;
+    }
+
+    function  onAdd(id) {
+        var url = "/rolemenu/add/";
+
+        window.location.href=url;
+    }
+
+
+
+$(document).ready(function () {
+    $("#menuform").validate({
+        rules: {
+            name: {
+                required: true,
+
+            },
+            url: {
+                required: true,
+
+            }
+        },
+        messages: {
+            name: {
+                required: "请输入菜单名称",
+
+            },
+            url: {
+                required: "请输入菜单URL",
+
+            }
+
+        }
+    })
+})
+</script>
+<div class="container ">
+    <div class="row">
+        <div class="col-md-8">
+            <form id="menuform" action="/backAdmin/menu/save/" method="post" >
+                {% csrf_token %}
+                {% ifequal action "edit"  %}
+                    <input type="hidden" name="id" value="{{ menu.id }}">
+                    <input type="hidden" name="action" value="{{ action }}">
+                {% endifequal %}
+                <div class="form-group">
+                    <label for="menu_name">菜单名称</label>
+                    <input type="text" class="form-control" id="menu_name" name="name" value="{{ menu.name }}" placeholder="请输入菜单名称">
+                </div>
+                <div class="form-group">
+                    <label for="menu_url">菜单URL</label>
+                    <input type="text" class="form-control" id="menu_url" name="url" value="{{ menu.url }}"
+                           placeholder="请输入菜单URL">
+                </div>
+                <button type="submit" class="btn btn-primary">提交</button>
+            </form>
+        </div>
+    </div>
+</div>
+<hr>
+{% endblock %}

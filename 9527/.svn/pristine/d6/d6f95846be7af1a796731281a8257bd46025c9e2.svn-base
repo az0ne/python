@@ -1,0 +1,141 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript">
+        /*-------------------------------------------------------BEGIN--------------------------------------------------------*/
+        /*---------------提交form表单时，检查有无数据不合法的错误---------------*/
+        function formDataCommitValidate() {
+            var result = {};
+            result.code = 0;
+            result.errorInfo = '';
+            GOLBAL_ERROR = [];  //  初始化验证数据合法性的全局变量
+            var imgSize = $('.imgSize').text();  // imgSize.text的格式:<图片尺寸(1599*630):1599x630>
+            if (imgSize.indexOf('x') > 0) {
+                var imgWidth = imgSize.split(':')[1].split('x')[0];
+                var imgHeight = imgSize.split(':')[1].split('x')[1];
+            }
+            imgUploadValidate(".file_imageUrl", '{{ MEDIA_URL }}', 120, 40, imgWidth, imgHeight);
+            textBoxValidate(".txt_enterpriseName", 50);
+            selectValidate('.slt_careerName');
+
+
+            $.each(GOLBAL_ERROR, function (index, items) {
+                result.code = items.status + result.code;
+                if (items.status == -1) {
+                    result.errorInfo = result.errorInfo + items.errorInfo + "\r";
+                }
+            });
+            return result;
+        }
+        /*----------------------保存企业数据----------------------*/
+        function saveEnterprise() {
+            var result = formDataCommitValidate()
+            if (result.code == 0) {
+                form_enterprise.submit();
+            } else {
+                warningPrompt(result.errorInfo);
+            }
+        }
+
+        /*--------------------DOM加载完后执行----------------------*/
+        $(function () {
+            addObjectNameOption('{% url 'ajax:careerIntroduce_name' %}', '#txt_add_careerName');
+            {% ifequal action "show" %}
+                $('#enterpriseTitle').text('查看职业课程企业介绍信息');
+            {% endifequal %}
+            {% ifequal action "add" %}
+                $('#enterpriseTitle').text('添加职业课程企业介绍信息');
+                $('#txt_add_careerName').val({{ career_id }});
+                $('#txt_add_careerName').attr('disabled', true);
+            {% endifequal %}
+            {% ifequal action "edit" %}
+                $('#enterpriseTitle').text('修改职业课程企业介绍信息');
+                $('.inputArea').attr('disabled', false);
+                $('#txt_add_careerName').val({{ enterprises.career_id }});
+                $('#txt_add_careerName').attr('disabled', true);
+            {% endifequal %}
+            getImgSize();
+        });
+        /*----------------------图片预览----------------------*/
+        function changeImage(current) {
+            var imgfile = window.URL.createObjectURL($(current)[0].files[0]);
+            $(current).parent('.form-group').find('.previewImg').attr('src', imgfile);
+            var img = new Image();
+            img.src = imgfile;
+            img.onload = function () {  // 等待图片加载完后，才能获取到图片的信息
+                $(current).parent('.form-group').find('.imgSize').text('上传图片尺寸(120*40):' + img.width + 'x' + img.height);
+            }
+        }
+        /* -------------------获取图片大小信息------------------*/
+        function getImgSize() {
+            var img = new Image();
+            img.src = $('.previewImg').attr('src');
+            img.onload = function () {  // 等待图片加载完后，才能获取到图片的信息
+                $('.imgSize').text('上传图片尺寸(120*40):' + img.width + 'x' + img.height);
+            }
+        }
+        /*-------------------------------------------------------END--------------------------------------------------------*/
+    </script>
+    <!--教师介绍-->
+    <div class="modal-dialog" role="document" style="background-color:#ffffff;width: 100%">
+        {% csrf_token %}
+        <div class="modal-header active">
+            <h4 class="modal-title" id="enterpriseTitle">
+                修改职业课程企业介绍信息</h4>
+        </div>
+        <div class="container-fluid content">
+            <div class="row-fluid">
+                <div class="col-md-8">
+                    <form enctype="multipart/form-data" id="form_enterprise" method="post"
+                          action="{% url 'mz_course:careerIntroduce_enterprise_save' %}">
+                        {% ifnotequal action "add" %}
+                            <input type="hidden" name="id" value="{{ enterprises.id }}">
+                            <input type="hidden" name="career_id" value="{{ enterprises.career_id }}">
+                        {% endifnotequal %}
+                        {% ifequal action "add" %}
+                            <input type="hidden" name="career_id" value="{{ career_id }}">
+                        {% endifequal %}
+                        <input type="hidden" name="action" value="{{ action }}">
+                        <input type="hidden" name="old_image_path" value="{{ enterprises.img_url }}">
+                        <div class="form-group">
+                            <div class="previewImgDiv" style="width:240px;">
+                                <img class="previewImg img-thumbnail" alt="上传图片尺寸要求为:120*40" src="{{ MEDIA_URL }}{{ enterprises.img_url }}"/>
+                                <div class="text-info">
+                                    <span class="imgSize">上传图片尺寸(120*40)</span></div>
+                            </div>
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label for="file_add_imageUrl">合作企业logo:</label>
+                            <input class="inputArea1 file_imageUrl" accept="image/*" name="img_url"
+                                   type="file"
+                                   id="file_add_imageUrl" onchange="changeImage(this)"
+                                   placeholder="选择上传图片"/>
+                            <span class="inputAreaError lbl_imageUrlError"></span>
+                        </div>
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label for="txt_add_careerName">课程名称:</label>
+                            <select class="inputArea1 slt_careerName form-control" name="career_id"
+                                    id="txt_add_careerName" value="{{ enterprises.career_id }}">
+                            </select>
+                            <span class="inputAreaError lbl_careerNameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label for="txt_add_enterpriseName">合作企业名称:</label>
+                            <input class="inputArea1 txt_enterpriseName form-control" name="img_title"
+                                   value="{{ enterprises.img_title }}"
+                                   type="text" id="txt_add_enterpriseName"/>
+                            <span class="inputAreaError lbl_enterpriseNameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" onclick="saveEnterprise()" title="保存"
+                                    class="btn btn-default btn-success btn-sm active">
+                                <span class="glyphicon glyphicon-edit" style="margin-right: 3px"></span>保存
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

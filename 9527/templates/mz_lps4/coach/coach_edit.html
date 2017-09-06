@@ -1,0 +1,164 @@
+{% extends "index.html" %}
+{% block pager %}
+    {% load  staticfiles %}
+    <div class="alert alert-info"><h4>辅导信息</h4></div>
+    <div class="col-md-10 col-sm-8 col-lg-8">
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th width="200px;">
+                    辅导信息
+                </th>
+                <th>
+
+                </th>
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr>
+                <td>
+                    <span>辅导类型：</span>
+                </td>
+                <td>
+                    {{ coach.source_type_name|default_if_none:"" }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>来源：</span>
+                </td>
+                <td>
+                    {{ coach.source|default_if_none:"" }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>发帖人：</span>
+                </td>
+                <td>
+                    {{ coach.nick_name|default_if_none:"" }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>职业课程：</span>
+                </td>
+                <td>
+                    {{ coach.career_name|default_if_none:"" }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>学生姓名：</span>
+                </td>
+                <td>
+                    {% if coach.student_real_name %}
+                        {{ coach.student_real_name|default_if_none:"" }}
+                    {% else %}
+                        {{ coach.student_nick_name }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>老师姓名：</span>
+                </td>
+                <td>
+                    {% if coach.teacher_real_name %}
+                        {{ coach.teacher_real_name|default_if_none:"" }}
+                    {% else %}
+                        {{ coach.teacher_nick_name }}
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>帖子摘要：</span>
+                </td>
+                <td>
+                    {{ coach.abstract|default_if_none:"" }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>创建时间</span>
+                </td>
+                <td>
+                    {{ coach.create_date|date:"Y-m-d H:i:s" }}
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <span>学生回复数：</span>
+                </td>
+                <td>
+                    {{ coach.student_comment_count|default_if_none:"" }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>老师回复数：</span>
+                </td>
+                <td>
+                    {{ coach.teacher_comment_count|default_if_none:"" }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>最后回复时间：</span>
+                </td>
+                <td>
+                    {{ coach.last_comment_date|date:"Y-m-d H:i:s" }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>老师最后回复时间：</span>
+                </td>
+                <td>
+                    {{ coach.last_teacher_comment_date|date:"Y-m-d H:i:s" }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>学生最后回复时间：</span>
+                </td>
+                <td>
+                    {{ coach.last_student_comment_date|date:"Y-m-d H:i:s" }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>老师未读回复数：</span>
+                </td>
+                <td>
+                    {{ coach.teacher_replay_count|default_if_none:"" }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>学生未读回复数：</span>
+                </td>
+                <td>
+                    {{ coach.student_replay_count|default_if_none:"" }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span>状态：</span>
+                </td>
+                <td>
+
+                    {{ coach.done_status|default_if_none:"" }}
+
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,165 @@
+{% extends "pager.html" %}
+
+{% block content %}
+    <script type="text/javascript">
+        function onQuery() {
+            var url = "/seo/objSEO/list/?action=query" + getPage();
+            window.location.href = url;
+        }
+
+        function delObjSEO(id, title) {
+            selectDelRowId = id;
+            $('#delObjSEOMessage').text('确定要删除“' + title + '”专业广告吗？');
+            $('#modal_delObjSEO').modal('show');
+        }
+        function ensureDelObjSEO() {
+            var id = selectDelRowId;
+            var url = "/seo/objSEO/list/?action=delete&id=" + encodeURI(id) + getPage();
+            window.location.href = url;
+        }
+
+        function editObjSEO(id) {
+            var url = "/seo/objSEO/edit/?action=edit&id=" + encodeURI(id) + getPage();
+            window.location.href = url;
+        }
+        function showObjSEO(id) {
+            var url = "/seo/objSEO/edit/?action=show&id=" + encodeURI(id);
+            window.location.href = url;
+        }
+
+        function addObjSEO() {
+
+            var url = "/seo/objSEO/edit/?action=add";
+            window.location.href = url;
+        }
+        function keyword_search() {
+            var keyword = $('#txt_search').val()
+            var url = "/seo/objSEO/list/?action=search&keyword=" + keyword;
+            window.location.href = url;
+        }
+
+    </script>
+    <!--搜索框-->
+    <div class="input-group mySearch">
+        <input type="text" id="txt_search" class="form-control" value="{{ key_word }}" placeholder="输入搜索标题的关键字"/>
+	<span class="input-group-btn">
+						<button type="button" class="btn btn-default" id="btn_search" onclick="keyword_search()">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+	</span>
+    </div>
+    <!-- 扩展功能栏-->
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="onQuery()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+            <li style="float: right;margin-right: 5px">
+                <button type="button" id="btn_addObjSEO" onclick="addObjSEO()"
+                        class="btn btn-default btn-info btn-sm active">
+                    <span class="glyphicon glyphicon-plus">新增</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <!--刪除SEO警示框-->
+    <div class="modal fade" id="modal_delObjSEO" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_delObjSEOLab">
+                        删除SEO信息</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="delObjSEOMessage"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureDelObjSEO()"
+                            id="btn_ensureDelObjSEO">确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th class="table_id">ID</th>
+                <th width="80px"  style="text-align: center">对象类型</th>
+                <th width="180px" style="text-align: center">对象名称</th>
+                <th width="220px">搜索标题</th>
+                <th width="240px">搜索关键字</th>
+                <th width="auto">描述</th>
+                <th class="operate">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if obj_seoes %}
+                {% for objseo in obj_seoes %}
+                    <tr class="text_over_flow">
+                        <td align="center">
+                            {{ objseo.id }}
+                        </td>
+
+                        {% ifequal objseo.obj_type 'ARTICLE' %}
+                            <td align="center">
+                                文章
+                            </td>
+                        {% endifequal %}
+                        {% ifequal objseo.obj_type 'TEACHER' %}
+                            <td align="center">
+                                老师
+                            </td>
+                        {% endifequal %}
+                        {% ifequal objseo.obj_type 'COURSE' %}
+                            <td align="center">
+                                课程
+                            </td>
+                        {% endifequal %}
+                        {% ifequal objseo.obj_type 'LESSON' %}
+                            <td align="center">
+                                视频
+                            </td>
+                        {% endifequal %}
+
+                        <td align="center">
+                            {{ objseo.obj_name }}
+                        </td>
+                        <td>
+                            {{ objseo.seo_title }}
+                        </td>
+                        <td>{{ objseo.seo_keywords }}</td>
+                        <td>{{ objseo.seo_description }}</td>
+                        <td data-id="{{ objseo.id }}"><a href="javascript:void(0);" title="查看"
+                                                         onclick="showObjSEO({{ objseo.id }})"
+                                                         class="btn btn-default btn-info btn-sm active"
+                                                         style="margin-right:3px;" role="button"><i
+                                class="glyphicon glyphicon-search" style="margin-right:3px;"></i>查看</a><a
+                                href="javascript:void(0);" title="编辑" onclick="editObjSEO({{ objseo.id }} )"
+                                class="btn btn-default btn-success btn-sm  active"
+                                style="margin-right:3px;" role="button"><i class="glyphicon glyphicon-edit"
+                                                                           style="margin-right:3px;"></i>编辑</a>
+                            <a href="javascript:void(0);" title="删除"
+                               onclick="delObjSEO({{ objseo.id }},'{{ objseo.obj_name }}')"
+                               class="btn btn-default btn-danger btn-sm active" style="margin-right:3px;" role="button"><i
+                                    class="glyphicon glyphicon-trash" style="margin-right: 3px;"></i>删除</a></td>
+                    </tr>
+                {% endfor %}
+
+            {% else %}
+                <tr>
+                    <td colspan="7">查询到0条数据！</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

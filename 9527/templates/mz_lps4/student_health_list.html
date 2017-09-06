@@ -1,0 +1,145 @@
+{% extends "pager.html" %}
+
+{% block content %}
+
+
+    <div class="input-group mySearch">
+        <span class="input-group-addon">起始时间：</span>
+        <input id="start_date_id" size="16" type="text" name="date"
+               class="form_datetime form-control date"
+               value="{{ start_time }}"
+               placeholder="请选择起始日期">
+    </div>
+    <div class="input-group mySearch">
+        <span class="input-group-addon">结束时间：</span>
+        <input id="end_date_id" size="16" type="text" name="date"
+               class="form_datetime form-control date"
+               value="{{ end_time }}"
+               placeholder="请选择结束日期">
+    </div>
+    <!--搜索框-->
+    <div class="input-group mySearch " style="margin-bottom: 10px;">
+        <input type="text" id="txt_search" class="form-control" value="{{ keyword }}" placeholder="输入专业学生关键字"/>
+        <span class="input-group-btn">
+						<button type="button" class="btn btn-default" id="btn_search" onclick="get_result('search')">
+                            <span class="glyphicon glyphicon-search">搜索</span>
+                        </button>
+	</span>
+    </div>
+
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right;margin-right: 5px">
+                <button type="button" onclick="get_result('excel')"
+                        class="btn btn-success btn-sm active">
+                    <span class="glyphicon glyphicon-export">导出Excel数据</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th width="auto">姓名</th>
+                <th width="auto">专业</th>
+                <th width="auto">就业类型</th>
+                <th width="auto">视频观看数</th>
+                <th width="auto">完成作业回复数</th>
+                <th width="auto">完成任务数</th>
+                <th width="auto">约课次数</th>
+                <th width="auto">学生问答回复数</th>
+                <th width="auto">教师主动发起辅导数</th>
+                <th width="auto">教师主动发起辅导回复数</th>
+                <th width="auto">分数</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if students %}
+                {% for student in students %}
+                    <tr class="text_over_flow">
+                        <td title="{{ student.student_name }}">
+                            {{ student.student_name }}
+                        </td>
+                        <td title="{{ student.career_name }}">
+                            {{ student.career_name }}
+                        </td>
+                        <td title="{{ student.student_type_name }}">
+                            {{ student.student_type_name }}
+                        </td>
+                        <td title="{{ student.video_count }}">
+                            {{ student.video_count }}
+                        </td>
+                        <td title="{{ student.homework_count }}">
+                            {{ student.homework_count }}
+                        </td>
+                        <td title="{{ student.task_count }}">
+                            {{ student.task_count }}
+                        </td>
+                        <td title="{{ student.meeting_count }}">
+                            {{ student.meeting_count }}
+                        </td>
+                        <td title="{{ student.student_ask_count }}">
+                            {{ student.student_ask_count }}
+                        </td>
+                        <td title="{{ student.teacher_coach_count }}">
+                            {{ student.teacher_coach_count }}
+                        </td>
+                        <td title="{{ student.teacher_coach_reply_count }}">
+                            {{ student.teacher_coach_reply_count }}
+                        </td>
+
+                        <td title="{{ student.sum_make }}">
+                            {{ student.sum_make }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="11">查询到0条数据！</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+    <input type="hidden" value="" id="del_id_hidden">
+
+    <script type="text/javascript" src="/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript"
+            src="/static/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.validate.js"></script>
+    <script>
+        function onQuery() {
+            var url = "{% url 'mz_lps4:student_health_list' %}?action=query" + getPage();
+            window.location.href = url;
+        }
+
+        function get_result(action) {
+            var start_time = $("#start_date_id").val();
+            var end_time = $("#end_date_id").val();
+            var keyword = $("#txt_search").val();
+            if (start_time != "" && end_time != "") {
+                if (action == "excel") {
+                    var url = "{% url 'mz_lps4:student_health_list' %}?action=excel&start_time={0}&end_time={1}&keyword={2}".format(start_time, end_time, keyword);
+
+                }
+                else {
+                    var url = "{% url 'mz_lps4:student_health_list' %}?action=search&start_time={0}&end_time={1}&keyword={2}".format(start_time, end_time, keyword);
+                }
+                window.location.href = url;
+            }
+            else {
+                layer.alert("请选择起始时间和结束时间！");
+            }
+        }
+
+
+        $(".date").datetimepicker({
+            format: 'yyyy-mm-dd',
+            minView: 'month',
+            language: 'zh-CN',
+            autoclose: true,
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,143 @@
+{% extends "pager.html" %}
+
+{% block content %}
+    <script type="text/javascript">
+        function onQuery() {
+            var url = "{% url 'mz_lps4:tasklibList' %}?action=query" + getPage();
+            window.location.href = url;
+        }
+
+        function del_coach_task(id) {
+            $('#_id').val(id);
+            $('#del_course_ad_Message').text('确定要删除该条记录吗？');
+            $('#modal_del_course_ad').modal('show');
+        }
+        function ensureDel() {
+            var _id = $('#_id').val();
+            var url = "{% url 'mz_lps4:tasklibDelete' %}?id={0}".format(_id);
+            console.log(url)
+            window.location.href = url;
+        }
+
+        function edit_coach_task(id) {
+            var url = "{% url 'mz_lps4:tasklibEdit' %}?action=edit&id=" + encodeURI(id);
+            window.location.href = url;
+        }
+        function add_coach_task() {
+
+            var url = "{% url 'mz_lps4:tasklibEdit' %}?action=add";
+            window.location.href = url;
+        }
+        function keyword_search() {
+            var keyword = encodeURIComponent($('#txt_search').val());
+            var url = "{% url 'mz_lps4:tasklibList' %}?action=search&keyword=" + keyword + "&page_index=1";
+            window.location.href = url;
+        }
+
+    </script>
+    <!--搜索框-->
+    <div class="input-group mySearch">
+        <input type="text" id="txt_search" class="form-control" value="{{ keyword }}" placeholder="输入职业课程的关键字"/>
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-default" id="btn_search" onclick="keyword_search()">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+    	</span>
+    </div>
+    <!-- 扩展功能栏-->
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="onQuery()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+            <li style="float: right;margin-right: 5px">
+                <button type="button" id="btn_addCareerAd" onclick="add_coach_task()"
+                        class="btn btn-default btn-info btn-sm active">
+                    <span class="glyphicon glyphicon-plus">新增</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <input id="_id" type="hidden" value=0>
+    <!--刪除首页标题警示框-->
+    <div class="modal fade" id="modal_del_course_ad" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_delCareerAdLab">
+                        删除提醒</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="del_course_ad_Message"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" id="btn_ensureDel_course_ad"
+                            onclick="ensureDel()">
+                        确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th width="240px" style="text-align: center">职业课程</th>
+                <th width="300px">任务球</th>
+                <th width="auto">老师</th>
+                <th width="auto">回复内容</th>
+                <th width="215px;">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if tasks %}
+                {% for task in tasks %}
+                    <tr class="text_over_flow">
+                        <td>
+                            {{ task.career_name }}
+                        </td>
+                        <td>
+                            {{ task.task_name }}
+                        </td>
+
+                        <td>
+                            {% if task.real_name %}
+                                {{ task.real_name }}
+                            {% else %}
+                                {{ task.nick_name }}
+                            {% endif %}
+                        </td>
+                        <td title="{{ task.content }}">
+                            {{ task.content }}
+                        </td>
+
+                        <td>
+                            <a href="javascript:void(0);" title="编辑" onclick="edit_coach_task({{ task.coach_id }} )"
+                               class="btn btn-default btn-success btn-sm  active"
+                               style="margin-right:3px;" role="button"><i class="glyphicon glyphicon-edit"
+                                                                          style="margin-right:3px;"></i>编辑</a>
+                            <a href="javascript:void(0);" title="删除"
+                               onclick="del_coach_task('{{ task.coach_id }}')"
+                               class="btn btn-default btn-danger btn-sm active" style="margin-right:3px;" role="button"><i
+                                    class="glyphicon glyphicon-trash" style="margin-right: 3px;"></i>删除</a></td>
+                    </tr>
+                {% endfor %}
+
+            {% else %}
+                <tr>
+                    <td colspan="5">查询到0条数据！</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

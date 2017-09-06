@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width initial-scale=1"/>
+    <!--第三方样式文件-->
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css"/>
+    <link href="{{ STATIC_URL }}css/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+    <!--自己写的css样式-->
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/common.css"/>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/validate.css"/>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/layer/layer.js"></script>
+    <title>{% block title %}麦子学院后台管理系统{% endblock %}</title>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="{{ STATIC_URL }}js/html5shiv.js"></script>
+      <script src="{{ STATIC_URL }}js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<!--错误信息提示框-->
+<div id="errorInfoModal_1" class="errorInfoModal" style="height: auto">
+    <span id="errorInfo"></span>
+</div>
+<!--导航-->
+<nav class="navbar navbar-default navbar-static-top">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle">
+            <span class="sr-only"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <a class="navbar-brand" href="/home/">麦子学院后台管理系统</a>
+    <!--{{ request.session.role_menus }}-->
+    <ul class="nav navbar-nav navbar-right" style="margin-right: 25px;">
+        <!--<li><a href="#"><img class="img-circle img-responsive" src="img/pic01.jpg" style="width: 25px; height: 25px;"></a></li>-->
+        <li><a href="javascript:;" id="username"><span class="glyphicon glyphicon-user"
+                                                       style="color: royalblue;">&nbsp;{{ request.session.username }}</span></a>
+        </li>
+        <li><a href="{% url 'admin_logout'%}"><span class="glyphicon glyphicon-off">&nbsp;注销</span></a></li>
+    </ul>
+</nav>
+{#<!--侧边功能栏-->#}
+<div class="navbar-collapse navbar-default" id="slider_sub">
+    <ul class="nav">
+            {% for parent_menu in request.session.role_menus %}
+
+                    {% ifequal parent_menu.parent_id 0 %}
+                     <li>
+                        {% if not parent_menu.url %}
+                            <a href="#category{{ forloop.counter }}" data-toggle="collapse"
+                               class="firstLevelMenu">{{ parent_menu.name }}<span
+                                    class="glyphicon glyphicon-chevron-right pull-right"></span></a>
+                            <ul id="category{{ forloop.counter }}" class="nav">
+                                {% for menu in request.session.role_menus %}
+                                    {% ifequal menu.parent_id parent_menu.id %}
+                                        <li>
+                                            <a href="{{ menu.url }}"><span
+                                                    class="glyphicon glyphicon-list-alt secondLevelMenu"></span>&nbsp;{{ menu.name }}
+                                            </a>
+                                        </li>
+                                    {% endifequal %}
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            <li>
+                                <a href="{{ parent_menu.url }}"><span
+                                        class="glyphicon glyphicon-list-alt secondLevelMenu"></span>&nbsp;{{ parent_menu.name }}
+                                </a>
+                            </li>
+                        {% endif %}
+                     </li>
+                    {% endifequal %}
+
+            {% endfor %}
+
+{% comment%}
+        <!--name 以| 分割 实现的菜单-->
+        <!--{% for menu in request.session.role_menus %}-->
+            <!--<li>-->
+            <!--{% ifnotequal menu.category 'no_category' %}-->
+                <!--<a href="#category{{ forloop.counter}}" data-toggle="collapse" class="firstLevelMenu">{{ menu.category }}<span-->
+                <!--class="glyphicon glyphicon-chevron-right pull-right"></span></a>-->
+                <!--{% endifnotequal %}-->
+            <!--<ul id="category{{ forloop.counter}}" class="nav">-->
+            <!--{% for option in menu.option %}-->
+                <!--<li>-->
+                <!--<a href="{{ option.url }}"><span class="glyphicon glyphicon-list-alt secondLevelMenu"></span>&nbsp;{{ option.name }}</a>-->
+                <!--</li>-->
+                <!--{% endfor %}-->
+            <!--</ul>-->
+            <!--</li>-->
+            <!--{% endfor %}-->
+{% endcomment %}
+
+    </ul>
+</div>
+
+<div id="pageMain">
+    {% block pager %}{% endblock %}
+</div>
+<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-datetimepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/index.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/dataOperation.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.validate.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/dataValidate.js"></script>
+{% block custom_script %}{% endblock %}
+</body>
+</html>

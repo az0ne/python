@@ -1,0 +1,121 @@
+{% extends "index.html" %}
+{% block pager %}
+<script type="text/javascript">
+    function  onQuery() {
+        var url = "/seo/mz_wiki_link/list/?action=query";
+        window.location.href=url;
+    }
+
+    function  onEdit(id) {
+        var url = "/seo/mz_wiki_link/edit/?id=" +  encodeURI(id);
+
+        window.location.href=url;
+    }
+
+    function  onAdd(id) {
+        var url = "/seo/mz_wiki_link/add/";
+
+        window.location.href=url;
+    }
+
+    function  onDelete(id) {
+        var url = "/seo/mz_wiki_link/list/?action=delete&id=" +  encodeURI(id) ;
+
+        window.location.href=url;
+    }
+    function  onSave() {
+        //判断
+        var url = "/seo/mz_wiki_link/save/";
+        form1.submit();
+    }
+
+
+    function goback() {
+        history.go(-1)
+    }
+
+$(document).ready(function () {
+    $("#courseseoform").validate({
+        rules: {
+            seotitle: {
+                required: true
+            },
+            seokeyword: {
+                required: true
+            },
+            seodescription: {
+                required: true
+            }
+        },
+        messages: {
+            seotitle: {
+                required: "请输入seo标题"
+            },
+            seokeyword: {
+                required: "请输入seo关键字"
+            },
+            seodescription: {
+                required: "请输入seo描述"
+            }
+
+        }
+    })
+
+    var title = $("#seotitle").val();
+    var keyword = $("#seokeywords").val();
+    var desc = $("#seodescription").val();
+    if (title == "" && keyword == "" && desc == ""){
+        $("#iscreat").val(0)
+    }else {
+        $("#iscreat").val(1)
+    }
+
+
+
+
+})
+</script>
+
+<style rel="stylesheet">
+.wikilinksave {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+</style>
+
+
+        <div class="container wikilinksave">
+            <div class="row">
+                <div class="col-md-8">
+                    <form id="courseseoform" action="{% url 'mz_course:coursesave' %}" method="post" >
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ page_index }}" name="page_index">
+                        <input type="hidden" value="{{ id }}" name="id">
+                        <input type="hidden" value="{{ keyword }}" name="keyword">
+                        <input type="hidden" value="" name="iscreat" id="iscreat">
+                        <div class="form-group">
+                            <label for="seotitle">小课程seo_title</label>
+                            <input type="text" class="form-control" id="seotitle" name="seotitle" value="{{ courseinfos.seo_title }}" placeholder="请输入小课程seo标题">
+                        </div>
+                        <div class="form-group">
+                            <label for="seokeywords">小课程seo_keyword</label>
+                            <input type="text" class="form-control" id="seokeywords" name="seokeyword" value="{{ courseinfos.seo_keywords }}" placeholder="请输入小课程seo关键字">
+                        </div>
+                        <div class="form-group">
+                            <label for="seodescription">小课程seo_description</label>
+                            <textarea type="text" class="form-control" rows="3" id="seodescription" name="seodescription" placeholder="请输入小课程seo描述">{{ courseinfos.seo_description }}</textarea>
+{#                            <input type="text" class="form-control" id="seodescription" name="index" value="{{ courseinfos.seo_description }}" placeholder="请输入小课程seo描述">#}
+                        </div>
+                        {% ifequal action "show" %}
+                        <button type="submit" class="btn btn-primary" disabled="disabled">提交</button>
+                        {% else %}
+                        <button type="submit" class="btn btn-primary">提交</button>
+                        {% endifequal %}
+                        <button type="button" class="btn btn-warning" onclick="goback()">返回</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <hr>
+{% endblock %}

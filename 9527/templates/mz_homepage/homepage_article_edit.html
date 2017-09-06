@@ -1,0 +1,78 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript">
+        /*-------------------------------------------------------BEGIN--------------------------------------------------------*/
+        /*---------------提交form表单时，检查有无数据不合法的错误---------------*/
+        function formDataCommitValidate() {
+            var result = {};
+            result.code = 0;
+            result.errorInfo = '';
+            GOLBAL_ERROR = [];  //  初始化验证数据合法性的全局变量
+            numValidate('.txt_homepageIndex', 11);
+
+            $.each(GOLBAL_ERROR, function (index, items) {
+                result.code = items.status + result.code;
+                if (items.status == -1) {
+                    result.errorInfo = result.errorInfo + items.errorInfo + "\r";
+                }
+            });
+            return result;
+        }
+        /*----------------------保存数据----------------------*/
+        function saveHomePageArticle() {
+            var result = formDataCommitValidate()
+            if (result.code == 0) {
+                form_homepageArticle.submit();
+            } else {
+                warningPrompt(result.errorInfo);
+            }
+        }
+
+        /*-------------------------------------------------------END--------------------------------------------------------*/
+    </script>
+    <!--文章类型-->
+    <div class="modal-dialog" role="document" style="background-color:#ffffff;width: 100%">
+        {% csrf_token %}
+        <div class="modal-header active">
+            <h4 class="modal-title" id="articleTypeTitle">
+                修改首页文章显示顺序信息</h4>
+        </div>
+        <div class="container-fluid content">
+            <div class="row-fluid">
+                <div class="col-md-8">
+                    <form enctype="multipart/form-data" id="form_homepageArticle" method="post"
+                          action="{% url 'mz_homepage:homepageArticle_save' %}">
+                        <input type="hidden" name="id" value="{{ homepageArticle.id }}">
+                        <input type="hidden" name="action" value="{{ action }}">
+                        <input type="hidden" name="keyword" value="{{ keyword }}">
+                        <input type="hidden" name="articleType" value="{{ articleType }}">
+{#                        <input type="hidden" name="page_index" value="{{ page_index }}">#}
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">&nbsp;&nbsp;</span>
+                            <label>文章名称:</label>
+                            <input class="inputArea1 form-control" disabled="none"
+                                   name="name" type="text" value="{{ homepageArticle.title }}">
+                            </input>
+                            <span class="inputAreaError"></span>
+                        </div>
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label>首页文章序号:(序号为0,表示排到最后)</label>
+                            <input class="inputArea1 txt_homepageIndex form-control" placeholder="请输入首页文章序号"
+                                   name="homepage_index" type="text" value="{{ homepageArticle.homepage_index }}">
+                            </input>
+                            <span class="inputAreaError"></span>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" onclick="saveHomePageArticle()" title="保存"
+                                    class="btn btn-default btn-success btn-sm active">
+                                <span class="glyphicon glyphicon-edit" style="margin-right: 3px"></span>保存
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

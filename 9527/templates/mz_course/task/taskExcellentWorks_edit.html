@@ -1,0 +1,135 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    <script type="text/javascript">
+        /*-------------------------------------------------------BEGIN--------------------------------------------------------*/
+        /*---------------提交form表单时，检查有无数据不合法的错误---------------*/
+        function formDataCommitValidate() {
+            var result = {};
+            result.code = 0;
+            result.errorInfo = '';
+            GOLBAL_ERROR = [];  //  初始化验证数据合法性的全局变量
+            var imgSize = $('.imgSize').text();  // imgSize.text的格式:<图片尺寸(1599*630):1599x630>
+            if (imgSize.indexOf('x') > 0) {
+                var imgWidth = imgSize.split(':')[1].split('x')[0];
+                var imgHeight = imgSize.split(':')[1].split('x')[1];
+            }
+            imgUploadValidate(".file_imageUrl", '{{ MEDIA_URL }}', 130, 92, imgWidth, imgHeight);
+            numValidate('.txt_index', 11);
+            textBoxValidate('.txt_title', 50)
+            urlValidate('.txt_codeUrl', 200);
+
+            $.each(GOLBAL_ERROR, function (index, items) {
+                result.code = items.status + result.code;
+                if (items.status == -1) {
+                    result.errorInfo = result.errorInfo + items.errorInfo + "\r";
+                }
+            });
+            return result;
+        }
+        /*----------------------保存优秀作品数据----------------------*/
+        function saveTaskExcellentWorks() {
+            var result = formDataCommitValidate()
+            if (result.code == 0) {
+                form_taskExcellentWorks.submit();
+            } else {
+                warningPrompt(result.errorInfo);
+            }
+        }
+
+        /*--------------------DOM加载完后执行----------------------*/
+        $(function () {
+            {% ifequal action "add" %}
+                $('#taskExcellentWorksTitle').text('添加任务的优秀作品信息');
+            {% endifequal %}
+            {% ifequal action "edit" %}
+                $('#taskExcellentWorksTitle').text('修改任务的优秀作品信息');
+            {% endifequal %}
+            getImgSize('.file_imageUrl');
+        });
+        /*----------------------图片预览----------------------*/
+        function changeImage(current) {
+            var imgfile = window.URL.createObjectURL($(current)[0].files[0]);
+            $(current).parent('.form-group').find('.previewImg').attr('src', imgfile);
+            var img = new Image();
+            img.src = imgfile;
+            img.onload = function () {  // 等待图片加载完后，才能获取到图片的信息
+                $(current).parent('.form-group').find('.imgSize').text('图片尺寸(130*92):' + img.width + 'x' + img.height);
+            }
+        }
+        function getImgSize(imgField) {
+            var img = new Image()
+            img.src = $(imgField).parent('.form-group').find('.previewImg').attr('src')
+            img.onload = function () {
+                $(imgField).parent('.form-group').find('.imgSize').text('图片尺寸(130*92):' + img.width + 'x' + img.height);
+            }
+        }
+        /*-------------------------------------------------------END--------------------------------------------------------*/
+    </script>
+    <!--任务与相关文章-->
+    <div class="modal-header active bg-success">
+        <h4 class="modal-title" id="taskExcellentWorksTitle">
+            添加任务的优秀作品信息</h4>
+    </div>
+    <div style="height: 85vh;overflow: scroll;overflow-x: auto">
+        <div class="container-fluid" style="border-bottom: 1px #ddd solid;padding-top: 10px">
+            <div class="row-fluid">
+                <div class="col-md-8">
+                    <form enctype="multipart/form-data" id="form_taskExcellentWorks" method="post"
+                          action="{% url 'mz_course:taskExcellentWorks_save' %}">
+                        {% ifnotequal action "add" %}
+                            <input type="hidden" name="id" value="{{ taskExcellentWorks.id }}">
+                            <input type="hidden" name="task_id" value="{{ taskExcellentWorks.task_id }}">
+                        {% endifnotequal %}
+                        {% ifequal action "add" %}
+                            <input type="hidden" name="task_id" value="{{ task_id }}">
+                        {% endifequal %}
+                        <input type="hidden" name="action" value="{{ action }}">
+                        <input type="hidden" name="old_image_path" value="{{ taskExcellentWorks.img_url }}">
+                        <div class="form-group">
+                            <div class="previewImgDiv">
+                                <img class="previewImg img-thumbnail"
+                                     src="{{ MEDIA_URL }}{{ taskExcellentWorks.img_url }}"/>
+                                <div class="text-info">
+                                    <span class="imgSize">图片尺寸(130*92)</span></div>
+                            </div>
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label>图片:</label>
+                            <input class="inputArea1 file_imageUrl" name="img_url" accept="image/*"
+                                   type="file" onchange="changeImage(this)"/>
+                            <span class="inputAreaError"></span>
+                        </div>
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label>标题:</label>
+                            <input class="inputArea1 txt_title form-control" name="title"
+                                   type="text" placeholder="请输入标题" value="{{ taskExcellentWorks.title }}"/>
+                            <span class="inputAreaError"></span>
+                        </div>
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label>下载链接:</label>
+                            <input class="inputArea1 txt_codeUrl form-control" name="code_url"
+                                   type="text" placeholder="请输入下载链接"
+                                   value="{{ taskExcellentWorks.code_url }}"/>
+                            <span class="inputAreaError"></span>
+                        </div>
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label>序号:</label>
+                            <input class="inputArea1 txt_index form-control" name="index"
+                                   type="text" value="{{ taskExcellentWorks.index }}" placeholder="请输入序号"/>
+                            <span class="inputAreaError"></span>
+                        </div>
+                        <div class="form-group">
+                            <a href="javascript:void(0);" onclick="saveTaskExcellentWorks()"
+                               role="button" title="保存" class="btn btn-default btn-success btn-sm active">
+                                <span class="glyphicon glyphicon-edit" style="margin-right: 3px"></span>保存</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

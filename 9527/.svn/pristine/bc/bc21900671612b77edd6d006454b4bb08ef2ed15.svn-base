@@ -1,0 +1,279 @@
+{% extends "index.html" %}
+{% block pager %}
+{% load  staticfiles %}
+
+<div class="row">
+    <div class="col-md-8">
+        {% ifequal action 'show'%}
+        <h4>查看1v1直播信息详情</h4>
+        {% endifequal %}
+        {% ifequal action 'edit' %}
+        <h4>修改1v1直播信息</h4>
+        {% endifequal %}
+    </div>
+</div>
+
+<div class="container-fluid ">
+    <div class="row">
+
+        {% ifequal action 'show'%}
+        <div class="col-md-10 col-sm-8 col-lg-8">
+            <table class="table table-striped table-responsive table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th width="200px;">
+                        1v1直播信息
+                    </th>
+                    <th>
+                        信息详情
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody class="text_over_flow">
+                <tr>
+                    <td>
+                        <span>专业：</span>
+                    </td>
+                    <td>
+                        {{ meeting.career_name|default_if_none:"" }}
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <span>教师：</span>
+                    </td>
+                    <td>
+                        {{ meeting.nick_name }}
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <span>开始时间：</span>
+                    </td>
+                    <td>
+                        {{ meeting.start_time|date:"Y-m-d H:i:s" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>结束时间：</span>
+                    </td>
+                    <td>
+                        {{ meeting.end_time|date:"Y-m-d H:i:s" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>老师URL：</span>
+                    </td>
+                    <td>
+                        {{ meeting.teacher_url }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>学生端URL：</span>
+                    </td>
+                    <td>
+                        {{ meeting.student_url }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <span>录播URL：</span>
+                    </td>
+                    <td>
+
+                        {{ meeting.video_url|default_if_none:"" }}
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>录播token：</span>
+                    </td>
+                    <td>
+
+                        {{ meeting.video_token|default_if_none:"" }}
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>教师端口令：</span>
+                    </td>
+                    <td>
+                        {{ meeting.teacher_token|default_if_none:"" }}
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <span>助教口令：</span>
+                    </td>
+                    <td>
+                        {{ meeting.assistant_token|default_if_none:"" }}
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <span>学生客户端口令：</span>
+                    </td>
+                    <td>
+                        {{ meeting.student_client_token|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>学生web端口令：</span>
+                    </td>
+                    <td>
+                        {{ meeting.student_web_token|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>直播编号：</span>
+                    </td>
+                    <td>
+                        {{ meeting.live_code|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>直播ID：</span>
+                    </td>
+                    <td>
+                        {{ meeting.live_id|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>学生ID：</span>
+                    </td>
+                    <td>
+                        {{ meeting.user_id|default_if_none:"" }}
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <span>学生预约电话：</span>
+                    </td>
+                    <td>
+                        {{ meeting.phone|default_if_none:"" }}
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <span>学生问题：</span>
+                    </td>
+                    <td>
+                        {{ meeting.question|default_if_none:"" }}
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <span>预约时间：</span>
+                    </td>
+                    <td>
+                        {{ meeting.create_date_time|date:"Y-m-d H:i:s" }}
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <span>状态：</span>
+                    </td>
+                    <td>
+                        {{ meeting.status_name|default_if_none:"" }}
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        {% endifequal %}
+
+
+        {% ifequal action 'edit'%}
+        <div class="col-md-10" >
+        <form id="meeting_update_form" class="form-horizontal" action="{% url 'mz_common:onevone_meeting_update'%}" method="post">
+            {% csrf_token %}
+            <input id="meeting_id" class="hidden" name="id" value="{{ meeting.id }}">
+            <div class="form-group">
+                <label for="video_url" class="col-sm-2 control-label">录播URL：</label>
+                <div class="col-sm-10 col-md-6">
+                    <input type="text" class="form-control" name="video_url" id="video_url"
+                           value="{{ meeting.video_url|default_if_none:'' }}" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="video_url" class="col-sm-2 control-label">录播Token：</label>
+                <div class="col-sm-10 col-md-6">
+                    <input type="text" class="form-control" name="video_token" id="video_token"
+                           value="{{ meeting.video_token|default_if_none:'' }}" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="start_time" class="col-sm-2 control-label">开始时间：</label>
+                <div class="col-sm-10 col-md-6">
+                    <input type="datetime-local" class="form-control" name="start_time" id="start_time"
+                           value="{{ meeting.start_time }}"  >
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="end_time" class="col-sm-2 control-label">结束时间：</label>
+                <div class="col-sm-10 col-md-6">
+                    <input type="datetime-local" class="form-control" name="end_time" id="end_time"
+                           value="{{ meeting.end_time }}"  >
+                </div>
+            </div>
+              <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary" onclick="form_validate()">提交</button>
+                    </div>
+                </div>
+        </form>
+         {% endifequal %}
+    </div>
+</div>
+
+<script>
+    $().ready(function() {
+        console.log($("#video_token").val())
+         $("#meeting_update_form").validate({
+              rules: {
+                  video_url: {
+                      required: true,
+                  },
+                  video_token: {
+                      required: true,
+                  },
+                  start_time: {
+                      required: true,
+                  },
+                  end_time: {
+                      required: true,
+                  },
+
+              },
+              messages: {
+                  video_url: {
+                      required: "请填写录播URL",
+                  },
+                  video_token: {
+                      required: "请填写录播Token",
+                  },
+                  start_time: {
+                      required: "请选择开始时间",
+                  },
+                  end_time: {
+                      required: "请选择结束时间",
+                  },
+
+              }
+          })
+    });
+
+</script>
+
+{% endblock %}

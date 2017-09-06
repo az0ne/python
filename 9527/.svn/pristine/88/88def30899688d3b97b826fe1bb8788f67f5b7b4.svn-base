@@ -1,0 +1,247 @@
+
+<!--搜索框-->
+<div class="input-group mySearch" xmlns="http://www.w3.org/1999/html">
+    <input type="text" id="txt_search" class="form-control" placeholder="输入查询关键字"/>
+	<span class="input-group-btn">
+						<button type="button" class="btn btn-default" id="btn_search">
+                            <span class="glyphicon glyphicon-search"></span>
+	</button>
+{#        <select name="searchField">#}
+{#            <option value="all">全部</option>#}
+{#        </select>#}
+	</span>
+</div>
+<!-- 扩展功能栏-->
+<div class="function_btn">
+    <ul class="nav navbar-btn">
+        <li>
+            <button type="button" id="btn_addCareerAd" class="btn btn-default btn-info btn-sm active">
+                <span class="glyphicon glyphicon-plus">添加职业广告</span>
+            </button>
+        </li>
+    </ul>
+</div>
+<!--修改职业广告模态框-->
+<div class="modal fade" id="modal_editCareerAd" role="dialog">
+    <div class="modal-dialog" role="document" style="width: 750px">
+        <div class="modal-content">
+            <div class="modal-header btn-success active">
+                <button type="button" class="close" data-dismiss="modal" aria-lable="close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="text-shadow:3px 3px 2px #000">
+                    修改职业广告信息</h4>
+            </div>
+            <form enctype="multipart/form-data" id="form_editCareerAd">
+                <div class="modal-body" style="height: 230px;">
+                    <div style="float: left">
+                        <img class="previewImg" src="" style="height: 200px;width: 200px"/>
+                    </div>
+                    <div style="float: left">
+                        <div class="form-group">
+                            <label class="inputAreaTitle">广告图片:</label>
+                            <input class="inputArea file_imgUrl" type="file" accept="image/*" name="img_url"
+                                   id="file_edit_imgUrl"
+                                   placeholder="选择上传图片"/>
+                            <span class="inputAreaError lbl_imgUrlError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="inputAreaTitle">图片标题:</label>
+                            <input class="inputArea txt_imgTitle" type="text" name="img_title" id="txt_edit_imgTitle"
+                                   placeholder="请输入图片标题"/>
+                            <span class="inputAreaError lbl_imgTitleError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="inputAreaTitle">职业名称:</label>
+                            <select class="inputArea slt_careerName" id="slt_add_careerName" name="career_id"
+                                    disabled="disabled"></select>
+                            <span class="inputAreaError lbl_careerNameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="inputAreaTitle">类型: </label>
+                            <select class="inputArea slt_type" id="slt_edit_type" name="type" disabled="disabled">
+                                <option value="COURSE">课程</option>
+                                <option value="ARTICLE">文章</option>
+                            </select>
+                            <span class="inputAreaError lbl_typeError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label class="inputAreaTitle">当前状态:</label>
+                            <select class="inputArea slt_isActived" id="slt_edit_isActived" name="is_actived">
+                                <option value="0">不激活</option>
+                                <option value="1">激活</option>
+                            </select>
+                            <span class="inputAreaError lbl_isActivedError"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span id="isEditSuccess" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal" id="btn_closeModal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary active"
+                            id="btn_saveEditCareerAd">保存
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<!--添加职业广告模态框-->
+<div class="modal fade" id="modal_addCareerAd" role="dialog">
+    <div class="modal-dialog" role="document" style="background-color:#ffffff;width: 750px">
+        <div class="modal-header btn-success active">
+            <button type="button" class="close" data-dismiss="modal" aria-lable="close"><span
+                    aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" style="text-shadow:3px 3px 2px #000">
+                添加职业广告信息</h4>
+        </div>
+        <form enctype="multipart/form-data" id="form_addCareerAd">
+            <div class="modal-body" style="height: 230px;">
+                <div style="float: left">
+                    <img class="previewImg" src="" style="height: 200px;width: 200px"/>
+                </div>
+                <div style="float: left">
+                    <div class="form-group">
+                        <label class="inputAreaTitle">广告图片:</label>
+                        <input class="inputArea file_imgUrl" name="img_url" type="file" id="file_add_imgUrl"
+                               placeholder="选择上传图片"/>
+                        <span class="inputAreaError lbl_imgUrlError">图片格式:bmp,png,gif,jpeg,jpg</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="inputAreaTitle">图片标题:</label>
+                        <input class="inputArea txt_imgTitle" name="img_title" type="text"
+                               id="txt_add_imgTitle" placeholder="请输入图片标题"/>
+                        <span class="inputAreaError lbl_imgTitleError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="inputAreaTitle">职业名称:</label>
+                        <select class="inputArea slt_careerName" name="career_id" id="slt_add_careerName"></select>
+                        <span class="inputAreaError lbl_careerNameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="inputAreaTitle">类型:</label>
+                        <select class="inputArea slt_type" id="slt_add_type" name="type">
+                            <option value="COURSE">课程</option>
+                            <option value="ARTICLE">文章</option>
+                        </select>
+                        <span class="inputAreaError lbl_typeError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="inputAreaTitle">当前状态:</label>
+                        <select class="inputArea slt_isActived" id="slt_add_isActived" name="is_actived">
+                            <option value="0">不激活</option>
+                            <option value="1">激活</option>
+                        </select>
+                        <span class="inputAreaError lbl_isActivedError"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span id="isAddSuccess" style="float: left;display: none"></span>
+                <button type="button" class="btn btn-danger active" data-dismiss="modal" id="btn_closeModal">关闭
+                </button>
+                <button type="button" class="btn btn-primary active"
+                        id="btn_saveAddCareerAd">保存
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<!--查看个人中心广告模态框-->
+<div class="modal fade" id="modal_showCareerAd" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header btn-success active">
+                <button type="button" class="close" data-dismiss="modal" aria-lable="close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_showCareerAdLab">
+                    查看职业广告信息</h4>
+            </div>
+            <div class="modal-body form-inline" style="height: 150px;">
+                <div class="form-group" style="height:100%;width: 30%">
+                    <p style="">广告图片:</p>
+                    <img id="lbl_imgUrl" src="" height="90px" width="90px"/>
+                </div>
+                <div class="form-group form-horizontal" style="height:100%;width: 30%">
+                    <p style="">职业名称:</p>
+                    <label id="lbl_careerName"></label>
+                    <p>图片标题:</p>
+                    <label id="lbl_imgTitle"></label>
+                </div>
+                <div class="form-group form-horizontal" style="height:100%;width: 30%">
+                    <p>类 型:</p>
+                    <label id="lbl_type"></label>
+                    <p>当前状态:</p>
+                    <label id="lbl_isActived"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--刪除个人中心广告警示框-->
+<div class="modal fade" id="modal_delCareerAd" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header btn-danger active">
+                <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_delCareerAdLab">
+                    删除职业广告信息</h4>
+            </div>
+            <div class="modal-body">
+                <h3 class="text-danger text-center active" id="delCareerAdMessage"></h3>
+            </div>
+            <div class="modal-footer">
+                <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary active" id="btn_ensureDelCareerAd">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--显示原始图片-->
+<div class="modal fade" id="modal_showOriginImg">
+    <div class="modal-dialog" style="width: 60%;">
+        <img id="showOriginImg" src="" width="100%" height="auto"/>
+    </div>
+</div>
+<!--数据显示-->
+<div>
+    <table class="table table-striped table-responsive table-bordered table-hover">
+        <thead>
+        <tr>
+            <th width="50px">序号</th>
+            <th width="auto">职业名称</th>
+            <th width="auto">图片标题</th>
+            <th width="80px;">广告图片</th>
+            <th width="60px">类型</th>
+            <th width="60px;">状态</th>
+            <th width="209px;">操作</th>
+        </tr>
+        </thead>
+        <tbody id="dataTable">
+
+        </tbody>
+    </table>
+    <!--分页-->
+    <div align="right">
+        <ul class="pagination" id="pagination1"></ul>
+        <label id="pagerDataInfo" style="float: right;margin:32px 20px 0 10px">总共0页0条</label>
+    </div>
+</div>
+<script type="text/javascript" src="../static/js/mz_common/careerAd.js"></script>
+<script type="text/javascript" src="../static/js/dataValidate.js"></script>
+<script type="text/javascript">
+    //初始化分页组件
+    $('#pagination1').jqPaginator({
+        totalPages: 1,
+        visiblePages: 5,
+        currentPage: 1,
+        onPageChange: function (pageIndex) {
+            selectData('/ajax/careerAd/list/', pageIndex, 6);
+        }
+    });
+</script>

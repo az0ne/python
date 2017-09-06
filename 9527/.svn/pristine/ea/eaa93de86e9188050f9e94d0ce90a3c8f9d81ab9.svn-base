@@ -1,0 +1,85 @@
+{% extends "pager.html" %}
+{% block pager %}
+    <style rel="stylesheet">
+        .userMeetingCount {
+            margin-top: 50px;
+            margin-left: 50px;
+        }
+    </style>
+    <div style="background-color: beige " class="modal-header active">
+        <h4 class="modal-title" id="meetingCount">修改学员直播次数</h4>
+    </div>
+    <div class="container userMeetingCount">
+        <div class="row">
+            <div class="col-md-8">
+                <form action="{% url 'mz_common:userMeetingCount_save'%}" method="post" id="userMeetingCount_form">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="save">
+                        <div class="form-group">
+                            <label for="id">ID：</label>
+                            <input type="number" class="form-control" id="id" name="id" value={{ userMeetingCount_detail.id }}  readonly >
+                        </div>
+                        <div class="form-group">
+                            <label for="career_name">专业:</label>
+                            <input type="text" class="form-control" id="career_name" name="career_name" value="{{ userMeetingCount_detail.name }}" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_name">用户名:</label>
+                            <input type="text" id="user_name" name="user_name" class="form-control" value={{ userMeetingCount_detail.username }} readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="count">当前次数:</label>
+                            <input type="number" class="form-control" id="count" name="count" value={{ userMeetingCount_detail.count }}>
+                        </div>
+                        <div class="form-group">
+                            <label for="max_count">直播次数:</label>
+                            <input type="number" class="form-control" id="max_count" name="max_count" value={{ userMeetingCount_detail.max_count }}>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="check()" id="button">更新</button>
+                        <b class="text-danger" id="error"></b>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <script src="{{ STATIC_URL }}js/vendor/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.validate.js"></script>
+    <script type="text/javascript">
+        function check() {
+            var count = $('#count').val();
+            var max_count = $('#max_count').val();
+            if (parseInt(count)>parseInt(max_count)) {
+                document.getElementById('error').innerHTML= '当前次数必须小于直播次数'
+            }
+            else{
+               $("#userMeetingCount_form").submit();
+            }
+        }
+        $(document).ready(function () {
+            $("#userMeetingCount_form").validate({
+                rules: {
+                    count: {
+                        required: true,
+                        digits:true
+                    },
+                    max_count: {
+                        required: true,
+                        digits:true
+                    }
+
+                },
+                messages: {
+                    count: {
+                        required: "当前次数必填",
+                        digits: "必须输入整数"
+                    },
+                    max_count: {
+                        required: "直播次数必填",
+                        digits: "必须输入整数"
+                    }
+
+                }
+            })
+        });
+    </script>
+{% endblock %}

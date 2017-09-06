@@ -1,0 +1,124 @@
+{% extends "pager.html" %}
+{% block pager %}
+<style rel="stylesheet">
+.AdminUsrsave {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+</style>
+        <div class="container AdminUsrsave">
+            <div class="row">
+                <div class="col-md-8">
+                    <form action="{% url 'mz_back:admin_save'%}" method="post" id="Adminusrform">
+                        {% csrf_token %}
+                        {% ifequal action "add"  %}
+                        <input type="hidden" name="action" value="add">
+                        <div class="form-group">
+                            <label for="user_id">用户ID:</label>
+                            <input type="number" class="form-control" id="user_id" name="id" value="{{ AdminUsrs.name }}" placeholder="请输入用户ID">
+                            <p class="text-danger">{{ error }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_name">用户名:</label>
+                            <input type="text" class="form-control" id="user_name" name="name" value="{{ AdminUsrs.name }}" placeholder="请输入用户名">
+                            <p class="text-danger">{{ error }}</p>
+                        </div>
+                        <div class="form-group">
+                            <label for="remark">备注名:</label>
+                            <input type="text" class="form-control" id="remark" name="remark" value="{{ AdminUsrs.remark }}" placeholder="请输入备注名称">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">密码:</label>
+                            <input type="password" class="form-control" id="password" name="password" value=""
+                                   placeholder="请输入密码">
+                        </div>
+                         <div class="form-group">
+                            <label for="pwd_confirm">确认密码:</label>
+                            <input type="password" class="form-control" id="pwd_confirm" name="pwd_confirm" value=""
+                                   placeholder="请再次输入密码">
+                        </div>
+                        {% else %}
+                        <input type="hidden" name="action" value="edit">
+                        <input type="hidden" name="id" value="{{ AdminUsrs.id }}">
+                        <input type="hidden" name="page_index" value="{{ page_index }}">
+                        <input type="hidden" name="url_back" value="{{ url_back }}">
+                        <div class="form-group">
+                            <label for="remark">备注名:</label>
+                            <input type="text" class="form-control" id="remark" name="remark" value="{% ifequal AdminUsrs.remark None %}{%else%}{{ AdminUsrs.remark }}{%endifequal%}" placeholder="请输入备注名称">
+                        </div>
+                        {% endifequal %}
+                        <button type="button" class="btn btn-primary" onclick="pwd_confirm_func();">提交</button>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    <hr>
+
+
+
+<script src="{{ STATIC_URL }}js/vendor/jquery.min.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.validate.js"></script>
+<script type="text/javascript">
+function pwd_confirm_func(){
+    var pwd=[];
+    $("input[type=password]").each(function(){
+        pwd.push($(this).val());
+    });
+    var a=pwd[0];
+    var b=pwd[1];
+    if (a==b){
+        $("#Adminusrform").submit();
+    }
+    else{
+        alert('两次密码不一致，请重新确认！');
+    }
+}
+
+$(document).ready(function () {
+    $("#Adminusrform").validate({
+        rules: {
+            id:{
+                required: true,
+            },
+            name: {
+                required: true,
+                rangelength: [3, 50]
+            },
+            user_role: {
+                      required: true,
+                      min:1
+                  },
+            password: {
+                required: true,
+                rangelength: [3, 50]
+            },
+            pwd_confirm: {
+                required: true,
+                rangelength: [3, 50]
+            }
+        },
+        messages: {
+            id: {
+                required: "请输入用户ID",
+            },
+            name: {
+                required: "请输入用户名",
+                rangelength: "用户名长度介于3-50之间"
+            },
+            chapter:"请选择用户角色",
+            password: {
+                required: "请输入密码",
+                rangelength: "密码长度介于3-50之间"
+            },
+            pwd_confirm: {
+                required: "请再次输入密码",
+                rangelength: "密码长度介于3-50之间"
+            }
+
+        }
+    })
+})
+</script>
+{% endblock %}

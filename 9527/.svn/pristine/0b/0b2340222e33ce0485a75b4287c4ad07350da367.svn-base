@@ -1,0 +1,382 @@
+{% extends "index.html" %}
+{% block pager %}
+    {% load  staticfiles %}
+    <div class="container-fluid add_or_edit_user">
+        <div class="row">
+            <div class="col-md-8" id="titleart">
+                <h2 class="text-info">{% if action == 'add' %}添加用户{% elif action == 'show' %}查看{{ user.username }}用户信息{% else %}修改{{ user.username }}用户信息{% endif %}</h2>
+                <hr>
+            </div>
+            <div class="col-md-8">
+                <form id="user" action="
+
+                        {% if action == 'add' %}{% url 'mz_fxsys:add_user' %}{% else %}{% url 'mz_fxsys:edit_user' %}?uid={{ user.id }}&page_index={{ page_index }}{% endif %}"
+                      method="post"
+                      enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if action == "add" %}
+                        <div class="form-group" id="phone">
+                            <span style="color: red;margin-left: -8px;">*</span>
+                            <label for="u_name">账号(手机号)</label>
+                            <input type="text" class="form-control" id="u_name" name="username"
+                                   placeholder="请输入登录账号">
+                        </div>
+                        <div class="form-group">
+                            <span style="color: red;margin-left: -8px;">*</span>
+                            <label for="password">密码</label>
+                            <input type="text" class="form-control" id="password"
+                                   name="password" placeholder="请输入登录密码">
+                        </div>
+                    {% else %}
+                        <input type="hidden" name="username" value="{{ user.username }}">
+                    {% endif %}
+                    <div class="form-group">
+                        <span style="color: red;margin-left: -8px;">*</span>
+                        <label for="full_name">姓名</label>
+                        <input type="text" class="form-control" id="full_name" name="full_name"
+                               value="{{ user.full_name|default_if_none:"" }}" placeholder="请输入用户姓名">
+                    </div>
+                    <div class="form-group">
+                        <span style="color: red;margin-left: -8px;">*</span>
+                        <label for="maizi_id">麦子帐号(手机/邮箱)</label>
+                        <input type="text" class="form-control" id="maiziedu_id"
+                               value="{{ user.maiziedu_name|default_if_none:"" }}"
+                               name="maiziedu_id"　placeholder="麦子帐号">
+                    </div>
+                    <div class="form-group">
+                        <span style="color: red;margin-left: -8px;">*</span>
+                        <label for="ID_card_No">身份证号</label>
+                        <input type="text" class="form-control" id="ID_card_No"
+                               value="{{ user.ID_card_No|default_if_none:"" }}"
+                               name="ID_card_No" placeholder="请输入用户身份证号">
+                    </div>
+                    <div class="form-group">
+                        <label for="contract_num">合同号</label>
+                        <input type="text" class="form-control" id="contract_num"
+                               value="{{ user.contract_num|default_if_none:"" }}"
+                               name="contract_num" placeholder="请输入合同号">
+                    </div>
+                    <div class="form-group">
+                        <label for="type_name">用户类型</label>
+                        <select class="form-control" id="type_name" value="{{ user.type_id }}" name="type_id">
+                            <option value="1">会员</option>
+                            <option value="2">合作伙伴</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="enterprise" style="display:none;">
+                        <label for="enterprise_name">企业名称</label>
+                        <input class="form-control" id="enterprise_name"
+                               value="{{ user.enterprise_name|default_if_none:"" }}"
+                               name="enterprise_name" placeholder="请输入企业名称">
+                    </div>
+                     <div class="form-group">
+                        <label for="cash_back_way">返现形式</label>
+                        <select class="form-control" id="cash_back_way" value="{{ user.cash_back_way }}"  data-value="{{ user.cash_back_way }}"  name="cash_back_way">
+                            <option value="0">选择返现形式</option>
+                            <option value="1">总收益返现</option>
+                            <option value="2">定量返现</option>
+                        </select>
+                    </div>
+                    <div id="quantitative_cashback" style="display: none;">
+                        <div class="form-group ">
+                            <label for="cash_back_maximum">最高返现金额</label>
+                            <input type="text" class="form-control" id="cash_back_maximum"
+                                   value="{{ user.cash_back_maximum|default_if_none:0 }}"
+                                   name="cash_back_maximum" placeholder="请输入最高返现金额">
+                        </div>
+                        <div class="form-group ">
+                            <label for="cash_back_day">每日返现金额</label>
+                            <input type="text" class="form-control" id="cash_back_day"
+                                   value="{{ user.cash_back_day|default_if_none:0 }}"
+                                   name="cash_back_day" placeholder="每日返现金额">
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="role">
+                        <label for="role_id">角色类型</label>
+                        <select class="form-control" id="role_name" value="{{ user.role_id }}" name="role_id">
+                            <option value="1">银勋</option>
+                            <option value="2">金勋</option>
+                            <option value="3">王牌</option>
+                            <option value="4">荣誉</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="rebate_type_div">
+                        <span style="color: red;margin-left: -8px;">*</span>
+                        <label for="rebate_no">奖学金返利倍数</label>
+                        <select class="form-control" id="rebate_type" value="{{ user.rebate_type_id }}" name="rebate_type_id">
+                            {% for rebate_type in rebate_types %}
+                            <option value="{{ rebate_type.id }}">{{ rebate_type.rebate_no }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="parent_id">推荐人</label>
+                        <select class="form-control" id="parent_id" value="{{ user.parent_id }}" name="parent_id">
+                        </select>
+                    </div>
+                    {% if action != "add" %}
+                    <div class="form-group">
+                        <label for="liveness">活跃度</label>
+                        <input type="text" class="form-control" id="liveness"
+                               value="{{ user.liveness|default_if_none:"" }}"
+                               name="liveness" >
+                    </div>
+                    <div class="form-group">
+                        <label for="is_suspend">是否休学(*休学操作会立即结算返利金额,且不可逆,请谨慎操作)</label>
+                        <select class="form-control" id="is_suspend" value="{{ user.is_suspend }}" name="is_suspend">
+                            <option value="0">未休学</option>
+                            <option value="1">已休学</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="is_suspend_old" value="{{ user.is_suspend }}">
+                    <div class="form-group">
+                        <label for="is_graduate">是否毕业</label>
+                        <select class="form-control" id="is_graduate" value="{{ user.is_graduate }}" name="is_graduate">
+                            <option value="0">未毕业</option>
+                            <option value="1">已毕业</option>
+                        </select>
+                    </div>
+                    {% endif %}
+                    <div class="form-group" style="position: relative">
+                        <label for="activate_date">激活日期</label>
+                        <input size="16" type="text" id="activate_date" name="activate_date" readonly="readonly"
+                               class="form_datetime form-control"
+                               value="{{ user.activate_date|date:"Y-m-d" }}"
+                               placeholder="请选择激活日期">
+                        {#                        <i style="position: absolute; right: 0;top: 0" class="glyphicon glyphicon-remove-circle date_clean" title="清空"></i>#}
+                    </div>
+                    <div class="form-group">
+                        <label for="fxsys_note">备注</label>
+                        <input type="text" class="form-control" id="fxsys_note"
+                               value="{{ user.fxsys_note|default_if_none:"" }}"
+                               name="fxsys_note" placeholder="请输入备注">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm save" style="display: none">保存</button>
+                    <button type="submit" class="btn btn-primary btn-sm edit" style="display: none">修改</button>
+                    <button type="button" class="btn btn-default btn-sm goback">返回</button>
+                </form>
+                <hr>
+                <div class="form-group">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ STATIC_URL }}js/vendor/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript"
+            src="/static/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.validate.js"></script>
+    <script type="application/javascript">
+        var goback = $('.goback'), phone = $("#phone"), u_name = $('#u_name'), type_name = $('#type_name'),
+                role = $('#role'), edit = $('.edit'), save = $('.save'), parent_id = $('#parent_id'),
+                form_control = $('.form-control'), enterprise = $('#enterprise'), activate_date = $('#activate_date'),
+                date_clean = $('.date_clean'), date = $('#activate_date'), liveness=$('#liveness'),fxsys_note=$('#fxsys_note'), uname_list = [];
+        //动态select选项
+        $(document).ready(function () {
+            $.ajax({
+                url: "{% url 'mz_fxsys:get_all_user_ajax' %}",
+                type: "get",
+                async: false,
+                success: function (data) {
+                    console.log(data);
+                    var selectinfo = ["<option value='0'>无</option>"];
+                    $.each(data.result, function (id, selectname) {
+
+                        if (selectname.full_name == null) {
+                            selectname.full_name = ''
+                            selectinfo.push('<option value="' +
+                                    selectname.id + '">' + selectname.username + '</option>'
+                            );
+                        } else {
+                            selectinfo.push('<option value="' +
+                                    selectname.id + '">' + selectname.username + ':' + selectname.full_name + '</option>'
+                            );
+                        }
+
+                    });
+                    $("#parent_id").append(selectinfo.toString());
+                }
+            });
+        });
+        $(function () {
+            //数据绑定
+            $("#type_name option[value='" + {{ user.type_id }} +"']").attr("selected", "selected");
+            $("#role_name option[value='" + {{ user.role_id }} +"']").attr("selected", "selected");
+            $("#parent_id option[value='" + {{ user.parent_id }} +"']").attr("selected", "selected");
+            $("#rebate_type option[value='"+$("#rebate_type").attr("value")+"']").attr("selected", "selected");
+            $("#is_suspend option[value='"+$("#is_suspend").attr("value")+"']").attr("selected", "selected");
+            $("#is_graduate option[value='"+$("#is_graduate").attr("value")+"']").attr("selected", "selected");
+            if (type_name.val() == 2) {
+                role.hide();
+            }
+            {% if action == "show"  %}
+                form_control.attr('readonly', 'readonly');
+                edit.hide();
+                save.hide();
+            {% elif action == "add" %}
+                edit.hide();
+                save.show();
+            {% else %}
+                form_control.removeAttr('readonly');
+                type_name.parent().css('display', 'none');
+                parent_id.parent().css('display', 'none');
+                liveness.parent().css('display', 'none');
+                activate_date.attr('readonly', 'readonly');
+                edit.show();
+                save.hide();
+            {% endif %}
+
+            uname_list = get_all_username().responseJSON.result;
+        });
+        // 回退按钮
+        goback.off('click').on('click', function () {
+            history.go(-1)
+        });
+        // 选择用户类型为会员，展开角色选择
+        type_name.off('change').on('change', function () {
+            if (type_name.val() == 1) {
+                role.show();
+                enterprise.hide();
+            }
+            else {
+                enterprise.show();
+                role.hide();
+            }
+        });
+        // 日期课件
+        {% if action != "add"  %}
+        $("#activate_date").datetimepicker({
+            format: 'yyyy-mm-dd',
+            minView: 'month',
+            language: 'zh-CN',
+            autoclose: true,
+        });
+        {% endif %}
+        // 更改为编辑模式
+        edit.off('click').on('click', function () {
+            form_control.removeAttr('readonly');
+            type_name.parent().css('display', 'none');
+            parent_id.parent().css('display', 'none');
+            liveness.parent().css('display', 'none');
+            activate_date.attr('readonly', 'readonly');
+            edit.hide();
+            save.show();
+        });
+        // 清空激活日期
+        date_clean.off('click').on('click', function () {
+            activate_date.val('');
+        });
+        // 获取当前所有用户
+        function get_all_username() {
+            return $.ajax({
+                url: '{% url 'mz_fxsys:validate_user_exist' %}',
+                type: 'GET',
+                async: false,  // 必须使用同步，不然数据还没有查询出来就return了
+                dataType: 'json',
+                success: function (data) {
+                    return data.result;
+                }
+            });
+        }
+        // 验证该用户是否存在
+        function vaildate_username_exist() {
+            var uname = u_name.val().trim();
+            for (var i = 0; i < uname_list.length; i++) {
+                if (uname_list[i] == uname) {
+                    return true
+                }
+            }
+            return false
+        }
+        $(document).ready(function () {
+
+             $("#cash_back_way option").eq($("#cash_back_way").attr("data-value")).prop("selected",true)
+
+            var cash_val = $("#cash_back_way").val();
+            if( cash_val == 2){
+                    $("#rebate_type_div").hide();
+                    $("#role").hide();
+                    $("#quantitative_cashback").show();
+                }else{
+                    $("#quantitative_cashback").hide();
+                    $("#rebate_type_div").show();
+                    $("#role").show();
+                }
+            $("#cash_back_way").change(function () {
+                $("#cash_back_maximum").val(0);
+                $("#cash_back_day").val(0)
+
+                console.log( $("#cash_back_way").val() );
+                var cash_val = $("#cash_back_way").val();
+
+                if( cash_val == 2){
+                    $("#rebate_type_div").hide();
+                    $("#role").hide();
+                    $("#quantitative_cashback").show();
+                }else{
+                    $("#rebate_type_div").show();
+                    $("#role").show();
+                    $("#quantitative_cashback").hide();
+                }
+
+            })
+            $("#cash_back_maximum").change(function () {
+                $("#cash_back_day").attr('readonly', 'readonly');
+
+                var cash_back_day_val =($("#cash_back_maximum").val()/120).toFixed(2)  ;
+                $("#cash_back_day").val( cash_back_day_val );
+                console.log( typeof $("#cash_back_day").val());
+            })
+
+        })
+        //验证
+        $(document).ready(function () {
+            jQuery.validator.addMethod("isMobile", function (value, element) {
+                var length = value.length;
+                var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;
+                return this.optional(element) || (length == 11 && mobile.test(value));
+            }, "请输入正确的手机号码！");
+            jQuery.validator.addMethod("validate_username", function (value, element) {
+                return this.optional(element) || vaildate_username_exist() ? false : true;
+            }, "该手机号已申请，请重新输入！")
+            $("#user").validate({
+                rules: {
+                    username: {
+                        required: true,
+                        isMobile: true,
+                        validate_username: true
+                    },
+                    password: {
+                        required: true,
+                        rangelength: [6, 16]
+                    },
+                    full_name: {
+                        required: true,
+                    },
+                    maiziedu_id:{
+                        required: true,
+                    }
+                },
+                messages: {
+                    username: {
+                        required: "账号名不能为空！",
+                    },
+                    password: {
+                        required: "密码不能为空！",
+                        rangelength: '密码长度不合法，请输入6-16位字符！'
+                    },
+                    full_name: {
+                        required: "姓名不能为空！",
+                    },
+                    maiziedu_id:{
+                        required: "关联的麦子帐号不能为空！",
+                    }
+                }
+            })
+        });
+
+    </script>
+{% endblock %}

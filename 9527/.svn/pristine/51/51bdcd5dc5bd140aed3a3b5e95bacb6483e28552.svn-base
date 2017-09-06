@@ -1,0 +1,142 @@
+﻿[
+  {
+    "studentID": "100001",
+    "name": "张三",
+    "gender": "男",
+    "age": "25",
+    "majors": "软件技术"
+  },
+  {
+    "studentID": "100002",
+    "name": "李四",
+    "gender": "女",
+    "age": "21",
+    "majors": "网络技术"
+  },
+  {
+    "studentID": "100003",
+    "name": "王五",
+    "gender": "女",
+    "age": "21",
+    "majors": "通信技术"
+  },
+  {
+    "studentID": "100004",
+    "name": "李四1",
+    "gender": "女",
+    "age": "22",
+    "majors": "网络技术"
+  },
+  {
+    "studentID": "100005",
+    "name": "王五1",
+    "gender": "女",
+    "age": "24",
+    "majors": "通信技术"
+  },
+  {
+    "studentID": "100006",
+    "name": "张三",
+    "gender": "男",
+    "age": "25",
+    "majors": "软件技术"
+  },
+  {
+    "studentID": "100007",
+    "name": "李四",
+    "gender": "女",
+    "age": "21",
+    "majors": "网络技术"
+  },
+  {
+    "studentID": "100008",
+    "name": "王五",
+    "gender": "女",
+    "age": "21",
+    "majors": "通信技术"
+  },
+  {
+    "studentID": "100009",
+    "name": "李四1",
+    "gender": "女",
+    "age": "22",
+    "majors": "网络技术"
+  },
+  {
+    "studentID": "100010",
+    "name": "王五1",
+    "gender": "女",
+    "age": "24",
+    "majors": "通信技术"
+  },
+  {
+    "studentID": "100011",
+    "name": "张三",
+    "gender": "男",
+    "age": "25",
+    "majors": "软件技术"
+  },
+  {
+    "studentID": "100012",
+    "name": "李四",
+    "gender": "女",
+    "age": "21",
+    "majors": "网络技术"
+  },
+  {
+    "studentID": "100013",
+    "name": "王五",
+    "gender": "女",
+    "age": "21",
+    "majors": "通信技术"
+  },
+  {
+    "studentID": "100014",
+    "name": "李四1",
+    "gender": "女",
+    "age": "22",
+    "majors": "网络技术"
+  },
+  {
+    "studentID": "100015",
+    "name": "王五1",
+    "gender": "女",
+    "age": "24",
+    "majors": "通信技术"
+  },
+  {
+    "studentID": "100016",
+    "name": "张三",
+    "gender": "男",
+    "age": "25",
+    "majors": "软件技术"
+  },
+  {
+    "studentID": "100017",
+    "name": "李四",
+    "gender": "女",
+    "age": "21",
+    "majors": "网络技术"
+  },
+  {
+    "studentID": "100018",
+    "name": "王五",
+    "gender": "女",
+    "age": "21",
+    "majors": "通信技术"
+  },
+  {
+    "studentID": "100019",
+    "name": "李四1",
+    "gender": "女",
+    "age": "22",
+    "majors": "网络技术"
+  },
+  {
+    "studentID": "100020",
+    "name": "王五1",
+    "gender": "女",
+    "age": "24",
+    "majors": "通信技术"
+  }
+]

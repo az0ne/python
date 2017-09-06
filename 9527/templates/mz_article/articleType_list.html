@@ -1,0 +1,218 @@
+{% extends "index.html" %}
+
+{% block pager %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    <script type="text/javascript">
+        function onQuery() {
+            var url = "{% url 'mz_article:articleType_list' %}?action=query" + getPage();
+            window.location.href = url;
+        }
+        function delArticleType(title, url) {
+            $('#btn_ensureDelArticleType').attr('onclick', 'ensureDelArticleType("' + url + '")');
+            $('#delArticleTypeMessage').text('确定要删除“' + title + '”吗？');
+            $('#modal_delArticleType').modal('show');
+        }
+        function ensureDelArticleType(url) {
+            window.location.href = url;
+        }
+
+        function showArticleType(id) {
+            var url = "{% url 'mz_article:articleType_edit' %}?action=show&id=" + encodeURI(id);
+            window.location.href = url;
+        }
+
+        function addArticleType() {
+            var url = "{% url 'mz_article:articleType_edit' %}?action=add";
+            window.location.href = url;
+        }
+        function editArticleType(id) {
+            var url = "{% url 'mz_article:articleType_edit' %}?action=edit&id=" + encodeURI(id);
+            window.location.href = url;
+        }
+
+        function keyword_search() {
+            var keyword = encodeURIComponent($('#txt_search').val());
+            var url = "{% url 'mz_article:articleType_list' %}?action=search&keyword=" + keyword;
+            window.location.href = url;
+        }
+        function updateArticleType(current, func, id, url) {
+            var changeValue = $(current).text() == '显示' ? 0 : 1;
+            var data = {"id": id, "is_visible": changeValue};
+
+            if (func == 'changeIsCareer') {
+                data = {"id": id, "is_career": changeValue};
+            }
+            if (func == 'changeIsHomepage') {
+                data = {"id": id, "is_homepage": changeValue};
+            }
+            $.get(url, data, function (data) {
+                if (data.result == 'false') {
+                    warningPrompt('更新错误！');
+                }
+                else if (changeValue == 0) {
+                    $(current).children('span').text('隐藏');
+                    $(current).attr('class', 'btn btn-default btn-sm active');
+                    $(current).children('i').attr('class', 'glyphicon glyphicon-remove');
+                }
+                else {
+                    $(current).children('span').text('显示');
+                    $(current).attr('class', 'btn btn-default btn-warning btn-sm active');
+                    $(current).children('i').attr('class', 'glyphicon glyphicon-ok');
+                }
+            });
+        }
+    </script>
+    <!--搜索框-->
+    <div class="input-group mySearch">
+        <input type="text" id="txt_search" class="form-control" value="{{ key_word }}" placeholder="输入类型名称的关键字"/>
+	<span class="input-group-btn">
+						<button type="button" class="btn btn-default" id="btn_search" onclick="keyword_search()">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+	</span>
+    </div>
+    <!-- 扩展功能栏-->
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="onQuery()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+            <li style="float: right;margin-right: 5px">
+                <button type="button" onclick="addArticleType()"
+                        class="btn btn-default btn-info btn-sm active">
+                    <span class="glyphicon glyphicon-plus">新增</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <!--刪除免费任务描述警示框-->
+    <div class="modal fade" id="modal_delArticleType" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000">
+                        删除文章类型信息</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="delArticleTypeMessage"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureDelArticleType()"
+                            id="btn_ensureDelArticleType">确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th style="text-align: center;vertical-align: middle" width="80px">ID</th>
+                <th style="text-align: center;vertical-align: middle">分类名称</th>
+                <th style="text-align: center;vertical-align: middle" width="80px">序号</th>
+                <th style="text-align: center;vertical-align: middle" width="80px">是否在首页显示</th>
+                <th style="text-align: center;vertical-align: middle" width="80px">是否在文章页显示</th>
+                <th style="text-align: center;vertical-align: middle" width="80px">是否在职业课程页显示</th>
+                <th style="text-align: center;vertical-align: middle" width="215px">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if articleTypes %}
+                {% for articleType in articleTypes %}
+                    <tr class="text_over_flow">
+                        <td align="center" title="{{ articleType.id }}">
+                            {{ articleType.id }}
+                        </td>
+                        <td title="{{ articleType.name }}">
+                            {{ articleType.name }}
+                        </td>
+                        <td align="center" title="{{ articleType.index }}">
+                            {{ articleType.index }}
+                        </td>
+                        <td>
+                            {% if articleType.is_homepage %}
+                                <a href="javascript:void(0);" title="显示"
+                                   onclick="updateArticleType(this,'changeIsHomepage',{{ articleType.id }},'{% url 'mz_article:articleType_update_isHomepage' %}?action=edit')"
+                                   class="btn btn-default btn-warning btn-sm active"
+                                   style="margin-right:3px;" role="button"><i class="glyphicon glyphicon-ok"
+                                                                              style="margin-right:3px;"></i><span>显示</span></a>
+
+                            {% else %}
+                                <a href="javascript:void(0);" title="隐藏"
+                                   onclick="updateArticleType(this,'changeIsHomepage',{{ articleType.id }},'{% url 'mz_article:articleType_update_isHomepage' %}?action=edit')"
+                                   class="btn btn-default btn-sm active"
+                                   style="margin-right:3px;" role="button"><i class="glyphicon glyphicon-remove"
+                                                                              style="margin-right:3px;"></i><span>隐藏</span></a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if articleType.is_visible %}
+                                <a href="javascript:void(0);" title="显示"
+                                   onclick="updateArticleType(this,'changeIsVisible',{{ articleType.id }},'{% url 'mz_article:articleType_update_isVisible' %}?action=edit')"
+                                   class="btn btn-default btn-warning btn-sm active"
+                                   style="margin-right:3px;" role="button"><i class="glyphicon glyphicon-ok"
+                                                                              style="margin-right:3px;"></i><span>显示</span></a>
+
+                            {% else %}
+                                <a href="javascript:void(0);" title="隐藏"
+                                   onclick="updateArticleType(this,'changeIsVisible',{{ articleType.id }},'{% url 'mz_article:articleType_update_isVisible' %}?action=edit')"
+                                   class="btn btn-default btn-sm active"
+                                   style="margin-right:3px;" role="button"><i class="glyphicon glyphicon-remove"
+                                                                              style="margin-right:3px;"></i><span>隐藏</span></a>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if articleType.is_career %}
+                                <a href="javascript:void(0);" title="显示"
+                                   onclick="updateArticleType(this,'changeIsCareer',{{ articleType.id }},'{% url 'mz_article:articleType_update_isCareer' %}?action=edit')"
+                                   class="btn btn-default btn-warning btn-sm active"
+                                   style="margin-right:3px;" role="button" id="is_career"><i
+                                        class="glyphicon glyphicon-ok" style="margin-right:3px;"></i><span>显示</span></a>
+                            {% else %}
+                                <a href="javascript:void(0);" title="隐藏"
+                                   onclick="updateArticleType(this,'changeIsCareer',{{ articleType.id }},'{% url 'mz_article:articleType_update_isCareer' %}?action=edit')"
+                                   class="btn btn-default btn-sm active"
+                                   style="margin-right:3px;" role="button" id="is_career"><i
+                                        class="glyphicon glyphicon-remove" style="margin-right:3px;"></i><span>隐藏</span></a>
+
+                            {% endif %}
+                        </td>
+                        <td><a href="javascript:void(0);" title="查看"
+                               onclick="showArticleType({{ articleType.id }})"
+                               class="btn btn-default btn-info btn-sm active"
+                               style="margin-right:3px;" role="button"><i
+                                class="glyphicon glyphicon-search" style="margin-right:3px;"></i>查看</a>
+
+                            <a href="javascript:void(0);" title="编辑"
+                               onclick="editArticleType({{ articleType.id }})"
+                               class="btn btn-default btn-success btn-sm active"
+                               style="margin-right:3px;" role="button"><i
+                                    class="glyphicon glyphicon-edit" style="margin-right:3px;"></i>编辑</a>
+
+                            <a href="javascript:void(0);" title="删除"
+                               onclick="delArticleType('{{ articleType.name }}','{% url 'mz_article:articleType_list' %}?action=delete&id={{ articleType.id }}')"
+                               class="btn btn-default btn-danger btn-sm active" style="margin-right:3px;" role="button"><i
+                                    class="glyphicon glyphicon-trash" style="margin-right: 3px;"></i>删除</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="7">查询到0条数据！</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

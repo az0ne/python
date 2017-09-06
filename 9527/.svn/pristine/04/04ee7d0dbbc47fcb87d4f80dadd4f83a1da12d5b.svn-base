@@ -1,0 +1,251 @@
+{% extends "index.html" %}
+{% block pager %}
+<script type="text/javascript">
+    function  onQuery() {
+        var url = "/rolemenu/list/?action=query";
+        window.location.href=url;
+    }
+
+    function  onEdit(id) {
+        var url = "/rolemenu/edit/?id=" +  encodeURI(id);
+
+        window.location.href=url;
+    }
+
+    function  onAdd(id) {
+        var url = "/rolemenu/add/";
+
+        window.location.href=url;
+    }
+
+    function  onDelete(id) {
+        var url = "/rolemenu/list/?action=delete&id=" +  encodeURI(id) ;
+
+        window.location.href=url;
+    }
+    function  onSave() {
+        //判断
+        var url = "/rolemenu/save/";
+        form1.submit();
+    }
+
+
+    function goback() {
+        history.go(-1)
+    }
+
+
+
+$(document).ready(function () {
+    $("#rolemenuform").validate({
+        rules: {
+            adminroleusr: {
+                required: true,
+                rangelength: [6, 13]
+            },
+            adminroleid: {
+                required: true,
+                rangelength: [6, 13]
+            }
+        },
+        messages: {
+            adminroleusr: {
+                required: "请输入用户ID",
+                rangelength: "用户名长度介于6-13之间"
+            },
+            adminroleid: {
+                required: "请输入角色ID",
+                rangelength: "密码长度介于6-13之间"
+            }
+
+        }
+    })
+})
+</script>
+
+<style rel="stylesheet">
+.rolemenusave {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+</style>
+
+
+        <div class="container rolemenusave">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="page-header">
+                        <h4>请对文章    <span class="text-info"> "{{ articles.title }}"</span>
+                            <small>附图</small>
+                        </h4>
+                    </div>
+                    <form id="articleaddpicform" action="{% url 'mz_article:article_articletitlesave' %}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="hidden" name="keyword" value="{{ keyword }}">
+                        <input type="hidden" name="id" value="{{ articles.id }}">
+                        <input type="hidden" value="{{ page_index }}" name="page_index">
+                        <input type="hidden" value="{{ articles.title_image1|default_if_none:"" }}" name="old_imageone">
+                        <input type="hidden" value="{{ articles.title_image2|default_if_none:"" }}" name="old_imagetwo">
+                        <input type="hidden" value="{{ articles.title_image3|default_if_none:"" }}" name="old_imagethr">
+                        <div class="row">
+                            <div class="col-xs-6 col-md-3">
+                                <a href="#">
+                                    <img src="{{ MEDIA_URL }}{{ articles.title_image1 }}" alt="上传图片大小：210 * 140"
+                                         class="img-rounded previewImgone" style="width: 200px;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="articleInputFileone">附图一</label>
+                            <input type="file" id="articleInputFileone" onchange="changeImageone()" name="title_image1">
+                            <div class="help-block" style="margin-top: 8px"><span>图片尺寸(默认图片大小：210 * 140)  : </span><span class="imgWidthone">0</span><span>x</span><span class="imgHeightone">0</span></div>
+                        </div>
+                        <hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />
+                        <div class="row">
+                            <div class="col-xs-6 col-md-3">
+                                <a href="#">
+                                    <img src="{{ MEDIA_URL }}{{ articles.title_image2 }}" alt="上传图片大小：210 * 140"
+                                         class="img-rounded previewImgtwo" style="width: 200px;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="articleInputFiletwo">附图二</label>
+                            <input type="file" id="articleInputFiletwo" onchange="changeImagetwo()" name="title_image2">
+                            <div class="help-block" style="margin-top: 8px"><span>图片尺寸(默认图片大小：210 * 140)  : </span><span class="imgWidthtwo">0</span><span>x</span><span class="imgHeighttwo">0</span></div>
+                        </div>
+                        <hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />
+                        <div class="row">
+                            <div class="col-xs-6 col-md-3">
+                                <a href="#">
+                                    <img src="{{ MEDIA_URL }}{{ articles.title_image3 }}" alt="上传图片大小：210 * 140"
+                                         class="img-rounded previewImgthr" style="width: 200px;">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="articleInputFilethr">附图三</label>
+                            <input type="file" id="articleInputFilethr" onchange="changeImagethr()" name="title_image3">
+                            <div class="help-block" style="margin-top: 8px"><span>图片尺寸(默认图片大小：210 * 140)  : </span><span class="imgWidththr">0</span><span>x</span><span class="imgHeightthr">0</span></div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">提交</button>
+                        <button type="button" class="btn btn-info" onclick="goback()">返回</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <hr>
+
+    <script type="application/javascript">
+
+        function refreshwindow() {
+            window.location.reload();
+        }
+
+
+        //图片操作
+
+        function changeImageone() {
+            $('.previewImgone').attr('src', window.URL.createObjectURL($('#articleInputFileone')[0].files[0]));
+            getImgSizeone();
+        }
+
+
+        function changeImagetwo() {
+            $('.previewImgtwo').attr('src', window.URL.createObjectURL($('#articleInputFiletwo')[0].files[0]));
+            getImgSizetwo();
+        }
+
+
+        function changeImagethr() {
+            $('.previewImgthr').attr('src', window.URL.createObjectURL($('#articleInputFilethr')[0].files[0]));
+            getImgSizethr();
+        }
+
+
+
+
+
+        function getImgSizeone() {
+            var img = new Image();
+            img.src = $('.previewImgone').attr('src');
+            img.onload = function () {  // 等待图片加载完后，才能获取到图片的信息
+                if (img.width == 210 && img.height == 140) {
+                    $('.imgWidthone').text(img.width);
+                    $('.imgHeightone').text(img.height);
+                }else{
+                    alert("请检查图片尺寸(210 * 140)!");
+                    refreshwindow();
+                }
+
+            }
+        }
+
+
+        function getImgSizetwo() {
+            var img = new Image();
+            img.src = $('.previewImgtwo').attr('src');
+            img.onload = function () {  // 等待图片加载完后，才能获取到图片的信息
+                if (img.width == 210 && img.height == 140){
+                    $('.imgWidthtwo').text(img.width);
+                    $('.imgHeighttwo').text(img.height);
+                }else {
+                    alert("请检查图片尺寸(210 * 140)!");
+                    refreshwindow();
+                }
+
+            }
+        }
+
+
+        function getImgSizethr() {
+            var img = new Image();
+            img.src = $('.previewImgthr').attr('src');
+            img.onload = function () {  // 等待图片加载完后，才能获取到图片的信息
+                if (img.width == 210 && img.height == 140){
+                    $('.imgWidththr').text(img.width);
+                    $('.imgHeightthr').text(img.height);
+                }else{
+                    alert("请检查图片尺寸(210 * 140)!");
+                    refreshwindow();
+                }
+
+            }
+        }
+
+
+        $("#articleaddpicform").submit(function () {
+            var widthone = $('.imgWidthone').text();
+            var heightone = $('.imgHeightone').text();
+            var widthtwo = $('.imgWidthtwo').text();
+            var heighttwo = $('.imgHeighttwo').text();
+            var widththr = $('.imgWidththr').text();
+            var heightthr = $('.imgHeightthr').text();
+            //var articletype = $('#article_type_id').val();//210*140
+            if (widthone == 0 && heightone == 0 && widthtwo == 0 && heighttwo == 0 && widththr == 0 && heightthr == 0) {
+                alert("请至少插入一张图片！");
+                return false
+            } else {
+                return true
+            }
+
+        });
+
+
+        $(document).ready(function () {
+            getImgSizeone();
+            getImgSizetwo();
+            getImgSizethr();
+        })
+
+
+
+
+
+
+
+
+
+    </script>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends "index.html" %}
+{% block pager %}
+<script type="text/javascript">
+    function stageli(){
+        var chk_value = [];
+        $('input[name="stageName"]:checked').each(function(){
+            chk_value.push($(this).val());
+        });
+        if (chk_value.length==0){
+        alert("请至少选择一个阶段");
+        }else if(chk_value.length>0){
+             if(confirm("确认解锁相应阶段吗？")){
+            $("#stageListFrom").attr("action","/operation/operation/change/");
+            $("#stageListFrom").attr("method","POST");
+            $("#stageListFrom").submit();
+            }
+        }
+    }
+
+    $(function() {
+        {% for ss in stageold %}
+            $("input:checkbox[value='{{ ss.stage_id }}']").prop('checked','true');
+        {% endfor %}
+    });
+</script>
+    <style type="text/css">
+    #div1 p{
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .wikilinksave {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+    </style>
+{% if stagelist %}
+    <div id="div1" class="container wikilinksave col-md-8">
+        <p>用户名：{{ name.nick_name }}</p>
+        <p>请选择解锁阶段：</p>
+    <ul id="stages">
+        <form id="stageListFrom">
+            <input type="hidden" value="{{ name.id }}" name="UserId">
+            <input type="hidden" value="{{ careercourseid }}" name="CarId">
+            {% csrf_token %}
+            {% for stagelist in stagelist %}
+            <li><input class="chk" id="stageName" name="stageName" type="checkbox" value="{{ stagelist.id }}">{{ stagelist.name }}</li><br />
+            {% endfor %}
+            <button type="button" class="submit1 btn-primary" onclick="stageli()">提交</button>
+        </form>
+    </ul>
+    </div>
+{% endif %}
+{% endblock %}

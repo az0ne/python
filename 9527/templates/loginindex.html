@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>麦子学院系统后台登录页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="麦子学院,登录,系统后台">
+    <meta name="description" content="麦子学院系统后台登录页面">
+    <!-- 载入 Bootstrap -->
+    <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- 载入 FlatUi 引用Ico-->
+    <link href="{{ STATIC_URL }}css/flat-ui.min.css" rel="stylesheet">
+     <!-- 验证样式 -->
+    <link href="{{ STATIC_URL }}css/validate.css" rel="stylesheet">
+
+{#    <link rel="shortcut icon" href="img/favicon.ico">#}
+
+    <style type="text/css">
+      html,body {
+        margin: 0;text-align: center;
+      }
+
+      .box {
+        width: 370px;
+        height: 200px;
+        margin: 200px auto;
+      }
+      
+      .form-control {
+        float: left;
+        width: 280px;
+        margin: 5px;
+
+      }
+
+      .form-us-sp {
+        float: left;
+        margin-top: 5px;
+        margin-left: 10px;
+        margin-right: 20px;
+        width: 30px;
+
+      }
+
+     .form-ps-sp {
+        float: left;
+        width: 30px;
+        margin-top: 5px;
+        margin-left: 10px;
+        margin-right: 20px;
+
+     }
+
+     .btn {
+        margin: 5px;
+        
+     }
+
+     .form_box {
+        border-style:solid; border-width:1px; border-color:#000
+        background-color: #A9CDCD;
+        opacity: 0.6;
+        border-radius: 10px;
+
+     }
+
+      .login_box {
+          border-style: solid;
+          border-width: 1px;
+          border-color: #000
+          background-color: #1abc9c;
+          opacity: 0.7;
+          width: 370px;
+          border-radius: 10px;
+          margin: 5px auto;
+      }
+
+      .errormsg {
+          margin-right: 10px;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <div class="box">
+      <div class="login_box" id="ft">
+        <h5>麦子学院系统后台登录</h5>
+      </div>
+      <div class="form_box" id="fc">
+        <form action="{% url 'admin_login'%}" method="post" id="am">
+            {% csrf_token %}
+          <div class="form-us-sp"><span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span></div><div><input id="login-name" type="text" placeholder="请键入您的后台账户名" class="form-control" name="name"></div>
+
+          <div class="form-ps-sp"><span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span></div><div><input id="login-pass" type="password" placeholder="请键入您的后台账户密码" class="form-control" name="password"></div>
+            <p class="errormsg text-danger" >{{ error }}</p>
+          <button class="btn btn-primary" type="submit">登录</button>
+        </form>
+      </div>
+    </div>
+    <!-- 载入jQuery 和flatuijs-->
+    <script src="{{ STATIC_URL }}js/vendor/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/vendor/video.js"></script>
+    <script src="{{ STATIC_URL }}js/vendor/flat-ui.min.js"></script>
+    <script src="{{ STATIC_URL }}js/vendor/jquery.backstretch.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.validate.js"></script>
+    <script type="text/javascript">
+      $(function () {
+      $('[data-toggle="popover"]').popover()
+      });
+
+      $.backstretch(["{{ STATIC_URL }}img/dome.jpg"]);
+      $(document).ready(function () {
+          $("#am").validate({
+              rules: {
+                  name: {
+                      required: true,
+                      rangelength: [3,50]
+                  },
+                  password: {
+                      required: true,
+                      rangelength: [3,50]
+                  }
+              },
+              messages: {
+                  name: {
+                      required: "请输入用户名",
+                      rangelength: "用户名长度介于3-50之间"
+                  },
+                  password: {
+                      required: "请输入密码",
+                      rangelength: "密码长度介于3-50之间"
+                  }
+
+              }
+          })
+      })
+    </script>
+
+  </body>
+</html>

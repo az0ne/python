@@ -1,0 +1,137 @@
+{% extends "pager.html" %}
+
+{% block content %}
+    <script type="text/javascript">
+        function onQuery() {
+            var url = "{% url 'mz_course:careerPMD_list' %}?action=query" + getPage();
+            window.location.href = url;
+        }
+        function refresh() {
+            var currentUrl = window.location.href;
+            window.location.href = currentUrl;
+        }
+        function delCPMD(id, title) {
+            selectDelRowId = id;
+            $('#delCPMDMessage').text('确定要删除“' + title + '”文章吗？');
+            $('#modal_delCPMD').modal('show');
+        }
+
+        function ensureDelCPMD() {
+            var id = selectDelRowId;
+            var url = "{% url 'mz_course:careerPMD_list' %}?action=del&id=" + encodeURI(id) + getPage();
+            window.location.href = url;
+        }
+
+        $(function(){
+            addObjectNameOption('{% url 'ajax:careerIntroduce_name' %}', '#slt_careerName', '全部');
+            $('#slt_careerName').val({{ career_id }});
+        });
+
+    </script>
+    <!--搜索框-->
+    <form class="form-inline" action="{% url 'mz_course:careerPMD_list' %}" method="get"
+          style="margin-top: 7px;display: inline-block">
+        <input type="hidden" value="search" name="action">
+        <div class="form-group" style="margin-left: 10px">
+            <label for="exampleInputEmail2">职业课程:</label>
+            <select class="form-control" name="career_id" id="slt_careerName">
+            </select>
+        </div>
+        <button type="submit" class="btn btn-default">搜索</button>
+    </form>
+    <!-- 扩展功能栏-->
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="refresh()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <!--刪除警示框-->
+    <div class="modal fade" id="modal_delCPMD" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_delCPMD">
+                        删除职业课程公布会议日期信息</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="delCPMDMessage"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureDelCPMD()"
+                            id="btn_ensureDelCPMD">确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th class="table_id">ID</th>
+                <th width="auto">职业课程</th>
+                <th width="120px">手机号</th>
+                <th style="text-align: center;" width="160px">预约时间</th>
+                <th style="text-align: center;" width="160px">直播时间</th>
+                <th width="120px">qq群</th>
+                <th width="80px">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if result %}
+                {% for res in result %}
+                    <tr class="text_over_flow">
+                        <td align="center" title="{{ res.id }}">
+                            {{ res.id }}
+                        </td>
+                        <td title="{{ res.name }}">
+                            {{ res.name }}
+                        </td>
+                        <td title="{{ res.mobile }}">
+                            {{ res.mobile }}
+                        </td>
+                        <td title="{{ res.enter_date|date:"Y-m-d H:i:s" }}"
+                            style="text-align: center">
+                            {{ res.enter_date|date:"Y-m-d H:i:s" }}
+                        </td>
+                        <td title="{{ res.class_time|date:"Y-m-d H:i:s" }}"
+                            style="text-align: center">
+                            {{ res.class_time|date:"Y-m-d H:i:s" }}
+                        </td>
+                        <td title="{{ res.qq_group }}">
+                            {{ res.qq_group }}
+                        </td>
+                        <td data-id="{{ res.id }}">
+{#                        <a href="javascript:void(0);" title="查看"#}
+{#                                                           onclick="showres({{ res.id }})"#}
+{#                                                           class="btn btn-default btn-info btn-sm active"#}
+{#                                                           style="margin-right:3px;" role="button"><i#}
+{#                                class="glyphicon glyphicon-search" style="margin-right:3px;"></i>查看</a><a#}
+{#                                href="javascript:void(0);" title="编辑" onclick="editres({{ res.id }} )"#}
+{#                                class="btn btn-default btn-success btn-sm  active"#}
+{#                                style="margin-right:3px;" role="button"><i class="glyphicon glyphicon-edit"#}
+{#                                                                           style="margin-right:3px;"></i>编辑</a>#}
+                            <a href="javascript:void(0);" title="删除"
+                               onclick="delCPMD({{ res.id }},'{{ res.name }}')"
+                               class="btn btn-default btn-danger btn-sm active" style="margin-right:3px;" role="button"><i
+                                    class="glyphicon glyphicon-trash" style="margin-right: 3px;"></i>删除</a></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                <td colspan="7">查询到0条数据！</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

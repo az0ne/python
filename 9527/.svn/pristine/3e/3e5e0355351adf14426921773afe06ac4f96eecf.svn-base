@@ -1,0 +1,156 @@
+{% extends "index.html" %}
+{% block pager %}
+<div >
+       <div class="col-md-10 col-sm-8 col-lg-8">
+            <h3>直播班会信息查看</h3>
+            <table class="table table-striped table-responsive table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th width="200px;">
+                        直播班会
+                    </th>
+                    <th>
+                        内容详情
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody class="text_over_flow">
+                <tr>
+                    <td>
+                        <span>班会名称：</span>
+                    </td>
+                    <td>
+                        {{meeting.content}}
+                    </td>
+                </tr>
+                   <tr>
+                    <td>
+                        <span>开始时间：</span>
+                    </td>
+                    <td>
+                        {{ meeting.startline|date:'Y-m-d H:i:s' }}
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <span>结束时间</span>
+                    </td>
+                    <td>
+                        {{ meeting.finish_date|date:'Y-m-d H:i:s' }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>创建时间</span>
+                    </td>
+                    <td>
+                        {{ meeting.create_datetime|date:"Y-m-d H:i:s"}}
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <span>班会状态</span>
+                    </td>
+                    <td>
+                        {{ meeting.status }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>老师URL</span>
+                    </td>
+                    <td>
+                        {{ meeting.teacher_join_url }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>学生URL</span>
+                    </td>
+                    <td>
+                        {{ meeting.student_join_url }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>老师口令</span>
+                    </td>
+                    <td>
+                        {{ meeting.teacher_token}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>助教口令</span>
+                    </td>
+                    <td>
+                        {{ meeting.assistant_token}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>学生web端口令</span>
+                    </td>
+                    <td>
+                        {{ meeting.student_token}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>学生客户端口令</span>
+                    </td>
+                    <td>
+                        {{ meeting.student_client_token}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>课堂编号</span>
+                    </td>
+                    <td>
+                        {{ meeting.live_code}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>所属班级</span>
+                    </td>
+                    <td>
+                        {{ meeting.coding}}
+                    </td>
+                </tr>
+                {% if video %}
+                    {% for v in video %}
+                        <tr>
+                            <td>
+                                <span>录播URL</span>
+                            </td>
+                            <td>
+                                {{ v.url }}
+                            </td>
+                </tr>
+                        <tr>
+                            <td>
+                                <span>录播口令</span>
+                            </td>
+                            <td>
+                                {{ v.token }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td>
+                            <span>录播URL</span>
+                        </td>
+                        <td>
+                            无
+                        </td>
+                    </tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+ </div>
+{% endblock %}

@@ -1,0 +1,146 @@
+{% extends "pager.html" %}
+{% block content %}
+<script type="text/javascript">
+    function  onQuery() {
+        var url = "/seo/mz_wiki_link/list/?action=query" + getPage();
+        window.location.href=url;
+    }
+
+    function delwikilink(id, name) {
+        selectDelRowId=id;
+        $('#delwikilinkMessage').text('确定要删除“' + name + '”栏目吗？');
+        $('#modal_delwikilink').modal('show');
+    }
+
+    function ensureDelwikilink() {
+        var id = selectDelRowId;
+        var url = "/seo/mz_wiki_link/list/?action=delete&id=" + encodeURI(id) + getPage();
+        window.location.href = url;
+    }
+
+
+    function editwikilink(id) {
+        var url = "/seo/mz_wiki_link/edit/?action=edit&id=" + encodeURI(id) + getPage();
+        window.location.href = url;
+    }
+
+    function showwikilink(id) {
+        var url = "/seo/mz_wiki_link/edit/?action=show&id=" + encodeURI(id);
+        window.location.href = url;
+    }
+
+
+    function addwikilink() {
+        var url = "/seo/mz_wiki_link/edit/?action=add";
+        window.location.href = url;
+    }
+
+
+    function wikilinkQuery() {
+        var keyword = encodeURIComponent($('#txt_search').val());
+        var url = "/seo/mz_wiki_link/list/?action=search&keyword=" + keyword + "&page_index=1";
+        window.location.href = url;
+    }
+
+
+</script>
+    <!-- 搜索 -->
+    <div class="input-group mySearch">
+        <input type="text" id="txt_search" class="form-control" placeholder="输入链接名字关键字"/>
+	<span class="input-group-btn">
+						<button type="button" class="btn btn-default" id="btn_search" onclick=" wikilinkQuery()">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+	</span>
+    </div>
+
+    <!-- 扩展功能栏  -->
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="onQuery()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+            <li style="float: right;margin-right: 5px;">
+                <button type="button" id="btn_addwikilink" onclick="addwikilink()"
+                        class="btn btn-default btn-info btn-sm active">
+                    <span class="glyphicon glyphicon-plus">新增</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th class="table_id">ID</th>
+                <th width="200px">链接名字</th>
+                <th width="auto">链接</th>
+                <th width="auto">排序</th>
+                <th class="operate">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if wikilinks %}
+                {% for wikilink in wikilinks %}
+                    <tr class="text_over_flow">
+                        <td align="center">
+                            {{ wikilink.id }}
+                        </td>
+                        <td>
+                            {{ wikilink.title }}
+                        </td>
+                        <td>
+                            <a href="{{ wikilink.url }}">{{ wikilink.url }}</a>
+                        </td>
+                        <td>
+                            {{ wikilink.index }}
+                        </td>
+                        <td data-id="{{ wikilink.id }}"><a href="javascript:void(0)" title="查看"
+                                                           onclick="showwikilink({{ wikilink.id }})"
+                                                           class="btn btn-default btn-info btn-sm active"
+                                                           style="margin-right:3px;" role="button"><i
+                                class="glyphicon glyphicon-search" style="margin-right: 3px;"></i>查看</a><a
+                                href="javascript:void(0)" title="编辑" onclick="editwikilink({{ wikilink.id }})"
+                                class="btn btn-default btn-success btn-sm  active"
+                                style="margin-right:3px;" role="button"><i class="glyphicon glyphicon-edit"
+                                                                           style="margin-right: 3px;"></i>编辑</a>
+                            <a href="javascript:void(0)" title="删除"
+                               onclick="delwikilink({{ wikilink.id }},'{{ wikilink.title }}')"
+                               class="btn btn-default btn-danger btn-sm active" style="margin-right:3px;" role="button"><i
+                                    class="glyphicon glyphicon-trash" style="margin-right: 3px;"></i>删除</a></td>
+                    </tr>
+                {% endfor %}
+
+            {% else %}
+                <label>查询到0条数据！</label>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+
+<!-- 删除警示框  -->
+    <div class="modal fade" id="modal_delwikilink" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="delwikilinkMessage"></h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="deladminroleMessage">删除警告</h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureDelwikilink()" id="btn_ensureDeladminrole">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

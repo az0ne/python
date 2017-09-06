@@ -1,0 +1,135 @@
+{% extends "pager.html" %}
+
+{% block content %}
+    <script type="text/javascript">
+        function onQuery() {
+            var url = "/course/careerCatagory/list/?action=query" + getPage();
+            window.location.href = url;
+        }
+
+        function delCareerCatagory(id, title) {
+            selectDelRowId = id;
+            $('#delCareerCatagoryMessage').text('确定要删除“' + title + '”专业广告吗？');
+            $('#modal_delCareerCatagory').modal('show');
+        }
+        function ensureDelCareerCatagory() {
+            var id = selectDelRowId;
+            var url = "/course/careerCatagory/list/?action=delete&id=" + encodeURI(id) + getPage();
+            window.location.href = url;
+        }
+
+        function editCareerCatagory(id) {
+            var url = "/course/careerCatagory/edit/?action=edit&id=" + encodeURI(id) + getPage();
+            window.location.href = url;
+        }
+        function showCareerCatagory(id) {
+            var url = "/course/careerCatagory/edit/?action=show&id=" + encodeURI(id);
+            window.location.href = url;
+        }
+
+        function addCareerCatagory() {
+
+            var url = "/course/careerCatagory/edit/?action=add";
+            window.location.href = url;
+        }
+
+        function keyword_search() {
+            var keyword = $('#txt_search').val();
+            var url = "/course/careerCatagory/list/?action=search&keyword=" + encodeURI(keyword);
+            window.location.href = url;
+        }
+
+    </script>
+    <!--搜索框-->
+    <div class="input-group mySearch">
+        <input type="text" id="txt_search" class="form-control" value="{{ key_word }}" placeholder="输入职业方向的关键字"/>
+	<span class="input-group-btn">
+						<button type="button" class="btn btn-default" id="btn_search" onclick="keyword_search()">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+	</span>
+    </div>
+    <!-- 扩展功能栏-->
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="onQuery()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+            <li style="float: right;margin-right: 5px">
+                <button type="button" id="btn_addCareerAd" onclick="addCareerCatagory()"
+                        class="btn btn-default btn-info btn-sm active">
+                    <span class="glyphicon glyphicon-plus">新增</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <!--刪除职业方向警示框-->
+    <div class="modal fade" id="modal_delCareerCatagory" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000">
+                        删除职业方向信息</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="delCareerCatagoryMessage"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureDelCareerCatagory()"
+                            id="btn_ensureDelCareerCatagory">确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th class="table_id">ID</th>
+                <th width="auto">职业方向</th>
+                <th class="operate">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if careerCatagories %}
+                {% for careerCatagory in careerCatagories %}
+                    <tr class="text_over_flow">
+                        <td align="center">
+                            {{ careerCatagory.id }}
+                        </td>
+                        <td>
+                            {{ careerCatagory.name }}
+                        </td>
+                        <td data-id="{{ banner.id }}"><a href="javascript:void(0);" title="查看"
+                                                         onclick="showCareerCatagory({{ careerCatagory.id }})"
+                                                         class="btn btn-default btn-info btn-sm active"
+                                                         style="margin-right:3px;" role="button"><i
+                                class="glyphicon glyphicon-search" style="margin-right:3px;"></i>查看</a><a
+                                href="javascript:void(0);" title="编辑"
+                                onclick="editCareerCatagory({{ careerCatagory.id }} )"
+                                class="btn btn-default btn-success btn-sm  active"
+                                style="margin-right:3px;" role="button"><i class="glyphicon glyphicon-edit"
+                                                                           style="margin-right:3px;"></i>编辑</a>
+                            <a href="javascript:void(0);" title="删除"
+                               onclick="delCareerCatagory({{ careerCatagory.id }},'{{ careerCatagory.name }}')"
+                               class="btn btn-default btn-danger btn-sm active" style="margin-right:3px;" role="button"><i
+                                    class="glyphicon glyphicon-trash" style="margin-right: 3px;"></i>删除</a></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="3">查询到0条数据！</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

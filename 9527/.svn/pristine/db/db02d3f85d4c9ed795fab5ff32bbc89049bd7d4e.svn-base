@@ -1,0 +1,153 @@
+<!--搜索框-->
+<div class="input-group mySearch">
+    <input type="search" id="txt_search" class="form-control" placeholder="输入查询关键字"/>
+			<span class="input-group-btn">
+						<button type="button" class="btn btn-default" id="btn_search">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+			</span>
+</div>
+<!-- 扩展功能栏-->
+<div class="function_btn">
+    <ul class="nav navbar-btn">
+        <li>
+            <button type="button" id="btn_addNewCareerCategory" class="btn btn-default btn-info btn-sm active">
+                <span class="glyphicon glyphicon-plus">添加专业方向</span>
+            </button>
+        </li>
+    </ul>
+</div>
+<!--修改专业方向模态框-->
+<div class="modal fade" id="modal_editCareerCategory" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header btn-success active">
+                <button type="button" class="close" data-dismiss="modal" aria-lable="close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="text-shadow:3px 3px 2px #000">
+                    修改专业方向信息</h4>
+            </div>
+            <form enctype="multipart/form-data" id="form_editCareerCategory">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="inputAreaTitle">专业方向名称:</label>
+                        <input class="inputArea txt_careerCategoryName" type="text" name="name"
+                               id="txt_editCareerCategoryName"
+                               placeholder="请输入职业方向名称"/>
+                        <span class="inputAreaError lbl_CareerCategoryError"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger active" data-dismiss="modal" id="btn_closeModal">关闭
+                        </button>
+                        <button type="button" class="btn btn-primary active btn_careerCategory"
+                                id="btn_saveEditCareerCategory">
+                            保存
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--添加专业方向模态框-->
+<div class="modal fade" id="modal_addCareerCategory" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header btn-success active">
+                <button type="button" class="close" data-dismiss="modal" aria-lable="close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="text-shadow:3px 3px 2px #000">
+                    添加专业方向信息</h4>
+            </div>
+            <form enctype="multipart/form-data" id="form_addCareerCategory">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="inputAreaTitle">专业方向名称:</label>
+                        <input class="inputArea txt_careerCategoryName" type="text" name="name"
+                               id="txt_addCareerCategoryName"
+                               placeholder="请输入职业方向名称"/>
+                        <span class="inputAreaError lbl_CareerCategoryError"></span>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger active" data-dismiss="modal" id="btn_closeModal">关闭
+                        </button>
+                        <button type="button" class="btn btn-primary active btn_careerCategory"
+                                id="btn_saveAddCareerCategory">
+                            保存
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--查看专业方向模态框-->
+<div class="modal fade" id="modal_showCareerCategory" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header btn-success active">
+                <button type="button" class="close" data-dismiss="modal" aria-lable="close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="text-shadow:3px 3px 2px #000">
+                    查看专业方向信息</h4>
+            </div>
+            <div class="modal-body" style="height: 100px">
+                <span class="glyphicon glyphicon-book"></span><span style="margin-left: 3px">专业方向名称:</span>
+                <label id="lbl_careerCategoryName"></label>
+            </div>
+        </div>
+    </div>
+</div>
+<!--刪除专业方向警示框-->
+<div class="modal fade" id="modal_delCareerCategory" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header btn-danger active">
+                <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="modal_delCareerCategoryLab">
+                    删除专业方向信息</h4>
+            </div>
+            <div class="modal-body">
+                <h3 class="text-danger text-center active" id="delCareerCategoryMessage"></h3>
+            </div>
+            <div class="modal-footer">
+                <p id="selectRowId" class="text-danger" style="float: left;display: none"></p>
+                <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary active" id="btn_ensureDelCareerCategory">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--数据显示-->
+<div>
+    <table class="table table-striped table-responsive table-bordered table-hover">
+        <thead>
+        <tr>
+            <th width="50px">序号</th>
+            <th width="auto">专业方向</th>
+            <th width="209px;">操作</th>
+        </tr>
+        </thead>
+        <tbody id="dataTable"></tbody>
+    </table>
+    <!--分页-->
+    <div align="right">
+        <ul class="pagination" id="pagination1"></ul>
+        <label id="pagerDataInfo" style="float: right;margin:32px 20px 0 10px">总共0页0条</label>
+    </div>
+</div>
+<script type="application/javascript" src="../../static/js/mz_course/careerCategory.js"></script>
+<script type="application/javascript" src="../../static/js/dataValidate.js"></script>
+<script type="application/javascript">
+    //初始化分页组件
+    $('#pagination1').jqPaginator({
+        totalPages: 1,
+        visiblePages: 5,
+        currentPage: 1,
+        onPageChange: function (pageIndex) {
+            selectData('/ajax/careerCatagory/list/', pageIndex, 10);
+        }
+    });
+</script>

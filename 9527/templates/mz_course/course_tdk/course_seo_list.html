@@ -1,0 +1,119 @@
+{% extends "pager.html" %}
+{% block content %}
+<script type="text/javascript">
+
+    function  onQuery() {
+
+        var url = "{% url 'mz_course:courselist' %}?action=query" + getPage();
+        window.location.href=url;
+    }
+
+    function editarticle(id) {
+        var urlkeyword = $("#txt_search").val();
+        var url = "{% url 'mz_course:courseedit' %}?action=edit&id=" + encodeURI(id) + "&keyword=" + encodeURI(urlkeyword) + getPage();
+        window.location.href = url;
+    }
+
+    function showarticle(id) {
+        var urlkeyword = $("#txt_search").val();
+        var url = "{% url 'mz_course:courseedit' %}?action=show&id=" + encodeURI(id) + "&keyword=" + encodeURI(urlkeyword);
+        window.location.href = url;
+    }
+
+
+    function addarticle() {
+        var url = "{% url 'mz_course:courselist' %}?action=add" + getPage();
+        window.location.href = url;
+    }
+
+    function keyword_search() {
+        var keyword = encodeURIComponent($('#txt_search').val());
+        var url = "{% url 'mz_course:courselist' %}?action=search&keyword="+keyword+"&page_index=1";//依赖page_index位置
+            window.location.href = url;
+    }
+
+
+
+
+</script>
+    <!-- 搜索 -->
+    <div class="input-group mySearch">
+        <input type="text" id="txt_search" class="form-control" value="{{ coursename }}" placeholder="小课程名称"/>
+	<span class="input-group-btn">
+						<button type="button" class="btn btn-default" id="btn_search" onclick="keyword_search()">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+	</span>
+    </div>
+    <input type="hidden" id="checkhid" value="">
+    <!-- 扩展功能栏  -->
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="onQuery()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+{#            <li style="float: right;margin-right: 5px">#}
+{#                <button type="button" id="btn_addnewarticle" onclick="addarticle()"#}
+{#                        class="btn btn-default btn-info btn-sm active">#}
+{#                    <span class="glyphicon glyphicon-plus">新增</span>#}
+{#                </button>#}
+{#            </li>#}
+        </ul>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th width="90px">小课程ID</th>
+                <th width="auto">小课程名称</th>
+                <th width="auto">小课程seo_title</th>
+                <th width="auto">小课程seo_keywords</th>
+                <th width="auto">小课程seo_description</th>
+                <th width="200px">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if courseinfos %}
+                {% for courseinfo in courseinfos %}
+                    <tr class="text_over_flow">
+                        <td>
+                            {{ courseinfo.id|default_if_none:"<span class='text-danger'>数据库项目错误！</span>" }}
+                        </td>
+                        <td>
+                            {{ courseinfo.name|default_if_none:"<span class='text-danger'>数据库项目错误！</span>" }}
+                        </td>
+                        <td>
+                            {{ courseinfo.seo_title|default_if_none:"<span class='text-danger'>请添加！</span>" }}
+                        </td>
+                        <td>
+                            {{ courseinfo.seo_keywords|default_if_none:"<span class='text-danger'>请添加！</span>" }}
+                        </td>
+                        <td>
+                            {{ courseinfo.seo_description|default_if_none:"<span class='text-danger'>请添加！</span>" }}
+                        </td>
+                        <td data-id="{{ courseinfo.id }}">
+                            <a href="javascript:void(0)" title="查看"
+                               onclick="showarticle({{ courseinfo.id }})"
+                               class="btn btn-default btn-info btn-sm active"
+                               style="margin-right:3px;" role="button"><i
+                                    class="glyphicon glyphicon-search" style="margin-right: 3px;"></i>查看</a><a
+                                href="javascript:void(0)" title="编辑" onclick="editarticle({{ courseinfo.id }})"
+                                class="btn btn-default btn-success btn-sm  active"
+                                style="margin-right:3px;" role="button"><i class="glyphicon glyphicon-edit"
+                                                                           style="margin-right: 3px;"></i>编辑</a></td>
+                    </tr>
+                {% endfor %}
+
+            {% else %}
+                <tr>
+                    <td colspan="6">查询到0条数据！</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

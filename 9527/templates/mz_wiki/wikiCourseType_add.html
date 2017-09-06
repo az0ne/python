@@ -1,0 +1,228 @@
+{% extends "index.html" %}
+{% block pager %}
+{% load  staticfiles %}
+
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-md-10">
+            <form class="form-horizontal" role="form" id="wikiCourseType_form" action="/wiki/wikiCourseType/save/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% ifequal action "add" %}
+                 <input id="action" type="hidden" name="action" value="add">
+                {% else %}
+                <input type="hidden" name="id" value="{{ type.id }}">
+                <input id="action" type="hidden" name="action" value="edit">
+                {% endifequal %}
+                <div class="form-group">
+                    <div class="col-md-6 " id="title">
+                        {% ifequal action "add" %}
+                        <h3>新增WIKI课程库分类</h3>
+                        <input  type="hidden" name="action" value="add">
+                        {% endifequal %}
+                        {% ifequal action "edit" %}
+                         <h3>编辑WIKI课程库分类</h3>
+                        <input type="hidden" name="action" value="edit">
+                        {% endifequal %}
+                        {% ifequal action "show" %}
+                         <h3>查看WIKI课程库分类</h3>
+                        <input type="hidden" name="action" value="show">
+                        {% endifequal %}
+                    </div>
+                </div>
+                {% ifnotequal action 'show'%}<!-- add 或edit-->
+                  <div class="form-group">
+
+
+                        <div class="col-sm-5 col-md-3 col-md-offset-1">
+                             {% ifequal action "add" %}
+                             <label for="type_img">选择wiki课程分类图标:</label>
+                            {%else%}
+                             <label for="type_img">课程分类图标:</label>
+                             {% endifequal %}
+
+                            <img id="img_wikiType" src="{{ MEDIA_URL }}{{ type.img_url }}" alt="上传图片大小：20 * 20" class="img-rounded previewImg" style="width: 40px;height:40px; {% ifequal action 'add' %}display:none{% endifequal %}">
+                            <input type="file" id="type_img" name="img_url" onchange="changeImage()" style="margin-top: 8px">
+
+                        </div>
+                        <p></p>
+                         <div  class="text-danger col-md-10 col-md-offset-1" style="margin-top: 8px;">
+                             <span>图片尺寸（20*20）&nbsp;</span>
+                             <span id="upload_img_info" >
+                                 上传图片尺寸为:
+                                 <span class="imgWidth">0</span><span>x</span><span class="imgHeight">0</span>
+                             </span>
+
+                         </div>
+
+                    <input type="hidden" value="{{ type.img_url }}" name="old_image">
+                </div>
+                <div class="form-group">
+                      <label for="img_title" class="col-sm-2  control-label">图片标题：</label>
+                    <div class="col-sm-10  col-md-6">
+                        <input id="img_title" type="text" name="img_title" class="form-control" value="{{ type.img_title }}" placeholder="请输入图片标题" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="wikiTypeName" class="col-sm-2 control-label">分类名称：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <input type="text" class="form-control" name="name" id="wikiTypeName" value="{{ type.name }}" placeholder="请输入要新添加的分类名称" required>
+                    </div>
+                </div>
+                  <div class="form-group">
+                    <label for="wikiTypeShortName" class="col-sm-2 control-label">分类简称：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <input id="short_name" type="text" class="form-control" name="short_name" id="wikiTypeShortName" value="{{ type.short_name }}" placeholder="请输入要新添加的分类简称" required>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label for="wikiTypeIndex" class="col-sm-2 control-label">顺序：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <input type="text" class="form-control" name="index" id="wikiTypeIndex" value="{% ifequal action 'add'%}999{% else %}{{ type.index }}{% endifequal %}" placeholder="请输入课程权重" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" class="btn btn-primary" onclick="checkform()">提交</button>
+                    </div>
+                </div>
+                {% endifnotequal %}
+            </form>
+        </div>
+        {% ifequal action 'show' %}
+        <div class="col-md-4">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>wiki分类图标：</td>
+                        <td><img id="wiki_type_img" src="{{ MEDIA_URL }}{{ type.img_url }}" alt="" class="img-rounded previewImg" style="width: 40px;height:40px"></td>
+                    </tr>
+                    <tr>
+                        <td>图片标题：</td>
+                        <td>{{ type.img_title }}</td>
+                    </tr>
+                    <tr>
+                        <td>课程库全称：</td>
+                        <td>{{ type.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>课程库简称：</td>
+                        <td>{{ type.short_name }}</td>
+                    </tr>
+                    <tr>
+                        <td>顺序：</td>
+                        <td>{{ type.index }}</td>
+                    </tr>
+                    <tr>
+                        <td>SEO标题：</td>
+
+                        <td>{{ seo.seo_title }}</td>
+
+                    </tr>
+                    <tr>
+                        <td>SEO关键字：</td>
+                        <td>{{ seo.seo_keywords }}</td>
+                    </tr>
+                    <tr>
+                        <td>SEO描述：</td>
+                        <td><textarea class="form-control" rows="4" id="seodcpt">{{ seo.seo_description}}</textarea></td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        {% endifequal %}
+    </div>
+</div>
+<script>
+function checkform(){
+    var short_name =$("#short_name").val();
+    if(short_name=="{{ type.short_name }}"){
+    check_img();
+    }
+    else{
+        $.ajax({
+            type:'get',
+            url:'/wiki/wikiCourseType/isHaveShortName/',
+            data:{'short_name':short_name},
+            dataType:'json',
+            success:function(data){
+                if (data.result.is_have){
+                     alert("该简称已经存在，请重新填写分类简称！");
+                    }
+                    else{
+                      check_img();
+                    }
+                }
+        });
+    }
+}
+
+ $().ready(function() {
+         getImgSize();
+         $("#wikiCourseType_form").validate({
+              rules: {
+                  name: {
+                      required: true,
+                  },
+                  short_name: {
+                      required: true,
+                  },
+                  img_title: {
+                      required: true,
+                  },
+                  index: {
+                      required: true,
+                      min:0,
+                      max:999
+                  }
+              },
+              messages: {
+                  img_title: {
+                      required: "请输入图片标题",
+                  },
+                  name: {
+                      required: "请输入分类名称",
+                  },
+                  short_name: {
+                      required: "请输入分类简称",
+                  },
+                  index: "请输入顺序(0-999)"
+              }
+          })
+    });
+
+
+
+    //图片预览
+function changeImage() {
+    $('.previewImg').attr('src', window.URL.createObjectURL($('#type_img')[0].files[0]));
+    document.getElementById('img_wikiType').style.display="inline-block";
+    document.getElementById('upload_img_info').style.display="inline-block";
+    getImgSize();
+}
+
+function getImgSize() {
+
+    var img = new Image();
+    img.src = $('.previewImg').attr('src');
+    img.onload = function () {  // 等待图片加载完后，才能获取到图片的信息
+        $('.imgWidth').text(img.width);
+        $('.imgHeight').text(img.height);
+    }
+}
+
+//判断图片大小
+function check_img(){
+     var width = $('.imgWidth').text();
+     var height = $('.imgHeight').text();
+     if (width ==20&&height ==20){
+        $("#wikiCourseType_form").submit();
+    }else {
+        alert("图片正确尺寸（20*20）,请确认图片尺寸！");
+        return false;
+    }
+}
+</script>
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends "index.html" %}
+{% block pager %}
+    {% load  staticfiles %}
+    <div class="alert alert-info"><h4>LPS教师端待处理事项预警时间</h4></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <form id="warn_form" action="{% url 'mz_lps4:warningTimeUpdate' %}" method="post"
+                      enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="hidden" name="warn_id" value="{{ result.id }}">
+                    <input type="hidden" name="warn_type" value="{{ result.type }}">
+                    <input id="action" type="hidden" name="action" value="{{ action }}">
+                    <div class="form-group row">
+                        <label for="title" class="col-sm-3 col-md-3 col-lg-3 control-label">类型名称:</label>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input type="text" id="title" name="title" class="form-control" value="{{ result.title }}"
+                                   placeholder="请输入类型名称">
+                        </div>
+                    </div>
+                    {% ifequal action "add" %}
+                        <div class="form-group row">
+                            <label for="title" class="col-sm-3 col-md-3 col-lg-3 control-label">类型数值<span
+                                    class="text-danger">(不可修改)</span>:</label>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <input type="number" id="type" name="warn_type" class="form-control"
+                                       value="{{ result.title }}"
+                                       placeholder="请输入类型数值,新增后不可修改">
+                            </div>
+                        </div>
+                    {% endifequal %}
+                    <div class="form-group row">
+                        <label for="warn_one_hour" class="col-sm-3 col-md-3 col-lg-3 control-label">预警时间（小时）:</label>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input type="number" id="warn_one_hour" name="warn_one_hour" class="form-control"
+                                   value="{{ result.warn_one_hour }}"
+                                   placeholder="请输入预警时间">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="warn_two_hour" class="col-sm-3 col-md-3 col-lg-3 control-label">严重预警时间（小时）:</label>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input type="number" id="warn_two_hour" name="warn_two_hour" class="form-control"
+                                   value="{{ result.warn_two_hour }}"
+                                   placeholder="请输入严重预警时间">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="warn_three_hour" class="col-sm-3 col-md-3 col-lg-3 control-label">事故时间（小时）:</label>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <input type="number" id="warn_three_hour" name="warn_three_hour" class="form-control"
+                                   value="{{ result.warn_three_hour }}"
+                                   placeholder="请输入事故时间">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">提交</button>
+                    <button type="button" class="btn btn-warning">返回</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <!-- 提示确认框  -->
+    <div class="modal fade" id="modal_confirm" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-primary active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_modal">
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-10 col-lg-10 col-sm-10">
+                            <h5><b id="content_modal"></b></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" id="btn_confirm">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#warn_form").validate({
+                submitHandler: function (form) {
+                    showModal(form);
+                    $("#btn_confirm").click(function () {
+                        form.submit();
+                    });
+                },
+                rules: {
+                    title: {
+                        required: true,
+                    },
+                    warn_one_hour: {
+                        required: true,
+                    },
+                    warn_two_hour: {
+                        required: true,
+                    },
+                    warn_three_hour: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    title: {
+                        required: "请输入 类型名称",
+                    },
+                    warn_one_hour: {
+                        required: "请输入预警时间",
+                    },
+                    warn_two_hour: {
+                        required: "请输入严重预警时间",
+                    },
+                    warn_three_hour: {
+                        required: "请输入事故警告时间",
+                    }
+
+                }
+            })
+        })
+
+        var showModal = function () {
+            var action = $("#action").val();
+            if (action == "edit") {
+                $("#title_modal").text("更改预警时间提醒");
+                $("#content_modal").text("确认要更改预警时间吗？")
+                $("#modal_confirm").modal('show');
+            }
+            else if (action == "add") {
+                $("#title_modal").text("新增预警时间提醒");
+                $("#content_modal").text("确定要新增预警时间吗？")
+                $("#modal_confirm").modal('show');
+            }
+            else {
+                layer.alert("action error.");
+            }
+
+        }
+        {#        var form_submit = function(){#}
+        {#            console.log("in submit")#}
+        {#            $("#warn_form").submit();#}
+        {#        }#}
+    </script>
+{% endblock %}

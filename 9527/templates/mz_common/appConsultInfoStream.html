@@ -1,0 +1,134 @@
+{% extends "pager.html" %}
+
+{% block content %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    <script type="text/javascript">
+        function onQuery() {
+            var url = "{% url 'mz_common:app_consult_info_list' %}?action=query" + getPage();
+            window.location.href = url;
+        }
+
+        function keyword_search() {
+            var keyword = encodeURIComponent($('#txt_search').val());
+            var url = "{% url 'mz_common:app_consult_info_list' %}?action=search&keyword=" + keyword;
+            window.location.href = url;
+        }
+
+        function del_sure(info_id) {
+            $("#modal_del").modal('show');
+            $("#del_id_hidden").val(info_id);
+            $("#del_Message").text("确定要删除该条信息吗？")
+        }
+
+        function ensureDel() {
+            var del_id = $("#del_id_hidden").val();
+            var url = "{% url 'mz_common:app_consult_info_del' %}?id={0}".format(del_id);
+            window.location.href = url;
+        }
+    </script>
+    <!--搜索框-->
+    <div class="input-group mySearch">
+        <input type="text" id="txt_search" class="form-control" value="{{ key_word }}" placeholder="输入课程来源关键字"/>
+        <span class="input-group-btn">
+						<button type="button" class="btn btn-default" id="btn_search" onclick="keyword_search()">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+	</span>
+    </div>
+    <!-- 扩展功能栏-->
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="onQuery()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th width="auto">姓名</th>
+                <th width="auto">联系电话</th>
+                <th width="auto">备注</th>
+                <th width="auto">提交时间</th>
+                <th width="auto">课程来源</th>
+                {#                <th width="auto">兴趣</th>#}
+                {#                <th width="auto">市场来源</th>#}
+                <th width="80px;">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if consult_info %}
+                {% for info in consult_info %}
+                    <tr class="text_over_flow">
+                        <td title="{{ info.name }}">
+                            {{ info.name }}
+                        </td>
+                        <td title="{{ info.phone }}">
+                            {{ info.phone }}
+                        </td>
+                        <td title="{{ info.qq }}">
+                            {{ info.qq }}
+                        </td>
+                        <td title="{{ info.date_publish|date:'Y-m-d H:i:s' }}">
+                            {{ info.date_publish|date:'Y-m-d H:i:s' }}
+                        </td>
+                        <td title="{{ info.source }}">
+                            {{ info.source }}
+                        </td>
+
+                        {#                        <td title="{{ info.interest }}">#}
+                        {#                            {{ info.interest }}#}
+                        {#                        </td>#}
+                        {#                        <td title="{{ info.market_from }}">#}
+                        {#                            {{ info.market_from }}#}
+                        {#                        </td>#}
+                        <td>
+                            <a href="javascript:void(0)" title="删除" onclick="del_sure({{ info.id }})"
+                               class="btn btn-default btn-info btn-sm active" style="margin-right:3px;" role="button">
+                                <i class="glyphicon glyphicon-edit" style="margin-right: 3px;"></i>删除
+                            </a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="6">查询到0条数据！</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+    <input type="hidden" value="" id="del_id_hidden">
+    <!--刪除首页标题警示框-->
+    <div class="modal fade" id="modal_del" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_delCareerAdLab">
+                        删除提醒</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="del_Message"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" id="btn_ensureDel_course_ad"
+                            onclick="ensureDel()">
+                        确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

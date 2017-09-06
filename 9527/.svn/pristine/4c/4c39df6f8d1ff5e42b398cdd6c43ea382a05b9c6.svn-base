@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript">
+
+        function goback() {
+            history.go(-1)
+        }
+
+        $(document).ready(function () {
+                    console.log("00000")
+                    $("#pay_status").val({{ pay_status }});
+                }
+        )
+    </script>
+
+    <style rel="stylesheet">
+        .homepagelinksave {
+            margin-top: 50px;
+            margin-left: 50px;
+        }
+
+    </style>
+    <div class="container homepagelinksave">
+        <div class="row">
+            <div class="col-md-6 col-lg-5 col-sm-6">
+                <form id="homepageform" action="{% url 'mz_wechat:wechat_course_order_update' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="order_id" value="{{ order_id }}">
+                    <input type="hidden" name="date_pay" value="{{ date_pay|date:'Y-m-d H:i:s' }}">
+                    <div class="form-group">
+                        <label for="pay_status">支付状态：</label>
+                        <select id="pay_status" name="pay_status" class="form-control col-lg-4 col-md-4 col-sm-5">
+                            <option value=0>未支付</option>
+                            <option value=1>已支付</option>
+                            <option value=9>支付失败</option>
+                        </select>
+                    </div>
+                    <div style="margin-top: 45px;">
+                        <button type="submit" class="btn btn-primary">提交</button>
+                        <button type="button" class="btn btn-warning" onclick="goback()">返回</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+{% endblock %}

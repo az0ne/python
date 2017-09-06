@@ -1,0 +1,163 @@
+{% extends "pager.html" %}
+{% block content %}
+<script type="text/javascript">
+    function  onQuery() {
+
+        var url = "/backAdmin/employ_teacher/list/?action=query" + getPage();
+        window.location.href=url;
+    }
+
+    function delemployteacher(id, name) {
+        selectDelRowId=id;
+        $('#delemployteacherMessage').text('确定要删除“' + name + '”专业广告吗？');
+        $('#modal_delemployteacher').modal('show');
+    }
+
+    function ensureDelemployteacher() {
+        var id = selectDelRowId;
+        var url = "/backAdmin/employ_teacher/list/?action=delete&id=" + encodeURI(id) + getPage();
+        window.location.href = url;
+    }
+
+
+    function editemployteacher(id) {
+        var url = "/backAdmin/employ_teacher/edit/?action=edit&id=" + encodeURI(id);
+        window.location.href = url;
+    }
+
+    function showemployteacher(id) {
+        var url = "/backAdmin/employ_teacher/show/?action=show&id=" + encodeURI(id);
+        window.location.href = url;
+    }
+
+
+    function addemployteacher() {
+        var url = "/backAdmin/employ_teacher/edit/?action=add";
+        window.location.href = url;
+    }
+
+
+    function employteacherQuery() {
+        var keyword = encodeURIComponent($('#txt_search').val());
+        var url = "/backAdmin/employ_teacher/list/?action=search&keyword=" + keyword + "&page_index=1";
+        window.location.href = url;
+    }
+
+
+</script>
+    <!-- 搜索 -->
+    <div class="input-group mySearch">
+        <input type="text" id="txt_search" class="form-control" placeholder="输入个人简介栏目关键字"/>
+	<span class="input-group-btn">
+						<button type="button" class="btn btn-default" id="btn_search" onclick="employteacherQuery()">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+	</span>
+    </div>
+
+    <!-- 扩展功能栏  -->
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="onQuery()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+            <li style="float: right;margin-right: 5px;display: none">
+                <button type="button" id="btn_addnewrolemenu" onclick="addemployteacher()"
+                        class="btn btn-default btn-info btn-sm active">
+                    <span class="glyphicon glyphicon-plus">新增</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th class="table_id">ID</th>
+                <th width="100px">教师姓名</th>
+                <th width="auto">专业方向</th>
+                <th width="130px">工作年限</th>
+                <th width="auto">个人简介</th>
+                <th width="160px">手机号</th>
+                <th width="160px">申请时间</th>
+                <th class="operate">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if employteachers %}
+                {% for employteacher in employteachers %}
+                    <tr class="text_over_flow">
+                        <td align="center">
+                            {{ employteacher.id }}
+                        </td>
+                        <td>
+                            {{ employteacher.name }}
+                        </td>
+                        <td>
+                            {{ employteacher.career }}
+                        </td>
+                        <td>
+                            {{ employteacher.work_time_display }}
+                        </td>
+                        <td>
+                            {{ employteacher.resume }}
+                        </td>
+                        <td>
+                            {{ employteacher.mobile }}
+                        </td>
+                        <td>
+                            {{ employteacher.create_time | date:"Y-m-d H:i:s" }}
+                        </td>
+                        <td data-id="{{ employteacher.id }}"><a href="javascript:void(0)" title="查看"
+                                                           onclick="showemployteacher({{ employteacher.id }})"
+                                                           class="btn btn-default btn-info btn-sm active"
+                                                           style="margin-right:3px;" role="button"><i
+                                class="glyphicon glyphicon-search" style="margin-right: 3px;"></i>查看详情</a><a
+                                href="javascript:void(0)" title="编辑" onclick="editrolemenu({{ employteacher.id }})"
+                                class="btn btn-default btn-success btn-sm  active"
+                                style="margin-right:3px;display: none" role="button"><i class="glyphicon glyphicon-edit"
+                                                                           style="margin-right: 3px;"></i>编辑</a>
+                            <a href="javascript:void(0)" title="删除"
+                               onclick="delrolemenu({{ employteacher.id }})"
+                               class="btn btn-default btn-danger btn-sm active" style="margin-right:3px;display: none" role="button"><i
+                                    class="glyphicon glyphicon-trash" style="margin-right: 3px;"></i>删除</a></td>
+                    </tr>
+                {% endfor %}
+
+            {% else %}
+                <tr>
+                    <td colspan="8">查询到0条数据！</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+
+
+<!-- 删除警示框  -->
+    <div class="modal fade" id="modal_delarticle" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_deladminrolemod">
+                        删除警告</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="deladminroleMessage"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureDeladminrole()" id="btn_ensureDeladminrole">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

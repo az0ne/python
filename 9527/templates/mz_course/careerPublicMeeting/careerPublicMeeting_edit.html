@@ -1,0 +1,131 @@
+{% extends "index.html" %}
+{% block pager %}
+<div >
+    {% ifequal action "edit"%}
+    <div class="row">
+        <div class="col-md-10">
+            <h3>预约课程编辑</h3>
+            <form id="roleform" action="{% url 'mz_course:public_meeting_save' %}" method="post" >
+                {% csrf_token %}
+                <div class="form-group col-md-10">
+                    <label for="class_time" class="col-sm-3 col-md-2  control-label">教师ID：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <input type="texts" class="form-control" name="teacher_id" id="teacher_id" value="{{ meeting.teacher_id}}"
+                                required>
+                    </div>
+               </div>
+               <div class="form-group col-md-10">
+                    <label for="class_time" class="col-sm-3 col-md-2  control-label">开课时间：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <input type="datetime-local" class="form-control" name="class_time" id="class_time" value="{{ meeting.utc_time}}"
+                                required>
+                    </div>
+               </div>
+                <div class="form-group col-md-10">
+                    <label  class="col-sm-3 col-md-2 control-label">生效QQ：</label>
+                    <div class="col-md-7">
+                        <label class="checkbox-inline">
+                             <input type="radio" name="enter_qq" value="1" {% ifequal meeting.enter_qq 1%}checked{% endifequal%}> QQ群 1({{meeting.qq_group_1}})
+                        </label>
+                        <label class="checkbox-inline">
+                             <input type="radio" name="enter_qq" value="2"{% ifequal meeting.enter_qq 2%}checked{% endifequal%}> QQ群 2({{meeting.qq_group_2}})
+                        </label>
+                    </div>
+
+               </div>
+                <input type="hidden" name="id" value="{{ meeting.id }}">
+                <div class="col-md-10">
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    {%else%}
+     <div class="col-md-10 col-sm-8 col-lg-8">
+            <h3>预约课程信息查看</h3>
+            <table class="table table-striped table-responsive table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th width="200px;">
+                        职业课程公开课
+                    </th>
+                    <th>
+                        内容详情
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody class="text_over_flow">
+                <tr>
+                    <td>
+                        <span>职业课程：</span>
+                    </td>
+                    <td>
+                        {{ meeting.name}}
+                    </td>
+                </tr>
+                   <tr>
+                    <td>
+                        <span>课程老师：</span>
+                    </td>
+                    <td>
+                        {{ meeting.teacher_name}}
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <span>QQ群（1）：</span>
+                    </td>
+                    <td>
+                        {{ meeting.qq_group_1|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>QQ群key（1）：</span>
+                    </td>
+                    <td>
+                        {{ meeting.qq_group_key_1|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>QQ群（2）：</span>
+                    </td>
+                    <td>
+                        {{ meeting.qq_group_2|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>QQ群key（2）：</span>
+                    </td>
+                    <td>
+                        {{ meeting.qq_group_key_2|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>生效QQ：</span>
+                    </td>
+                    <td>
+                        QQ群（{{ meeting.enter_qq|default_if_none:""  }}）
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>开课时间：</span>
+                    </td>
+                    <td>
+                       {{ meeting.class_time|date:'Y-m-d H:i:s' }}
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+       
+    {%endifequal%}
+</div>
+{% endblock %}

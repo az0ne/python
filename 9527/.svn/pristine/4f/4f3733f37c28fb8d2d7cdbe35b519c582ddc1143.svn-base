@@ -1,0 +1,114 @@
+{% extends "index.html" %}
+{% block pager %}
+<script type="text/javascript">
+    function  onQuery() {
+        var url = "/seo/mz_wiki_link/list/?action=query";
+        window.location.href=url;
+    }
+
+    function  onEdit(id) {
+        var url = "/seo/mz_wiki_link/edit/?id=" +  encodeURI(id);
+
+        window.location.href=url;
+    }
+
+    function  onAdd(id) {
+        var url = "/seo/mz_wiki_link/add/";
+
+        window.location.href=url;
+    }
+
+    function  onDelete(id) {
+        var url = "/seo/mz_wiki_link/list/?action=delete&id=" +  encodeURI(id) ;
+
+        window.location.href=url;
+    }
+    function  onSave() {
+        //判断
+        var url = "/seo/mz_wiki_link/save/";
+        form1.submit();
+    }
+
+
+    function goback() {
+        history.go(-1)
+    }
+
+$(document).ready(function () {
+    $("#homepageform").validate({
+        rules: {
+            title: {
+                required: true
+            },
+            url: {
+                required: true,
+                url:true
+            },
+            index: {
+                required: true,
+                digits:true
+            }
+        },
+        messages: {
+            title: {
+                required: "请输入任务ID"
+            },
+            url: {
+                required: "请输入URL",
+                url: "URL格式错误"
+            },
+            index: {
+                required: "请输入排序字符",
+                digits: "请输入数字"
+            }
+
+        }
+    })
+})
+</script>
+
+<style rel="stylesheet">
+.wikilinksave {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+</style>
+
+
+        <div class="container wikilinksave">
+            <div class="row">
+                <div class="col-md-8">
+                    <form id="homepageform" action="/seo/mz_wiki_link/save/" method="post" >
+                        {% csrf_token %}
+                        {% ifequal action "edit"  %}
+                            <input type="hidden" name="id" value="{{ wikilinks.id }}">
+                            <input type="hidden" name="action" value="edit">
+                        {% else %}
+                            <input type="hidden" name="action" value="add">
+                        {% endifequal %}
+                        <input type="hidden" value="{{ page_index }}" name="page_index">
+                        <div class="form-group">
+                            <label for="wikilinkstitleid">链接名字</label>
+                            <input type="text" class="form-control" id="wikilinkstitleid" name="title" value="{{ wikilinks.title }}" placeholder="请输入链接名字">
+                        </div>
+                        <div class="form-group">
+                            <label for="wikilinksurl">链接详情</label>
+                            <input type="text" class="form-control" id="wikilinksurl" name="url" value="{{ wikilinks.url }}" placeholder="请使用http:// 开头">
+                        </div>
+                        <div class="form-group">
+                            <label for="wikilinksindex">排序</label>
+                            <input type="text" class="form-control" id="wikilinksindex" name="index" value="{{ wikilinks.index }}" placeholder="请输入排序字符">
+                        </div>
+                        {% ifnotequal action "show" %}
+                            <button type="submit" class="btn btn-primary">提交</button>
+                        {% else %}
+                            <button type="submit" class="btn btn-primary" disabled="disabled">提交</button>
+                        {% endifnotequal %}
+                        <button type="button" class="btn btn-warning" onclick="goback()">返回</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <hr>
+{% endblock %}

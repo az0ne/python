@@ -1,0 +1,106 @@
+{% extends "index.html" %}
+{% block pager %}
+<script type="text/javascript">
+    function  onQuery() {
+        var url = "/role/list/?action=query";
+        window.location.href=url;
+    }
+
+    function  onEdit(id) {
+        var url = "/role/edit/?id=" +  encodeURI(id);
+
+        window.location.href=url;
+    }
+
+    function  onAdd(id) {
+        var url = "/role/add/";
+
+        window.location.href=url;
+    }
+
+    function  onDelete(id) {
+        var url = "/role/list/?action=delete&id=" +  encodeURI(id) ;
+
+        window.location.href=url;
+    }
+    function  onSave() {
+        //判断
+        var url = "/role/save/";
+        form1.submit();
+    }
+
+$(document).ready(function () {
+    $("#Adminusrform").validate({
+        rules: {
+            roleusr: {
+                required: true,
+                rangelength: [6, 13]
+            }
+        },
+        messages: {
+            roleusr: {
+                required: "请输入用户ID",
+                rangelength: "长度6-13"
+            }
+
+        }
+    })
+})
+
+
+function checkform_submit(){
+var role_name =$("#roleName").val()
+if (role_name=="{{ role.name }}"){
+    window.history.back();
+}
+else{
+    $.ajax({
+        type:'get',
+        url:'/backAdmin/role/isHaveTheName/',
+        data:{'name':role_name},
+        dataType:'json',
+        success:function(data){
+            if (data.result.is_have){
+                alert("该角色名称已存在！");
+            }
+            else{
+                $("#roleform").submit();
+            }
+        }
+    });
+}
+}
+
+</script>
+
+<style rel="stylesheet">
+.rolesave {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+</style>
+{% ifequal action "edit" %}
+    <h4>修改角色名称</h4>
+    <input form="roleform" type="hidden" name="id" value="{{ role.id }}">
+    <input form="roleform" type="hidden" name="action" value="edit">
+    <input form="roleform" type="hidden" name="page_index" value="{{ page_index }}">
+    <input form="roleform" type="hidden" name="url_back" value="{{ url_back }}">
+{% endifequal %}
+
+<div class="container rolesave">
+    <div class="row">
+        <div class="col-md-8">
+            <form id="roleform" action="/backAdmin/role/save/" method="post" >
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="roleName">角色名称：</label>
+                    <input type="text" class="form-control" id="roleName" name="name"  value="{{ role.name }}" placeholder="请输入角色名称">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="checkform_submit()">提交</button>
+            </form>
+        </div>
+    </div>
+</div>
+    <hr>
+{% endblock %}

@@ -1,0 +1,77 @@
+# -*- coding: utf-8 -*-
+
+from utils.logger import logger as log
+from utils.tool import dec_timeit
+from db.api.apiutils import APIResult
+from utils import tool
+from db.cores.mysqlconn import dec_make_conn_cursor
+from mz_fxsys import constant_pool
+import datetime, time
+
+
+@dec_timeit
+@dec_make_conn_cursor
+def select_payments_by_page(conn, cursor, page_index, page_size, payments_type, start_date, end_date, user_id):
+    """分页查询收支明细"""
+    print user_id
+    start_index = tool.get_page_info(page_index, page_size)
+    base_sql = "select {fields} from mz_fxsys_payments WHERE 1=1"
+    condition = ""
+    order_by = " ORDER BY id DESC"
+    if int(payments_type) != 0:
+        condition += " AND payments_type={0}".format(payments_type)
+    if start_date != '':
+        condition += " AND date>='{0}'".format(start_date)
+    if end_date != '':
+        condition += " AND date<='{0}'".format(end_date)
+    if user_id != 0:
+        condition += " AND user_id={0}".format(user_id)
+    limit = " limit {0},{1}".format(start_index, page_size)
+    pagination_sql = base_sql.format(fields='*')
+    count_sql = base_sql.format(fields="count(id) as counts")
+    if condition != "":
+        pagination_sql += condition
+        count_sql += condition
+    pagination_sql += order_by
+    pagination_sql += limit
+    try:
+        cursor.execute(pagination_sql)
+        payments = cursor.fetchall()
+
+        cursor.execute(count_sql)
+        rows_count = cursor.fetchone()
+    except Exception as e:
+        log.warn(
+            "execute exception: %s."
+            "statement: %s" % (e, cursor.statement)
+        )
+        raise e
+    for p in payments:
+        p["payments_type_name"] = constant_pool.PAYMENTS_TYPE[str(p["payments_type"])]
+    data = {
+        "result": payments,
+        "rows_count": rows_count['counts'],
+        "page_count": tool.get_page_count(rows_count['counts'], page_size)
+    }
+    return APIResult(result=data)
+
+
+
+
+@dec_timeit
+@dec_make_conn_cursor
+def select_userID_by_mobile(conn, cursor,username):
+    sql = '''
+    select id from mz_fxsys_user where username=%s
+    '''
+    try:
+        cursor.execute(sql, (username,))
+        user_id = cursor.fetchone()
+    except Exception as e:
+        log.warn(
+            "execute exception: %s."
+            "statement: %s" % (e, cursor.statement)
+        )
+        raise e
+    return APIResult(result=user_id)
+

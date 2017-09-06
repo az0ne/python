@@ -1,0 +1,175 @@
+{% extends "index.html" %}
+{% block pager %}
+<script type="text/javascript">
+    function  onQuery() {
+        var url = "/employ_teacher/list/?action=query";
+        window.location.href=url;
+    }
+
+    function  onEdit(id) {
+        var url = "/employ_teacher/edit/?id=" +  encodeURI(id);
+
+        window.location.href=url;
+    }
+
+    function  onAdd(id) {
+        var url = "/employ_teacher/add/";
+
+        window.location.href=url;
+    }
+
+    function  onDelete(id) {
+        var url = "/employ_teacher/list/?action=delete&id=" +  encodeURI(id) ;
+
+        window.location.href=url;
+    }
+    function  onSave() {
+        //判断
+        var url = "/employ_teacher/save/";
+        form1.submit();
+    }
+
+    function goback() {
+        history.go(-1)
+    }
+    //select选项处理
+    $(document).ready(function () {
+        var sss = $("#teatype_hid").val();
+        $("#teacher_type option[value='" + sss + "']").attr("selected", "selected");
+
+        var bbb = $("#teacata_hid").val();
+        $("#teacher_catagory option[value='" + bbb + "']").attr("selected", "selected");
+
+    });
+</script>
+
+<style rel="stylesheet">
+    #teaname{
+        margin: 20px 0 0 10px;
+    }
+
+    #teacareer{
+        margin: 20px 0 0 10px;
+    }
+
+    #teatype{
+        margin: 20px 0 0 10px;
+    }
+
+    #teacata{
+        margin: 20px 0 0 10px;
+    }
+
+    #teacareertime{
+        margin: 20px 0 0 10px;
+    }
+
+    #teamobile{
+        margin: 20px 0 0 10px;
+    }
+
+    #teaworktime{
+        margin: 20px 0 0 10px;
+    }
+
+
+    #tearesume{
+        margin: 20px 0 0 10px;
+    }
+
+    #teaback{
+        margin: 20px 0 0 10px;
+    }
+
+    #teaQQ{
+        margin: 20px 0 0 10px;
+    }
+
+
+</style>
+
+    <div class="container">
+            <div class="row-fluid">
+            <div class=".col-md-12">
+                <hr>
+                <div class="row-fluid">
+                    <div class=".col-md-8">
+                        <div class="page-header" id="teaname">
+                            <h3>讲师姓名：<small class="text-primary">{{ employteachers.name }}</small></h3>
+                        </div>
+                    </div>
+                    <div class=".col-md-8" id="teaemail">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class=".col-md-4" id="teacareer">
+                <label for="career">专业方向：</label>
+                <input type="text" class="form-control text-success" id="career" value="{{ employteachers.career }}" readOnly="true">
+            </div>
+            <div class=".col-md-4" id="teatype">
+                <label for="teacher_type">授课类型：</label>
+                <input type="hidden" value="{{ employteachers.teacher_type }}" id="teatype_hid">
+                <select id="teacher_type" class="form-control" disabled="disabled">
+                    <option value="2">录课</option>
+                    <option value="1">带班</option>
+                </select>
+            </div>
+            <div class=".col-md-4" id="teacata">
+                <label for="teacher_catagory">招募类型：</label>
+                <input type="hidden" value="{{ employteachers.teacher_catagory }}" id="teacata_hid">
+                <select id="teacher_catagory" class="form-control" disabled="disabled">
+                    <option value="1">兼职</option>
+                    <option value="2">全职</option>
+                </select>
+                <!--<input type="text" class="text-success" id="teacher_catagory" value="{{ employteacher.teacher_catagory }}" readOnly="true">-->
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class=".col-md-12">
+                <div class="row-fluid">
+                    <div class=".col-md-8" id="teacareertime">
+                        <label for="create_time">申请时间：</label>
+                        <input type="text" class="text-success form-control" id="create_time" value="{{ employteachers.create_time | date:"Y-m-d H:i:s" }}" readOnly="true">
+                    </div>
+                    <div class=".col-md-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class=".col-md-12">
+                <div class="row-fluid">
+                    <div class=".col-md-8" id="teamobile">
+                        <label for="mobile">联系手机：</label>
+                        <input type="text" class="text-success form-control" id="mobile" value="{{ employteachers.mobile }}" readOnly="true">
+                    </div>
+                    <div class=".col-md-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class=".col-md-12">
+                <div class="row-fluid">
+                    <div class=".col-md-8" id="teaworktime">
+                        <label for="work_time">工作年限：</label>
+                        <input type="text" class="text-success form-control" id="work_time" value="{{ employteachers.work_time_display }}" readOnly="true">
+                    </div>
+                    <div class=".col-md-4" id="teaQQ">
+                        <label for="work_time">QQ号码：</label>
+                        <input type="text" class="text-success form-control" id="QQ" value="{{ employteachers.qq }}" readOnly="true">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class=".col-md-12" id="tearesume">
+                <label for="resume">个人简介：</label>
+                <textarea class="text-primary form-control" rows="8" id="resume" readOnly="true">{{ employteachers.resume }}</textarea>
+            </div>
+            <button type="button" class="btn btn-primary pull-right" onclick="goback()" id="teaback">返回</button>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,230 @@
+{% extends "pager.html" %}
+
+{% block content %}
+<script type="text/javascript">
+    function onQuery() {
+        var url = window.location.href;
+        if (url.indexOf('&page_index') != -1) {
+            url = url.replace(/&page_index=\d*/, getPage2('&'));
+        }
+        else if (url.indexOf('?page_index') != -1) {
+            url = url.replace(/\?page_index=\d*/, getPage2('?'));
+        }
+        else {
+            if (url.indexOf('?') != -1) {
+                url += getPage2('&');
+            }
+            else {
+                url += getPage2('?');
+            }
+        }
+        window.location.href = url;
+    }
+
+{#    function dellearn(id, name) {#}
+{#        selectDelRowId=id;#}
+{#        $('#dellearnMessage').text('确定要删除“' + name + '”专业广告吗？');#}
+{#        $('#modal_dellearn').modal('show');#}
+{#    }#}
+{##}
+{#    function ensureDellearn() {#}
+{#        var id = selectDelRowId;#}
+{#        var url = "/backAdmin/employ_teacher/list/?action=delete&id=" + encodeURI(id) + getPage();#}
+{#        window.location.href = url;#}
+{#    }#}
+{##}
+{##}
+{#    function editlearn(id) {#}
+{#        var url = "/backAdmin/employ_teacher/edit/?action=edit&id=" + encodeURI(id);#}
+{#        window.location.href = url;#}
+{#    }#}
+{##}
+    function showlearn(class_id, student_id, show) {
+        /*
+         *show: 0:查看详情, 1:首次班会结束后, 2:答疑班会结束后
+         */
+        var url = "{% url 'mz_course:user_career_list' %}?class_id=" + encodeURI(class_id) + "&student_id=" + encodeURI(student_id);
+        if (show == 1) {
+            url += "&show=first_meeting"
+        }
+        else if (show == 2) {
+            url += "&show=QA_meeting"
+        }
+        window.location.href = url;
+    }
+
+    function export_data(type) {
+        var nick_name = encodeURIComponent($('#search_nick_name').val());
+        var mobile = encodeURIComponent($('#search_mobile').val());
+        var email = encodeURIComponent($('#search_email').val());
+        var career_name = encodeURIComponent($('#search_career_name').val());
+        var start_date = encodeURIComponent($('#start_date').val());
+        var end_date = encodeURIComponent($('#end_date').val());
+        var url = "{% url 'mz_course:user_career_list' %}?action=export&nick_name=" + nick_name
+                + "&mobile=" + mobile + "&email=" + email + "&career_name=" + career_name
+                + "&start_date=" + start_date + "&end_date=" + end_date;
+        if (type == 1) {
+            url += '&export_type=all'
+        }
+        else {
+            url += getPage2('&')
+        }
+        window.location.href = url;
+    }
+{##}
+{##}
+{#    function addlearn() {#}
+{#        var url = "/backAdmin/employ_teacher/edit/?action=add";#}
+{#        window.location.href = url;#}
+{#    }#}
+{##}
+{##}
+{#    function learnQuery() {#}
+{#        var mobile = encodeURIComponent($('#search_mobile').val());#}
+{#        var search_try_learn_name = encodeURIComponent($('#search_try_learn_name').val());#}
+{#        var search_career_name = encodeURIComponent($('#search_career_name').val());#}
+{#        var url = "{% url 'mz_course:user_career_list' %}?action=search&mobile=" + mobile + "&career_name=" + search_career_name + "&page_index=1";#}
+{#        window.location.href = url;#}
+{#    }#}
+
+</script>
+    <!-- 搜索 -->
+    <div class="mySearch2">
+        <form class="form-inline" action="{% url 'mz_course:user_career_list' %}?action=search" method="get">
+            <div class="form-group">
+                <label for="exampleInputName2">姓名（昵称）：</label>
+                <input type="text" name="nick_name" id="search_nick_name" class="form-control" {% if s_nick_name %} value="{{ s_nick_name }}"{% endif %} placeholder="输入姓名（昵称）">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputName2">手机：</label>
+                <input type="text" name="mobile" id="search_mobile" class="form-control" {% if s_mobile %} value="{{ s_mobile }}"{% endif %} placeholder="输入手机">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputName2">email：</label>
+                <input type="text" name="email" id="search_email" class="form-control" {% if s_email %} value="{{ s_email }}"{% endif %} placeholder="输入Email">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail2">职业课程名：</label>
+                <input type="text" name="career_name" id="search_career_name" class="form-control" {% if s_career_name %} value="{{ s_career_name }}"{% endif %} placeholder="输入职业课程名"/>
+            </div>
+            <br>
+
+            <div style="margin-top: 10px;">
+                <div class="form-group">
+                    <label for="exampleInputEmail2">起始时间：</label>
+                    <input type="text" value="{% if s_start_date %}{{ s_start_date }}{% endif %}" id="start_date" name="start_date" data-date-format="yyyy-mm-dd" class="form-control" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail2">结束时间：</label>
+                    <input type="text" value="{% if s_end_date %}{{ s_end_date }}{% endif %}" id="end_date" name="end_date" data-date-format="yyyy-mm-dd" class="form-control" readonly>
+                </div>
+
+                <input type="hidden" id="dtp_input2" value="" />
+                <button type="submit" class="btn btn-default">查询</button>
+                <a href="{% url 'mz_course:user_career_list' %}" class="btn btn-default">清空查询</a>
+                <button type="button" class="btn btn-default" onclick="export_data(0)">导出当前页</button>
+                <button type="button" class="btn btn-default" onclick="export_data(1)">导出所有</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- 扩展功能栏  -->
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="onQuery()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th class="table_id"></th>
+                <th width="auto">姓名（昵称）</th>
+                <th width="auto">手机</th>
+                <th width="auto">email</th>
+                <th width="auto">职业课程</th>
+                <th width="auto">记录时间</th>
+{#                <th width="110px">操作</th>#}
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if user_career_list %}
+                {% for user_career in user_career_list %}
+                    <tr class="text_over_flow">
+                        <td align="center" title="{{ forloop.counter }}">
+                            {{ forloop.counter }}
+                        </td>
+                        <td title="{{ user_career.nick_name }}">
+                            {{ user_career.nick_name }}
+                        </td>
+                        <td title="{{ user_career.mobile }}">
+                            {{ user_career.mobile|default:'无' }}
+                        </td>
+                        <td title="{{ user_career.email }}">
+                            {{ user_career.email|default:'无' }}
+                        </td>
+                        <td title="{{ user_career.career_name }}">
+                            {{ user_career.career_name }}
+                        </td>
+                        <td title="{{ user_career.create_date|date:"Y年m月d日 H点i分" }}">
+                            {{ user_career.create_date|date:"Y-m-d H:i" }}
+                        </td>
+
+{#                        <td data-id="{{ learn.id }}">#}
+{#                            <a href="javascript:void(0)" title="查看" onclick="showlearn({{ learn.class_id }}, {{ learn.id }}, 2)" class="btn btn-default btn-info btn-sm active" style="margin-right:3px;" role="button">#}
+{#                                <i class="glyphicon glyphicon-search" style="margin-right: 3px;"></i>#}
+{#                                查看详情#}
+{#                            </a>#}
+{#                        </td>#}
+                    </tr>
+                {% endfor %}
+
+            {% else %}
+                <label>查询到0条数据！</label>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+
+{% block custom_script %}
+    <script type="text/javascript">
+        var startDate = $('#start_date').datetimepicker({
+            language:  'zh-CN',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+        var endDate = $('#end_date').datetimepicker({
+            language:  'zh-CN',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0,
+            startDate: function() {
+                var start_date = new Date(startDate.val());
+                start_date.setDate(start_date.getDate() + 1);
+                return start_date
+            }()
+        });
+        startDate.on('changeDate', function (ev) {
+            var start_date = new Date(ev.date);
+            start_date.setDate(start_date.getDate() + 1);
+            endDate.datetimepicker('setStartDate', start_date);
+        });
+    </script>
+{% endblock %}

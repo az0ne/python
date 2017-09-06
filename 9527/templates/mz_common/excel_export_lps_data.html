@@ -1,0 +1,205 @@
+{% extends "index.html" %}
+{% block pager %}
+    <div class="alert alert-info row">
+        <div class="col-md-offset-4 col-sm-offset-4 col-lg-offset-4"><h4>LPS数据导出</h4></div>
+    </div>
+    <div class="row container-fluid">
+        <div class="col-lg-4 col-md-5 col-sm-5 col-lg-offset-2 col-md-offset-2 col-sm-offset-2">
+            <form id="form_lps_excel" action="{% url 'mz_common:export_excel_about_lps' %}" method="get">
+                <div class="form-group row">
+                    <label for="start_date" class="col-md-5 col-lg-5 col-sm-5">数据类型：</label>
+                    <div class="col-md-7 col-lg-7 col-sm-7">
+                        <select class="form-control" name="action_id" id="action_id" required>
+                            <option value="">请选择</option>
+                            {% for action in actions %}
+                                <option value="{{ action.0 }}">{{ action.1 }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="start_date" class="col-md-5 col-lg-5 col-sm-5">起始时间：</label>
+                    <div class="col-md-7 col-lg-7 col-sm-7">
+                        <input type="date" value="2016-10-25" id="start_date" name="start_date"
+                               class="form-control date"
+                               required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="end_date" class="col-md-5 col-lg-5 col-sm-5">结束时间：</label>
+                    <div class="col-md-7 col-lg-7 col-sm-7">
+                        <input type="date" value="" id="end_date" name="end_date" class="form-control date" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <input type="submit" class="form-control btn btn-info" value="导出数据到Excel">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2">
+            <p><input type="button" class="btn btn-primary" value="今天" onclick="set_date('today')"></p>
+            <p><input type="button" class="btn btn-primary" value="本周" onclick="set_date('week')"></p>
+            <p><input type="button" class="btn btn-primary" value="本月" onclick="set_date('month')"></p>
+            <p><input type="button" class="btn btn-primary" value="7天内" onclick="set_date('7daysago')"></p>
+            <p><input type="button" class="btn btn-primary" value="30天内" onclick="set_date('30daysago')"></p>
+        </div>
+    </div>
+    <style>
+        .btn-primary {
+            width: 100px;
+        }
+
+        .form-group {
+            height: 44px;
+        }
+    </style>
+<script type="text/javascript" src="{{ STATIC_URL }}js/calc.js"></script>
+<script type="application/javascript">
+$(document).ready(function () {
+    $("#start_date").val(get_date('yesterday'));
+    $("#end_date").val(get_date('yesterday'));
+     $("#form_lps_excel").validate({
+           submitHandler:function () {
+               check_date();
+           },
+            rules: {
+                action_id: {
+                    required: true,
+
+                },
+                start_date: {
+                    required: true,
+                },
+                end_date: {
+                    required: true
+                },
+
+            },
+            messages: {
+                action_id: {
+                    required: "请选择数据类型"
+                },
+                start_date: "请输入起始时间",
+                end_date: "请输入结束时间",
+            }
+        })
+})
+
+function check_date() {
+    var start_date=$("#start_date").val();
+    var end_date=$("#end_date").val();
+    var start = new Date(start_date.replace(/-/g,"/"));
+    var end = new Date(end_date.replace(/-/g,"/"));
+    var iDays = parseInt(Math.abs(end - start) / 1000 / 60 / 60 / 24);
+    if (iDays>60){
+        layer.alert("时间跨度不可超过60天",
+            {
+                icon: 2,
+                skin: 'layer-ext-moon'
+            }
+        );
+    }
+    else{
+        check_is_have_data(start_date, end_date);
+    }
+}
+
+function check_is_have_data(start_date, end_date) {
+    var action_id=$("#action_id").val();
+    $.ajax({
+            type:'GET',
+            url:"{% url 'mz_common:lps_check_is_have_data' %}",
+            data:{start_date:start_date,end_date:end_date,action_id:action_id},
+            dateType:"json",
+
+            success:function (data) {
+               if(data.status=="success"){
+                   var url = "{% url 'mz_common:export_excel_about_lps' %}?start_date={0}&end_date={1}&action_id={2}".format(start_date,end_date,action_id)
+                   window.location.href = url
+                   }
+               else{
+                   layer.alert('该时间范围内暂无相关数据。',
+                       {
+                          icon: 2,
+                          skin: 'layer-ext-moon'
+                       }
+                   )
+               }
+            }
+        });
+}
+
+
+function get_date(mode) {
+    var today = new Date();
+    switch (mode) {
+        case 'today':
+            var year = today.getFullYear();
+            var month = today.getMonth() + 1;
+            var day = today.getDate();
+            break;
+        case 'yesterday':
+            today.setDate(today.getDate() - 1)
+            var year = today.getFullYear();
+            var month = today.getMonth() + 1;
+            var day = today.getDate();
+            break;
+        case 'week':
+            today.setDate(today.getDate() - (get_day()));
+            var year = today.getFullYear();
+            var month = today.getMonth() + 1;
+            var day = today.getDate();
+            break;
+        case 'month':
+            var year = today.getFullYear();
+            var month = today.getMonth() + 1;
+            var day = 1;
+            break;
+        case '7daysago':
+            today.setDate(today.getDate() - 6)
+            var year = today.getFullYear();
+            var month = today.getMonth() + 1;
+            var day = today.getDate();
+            break;
+        case '30daysago':
+            today.setDate(today.getDate() - 29)
+            var year = today.getFullYear();
+            var month = today.getMonth() + 1;
+            var day = today.getDate();
+            break;
+        default:
+            var year = today.getFullYear();
+            var month = today.getMonth() + 1;
+            var day = today.getDate();
+
+    }
+    var date = "{0}-{1}-{2}".format(year, format_date(month), format_date(day))
+    return date
+}
+
+function set_date(mode) {
+    console.log(get_date(mode))
+    $("#start_date").val(get_date(mode));
+    $("#end_date").val(get_date('today'));
+}
+
+function format_date(date) {
+    if (date < 10) {
+        date = "0{0}".format(date)
+    }
+    return date
+}
+
+function get_day(){
+    var today = new Date();
+    var day = today.getDay()
+    var get_day = day-1;
+    if (get_day<0){
+        get_day=6
+    }
+    return get_day
+}
+</script>
+{% endblock %}

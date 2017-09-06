@@ -1,0 +1,198 @@
+{% extends "index.html" %}
+<script type="text/javascript" src="{{ STATIC_URL }}jedate/jedate.js"></script>
+{% block pager %}
+<script type="text/javascript">
+    function goback() {
+        history.go(-1)
+    }
+
+$(document).ready(function () {
+    $("#careerForm").validate({
+        rules: {
+{#            teacherId: {#}
+{#                required: true,#}
+{#                digits:true#}
+{#            },#}
+{#            userId:{#}
+{#                required: true,#}
+{#                digits:true#}
+{#            },#}
+            startTime: {
+                required: true,
+            },
+            endTime: {
+                required: true,
+            },
+        },
+        messages: {
+{#            teacherId: {#}
+{#                required: "请输入任课教师ID"#}
+{#            },#}
+{#            userId:{#}
+{#              required:"请输入用户ID"#}
+{#            },#}
+            startTime: {
+                required: "请选择入学时间"
+            },
+            endTime: {
+                required: "请选择毕业时间"
+            },
+        }
+    })
+})
+{#    var careerId = $("#careerId").val();#}
+{#    var careerName = $("#careerName").val();#}
+{#    var careerType = $("#careerType").val();#}
+{#    if (careerId == "" && careerName == "" && careerType == ""){#}
+{#        $("#iscreat").val(0)#}
+{#    }else {#}
+{#        $("#iscreat").val(1)#}
+{#    }#}
+</script>
+
+<script type="text/javascript">
+    $(function(){
+    // $("#jumpMenu").val(要选中的option的value值即可);
+    $("#type1").val({{ result.type }});
+    $("#isStop").val({{ result.is_stop }});
+    $("#type").val({{ type }});
+    });
+</script>
+<script type="text/javascript">
+    $(function(){
+    $("#careerId ").val({{ result.career_id }});
+    });
+</script>
+<style rel="stylesheet">
+.wikilinksave {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+</style>
+
+
+        <div class="container wikilinksave">
+            <div class="row">
+                <div class="col-md-8">
+                    <form id="careerForm" action="{% url 'lps4career:revise_student' %}" method="post" >
+                    <input type="hidden" value="{{ action }}" name="action">
+                        {% csrf_token %}
+                    {% ifequal action "revise" %}
+                        <input type="hidden" value="{{ result.id }}" name="studentId">
+                        <input type="hidden" value="{{ result.career_id }}" name="careerId">
+                        <div class="form-group">
+                            <label for="user">用户账号</label>
+                            <input type="text" class="form-control" id="user" name="user" value="{{ result.username }}" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label for="userName">用户昵称</label>
+                            <input type="text" class="form-control" id="userName" name="userName" value="{{ result.nick_name }}" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label for="careerName">所属课程</label>
+                            <input type="text" class="form-control" id="careerName" name="careerName" value="{{ result.name }}" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label for="teacherId">任课教师</label>
+                            <input type="text" class="form-control" id="teacherId" name="teacherId" value="{{ result.teachername }}">
+                        </div>
+                        {% if teacherr %}
+                            <p class="text-danger">{{ teacherr }}</p>
+                        {% endif %}
+                        <div class="form-group">
+                            <label for="startTime">入学时间</label>
+                            <input type="datetime-local" class="form-control" id="startTime" name="startTime" value="{{ result.start_time|default_if_none:""|date:"Y-m-d\TH:i:s" }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="endTime">毕业时间</label>
+                            <input type="datetime-local" class="form-control" id="endTime" name="endTime" value="{{ result.end_time|default_if_none:""|date:"Y-m-d\TH:i:s" }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="type">类型</label>
+                            <select id="type1" class="form-control" name="type">
+                                <option value="0">非就业学员</option>
+                                <option value="1">就业学员</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="stopStartTime">休学开始时间</label>
+                            <input type="datetime-local" class="form-control" id="stopStartTime" name="stopStartTime" value="{{ result.stop_start_time|default_if_none:""|date:"Y-m-d\TH:i:s" }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="stopEndTime">休学结束时间</label>
+                            <input type="datetime-local" class="form-control" id="stopEndTime" name="stopEndTime" value="{{ result.stop_end_time|default_if_none:""|date:"Y-m-d\TH:i:s" }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="isStop">是否休学</label>
+                            <select id="isStop" class="form-control" name="isStop">
+                                <option value="0">否</option>
+                                <option value="1">是</option>
+                            </select>
+                        </div>
+                    {% endifequal %}
+                    {% ifequal action "add" %}
+                        <div class="form-group">
+                            <label for="userId">用户邮箱/手机号</label>
+                            <input type="text" class="form-control" id="userId" name="userId" value="{{ userId }}" placeholder="请输入用户邮箱/手机号">
+                        </div>
+                        {% if user_data %}
+                            <p class="text-danger">{{ user_data }}</p>
+                        {% endif %}
+                        <div class="form-group">
+                            <label for="careerId">所属课程</label>
+                            <select name="careerId" id="careerId" class="form-control">
+                                {% for careerdata in careerlist %}
+                                <option value="{{ careerdata.id }}">{{ careerdata.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="teacherId">任课教师邮箱/手机号</label>
+                            <input type="text" class="form-control" id="teacherId" name="teacherId" value="{{ teacherId }}" placeholder="请输入任课教师邮箱/手机号">
+                        </div>
+                        {% if teacher_data %}
+                            <p class="text-danger">{{ teacher_data }}</p>
+                        {% endif %}
+                        <div class="form-group">
+                            <label for="startTime">入学时间</label>
+                            <input type="datetime-local" class="form-control" id="startTime" name="startTime" value="{{ startTime }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="endTime">毕业时间</label>
+                            <input type="datetime-local" class="form-control" id="endTime" name="endTime" value="{{ endTime }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="type">类型</label>
+                            <select id="type" class="form-control" name="type">
+                                <option value="0">非就业学员</option>
+                                <option value="1">就业学员</option>
+                            </select>
+                        </div>
+                        {% if judeg %}
+                            <p class="text-danger">{{ judeg }}</p>
+                        {% endif %}
+                    {% endifequal %}
+                    {% ifequal action "reviseCareer" %}
+                        <input type="hidden" value="{{ result.id }}" name="studentId">
+                        <div class="form-group">
+                            <label for="user">用户账号</label>
+                            <input type="text" class="form-control" id="user" name="user" value="{{ result.username }}" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label for="careerId">所属课程</label>
+                            <select name="careerId" id="careerId" class="form-control">
+                                {% for careerdata in careerlist %}
+                                <option value="{{ careerdata.id }}">{{ careerdata.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    {% endifequal %}
+                        <button type="submit" class="btn btn-primary">提交</button>
+                        <button type="button" class="btn btn-warning" onclick="goback()">返回</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <hr>
+{% endblock %}

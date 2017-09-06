@@ -1,0 +1,92 @@
+{% extends "pager.html" %}
+{% block content %}
+    <script type="text/javascript">
+
+        function onQuery() {
+            var url = "{% url 'mz_operation:new_student_list' %}?action=query" + getPage();
+            window.location.href = url;
+        }
+
+        function showStudent(student_id, career_id) {
+            var url = "{% url 'mz_operation:new_student_list' %}?action=show&student_id={0}&career_id={1}".format(student_id, career_id);
+            window.location.href = url;
+        }
+
+
+    </script>
+
+    {% ifequal action 'query' %}
+        <!-- 扩展功能栏  -->
+        <div class="function_btn">
+            <ul class="nav navbar-btn">
+                <li style="float: right">
+                    <button type="button" id="btn_refresh" onclick="onQuery()"
+                            class="btn btn-default btn-sm active">
+                        <span class="glyphicon glyphicon-home">首页</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <table class="table table-striped table-responsive table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th width="auto">学生姓名</th>
+                    <th width="auto">信息是否完善</th>
+                    <th width="auto">老师姓名</th>
+                    <th width="auto">通知老师时间</th>
+                    <th width="auto">课程名称</th>
+                    <th width="auto">是否与新学员沟通</th>
+                    <th width="auto;">操作</th>
+                </tr>
+                </thead>
+                <tbody id="dataTable" class="text_over_flow">
+                {% if student_info %}
+                    {% for student in student_info %}
+                        <tr>
+
+                            <td title="{{ student.study_info.nick_name|default_if_none:"" }}">
+                                {{ student.study_info.nick_name|default_if_none:"" }}
+                            </td>
+                            <td title="{{ student.study_info.is_perfect|yesno:"已完善,未完善" }}">
+                                {{ student.study_info.is_perfect|yesno:"已完善,未完善" }}
+                            </td>
+                            <td title="{{ student.teacher.name|default_if_none:"" }}">
+                                {{ student.teacher.name|default_if_none:"" }}
+                            </td>
+                            <td title="{{ student.notify_teacher_time|default_if_none:"" }}">
+                                {{ student.notify_teacher_time|default_if_none:"" }}
+                            </td>
+
+                            <td title="{{ student.career.name|default_if_none:"" }}">
+                                {{ student.career.name|default_if_none:"" }}
+                            </td>
+                            <td title="{{ student.new_student_communicate|yesno:"已沟通,未沟通" }}">
+                                {{ student.new_student_communicate|yesno:"已沟通,未沟通" }}
+                            </td>
+
+                            <td>
+                                <a href="javascript:void(0)" title="查看"
+                                   onclick="showStudent({{ student.student_id }},{{ student.career.id }})"
+                                   class="btn btn-default btn-info btn-sm active" style="margin-right:3px;"
+                                   role="button">
+                                    <i class="glyphicon glyphicon-edit" style="margin-right: 3px;"></i>查看
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="11">查询到0条数据！</td>
+                    </tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+    {% endifequal %}
+
+
+{% endblock %}
+

@@ -1,0 +1,148 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript">
+        function goback() {
+            history.go(-1)
+        }
+
+        $(document).ready(function () {
+            {% ifequal action "edit" %}
+                get_selected_career();
+                get_selected_stage();
+            {% endifequal %}
+
+            $("#career").change(function () {
+                var career_id = $("#career").val()
+                console.log(career_id)
+                if (career_id >0){
+{#                    var url = "{% url 'mz_lps4:tree_edit' %}?action={{ action }}&career_id="+career_id#}
+{#                    window.location.href = url#}
+                    $.ajax({
+                        type:'GET',
+                        url:"{% url 'mz_lps4:tree_get_stage' %}",
+                        data:{career_id:career_id},
+                        dateType:"json",
+                        beforeSend: function () {
+                            $("#stage").val(0);
+                            $("#stage_first_option").nextAll().remove()
+                            layer.load(1, {
+                              shade: [0.1,'#fff'] //0.1透明度的白色背景
+                            });
+                        },
+                        success:function (data) {
+                           if(data.status=="success"){
+                                var stages = data.stages
+                               for (var i=0;i<data.stages.length;i++ ){
+                                    console.log(i);
+                                    $('<option/>',{
+                                        val:stages[i].id,
+                                        text:stages[i].name
+                                    }).appendTo($("#stage"))
+                               }
+                           }
+                        },
+                        complete:function () {
+                            layer.closeAll('loading');
+                        }
+                    });
+                }
+            });
+
+            $("#treeForm").validate({
+                rules: {
+                    career: {
+                        required: true,
+                        min:1
+                    },
+                    stage: {
+                        required: true,
+                        min:1
+                    },
+                    stage_name: {
+                        required: true
+                    },
+                    index: {
+                        required: true
+                    },
+
+                },
+                messages: {
+                    career: "请选择职业课程",
+                    stage: "请选择课程阶段",
+                    stage_name: {
+                        required: "请输入阶段名称"
+                    },
+                    index:{
+                        required:"请输入顺序"
+                    }
+                }
+            })
+        })
+    
+    function get_selected_career() {
+        $("#career").val(parseInt({{ tree.career_id }}));
+    }
+
+    function get_selected_stage() {
+        $("#stage").val(parseInt({{ tree.stage_id }}));
+    }
+    </script>
+    {% ifequal action "edit" %}
+        <div class="alert alert-info"><h4>LPS4技能树编辑</h4></div>
+    {% endifequal %}
+    {% ifequal action "add" %}
+        <div class="alert alert-info"><h4>新增LPS4技能树</h4></div>
+    {% endifequal %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <form id="treeForm" action="{% url 'mz_lps4:tree_save' %}" method="post">
+                    <input type="hidden" value="{{ action }}" name="action">
+                    <input type="hidden" value="{{ tree.id }}" name="id">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="{{ action }}">
+                    <div class="form-group row">
+                        <label for="career" class="col-sm-2 col-md-2 control-label">职业课程：</label>
+                        <div class="col-sm-10 col-md-6">
+                            <select id="career" class="form-control" name="career">
+                                <option value=0 >请选择</option>
+                                {% for career in careers %}
+                                    <option value={{ career.id }} {% ifequal career.id tree.career_id %} selected{% endifequal %}>{{ career.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="stage" class="col-sm-2 col-md-2 control-label">课程阶段：</label>
+                        <div class="col-sm-10 col-md-6">
+                            <select id="stage" class="form-control" name="stage">
+                                <option id="stage_first_option" value=0 >请选择</option>
+                                {% for stage in stages %}
+                                    <option value={{ stage.id }} >{{ stage.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                     <div class="form-group row">
+                        <label for="careerName" class="col-sm-2 col-md-2 control-label">阶段名称：</label>
+                        <div class="col-sm-10 col-md-6">
+                            <input type="text" class="form-control" id="stage_name" name="stage_name"
+                                   value="{{ tree.stage_name }}" placeholder="请输入阶段名称">
+                        </div>
+                    </div>
+                    <div class="form-group image_ad row">
+                        <label for="ad_url" class="col-sm-2 col-md-2 control-label">顺序：</label>
+                        <div class="col-sm-10 col-md-6">
+                            <input type="text" class="form-control" id="index" name="index" value="{{ tree.index }}"
+                                   placeholder="请输入阶段顺序">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">提交</button>
+                    <button type="button" class="btn btn-warning" onclick="goback()">返回</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+{% endblock %}

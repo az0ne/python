@@ -1,0 +1,101 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    <script type="text/javascript">
+        function delTaskExcellentWorks(modal_name, title, url) {
+            $('#title_delTaskExcellentWorks').text(modal_name);
+            $('#btn_ensureDelTaskExcellentWorks').attr('onclick', 'ensureDelTaskExcellentWorks("' + url + '")');
+            $('#delTaskExcellentWorksMessage').text('确定要删除“' + title + '”吗？');
+            $('#modal_delTaskExcellentWorks').modal('show');
+        }
+        function ensureDelTaskExcellentWorks(url) {
+            window.location.href = url;
+        }
+        $(function () {
+            $('.inputArea1').attr('disabled', true);
+        });
+    </script>
+    <!--刪除优秀作品警示框-->
+    <div class="modal fade" id="modal_delTaskExcellentWorks" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_delTaskExcellentWorks"></h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="delTaskExcellentWorksMessage"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureDelTaskExcellentWorks()"
+                            id="btn_ensureDelTaskExcellentWorks">确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--任务的优秀作品-->
+    <div class="modal-header active bg-success">
+        <h4 class="modal-title" style="display: inline-block">
+            任务的优秀作品信息</h4>
+    </div>
+    <div style="height: 85vh;overflow: scroll;overflow-x: auto">
+        {% if taskExcellentWorks %}
+            {% for taskExcellentWork in taskExcellentWorks %}
+                <div class="container-fluid" style="border-bottom: 1px #ddd solid;padding-top: 10px">
+                    <div class="row-fluid">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <div class="previewImgDiv">
+                                    <img class="previewImg img-thumbnail" src="{{ MEDIA_URL }}{{ taskExcellentWork.img_url }}"/>
+                                    <div class="text-info">
+                                        <span class="imgSize">图片尺寸(130*92)</span></div>
+                                </div>
+                                <span class="notEmpty1" style="color: red">*</span>
+                                <label>图片:</label>
+                                <input class="inputArea1 file_imageUrl" name="img_url" type="file" />
+                                <span class="inputAreaError"></span>
+                            </div>
+                            <div class="form-group">
+                                <span class="notEmpty1" style="color: red">*</span>
+                                <label>标题:</label>
+                                <input class="inputArea1 txt_taskExcellentWorkTitle form-control" name="title"
+                                       type="text" placeholder="请输入标题" value="{{ taskExcellentWork.title }}"/>
+                                <span class="inputAreaError"></span>
+                            </div>
+                            <div class="form-group">
+                                <span class="notEmpty1" style="color: red">*</span>
+                                <label>下载链接:</label>
+                                <input class="inputArea1 txt_taskExcellentWorkCodeUrl form-control" name="code_url"
+                                       type="text" placeholder="请输入下载链接" value="{{ taskExcellentWork.code_url }}"/>
+                                <span class="inputAreaError"></span>
+                            </div>
+                            <div class="form-group">
+                                <span class="notEmpty1" style="color: red">*</span>
+                                <label>序号:</label>
+                                <input class="inputArea1 txt_taskExcellentWorkIndex form-control" name="index"
+                                       type="text" value="{{ taskExcellentWork.index }}" placeholder="请输入序号"/>
+                                <span class="inputAreaError"></span>
+                            </div>
+                            <div class="form-group">
+                                <a href="{% url 'mz_course:taskExcellentWorks_edit' %}?action=edit&taskId=&id={{ taskExcellentWork.id }}"
+                                   role="button" title="修改" class="btn btn-default btn-success btn-sm active">
+                                    <span class="glyphicon glyphicon-edit" style="margin-right: 3px"></span>修改</a>
+                                <a href="javascript:void(0);"
+                                   onclick="delTaskExcellentWorks('删除优秀作品信息','该优秀作品','{% url 'mz_course:taskExcellentWorks_list' %}?action=delete&id={{ taskExcellentWork.id }}&taskId={{ taskExcellentWork.task_id }}')"
+                                   role="button" title="删除" class="btn btn-default btn-danger btn-sm active">
+                                    <span class="glyphicon glyphicon-trash" style="margin-right: 3px"></span>删除</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <label class="text-danger">无任务优秀作品</label>
+        {% endif %}
+    </div>
+{% endblock %}

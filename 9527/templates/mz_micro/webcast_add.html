@@ -1,0 +1,528 @@
+{% extends "index.html" %}
+{% block pager %}
+{% load  staticfiles %}
+
+<div class="row">
+    <div class="col-md-8">
+        {% ifequal action 'show'%}
+        <h4>查看微课详情</h4>
+        {% endifequal %}
+        {% ifequal action 'add' %}
+        <h4>添加微课</h4>
+        {% endifequal %}
+        {% ifequal action 'edit' %}
+        <h4>修改微课信息</h4>
+        {% endifequal %}
+        {% ifequal action 'edit_vod' %}
+        <h4>修改点播地址</h4>
+        {% endifequal %}
+    </div>
+</div>
+
+<div class="container-fluid ">
+    <div class="row">
+
+        {% ifequal action 'add'%}
+        <div class="col-md-10">
+            <form class="form-horizontal" role="form" id="micro_course_form" action="{% url 'mz_micro:webcast_save'%}"
+                  method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="back_img" class="col-sm-2 control-label">上传课程列表图片：</label>
+                    <div class="col-sm-10 col-md-8">
+                        <img id="img_back_micro" src="" alt="上传图片大小：750 * 400" class="img-rounded previewImg" style="width: 150px;height:80px; {% ifequal action 'add' %}display:none{% endifequal %}">
+                        <input type="file" name="back_img" id="back_img" onchange="changeImage_back_img()">
+                    </div>
+                    <div  class="text-danger col-md-10 col-md-offset-1" style="margin-top: 8px;">
+                         <span>图片尺寸（750*400）&nbsp;</span>
+                         <span id="upload_img_info" >
+                             上传图片尺寸为:
+                             <span id="back_img_width">0</span><span>x</span><span id="back_img_height">0</span>
+                         </span>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label for="palyback_img" class="col-sm-2 control-label">上传课程背景图片：</label>
+                    <div class="col-sm-10 col-md-8">
+                        <img id="img_playback_micro" src="" alt="上传图片大小：750 * 400" class="img-rounded previewImg" style="width: 150px;height:80px; {% ifequal action 'add' %}display:none{% endifequal %}">
+                        <input type="file" name="playback_img" id="palyback_img" onchange="changeImage_playback_img()">
+                    </div>
+                    <div  class="text-danger col-md-10 col-md-offset-1" style="margin-top: 8px;">
+                         <span>图片尺寸（750*400）&nbsp;</span>
+                         <span id="upload_paly_img_info" >
+                             上传图片尺寸为:
+                             <span id="playback_img_width">0</span><span>x</span><span id="playback_img_height">0</span>
+                         </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="subject" class="col-sm-2 control-label">实时课堂主题：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <input type="text" class="form-control" name="subject" id="subject" value=""
+                               placeholder="请输入课堂主题" required>
+                    </div>
+                </div>
+                 <div class="form-group">
+                    <label for="teacher_id" class="col-sm-2 control-label">老师ID：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <input type="text" class="form-control" name="teacher_id" id="teacher_id" placeholder="请输入老师ID" value="" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="subject" class="col-sm-2 control-label">课堂介绍：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <textarea type="text" class="form-control" name="info" id="scheduleInfo" value=""
+                                  placeholder="请输入课堂介绍" required></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="startDate" class="col-sm-2 control-label">开始时间：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <input type="datetime-local" class="form-control" name="startDate" id="startDate" value=""
+                               placeholder="请输入开始时间" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="invalidDate" class="col-sm-2 control-label">结束时间：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <input type="datetime-local" class="form-control" name="invalidDate" id="invalidDate" value=""
+                               placeholder="请输入失效时间" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="invalidDate" class="col-sm-2 control-label">点播地址：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <input type="text" class="form-control" name="vod_url" id="vod_url" value=""
+                               placeholder="请输入点播地址" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="min_student_count" class="col-sm-2 control-label">最小学生数量：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <input type="text" class="form-control" name="min_student_count" id="min_student_count" placeholder="请输入最小学生数量" value="" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="max_student_count" class="col-sm-2 control-label">最大学生数量：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <input type="text" class="form-control" name="max_student_count" id="max_student_count" placeholder="请输入最大学生数量" value="" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="careerCourse01" class="col-sm-2 control-label">推荐课程1：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <select class="form-control" name="career_id_1" id="careerCourse01" required>
+                            <option value="0">
+                                请选择
+                            </option>
+                            {% for career in careerCourses %}
+                            <option value="{{ career.id }}">{{ forloop.counter}}|{{ career.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="careerCourse02" class="col-sm-2 control-label">推荐课程2：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <select class="form-control" name="career_id_2" id="careerCourse02" required>
+                            <option value="0">
+                                请选择
+                            </option>
+                            {% for career in careerCourses %}
+                            <option value="{{ career.id }}">{{ forloop.counter}}|{{ career.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="careerCourse03" class="col-sm-2 control-label">推荐课程3：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <select class="form-control" name="career_id_3" id="careerCourse03" required>
+                            <option value="0">
+                                请选择
+                            </option>
+                            {% for career in careerCourses %}
+                            <option value="{{ career.id }}">{{ forloop.counter}}|{{ career.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" class="btn btn-primary" onclick="check_img_submit()">提交</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        {% endifequal %}
+
+
+
+        {% ifequal action 'show'%}
+        <div class="col-md-10 col-sm-8 col-lg-8">
+            <table class="table table-striped table-responsive table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th width="200px;">
+                        微课内容
+                    </th>
+                    <th>
+                        内容详情
+                    </th>
+
+                </tr>
+                </thead>
+                <tbody class="text_over_flow">
+                <tr>
+                    <td>
+                        <span>微课入口：</span>
+                    </td>
+                    <td>
+                        http://www.maiziedu.com/wike/{{ micro_course.id }}/
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <span>课程ID：</span>
+                    </td>
+                    <td>
+                        {{ micro_course.id|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>课程标题：</span>
+                    </td>
+                    <td>
+                        {{ micro_course.title|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>课程介绍：</span>
+                    </td>
+                    <td>
+                        {{ micro_course.info|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>开始时间：</span>
+                    </td>
+                    <td>
+                        {{ micro_course.start_date|date:"Y-m-d H:i:s" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>结束时间：</span>
+                    </td>
+                    <td>
+                        {{ micro_course.end_date|date:"Y-m-d H:i:s" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>课程状态：</span>
+                    </td>
+                    <td>
+                       {{ micro_course.status_des|default_if_none:"" }}
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <span>点播地址：</span>
+                    </td>
+                    <td>
+
+                        {{ micro_course.vod_url|default_if_none:"" }}
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>当前学生数量：</span>
+                    </td>
+                    <td>
+                        {{ micro_course.student_count|default_if_none:"" }}
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <span>最小学生数量：</span>
+                    </td>
+                    <td>
+                        {{ micro_course.min_student_count|default_if_none:"" }}
+                    </td>
+                </tr>
+                 <tr>
+                    <td>
+                        <span>最大学生数量：</span>
+                    </td>
+                    <td>
+                        {{ micro_course.max_student_count|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>任课老师：</span>
+                    </td>
+                    <td>
+                        (id:{{ micro_course.teacher_id|default_if_none:"" }})&nbsp;&nbsp;&nbsp;&nbsp;{{ micro_course.teacher_name|default_if_none:"" }}
+                    </td>
+                </tr>
+
+                {% for careercourse in careerCourses %}
+                {% ifequal micro_course.career_id_1 careercourse.id %}
+                <tr>
+                    <td>
+                        <span>推荐课程：</span>
+                    </td>
+                    <td>
+                        (id:{{ micro_course.career_id_1|default_if_none:"" }})&nbsp;&nbsp;&nbsp;&nbsp;{{ careercourse.name|default_if_none:"" }}
+                    </td>
+                </tr>
+                {% endifequal %}
+                {% ifequal micro_course.career_id_2 careercourse.id %}
+                <tr>
+                    <td>
+                        <span>推荐课程：</span>
+                    </td>
+                    <td>
+                        (id:{{ micro_course.career_id_2|default_if_none:"" }})&nbsp;&nbsp;&nbsp;&nbsp;{{ careercourse.name|default_if_none:"" }}
+                    </td>
+                </tr>
+                {% endifequal %}
+                {% ifequal micro_course.career_id_3 careercourse.id %}
+                <tr>
+                    <td>
+                        <span>推荐课程：</span>
+                    </td>
+                    <td>
+                        (id:{{ micro_course.career_id_3|default_if_none:"" }})&nbsp;&nbsp;&nbsp;&nbsp;{{ careercourse.name|default_if_none:"" }}
+                    </td>
+                </tr>
+                {% endifequal %}
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-2 col-sm-4 col-lg-3">
+            <label>
+                课程列表图片：
+                {% ifnotequal micro_course.back_img None %}
+                <img src="{{MEDIA_URL}}{{ micro_course.back_img }}" class="img-responsive" alt="背景图片" width="320"
+                     height="240">
+                {% else %}
+                <span class="text-warning">没有上传背景图片</span>
+                {% endifnotequal %}
+            </label>
+        </div>
+        <div class="col-md-2 col-sm-4 col-lg-3">
+            <label>
+                课程背景图片：
+                {% ifnotequal micro_course.playback_img None %}
+                <img src="{{MEDIA_URL}}{{ micro_course.playback_img }}" class="img-responsive" alt="背景图片" width="320"
+                     height="240">
+                {% else %}
+                <span class="text-warning">没有上传背景图片</span>
+                {% endifnotequal %}
+            </label>
+        </div>
+        {% endifequal %}
+
+<!--修改学生数量（student_count,min_student_count,max_student_count）-->
+        {% ifequal action 'edit'%}
+        <div class="col-md-10" >
+        <form id="student_count_form" class="form-horizontal" action="{% url 'mz_micro:webcast_update_student'%}" method="post">
+            <input id="student_count_id" class="hidden" name="id" value="{{ micro_course.id }}">
+            <input id="student_url_back" class="hidden" name="url_back" value="{{ url_back }}">
+            <input type="hidden" name="page_index" value="{{ page_index }}">
+            <div class="form-group">
+                <label for="student_count_edit" class="col-sm-2 control-label">当前学生数量：</label>
+                <div class="col-sm-10 col-md-6">
+                    <input type="text" class="form-control" name="student_count" id="student_count_edit"
+                           value="{{ micro_course.student_count|default_if_none:'' }}" placeholder="请输入当前学生数量" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="min_student_count_edit" class="col-sm-2 control-label">最小学生数量：</label>
+                <div class="col-sm-10 col-md-6">
+                    <input type="text" class="form-control" name="min_student_count" id="min_student_count_edit"
+                           value="{{ micro_course.min_student_count|default_if_none:'' }}" placeholder="请输入最小学生数量" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="max_student_count_edit" class="col-sm-2 control-label">最大学生数量：</label>
+                <div class="col-sm-10 col-md-6">
+                    <input type="text" class="form-control" name="max_student_count" id="max_student_count_edit"
+                           value="{{ micro_course.max_student_count|default_if_none:'' }}" placeholder="请输入当前学生数量" >
+                </div>
+            </div>
+              <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </div>
+                </div>
+        </form>
+         {% endifequal %}
+         {% ifequal action 'edit_vod'%}
+        <form id="vod_url_form" class="form-horizontal" action="{% url 'mz_micro:update_vod_url'%}" method="post">
+            <input type="hidden" name="page_index" value="{{ page_index }}">
+            <input class="hidden" name="id" value="{{ micro_course.id }}">
+            <input id="vod_url_back" class="hidden" name="url_back" value="{{ url_back }}">
+            <div class="form-group">
+                <label for="vod_url_edit" class="col-sm-2 control-label">点播地址：</label>
+                <div class="col-sm-10 col-md-6">
+                    <input type="text" class="form-control" name="vod_url" id="vod_url_edit"
+                           value="{{ micro_course.vod_url|default_if_none:'' }}" placeholder="请输入点播地址" >
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </div>
+            </div>
+        </form>
+        </div>
+        {% endifequal %}
+
+    </div>
+</div>
+
+<script>
+    $().ready(function() {
+         $("#micro_course_form").validate({
+              rules: {
+                  back_img: {
+                      required: true,
+                  },
+                  subject: {
+                      required: true,
+                  },
+                  teacher_id: {
+                      required: true,
+                  },
+                  info: {
+                      required: true,
+                  },
+                  startDate: {
+                      required: true,
+                  },
+                  invalidDate: {
+                      required: true,
+                  },
+                  min_student_count: {
+                      required: true,
+                  },
+                  max_student_count: {
+                      required: true,
+                  },
+                  vod_url: {
+                      required: false,
+                  },
+                  career_id_1: {
+                      required: true,
+                      min:1
+                  },
+                  career_id_2: {
+                      required: true,
+                      min:1
+                  },
+                  career_id_3: {
+                      required: true,
+                      min:1
+                  },
+              },
+              messages: {
+                  back_img: {
+                      required: "请添加背景图片",
+                  },
+                  subject: {
+                      required: "请输入课程标题",
+                  },
+                  teacher_id: {
+                      required: "请输入老师ID",
+                  },
+                  info: {
+                      required: "请输入课堂介绍",
+                  },
+                  min_student_count: {
+                      required: "请选择最小学生数量",
+                  },
+                  max_student_count: {
+                      required: "请选择最大学生数量",
+                  },
+                  vod_url: {
+                      required: "请输入点播地址",
+                  },
+                  startDate:{
+                      required: "请输入直播开始时间",
+                  },
+                  invalidDate:{
+                      required: "请输入直播结束时间",
+                  },
+                  career_id_1:"请选择推荐课程",
+                  career_id_2:"请选择推荐课程",
+                  career_id_3:"请选择推荐课程",
+              }
+          })
+    });
+
+     //上传列表图片预览
+    function changeImage_back_img() {
+        $('#img_back_micro').attr('src', window.URL.createObjectURL($('#back_img')[0].files[0]));
+        document.getElementById('img_back_micro').style.display="inline-block";
+        document.getElementById('upload_img_info').style.display="inline-block";
+        getBackImgSize();
+    }
+
+    //上传背景图片预览
+    function changeImage_playback_img() {
+        $('#img_playback_micro').attr('src', window.URL.createObjectURL($('#palyback_img')[0].files[0]));
+        document.getElementById('img_playback_micro').style.display="inline-block";
+        document.getElementById('upload_paly_img_info').style.display="inline-block";
+        getPlayBackImgSize();
+    }
+
+    //获取上传列表图片的尺寸
+    function getBackImgSize() {
+    var img = new Image();
+    img.src = $('#img_back_micro').attr('src');
+    img.onload = function () {  // 等待图片加载完后，才能获取到图片的信息
+        $('#back_img_width').text(img.width);
+        $('#back_img_height').text(img.height);
+        }
+    }
+
+    //获取上传背景图片的尺寸
+        function getPlayBackImgSize() {
+        var img = new Image();
+        img.src = $('#img_playback_micro').attr('src');
+        img.onload = function () {  // 等待图片加载完后，才能获取到图片的信息
+            $('#playback_img_width').text(img.width);
+            $('#playback_img_height').text(img.height);
+            }
+        }
+
+    //判断图片大小
+    function check_img_submit(){
+         var back_img_width = $('#back_img_width').text();
+         var back_img_height = $('#back_img_height').text();
+         var playback_img_width = $('#playback_img_width').text();
+         var playback_img_height = $('#playback_img_height').text();
+         if (back_img_width ==750&&back_img_height ==400&&playback_img_width==750&&playback_img_height==400){
+            $("#micro_course_form").submit();
+        }else {
+            alert("图片正确尺寸（750*400）,请确认图片尺寸！");
+            return false;
+        }
+    }
+</script>
+
+{% endblock %}

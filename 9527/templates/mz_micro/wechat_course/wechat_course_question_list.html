@@ -1,0 +1,160 @@
+{% extends "pager.html" %}
+{% block content %}
+
+    {#<div class="input-group mySearch">#}
+    {#    <input type="text" id="keyword_search" class="form-control" value="{{ keyword }}" placeholder="输入昵称/内容关键字"/>#}
+    {#	<span class="input-group-btn">#}
+    {#        <button type="button" class="btn btn-default" id="btn_search" onclick="onSearch()">#}
+    {#            <span class="glyphicon glyphicon-search"></span>#}
+    {#        </button>#}
+    {#	</span>#}
+    {#</div>#}
+    {##}
+    {#<div class="input-group mySearch">#}
+    {#    <select id="reply_select" name="status" class="form-control">#}
+    {#        <option value=-1>请选择回复状态</option>#}
+    {#        <option value=0>全部</option>#}
+    {#        <option value=1>已回复</option>#}
+    {#        <option value=2>未回复</option>#}
+    {#    </select>#}
+    {#	<span class="input-group-btn">#}
+    {#        <button type="button" class="btn btn-primary" id="btn_select" onclick="onSelect()">#}
+    {#            <span>确定</span>#}
+    {#        </button>#}
+    {#	</span>#}
+    {#</div>#}
+
+    <!-- 扩展功能栏  -->
+    <div class="function_btn">
+        <ul class="nav navbar-nav navbar-btn">
+            <li>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            </li>
+            <li>
+                <button type="button" id="btn_refresh" onclick="addQuestion()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-plus">添加</span>
+                </button>
+            </li>
+
+        </ul>
+    </div>
+    <table class="table table-striped table-responsive table-bordered table-hover">
+        <thead>
+        <tr>
+            <th width="15%;">微课名称</th>
+            <th width="10%;">用户昵称</th>
+            <th width="15%;">用户头像</th>
+            <th width="30%;">提问内容</th>
+            <th width="30%;">回答内容</th>
+            <th width="10%;">操作</th>
+        </tr>
+        </thead>
+        <tbody id="dataTable" class="text_over_flow">
+        {% if questions %}
+            {% for question in questions %}
+                <tr>
+
+                    <td title="{{ question.course_name|default_if_none:'' }}">
+                        {{ question.course_name|default_if_none:"" }}
+                    </td>
+                    <td title="{{ question.nick_name|default_if_none:'' }}">
+                        {{ question.nick_name|default_if_none:"" }}
+                    </td>
+                    <td title="用户头像">
+                        {% if question.avatar_url %}
+                            <img src="{{ MEDIA_URL }}{{ question.avatar_url }}" height="40px">
+                        {% endif %}
+                    </td>
+                    <td title="{{ question.question|default_if_none:"" }}">
+                        {{ question.question|default_if_none:"" }}
+                    </td>
+                    <td title="{{ question.answer|default_if_none:"" }}">
+                        {{ question.answer|default_if_none:"" }}
+                    </td>
+                    <td>
+                        <a href="javascript:void(0)" title="问答编辑"
+                           class="btn btn-default btn-success active" onclick="onReply({{ question.id }});"
+                           style="margin-right:3px;" role="button">
+                            编辑
+                        </a>
+                        <a href="javascript:void(0)" title="删除"
+                           class="btn  btn-danger active" onclick="showDelModal({{ question.id }});"
+                           style="margin-right:3px;" role="button">
+                            删除
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="6">查询到0条数据！</td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+    </div>
+
+
+    <!-- 提示确认框  -->
+    <div class="modal fade" id="modal_del_aks" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-primary active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000">
+                        确认提醒</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6 col-sm-6">
+                            <input id="ask_id" class="hidden" type="text" value="">
+                            <h5><b id="show_msg">确认要删除该条问答记录吗？</b></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="delReply()" id="btn_confirm">确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        function onQuery() {
+            var url = "{% url 'mz_wechat:wechat_course_question_list' %}?action=query" + getPage()
+            window.location.href = url;
+        }
+
+
+        function onReply(id) {
+            var url = "{% url 'mz_wechat:wechat_course_question_edit'%}?action=edit&question_id={0}".format(id);
+            window.location.href = url;
+        }
+
+        function addQuestion() {
+            var url = "{% url 'mz_wechat:wechat_course_question_edit'%}?action=add";
+            window.location.href = url;
+        }
+
+        function showDelModal(id) {
+            $('#ask_id').val(id);
+            $('#modal_del_aks').modal('show');
+        }
+
+        function delReply() {
+            var question_id = $('#ask_id').val();
+            var url = "{% url 'mz_wechat:wechat_course_question_delete'%}?question_id={0}".format(question_id);
+            window.location.href = url;
+        }
+
+
+    </script>
+
+{% endblock %}

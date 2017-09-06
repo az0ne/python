@@ -1,0 +1,213 @@
+<!--搜索框-->
+<div class="input-group mySearch" xmlns="http://www.w3.org/1999/html">
+    <input type="text" id="txt_search" class="form-control" placeholder="输入查询关键字"/>
+	<span class="input-group-btn">
+						<button type="button" class="btn btn-default" id="btn_search">
+                            <span class="glyphicon glyphicon-search"></span>
+	</button>
+	</span>
+</div>
+<!-- 扩展功能栏-->
+<div class="function_btn">
+    <ul class="nav navbar-btn">
+        <li>
+            <button type="button" id="btn_addObjTagRelation" class="btn btn-default btn-info btn-sm active">
+                <span class="glyphicon glyphicon-plus">添加对象标签关系</span>
+            </button>
+        </li>
+    </ul>
+</div>
+<!--修改对象标签关系模态框-->
+<div class="modal fade" id="modal_editObjTagRelation" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header btn-success active">
+                <button type="button" class="close" data-dismiss="modal" aria-lable="close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="text-shadow:3px 3px 2px #000">
+                    修改对象标签关系信息</h4>
+            </div>
+            <form enctype="multipart/form-data" id="form_editObjTagRelation">
+                <div class="modal-body" style="height: 250px;">
+                    <div class="form-group">
+                        <span class="notEmpty">*</span>
+                        <label class="inputAreaTitle">标签名称:</label>
+                        <select class="inputArea slt_tag_name" id="slt_edit_tag_name" name="tag_id"></select>
+                        <span class="inputAreaError lbl_tag_name_error"></span>
+                    </div>
+                    <div class="form-group">
+                        <span class="notEmpty">*</span>
+                        <label class="inputAreaTitle">专业方向:</label>
+                        <select class="inputArea slt_careercatagory_name" id="slt_edit_careercatagory_name"
+                                name="careercatagory_id"></select>
+                        <span class="inputAreaError lbl_careercatagory_name_error"></span>
+                    </div>
+                    <div class="form-group">
+                        <span class="notEmpty">*</span>
+                        <label class="inputAreaTitle">对象名称:</label>
+                        <select class="inputArea slt_obj_name" id="slt_edit_obj_name" name="obj_id"></select>
+                        <span class="inputAreaError lbl_obj_name_error"></span>
+                    </div>
+                    <div class="form-group">
+                        <span class="notEmpty">*</span>
+                        <label class="inputAreaTitle">对象类型: </label>
+                        <select class="inputArea slt_obj_type" id="slt_edit_obj_type" name="obj_type">
+                            <option value="COURSE">课程</option>
+                            <option value="ARTICLE">文章</option>
+                            <option value="TEACHER">老师</option>
+                        </select>
+                        <span class="inputAreaError lbl_obj_type_error"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span id="isEditSuccess" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal" id="btn_closeModal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary active"
+                            id="btn_saveEditObjTagRelation">保存
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<!--添加对象标签关系模态框-->
+<div class="modal fade" id="modal_addObjTagRelation" role="dialog">
+    <div class="modal-dialog" role="document" style="background-color:#ffffff">
+        <div class="modal-header btn-success active">
+            <button type="button" class="close" data-dismiss="modal" aria-lable="close"><span
+                    aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" style="text-shadow:3px 3px 2px #000">
+                添加对象标签关系信息</h4>
+        </div>
+        <form enctype="multipart/form-data" id="form_addObjTagRelation">
+            <div class="modal-body" style="height: 250px;">
+                <div class="form-group">
+                    <span class="notEmpty">*</span>
+                    <label class="inputAreaTitle">标签名称:</label>
+                    <select class="inputArea slt_tag_name" id="slt_add_tag_name" name="tag_id"><option value="0">请选择</option></select>
+                    <span class="inputAreaError lbl_tag_name_error"></span>
+                </div>
+                <div class="form-group">
+                    <span class="notEmpty">*</span>
+                    <label class="inputAreaTitle">专业方向:</label>
+                    <select class="inputArea slt_careercatagory_name" id="slt_add_careercatagory_name"
+                            name="careercatagory_id"><option value="0">请选择</option></select>
+                    <span class="inputAreaError lbl_careercatagory_name_error"></span>
+                </div>
+                <div class="form-group">
+                    <span class="notEmpty">*</span>
+                    <label class="inputAreaTitle">对象类型: </label>
+                    <select class="inputArea slt_obj_type" id="slt_add_obj_type" name="obj_type">
+                        <option value="0">请选择</option>
+                        <option value="COURSE">课程</option>
+                        <option value="ARTICLE">文章</option>
+                        <option value="TEACHER">老师</option>
+                    </select>
+                    <span class="inputAreaError lbl_obj_type_error"></span>
+                </div>
+                <div class="form-group">
+                    <span class="notEmpty">*</span>
+                    <label class="inputAreaTitle">对象名称:</label>
+                    <select class="inputArea slt_obj_name" id="slt_add_obj_name" name="obj_id">
+                        <option value="0">请选择</option>
+                    </select>
+                    <span class="inputAreaError lbl_obj_name_error"></span>
+                </div>
+                <div class="modal-footer">
+                    <span id="isEditSuccess" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal" id="btn_closeModal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary active"
+                            id="btn_saveAddObjTagRelation">保存
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<!--查看对象标签关系模态框-->
+<div class="modal fade" id="modal_showObjTagRelation" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header btn-success active">
+                <button type="button" class="close" data-dismiss="modal" aria-lable="close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_showObjTagRelationLab">
+                    查看对象标签关系信息</h4>
+            </div>
+            <div class="modal-body form-inline" style="height: 150px;">
+                <div class="form-group form-horizontal" style="height:100%;width: 30%">
+                    <p style="">标签名称:</p>
+                    <label id="lbl_tag_name"></label>
+                    <p>专业方向:</p>
+                    <label id="lbl_careercatagory_name"></label>
+                </div>
+                <div class="form-group form-horizontal" style="height:100%;width: 30%">
+                     <p>对象类型:</p>
+                    <label id="lbl_obj_type"></label>
+                    <p>对象名称:</p>
+                    <label id="lbl_obj_name"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--刪除对象标签关系警示框-->
+<div class="modal fade" id="modal_delObjTagRelation" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header btn-danger active">
+                <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_delObjTagRelationLab">
+                    删除对象标签关系信息</h4>
+            </div>
+            <div class="modal-body">
+                <h3 class="text-danger text-center active" id="delObjTagRelationMessage"></h3>
+            </div>
+            <div class="modal-footer">
+                <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary active" id="btn_ensureDelObjTagRelation">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--数据显示-->
+<div>
+    <table class="table table-striped table-responsive table-bordered table-hover">
+        <thead>
+        <tr>
+            <th width="50px;">序号</th>
+            <th width="auto">标签名称</th>
+            <th width="auto">专业方向</th>
+            <th width="auto">对象类型</th>
+            <th width="auto">对象名称</th>
+            <th width="209px;">操作</th>
+        </tr>
+        </thead>
+        <tbody id="dataTable"></tbody>
+    </table>
+    <!--分页-->
+    <div align="right">
+        <ul class="pagination" id="pagination1"></ul>
+        <label id="pagerDataInfo" style="float: right;margin:32px 20px 0 10px">总共0页0条</label>
+    </div>
+</div>
+<script type="application/javascript" src="{{ STATIC_URL }}js/mz_common/objTagRelation.js"></script>
+<script type="application/javascript" src="{{ STATIC_URL }}js/dataValidate.js"></script>
+<script type="application/javascript">
+    //初始化分页组件
+    $('#pagination1').jqPaginator({
+        totalPages: 1,
+        visiblePages: 5,
+        currentPage: 1,
+        onPageChange: function (pageIndex) {
+            selectData('/ajax/objTagRelation/list/', pageIndex, 15);
+        }
+    });
+</script>

@@ -1,0 +1,108 @@
+{% extends "index.html" %}
+
+{% block pager %}
+<style rel="stylesheet">
+.excel_div {
+    width: 400px;
+    margin: 80px 0 120px 20%;
+}
+#excelInput {
+    width: 300px;
+}
+
+#entry_div {
+    margin-left:80px;
+}
+</style>
+
+{% if type == 'entry' %}
+<div class="excel_div" id="entry_div">
+    <h2>销售数据excel导入：<a href="{% url 'mz_operation:execl_import' %}?type=sale">入口</a></h2>
+    <h2>客服数据excel导入：<a href="{% url 'mz_operation:execl_import' %}?type=customer">入口</a></h2>
+    <h2>sem数据excel导入：<a href="{% url 'mz_operation:execl_import' %}?type=sem">入口</a></h2>
+</div>
+{% endif %}
+
+{% if type == 'sale' %}
+<div class="excel_div" id="volume_info_div">
+    <h2>销售数据excel导入：<a href="{{ STATIC_URL }}excel_templates/sales-example.xlsx">模板</a></h2>
+    <form id="excel_form" method="POST" enctype="multipart/form-data" role="form">
+        <div class="form-group">
+            <label for="excelInput">选择销售数据excel：</label>
+            <input type="file" name="excel" id="excelInput" class="form-control" value="选择excel">
+        </div>
+        <input type="hidden" name="type" value="volume_info">
+        <input id="excel_btn" type="button" class="btn btn-primary" value="导入">
+    </form>
+</div>
+{% endif %}
+
+{% if type == 'customer' %}
+<div class="excel_div" id="customer_info_div">
+    <h2>客服数据excel导入：<a href="{{ STATIC_URL }}excel_templates/customer-example.xlsx">模板</a></h2>
+    <form id="excel_form" method="POST" enctype="multipart/form-data" role="form">
+        <div class="form-group">
+            <label for="excelInput">选择客服数据excel：</label>
+            <input type="file" name="excel" id="excelInput" class="form-control" value="选择excel">
+        </div>
+        <input type="hidden" name="type" value="customer_info">
+        <input id="excel_btn" type="button" class="btn btn-primary" value="导入">
+    </form>
+</div>
+{% endif %}
+
+{% if type == 'sem' %}
+<div class="excel_div" id="sem_info_div">
+    <h2>sem数据excel导入：<a href="{{ STATIC_URL }}excel_templates/sem-example.xlsx">模板</a></h2>
+    <form id="excel_form" method="POST" enctype="multipart/form-data" role="form">
+        <div class="form-group">
+            <label for="excelInput">选择sem数据excel：</label>
+            <input type="file" name="excel" id="excelInput" class="form-control" value="选择excel">
+        </div>
+        <input type="hidden" name="type" value="sem_info">
+        <input id="excel_btn" type="button" class="btn btn-primary" value="导入">
+    </form>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block custom_script %}
+    <script type="application/javascript">
+        function markUpEvent(excel_div_selector) {
+            $(excel_div_selector+' #excel_btn').click(function () {
+                $.ajax({
+                    url: "/operation/charts/excel_import/",
+                    cache: false,
+                    data: new FormData($(excel_div_selector+' #excel_form')[0]),
+                    processData: false,
+                    contentType: false,
+                    type: 'POST',
+                    beforeSend: function () {
+                        layer.load();
+                    },
+                    success: function (data) {
+                        if (data.success) {
+                            var file = $(excel_div_selector+" :file");
+                            file.after(file.clone().val(""));
+                            file.remove();
+                            layer.msg('导入成功', {time: 1000, icon: 1});
+                        }
+                        else {
+                            layer.alert(data.msg, {icon: 5})
+                        }
+                        layer.closeAll('loading');
+                    },
+                    error: function () {
+                        layer.closeAll('loading');
+                        layer.msg('服务器异常', {time: 1000, icon: 5});
+                    }
+                });
+            });
+        }
+        markUpEvent('#volume_info_div');
+        markUpEvent('#customer_info_div');
+        markUpEvent('#sem_info_div');
+    </script>
+
+{% endblock %}

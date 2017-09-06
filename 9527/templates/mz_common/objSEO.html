@@ -1,0 +1,238 @@
+<!--搜索框-->
+<div class="input-group mySearch" xmlns="http://www.w3.org/1999/html">
+    <input type="text" id="txt_search" class="form-control" placeholder="输入查询关键字"/>
+	<span class="input-group-btn">
+						<button type="button" class="btn btn-default" id="btn_search">
+                            <span class="glyphicon glyphicon-search"></span>
+	</button>
+	</span>
+</div>
+<!-- 扩展功能栏-->
+<div class="function_btn">
+    <ul class="nav navbar-btn">
+        <li>
+            <button type="button" id="btn_addObjSEO" class="btn btn-default btn-info btn-sm active">
+                <span class="glyphicon glyphicon-plus">添加S+EO</span>
+            </button>
+        </li>
+    </ul>
+</div>
+<!--修改S+EO模态框-->
+<div class="modal fade" id="modal_editObjSEO" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header btn-success active">
+                <button type="button" class="close" data-dismiss="modal" aria-lable="close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="text-shadow:3px 3px 2px #000">
+                    修改S+EO信息</h4>
+            </div>
+            <form enctype="multipart/form-data" id="form_editObjSEO">
+                <div class="modal-body" style="height: 360px;">
+                    <div class="form-group">
+                        <span class="notEmpty">*</span>
+                        <label class="inputAreaTitle">类型: </label>
+                        <select class="inputArea slt_objectType" id="slt_edit_objectType" name="obj_type"
+                                disabled="disabled">
+                            <option value="COURSE">课程</option>
+                            <option value="ARTICLE">文章</option>
+                            <option value="TEACHER">老师</option>
+                            <option value="LESSON">视频</option>
+                        </select>
+                        <span class="inputAreaError lbl_objectTypeError"></span>
+                    </div>
+                    <div class="form-group">
+                        <span class="notEmpty">*</span>
+                        <label class="inputAreaTitle">对象名称:</label>
+                        <select class="inputArea slt_objectName" id="slt_edit_objectName" name="obj_id"
+                                disabled="disabled"></select>
+                        <span class="inputAreaError lbl_objectNameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <span class="notEmpty">*</span>
+                        <label class="inputAreaTitle">搜索标题:</label>
+                        <input class="inputArea txt_seoTitle" type="text" name="seo_title" id="txt_edit_seoTitle"
+                               placeholder="请输入搜索标题"/>
+                        <span class="inputAreaError lbl_seoTitleError"></span>
+                    </div>
+                    <div class="form-group">
+                        <span class="Empty">*</span>
+                        <label class="inputAreaTitle">搜索关键字:</label>
+                        <input class="inputArea txt_seoKeyword" type="text" name="seo_keywords" id="txt_edit_seoKeyword"
+                               placeholder="请输入搜索关键字"/>
+                        <span class="inputAreaError lbl_seoKeywordError"></span>
+                    </div>
+                    <div class="form-group">
+                        <span class="Empty">*</span>
+                        <label class="inputAreaTitle">描述:</label>
+                        <textarea class="inputArea txtA_seoDescription" maxlength="255" name="seo_description"
+                                  id="txtA_edit_seoDescription" style="height: 150px;width: 80%"/>
+                        <span class="inputAreaError lbl_seoDescriptionError"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span id="isEditSuccess" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal" id="btn_closeModal">关闭
+                    </button>
+                    <button type="button" class="btn btn-primary active"
+                            id="btn_saveEditObjSEO">保存
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<!--添加S+EO模态框-->
+<div class="modal fade" id="modal_addObjSEO" role="dialog">
+    <div class="modal-dialog" role="document" style="background-color:#ffffff">
+        <div class="modal-header btn-success active">
+            <button type="button" class="close" data-dismiss="modal" aria-lable="close"><span
+                    aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" style="text-shadow:3px 3px 2px #000">
+                添加S+EO信息</h4>
+        </div>
+        <form enctype="multipart/form-data" id="form_addObjSEO">
+            <div class="modal-body" style="height: 360px;">
+                <div class="form-group">
+                    <span class="notEmpty">*</span>
+                    <label class="inputAreaTitle">类型: </label>
+                    <select class="inputArea slt_objectType" id="slt_add_objectType" name="obj_type">
+                        <option value="0">请选择</option>
+                        <option value="COURSE">课程</option>
+                        <option value="ARTICLE">文章</option>
+                        <option value="TEACHER">老师</option>
+                        <option value="LESSON">视频</option>
+                    </select>
+                    <span class="inputAreaError lbl_objectTypeError"></span>
+                </div>
+                <div class="form-group">
+                    <span class="notEmpty">*</span>
+                    <label class="inputAreaTitle">对象名称:</label>
+                    <select class="inputArea slt_objectName" id="slt_add_objectName" name="obj_id">
+                        <option value="0">请选择</option>
+                    </select>
+                    <span class="inputAreaError lbl_objectNameError"></span>
+                </div>
+                <div class="form-group">
+                    <span class="notEmpty">*</span>
+                    <label class="inputAreaTitle">搜索标题:</label>
+                    <input class="inputArea txt_seoTitle" type="text" name="seo_title" id="txt_add_seoTitle"
+                           placeholder="请输入搜索标题"/>
+                    <span class="inputAreaError lbl_seoTitleError"></span>
+                </div>
+                <div class="form-group">
+                    <span class="Empty">*</span>
+                    <label class="inputAreaTitle">搜索关键字:</label>
+                    <input class="inputArea txt_seoKeyword" type="text" name="seo_keywords" id="txt_add_seoKeyword"
+                           placeholder="请输入搜索关键字"/>
+                    <span class="inputAreaError lbl_seoKeywordError"></span>
+                </div>
+                <div class="form-group">
+                    <span class="Empty">*</span>
+                    <label class="inputAreaTitle">描述:</label>
+                    <textarea class="inputArea txtA_seoDescription" maxlength="255" name="seo_description"
+                              id="txtA_add_seoDescription" style="height: 150px;width: 80%"/>
+                    <span class="inputAreaError lbl_seoDescriptionError"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span id="isEditSuccess" style="float: left;display: none"></span>
+                <button type="button" class="btn btn-danger active" data-dismiss="modal" id="btn_closeModal">关闭
+                </button>
+                <button type="button" class="btn btn-primary active"
+                        id="btn_saveAddObjSEO">保存
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+<!--查看S+EO模态框-->
+<div class="modal fade" id="modal_showObjSEO" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header btn-success active">
+                <button type="button" class="close" data-dismiss="modal" aria-lable="close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_showObjSEOLab">
+                    查看S+EO信息</h4>
+            </div>
+            <div class="modal-body form-inline" style="height: 250px;">
+                <div class="form-group form-horizontal" style="height:100%;width: 30%">
+                    <p>对象类型:</p>
+                    <label id="lbl_objectType"></label>
+                    <p style="">对象名称:</p>
+                    <label id="lbl_objectName"></label>
+                </div>
+                <div class="form-group form-horizontal" style="height:100%;width: 30%">
+                    <p>搜索标题:</p>
+                    <label id="lbl_seoTitle"></label>
+                    <p>搜索关键字:</p>
+                    <label id="lbl_seoKeyword"></label>
+                </div>
+                <div class="form-group" style="height:100%;width: 30%">
+                    <p style="">描述:</p>
+                    <label id="lbl_seoDescription" src="" height="90px" width="90px"></label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--刪除S+EO警示框-->
+<div class="modal fade" id="modal_delObjSEO" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header btn-danger active">
+                <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_delObjSEOLab">
+                    删除S+EO信息</h4>
+            </div>
+            <div class="modal-body">
+                <h3 class="text-danger text-center active" id="delObjSEOMessage"></h3>
+            </div>
+            <div class="modal-footer">
+                <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary active" id="btn_ensureDelObjSEO">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--数据显示-->
+<div>
+    <table class="table table-striped table-responsive table-bordered table-hover">
+        <thead>
+        <tr>
+            <th width="50px">序号</th>
+            <th width="auto">对象类型</th>
+            <th width="auto">对象名称</th>
+            <th width="auto">搜索标题</th>
+            <th width="auto">搜索关键字</th>
+            <th width="auto">描述</th>
+            <th width="209px;">操作</th>
+        </tr>
+        </thead>
+        <tbody id="dataTable"></tbody>
+    </table>
+    <!--分页-->
+    <div align="right">
+        <ul class="pagination" id="pagination1"></ul>
+        <label id="pagerDataInfo" style="float: right;margin:32px 20px 0 10px">总共0页0条</label>
+    </div>
+</div>
+<script type="application/javascript" src="{{ STATIC_URL }}js/mz_common/objSEO.js"></script>
+<script type="application/javascript" src="{{ STATIC_URL }}js/dataValidate.js"></script>
+<script type="application/javascript">
+    //初始化分页组件
+    $('#pagination1').jqPaginator({
+        totalPages: 1,
+        visiblePages: 5,
+        currentPage: 1,
+        onPageChange: function (pageIndex) {
+            selectData('/ajax/objSEO/list/', pageIndex, 8);
+        }
+    });
+</script>

@@ -1,0 +1,59 @@
+{% extends "index.html" %}
+<script type="text/javascript" src="{{ STATIC_URL }}jedate/jedate.js"></script>
+{% block pager %}
+<script type="text/javascript">
+    function goback() {
+        history.go(-1)
+    }
+</script>
+
+<style rel="stylesheet">
+.careerlinksave {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+</style>
+        <div class="container careerlinksave">
+            <div class="row">
+                <div class="col-md-8">
+                    <form id="deadlineform" action="/operation/operation/updeadline/" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ dldata.user_id }}" id="user_id" name="userId">
+                        <input type="hidden" value="{{ dldata.student_class_id }}" id="class_id" name="classId">
+                        <div class="form-group">
+                            <label for="username">用户名</label>
+                            <input type="text" class="form-control" id="username" name="username" value="{{ dldata.nick_name }}" readonly="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="coding">班级编号</label>
+                            <input type="text" class="form-control" id="coding" name="coding" value="{{ dldata.coding }}" readonly="true">
+                        </div>
+                        <div class="form-group">
+                            <label for="deadline">到期时间</label>
+                            <input type="datetime-local" class="form-control" id="deadline" name="deadline" value="{{ deadline }}">
+                            时间格式："2016-08-08 00:00:00"
+                        </div>
+                        <div class="form-group">
+                            <label for="status">学员状态</label>
+                            <select id="status" class="form-control" name="status">
+                                <option value="1">正常</option>
+                                <option value="2">退学</option>
+                            </select>
+{#                            <input type="text" class="form-control" id="status" name="status" value="{{ dldata.status }}">#}
+{#                            <select id="careerlinkeid" name="career_id" class="form-control"></select>#}
+                        </div>
+                            <button type="submit" class="btn btn-primary">提交</button>
+                        <button type="button" class="btn btn-warning" onclick="goback()">返回</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <hr>
+<script type="text/javascript">
+    $(function(){
+    // $("#jumpMenu").val(要选中的option的value值即可);
+    $("#status").val({{ dldata.status }});
+    });
+</script>
+{% endblock %}

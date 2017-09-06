@@ -1,0 +1,127 @@
+{% extends "index.html" %}
+{% block pager %}
+{% load  staticfiles %}
+
+    <div class="modal-dialog" role="document" style="background-color:#ffffff;width: 100%">
+        {% csrf_token %}
+        <div class="modal-header active">
+            <h4 class="modal-title" id="articleTypeTitle">
+                修改课程大纲页wiki笔记信息</h4>
+        </div>
+        <div class="container-fluid content">
+            <div class="row-fluid">
+                <div class="col-md-8">
+                    <form enctype="multipart/form-data" id="form_courseWiki" method="post"
+                          action="{% url 'mz_common:courseWiki_save' %}">
+                        <input type="hidden" value="{{course_wiki.title_image}}" name="old_title_image">
+                        <input type="hidden" value="{{course_wiki.id}}" name="id">
+                         <div class="form-group row">
+                            <label for="wiki_img" class="col-sm-6 control-label">上传wiki笔记图片：</label>
+                            <div class="col-sm-12 col-md-8">
+                                {% if course_wiki.title_image%}
+                                <img id="img_course_wiki" src="{{MEDIA_URL}}{{course_wiki.title_image}}" alt="上传图片大小：346 * 220" class="img-rounded previewImg"
+                                     style="width: 346px;height:220px;">
+                                {% else %}
+                                <img id="img_course_wiki" src="" alt="上传图片大小：346 * 220" class="img-rounded previewImg"
+                                     style="width: 346px;height:220px;display:none;">
+                                {%endif%}
+                                <input type="file" name="title_image" id="wiki_img" onchange="changeImage_back_img()">
+                            </div>
+                            <div  class="text-danger col-md-10" style="margin-top: 8px;">
+                                 <span>图片尺寸（346*220）&nbsp;</span>
+                                 <span id="upload_img_info" style="display:none">
+                                     上传图片尺寸为:
+                                     <span id="img_width">0</span><span>x</span><span id="img_height">0</span>
+                                 </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label>wiki标题:</label>
+                            <input class="inputArea1 form-control"name="title" type="text"
+                                   placeholder="请输入wiki标题" value="{{ course_wiki.title}}">
+                            </input>
+                        </div>
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label>wiki URL</label>
+                            <input class="inputArea1 txt_courseIndex form-control" placeholder="请输入wiki的URL"
+                                   name="wiki_url" type="text" value="{{ course_wiki.wiki_url}}">
+                            </input>
+                            <span class="inputAreaError"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <button type="button" onclick="check_submit()" title="保存"
+                                    class="btn btn-default btn-info active">
+                                <span  style="margin-right: 3px"></span>保存
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <script>
+
+        $().ready(function() {
+            $("#form_courseWiki").validate({
+                  rules: {
+                      title: {
+                          required: true,
+                      },
+                      sub_title: {
+                          required: false,
+                      },
+                      wiki_url: {
+                          required: true,
+                      },
+
+                  },
+                  messages: {
+                      title: {
+                          required: "请输入wiki标题",
+                      },
+                      sub_title: {
+                          required: "请输入wiki副标题",
+                      },
+                      wiki_url: {
+                          required: "请输入wiki URL",
+                      },
+                  }
+              })
+
+        });
+
+     //上传图片预览
+        function changeImage_back_img() {
+            $('#img_course_wiki').attr('src', window.URL.createObjectURL($('#wiki_img')[0].files[0]));
+            document.getElementById('img_course_wiki').style.display="inline-block";
+            getBackImgSize();
+        }
+
+         //获取上传图片的尺寸
+        function getBackImgSize() {
+            var img = new Image();
+            img.src = $('#img_course_wiki').attr('src');
+            img.onload = function () {  // 等待图片加载完后，才能获取到图片的信息
+                $('#img_width').text(img.width);
+                $('#img_height').text(img.height);
+                }
+            $("#upload_img_info").css("display","inline");
+            $("#img_course_wiki").css("display","inline");
+        }
+
+        function check_submit(){
+            var width = $("#img_width").text();
+            var height = $("#img_height").text();
+            if ((width==346&&height==220)||(width==0&&height==0)){
+                $("#form_courseWiki").submit();
+            }
+            else{
+                warningPrompt("图片尺寸必须为346*220！");
+            }
+        }
+    </script>
+{% endblock %}

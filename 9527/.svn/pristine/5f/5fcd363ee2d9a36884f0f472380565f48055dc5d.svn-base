@@ -1,0 +1,106 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript">
+        /*-------------------------------------------------------BEGIN--------------------------------------------------------*/
+        /*---------------提交form表单时，检查有无数据不合法的错误---------------*/
+        function formDataCommitValidate() {
+            var result = {};
+            result.code = 0;
+            result.errorInfo = '';
+            GOLBAL_ERROR = [];  //  初始化验证数据合法性的全局变量
+            selectValidate(".slt_careerName");
+            textBoxValidate(".txt_enterpriseName", 50);
+            textBoxValidate(".txt_dutyName", 50);
+
+            $.each(GOLBAL_ERROR, function (index, items) {
+                result.code = items.status + result.code;
+                if (items.status == -1) {
+                    result.errorInfo = result.errorInfo + items.errorInfo + "\r";
+                }
+            });
+            return result;
+        }
+        /*----------------------保存职位数据----------------------*/
+        function saveDuty() {
+            var result = formDataCommitValidate()
+            if (result.code == 0) {
+                form_duty.submit();
+            } else {
+                warningPrompt(result.errorInfo);
+            }
+        }
+
+        /*--------------------DOM加载完后执行----------------------*/
+        $(function () {
+            addObjectNameOption('{% url 'ajax:careerIntroduce_name' %}', '#txt_add_careerName');
+            {% ifequal action "add" %}
+                $('#bannerTitle').text('添加职业课程老师介绍信息');
+                $('#txt_add_careerName').val({{ career_id }});
+                $('#txt_add_careerName').attr('disabled', true);
+            {% endifequal %}
+            {% ifequal action "edit" %}
+                $('#bannerTitle').text('修改职业课程职位介绍信息');
+                $('#txt_add_careerName').val({{ duties.career_id }});
+                $('#txt_add_careerName').attr('disabled', true);
+            {% endifequal %}
+        });
+        /*-------------------------------------------------------END--------------------------------------------------------*/
+    </script>
+    <!--职业课程职位介绍信息-->
+    <div class="modal-dialog" role="document" style="background-color:#ffffff;width: 100%">
+
+        {% csrf_token %}
+        <div class="modal-header active">
+            <h4 class="modal-title" id="dutyTitle">
+                修改职业课程职位介绍信息</h4>
+        </div>
+        <div class="container-fluid content">
+            <div class="row-fluid">
+                <div class="col-md-8">
+                    <form enctype="multipart/form-data" id="form_duty" method="post"
+                          action="{% url 'mz_course:careerIntroduce_duty_save' %}">
+                        {% ifnotequal action "add" %}
+                            <input type="hidden" name="id" value="{{ duties.id }}">
+                            <input type="hidden" name="career_id" value="{{ duties.career_id }}">
+                        {% endifnotequal %}
+                        {% ifequal action "add" %}
+                            <input type="hidden" name="career_id" value="{{ career_id }}">
+                        {% endifequal %}
+                        <input type="hidden" name="action" value="{{ action }}">
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label for="txt_add_careerName">课程名称:</label>
+                            <select disabled="false" class="inputArea1 slt_careerName form-control" name="career_id"
+                                   type="text"
+                                   id="txt_add_careerName" value="{{ duties.career_id }}">
+                            </select>
+                            <span class="inputAreaError lbl_careerNameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label for="txt_add_dutyName">岗位名称:</label>
+                            <input class="inputArea1 txt_dutyName form-control" name="name"
+                                   value="{{ duties.name }}" type="text"
+                                   id="txt_add_dutyName"/>
+                            <span class="inputAreaError">岗位名称最多10个字</span>
+                        </div>
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label for="txt_add_enterpriseName">企业简称:</label>
+                            <input class="inputArea1 txt_enterpriseName form-control" name="enterprise"
+                                   value="{{ duties.enterprise }}" type="text" id="txt_add_enterpriseName"/>
+                            <span class="inputAreaError lbl_enterpriseNameError">企业简称最多4个字</span>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" onclick="saveDuty()" title="保存"
+                                    class="btn btn-default btn-success btn-sm active">
+                                <span class="glyphicon glyphicon-edit" style="margin-right: 3px"></span>保存
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

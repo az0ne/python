@@ -1,0 +1,142 @@
+{% extends "index.html" %}
+{% block pager %}
+    {% load  staticfiles %}
+    <script src="{% static "js/lps4/lps4_career.js" %}"></script>
+    <style rel="stylesheet">
+        .wikilinksave {
+            margin-top: 50px;
+            margin-left: 50px;
+        }
+    </style>
+    <div class="alert alert-info"><h4>LPS4课程编辑</h4></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <form id="careerForm" action="{% url 'mz_lps4:save_career' %}" method="post"
+                      enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input id="lps4_career_action" type="hidden" name="action" value="{{ action }}">
+                    <input id="ad_url" type="hidden" name="old_image_url" value="{{ career.ad_url }}">
+                    <div class="form-group row">
+                        <label for="careerId" class="col-sm-2 col-md-2 control-label">课程ID:</label>
+                        <div class="col-sm-10 col-md-6">
+                            <input type="text" class="form-control" id="careerId" name="careerId"
+                                   value="{{ career.id }}" placeholder="请输入课程ID">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="careerName" class="col-sm-2 col-md-2 control-label">课程名称</label>
+                        <div class="col-sm-10 col-md-6">
+                            <input type="text" class="form-control" id="careerName" name="careerName"
+                                   value="{{ career.name }}" placeholder="请输入课程名称">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="careerShortName" class="col-sm-2 col-md-2 control-label">课程简称</label>
+                        <div class="col-sm-10 col-md-6">
+                            <input type="text" class="form-control" id="careerShortName" name="short_name"
+                                   value="{{ career.short_name|default_if_none:"" }}" placeholder="请输入课程简称">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="careerType" class="col-sm-2 col-md-2 control-label">课程类型</label>
+                        <div class="col-sm-10 col-md-6">
+                            <select id="careerType" class="form-control" name="careerType">
+                                <option value="career" {% ifequal career.type 'career' %}selected{% endifequal %}>职业课程
+                                </option>
+                                <option value="WEIKE" {% ifequal career.type 'WEIKE' %}selected{% endifequal %}>微课
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="careerType" class="col-sm-2 col-md-2 control-label">广告类型</label>
+                        <div class="col-sm-10 col-md-6">
+                            <select id="select_ad_type" class="form-control" name="adType">
+                                <option value="IMAGE" {% ifequal career.ad_type 'IMAGE' %}selected{% endifequal %}>图片
+                                </option>
+                                <option value="VIDEO" {% ifequal career.ad_type 'VIDEO' %}selected{% endifequal %}>视频
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group image_ad row">
+                        <label for="url" class="col-sm-2 col-md-2 control-label">广告跳转URL</label>
+                        <div class="col-sm-10 col-md-6">
+                            <input type="text" class="form-control" id="url" name="url"
+                                   value="{{ career.url|default_if_none:"" }}"
+                                   placeholder="请输入图片广告跳转URL">
+                        </div>
+                    </div>
+
+                    <div class="form-group row  image_show">
+                        <label for="ad_image" class="col-sm-2 col-md-2 control-label">广告/视频图片</label>
+                        <div class="col-sm-10 col-md-6">
+                            <img id="pic" src="{% ifnotequal action 'add' %}{{ MEDIA_URL }}{{ career.ad_url }}{% endifnotequal %}"
+                                 class="img-responsive" alt="广告图片" width="320" height="240">
+                        </div>
+                    </div>
+                    <div class="form-group text-danger row image_show" style="margin-top: 8px;">
+                        <label for="image_size" class="col-sm-2 col-md-2 control-label"></label>
+                        <div class="col-sm-10 col-md-6">
+                            <span>要求图片尺寸（210*140）&nbsp;</span>
+                            <span>
+                             上传图片尺寸为:
+                             <span id="img_width">0</span><span>x</span><span id="img_height">0</span>
+                         </span>
+                        </div>
+                    </div>
+                    <div class="form-group  row">
+                        <label for="ad_file" class="col-sm-2 col-md-2 control-label">上传广告/视频背景图片</label>
+                        <div class="col-sm-10 col-md-6">
+                            <input type="file" class="form-control" id="upload" name="image">
+                        </div>
+                    </div>
+                    <div class="form-group video_url row">
+                        <label for="video_url" class="col-sm-2 col-md-2 control-label">广告视频地址</label>
+                        <div class="col-sm-10 col-md-6">
+                            <input type="text" class="form-control" id="video_url" name="video_url"
+                                   value="{{ career.video_url|default_if_none:"" }}"
+                                   placeholder="请输入广告视频地址">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="old_price" class="col-sm-2 col-md-2 control-label">原价</label>
+                        <div class="col-sm-10 col-md-6">
+                            <input type="text" class="form-control" id="old_price" name="old_price"
+                                   value="{{ career.old_price|default_if_none:"" }}" placeholder="请输入原先价格">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="price" class="col-sm-2 col-md-2 control-label">就业价</label>
+                        <div class="col-sm-10 col-md-6">
+                            <input type="text" class="form-control" id="price" name="price"
+                                   value="{{ career.price|default_if_none:"" }}"
+                                   placeholder="请输入就业价格">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="jobless_price" class="col-sm-2 col-md-2 control-label">非就业价</label>
+                        <div class="col-sm-10 col-md-6">
+                            <input type="text" class="form-control" id="jobless_price" name="jobless_price"
+                                   value="{{ career.jobless_price|default_if_none:"" }}"
+                                   placeholder="请输入非就业价格">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="description" class="col-sm-2 col-md-2 control-label">描述</label>
+                        <div class="col-sm-10 col-md-6">
+                            <input type="text" class="form-control" id="description" name="description"
+                                   value="{{ career.description|default_if_none:"" }}"
+                                   placeholder="请输入课程描述">
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-primary" onclick="check_submit(210,140)">提交</button>
+                    <button type="button" class="btn btn-warning" onclick="goback()">返回</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+{% endblock %}

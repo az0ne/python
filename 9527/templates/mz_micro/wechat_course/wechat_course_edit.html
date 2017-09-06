@@ -1,0 +1,455 @@
+{% extends "index.html" %}
+{% block pager %}
+    {% load  staticfiles %}
+    <div class="alert alert-info"><h4>微课课程</h4></div>
+    <div class="container">
+        {#     职业课程（分类）#}
+        <div class="col-lg-8 col-md-8, col-sm-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span>微信职业课程（分类）</span>
+                        <span class="col-md-offset-4 col-lg-offset-5 col-sm-offset-1">
+                            <button class="btn btn-default active" id="edit_wechat_career_show_btn">
+                                <span class="glyphicon-edit glyphicon">修改</span>
+                            </button>
+                        </span>
+                        <span class="col-md-offset-1 col-lg-offset-1 col-sm-offset-1">
+                            <button class="btn btn-default active" id="add_wechat_career_show_btn">
+                                <span class="glyphicon-plus glyphicon">添加</span>
+                            </button>
+                        </span>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div id="wechat_career_select_div" class="form-group row">
+                        <label for="career_name" class="col-sm-3 col-md-3 col-lg-3 control-label">微信职业课程：</label>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <select id="wechat_career_select" class="form-control" form="wechat_course_form"
+                                    name="career_course_id">
+                                <option id="wechat_career_first_option" value=0>请选择</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="career_edit" class="hidden">
+                        <form id="wechat_career_add_form">
+                            <div class="form-group row">
+                                <label for="career_name"
+                                       class="col-sm-3 col-md-3 col-lg-3 control-label">职业课程名称：</label>
+                                <div class="col-sm-6 col-md-6 col-lg-6">
+                                    <input type="text" class="form-control" id="career_name" name="name"
+                                           placeholder="请输入新增职业课程名称">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="career_index"
+                                       class="col-sm-3 col-md-3 col-lg-3 control-label">职业课程顺序：</label>
+                                <div class="col-sm-6 col-md-6 col-lg-6">
+                                    <input type="number" class="form-control" id="career_index" name="index"
+                                           placeholder="请输入新增职业课程顺序">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <span>&nbsp;</span>
+                                <span><input id="add_wechat_career_cancel_btn" type="button" class="btn btn-warning"
+                                             value="取消"></span>
+                                <span>&nbsp;</span>
+                                <span><input id="add_wechat_career_submit_btn" type="button" class="btn btn-primary"
+                                             value="确定"></span>
+                            </div>
+                            <input class="hidden" id="career_action" name="action" value="add">
+                            <input class="hidden" id="career_id" name="id" value=0>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {#     微信课程#}
+        <form id="wechat_course_form" action="{% url 'mz_wechat:wechat_course_modify' %}" method="post"
+              enctype="multipart/form-data">
+            <div class="col-lg-8 col-md-8, col-sm-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span>微信课程</span>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group row">
+                            <label for="course_name" class="col-sm-3 col-md-3 col-lg-3 control-label">课程名称：</label>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <input type="text" class="form-control" id="course_name" name="name"
+                                       value="{{ course_info.course_name|default_if_none:"" }}" placeholder="请输入课程名称">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="course_description"
+                                   class="col-sm-3 col-md-3 col-lg-3 control-label">课程描述：</label>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                {#                                <input type="text" class="form-control" id="course_description" name="description"#}
+                                {#                                       value="{{ course_info.description|default_if_none:"" }}" placeholder="请输入课程描述">#}
+                                <textarea type="text" name="description"
+                                          class="form-control">{{ course_info.description|default_if_none:"" }}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="date_publish" class="col-sm-3 col-md-3 col-lg-3 control-label">发布时间：</label>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <input type="datetime-local" class="form-control" id="date_publish" name="date_publish"
+                                       value="{{ course_info.date_publish }}" placeholder="请输入课程发布时间">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="teacher_id" class="col-sm-3 col-md-3 col-lg-3 control-label">课程教师：</label>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <input type="text" class="form-control" id="teacher_id" name="teacher_id"
+                                       value="{{ course_info.teacher_id }}" placeholder="请输入课程教师id">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="price" class="col-sm-3 col-md-3 col-lg-3 control-label">课程价格：</label>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <input type="text" class="form-control" id="price" name="price"
+                                       value="{{ course_info.price }}" placeholder="请输入课程价格">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="web_career_select"
+                                   class="col-sm-3 col-md-3 col-lg-3 control-label">官网职业课程：</label>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <select id="web_career_select" class="form-control"
+                                        name="web_career_id">
+                                    <option value=0>请选择</option>
+                                    {% for career in career_course %}
+                                        <option value="{{ career.id }}">{{ career.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="is_active" class="col-sm-3 col-md-3 col-lg-3 control-label">是否显示：</label>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <input type="checkbox" id="is_active" name="is_active">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="index" class="col-sm-3 col-md-3 col-lg-3 control-label">显示顺序：</label>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <input type="text" class="form-control" id="index" name="index"
+                                       value="{{ course_info.course_index }}">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="index" class="col-sm-3 col-md-3 col-lg-3 control-label">课程图片：</label>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <input type="file" id="upload" name="image">
+                            </div>
+                        </div>
+                        <div class="form-group row  image_show">
+                            <label for="ad_image" class="col-sm-3 col-md-3 col-lg-3 control-label"></label>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <img id="pic" src="{{ MEDIA_URL }}{{ course_info.image_url }}" class="img-responsive"
+                                     alt="图片" width="320" height="240">
+                            </div>
+                        </div>
+                        <div class="form-group text-danger row image_show" style="margin-top: 8px;">
+                            <label for="image_size" class="col-sm-3 col-md-3 col-lg-3 control-label"></label>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <span>要求图片尺寸（590*360）</span>
+                                <span>
+                             上传图片尺寸为:
+                             <span id="img_width">0</span><span>x</span><span id="img_height">0</span>
+                         </span>
+                            </div>
+                        </div>
+                        <input type="hidden" name="action" value="{{ action }}">
+                        <input type="hidden" name="id" value="{{ course_info.course_id }}">
+                        <input type="hidden" name="old_image" value="{{ course_info.image_url }}">
+                    </div>
+                </div>
+
+            </div>
+            <div class="row col-lg-8 col-md-8, col-sm-8">
+                <div class="col-md-offset-10 col-lg-offset-10 col-sm-offset-10">
+                    <input type="button" class="btn btn-primary" onclick="check_submit()" value="确定">
+                </div>
+
+            </div>
+        </form>
+    </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            load_wechat_career_course();
+
+            {% ifequal action "show" %}
+                $(".btn").addClass("hidden");
+            {% endifequal %}
+
+            $("#add_wechat_career_show_btn").click(function () {
+                $("#career_action").val("add");
+                wechat_career_edit_show();
+            });
+
+            $("#edit_wechat_career_show_btn").click(function () {
+                $("#career_action").val("edit");
+                var career_id = $("#wechat_career_select option:selected").val();
+                if (career_id == 0) {
+                    layer.alert("请选择微信职业课程");
+                }
+                else {
+                    $("#career_id").val(career_id);
+                    get_wechat_career_by_id(career_id);
+                }
+
+            });
+
+            $("#add_wechat_career_cancel_btn").click(function () {
+                wechat_career_edit_hidden();
+            });
+
+            $("#add_wechat_career_submit_btn").click(function () {
+                add_wechat_career();
+            });
+
+            {% if not course_info.image_url %}
+                $(".image_show").css("display", "none")
+            {% endif %}
+
+            $("#upload").click(function () {
+                load_image_choosed();
+            })
+
+            $(".text-danger").css("display", "none")
+
+            var check = "{{ course_info.is_active }}"
+            if (check == "1") {
+                $("#is_active").prop("checked", true)
+            }
+
+            /*表单验证*/
+            $("#wechat_career_add_form").validate({
+                rules: {
+                    index: {
+                        required: true,
+                    },
+
+                    name: {
+                        required: true,
+                    },
+
+                },
+                messages: {
+                    index: {
+                        required: "请输入课程顺序",
+                    },
+                    name: {
+                        required: "请输入课程名称",
+                    },
+
+
+                }
+            })
+
+
+            /*表单验证*/
+            $("#wechat_course_form").validate({
+                rules: {
+                    career_course_id: {
+                        required: true,
+                        min: 1
+                    },
+
+                    name: {
+                        required: true,
+                    },
+                    description: {
+                        required: true,
+                    },
+                    date_publish: {
+                        required: true,
+                    },
+                    price: {
+                        required: true,
+                    },
+                    web_career_id: {
+                        required: true,
+                        min: 1
+                    },
+                    teacher_id: {
+                        required: true,
+                    },
+                    index: {
+                        required: true,
+                    },
+
+
+                },
+                messages: {
+                    career_course_id: {
+                        min: "请选择微信职业课程",
+                    },
+                    name: {
+                        required: "请输入课程名称",
+                    },
+                    description: {
+                        required: "请输入课程描述",
+                    },
+                    date_publish: {
+                        required: "请选择发布时间",
+                    },
+                    price: {
+                        required: "请输入课程价格",
+                    },
+                    web_career_id: "请选择官网职业课程",
+                    teacher_id: {
+                        required: "请输入教师id",
+                    },
+                    index: {
+                        required: "请输入显示顺序",
+                    },
+
+                }
+            })
+        });
+
+        var load_wechat_career_course = function () {  //加载微信职业课程
+            $.ajax({
+                url: "{% url 'mz_wechat:wechat_career_list_ajax' %}",
+                dataType: "json",
+                data: $('#wechat_career_add_form').serialize(),
+                type: "POST",
+                beforeSend: function () {
+                    $("#wechat_career_select").val(0);
+                    $("#wechat_career_first_option").nextAll().remove()
+                    index = layer.load(2, {time: 10 * 1000});
+                },
+                success: function (data) {
+                    if (data.status == "success") {
+                        var result = data.result;
+                        for (var i = 0; i < result.length; i++) {
+                            $('<option/>', {
+                                val: result[i].id,
+                                text: result[i].name
+                            }).appendTo($("#wechat_career_select"))
+                        }
+                        {% ifnotequal action "add" %}
+                            $("#wechat_career_select").val({{ course_info.career_id }});
+                            $("#web_career_select").val({{ course_info.web_career_id }});
+                        {% endifnotequal %}
+                    }
+                    layer.close(index);
+                }
+            })
+        }
+
+
+        var add_wechat_career = function () {
+            $.ajax({
+                url: "{% url 'mz_wechat:wechat_career_add_ajax' %}",
+                dataType: "json",
+                data: $('#wechat_career_add_form').serialize(),
+                type: "POST",
+                success: function (data) {
+                    if (data.status == "success") {
+                        load_wechat_career_course();
+                        wechat_career_edit_hidden();
+                    }
+                    else {
+                        layer.alert("请填写微信职业课程名称！");
+                    }
+
+                }
+            })
+        }
+
+
+        var get_wechat_career_by_id = function (career_id) {
+            $.ajax({
+                url: "{% url 'mz_wechat:wechat_career_get_ajax' %}",
+                dataType: "json",
+                data: {id: career_id},
+                type: "POST",
+                success: function (data) {
+                    console.log(data);
+                    if (data.status == "success") {
+                        $("#career_name").val(data.career.name);
+                        $("#career_index").val(data.career.index);
+                        wechat_career_edit_show();
+                    }
+
+                }
+            })
+        }
+
+        var wechat_career_edit_show = function () {
+
+            $("#career_edit").removeClass("hidden");
+            $("#wechat_career_select_div").addClass("hidden");
+        }
+
+        var wechat_career_edit_hidden = function () {
+
+            $("#career_edit").addClass("hidden");
+            $("#wechat_career_select_div").removeClass("hidden");
+        }
+
+        var load_image_choosed = function () {
+            $("#upload").on("change", function () {
+                var objUrl = getObjectURL(this.files[0]);  //获取图片的路径，该路径不是图片在本地的路径
+                if (objUrl) {
+                    $("#pic").attr("src", objUrl);      //将图片路径存入src中，显示出图片
+                    getBackImgSize();
+                    $(".image_show").css("display", "inline");
+                }
+                $(".image_show").removeClass("hidden");
+            });
+        }
+
+        function getObjectURL(file) {  //建立一個可存取到該file的url
+            var url = null;
+            if (window.createObjectURL != undefined) { // basic
+                url = window.createObjectURL(file);
+            } else if (window.URL != undefined) { // mozilla(firefox)
+                url = window.URL.createObjectURL(file);
+            } else if (window.webkitURL != undefined) { // webkit or chrome
+                url = window.webkitURL.createObjectURL(file);
+            }
+            return url;
+        }
+
+        //获取上传列表图片的尺寸
+        function getBackImgSize() {
+            var img = new Image();
+            img.src = $('#pic').attr('src');
+            img.onload = function () {  // 等待图片加载完后，才能获取到图片的信息
+                $('#img_width').text(img.width);
+                $('#img_height').text(img.height);
+            }
+
+        }
+
+        function check_submit() {
+            var width = $("#img_width").text();
+            var height = $("#img_height").text();
+            if ((width == 590 && height == 360) || (width == 0 && height == 0)) {
+                var career_id = $("#wechat_career_select option:selected").val();
+                console.log(career_id);
+                if (career_id > 0) {
+                    $("#wechat_course_form").submit();
+                }
+                else {
+                    warningPrompt("请选择微信职业课程！");
+                }
+            }
+            else {
+                warningPrompt("图片尺寸必须为590*360！");
+            }
+        }
+
+    </script>
+{% endblock %}
+
+

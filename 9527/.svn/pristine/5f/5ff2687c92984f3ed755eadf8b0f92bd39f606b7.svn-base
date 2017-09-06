@@ -1,0 +1,319 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script src="http://cdn.gbtags.com/datatables/1.10.5/js/jquery.dataTables.min.js"></script>
+    <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-2">
+        <div class="row">
+            <div class="row">
+                <h2 style="color:#2a6496">销售漏斗图</h2>
+                <div class="input-group mySearch">
+                    <span class="input-group-addon">起始时间：</span>
+                    <input id="funnel_start_date_id" size="16" type="text" name="funnel_start_date"
+                           class="form_datetime form-control date"
+                           value="{{ start_date }}"
+                           placeholder="请选择起始日期">
+                </div>
+                <div class="input-group mySearch">
+                    <span class="input-group-addon">结束时间：</span>
+                    <input id="funnel_end_date_id" size="16" type="text" name="funnel_end_date"
+                           class="form_datetime form-control date"
+                           value="{{ end_date_funnel }}"
+                           placeholder="请选择结束日期">
+                </div>
+                <div class="input-group mySearch">
+		    <select class="username_change" id="funnel_department_name_id" name="funnel_department_name" username_id="funnel_username_id">
+		      {% for user_dep in user_deps %}
+		      <option value="{{ user_dep }}">{{user_dep}}</option>
+		      {% endfor %}		      
+		    </select>
+                </div>
+                <div class="input-group mySearch">
+		    <select id="funnel_username_id" name="funnel_username">
+		      {% for username in users %}
+		      <option value="{{ username }}">{{username}}</option>
+		      {% endfor %}		      
+		    </select>
+                </div>
+                <div class="input-group mySearch">
+                    <input type="button" class="btn btn-info" value="查询" onclick="funnel_chart_ajax()">
+                </div>
+            </div>
+            <div id="funnel_chart" style="height:400px;width: 900px; margin-top: 10px;"></div>
+            <form id="funnel_form">
+
+            </form>
+	    <p>
+	      总概率金额: <span id="funnel_amount" style="color: red;"></span>
+	      总数量: <span id="funnel_count" style="color: red;"></span></p>
+        </div>
+
+            <div class="row">
+                <h2 style="color:#2a6496">销售概率金额折线图</h2>
+                <div class="input-group mySearch">
+                    <span class="input-group-addon">起始时间：</span>
+                    <input id="line_start_date_id_history" size="16" type="text" name="line_start_date"
+                           class="form_datetime form-control date"
+                           value="{{ start_date }}"
+                           placeholder="请选择起始日期">
+                </div>
+                <div class="input-group mySearch">
+                    <span class="input-group-addon">结束时间：</span>
+                    <input id="line_end_date_id_history" size="16" type="text" name="line_end_date"
+                           class="form_datetime form-control date"
+                           value="{{ end_date }}"
+                           placeholder="请选择结束日期">
+                </div>
+                <div class="input-group mySearch">
+		    <select class="username_change" id="line_department_name_id_history" name="line_department_name" username_id="line_username_id_history">
+		      {% for user_dep in user_deps %}
+		      <option value="{{ user_dep }}">{{user_dep}}</option>
+		      {% endfor %}		      
+		    </select>
+                </div>
+                <div class="input-group mySearch">
+		    <select id="line_username_id_history" name="line_username">
+		      {% for username in users %}
+		      <option value="{{ username }}">{{username}}</option>
+		      {% endfor %}		      
+		    </select>
+                </div>
+                <div class="input-group mySearch">
+                    <input type="button" class="btn btn-info" value="查询"
+                           onclick="line_chats_ajax('sale_line_chart_history','history')">
+                </div>
+            </div>
+            <div id="sale_line_chart_history" style="height:400px;width: 900px; margin-top: 10px;"></div>
+
+        <div class="row">
+            <hr>
+            <div class="row">
+                <h2 style="color:#2a6496">销售阶段折线图(单位: 数量)</h2>
+                <div class="input-group mySearch">
+                    <span class="input-group-addon">起始时间：</span>
+                    <input id="line_start_date_id_count" size="16" type="text" name="line_start_date"
+                           class="form_datetime form-control date"
+                           value="{{ start_date }}"
+                           placeholder="请选择起始日期">
+                </div>
+                <div class="input-group mySearch">
+                    <span class="input-group-addon">结束时间：</span>
+                    <input id="line_end_date_id_count" size="16" type="text" name="line_end_date"
+                           class="form_datetime form-control date"
+                           value="{{ end_date }}"
+                           placeholder="请选择结束日期">
+                </div>
+                <div class="input-group mySearch">
+		    <select class="username_change" id="line_department_name_id_count" name="line_department_name" username_id="line_username_id_count">
+		      {% for user_dep in user_deps %}
+		      <option value="{{ user_dep }}">{{user_dep}}</option>
+		      {% endfor %}		      
+		    </select>
+                </div>
+                <div class="input-group mySearch">
+		    <select id="line_username_id_count" name="line_username">
+		      {% for username in users %}
+		      <option value="{{ username }}">{{username}}</option>
+		      {% endfor %}		      
+		    </select>
+                </div>
+                <div class="input-group mySearch">
+                    <input type="button" class="btn btn-info" value="查询"
+                           onclick="line_chats_ajax('sale_line_chart_count','count')">
+                </div>
+            </div>
+            <div id="sale_line_chart_count" style="height:400px;width: 900px; margin-top: 10px;"></div>
+            <hr>
+            <div class="row">
+                <h2 style="color:#2a6496">销售阶段折线图(单位: 金额)</h2>
+                <div class="input-group mySearch">
+                    <span class="input-group-addon">起始时间：</span>
+                    <input id="line_start_date_id_amount" size="16" type="text" name="line_start_date"
+                           class="form_datetime form-control date"
+                           value="{{ start_date }}"
+                           placeholder="请选择起始日期">
+                </div>
+                <div class="input-group mySearch">
+                    <span class="input-group-addon">结束时间：</span>
+                    <input id="line_end_date_id_amount" size="16" type="text" name="line_end_date"
+                           class="form_datetime form-control date"
+                           value="{{ end_date }}"
+                           placeholder="请选择结束日期">
+                </div>
+                <div class="input-group mySearch">
+		    <select class="username_change" id="line_department_name_id_amount" name="line_department_name" username_id="line_username_id_amount">
+		      {% for user_dep in user_deps %}
+		      <option value="{{ user_dep }}">{{user_dep}}</option>
+		      {% endfor %}		      
+		    </select>
+                </div>
+                <div class="input-group mySearch">
+		    <select id="line_username_id_amount" name="line_username">
+		      {% for username in users %}
+		      <option value="{{ username }}">{{username}}</option>
+		      {% endfor %}		      
+		    </select>
+                </div>
+                <div class="input-group mySearch">
+                    <input type="button" class="btn btn-info" value="查询"
+                           onclick="line_chats_ajax('sale_line_chart_amount','amount')">
+                </div>
+            </div>
+            <div id="sale_line_chart_amount" style="height:400px;width: 900px; margin-top: 10px;"></div>
+            <hr>
+            <!-- <div class="row"> -->
+            <!--     <h2 style="color:#2a6496">销售成绩折线图(每日)</h2> -->
+            <!--     <div class="input-group mySearch"> -->
+            <!--         <span class="input-group-addon">起始时间：</span> -->
+            <!--         <input id="line_start_date_id_seller" size="16" type="text" name="line_start_date" -->
+            <!--                class="form_datetime form-control date" -->
+            <!--                value="{{ start_date }}" -->
+            <!--                placeholder="请选择起始日期"> -->
+            <!--     </div> -->
+            <!--     <div class="input-group mySearch"> -->
+            <!--         <span class="input-group-addon">结束时间：</span> -->
+            <!--         <input id="line_end_date_id_seller" size="16" type="text" name="line_end_date" -->
+            <!--                class="form_datetime form-control date" -->
+            <!--                value="{{ end_date }}" -->
+            <!--                placeholder="请选择结束日期"> -->
+            <!--     </div> -->
+            <!--     <div class="input-group mySearch"> -->
+	    <!-- 	    <select class="username_change" id="line_department_name_id_seller" name="line_department_name" username_id="line_username_id_seller"> -->
+	    <!-- 	      {% for user_dep in user_deps %} -->
+	    <!-- 	      <option value="{{ user_dep }}">{{user_dep}}</option> -->
+	    <!-- 	      {% endfor %}		       -->
+	    <!-- 	    </select> -->
+            <!--     </div> -->
+            <!--     <div class="input-group mySearch"> -->
+	    <!-- 	    <select id="line_username_id_seller" name="line_username"> -->
+	    <!-- 	      {% for username in users %} -->
+	    <!-- 	      <option value="{{ username }}">{{username}}</option> -->
+	    <!-- 	      {% endfor %}		       -->
+	    <!-- 	    </select> -->
+            <!--     </div> -->
+            <!--     <div class="input-group mySearch"> -->
+            <!--         <input type="button" class="btn btn-info" value="查询" -->
+            <!--                onclick="line_chats_ajax('sale_line_chart_seller','seller')"> -->
+            <!--     </div> -->
+            <!-- </div> -->
+        </div>
+    {#    <div class="row">#}
+    {#            <hr>#}
+    {#            <div class="row">#}
+    {#                <div class="input-group mySearch">#}
+    {#                    <span class="input-group-addon">起始时间：</span>#}
+    {#                    <input id="line_start_date_id" size="16" type="text" name="line_start_date"#}
+    {#                           class="form_datetime form-control date"#}
+    {#                           value="{{ start_date }}"#}
+    {#                           placeholder="请选择起始日期">#}
+    {#                </div>#}
+    {#                <div class="input-group mySearch">#}
+    {#                    <span class="input-group-addon">结束时间：</span>#}
+    {#                    <input id="line_end_date_id" size="16" type="text" name="line_end_date"#}
+    {#                           class="form_datetime form-control date"#}
+    {#                           value="{{ end_date }}"#}
+    {#                           placeholder="请选择结束日期">#}
+    {#                </div>#}
+    {#                <div class="input-group mySearch">#}
+    {#                    <input type="button" class="btn btn-info" value="查询" onclick="line_chats_ajax('sale_line_chart')">#}
+    {#                </div>#}
+    {#            </div>#}
+    {#            <span><h5>***折线图</h5></span>#}
+    {#            <div id="sale_line_chart_amount" style="height:400px;width: 900px; margin-top: 10px;"></div>#}
+    {#        </div>#}
+    {##}
+    {#    </div>#}
+    {#    <div class="row">#}
+    {#            <hr>#}
+    {#            <div class="row">#}
+    {#                <div class="input-group mySearch">#}
+    {#                    <span class="input-group-addon">起始时间：</span>#}
+    {#                    <input id="line_start_date_id" size="16" type="text" name="line_start_date"#}
+    {#                           class="form_datetime form-control date"#}
+    {#                           value="{{ start_date }}"#}
+    {#                           placeholder="请选择起始日期">#}
+    {#                </div>#}
+    {#                <div class="input-group mySearch">#}
+    {#                    <span class="input-group-addon">结束时间：</span>#}
+    {#                    <input id="line_end_date_id" size="16" type="text" name="line_end_date"#}
+    {#                           class="form_datetime form-control date"#}
+    {#                           value="{{ end_date }}"#}
+    {#                           placeholder="请选择结束日期">#}
+    {#                </div>#}
+    {#                <div class="input-group mySearch">#}
+    {#                    <input type="button" class="btn btn-info" value="查询" onclick="line_chats_ajax('sale_line_chart')">#}
+    {#                </div>#}
+    {#            </div>#}
+    {#            <span><h5>***折线图</h5></span>#}
+    {#            <div id="sale_line_chart_seller" style="height:400px;width: 900px; margin-top: 10px;"></div>#}
+    {#        </div>#}
+    {##}
+    {#    </div>#}
+    {#    <div class="row">#}
+    {#            <hr>#}
+    {#            <div class="row">#}
+    {#                <div class="input-group mySearch">#}
+    {#                    <span class="input-group-addon">起始时间：</span>#}
+    {#                    <input id="line_start_date_id" size="16" type="text" name="line_start_date"#}
+    {#                           class="form_datetime form-control date"#}
+    {#                           value="{{ start_date }}"#}
+    {#                           placeholder="请选择起始日期">#}
+    {#                </div>#}
+    {#                <div class="input-group mySearch">#}
+    {#                    <span class="input-group-addon">结束时间：</span>#}
+    {#                    <input id="line_end_date_id" size="16" type="text" name="line_end_date"#}
+    {#                           class="form_datetime form-control date"#}
+    {#                           value="{{ end_date }}"#}
+    {#                           placeholder="请选择结束日期">#}
+    {#                </div>#}
+    {#                <div class="input-group mySearch">#}
+    {#                    <input type="button" class="btn btn-info" value="查询" onclick="line_chats_ajax('sale_line_chart')">#}
+    {#                </div>#}
+    {#            </div>#}
+    {#            <span><h5>***折线图</h5></span>#}
+    {#             <div id="sale_line_chart_history" style="height:400px;width: 900px; margin-top: 10px;"></div>#}
+    {#        </div>#}
+    {##}
+    {#    </div>#}
+
+    {#    <div>#}
+    {#        <div class="col-lg-11 col-md-6 col-sm-12">#}
+    {#            <table id="example" class="table table-striped table-bordered" width="100%">#}
+    {#            <thead>#}
+    {#             <tr>#}
+    {#              <th>name</th>#}
+    {#              <th>value</th>#}
+    {#             </tr>#}
+    {#            </thead>#}
+    {#            <tbody>#}
+    {#        #}
+    {#            </tbody>#}
+    {#           </table>#}
+    {#        </div>#}
+    {#    </div>#}
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/mz_operation/funnel_charts.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript"
+            src="/static/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+
+    <script>
+        $(function () {
+            funnel_chart_ajax()
+            line_chats_ajax("sale_line_chart_count", "count");
+            line_chats_ajax("sale_line_chart_amount", "amount");
+            line_chats_ajax("sale_line_chart_seller", "seller");
+            line_chats_ajax("sale_line_chart_history", "history");
+        });
+
+
+        $(".date").datetimepicker({
+            format: 'yyyy-mm-dd',
+            minView: 'month',
+            language: 'zh-CN',
+            autoclose: true,
+        });
+
+    </script>
+
+{% endblock %}
+

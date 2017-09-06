@@ -1,0 +1,221 @@
+{% extends "pager.html" %}
+{% comment %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AdminUsr</title>
+    <script type="text/javascript" src="{{ STATIC_URL}}js/jquery.js"></script>
+</head>
+<body>{% endcomment %}
+{% block content %}
+<script type="text/javascript">
+
+    function  onQuery() {
+        var url = "/backAdmin/AdminUsr/list/?action=query" + getPage();
+        window.location.href=url;
+    }
+
+      function  AdminUsrQuery() {
+        var url = "/backAdmin/AdminUsr/list/?action=search&keyword="+$("#keyword_search").val()+"&page_index=1";
+        window.location.href=url;
+    }
+
+     function showRoleModal(id,role_id) {
+        $('#user_id_input').val(id);
+        $("input:radio[value="+role_id+"]").attr('checked','true');
+        $('#modal_showRole').modal('show');
+     }
+
+    function ensureShowRoleModal() {
+        $("#role_form").submit();
+    }
+
+    function delAdminUsr(id, name) {
+        selectDelRowId=id;
+        $('#deladminusrMessage').text('确定要删除“' + name + '”账户信息？');
+        $('#modal_deladminusr').modal('show');
+    }
+
+    function ensureDelAdminUsr() {
+        var id = selectDelRowId;
+        var url = "/backAdmin/AdminUsr/list/?action=delete&id=" + encodeURI(id) + getPage();
+        window.location.href = url;
+    }
+
+
+    function editAdminUsr(id) {
+        var url = "/backAdmin/AdminUsr/edit/?action=edit&id="+encodeURI(id)+getPage();
+        window.location.href = url;
+    }
+
+    function showAdminUsr(id) {
+        var url = "/backAdmin/AdminUsr/edit/?action=show&id=" + encodeURI(id)+getPage();
+        window.location.href = url;
+    }
+
+
+    function addAdminUsr() {
+        var url = "/backAdmin/AdminUsr/edit/?action=add";
+        window.location.href = url;
+    }
+
+
+</script>
+    <!-- 搜索 -->
+    <div class="input-group mySearch">
+        <input type="text" id="keyword_search" class="form-control" value="{{ keyword }}" placeholder="输入ID/用户名/备注名关键字"/>
+	<span class="input-group-btn">
+						<button type="button" class="btn btn-default" id="btn_search" onclick="AdminUsrQuery()">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+
+	</span>
+    </div>
+
+    <!-- 扩展功能栏  -->
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="onQuery()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+            <li style="float: right;margin-right: 5px">
+                <button type="button" id="btn_addCareerAd" onclick="addAdminUsr()"
+                        class="btn btn-default btn-info btn-sm active">
+                    <span class="glyphicon glyphicon-plus">新增</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th class="table_id">ID</th>
+                <th width="auto">用户名</th>
+                <th width="auto">备注名称</th>
+                <th width="auto">用户角色</th>
+                <th width="330px;">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable" class="text_over_flow">
+            {% if AdminUsrs %}
+                {% for AdminUsr in AdminUsrs %}
+                    <tr>
+                        <td align="center" title="{{ AdminUsr.id }}">
+                            {{ AdminUsr.id }}
+                        </td>
+                        <td title="{{ AdminUsr.name }}">
+                            {{ AdminUsr.name }}
+                        </td>
+                        <td title="">
+                            {% ifequal AdminUsr.remark None %}
+                            {% else %}
+                            {{ AdminUsr.remark }}
+                            {% endifequal %}
+                        </td>
+                        <td>
+                            {% for adminRole in adminRoles %}
+                                {% ifequal AdminUsr.id adminRole.user_id %}
+                                    {% ifequal adminRole.name None %}
+                                    <span class="text-danger">未添加任何角色</span>
+                                    {% else %}
+                                    {{ adminRole.name}}
+                                    {% endifequal %}
+                                {% endifequal %}
+                            {% endfor %}
+                        </td>
+                        <td data-id="{{ AdminUsr.id }}">
+                            <a href="javascript:void(0)" title="修改角色" onclick="showRoleModal({{ AdminUsr.id }},{{AdminUsr.role_id }})"
+                               class="btn btn-default btn-info btn-sm active" style="margin-right:3px;" role="button">
+                                <i class="glyphicon glyphicon-search" style="margin-right: 3px;"></i>修改角色
+                            </a>
+                            <a href="javascript:void(0)" title="修改备注名" onclick="editAdminUsr({{ AdminUsr.id }})"
+                               class="btn btn-default btn-primary btn-sm active" style="margin-right:3px;" role="button">
+                                <i class="glyphicon glyphicon-edit" style="margin-right: 3px;"></i>修改备注名
+                            </a>
+
+                            <!--<a href="javascript:void(0)" title="编辑" onclick="editAdminUsr({{ AdminUsr.id }} )"-->
+                                <!--class="btn btn-default btn-success btn-sm  active"style="margin-right:3px; display: none" role="button">-->
+                                <!--<i class="glyphicon glyphicon-edit"style="margin-right: 3px;"></i>编辑-->
+                            <!--</a>-->
+
+                            <a href="javascript:void(0)" title="删除"onclick="delAdminUsr({{ AdminUsr.id }}, '{{ AdminUsr.name }}')"
+                                class="btn btn-default btn-danger btn-sm active" style="margin-right:3px;" role="button">
+                              <i class="glyphicon glyphicon-trash" style="margin-right: 3px;"></i>删除
+                            </a>
+
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            {% else %}
+                <label>查询到0条数据！</label>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+
+<!-- 删除警示框  -->
+    <div class="modal fade" id="modal_deladminusr" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_delCareerAdLab">
+                        警告提示</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="deladminusrMessage"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureDelAdminUsr()" id="btn_ensureDelAdminUsr">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- 权限显示框  -->
+    <div class="modal fade" id="modal_showRole" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-primary active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_showRoleModal">
+                        选择用户权限</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form id="role_form" action="{% url 'mz_back:admin_role_save' %}" method="post">
+                            <input id="user_id_input" name="user_id" class="hidden" type="text" value="">
+                            <input id="page_index" name="page_index" class="hidden" type="text" value="{{ page.page_index }}">
+                            {% for role in roles %}
+                            <div class="col-md-3 col-lg-3 col-sm-3">
+                                <label>
+                                <input type="radio" value="{{ role.id }}" name="role">{{ role.name }}
+                                </label>
+                            </div>
+                            {% endfor %}
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureShowRoleModal()" id="btn_ensureShowRoleModal">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% comment %}
+</body>
+</html>{% endcomment %}

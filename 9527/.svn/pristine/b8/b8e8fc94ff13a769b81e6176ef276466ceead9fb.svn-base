@@ -1,0 +1,116 @@
+{% extends "index.html" %}
+
+{% block pager %}
+    <div class="alert alert-info"><h4>LPS4课程任务编辑</h4></div>
+    <div class="container">
+        <form action="{% url 'mz_lps4:lps4_task_save' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="id" value="{{ task.id }}">
+            <input type="hidden" name="action" value="{{ action }}">
+            <div class="row">
+                <div class="form-group col-lg-8 col-md-8 col-sm-8">
+                    <label for="task_id" class="control-label col-lg-2 col-md-3 col-sm-3">
+                        任务名称： </label>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input id="task_id" class="form-control" name="name" value="{{ task.name }}"
+                        placeholder="请输入任务名称">
+                    </div>
+                </div>
+                <div class="form-group col-lg-8 col-md-8 col-sm-8">
+                    <label for="career_id" class="control-label col-lg-2 col-md-3 col-sm-3">
+                        职业课程：
+                    </label>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <select id="career_id" class="form-control"  name="career_id">
+                            <option value=0>请选择职业课程</option>
+                            <option value=1>职业课程1</option>
+                            <option value=2>职业课程2</option>
+                        </select>
+{#                        <input id="career_id" class="form-control" name="career_id" type="number" value=""#}
+{#                        placeholder="请输入职业课程ID">#}
+                    </div>
+                </div>
+                <div class="form-group col-lg-8 col-md-8 col-sm-8">
+                    <label for="stage_id" class="control-label col-lg-2 col-md-3 col-sm-3">
+                        课程阶段：
+                    </label>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <select id="stage_id" class="form-control"  name="stage_id">
+                            <option value=0>请选择课程阶段</option>
+                            <option value=1>课程阶段1</option>
+                            <option value=2>课程阶段2</option>
+                        </select>
+{#                        <input id="stage_id" class="form-control" name="stage_id" type="number" value="">#}
+                    </div>
+                </div>
+
+                <div class="form-group col-lg-8 col-md-8 col-sm-8">
+                    <label for="index" class="control-label col-lg-2 col-md-3 col-sm-3">
+                        序号：
+                    </label>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input id="index" class="form-control" type="number" name="index"
+                        placeholder="请输入序号" value="{{ task.index }}">
+                    </div>
+                </div>
+                <div class="form-group col-lg-8 col-md-8 col-sm-8">
+                    <label for="pre_task" class="control-label col-lg-2 col-md-3 col-sm-3">
+                        上一个任务：
+                    </label>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input id="pre_task" class="form-control" type="number" name="pre_task"
+                        placeholder="请输入上一个任务的ID，为0不生效" value="{{ task.pre_task }}">
+                    </div>
+                </div>
+                <div class="form-group col-lg-8 col-md-8 col-sm-8">
+                    <label for="next_task" class="control-label col-lg-2 col-md-3 col-sm-3">
+                        下一个任务：
+                    </label>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input id="next_task" class="form-control" type="number" name="next_task" value="{{ task.next_task }}"
+                        placeholder="请输入下一个任务的ID，为0不生效">
+                    </div>
+                </div>
+                 <div class="form-group col-lg-8 col-md-8 col-sm-8">
+                    <label for="is_project" class="control-label col-lg-2 col-md-3 col-sm-3">
+                        是否项目任务球：
+                    </label>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <select id="is_project" class="form-control"  name="is_project">
+                            <option value=0 >否</option>
+                            <option value=1 selected>是</option>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group col-lg-8 col-md-8 col-sm-8">
+                    <label for="version" class="control-label col-lg-2 col-md-3 col-sm-3">
+                        版本：
+                    </label>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input id="version" class="form-control" type="number" name="version"
+                        placeholder="请输入版本号" value="{{ task.version }}">
+                    </div>
+                </div>
+                <div class="form-group col-md-5 col-lg-5 col-sm-5">
+                    <div  class="control-label col-lg-2 col-md-3 col-sm-3">
+                        <input  type="submit" class="btn btn-primary" id="submit" value="确定" />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        $(function () {
+            var career_id = {{ task.career_id }}
+            var stage_id = {{ task.stage_id }}
+            var is_project = {{ task.is_project }}
+            $("#career_id").val(career_id);
+            $("#stage_id").val(stage_id);
+            $("#is_project").val(is_project);
+
+        });
+    </script>
+{% endblock %}
+

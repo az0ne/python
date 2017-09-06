@@ -1,0 +1,180 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript">
+        /*-------------------------------------------------------BEGIN--------------------------------------------------------*/
+        /*---------------提交form表单时，检查有无数据不合法的错误---------------*/
+        function formDataCommitValidate() {
+            var result = {};
+            result.code = 0;
+            result.errorInfo = '';
+            GOLBAL_ERROR = [];  //  初始化验证数据合法性的全局变量
+            var imgSize = $('.imgSize').text();  // imgSize.text的格式:<图片尺寸(1599*630):1599x630>
+            if (imgSize.indexOf('x') > 0) {
+                var imgWidth = imgSize.split(':')[1].split('x')[0];
+                var imgHeight = imgSize.split(':')[1].split('x')[1];
+            }
+            if ($('.file_imageUrl').val()){
+                imgUploadValidate(".file_imageUrl", '{{ MEDIA_URL }}', 227, 121, imgWidth, imgHeight);
+            }
+            textBoxValidate('.txt_articleTypeName', 50);
+            textBoxValidate('.txt_shortName', 50);
+            numValidate('.txt_index', 11);
+            {% ifequal action 'add' %}
+                noZeroNumValidate('.txt_articleTypeId',11);
+                if (noZeroNumValidate('.txt_articleTypeId', 11) == 0) {
+                    validateUnique('{% url 'ajax:validateUnique_articleTypeId' %}', '.txt_articleTypeId');
+                }
+            {% endifequal %}
+
+
+            $.each(GOLBAL_ERROR, function (index, items) {
+                result.code = items.status + result.code;
+                if (items.status == -1) {
+                    result.errorInfo = result.errorInfo + items.errorInfo + "\r";
+                }
+            });
+            return result;
+        }
+        /*----------------------保存教师数据----------------------*/
+        function saveArticleType() {
+            var result = formDataCommitValidate()
+            if (result.code == 0) {
+                form_articleType.submit();
+            } else {
+                warningPrompt(result.errorInfo);
+            }
+        }
+        function editArticleType(id) {
+            var url = "{% url 'mz_article:articleType_edit' %}?action=edit&id=" + encodeURI(id);
+            window.location.href = url;
+        }
+
+        /*--------------------DOM加载完后执行----------------------*/
+        $(function () {
+            {% ifequal action "show" %}
+                $('#articleTypeTitle').text('查看文章类型信息');
+                $('.inputArea1').attr('disabled', true);
+            {% endifequal %}
+            {% ifequal action "add" %}
+                $('#articleTypeTitle').text('添加文章类型信息');
+                $('#txt_articleTypeId').show();
+            {% endifequal %}
+            {% ifequal action "edit" %}
+                $('#articleTypeTitle').text('修改文章类型信息');
+{#                $('.txt_isHomepage').val({{ articleType.is_homepage }});#}
+            {% endifequal %}
+            getImgSize();
+        });
+        /*----------------------图片预览----------------------*/
+        function changeImage(current) {
+            var imgfile = window.URL.createObjectURL($(current)[0].files[0]);
+            $(current).parent('.form-group').find('.previewImg').attr('src', imgfile);
+            var img = new Image();
+            img.src = imgfile;
+            img.onload = function () {  // 等待图片加载完后，才能获取到图片的信息
+                $(current).parent('.form-group').find('.imgSize').text('上传图片尺寸(227*121):' + img.width + 'x' + img.height);
+            }
+        }
+        /* -------------------获取图片大小信息------------------*/
+        function getImgSize() {
+            var img = new Image();
+            img.src = $('.previewImg').attr('src');
+            img.onload = function () {  // 等待图片加载完后，才能获取到图片的信息
+                $('.imgSize').text('上传图片尺寸(227*121):' + img.width + 'x' + img.height);
+            }
+        }
+        /*-------------------------------------------------------END--------------------------------------------------------*/
+    </script>
+    <!--文章类型-->
+    <div class="modal-dialog" role="document" style="background-color:#ffffff;width: 100%">
+        {% csrf_token %}
+        <div class="modal-header active">
+            <h4 class="modal-title" id="articleTypeTitle">
+                修改文章类型信息</h4>
+        </div>
+        <div class="container-fluid content">
+            <div class="row-fluid">
+                <div class="col-md-8">
+                    <form enctype="multipart/form-data" id="form_articleType" method="post"
+                          action="{% url 'mz_article:articleType_save' %}">
+                        {% ifnotequal action "add" %}
+                            <input type="hidden" name="id" value="{{ articleType.id }}">
+                        {% endifnotequal %}
+                        <input type="hidden" name="action" value="{{ action }}">
+                        <input type="hidden" name="old_image_path" value="{{ articleType.homepage_img }}">
+                        <div class="form-group">
+                            <div class="previewImgDiv">
+                                <img class="previewImg img-thumbnail" alt="上传图片尺寸要求:227*121"
+                                     src="{{ MEDIA_URL }}{{ articleType.homepage_img }}"/>
+                                <div class="text-info">
+                                    <span class="imgSize">上传图片尺寸(227*121)</span></div>
+                            </div>
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label>首页文章类型图:</label>
+                            <input class="inputArea1 file_imageUrl" accept="image/*" name="homepage_img"
+                                   type="file" id="file_add_imageUrl" onchange="changeImage(this)"
+                                   placeholder="选择上传图片"/>
+                            <span class="inputAreaError lbl_imageUrlError"></span>
+                        </div>
+                        <div class="form-group" id="txt_articleTypeId" style="display: none">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label>文章类型ID:</label>
+                            <input class="inputArea1 txt_articleTypeId form-control" placeholder="请输入文章类型ID"
+                                   name="id" type="text" value="{{ articleType.id }}">
+                            </input>
+                            <span class="inputAreaError"></span>
+                        </div>
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label>文章类型名称:</label>
+                            <input class="inputArea1 txt_articleTypeName form-control" placeholder="请输入文章类型名称"
+                                   name="name" type="text" value="{{ articleType.name }}">
+                            </input>
+                            <span class="inputAreaError"></span>
+                        </div>
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label>文章类型简称:</label>
+                            <input class="inputArea1 txt_shortName form-control" name="short_name"
+                                   type="text" value="{{ articleType.short_name }}" placeholder="请输入文章类型简称"/>
+                            <span class="inputAreaError"></span>
+                        </div>
+{#                        <div class="form-group">#}
+{#                            <span class="notEmpty1" style="color: red">*</span>#}
+{#                            <label>是否在首页显示:</label>#}
+{#                            <select class="inputArea1 txt_isHomepage form-control" name="is_homepage"#}
+{#                                    value="{{ articleType.is_homepage }}">#}
+{#                                <option value="0">隐藏</option>#}
+{#                                <option value="1">显示</option>#}
+{#                            </select>#}
+{#                            <span class="inputAreaError"></span>#}
+{#                        </div>#}
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label>序号:</label>
+                            <input class="inputArea1 txt_index form-control" name="index"
+                                   type="text" value="{{ articleType.index }}" placeholder="请输入序号"/>
+                            <span class="inputAreaError"></span>
+                        </div>
+                        {% ifequal action 'show' %}
+                            <div class="form-group">
+                                <button type="button" onclick="editArticleType({{ articleType.id }})" title="修改"
+                                        class="btn btn-default btn-info btn-sm active">
+                                    <span class="glyphicon glyphicon-edit" style="margin-right: 3px"></span>修改
+                                </button>
+                            </div>
+                        {% else %}
+                            <div class="form-group">
+                                <button type="button" onclick="saveArticleType()" title="保存"
+                                        class="btn btn-default btn-success btn-sm active">
+                                    <span class="glyphicon glyphicon-edit" style="margin-right: 3px"></span>保存
+                                </button>
+                            </div>
+                        {% endifequal %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

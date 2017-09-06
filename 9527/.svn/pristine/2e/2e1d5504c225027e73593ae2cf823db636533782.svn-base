@@ -1,0 +1,180 @@
+{% extends "pager.html" %}
+{% block content %}
+<script type="text/javascript">
+
+    function  onQuery() {
+        var url = "/backAdmin/role/list/?action=query" + getPage();
+        window.location.href=url;
+    }
+     function  roleQuery() {
+        var url = "/backAdmin/role/list/?action=search&keyword="+$("#keyword_search").val() +"&page_index=1";
+        window.location.href=url;
+    }
+
+    function closeModal(){
+        $("input[name='menu']").prop('checked',false);
+        $('#modal_roleMenu').modal('hide');
+    }
+
+    function showMenuModal(id) {
+        $("#role_id_input").val(id);
+        $.ajax({
+        type:'get',
+        url:'/backAdmin/role/role_menus/',
+        data:{'role_id':id},
+        dataType:'json',
+        success:function(data){
+             for(var i=0;i<data.result.menus.length;i++){
+                var had_menu=data.result.menus[i].menu_id
+                console.log("had_menu:"+had_menu)
+                $("input:checkbox[value="+had_menu+"]").prop('checked',true);
+             }
+             $('#modal_roleMenu').modal('show');
+        }
+    });
+
+    }
+
+    function ensureMenuModal() {
+      $("#role_pageIndex").val($("#hidPageIndex").val());
+      $("#menu_form").submit();
+    }
+
+
+    function editrole(id) {
+        var url = "/backAdmin/role/edit/?action=edit&id=" + encodeURI(id)+getPage();
+        window.location.href = url;
+    }
+
+    function showrole(id) {
+        var url = "/backAdmin/role/edit/?action=show&id=" + encodeURI(id);
+        window.location.href = url;
+    }
+
+
+    function addrole() {
+        var url = "/backAdmin/role/edit/?action=add";
+        window.location.href = url;
+    }
+
+
+
+</script>
+    <!-- 搜索 -->
+    <div class="input-group mySearch">
+        <input type="text" id="keyword_search" class="form-control" value="{{ keyword }}" placeholder="输入角色名称的关键字"/>
+	    <span class="input-group-btn">
+            <button type="button" class="btn btn-default" id="btn_search" onclick="roleQuery()">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+	    </span>
+    </div>
+
+    <!-- 扩展功能栏  -->
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="onQuery()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+            <li style="float: right;margin-right: 5px">
+                <button type="button" id="btn_addnewrole" onclick="addrole()"
+                        class="btn btn-default btn-info btn-sm active">
+                    <span class="glyphicon glyphicon-plus">新增</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th width="260px">角色名称</th>
+                <th width="auto">拥有权限</th>
+                <th width="330px;">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if roles %}
+                {% for role in roles %}
+                    <tr>
+                        <td>
+                            {{ role.role_name }}
+                        </td>
+                        <td>
+                            {% if role.menus %}
+                            {% for menu in role.menus %}
+                                {% ifnotequal menu.parent_id 0 %}
+                                {{ menu.menu_name }}&nbsp;&nbsp;&nbsp;&nbsp;
+                                {% endifnotequal %}
+                            {% endfor%}
+                            {% else %}
+                            <span class="text-danger">未添加任何权限</span>
+                            {% endif %}
+
+                        </td>
+                        <td>
+
+                            <a href="javascript:void(0)" title="修改权限" onclick="showMenuModal({{ role.role_id }})"
+                               class="btn btn-default btn-info btn-sm  active"style="margin-right:3px;" role="button">
+                                <i class="glyphicon glyphicon-edit"style="margin-right: 3px;"></i>修改权限
+                            </a>
+
+                            <a href="javascript:void(0)" title="修改权限名称"onclick="editrole({{ role.role_id }})"
+                               class="btn btn-default btn-success btn-sm active" style="margin-right:3px;" role="button">
+                                <i class="glyphicon glyphicon-edit" style="margin-right: 3px;"></i>修改名称
+                            </a>
+
+                        </td>
+
+                    </tr>
+                {% endfor %}
+
+            {% else %}
+                <label>查询到0条数据！</label>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+<!-- 权限选择框  -->
+    <div class="modal fade" id="modal_roleMenu" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-primary active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_deladminrolemod">
+                       选择权限</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <form id="menu_form" action="/backAdmin/role/role_menu_save/" method="post">
+                            <input id="role_id_input" name="role_id" class="hidden" type="text" value="">
+                            <input id="role_pageIndex" name="page_index" class="hidden" type="text" value="{{ page.page_index }}">
+                            {% for menu in menus %}
+                            {% if menu.url %}
+                            <div class="col-md-3 col-lg-3 col-sm-3">
+                                <label>
+                                <input type="checkbox" value={{ menu.id }} name="menu">{{ menu.name }}
+                                </label>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" onclick="closeModal()">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureMenuModal()" id="btn_ensureMenuModal">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

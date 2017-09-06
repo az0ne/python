@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+
+{% block pager %}
+    {% block content %}{% endblock %}
+    <!--分页功能-->
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jqPager.js"></script>
+    <nav style="float: right;margin-right: 30px;">
+        <ul class="pagination">
+            <input id="hidPageIndex" type="hidden" value="{{ page.page_index }}">
+            <input id="hidPageCount" type="hidden" value="{{ page.page_count }}">
+            <li><a href="javascript:void(0);" onclick="onFirst()">首页</a></li>
+            {% ifequal page.page_index 1 %}
+                <li><a disabled=false href="javascript:void(0);">上一页</a></li>
+            {% else %}
+                <li><a href="javascript:void(0);" onclick="onPre()">上一页</a></li>
+            {% endifequal %}
+            {% ifequal page.page_index page.page_count %}
+                <li><a disabled=false href="javascript:void(0);">下一页</a></li>
+            {% else %}
+                <li><a href="javascript:void(0);" onclick="onNext()">下一页</a></li>
+            {% endifequal %}
+            <li><a href="javascript:void(0);" onclick="onLast()">尾页</a></li>
+            <div style="float: right; margin-top: 5px; margin-left: 5px;">共 {{ page.page_count }} 页{{ page.rows_count }}
+                条数据,第{{ page.page_index }}页，每页{{ page.page_size }}条
+                <input id="txtPageIndex" style="width: 30px" type="text" value="{{ page.page_index }}"/>
+                <input type="button" value="跳转" onclick="onDiretct()"/>
+            </div>
+        </ul>
+    </nav>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "index.html" %}
+{% block pager %}
+<script type="text/javascript">
+
+    function showstudyinfo(id, datequery) {
+        var url = "{% url 'mz_common:studydetail' %}?action=show&id=" + encodeURI(id) + "&date=" + encodeURI(datequery);
+        window.location.href = url;
+    }
+
+    function goback() {
+        history.go(-1)
+    }
+
+</script>
+    <div class="alert alert-info" style="height: 55px;margin-bottom: 1px">
+        <h4 style="margin-bottom: -15px"><span class="text-warning"> {{ username }}</span>  在  <span class="text-warning">{{ date }}</span> 学习信息详情</h4>
+    </div>
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th class="auto">课程名称</th>
+                <th width="auto">视频名称</th>
+                <th width="auto">所学时长</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if studyinfos %}
+                {% for studyinfo in studyinfos %}
+                    <tr class="text_over_flow">
+                        <td align="center">
+                            {{ studyinfo.coursename }}
+                        </td>
+                        <td>
+                            {{ studyinfo.lessonname }}
+                        </td>
+                        <td>
+                            <span class="text-danger">{{ studyinfo.studytime }}</span>   分钟
+                        </td>
+                        <!--<td data-id=""><a href="javascript:void(0)" title="详情查看"-->
+                                                           <!--onclick="showstudyinfo({{ studyinfo.id }}, {{ studyinfo.datetime|date:"Y-m-d"}})"-->
+                                                           <!--class="btn btn-default btn-info btn-sm active"-->
+                                                           <!--style="margin-right:3px;" role="button"><i-->
+                                <!--class="glyphicon glyphicon-search" style="margin-right: 3px;"></i>详情查看</a></td>-->
+                    </tr>
+                {% endfor %}
+
+            {% else %}
+                <tr>
+                    <td colspan="3">查询到0条数据！</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+        <button type="button" class="btn btn-warning" onclick="goback()">返回</button>
+    </div>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript">
+
+        function refresh() {
+            var currentUrl = window.location.href;
+            window.location.href = currentUrl;
+        }
+
+        function editMenu(id) {
+            var url = "{% url 'mz_wechat:wechat_menu_edit' %}?action=edit&id={0}".format(id);
+            window.location.href = url;
+        }
+
+         function addMenu(id) {
+            var url = "{% url 'mz_wechat:wechat_menu_edit' %}?action=add&id={0}".format(id);
+            window.location.href = url;
+        }
+
+         function showReplyMenu(menu_id){
+            var url = "{% url 'mz_wechat:menu_reply_list' %}?id={0}".format(menu_id);
+            window.location.href = url;
+        }
+
+    </script>
+      <!-- 扩展功能栏  -->
+    <div class="function_btn" style="display: inline">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="refresh()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th class="auto">菜单名称</th>
+                <th width="auto">菜单类型</th>
+                <th width="auto">key/URL</th>
+                <th width="auto">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable" class="text_over_flow">
+            {% if menus %}
+            {% for menu in menus %}
+            <tr>
+                <td title="{{ menu.name }}" {% ifnotequal menu.location_y 0%}style="text-align:right"{% endifnotequal%}>{{ menu.name }}</td>
+                <td title="{{ menu.type_name }}">{{ menu.type_name }}</td>
+                <td title="{{ menu.key }}">{{ menu.key }}</td>
+
+                <td>
+                    <a href="javascript:void(0)" title="编辑" onclick="editMenu({{ menu.id}})"
+                         class="btn btn-default btn-primary btn active" style="margin-right:3px;" role="button">
+                         <i class="glyphicon glyphicon-edit" style="margin-right: 3px;"></i>编辑菜单
+                    </a>
+
+                    {% ifequal menu.type 2%}
+                     <a href="javascript:void(0)" title="查看" onclick="showReplyMenu({{ menu.id}})"
+                         class="btn btn-default btn-info btn active" style="margin-right:3px;" role="button">
+                         <i class="glyphicon glyphicon-edit" style="margin-right: 3px;"></i>查看回复
+                     </a>
+                    {% endifequal%}
+
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="4">查询到0条数据！</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,140 @@
+{% extends "pager.html" %}
+{% block pager %}
+    <style rel="stylesheet">
+        .careerTeacher {
+            margin-top: 50px;
+            margin-left: 50px;
+        }
+    </style>
+    <div style="background-color: beige " class="modal-header active">
+        <h4 class="modal-title" id="meetingCount">专业编辑页面</h4>
+    </div>
+    <div class="container careerTeacher">
+        <div class="row">
+            <div class="col-md-8">
+                <form action="{% url 'mz_common:careerTeacher_save'%}" method="post" id="careerTeacher_form" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% ifequal action "add" %}
+                        <input type="hidden" name="action" value="add" id="add">
+                    {% endifequal %}
+                    {% ifequal action "update" %}
+                        <input type="hidden" name="action" value="update" id="update">
+                    {% endifequal %}
+                    {% ifequal action "show" %}
+                        <input type="hidden" name="action" value="show" id="show">
+                    {% endifequal %}
+                    <input type="hidden" name="id" value={{ careerTeacherDetail.id }}>
+                    <input type="hidden" name="old_image_url" value={{ careerTeacherDetail.qq_image_url }}>
+                    <div class="form-group">
+                        <label for="career_id">专业:</label>
+                        <select name='career_id' id="career_id" class="form-control">
+                            {% for career in careerList %}
+                                <option value={{ career.id }} {% ifequal career.id careerTeacherDetail.career_id%}selected{% endifequal %}>{{ career.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="teacher_id">教师:</label>
+                        <input type="text" id="teacher_id" name="teacher_id" class="form-control" value={{ careerTeacherDetail.teacher_id }}>
+                    </div>
+                    <div class="form-group">
+                        <label for="qq">qq号:</label>
+                        <input type="text" class="form-control" id="qq" name="qq" value={{ careerTeacherDetail.qq|default_if_none:''}}>
+                    </div>
+                    <div class="form-group">
+                        <label for="qq_key">qq密钥:</label>
+                        <input type="text" class="form-control" id="qq_key" name="qq_key" value={{ careerTeacherDetail.qq_key|default_if_none:''}}>
+                    </div>
+                    <div class="form-group">
+                        {% ifnotequal action 'show'%}
+                            <label for="qq_image_url">二维码:</label>
+                            <div>
+                                {% if careerTeacherDetail.qq_image_url %}
+                                    <img id="qq_image" src="{{ MEDIA_URL }}{{ careerTeacherDetail.qq_image_url }}"
+                                         alt="上传图片大小:300*300" class="img-rounded previewImg" style="width: 300px;height: 300px">
+                                {% else %}
+                                    <img id="qq_image" src="" alt="上传图片大小：300*300" class="img-rounded previewImg"
+                                         style="width: 300px;height: 300px;display: none;">
+                                {% endif %}
+                                <input type="file" id="qq_image_url" name="qq_image_url" onchange="changeImage_back_img()">
+                            </div>
+                            <div class="text-danger col-md-10" style="margin-top:8px">
+                                <span>图片尺寸（300*300）&nbsp;</span>
+                                <span id="upload_image_info" style="display:none">
+                                    上传图片尺寸为:
+                                    <span id="img_width">0</span><span>x</span><span id="img_height">0</span>
+                                </span>
+                            </div>
+                        {% else %}
+                            <label for="qq_image">二维码：</label>
+                            <div>
+                                <img id="qq_image" src="{{ MEDIA_URL }}{{ careerTeacherDetail.qq_image_url }}"
+                                     alt="上传图片大小:300*300" class="img-rounded previewImg" style="width: 300px;height: 300px">
+                            </div>
+                        {% endifnotequal %}
+                        <div style="float: right">
+                            <button type="button" class="btn btn-primary " id="button" onclick="check_submit()">提交</button>
+                            <b class="text-danger" id="error"></b>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <script src="{{ STATIC_URL }}js/vendor/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.validate.js"></script>
+    <script type="text/javascript">
+    if ($('#show').val()=='show'){
+        document.getElementById("teacher_id").disabled="disabled";
+        document.getElementById("career_id").disabled="disabled";
+        document.getElementById("qq").disabled="disabled";
+        document.getElementById("qq_key").disabled="disabled";
+        document.getElementById("button").style.visibility="hidden";
+    }
+    $(document).ready(function () {
+        $('#careerTeacher_form').validate({
+            rules: {
+                teacher_id: {
+                    required: true
+                }
+            },
+            messages: {
+                teacher_id: {
+                    required: '请填写教师ID'
+                }
+            }
+        })
+        });
+        //上传图片预览
+        function changeImage_back_img() {
+            $('#qq_image').attr('src', window.URL.createObjectURL($('#qq_image_url')[0].files[0]));
+            document.getElementById('qq_image').style.display='inline-block';
+            getBackImgSize();
+
+        }
+        //获取上传图片的尺寸
+        function getBackImgSize() {
+            var img = new Image();
+            img.src = $('#qq_image').attr('src');
+            img.onload = function () {
+                $('#img_width').text(img.width);
+                $('#img_height').text(img.height);
+            };
+            $('#upload_image_info').css('display','inline');
+            $('#qq_image').css('display','inline');
+        }
+        function check_submit() {
+            var width = $('#img_width').text();
+            var height = $('#img_height').text();
+
+            if ((width==300&&height==300)||(width==0&&height==0)){
+
+                $('#careerTeacher_form').submit();
+            }
+            else{
+                warningPrompt('图片尺寸必须为300*300！')
+            }
+        }
+    </script>
+{% endblock %}

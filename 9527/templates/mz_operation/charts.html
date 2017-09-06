@@ -1,0 +1,421 @@
+{% extends "index.html" %}
+
+{% block pager %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/calc.css">
+<style rel="stylesheet">
+#filter {
+    margin-left: 5%;
+}
+
+.charts {
+    width: 85%;
+    margin-top: 20px;
+}
+
+#charts1_2 {
+    margin-top: 40px;
+}
+
+#charts3 {
+    width: 100%;
+}
+
+.main {
+    margin-left: 5%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.tab #search, .tab .main, .tab .shortcut {
+    display: inline-block;
+}
+
+#search, .shortcut {
+    margin-top: 40px;
+    margin-left: 40px;
+    margin-bottom: 80px;
+    vertical-align: top;
+}
+
+.shortcut-btn {
+    width: 70px;
+    margin-bottom: 5px;
+    display: inline-block;
+}
+
+.datetime {
+    width: 110px;
+}
+
+.datetime[readonly], label {
+    cursor: pointer;
+}
+
+p {
+    margin: 0 0 5px;
+}
+</style>
+
+{% if chart_type == 'bar' %}
+
+    <div id="charts1_2" class="charts">
+        <div id="filter" class="form-inline"></div>
+
+        <div class="tab">
+            <div id="main1_2" class="main"></div>
+            <div id="search">
+                <form id="from">
+{#                    <div class="form-group">#}
+{#                        <label for="channel">渠道:</label>#}
+{#                        <select class="form-control" name="channel" id="channel">#}
+{#                        {% if channels %}#}
+{#                            {% for channel in channels %}#}
+{#                            <option value="{{ channel.0 }}">{{ channel.1 }}</option>#}
+{#                            {% endfor %}#}
+{#                        {% else %}#}
+{#                            <option value="all">全部</option>#}
+{#                        {% endif %}#}
+{#                        </select>#}
+{#                    </div>#}
+
+                    <div class="form-group">
+                        <label for="start_date1_2">起始时间：</label>
+                        <input type="text" value="" id="start_date1_2" name="start_date" class="form-control datetime" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="end_date1_2">截止时间：</label>
+                        <input type="text" value="" id="end_date1_2" name="end_date" class="form-control datetime" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="button" id="search_btn" class="btn btn-primary" style="float: right;" value="查询">
+                    </div>
+                </form>
+            </div>
+            <div class="row shortcut ">
+                <div class="form-group">
+                    <p><b>快捷方式：</b></p>
+                    <input type="button" id="same_day" data-shortcut="same_day" class="form-control btn btn-success shortcut-btn" value="今天">
+                    <input type="button" id="this_week" data-shortcut="this_week" class="form-control btn btn-success shortcut-btn" value="本周">
+                    <input type="button" id="this_month" data-shortcut="this_month" class="form-control btn btn-success shortcut-btn" value="本月">
+                    <input type="button" id="7day_ago" data-shortcut="7day_ago" class="form-control btn btn-success shortcut-btn" value="7天内">
+                    <input type="button" id="30day_ago" data-shortcut="30day_ago" class="form-control btn btn-success shortcut-btn" value="30天内">
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" id="main_data" />
+    </div>
+
+    <div id="charts1" class="charts">
+        <div id="filter" class="form-inline"></div>
+
+        <div class="tab">
+            <div id="main" class="main"></div>
+            <div id="search">
+                <form id="from">
+                    <div class="form-group">
+                        <label for="channel">渠道:</label>
+                        <select class="form-control" name="channel" id="channel">
+                        {% if channels %}
+                            {% for channel in channels %}
+                            <option value="{{ channel.0 }}">{{ channel.1 }}</option>
+                            {% endfor %}
+                        {% else %}
+                            <option value="all">全部</option>
+                        {% endif %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="start_date">起始时间：</label>
+                        <input type="text" value="" id="start_date" name="start_date" class="form-control datetime" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="end_date">截止时间：</label>
+                        <input type="text" value="" id="end_date" name="end_date" class="form-control datetime" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="button" id="search_btn" class="btn btn-primary" style="float: right;" value="查询">
+                    </div>
+                </form>
+            </div>
+            <div class="shortcut">
+                <div class="form-group">
+                    <p><b>快捷方式：</b></p>
+                    <input type="button" id="same_day" data-shortcut="same_day" class="form-control btn btn-success shortcut-btn" value="今天">
+                    <input type="button" id="this_week" data-shortcut="this_week" class="form-control btn btn-success shortcut-btn" value="本周">
+                    <input type="button" id="this_month" data-shortcut="this_month" class="form-control btn btn-success shortcut-btn" value="本月">
+                    <input type="button" id="7day_ago" data-shortcut="7day_ago" class="form-control btn btn-success shortcut-btn" value="7天内">
+                    <input type="button" id="30day_ago" data-shortcut="30day_ago" class="form-control btn btn-success shortcut-btn" value="30天内">
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" id="main_data" />
+    </div>
+
+    <div id="charts2" class="charts">
+        <div id="filter" class="form-inline"></div>
+
+        <div class="tab">
+            <div id="main2" class="main"></div>
+            <div id="search">
+                <form id="from">
+{#                    <div class="form-group">#}
+{#                        <label for="channel">渠道:</label>#}
+{#                        <select class="form-control" name="channel" id="channel">#}
+{#                        {% if channels %}#}
+{#                            {% for channel in channels %}#}
+{#                            <option value="{{ channel.0 }}">{{ channel.1 }}</option>#}
+{#                            {% endfor %}#}
+{#                        {% else %}#}
+{#                            <option value="all">全部</option>#}
+{#                        {% endif %}#}
+{#                        </select>#}
+{#                    </div>#}
+
+                    <div class="form-group">
+                        <label for="start_date2">起始时间：</label>
+                        <input type="text" value="" id="start_date2" name="start_date" class="form-control datetime" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="end_date2">截止时间：</label>
+                        <input type="text" value="" id="end_date2" name="end_date" class="form-control datetime" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="button" id="search_btn" class="btn btn-primary" style="float: right;" value="查询">
+                    </div>
+                </form>
+            </div>
+            <div class="shortcut">
+                <div class="form-group">
+                    <p><b>快捷方式：</b></p>
+                    <input type="button" id="same_day" data-shortcut="same_day" class="form-control btn btn-success shortcut-btn" value="今天">
+                    <input type="button" id="this_week" data-shortcut="this_week" class="form-control btn btn-success shortcut-btn" value="本周">
+                    <input type="button" id="this_month" data-shortcut="this_month" class="form-control btn btn-success shortcut-btn" value="本月">
+                    <input type="button" id="7day_ago" data-shortcut="7day_ago" class="form-control btn btn-success shortcut-btn" value="7天内">
+                    <input type="button" id="30day_ago" data-shortcut="30day_ago" class="form-control btn btn-success shortcut-btn" value="30天内">
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" id="main_data" />
+    </div>
+
+{% elif chart_type == 'line' %}
+
+    <div id="charts3" class="charts">
+        <div id="filter" class="form-inline"></div>
+
+        <div class="tab">
+            <div id="main3" class="main"></div>
+            <div id="search">
+                <form id="from">
+                    <div class="form-group">
+                        <label for="channel">渠道:</label>
+                        <select class="form-control" name="channel" id="channel">
+                        {% if channels %}
+                            {% for channel in channels %}
+                            <option value="{{ channel.0 }}">{{ channel.1 }}</option>
+                            {% endfor %}
+                        {% else %}
+                            <option value="all">全部</option>
+                        {% endif %}
+                        </select>
+                    </div>
+
+{#                    <div class="form-group">#}
+{#                        <label for="date_type">日期单位:</label>#}
+{#                        <select class="form-control" name="date_type" id="date_type">#}
+{#                            <option value="1">按日查询</option>#}
+{#                            <option value="2">按月查询</option>#}
+{#                        </select>#}
+{#                    </div>#}
+
+                    <div class="form-group">
+                        <label for="start_date3">起始时间：</label>
+                        <input type="text" value="" id="start_date3" name="start_date" class="form-control datetime" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="end_date3">截止时间：</label>
+                        <input type="text" value="" id="end_date3" name="end_date" class="form-control datetime" readonly>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="button" id="search_btn" class="btn btn-primary" style="float: right;" value="查询">
+                    </div>
+                </form>
+            </div>
+            <div class="shortcut">
+                <div class="form-group">
+                    <p><b>快捷方式：</b></p>
+                    <input type="button" id="same_day" data-shortcut="same_day" class="form-control btn btn-success shortcut-btn" value="今天">
+                    <input type="button" id="this_week" data-shortcut="this_week" class="form-control btn btn-success shortcut-btn" value="本周">
+                    <input type="button" id="this_month" data-shortcut="this_month" class="form-control btn btn-success shortcut-btn" value="本月">
+                    <input type="button" id="7day_ago" data-shortcut="7day_ago" class="form-control btn btn-success shortcut-btn" value="7天内">
+                    <input type="button" id="30day_ago" data-shortcut="30day_ago" class="form-control btn btn-success shortcut-btn" value="30天内">
+                </div>
+            </div>
+        </div>
+
+        <input type="hidden" id="main_data" />
+    </div>
+
+    <div class="calc_div">
+        <div class="calc_filter">
+            <form class="calc-form-inline">
+                <div class="form-group">
+                    <label for="calc_start_date">起始时间：</label>
+                    <input type="text" value="" id="calc_start_date" name="start_date" class="form-control datetime" readonly>
+                </div>
+
+                <div class="form-group">
+                    <label for="calc_end_date">截止时间：</label>
+                    <input type="text" value="" id="calc_end_date" name="end_date" class="form-control datetime" readonly>
+                </div>
+
+                <div class="form-group">
+                    <input type="button" id="calc_search_btn" class="btn btn-primary" value="渲染走势图">
+                </div>
+            </form>
+            <div class="bm_box">
+                <div class="b_vPanel">
+                    <div id="rcCalB" tabindex="1">
+                        <!--<div class="rcExpC">
+                            <div class="nowrap" id="rcEqB">0</div>
+                        </div>-->
+                        <div class="rcResC b_focusTextMedium">
+                            <div class="rcResI">
+                                <div class="rcABP">
+                                    <span class="wordwrap" id="rcTB">0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <table id="calc_table">
+                            <tbody>
+                                <tr>
+                                    <td><input class="rcOptB b_focusTextExtraSmall" id="rcLB" type="button" value="("></td>
+                                    <td><input class="rcOptB b_focusTextExtraSmall" id="rcRB" type="button" value=")"></td>
+                                    <td><input class="rcOptB b_focusTextExtraSmall" id="rcClD" type="button" value="C" title="归零"></td>
+                                    <td><input class="rcOptB" id="rcBB" type="button" title="后退"></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="rcOpdB b_xlText" id="rcSeven" type="button" value="7"></td>
+                                    <td><input class="rcOpdB b_xlText" id="rcEight" type="button" value="8"></td>
+                                    <td><input class="rcOpdB b_xlText" id="rcNine" type="button" value="9"></td>
+                                    <td><input class="b_xlText rcOptB" id="rcDiv" type="button" value="÷"></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="rcOpdB b_xlText" id="rcFour" type="button" value="4"></td>
+                                    <td><input class="rcOpdB b_xlText" id="rcFive" type="button" value="5"></td>
+                                    <td><input class="rcOpdB b_xlText" id="rcSix" type="button" value="6"></td>
+                                    <td><input class="b_xlText rcOptB" id="rcMul" type="button" value="×"></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="rcOpdB b_xlText" id="rcOne" type="button" value="1"></td>
+                                    <td><input class="rcOpdB b_xlText" id="rcTwo" type="button" value="2"></td>
+                                    <td><input class="rcOpdB b_xlText" id="rcThree" type="button" value="3"></td>
+                                    <td><input class="b_xlText rcOptB" id="rcSub" type="button" value="−"></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="rcRB b_xlText" id="rcSave" type="button" value="保存公式" style="font-size: 17px;"></td>
+                                    <td><input class="rcOpdB b_xlText" id="rcZero" type="button" value="0"></td>
+{#                                    <td colspan="2"><input class="rcOpdB b_xlText" id="rcZero" type="button" value="0" style="width: 174px;"></td>#}
+                                    <td><input class="rcOpdB b_xlText" id="rcDeci" type="button" value="."></td>
+{#                                    <td><input class="rcRB b_xlText" id="rcEquals" type="button" value="="></td>#}
+                                    <td><input class="b_xlText rcOptB" id="rcAdd" type="button" value="+"></td>
+                                </tr>
+                                {% for btns in variable_btns %}
+                                <tr>
+                                    {% for btn in btns %}
+                                    <td>
+                                        <input class="rcOpdB b_xlText calc_variable" id="variable_{{ btn.0 }}" type="button" value="{{ btn.0 }}" title="{{ btn.0 }}: {{ btn.1 }}">
+                                    </td>
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+
+                                {% for eq in equation_list %}
+                                <tr>
+                                    <td colspan="4" class="4col">
+                                        <div class="zero-delete"><span class="equation-delete" data-equation="{{ eq.equation }}" data-id="{{ eq.id }}" title="删除公式">x</span></div>
+                                        <input class="rcOpdB b_xlText customEquation" id="{{ eq.id }}" type="button" value="{{ eq.equation }}" data-title="公式：{{ eq.equation }} </br>描述：{{ eq.description }}" style="width: 354px;">
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="calc_main" class="main"></div>
+    </div>
+
+{% endif %}
+
+{% endblock %}
+
+{% block custom_script %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/mz_operation/charts.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/calc.js"></script>
+<script type="application/javascript">
+    var charts_data_uri = '/operation/charts/data/';
+
+    {% if chart_type == 'bar' %}
+
+{#    // 初始化时间选择器#}
+{#    initDateSelector2Day('#start_date', '#end_date');#}
+    // 新建图表
+        var chart_instance = new Chart('main', '600px', '500px', charts_data_uri + '?type=channel_summarized', '#charts1', '#start_date', '#end_date');
+    chart_instance.showYBaseFrame();
+    chart_instance.loadYData(chart_instance);
+    chart_instance.initSearch(chart_instance.loadYData);
+
+{#    // 初始化时间选择器#}
+{#    initDateSelector2Day('#start_date1_2', '#end_date1_2');#}
+    // 新建图表
+        var chart_instance1_2 = new Chart('main1_2', '600px', '500px', charts_data_uri + '?type=summarized', '#charts1_2', '#start_date1_2', '#end_date1_2');
+    chart_instance1_2.showYBaseFrame();
+    chart_instance1_2.loadYData(chart_instance1_2);
+    chart_instance1_2.initSearch(chart_instance1_2.loadYData);
+
+
+{#    // 初始化时间选择器#}
+{#    initDateSelector2Day('#start_date2', '#end_date2');#}
+    // 新建图表
+        var chart_instance2 = new Chart('main2', '600px', '500px', charts_data_uri + '?type=mixedin', '#charts2', '#start_date2', '#end_date2');
+    chart_instance2.showYBaseFrame();
+    chart_instance2.loadYData(chart_instance2, {}, '%');
+    chart_instance2.initSearch(chart_instance2.loadYData, '%');
+
+    {% elif chart_type == 'line' %}
+
+{#    // 初始化时间选择器#}
+{#    initDateSelector2Day('#start_date3', '#end_date3');#}
+{#    markDateTypeEvent('#charts3', '#start_date3', '#end_date3');#}
+    // 新建图表
+        var chart_instance3 = new Chart('main3', '700px', '400px', charts_data_uri + '?type=line', '#charts3', '#start_date3', '#end_date3');
+    chart_instance3.showXBaseFrame();
+    chart_instance3.loadXData(chart_instance3);
+    chart_instance3.initSearch(chart_instance3.loadXData);
+
+
+{#    // 初始化时间选择器#}
+{#    initDateSelector2Day('#calc_start_date', '#calc_end_date');#}
+    // 新建图表
+        var chart_instance4 = new Chart('calc_main', '600px', '400px', charts_data_uri + '?type=calc_line', '.calc_div', '#calc_start_date', '#calc_end_date');
+    chart_instance4.showXBaseFrame();
+
+    {% endif %}
+
+</script>
+{% endblock %}

@@ -1,0 +1,151 @@
+{% extends "index.html" %}
+{% block pager %}
+
+<script type="text/javascript">
+    function onQuery() {
+        var url = "/course/questionnaire/list/?action=query";
+        window.location.href = url;
+    }
+
+    function onEdit(id) {
+        var url = "/course/questionnaire/edit/?id=" + encodeURI(id);
+
+        window.location.href = url;
+    }
+
+    function onAdd(id) {
+        var url = "/course/questionnaire/add/";
+
+        window.location.href = url;
+    }
+
+    function onDelete(id) {
+        var url = "/course/questionnaire/list/?action=delete&id=" + encodeURI(id);
+
+        window.location.href = url;
+    }
+    function onSave() {
+        //判断
+        var url = "/course/questionnaire/save/";
+        form1.submit();
+    }
+
+
+    function goback() {
+        history.go(-1)
+    }
+
+    $(document).ready(function () {
+        $("#questionnaireform").validate({
+            rules: {
+                stem: {
+                    required: true
+                },
+                ques_options: {
+                    required: true
+                },
+                ques_index: {
+                    required: true,
+                    digits: true
+                }
+            },
+            messages: {
+                stem: {
+                    required: "请输入问卷问题"
+                },
+                ques_options: {
+                    required: "请输入问卷问题的答案"
+                },
+                ques_index: {
+                    required: "请输入排序字符",
+                    digits: "请输入数字"
+                }
+
+            }
+        })
+    })
+</script>
+
+<style rel="stylesheet">
+    .questionnairesave {
+        margin-top: 50px;
+        margin-left: 50px;
+    }
+
+</style>
+
+
+<div class="container questionnairesave">
+    <div class="row">
+        <div class="col-md-8">
+            <form id="questionnaireform" action="/course/questionnaire/save/" method="post">
+                {% csrf_token %}
+                <input type="hidden" value="{{ page_index }}" name="page_index">
+                <input type="hidden" value="{{ quesid }}" id="quesid">
+                {% if questionnaires %}
+                    {% for x in questionnaires %}
+                <div class="form-group">
+                    <label for="questionnaireques">问卷问题</label>
+                    <input type="text" class="form-control" id="questionnaireques" name="stem" readonly="readonly"
+                           value="{{ x.stem }}" placeholder="请输入问卷问题"/>
+                </div>
+                <div class="form-group">
+                    <label for="questionnaireans">问卷答案</label>
+                    <input type="text" class="form-control" id="questionnaireans" name="ques_options" readonly="readonly"
+                           value="{{ x.ques_options }}" placeholder="请使用json格式输入问卷答案"/>
+                </div>
+                <hr style="height:1px;border:none;border-top:1px dashed #0066CC;" />
+                    {% endfor %}
+                {% else %}
+                <p class="text-danger">该问卷暂无对应信息</p>
+                {% endif %}
+                {% if ques %}
+                <div class="jumbotron">
+                    <h3>问卷选项详情</h3>
+                    {% for y in ques %}
+                <p class="text-primary" style="font-size: 15px">问卷问题   <small class="text-danger">"{{ y.stem | default_if_none:"数据库出错！" }}"</small>  的答案  <small class="text-danger">"{{ y.belonganw }}"</small>  有<small class="text-danger">"{{ y.chocount }}"</small>  次选择。</p>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-danger">该问卷暂无人提交</p>
+                {% endif %}
+                <div class="form-group">
+                    <label for="questionnaireid">题目所属问卷</label>
+                    <select id="questionnaireid" name="questionnaire_id" class="form-control" disabled="disabled"></select>
+                </div>
+                <button type="button" class="btn btn-warning" onclick="goback()">返回</button>
+            </form>
+        </div>
+    </div>
+</div>
+<hr>
+
+<script>
+    $(document).ready(function () {
+//职业课程下拉单
+        $.ajax({
+            url: "{% url 'ajax:get_questionnaireName' %}",
+            type: "get",
+            async: false,
+            success: function (data) {
+                var selectinfo = [];
+                $.each(data.result, function (id, selectname) {
+                    selectinfo.push('<option value="' +
+                            selectname.id + '">' + selectname.id + ':' + selectname.name + '</option>'
+                    );
+                });
+                $("#questionnaireid").append(selectinfo.toString());
+            }
+        });
+
+
+        quesvalue = $("#quesid").val();
+        $("#questionnaireid option[value='" + quesvalue + "']").attr("selected", "selected");
+
+
+
+    });
+
+
+</script>
+{% endblock %}

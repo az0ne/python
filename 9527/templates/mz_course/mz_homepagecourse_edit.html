@@ -1,0 +1,86 @@
+{% extends "index.html" %}
+{% block pager %}
+<script type="text/javascript">
+
+
+    function goback() {
+        history.go(-1)
+    }
+
+$(document).ready(function () {
+})
+</script>
+
+<style rel="stylesheet">
+.careerlinksave {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+</style>
+
+
+        <div class="container careerlinksave">
+            <div class="row">
+                <div class="col-md-8">
+                    <form id="careerform" action="{% url 'mz_course:homepagecourse_save' %}" method="post" >
+                        {% csrf_token %}
+                        <input type="hidden" value="{{ page_index }}" name="page_index">
+                        <input type="hidden" value="{{ keyword }}" name="keyword" id="hidenkeyword">
+                        <input type="hidden" value="{{ homepagecourses.course_id }}" id="courseid">
+                        <input type="hidden" value="{{ id }}" name="id">
+                        <input type="hidden" value="{{ homepagecourses.careerid }}" name="career_id">
+                        <input type="hidden" value="{{ type }}" name="type">
+                        <div class="form-group">
+                            <label for="careerlinktitleid">课程名称</label>
+                            <select id="coursename" class="form-control" name="courseid"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="careerlinkurl">排序</label>
+                            <input type="text" class="form-control" id="careerlinkurl" name="index" value="{{ homepagecourses.INDEX }}" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label for="careerlinkeindex">分类名称</label>
+                            <input type="text" class="form-control" id="careerlinkeindex" value="{{ homepagecourses.careername }}" readonly="readonly">
+                        </div>
+                        <button type="submit" class="btn btn-primary">提交</button>
+                        <button type="button" class="btn btn-warning" onclick="goback()">返回</button>
+                    </form>
+                    <p class="text-danger">{{ error }}</p>
+                </div>
+            </div>
+        </div>
+    <hr>
+
+<script>
+    $(document).ready(function () {
+//职业课程下拉单
+        $.ajax({
+            url: "{% url 'ajax:get_is_homepage_courseName' %}",
+            type: "get",
+            async: false,
+            success: function (data) {
+                var selectinfo = [];
+                $.each(data.result, function (id, selectname) {
+                    selectinfo.push('<option value="' +
+                            selectname.id + '">' + selectname.id + ':' + selectname.name + '</option>'
+                    );
+                });
+                $("#coursename").append(selectinfo.toString());
+            }
+        });
+
+//课程默认数据绑定
+        courseid = $("#courseid").val();
+        $("#coursename option[value='" + courseid + "']").attr("selected", "selected")
+
+        })
+
+
+
+
+
+
+
+</script>
+{% endblock %}

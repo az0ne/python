@@ -1,0 +1,159 @@
+{% extends "index.html" %}
+{% block pager %}
+    <div class="alert alert-info row">
+        <div class="col-md-offset-4 col-sm-offset-4 col-lg-offset-4"><h4>app 广告</h4></div>
+    </div>
+    <form id="app_ad_form" class="form-horizontal" role="form" enctype="multipart/form-data"
+          action="{% url 'mz_ads:app_ad_save' %}"
+          method="post">
+
+        <div class="form-group">
+            <label for="select_app_ad_career" class="col-sm-2 col-md-2 col-lg-2 control-label">职业课程：</label>
+            <div class="col-sm-3 col-lg-3 col-md-3">
+                <select id="select_app_ad_career" class="form-control" name="career_id"
+                        {% ifequal action 'edit' %}disabled{% endifequal %}>
+                    <option value="0">请选择</option>
+                    {% for career in career_list %}
+                        <option value="{{ career.id }}">{{ career.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="title" class="col-sm-2 col-md-2 col-lg-2 control-label">图片描述：</label>
+            <div class="col-sm-3 col-lg-3 col-md-3">
+                <input id="title" name="title" class="form-control" value="{{ ad_info.title }}" placeholder="请输入图片描述">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="callback_url" class="col-sm-2 col-md-2 col-lg-2 control-label">跳转链接：</label>
+            <div class="col-sm-3 col-lg-3 col-md-3">
+                <input id="callback_url" name="callback_url" class="form-control" value="{{ ad_info.callback_url }}"
+                       placeholder="如:http://www.maiziedu.com">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="fileupload" class="col-sm-2 col-md-2 col-lg-2 control-label">上传图片：</label>
+            <div class="col-sm-3 col-lg-3 col-md-3">
+                <input id="fileupload" name="image" class="btn btn-default" type="file" accept="image/*">
+            </div>
+            <span id="upload_info" class="text-danger h4">图片尺寸大小要求为1242*332</span>
+        </div>
+
+        <div class="form-group hidden">
+            <label for="image_show" class="col-sm-2 col-md-2 col-lg-2 control-label"></label>
+            <div class="col-sm-3 col-lg-3 col-md-3">
+                <img id="image" src="" height="240" width="320">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="提交" class="btn btn-primary col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+        </div>
+        <input type="hidden" name="img_url" id="img_url" value="{{ ad_info.img_url }}">
+        <input type="hidden" name="action" value="{{ action }}">
+        {% ifequal action 'edit' %}
+            <input type="hidden" name="career_id" value="{{ ad_info.career_id }}">
+        {% endifequal %}
+
+    </form>
+    {% load staticfiles %}
+    {#    <script src="{% static 'js/jquery.js' %}"></script>#}
+    <script src="{% static 'js/jQuery_File_Upload/vendor/jquery.ui.widget.js' %}"></script>
+    <script src="{% static 'js/jQuery_File_Upload/jquery.iframe-transport.js' %}"></script>
+    <script src="{% static 'js/jQuery_File_Upload/jquery.fileupload.js' %}"></script>
+    <script>
+
+        $(function () {
+            $("#select_app_ad_career").change(
+                    function () {
+                        check_app_ad_career();
+                    }
+            );
+            {% if ad_info.img_url %}
+                var src = "{{ MEDIA_URL }}" + "{{ ad_info.img_url }}"
+                $("#image").attr("src", src);
+                $(".hidden").removeClass('hidden');
+            {% endif %}
+            {% if ad_info.career_id %}
+                $('#select_app_ad_career').val({{ ad_info.career_id }});
+            {% endif %}
+
+            $("#app_ad_form").validate({
+                rules: {
+                    title: {
+                        required: true,
+                    },
+                    career_id: {
+                        required: true,
+                        min: 1
+                    },
+                    callback_url: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    title: {
+                        required: "请输入图片描述",
+                    },
+                    career_id: {
+                        min: "请选择职业课程",
+                    },
+                    callback_url: {
+                        required: "请输入跳转链接",
+                    }
+
+                }
+            })
+
+        });
+
+        {#        var get_local_src = function () {#}
+        {#            var src = window.URL.createObjectURL($('#fileupload11')[0].files[0]);#}
+        {#            console.log(src)#}
+        {#        }#}
+
+        var check_app_ad_career = function () {
+            var career_id = $('#select_app_ad_career option:selected').val()
+            $.ajax({
+                url: '{% url 'mz_ads:app_ad_check_career' %}',
+                type: 'get',
+                dataType: 'json',
+                data: {career_id: career_id},
+                success: function (data) {
+                    if (data.is_have) {
+                        layer.alert('该课程app广告已存在，请重新选择');
+                        $('#select_app_ad_career').val(0);
+                    }
+                }
+            });
+        }
+
+        $('#fileupload').fileupload({
+            url: '{% url 'mz_common:upload_file_interface' %}',
+            dataType: 'json',
+            done: function (e, data) {
+                $.each(data.files, function (index, file) {
+                    var src = "{{ MEDIA_URL }}" + data.result.img_url;
+                    var img_width = 1242;
+                    var img_height = 332;
+                    var img = new Image();
+                    img.src = src;
+                    img.onload = function () {
+                        if (img.width == img_width && img.height == img_height) {
+                            $("#image").attr("src", src);
+                            $("#img_url").val(data.result.img_url);
+                            $(".hidden").removeClass('hidden');
+                        }
+                        else {
+                            layer.alert('图片尺寸大小为{0}*{1}（要求为{2}*{3}）,请重新上传。'.format(img.width, img.height, img_width, img_height));
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock %}

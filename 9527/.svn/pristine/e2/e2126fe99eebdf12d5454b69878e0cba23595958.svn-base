@@ -1,0 +1,176 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js" xmlns="http://www.w3.org/1999/html"></script>
+    <script type="text/javascript">
+        /*-------------------------------------------------------BEGIN--------------------------------------------------------*/
+        /*---------------提交form表单时，检查有无数据不合法的错误---------------*/
+        function formDataCommitValidate() {
+            var result = {};
+            result.code = 0;
+            result.errorInfo = '';
+            GOLBAL_ERROR = [];  //  初始化验证数据合法性的全局变量
+            var imgWidth = $('.imgWidth').text();
+            var imgHeight = $('.imgHeight').text();
+            textBoxValidate(".txt_imageTitle");
+            selectValidate('.slt_careerName');
+            colorValidate('.txt_bgcolor');
+            urlValidate("#txt_add_url");
+            imgUploadValidate(".file_imageUrl", '{{ MEDIA_URL }}', 1160, 100, imgWidth, imgHeight);
+
+
+            $.each(GOLBAL_ERROR, function (index, items) {
+                result.code = items.status + result.code;
+                if (items.status == -1) {
+                    result.errorInfo = result.errorInfo + items.errorInfo + ' ';
+                }
+            });
+            return result;
+        }
+        /*----------------------保存CareerAd数据----------------------*/
+        function goback(){
+            history.go(-1)
+        }
+
+
+        function saveCareerAd() {
+            var result = formDataCommitValidate()
+            if (result.code == 0) {
+                form_careerAd.submit();
+            } else {
+                warningPrompt(result.errorInfo);
+            }
+        }
+        /*----------------------编辑CareerAd数据----------------------*/
+        function editCareerAd(id) {
+            var url = "/ads/careerAd/edit/?action=edit&id=" + encodeURI(id);
+            window.location.href = url;
+        }
+        /*----------------------图片预览----------------------*/
+        function changeImage() {
+            $('.file_imageUrl').parents('.modal-body').find('.previewImg').attr('src', window.URL.createObjectURL($('.file_imageUrl')[0].files[0]));
+            getImgSize();
+        }
+        /* -------------------获取图片大小信息------------------*/
+        function getImgSize() {
+            var img = new Image();
+            img.src = $('.previewImg').attr('src');
+            img.onload = function () {  // 等待图片加载完后，才能获取到图片的信息
+                $('.imgWidth').text(img.width);
+                $('.imgHeight').text(img.height);
+            }
+        }
+        /*--------------------DOM加载完后执行----------------------*/
+        $(function () {
+            getImgSize();
+            addObjectNameOption('/ajax/careerCourse/get/', '.slt_careerName');
+            {% ifequal action "show" %}
+                $('#careerAdTitle').text('查看职业广告信息');
+                $('.inputArea').attr('disabled', true);
+                $('#slt_add_careerName').val({{ careerAd.career_id }});
+                $('.txt_isActived').val({{ careerAd.is_actived }});
+                $('#slt_add_type').val('{{ careerAd.type }}');
+            {% endifequal %}
+            {% ifequal action "add" %}
+                $('#careerAdTitle').text('添加职业广告信息');
+                $('.inputArea').attr('disabled', false);
+            {% endifequal %}
+            {% ifequal action "edit" %}
+                $('#careerAdTitle').text('修改职业广告信息');
+                $('.inputArea').attr('disabled', false);
+                $('#slt_add_careerName').val({{ careerAd.career_id }});
+                $('.txt_isActived').val({{ careerAd.is_actived }});
+                $('#slt_add_type').val('{{ careerAd.type }}');
+            {% endifequal %}
+
+        });
+        /*-------------------------------------------------------END--------------------------------------------------------*/
+    </script>
+    <!--首页标题-->
+    <div class="modal-dialog" role="document" style="background-color:#ffffff;width: 100%">
+        <form enctype="multipart/form-data" id="form_careerAd" method="post" action="/ads/careerAd/save/">
+            {% csrf_token %}
+            <input type="hidden" name="is_actived" value="1">
+            <input type="hidden" name="type" value="COURSE">
+            <div class="modal-header active">
+                <h4 class="modal-title" id="bannerTitle">
+                    添加职业广告信息</h4>
+                <div style="float: right;margin-top: -35px;margin-right: 12px;">
+                    <button type="button" class="btn btn-warning"
+                            id="btn_saveBanner" onclick="goback()">返回
+                    </button>
+                    {% ifequal action "show" %}
+                        <button type="button" class="btn btn-info active"
+                                id="btn_saveBanner" onclick="editCareerAd({{ careerAd.id }})">修改
+                        </button>
+                    {% endifequal %}
+                    {% ifequal action "add" %}
+                        <button type="button" class="btn btn-info active"
+                                id="btn_saveBanner" onclick="saveCareerAd()">保存
+                        </button>
+                    {% endifequal %}
+                    {% ifequal action "edit" %}
+                        <button type="button" class="btn btn-info active"
+                                id="btn_saveBanner" onclick="saveCareerAd()">保存
+                        </button>
+                    {% endifequal %}
+                </div>
+            </div>
+            <div class="modal-body" style="height: 230px;">
+                <div style="float: left">
+                    <img class="previewImg" src="{{ MEDIA_URL }}{{ careerAd.img_url }}"
+                         style="width: 200px;display: block;"/>
+                    <div align="center"><span>图片尺寸(1160*100):</span><span class="imgWidth">0</span><span>x</span><span
+                            class="imgHeight">0</span></div>
+                </div>
+                <div style="float: left">
+                    {% ifnotequal action "add" %}
+                        <input type="hidden" name="id" value="{{ careerAd.id }}">
+                    {% endifnotequal %}
+                    <input type="hidden" name="action" value="{{ action }}">
+                    <input type="hidden" name="page_index" value="{{ page_index }}">
+                    <input type="hidden" name="old_image_path" value="{{ careerAd.img_url }}">
+                    <div class="form-group">
+                        <span class="notEmpty">*</span>
+                        <label class="inputAreaTitle">广告图片:</label>
+                        <input class="inputArea file_imageUrl" accept="image/*" name="img_url" type="file"
+                               id="file_add_imageUrl" onchange="changeImage()"
+                               placeholder="选择上传图片"/>
+                        <span class="inputAreaError lbl_imageUrlError"></span>
+                    </div>
+                    <div class="form-group">
+                        <span class="notEmpty" style="margin-left: 20px;margin-top:6px;margin-right: -15px;">*</span>
+                        <label class="inputAreaTitle">图片描述:</label>
+                        <input class="inputArea txt_imageTitle" name="img_title" type="text"
+                               value="{{ careerAd.img_title }}" placeholder="请输入图片描述"/>
+                        <span class="inputAreaError lbl_imgTitleError"></span>
+                    </div>
+                    <div class="form-group">
+                        <span class="notEmpty">*</span>
+                        <label class="inputAreaTitle">职业名称:</label>
+                        <select class="inputArea slt_careerName" name="career_id"
+                                id="slt_add_careerName">
+                        </select>
+                        <span class="inputAreaError lbl_careerNameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <span class="notEmpty">*</span>
+                        <label for="inputbgcolor" class="inputAreaTitle">背景颜色:</label>
+                        <input id="inputbgcolor" name="bgcolor" type="text" class="inputArea txt_bgcolor"
+                               value="#{{ careerAd.bgcolor }}" placeholder="请输入背景颜色">
+                        <span class="inputAreaError lbl_careerNameError text-danger">颜色格式:#b7b7b7</span>
+                    </div>
+                    <div class="form-group">
+                        <span class="notEmpty">*</span>
+                        <label for="txt_add_url" class="inputAreaTitle">链接地址:</label>
+                        <input id="txt_add_url" name="url" type="text" class="inputArea"
+                               value="{{ careerAd.url }}" placeholder="请输入http://开头链接">
+                        <span class="inputAreaError lbl_careerNameError text-danger"></span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer"></div>
+        </form>
+    </div>
+    </div>
+{% endblock %}

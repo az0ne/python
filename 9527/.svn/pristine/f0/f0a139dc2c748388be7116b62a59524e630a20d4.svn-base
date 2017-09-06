@@ -1,0 +1,578 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js" xmlns="http://www.w3.org/1999/html"></script>
+    <script type="text/javascript">
+        /*-------------------------------------------------------BEGIN--------------------------------------------------------*/
+        /*---------------提交form表单时，检查有无数据不合法的错误---------------*/
+        function formDataCommitValidate() {
+            var result = {};
+            result.code = 0;
+            result.errorInfo = '';
+            GOLBAL_ERROR = [];  //  初始化验证数据合法性的全局变量
+            {#            imgUploadValidate(".file_imageUrl", '{{ MEDIA_URL }}', 200, 127);#}
+            {#            textBoxValidate("#txt_add_keywords");#}
+            {#            selectValidate('.slt_match_type');#}
+            {#            selectValidate('.slt_reply_type');#}
+            {#            urlValidate('#txt_add_url', 200);#}
+            if ($('#slt_message_type').val() == '2' && $("#txt_add_keywords").val().length == 0) {
+                result.code = 1;
+                result.errorInfo = '请输入关键字';
+            }
+
+            if ($('#slt_reply_type').val() == '5' && $("input[name='news']:checked").length != 1) {
+                result.code = 1;
+                result.errorInfo = '请选择图文';
+            }
+
+            $.each(GOLBAL_ERROR, function (index, items) {
+                result.code = items.status + result.code;
+                if (items.status == -1) {
+                    result.errorInfo = result.errorInfo + items.errorInfo + ' ';
+                }
+            });
+            return result;
+        }
+        /*----------------------保存reply_message数据----------------------*/
+        function save_reply_message() {
+            var result = formDataCommitValidate();
+            if (result.code == 0) {
+                form_reply_message.submit();
+            } else {
+                warningPrompt(result.errorInfo);
+            }
+        }
+        /*----------------------编辑reply_message数据----------------------*/
+        function edit_reply_message(id) {
+            var url = "?action=edit&id=" + encodeURI(id);
+            window.location.href = url;
+        }
+        /*----------------------图片预览----------------------*/
+        function changeImage() {
+            $('.file_imageUrl').parents('.modal-body').find('.previewImg').attr('src', window.URL.createObjectURL($('.file_imageUrl')[0].files[0]));
+            getImgSize();
+        }
+        /* -------------------获取图片大小信息------------------*/
+        function getImgSize() {
+            var img = new Image();
+            img.src = $('.previewImg').attr('src');
+            img.onload = function () {  // 等待图片加载完后，才能获取到图片的信息
+                $('.imgWidth').text(img.width);
+                $('.imgHeight').text(img.height);
+            }
+        }
+        function showBigImage(url) {
+            $('#showOriginImg').attr('src', url);
+            $('#modal_showOriginImg').modal('show');
+        }
+        /*--------------------DOM加载完后执行----------------------*/
+        $(function () {
+            {% if action == "add" %}
+                $('#adTitle').text('添加回复内容');
+                $('.inputArea2').attr('disabled', false);
+            {% elif action == "edit" %}
+                $('#adTitle').text('修改回复内容');
+                $('.inputArea2').attr('disabled', false);
+            {% else %}
+                $('#adTitle').text('查看回复内容');
+                $('.inputArea2').attr('disabled', true);
+            {% endif %}
+
+        });
+        /*-------------------------------------------------------END--------------------------------------------------------*/
+    </script>
+    <!--首页标题-->
+    <div class="modal-dialog" role="document" style="background-color:#ffffff;width: 100%">
+        <form enctype="multipart/form-data" id="form_reply_message" method="post" action="{%url 'mz_wechat:menu_reply_save'%}">
+            {% csrf_token %}
+            <div class="modal-header active">
+                <h4 class="modal-title" id="adTitle">
+                    添加回复</h4>
+                <div style="float: right;margin-top: -35px;margin-right: 12px;">
+                    {% ifequal action "add" %}
+                        <button type="button" class="btn btn-info active" id="btn_saveBanner"
+                                onclick="save_reply_message()">保存
+                        </button>
+                    {% endifequal %}
+                </div>
+            </div>
+
+            <div class="modal-body" style="height: 250px;">
+
+                <div style="float: left">
+                    <input type="hidden" name="action" value="{{ action }}">
+                    <input type="hidden" id="news_page" value="1">
+                    <input type="hidden" id="video_page" value="1">
+                    <input type="hidden" id="voice_page" value="1">
+                    <input type="hidden" name="menu_id" value="{{ menu_id }}">
+                    <input type="hidden" name="id" value="{{ reply.id }}">
+                    <input type="hidden" id="page_count" value="1">
+
+
+                    <div class="form-group">
+                        <span class="notEmpty">*</span>
+                        <label class="inputAreaTitle" for="slt_reply_type">回复分类:</label>
+                        <select class="form-control inputArea2 slt_reply_type" name="reply_type" id="slt_reply_type">
+                            <option value="1" {% if reply.type == 1 %}selected{% endif %}>文本</option>
+                            <option value="2" {% if reply.type == 2 %}selected{% endif %}>图片</option>
+                            <option value="3" {% if reply.type == 3 %}selected{% endif %}>视频</option>
+                            <option value="4" {% if reply.type == 4 %}selected{% endif %}>语音</option>
+                            <option value="5" {% if reply.type == 5 %}selected{% endif %}>图文</option>
+                        </select>
+                        <span class="inputAreaError lbl_reply_typeError"></span>
+                        {#                        <div id="news_btn_div" style="float: left; margin-left: 50px; margin-top: -4px; display: none;">#}
+                        {#                            <button id="add_news_btn" type="button" class="btn btn-success dropdown-toggle"#}
+                        {#                                    title="添加图文">#}
+                        {#                                <span class="glyphicon glyphicon-plus" aria-hidden="true"#}
+                        {#                                      style="font-size: 15px;"></span>#}
+                        {#                            </button>#}
+                        {#                            <button id="del_news_btn" type="button" class="btn btn-danger dropdown-toggle" title="添加图文">#}
+                        {#                                <span class="glyphicon glyphicon-minus" aria-hidden="true"#}
+                        {#                                      style="font-size: 15px;"></span>#}
+                        {#                            </button>#}
+                        {#                        </div>#}
+                </div>
+                {% if action == 'add'%}
+                <div id="dynamic_fields">
+
+
+                </div>
+                {% endif %}
+                <div>
+                    {% if action == 'show'%}
+                            <div class="form-group">
+                                <span class="notEmpty">*</span>
+                                <label class="inputAreaTitle">选择图文</label>
+                                <div class="col-sm-10">
+                                    <div class="radio disabled">
+                                        <label>
+                                            <input type="radio" name="news" id="news0" value='{{ reply.content }}' disabled checked>
+                                            {% for t, l in reply.titles.items %}
+                                            {{ t }} | <a href="{{ l }}" target="1">链接</a><br>
+                                            {% endfor %}
+                                        </label>
+                                    </div>
+
+                                </div>
+
+                                <span class="inputAreaError lbl_reply_typeError"></span>
+                            </div>
+                        {% elif action == 'edit' %}
+                            <div class="form-group">
+                                <span class="notEmpty">*</span>
+                                <label class="inputAreaTitle">选择图文</label>
+                                <div class="col-sm-10">
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="news" id="news0" value='{{ rules.content }}' checked>
+                                            {% for t, l in rules.titles.items %}
+                                            {{ t }} | <a href="{{ l }}" target="1">链接</a><br>
+                                            {% endfor %}
+                                        </label>
+                                    </div>
+                                    </div>
+                                        <nav><ul class="pager"><li><a id="next" href="javascript:;" onclick="next()">加载其它图文</a></li></ul></nav>
+                                        <span class="inputAreaError lbl_reply_typeError"></span>
+                                    </div>
+
+                                </div>
+
+                                <span class="inputAreaError lbl_reply_typeError"></span>
+
+                            </div>
+                        {% endif %}
+                </div>
+
+                    {#            <div class="modal-footer"></div>#}
+        </form>
+    </div>
+    <div class="modal fade" id="modal_showOriginImg">
+        <div class="modal-dialog" style="width: 60%;">
+            <img id="showOriginImg" src="" width="100%" height="auto"/>
+        </div>
+    </div>
+{% endblock %}
+
+{% block custom_script %}
+    <script type="text/javascript">
+        var content_temp = '<div class="form-group">' +
+                '<span class="notEmpty" style="margin-left: 20px;margin-top:6px;margin-right: -15px;">*</span>' +
+                '<label class="inputAreaTitle" for="txt_add_content">内容:</label>' +
+                '<textarea class="form-control inputArea2" name="content" id="txt_add_content" type="text" value="" placeholder="请输入内容"/>' +
+                '<span class="inputAreaError lbl_imgTitleError"></span>' +
+                '</div>';
+
+        var img_temp = '<div class="form-group">' +
+                '<span class="notEmpty">*</span>' +
+                '<label class="inputAreaTitle" for="file_add_imageUrl">图片:</label>' +
+                '<input class="inputArea2 file_imageUrl" accept="image/*" name="image" type="file" id="file_add_imageUrl"  placeholder="选择上传图片"/>' +
+                '<span class="inputAreaError lbl_imageUrlError"></span>' +
+                '</div>';
+
+        var video_temp = '<div class="form-group">' +
+                '<span class="notEmpty">*</span>' +
+                '<label class="inputAreaTitle" for="file_add_videoUrl">视频:</label>' +
+                '<input class="inputArea2 file_videoUrl" name="video" type="file" id="file_add_videoUrl"  placeholder="选择上传视频"/>' +
+                '<span class="inputAreaError lbl_videoUrlError"></span>' +
+                '</div>';
+
+        var voice_temp = '<div class="form-group">' +
+                '<span class="notEmpty">*</span>' +
+                '<label class="inputAreaTitle" for="file_add_voiceUrl">语音:</label>' +
+                '<input class="inputArea2 file_voiceUrl" name="voice" type="file" id="file_add_voiceUrl"  placeholder="选择上传语音"/>' +
+                '<span class="inputAreaError lbl_voiceUrlError"></span>' +
+                '</div>';
+
+        function generate_news_fields(index) {
+            return '<div id="news_fields_div"><div class="form-group">' +
+                    '<span class="notEmpty" style="margin-left: 20px;margin-top:6px;margin-right: -15px;">*</span>' +
+                    '<label class="inputAreaTitle" for="url">标题' + index + ':</label>' +
+                    '<input class="form-control inputArea2" name="title_' + index + '" id="txt_add_title" type="text" value="{{ ad.url }}" placeholder="请输入标题"/>' +
+                    '<span class="inputAreaError lbl_imgTitleError"></span>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<span class="notEmpty" style="margin-left: 20px;margin-top:6px;margin-right: -15px;">*</span>' +
+                    '<label class="inputAreaTitle" for="url">摘要' + index + ':</label>' +
+                    '<input class="form-control inputArea2" name="digest_' + index + '" id="txt_add_digest" type="text" value="{{ ad.url }}" placeholder="请输入摘要"/>' +
+                    '<span class="inputAreaError lbl_imgTitleError"></span>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<span class="notEmpty">*</span>' +
+                    '<label class="inputAreaTitle" for="file_add_imageUrl">图片' + index + ':</label>' +
+                    '<input class="inputArea2 file_imageUrl" accept="image/*" name="img_' + index + '" type="file" id="file_add_imageUrl"  placeholder="选择上传图片"/>' +
+                    '<span class="inputAreaError lbl_imageUrlError"></span>' +
+                    '</div>' +
+                    '<div class="form-group">' +
+                    '<span class="notEmpty" style="margin-left: 20px;margin-top:6px;margin-right: -15px;">*</span>' +
+                    '<label class="inputAreaTitle" for="url">文章地址' + index + ':</label>' +
+                    '<input class="form-control inputArea2" name="content_url_' + index + '" id="txt_add_content_url" type="text" value="{{ ad.url }}" placeholder="请输入文章地址"/>' +
+                    '<span class="inputAreaError lbl_imgTitleError"></span>' +
+                    '</div>' +
+                    '<div class="modal-footer"></div></div>';
+        }
+
+        var message_fields = $('#message_dynamic_fields').children();
+
+        function dynamic_reply(field, div) {
+            if ($(field).val() == '1') {
+                div.html(content_temp);
+            } else if ($(field).val() == '2') {
+                div.html(img_temp);
+            } else if ($(field).val() == '3') {
+                div.html(video_temp);
+                {% if action != 'add' %}
+                    mark_video(div, true);
+                {% else %}
+                    mark_video(div, false);
+                {% endif %}
+            } else if ($(field).val() == '4') {
+                div.html(voice_temp);
+                {% if action != 'add' %}
+                    mark_voice(div, true);
+                {% else %}
+                    mark_voice(div, false);
+                {% endif %}
+            } else if ($(field).val() == '5') {
+                {% if action != 'add' %}
+                    mark_news(div, true, true);
+                {% else %}
+                    mark_news(div, false, false);
+                {% endif %}
+            }
+
+            if ($(field).val() == '5') {
+                $('#news_btn_div').show();
+            } else {
+                $('#news_btn_div').hide();
+            }
+        }
+
+        function dynamic_message() {
+            if ($('#slt_message_type').val() != 2) {
+                $('#message_dynamic_fields').empty();
+            } else {
+                $('#message_dynamic_fields').append(message_fields);
+            }
+        }
+
+        function mark_radio(index, titles, data) {
+            var title = '';
+            for (var t in titles) {
+                title += t;
+                title += ' | <a href="' + titles[t] + '" target="1">链接</a>';
+                title += '</br>'
+            }
+            return '<div class="radio">' +
+                    '<label>' +
+                    '<input type="radio" name="news" id="news' + index + '" value=' +
+                    "'" + data + "'" + '>' +
+                    title +
+                    '</label>' +
+                    '</div>';
+        }
+
+        function next() {
+            var page = $('#news_page');
+            page.val(parseInt(page.val()) + 1);
+            mark_news($('#dynamic_fields'));
+        }
+
+         function mark_news(div, show, not_search, page) {
+            var prefix = '<div class="form-group">' +
+                    '<span class="notEmpty">*</span>' +
+                    '<label class="inputAreaTitle">选择图文:</label>' +
+                        '<div id="search_div" style="display: flex; visibility: hidden;">'+
+                            '<input type="text" id="search_news_content" class="form-control" placeholder="输入标题" style="width: 250px;">'+
+                            '<input type="button" id="news_search_btn" class="btn btn-default" value="搜索" />'+
+                        '</div>'+
+                    '<div id="news_radio_div" class="col-sm-10" style="padding-left: 100px;">';
+
+            var suffix = '</div>' +
+                    '<nav><ul class="pager"><li><a id="prev" href="javascript:;">上一页</a></li><li><a id="next" href="javascript:;">下一页</a></li></ul></nav>' +
+                    '<span class="inputAreaError lbl_reply_typeError"></span>' +
+                    '</div>';
+
+            var page_count = $('#page_count');
+            if (!page) {
+                page = parseInt($('#news_page').val());
+            }
+            if (!show) {
+                if (page >= 1) {
+                    if (page <= parseInt(page_count.val())) {
+                        $.ajax({
+                            url: '{% url 'mz_wechat:wechat_get_news_list' %}',
+                            data: {'page': page, content: $('#search_news_content').val()},
+                            dataType: 'json',
+                            type: 'GET',
+                            beforeSend: function (XHR) {
+                                layer.load();
+                            },
+                            success: function (data) {
+                                layer.closeAll('loading');
+                                if (data.status == 'success') {
+                                    if (data.news_list.length == 0) {
+                                        layer.msg('未获取到图文。', {time: 1000, icon: 5});
+                                        return false;
+                                    }
+
+                                    page_count.val(data.page.page_count);
+
+                                    var news_radio_div = $('#news_radio_div');
+
+                                    var news_radios = '';
+                                    for (var i = 0; i < data.news_list.length; i++) {
+                                        news_radios += mark_radio(i, data.news_list[i].titles, data.news_list[i].data);
+                                    }
+
+                                    if (news_radio_div.length == 0) {
+                                        var html = prefix;
+                                        html += news_radios;
+                                        html += suffix;
+                                        div.html(html);
+                                    } else {
+                                        news_radio_div.html(news_radios);
+                                    }
+
+                                    $('#prev').unbind().on('click', function () {
+                                        $('#news_page').val(page - 1);
+                                        mark_news(div);
+                                    });
+                                    $('#next').unbind().on('click', function () {
+                                        $('#news_page').val(page + 1);
+                                        mark_news(div);
+                                    });
+
+                                    if (!not_search) {
+                                        $('#search_div').css('visibility', 'visible');
+                                        $('#news_search_btn').unbind().on('click', function () {
+                                            $('#news_page').val(1);
+                                            mark_news(div, show, not_search, 1);
+                                        });
+                                    }
+
+                                } else {
+                                    layer.msg('获取失败，请重试。', {time: 1000, icon: 5});
+                                }
+                            },
+                            error: function () {
+                                layer.closeAll('loading');
+                                layer.msg('服务器异常', {time: 1000, icon: 5});
+                            }
+                        });
+                    } else {
+                        layer.msg('无下一页', function () {});
+                    }
+                } else {
+                    layer.msg('无上一页', function () {});
+                }
+            }
+        }
+
+        function mark_video_radio(index, title, data) {
+            return '<div class="radio">' +
+                    '<label>' +
+                    '<input type="radio" name="video" id="news' + index + '" value=' +
+                    "'" + data + "'" + '>' +
+                    title +
+                    '</label>' +
+                    '</div>';
+        }
+
+        function mark_video(div, show) {
+            var prefix = '<div class="form-group">' +
+                    '<span class="notEmpty">*</span>' +
+                    '<label class="inputAreaTitle">选择视频</label>' +
+                    '<div class="col-sm-10">';
+
+            var suffix = '</div>' +
+                    '<nav><ul class="pager"><li><a id="prev" href="javascript:;" onclick="prev()">上一页</a></li><li><a id="next" href="javascript:;" onclick="next()">下一页</a></li></ul></nav>' +
+                    '<span class="inputAreaError lbl_reply_typeError"></span>' +
+                    '</div>';
+
+            var page = parseInt($('#video_page').val());
+
+            if (!show) {
+                if (page >= 1) {
+                    $.ajax({
+                        url: '{% url 'mz_wechat:wechat_get_voice_or_video' %}',
+                        data: {'type': 'video','page': page},
+                        dataType: 'json',
+                        type: 'GET',
+                        beforeSend: function (XHR) {
+                            layer.load();
+                        },
+                        success: function (data) {
+                            layer.closeAll('loading');
+                            if (data.status == 'success') {
+                                var html = prefix;
+                                for (var i = 0; i < data.data.length; i++) {
+                                    html += mark_video_radio(i, data.data[i].title, data.data[i].data);
+                                }
+                                html += suffix;
+                                div.html(html);
+
+                                $('#prev').on('click', function () {
+                                    $('#video_page').val(page - 1);
+                                    mark_video(div);
+                                });
+                                $('#next').on('click', function () {
+                                    $('#video_page').val(page + 1);
+                                    mark_video(div);
+                                })
+
+                            } else {
+                                layer.msg('获取失败，请重试。', {time: 1000, icon: 5});
+                            }
+                        },
+                        error: function () {
+                            layer.closeAll('loading');
+                            layer.msg('服务器异常', {time: 1000, icon: 5});
+                        }
+                    });
+                } else {
+                    layer.msg('无上一页', {time: 1000, icon: 5});
+                }
+            }
+        }
+
+        function mark_voice_radio(index, title, data) {
+            return '<div class="radio">' +
+                    '<label>' +
+                    '<input type="radio" name="voice" id="news' + index + '" value=' +
+                    "'" + data + "'" + '>' +
+                    title +
+                    '</label>' +
+                    '</div>';
+        }
+
+        function mark_voice(div, show) {
+            var prefix = '<div class="form-group">' +
+                    '<span class="notEmpty">*</span>' +
+                    '<label class="inputAreaTitle">选择语音</label>' +
+                    '<div class="col-sm-10">';
+
+            var suffix = '</div>' +
+                    '<nav><ul class="pager"><li><a id="prev" href="javascript:;" onclick="prev()">上一页</a></li><li><a id="next" href="javascript:;" onclick="next()">下一页</a></li></ul></nav>' +
+                    '<span class="inputAreaError lbl_reply_typeError"></span>' +
+                    '</div>';
+
+            var page = parseInt($('#voice_page').val());
+
+            if (!show) {
+                if (page >= 1) {
+                    $.ajax({
+                        url: '{% url 'mz_wechat:wechat_get_voice_or_video' %}',
+                        data: {'type': 'voice','page': page},
+                        dataType: 'json',
+                        type: 'GET',
+                        beforeSend: function (XHR) {
+                            layer.load();
+                        },
+                        success: function (data) {
+                            layer.closeAll('loading');
+                            if (data.status == 'success') {
+                                var html = prefix;
+                                for (var i = 0; i < data.data.length; i++) {
+                                    html += mark_voice_radio(i, data.data[i].title, data.data[i].data);
+                                }
+                                html += suffix;
+                                div.html(html);
+
+                                $('#prev').on('click', function () {
+                                    $('#voice_page').val(page - 1);
+                                    mark_voice(div);
+                                });
+                                $('#next').on('click', function () {
+                                    $('#voice_page').val(page + 1);
+                                    mark_voice(div);
+                                })
+
+                            } else {
+                                layer.msg('获取失败，请重试。', {time: 1000, icon: 5});
+                            }
+                        },
+                        error: function () {
+                            layer.closeAll('loading');
+                            layer.msg('服务器异常', {time: 1000, icon: 5});
+                        }
+                    });
+                } else {
+                    layer.msg('无上一页', {time: 1000, icon: 5});
+                }
+            }
+        }
+
+        $(document).ready(function () {
+            var div = $('#dynamic_fields');
+            dynamic_reply('#slt_reply_type', div);
+            $('#slt_reply_type').on('change', function () {
+                dynamic_reply(this, div);
+            });
+
+            $('#slt_message_type').on('change', function () {
+                dynamic_message();
+            });
+
+            $('#add_news_btn').on('click', function () {
+                var index = div.children().length + 1;
+                if (index <= 10) {
+                    div.append(generate_news_fields(index));
+                } else {
+                    layer.msg('图文消息一次最多10条。', {time: 1000, icon: 5});
+                }
+            });
+
+            $('#del_news_btn').on('click', function () {
+                var index = div.children().length;
+                if (index > 1) {
+                    div.children().last().remove()
+                } else {
+                    layer.msg('图文消息至少有1条。', {time: 1000, icon: 5});
+                }
+            });
+
+            {% if action == 'show' %}
+                $('.form-control').attr('disabled', 'disabled');
+            {% endif %}
+        });
+    </script>
+{% endblock %}

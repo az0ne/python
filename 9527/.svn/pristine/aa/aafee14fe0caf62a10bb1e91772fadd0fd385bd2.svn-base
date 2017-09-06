@@ -1,0 +1,98 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript">
+        /*-------------------------------------------------------END--------------------------------------------------------*/
+        // 提交form表单时，检查有无数据不合法的错误
+        function formDataCommitValidate() {
+            var result = {};
+            result.code = 0;
+            result.errorInfo = '';
+            GOLBAL_ERROR = [];  //  初始化验证数据合法性的全局变量
+            textBoxValidate(".txt_careerCatagoryName");
+
+            $.each(GOLBAL_ERROR, function (index, items) {
+                result.code = items.status + result.code;
+                if (items.status == -1) {
+                    result.errorInfo = result.errorInfo + items.errorInfo + ' ';
+                }
+            });
+            return result;
+        }
+        function saveCareerCatagory() {
+            var result = formDataCommitValidate()
+            if (result.code == 0) {
+                form_careerCatagory.submit();
+            } else {
+                warningPrompt(result.errorInfo);
+            }
+        }
+
+        function editCareerCatagory(id) {
+            var url = "/course/careerCatagory/edit/?action=edit&id=" + encodeURI(id);
+            window.location.href = url;
+        }
+
+        $(function () {
+            {% ifequal action "show" %}
+                $('#careerCatagoryTitle').text('查看职业方向信息');
+                $('.inputArea').attr('disabled', true);
+            {% endifequal %}
+            {% ifequal action "add" %}
+                $('#careerCatagoryTitle').text('添加职业方向信息');
+                $('.inputArea').attr('disabled', false);
+            {% endifequal %}
+            {% ifequal action "edit" %}
+                $('#careerCatagoryTitle').text('修改职业方向信息');
+                $('.inputArea').attr('disabled', false);
+            {% endifequal %}
+
+        });
+
+    </script>
+    <!--首页标题-->
+    <div class="modal-dialog" role="document" style="background-color:#ffffff;width: 100%">
+        <form enctype="multipart/form-data" id="form_careerCatagory" method="post" action="/course/careerCatagory/save/">
+            {% csrf_token %}
+            <div class="modal-header active">
+                <h4 class="modal-title" id="careerCatagoryTitle">
+                    添加职业方向信息</h4>
+                <div style="float: right;margin-top: -35px;margin-right: 12px;">
+                    {% ifequal action "show" %}
+                        <button type="button" class="btn btn-info active"
+                                id="btn_saveCareerCatagory" onclick="editCareerCatagory({{ careerCatagory.id }})">修改
+                        </button>
+                    {% endifequal %}
+                    {% ifequal action "add" %}
+                        <button type="button" class="btn btn-info active"
+                                id="btn_saveCareerCatagory" onclick="saveCareerCatagory()">保存
+                        </button>
+                    {% endifequal %}
+                    {% ifequal action "edit" %}
+                        <button type="button" class="btn btn-info active"
+                                id="btn_saveCareerCatagory" onclick="saveCareerCatagory()">保存
+                        </button>
+                    {% endifequal %}
+                </div>
+            </div>
+            <div class="modal-body" style="height: 230px;">
+                <div style="float: left">
+                    {% ifnotequal action "add" %}
+                        <input type="hidden" name="id" value="{{ careerCatagory.id }}">
+                    {% endifnotequal %}
+                    <input type="hidden" name="action" value="{{ action }}">
+                    <input type="hidden" name="page_index" value="{{ page_index }}">
+                    <div class="form-group">
+                        <span class="notEmpty">*</span>
+                        <label class="inputAreaTitle">职业方向:</label>
+                        <input class="inputArea txt_careerCatagoryName" name="name" type="text"
+                               value="{{ careerCatagory.name }}" placeholder="请输入职业方向"/>
+                        <span class="inputAreaError lbl_careerCatagoryNameError"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"></div>
+        </form>
+    </div>
+    </div>
+{% endblock %}

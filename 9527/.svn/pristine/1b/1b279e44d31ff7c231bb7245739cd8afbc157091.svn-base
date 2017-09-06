@@ -1,0 +1,214 @@
+body {
+    font-family: 'Microsoft Yahei';
+    height: 100vh;
+    overflow: auto;
+
+}
+
+@media (min-width: 950px) {
+    #slider_sub {
+        width: 250px;
+        height: 100%;
+        margin-top: -20px;
+        position: absolute;
+        z-index: 1;
+    }
+
+    tr .table_id {
+        text-align: center;
+        width: 70px;
+    }
+
+    tr .image_show {
+        text-align: center;
+        width: 100px;
+    }
+
+    tr .is_actived {
+        text-align: center;
+        width: 60px;
+    }
+
+    tr .type {
+        text-align: center;
+        width: 60px;
+    }
+
+    tr .operate {
+        width: 215px;
+    }
+
+    .text_over_flow td {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    table {
+        table-layout: fixed;
+    }
+
+    .mySearch {
+        width: 250px;
+        margin-left: 25px;
+        margin-top: 5px;
+        float: left;
+    }
+
+    .mySearch2 {
+        padding: 10px 20px;
+        float: left;
+    }
+
+    .myBreadcrumb {
+        margin-left: 250px;
+        margin-top: -20px;
+    }
+
+    .function_btn {
+        margin-right: 25px;
+        float: right;
+    }
+
+    .edit_btn {
+        float: left;
+    }
+
+    .edit_btn ul li {
+        display: inline-block;
+    }
+
+    .edit_btn ul li button span {
+        margin-right: 3px;
+    }
+
+    .content {
+        margin-top: 5px;
+        height: 100vh;
+        overflow: scroll;
+        overflow-x: auto;
+    }
+
+    #pageMain {
+        border: none;
+        margin-left: 250px;
+        margin-top: -20px;
+    }
+
+    .notEmpty {
+        height: 28px;
+        margin-left: 20px;
+        margin-top: 6px;
+        margin-right: -15px;
+        text-align: right;
+        overflow: hidden;
+        float: left;
+        color: red;
+    }
+
+    .Empty {
+        height: 28px;
+        margin-left: 20px;
+        margin-top: 6px;
+        margin-right: -15px;
+        text-align: right;
+        overflow: hidden;
+        visibility: hidden;
+        float: left;
+    }
+    .previewImgDiv{
+        width: 280px;
+    }
+    .previewImgDiv>img{
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+    .previewImgDiv>.text-info{
+        text-align: center;
+    }
+
+    .inputAreaTitle { /*添加或更新数据区的标题*/
+        width: 80px;
+        height: 28px;
+        text-align: right;
+        margin-right: 8px;
+        line-height: 28px;
+        overflow: hidden;
+        float: left;
+    }
+
+    .inputArea { /*添加或更新数据，输入框*/
+        float: left;
+        width: 300px;
+        height: 28px;
+    }
+
+    .inputArea2 { /*添加或更新数据，输入框*/
+        float: left;
+        width: 400px;
+        height: 32px;
+    }
+
+    .inputAreaError { /*添加或更新数据时，输入错误警告*/
+        color: crimson;
+        margin-left: 10px;
+        height: 28px;
+        width: 50px;
+        line-height: 28px;
+        overflow: hidden;
+    }
+
+    .errorTextField {
+        border-color: crimson;
+        border-top-color: crimson;
+        border-right-color: crimson;
+        border-bottom-color: crimson;
+        border-left-color: crimson;
+        outline: 0;
+        outline-width: 0px;
+        outline-style: none;
+        outline-color: -moz-use-text-color;
+        box-shadow: inset 0 1px 1px #FF4242, 0 0 8px #FF4242;
+    }
+
+    /*.table {*/
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+    /*text-overflow: ellipsis;*/
+    /*}*/
+    .table tbody tr td {
+        vertical-align: middle;
+
+    }
+
+    .errorInfoModal {
+        top: -50px;
+        background: #2b819c;
+        border-bottom-left-radius: 6px;
+        border-bottom-right-radius: 6px;
+        width: 500px;
+        height: 50px;
+        line-height: 50px;
+        position: fixed;
+        left: 50%;
+        opacity: 0.8;
+        text-align: center;
+        z-index: 1000000;
+        transform: translate(-50%, 0%);
+    }
+
+    .errorInfoModal #errorInfo {
+        font-size: 18px;
+        color: #f9f9f9;
+    }
+
+    .table tbody tr {
+        height: 10px;
+    }
+
+    #course_tag_active {
+        margin-top: 5px;
+    }
+}

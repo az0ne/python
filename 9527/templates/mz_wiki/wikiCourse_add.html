@@ -1,0 +1,323 @@
+{% extends "index.html" %}
+{% block pager %}
+{% load  staticfiles %}
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10 text-info" id="title">
+            {% ifequal action "add" %}
+            <h3>新增WIKI课程</h3>
+            <input id="action" form="wikiCourse_form" type="hidden" name="action" value="add">
+            {% endifequal %}
+            {% ifequal action "edit" %}
+             <h3>编辑WIKI课程</h3>
+            <input id="action" form="wikiCourse_form" type="hidden" name="action" value="edit">
+            {% endifequal %}
+            {% ifequal action "show" %}
+             <h3>查看WIKI课程</h3>
+            <input form="wikiCourse_form" type="hidden" name="action" value="show">
+            {% endifequal %}
+        </div>
+
+        {% ifnotequal action 'show' %}
+        <div class="col-md-8">
+            <form class="form-horizontal" role="form" id="wikiCourse_form" action="/wiki/wikiCourse/save/" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ course.id }}">
+                <input id="course_input" type="hidden" name="course_id" class="form-control" value="{{ course.course_id }}">
+                <div class="form-group">
+
+                     <div class="row">
+                        <div class="col-sm-5 col-md-3 col-md-offset-1">
+                             <label for="course_img">选择课程图片:</label>
+                            <a >
+                                <img id="img_course" src="{{ MEDIA_URL }}{{ course.img_url }}" alt="上传图片大小：36 * 36" class="img-rounded previewImg" style="width:72px;height:72px; {% ifequal action 'add' %}display:none{% endifequal %}">
+                                <input type="file" id="course_img" name="img_url" onchange="changeImage()" style="margin-top: 8px">
+                            </a>
+                        </div>
+                         <div class="text-danger col-md-10 col-md-offset-1" style="margin-top: 8px"><span>图片尺寸（36*36）&nbsp;上传图片尺寸为:</span><span class="imgWidth">0</span><span>x</span><span class="imgHeight">0</span></div>
+                    </div>
+                    <input type="hidden" value="{{ course.img_url }}" name="old_image">
+                </div>
+                <div class="form-group">
+                      <label for="img_title" class="col-sm-2  control-label">图片标题：</label>
+                    <div class="col-sm-10  col-md-6">
+                        <input id="img_title" type="text" name="img_title" class="form-control" value="{{ course.img_title }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="wikiCourseType_select" class="col-sm-2 control-label">课程分类：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <select class="form-control" id="wikiCourseType_select" name="wikiCourseType">
+                            <option value=0>请选择</option>
+                            {% for type in types %}
+                                <option value="{{ type.id }}" {% ifequal type.id course.type_id %}selected{% endifequal %}>{{ type.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="course_input" class="col-sm-2  control-label">小课程ID：</label>
+                    <div class="col-sm-10  col-md-6">
+                        <input id="course_input" type="number" name="course_id" class="form-control"
+                               value="{{ course.course_id }}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="course_select1" class="col-sm-2  control-label">推荐课程1：</label>
+                    <div class="col-sm-10  col-md-6">
+                        <select class="form-control" id="course_select1" name="recommend_course_id1">
+                            <option value="">请选择</option>
+                            {% for c in active_courses %}<option value="{{ c.id }}"{% if course.recommend_course_id1 == c.id %} selected{% endif %}>{{ c.id }}: {{ c.name }}</option>{% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="course_select2" class="col-sm-2  control-label">推荐课程2：</label>
+                    <div class="col-sm-10  col-md-6">
+                        <select class="form-control" id="course_select2" name="recommend_course_id2">
+                            <option value="">请选择</option>
+                            {% for c in active_courses %}<option value="{{ c.id }}"{% if course.recommend_course_id2 == c.id %} selected{% endif %}>{{ c.id }}: {{ c.name }}</option>{% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="course_select3" class="col-sm-2  control-label">推荐课程3：</label>
+                    <div class="col-sm-10  col-md-6">
+                        <select class="form-control" id="course_select3" name="recommend_course_id3">
+                            <option value="">请选择</option>
+                            {% for c in active_courses %}<option value="{{ c.id }}"{% if course.recommend_course_id3 == c.id %} selected{% endif %}>{{ c.id }}: {{ c.name }}</option>{% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="course_select4" class="col-sm-2  control-label">推荐课程4：</label>
+                    <div class="col-sm-10  col-md-6">
+                        <select class="form-control" id="course_select4" name="recommend_course_id4">
+                            <option value="">请选择</option>
+                            {% for c in active_courses %}<option value="{{ c.id }}"{% if course.recommend_course_id4 == c.id %} selected{% endif %}>{{ c.id }}: {{ c.name }}</option>{% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="wikiCourseName" class="col-sm-2 control-label">课程名称：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <input type="text" class="form-control" name="name" id="wikiCourseName" value="{{ course.name }}" placeholder="请输入课程名称" required>
+                    </div>
+                </div>
+                  <div class="form-group">
+                    <label for="wikiCourseShortName" class="col-sm-2 control-label">课程简称：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <input id="short_name" type="text" class="form-control" name="short_name" id="wikiCourseShortName" value="{{ course.short_name }}" placeholder="请输入课程简称" required>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="wikiCourseInfo" class="col-sm-2 control-label">课程介绍：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <textarea id="info" type="text" rows="5" class="form-control" name="info" id="wikiCourseInfo" placeholder="请输入课程介绍" required>{{ course.info }}</textarea>
+                    </div>
+                  </div>
+                 <div class="form-group">
+                    <label for="wikiCourseIndex" class="col-sm-2 control-label">顺序：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <input type="text" class="form-control" name="index" id="wikiCourseIndex" value="{% ifequal action 'add'%}999{% else %}{{ course.index }}{% endifequal %}" placeholder="请输入课程顺序" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                     <label class="col-sm-2 control-label">是否显示在首页：</label>
+                    <div class="col-sm-10 col-md-6 ">
+                        <label class="checkbox-inline">
+                          <input type="radio" name="is_homepage" value="0" checked> 否
+                        </label>
+                        <label class="checkbox-inline">
+                          <input type="radio" name="is_homepage" value="1" {% ifequal course.is_homepage  1 %}checked{% endifequal %}>是
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" class="btn btn-default" onclick="checkform()">提交</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        {% endifnotequal %}
+
+        {% ifequal action 'show' %}
+        <div class="col-md-4">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>课程图标：</td>
+                        <td><img id="wiki_course_img" src="{{ MEDIA_URL }}{{ course.img_url }}" alt="上传图片大小：36 * 36" class="img-rounded previewImg" style="width: 36px;height:36px"></td>
+                    </tr>
+                    <tr>
+                        <td>图片标题：</td>
+                        <td>{{ course.img_title }}</td>
+                    </tr>
+                    <tr>
+                        <td>课程分类：</td>
+                        {% for type in types %}
+                        {% ifequal type.id course.type_id %}
+                        <td>{{ type.name }}</td>
+                        {% endifequal %}
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td>课程全称：</td>
+                        <td>{{ course.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>课程简称：</td>
+                        <td>{{ course.short_name }}</td>
+                    </tr>
+                     <tr>
+                        <td>课程介绍：</td>
+                        <td><textarea class="form-control" rows="auto" id="course_info">{{ course.info }}</textarea></td>
+                    </tr>
+                    <tr>
+                        <td>小课程ID：</td>
+                        <td>{{ course.course_id }}</td>
+                    </tr>
+                    <tr>
+                        <td>是否显示在首页：</td>
+                        <td>{% ifequal course.is_homepage 1 %}是{% else%}否{% endifequal %}</td>
+                    </tr>
+                     <tr>
+                        <td>顺序：</td>
+                        <td>{{ course.index }}</td>
+                    </tr>
+                    <tr>
+                        <td>SEO标题：</td>
+                        <td>{{ seo.seo_title }}</td>
+                    </tr>
+                    <tr>
+                        <td>SEO关键字：</td>
+                        <td>{{ seo.seo_keywords }}</td>
+                    </tr>
+                    <tr>
+                        <td>SEO描述：</td>
+                        <td><textarea class="form-control" rows="4" id="seodcpt">{{ seo.seo_description}}</textarea></td>
+                    </tr>
+                </tbody>
+            </table>
+             <hr/>
+        </div>
+
+        {% endifequal %}
+    </div>
+</div>
+
+<script>
+    $().ready(function() {
+         getImgSize();
+         $("#wikiCourse_form").validate({
+              rules: {
+                  wikiCourseType: {
+                      required: true,
+                      min:1
+                  },
+                   img_title: {
+                      required: true,
+                  },
+                  course_id: {
+                      required: false,
+                  },
+                  name: {
+                      required: true,
+                  },
+                  short_name: {
+                      required: true,
+                  },
+                  info: {
+                      required: true,
+                  },
+                  index: {
+                      required: true,
+                      min:0,
+                      max:999
+                  },
+              },
+              messages: {
+                  wikiCourseType:"请选择所属课程分类",
+                  img_title: {
+                      required: "请输入图片标题",
+                  },
+                 course_id: {
+                      required: "请输入小课程ID",
+                  },
+                  name: {
+                      required: "请输入课程名称",
+                  },
+                 short_name: {
+                      required: "请输入课程简称",
+                  },
+                 info: {
+                      required: "请输入课程介绍",
+                  },
+                  index: "请输入课程顺序(0-999)",
+
+              }
+          })
+    });
+
+
+    //图片预览
+function changeImage() {
+    $('.previewImg').attr('src', window.URL.createObjectURL($('#course_img')[0].files[0]));
+    document.getElementById('img_course').style.display="inline-block";
+    getImgSize();
+}
+
+function getImgSize() {
+
+    var img = new Image();
+    img.src = $('.previewImg').attr('src');
+    img.onload = function () {  // 等待图片加载完后，才能获取到图片的信息
+        $('.imgWidth').text(img.width);
+        $('.imgHeight').text(img.height);
+    }
+}
+
+//判断图片大小
+function check_img(){
+     var width = $('.imgWidth').text();
+     var height = $('.imgHeight').text();
+     if (width == 36&&height == 36){
+        $("#wikiCourse_form").submit();
+    }else {
+        alert("图片正确尺寸（36*36）,请确认图片尺寸！");
+        return false;
+    }
+}
+
+
+function checkform(){
+    var short_name =$("#short_name").val();
+    var type_id = $('#wikiCourseType_select option:selected').val();
+    if(short_name=="{{ course.short_name}}" && type_id=="{{ course.type_id }}"){
+        check_img();
+    }
+    else{
+         $.ajax({
+            type:'get',
+            url:'/wiki/wikiCourse/isHaveShortName/',
+            data:{'short_name':short_name,'type_id':type_id},
+            dataType:'json',
+            success:function(data){
+                if (data.result.is_have){
+                    alert("该简称已经存在，请重新填写课程简称！");
+                }
+                else{
+                 check_img();
+                }
+            }
+        });
+    }
+
+}
+</script>
+{% endblock %}

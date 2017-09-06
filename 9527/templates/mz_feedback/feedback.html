@@ -1,0 +1,182 @@
+{% extends "pager.html" %}
+{% comment %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户反馈</title>
+    <script type="text/javascript" src="{{ STATIC_URL}}js/jquery.js"></script>
+</head>
+<body>{% endcomment %}
+{% block content %}
+<script type="text/javascript">
+
+    function  onQuery() {
+        var url = "/common/feedback/list/?action=query" + getPage();
+        window.location.href=url;
+    }
+
+    function  searchQuery() {
+        var url = "/common/feedback/list/?action=search&keyword="+$("#keyword_search").val()+"&page_index=1";
+        window.location.href=url;
+    }
+
+    function record_page(id){
+        var url = "{% url 'mz_common:feed_back_record'%}?id={0}".format(id);
+        window.location.href=url;
+    }
+
+
+    function deleteModal(id) {
+        selectDelId=id;
+        $('#deladminusrMessage').text('确定要删除该条反馈信息？');
+        $('#modal_deladminusr').modal('show');
+    }
+
+    function ensureDel() {
+        var id = selectDelId;
+        var url = "/common/feedback/list/?action=delete&id=" + encodeURI(id) + getPage();
+        window.location.href = url;
+    }
+
+    function export_excle(){
+        var url = "{% url 'mz_common:feed_back_export_excle' %}"
+        window.location.href = url;
+    }
+
+    function showBigImage(url) {
+        $('#showOriginImg').attr('src', url);
+        $('#modal_showOriginImg').modal('show');
+    }
+
+
+
+</script>
+    <!-- 搜索 -->
+    <div class="input-group mySearch">
+        <input type="text" id="keyword_search" class="form-control" value="{{ keyword }}" placeholder="输入昵称/类型/内容"/>
+	<span class="input-group-btn">
+        <button type="button" class="btn btn-default" id="btn_search" onclick="searchQuery()">
+            <span class="glyphicon glyphicon-search"></span>
+        </button>
+
+	</span>
+    </div>
+
+    <!-- 扩展功能栏  -->
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="onQuery()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+                <button type="button" id="btn_export" onclick="export_excle()"
+                        class="btn btn-success btn-sm active">
+                    <span class="glyphicon glyphicon-export">导出Excle</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th width="auto">昵称</th>
+                <th width="auto">反馈类型</th>
+                <th width="auto">反馈时间</th>
+                <th width="auto">联系方式</th>
+                <th width="auto">反馈URL</th>
+                <th width="330px;">内容描述</th>
+                <th width="auto">详情图片</th>
+                <th width="auto">记录内容</th>
+                <th width="200px;">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable" class="text_over_flow">
+                {% if feed_back %}
+                    {% for feed in feed_back %}
+                    <tr>
+                        <td title="{{ feed.nick_name|default_if_none:'' }}">
+                            {{ feed.nick_name|default_if_none:'' }}
+                        </td>
+                        <td title="{{ feed.feed_type|default_if_none:'' }}">
+                            {{ feed.feed_type|default_if_none:'' }}
+                        </td>
+                        <td title="{{ feed.publish_date|date:'Y-m-d H:i:s' }}">
+                            {{ feed.publish_date|date:"Y-m-d H:i:s" }}
+                        </td>
+                        <td title="{{ feed.contact|default_if_none:'' }}">
+                            {{ feed.contact|default_if_none:'' }}
+                        </td>
+                        <td title="{{ feed.current_url|default_if_none:'' }}" style="word-break:break-all; ">
+                            {{ feed.current_url|default_if_none:'' }}
+                        </td>
+                        <td title="{{ feed.content|default_if_none:'' }}">
+                            {{ feed.content|default_if_none:'' }}
+                        </td>
+
+                        {% if feed.image_url %}
+                        <td onclick="showBigImage('{{ MEDIA_URL }}{{ feed.image_url }}')" align="center">
+                            <img class="image_url" src="{{ MEDIA_URL }}{{ feed.image_url }}" width="80px;"/>
+                        </td>
+                        {% else %}
+                        <td></td>
+                        {% endif %}
+                        <td title="{{ feed.record|default_if_none:'' }}">
+                            {{ feed.record|default_if_none:'' }}
+                        </td>
+                        <td>
+                            <a href="javascript:void(0)" title="删除" onclick="deleteModal({{ feed.id }})"
+                               class="btn btn-default btn-info btn-sm active" style="margin-right:3px;" role="button">
+                                <i class="glyphicon glyphicon-trash" style="margin-right: 3px;"></i>删除
+                            </a>
+
+                            <a href="javascript:void(0)" title="记录" onclick="record_page({{feed.id}})"
+                               class="btn btn-default btn-info btn-sm active" style="margin-right:3px;" role="button">
+                                <i class="glyphicon glyphicon-edit" style="margin-right: 3px;"></i>记录
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="8">查询到0条数据！</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+
+<!-- 删除警示框  -->
+    <div class="modal fade" id="modal_deladminusr" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_delCareerAdLab">
+                        警告提示</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="deladminusrMessage"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureDel()" id="btn_ensureDel">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--显示原始图片-->
+    <div class="modal fade" id="modal_showOriginImg">
+        <div class="modal-dialog" style="width: 60%;">
+            <img id="showOriginImg" src="" width="100%" height="auto"/>
+        </div>
+    </div>
+
+{% endblock %}
+

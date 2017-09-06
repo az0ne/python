@@ -1,0 +1,187 @@
+{% extends "pager.html" %}
+
+{% block content %}
+    <script type="text/javascript">
+        function onQuery() {
+            var url = "{% url 'mz_wechat:message_list' %}?action=query" + getPage();
+            window.location.href = url;
+        }
+
+        function del_rules(id, rules_type, title) {
+            $('#btn_ensureDel_rules').bind('click', function() { ensureDel_rules(id); });
+            $('#del_rules_Message').text('确定要删除公众号"'+ rules_type +'"规则：' + title + ' 吗？');
+            $('#modal_del_rules').modal('show');
+        }
+        function ensureDel_rules(id) {
+            var url = "{% url 'mz_wechat:message_list' %}?action=delete&id=" + encodeURI(id) + getPage();
+            window.location.href = url;
+        }
+
+        function edit_rules(id) {
+            var url = "/wechat/message/options/?action=edit&id=" + encodeURI(id) + getPage();
+            window.location.href = url;
+        }
+        function show_rules(id) {
+            var url = "/wechat/message/options/?action=show&id=" + encodeURI(id);
+            window.location.href = url;
+        }
+
+        function add_rules() {
+
+            var url = "/wechat/message/options/?action=add";
+            window.location.href = url;
+        }
+        function showBigImage(url) {
+            $('#showOriginImg').attr('src', url);
+            $('#modal_showOriginImg').modal('show');
+        }
+        function keyword_search() {
+            var keyword = encodeURIComponent($('#txt_search').val());
+            var url = "{% url 'mz_wechat:message_list' %}?action=search&keyword=" + keyword+"&page_index=1";
+            window.location.href = url;
+        }
+
+        function status_change(el, ad_id) {
+            var status = $(el).val();
+
+            $.ajax({
+                url: '',
+                data: {'is_actived': status, 'ad_id': ad_id},
+                dataType: 'json',
+                type: 'POST',
+                beforeSend: function (XHR) {
+                    layer.load();
+                },
+                success: function (data) {
+                    layer.closeAll('loading');
+                    if (data.success) {
+                        layer.msg('修改成功', {time: 1000, icon: 6});
+                    } else {
+                        layer.msg('修改失败，请重试。', {time: 1000, icon: 5});
+                    }
+                },
+                error: function () {
+                    layer.closeAll('loading');
+                    layer.msg('服务器异常', {time: 1000, icon: 5});
+                }
+            });
+        }
+
+    </script>
+    <!--搜索框-->
+    <div class="input-group mySearch">
+        <input type="text" id="txt_search" class="form-control" value="{{ img_title }}" placeholder="输入图片描述的关键字"/>
+	<span class="input-group-btn">
+						<button type="button" class="btn btn-default" id="btn_search" onclick="keyword_search()">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+	</span>
+    </div>
+    <!-- 扩展功能栏-->
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="onQuery()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+            <li style="float: right;margin-right: 5px">
+                <button type="button" id="btn_addCareerAd" onclick="add_rules()"
+                        class="btn btn-default btn-info btn-sm active">
+                    <span class="glyphicon glyphicon-plus">新增</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <!--刪除首页标题警示框-->
+    <div class="modal fade" id="modal_del_rules" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_delCareerAdLab">
+                        删除公众号规则</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="del_rules_Message"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" id="btn_ensureDel_rules">
+                        确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--显示原始图片-->
+    <div class="modal fade" id="modal_showOriginImg">
+        <div class="modal-dialog" style="width: 60%;">
+            <img id="showOriginImg" src="" width="100%" height="auto"/>
+        </div>
+    </div>
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th width="80px" style="text-align: center">ID</th>
+                <th width="100px" style="text-align: center">规则类型</th>
+                <th width="200PX">关键字</th>
+                <th width="80px">匹配类型</th>
+                <th width="80px">回复类型</th>
+                <th width="auto;">内容</th>
+                <th width="150px;">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if rules_list %}
+                {% for rules in rules_list %}
+                    <tr class="text_over_flow">
+                        <td align="center">
+                            {{ rules.id }}
+                        </td>
+                        <td align="center">
+                            {{ rules.message_type_name }}
+                        </td>
+                        <td align="center" title="{{ rules.key }}">
+                            {{ rules.key }}
+                        </td>
+                        <td>
+                            {{ rules.match_type_name }}
+                        </td>
+                        <td>
+                            {{ rules.reply_type_name }}
+                        </td>
+                        <td title="{{ rules.content }}">
+                            {{ rules.content }}
+                        </td>
+                        <td data-id="{{ ad.id }}">
+                            <a href="javascript:void(0);" title="查看"
+                                                         onclick="show_rules({{ rules.id }})"
+                                                         class="btn btn-default btn-info btn-sm active"
+                                                         style="margin-right:3px;" role="button"><i
+                                class="glyphicon glyphicon-search" style="margin-right:3px;"></i>查看</a>
+
+{#                            <a href="javascript:void(0);" title="编辑" onclick="edit_rules({{ rules.id }} )"#}
+{#                                class="btn btn-default btn-success btn-sm  active"#}
+{#                                style="margin-right:3px;" role="button"><i class="glyphicon glyphicon-edit"#}
+{#                                                                           style="margin-right:3px;"></i>编辑</a>#}
+                            <a href="javascript:void(0);" title="删除"
+                               onclick="del_rules({{ rules.id }}, '{{ rules.message_type_name }}','{{ rules.key }}')"
+                               class="btn btn-default btn-danger btn-sm active" style="margin-right:3px;" role="button"><i
+                                    class="glyphicon glyphicon-trash" style="margin-right: 3px;"></i>删除</a></td>
+                    </tr>
+                {% endfor %}
+
+            {% else %}
+                <tr>
+                    <td colspan="7">查询到0条数据！</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

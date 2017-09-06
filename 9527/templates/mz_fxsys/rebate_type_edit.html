@@ -1,0 +1,104 @@
+{% extends "index.html" %}
+{% block pager %}
+    {% load  staticfiles %}
+    <div class="container-fluid add_or_edit_order">
+        <div class="row">
+            <div class="col-md-8" id="titleart">
+                <h2 class="text-info">{% if action == 'add' %}添加奖学金返点类型{% else %}修改{{ rebate_type.name }}
+                    的奖学金返点类型信息{% endif %}</h2>
+                <hr>
+            </div>
+            <div class="col-md-8">
+                <form id="rebate_type" action="
+
+
+                        {% if action == 'add' %}{% url 'mz_fxsys:rebate_type_add' %}{% else %}{% url 'mz_fxsys:rebate_type_edit' rebate_type.id %}{% endif %}"
+                      method="post"
+                      enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group" id="name">
+                        <span style="color: red;margin-left: -8px;">*</span>
+                        <label for="rebate_type">奖学金类型名称</label>
+                        <input size="16" type="text" id="name" name="name"
+                               class="form-control"
+                               value="{{ rebate_type.name }}"
+                               placeholder="请输入总收益额">
+                    </div>
+                    <div class="form-group" id="rebate_no">
+                        <span style="color: red;margin-left: -8px;">*</span>
+                        <label for="rebate_type">奖学金返点倍数(0.50:0.5倍)</label>
+                        <input size="16" type="text" id="rebate_no" name="rebate_no"
+                               class="form-control"
+                               value="{{ rebate_type.rebate_no|default_if_none:"0.00" }}"
+                               placeholder="请输入总收益额">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm save" style="display: none">保存</button>
+                    <button type="button" class="btn btn-primary btn-sm edit" style="display: none">修改</button>
+                    <button type="button" class="btn btn-default btn-sm goback">返回</button>
+                </form>
+                <hr>
+                <div class="form-group">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript"
+            src="/static/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.validate.js"></script>
+    <script type="application/javascript">
+        var goback = $('.goback'), edit = $('.edit'), save = $('.save'), order_No = $('#order_No'),
+                form_control = $('.form-control'), issued = $('#issued');
+        $(function () {
+            {% if action == "edit" %}
+                edit.show();
+                save.hide();
+            {% else %}
+                edit.hide();
+                save.show();
+            {% endif %}
+            jQuery.validator.addMethod("nonnegative_number", function (value, element) {
+                var length = value.length;
+                var nonnegative_number = /^\d+(\.{0,1}\d+){0,1}$/;
+                return this.optional(element) || (length > 0 && nonnegative_number.test(value));
+            }, "请输入非负数！");
+            // 验证数据合法性
+            $("#rebate_type").validate({
+                rules: {
+                    name: {
+                        required: true,
+                    },
+                    rebate_no: {
+                        required: true,
+                        nonnegative_number: true,
+                    },
+                },
+                messages: {
+                     name: {
+                        required: "名称不能为空",
+                    },
+                    rebate_no: {
+                        required: "总收益额不能为空！",
+                    },
+                }
+            });
+        });
+        // 回退按钮
+        goback.off('click').on('click', function () {
+            history.go(-1)
+        });
+        // 日期课件
+        $("#date").datetimepicker({
+            format: 'yyyy-mm-dd',
+            minView: 'month',
+            language: 'zh-CN',
+            autoclose: true,
+        });
+        // 更改为编辑模式
+        edit.off('click').on('click', function () {
+            edit.hide();
+            save.show();
+        });
+
+    </script>
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends "pager.html" %}
+{% block content %}
+    <!-- 扩展功能栏  -->
+    <div class="function_btn" style="display: inline">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <a style="padding: 5px; height: 30px;" href="{% url 'mz_fxsys:get_rebate_type_list' %}"
+                   class="btn btn-default btn-sm active" role="button">
+                    <i class="glyphicon glyphicon-refresh" style="margin-right: 3px"></i>刷新
+                </a>
+            </li>
+            <li style="float: right;margin-right: 5px">
+                <a role="button" style="padding: 5px; height: 30px;" href="{% url 'mz_fxsys:rebate_type_add' %}"
+                   class="btn btn-default btn-sm btn-sm active">
+                    <i class="glyphicon glyphicon-plus" style="margin-right: 3px"></i>新增
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th width="80px" style="text-align: center;vertical-align: middle;">序号</th>
+                <th width="auto" style="text-align: center;vertical-align: middle; min-width:110px">类型名称</th>
+                <th width="auto" style="text-align: center;vertical-align: middle;min-width:80px">奖学金返利倍数</th>
+                <th width="auto" style="text-align: center;vertical-align: middle;min-width:80px">修改日期</th>
+                <th width="240px" style="vertical-align: middle">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% for rebate_type in rebate_type_list %}
+                <tr class="text_over_flow">
+                    <td align="center">
+                         {{ rebate_type.id }}
+                    </td>
+                    <td align="center" title="{{ rebate_type.name }}">
+                        {{ rebate_type.name }}
+                    </td>
+                    <td align="center" title="{{ rebate_type.rebate_no }}">
+                        {{ rebate_type.rebate_no }}
+                    </td>
+                    <td align="center" title="{{ rebate_type.last_date|date:"Y-m-d H:i:s" }}">
+                        {{ rebate_type.last_date|date:"Y-m-d H:i:s" }}
+                    </td>
+                    <td>
+                        <a href="{% url 'mz_fxsys:rebate_type_edit' rebate_type.id %}" title="编辑"
+                           class="btn btn-default btn-success btn-sm  active"
+                           style="margin-right:3px;" role="button"><i class="glyphicon glyphicon-edit"
+                                                                      style="margin-right: 3px;"></i>编辑</a>
+                        {% if request.session.role.id == 1 %}
+                        <a href="javascript:void(0)" title="删除"
+                           onclick="del({{ rebate_type.id }}, '{{ rebate_type.name }}')"
+                           class="btn btn-default btn-danger btn-sm active" style="margin-right:3px;" role="button"><i
+                                class="glyphicon glyphicon-trash" style="margin-right: 3px;"></i>删除</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% empty %}
+                 <tr>
+                <td colspan="7">查询到0条数据！</td>
+                 </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 删除警示框  -->
+    <div class="modal fade" id="modal_del" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_delarticlemod">
+                        删除警示</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="delMessage"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureDel()"
+                            id="btn_ensureDelarticle">确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var selectDelRowId;
+        function del(id, title) {
+            selectDelRowId = id;
+            $('#delMessage').text('如果已经被应用将会删除失败,确定要删除“' + title + '"吗？');
+            $('#modal_del').modal('show');
+        }
+
+        function ensureDel() {
+            var url = "{% url 'mz_fxsys:rebate_type_del'%}?_id="+selectDelRowId;
+            window.location.href = url;
+        }
+
+    </script>
+{% endblock %}

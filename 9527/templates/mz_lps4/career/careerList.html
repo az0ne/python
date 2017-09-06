@@ -1,0 +1,144 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript">
+
+        function onQuery() {
+            var url = "{% url 'mz_lps4:career_list' %}";
+            window.location.href = url;
+        }
+
+        function reviseCareer(id) {
+            var url = "{% url 'mz_lps4:revise_career' %}?action=revise&id=" + encodeURI(id);
+            window.location.href = url;
+        }
+
+        function addCareer() {
+            var url = "{% url 'mz_lps4:revise_career' %}?action=add";
+            window.location.href = url;
+        }
+
+        function showImg(src) {
+            $("#modal_image_show").attr("src",src);
+            $("#modal_showImage").modal("show");
+        }
+
+    </script>
+
+    <!-- 扩展功能栏  -->
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="onQuery()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+            <li style="float: right;margin-right: 5px">
+                <button type="button" id="btn_addCareerAd" onclick="addCareer()"
+                        class="btn btn-default btn-info btn-sm active">
+                    <span class="glyphicon glyphicon-plus">新增</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th class="table_id">ID</th>
+                <th width="auto">课程名称</th>
+                <th width="auto">课程简称</th>
+                <th width="auto">类型</th>
+                <th width="80px">广告类型</th>
+                <th width="auto">图片</th>
+                <th width="auto">广告跳转URL</th>
+                <th width="auto">广告视频URL</th>
+                <th width="80px">原价</th>
+                <th width="80px">就业价</th>
+                <th width="80px">非就业价</th>
+                <th width="auto">描述</th>
+                <th width="150px;">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable" class="text_over_flow">
+            {% if list %}
+                {% for list in list %}
+                    <tr>
+                        <td align="center" title="{{ list.id }}">
+                            {{ list.id }}
+                        </td>
+                        <td title="{{ list.name|default_if_none:"" }}">
+                            {{ list.name|default_if_none:"" }}
+                        </td>
+                        <td title="{{ list.short_name|default_if_none:"" }}">
+                            {{ list.short_name|default_if_none:"" }}
+                        </td>
+                        <td title="{{ list.type_name|default_if_none:"" }}">
+                            {{ list.type_name|default_if_none:"" }}
+                        </td>
+                        <td title="{{ list.ad_type }}">
+                            {% if list.ad_type %}
+                            {% ifequal list.ad_type 'IMAGE' %}图片{% else %}视频{% endifequal %}
+                             {% else %}
+                                <span class="text-danger">未选择</span>
+                            {% endif %}
+                        </td>
+{#                        <td title="{{ list.ad_url|default_if_none:"" }}">#}
+{#                            {{ list.ad_url|default_if_none:"" }}#}
+{#                        </td>#}
+                        {% if list.ad_url %}
+                        <td onclick="showImg('{{ MEDIA_URL }}{{ list.ad_url }}')" align="center">
+                            <img src="{{ MEDIA_URL }}{{ list.ad_url }}" height="50px">
+                        </td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+
+                        <td title="{{ list.url|default_if_none:"" }}">
+                            {{ list.url|default_if_none:"" }}
+                        </td>
+                        <td title="{{ list.video_url|default_if_none:"" }}">
+                            {{ list.video_url|default_if_none:"" }}
+                        </td>
+                        <td title="{{ list.old_price }}">
+                            {{ list.old_price |default_if_none:""}}
+                        </td>
+                        <td title="{{ list.price }}">
+                            {{ list.price|default_if_none:"" }}
+                        </td>
+                        <td title="{{ list.jobless_price }}">
+                            {{ list.jobless_price|default_if_none:"" }}
+                        </td>
+                        <td title="{{ list.description }}">
+                            {{ list.description|default_if_none:"" }}
+                        </td>
+
+                        <td data-id="{{ list.id }}">
+                            <a href="javascript:void(0)" title="修改课程信息" onclick="reviseCareer({{ list.id }})"
+                               class="btn btn-default btn-info btn-sm active" style="margin-right:3px;" role="button">
+                                <i class="glyphicon glyphicon-search" style="margin-right: 3px;"></i>修改课程信息
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            {% else %}
+                <label>查询到0条数据！</label>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- 图片显示框  -->
+    <div class="modal fade" id="modal_showImage" role="dialog">
+        <div class="modal-dialog" style="width: 60%;">
+            <img id="modal_image_show" src="" width="100%" height="auto"/>
+        </div>
+    </div>
+
+{% endblock %}
+{% comment %}
+</body>
+</html>{% endcomment %}

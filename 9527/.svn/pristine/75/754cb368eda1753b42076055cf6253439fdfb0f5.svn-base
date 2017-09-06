@@ -1,0 +1,80 @@
+{% extends "index.html" %}
+{% block pager %}
+{% load  staticfiles %}
+
+<script>
+    $(document).ready(function(){
+        $(".a_del").click(function(){
+        window.course_id=$(this).attr('name');
+        $('#delMessage').text('确定要删除该课程吗？该课程下所有内容将被删除！');
+        $('#modal_del').modal('show');
+        });
+    });
+
+    function ensureDel() {
+        var id = window.course_id
+        var url = "/wiki/wikiCourse/list/?action=delete&id="+id;
+        window.location.href = url;
+    }
+</script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 col-lg-2 col-sm-3">
+            <h3>wiki课程库</h3>
+        </div>
+        <div class="col-md-3 col-lg-2 col-sm-4 col-md-offset-4 col-sm-offset-2">
+            <a  href="/wiki/wikiCourse/edit/?action=add">
+                <h3>添加课程</h3>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for ret in result %}
+        <div class="col-md-10 col-sm-10 col-lg-10 text-left">
+              <hr/>
+            <h4><span class="glyphicon glyphicon-th-list">&nbsp;{{ ret.type }}</span></h4>
+        </div>
+        {% for course in ret.course %}
+        <div class="col-md-6 col-sm-6 col-lg-6 text-center" style="background-color:#DCDCDC;margin:10px;">
+            <h5>
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-7 "> <a href="/wiki/wikiCourse/wikiItem_list/?action=query&course_id={{ course.id }}">{{ course.name }}</a></div>
+                    <div class="col-lg-1 col-md-1 col-sm-1"><a href="/wiki/wikiCourse/edit/?action=show&id={{ course.id }}" data-toggle="tooltip"title="查看课程"><span class="glyphicon glyphicon-th"></span></a></div>
+                    <div class="col-lg-1 col-md-1 col-sm-1"><a href="/wiki/wikiCourse/edit/?action=edit&id={{ course.id }}" data-toggle="tooltip"title="修改课程"><span class="glyphicon glyphicon-edit"></span></a></div>
+                    <div class="col-lg-1 col-md-1 col-sm-1"><a href="/wiki/wikiCourse/wikiSEO_edit/?action=edit&obj_id={{ course.id }}&course_id={{ course.id }}&obj_type=WIKICOURSE" data-toggle="tooltip"title="编辑课程SEO信息"><span class="glyphicon glyphicon-leaf"></span></a></div>
+                    <div class="col-lg-1 col-md-1 col-sm-1"><a class="a_del" name="{{ course.id }}" href="#" data-toggle="tooltip"title="删除该分类"><span class="glyphicon glyphicon-remove"></span></a></div>
+                    <!--<div class="col-md-1"><a href="/wiki/wikiCourse/list/?action=delete&id={{ course.id }}" data-toggle="tooltip"title="删除课程"><span class="glyphicon glyphicon-remove"></span></a></div>-->
+                </div>
+
+            </h5>
+
+        </div>
+        {% endfor %}
+       {% endfor %}
+    </div>
+</div>
+
+<!-- 删除警示框  -->
+    <div class="modal fade" id="modal_del" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_del">
+                        删除警示</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="delMessage"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureDel()" id="btn_ensureDel">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,197 @@
+{% extends "pager.html" %}
+{% block content %}
+<script type="text/javascript">
+
+    function  onQuery() {
+        var url = "{% url 'lps4career:student_list' %}?action=query" + getPage();
+        window.location.href=url;
+    }
+
+{#    function editarticle(id) {#}
+{#        var urlkeyword = $("#txt_search").val();#}
+{#        var url = "{% url 'mz_course:courseedit' %}?action=edit&id=" + encodeURI(id) + "&keyword=" + encodeURI(urlkeyword) + getPage();#}
+{#        window.location.href = url;#}
+{#    }#}
+
+    function reviseStudent(id) {
+        var url = "{% url 'lps4career:student_list' %}?action=revise&studentid=" + encodeURI(id);
+        window.location.href = url;
+    }
+
+    function reviseCareer(id) {
+        var url = "{% url 'lps4career:student_list' %}?action=reviseCareer&studentid=" + encodeURI(id);
+        window.location.href = url;
+    }
+
+    function addStudent() {
+        var url = "{% url 'lps4career:student_list' %}?action=add" + getPage();
+        window.location.href = url;
+    }
+
+    function searchData(){
+        var careername = $("#careerName").val();
+        var username = $("#userName").val();
+        var url = "{% url 'lps4career:student_list' %}?action=search&careerName=" + careername + "&userName=" + username;
+        window.location.href = url;
+    }
+
+    function delStudent(id, carname,title) {
+            selectDelRowId = id;
+            $('#delStudentMessage').text('确定要删除“'+ carname + '”专业“' + title + '”学员信息吗？');
+            $('#modal_delCareerCatagory').modal('show');
+        }
+
+    function deleteStudent(){
+        var id = selectDelRowId;
+        var url = "{% url 'lps4career:student_list' %}?action=delete&studentid=" + encodeURI(id) + getPage();
+        window.location.href = url;
+    }
+
+</script>
+    <!-- 搜索 -->
+    <div class="mySearch2">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="careerName">职业课程名称：</label>
+                <input type="text" name="careerName" id="careerName" class="form-control" {% if careerName %} value="{{ careerName }}"{% endif %} placeholder="职业名称">
+            </div>
+            <div class="form-group">
+                <label for="userName">用户账号/昵称：</label>
+                <input type="text" name="userName" id="userName" class="form-control" {% if userName %} value="{{ userName }}"{% endif %} placeholder="用户账号/昵称">
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-default" onclick="searchData()">查询</button>
+                <a href="{% url 'lps4career:student_list' %}" class="btn btn-default">清空查询</a>
+            </div>
+        </form>
+    </div>
+    <input type="hidden" id="checkhid" value="">
+    <!-- 扩展功能栏  -->
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="onQuery()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+            <li style="float: right;margin-right: 5px">
+                <button type="button" id="btn_addnewarticle" onclick="addStudent()"
+                        class="btn btn-default btn-info btn-sm active">
+                    <span class="glyphicon glyphicon-plus">新增</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+        <!--刪除学员信息警示框-->
+    <div class="modal fade" id="modal_delCareerCatagory" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000">
+                        删除学员信息</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="delStudentMessage"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="deleteStudent()"
+                            id="btn_ensureDelCareerCatagory">确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% if error %}
+        <h2>{{ error }}</h2>
+    {% else %}
+        <div>
+            <table class="table table-striped table-responsive table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th width="80px">ID</th>
+                    <th width="auto">职业课程名称</th>
+                    <th width="auto">用户账号</th>
+                    <th width="120px">用户昵称</th>
+                    <th width="120px">任课教师</th>
+                    <th width="auto">入学时间</th>
+                    <th width="auto">毕业时间</th>
+                    <th width="100px">类型</th>
+                    <th width="80px">是否休学</th>
+                    <th width="auto">休学开始时间</th>
+                    <th width="auto">休学结束时间</th>
+                    <th width="250px">操作</th>
+                </tr>
+                </thead>
+                <tbody id="dataTable">
+                {% if studentlist %}
+                    {% for studentlist in studentlist %}
+                        <tr class="text_over_flow">
+                            <td>
+                                {{ studentlist.id }}
+                            </td>
+                            <td>
+                                {{ studentlist.name }}
+                            </td>
+                            <td>
+                                {{ studentlist.username }}
+                            </td>
+                            <td>
+                                {{ studentlist.nick_name }}
+                            </td>
+                            <td>
+                                {{ studentlist.thname }}
+                            </td>
+                            <td>
+                                {{ studentlist.start_time|default_if_none:""|date:"Y-m-d H:i:s" }}
+                            </td>
+                            <td>
+                                {{ studentlist.end_time|default_if_none:""|date:"Y-m-d H:i:s" }}
+                            </td>
+                            <td id="type1">
+                                {{ studentlist.type }}
+                            </td>
+                            <td id="stop1">
+                                {{ studentlist.is_stop }}
+                            </td>
+                            <td>
+                                {{ studentlist.stop_start_time|default_if_none:""|date:"Y-m-d H:i:s" }}
+                            </td>
+                            <td>
+                                {{ studentlist.stop_end_time|default_if_none:""|date:"Y-m-d H:i:s" }}
+                            </td>
+                            <td data-id="{{ studentlist.id }}">
+                                <a href="javascript:void(0)" title="修改"
+                                   onclick="reviseStudent({{ studentlist.id }})"
+                                   class="btn btn-default btn-info btn-sm active"
+                                   style="margin-right:3px;" role="button"><i
+                                        class="glyphicon glyphicon-search" style="margin-right: 3px;"></i>修改</a>
+                                <a href="javascript:void(0)" title="修改专业"
+                                   onclick="reviseCareer({{ studentlist.id }})"
+                                   class="btn btn-default btn-info btn-sm active"
+                                   style="margin-right:3px;" role="button"><i
+                                        class="glyphicon glyphicon-search" style="margin-right: 3px;"></i>修改专业</a>
+                                <a
+                                    href="javascript:void(0)" title="删除" onclick="delStudent({{ studentlist.id }}, '{{ studentlist.name }}' ,'{{ studentlist.nick_name }}')"
+                                    class="btn btn-default btn-success btn-sm  active"
+                                    style="margin-right:3px;" role="button"><i class="glyphicon glyphicon-trash"
+                                                                               style="margin-right: 3px;"></i>删除</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                {% else %}
+                    <tr>
+                        <td colspan="6">查询到0条数据！</td>
+                    </tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+{% endblock %}

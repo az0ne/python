@@ -1,0 +1,160 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript">
+        /*-------------------------------------------------------END--------------------------------------------------------*/
+        // 提交form表单时，检查有无数据不合法的错误
+        function formDataCommitValidate() {
+            var result = {};
+            result.code = 0;
+            result.errorInfo = '';
+            GOLBAL_ERROR = [];  //  初始化验证数据合法性的全局变量
+            {#            textBoxValidate(".txt_imageTitle");#}
+            {#            imgUploadValidate(".file_imageUrl");#}
+
+            $.each(GOLBAL_ERROR, function (index, items) {
+                result.code = items.status + result.code;
+                if (items.status == -1) {
+                    result.errorInfo = result.errorInfo + items.errorInfo + ' ';
+                }
+            });
+            return result;
+        }
+        function saveObjTagRelation() {
+            var result = formDataCommitValidate()
+            if (result.code == 0) {
+                form_banner.submit();
+            } else {
+                warningPrompt(result.errorInfo);
+            }
+        }
+
+        function editObjTagRelation(id) {
+            var url = "/course/objTagRelation/edit/?action=edit&id=" + encodeURI(id) + "";
+            window.location.href = url;
+        }
+
+        $(function () {
+            {% ifequal action "show" %}
+                $('#objTagRelationTitle').text('查看对象标签关系信息');
+                $('.inputArea').attr('disabled', true);
+            {% endifequal %}
+            {% ifequal action "add" %}
+                $('#objTagRelationTitle').text('添加对象标签关系信息');
+                $('.inputArea').attr('disabled', false);
+            {% endifequal %}
+            {% ifequal action "edit" %}
+                $('#objTagRelationTitle').text('修改对象标签关系信息');
+                $('.inputArea').attr('disabled', false);
+            {% endifequal %}
+
+            get_name('/course/careerCatagory/list/ajax/', '.slt_careerCatagory');
+            get_name('/course/tag/list/ajax/', '.slt_tagName');
+            $('.slt_objectType').get(0).selectedIndex={{ objTagRelation.obj_type }}
+        });
+
+        function get_name(url, fillPosition) {
+            $.getJSON(url, function (data) {
+                var dataList = []
+                $.each(data.result, function (index, items) {
+                    dataList.push('<option value="' + items.id + '">' + items.name + '</option>');
+                });
+                $(fillPosition).children().remove();
+                $(fillPosition).append(dataList.toString());
+            });
+        }
+
+        function changeType() {
+            var obj_type = $('.slt_objectType').val();
+            var typeTableRelation = {
+                'ARTICLE': '/home/ajax/articleType/get/',
+                'COURSE': '/ajax/careerCourse/get/',
+                'LESSON': '',
+                'TEACHER': ''
+            };
+            if (obj_type == 0) {
+                $('.slt_objectName').val(0);
+            } else {
+                addObjectNameOption(typeTableRelation[obj_type], '.slt_objectName');
+            }
+
+        }
+
+    </script>
+    <!--首页标题-->
+    <div class="modal-dialog" role="document" style="background-color:#ffffff;width: 100%">
+        <form enctype="multipart/form-data" id="form_objTagRelation" method="post"
+              action="/course/objTagRelation/save/">
+            {% csrf_token %}
+            <div class="modal-header active">
+                <h4 class="modal-title" id="objTagRelationTitle">
+                    添加首页标题信息</h4>
+                <div style="float: right;margin-top: -35px;margin-right: 12px;">
+                    {% ifequal action "show" %}
+                        <button type="button" class="btn btn-info active"
+                                id="btn_saveBanner" onclick="editObjTagRelation({{ objTagRelation.id }})">修改
+                        </button>
+                    {% endifequal %}
+                    {% ifequal action "add" %}
+                        <button type="button" class="btn btn-info active"
+                                id="btn_saveBanner" onclick="saveObjTagRelation()">保存
+                        </button>
+                    {% endifequal %}
+                    {% ifequal action "edit" %}
+                        <button type="button" class="btn btn-info active"
+                                id="btn_saveBanner" onclick="saveObjTagRelation()">保存
+                        </button>
+                    {% endifequal %}
+                </div>
+            </div>
+            <div class="modal-body" style="height: 230px;">
+                <div style="float: left">
+                    {% ifnotequal action "add" %}
+                        <input type="hidden" name="id" value="{{ objTagRelation.id }}">
+                    {% endifnotequal %}
+                    <input type="hidden" name="action" value="{{ action }}">
+                    <input type="hidden" name="page_index" value="{{ page_index }}">
+                    <div class="form-group">
+                        <span class="notEmpty">*</span>
+                        <label class="inputAreaTitle">标签名称:</label>
+                        <select class="inputArea slt_tagName" value="{{ objTagRelation.tag_id }}" name="tag_id">
+                            <option value="0">请选择</option>
+                        </select>
+                        <span class="inputAreaError lbl_tagNameError"></span>
+                    </div>
+                    <div class="form-group">
+                        <span class="notEmpty">*</span>
+                        <label class="inputAreaTitle">专业方向:</label>
+                        <select class="inputArea slt_careerCatagory" value="{{ objTagRelation.careercatagory_id }}"
+                                name="careercatagory_id">
+                            <option value="0">请选择</option>
+                        </select>
+                        <span class="inputAreaError lbl_careerCatagoryError"></span>
+                    </div>
+                    <div class="form-group">
+                        <span class="notEmpty">*</span>
+                        <label class="inputAreaTitle">类型: </label>
+                        <select class="inputArea slt_objectType" onchange="changeType()"
+                                name="obj_type">
+                            <option value="0">请选择</option>
+                            <option value="COURSE">课程</option>
+                            <option value="ARTICLE">文章</option>
+                            <option value="TEACHER">老师</option>
+                            <option value="LESSON">视频</option>
+                        </select>
+                        <span class="inputAreaError lbl_objectTypeError"></span>
+                    </div>
+                    <div class="form-group">
+                        <span class="notEmpty">*</span>
+                        <label class="inputAreaTitle">对象名称:</label>
+                        <select class="inputArea slt_objectName" value="{{ objTagRelation.obj_id }}"
+                                name="obj_id"></select>
+                        <span class="inputAreaError lbl_objectNameError"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer"></div>
+        </form>
+    </div>
+    </div>
+{% endblock %}

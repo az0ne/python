@@ -1,0 +1,166 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    <script type="text/javascript">
+        /*-------------------------------------------------------BEGIN--------------------------------------------------------*/
+        /*---------------提交form表单时，检查有无数据不合法的错误---------------*/
+        function formDataCommitValidate() {
+            var result = {};
+            result.code = 0;
+            result.errorInfo = '';
+            GOLBAL_ERROR = [];  //  初始化验证数据合法性的全局变量
+            var imgSize1 = $('#imgSize1').text();
+            if (imgSize1.indexOf('x') > 0) {
+                var imgWidth1 = imgSize1.split(':')[1].split('x')[0];
+                var imgHeight1 = imgSize1.split(':')[1].split('x')[1];
+            }
+            imgUploadValidate("#file_imageUrl1", '{{ MEDIA_URL }}', 266, 140, imgWidth1, imgHeight1);
+            var imgSize2 = $('#imgSize2').text();
+            if (imgSize1.indexOf('x') > 0) {
+                var imgWidth2 = imgSize2.split(':')[1].split('x')[0];
+                var imgHeight2 = imgSize2.split(':')[1].split('x')[1];
+            }
+            imgUploadValidate("#file_imageUrl2", '{{ MEDIA_URL }}', 266, 140, imgWidth2, imgHeight2);
+            var imgSize3 = $('#imgSize3').text();
+            if (imgSize1.indexOf('x') > 0) {
+                var imgWidth3 = imgSize3.split(':')[1].split('x')[0];
+                var imgHeight3 = imgSize3.split(':')[1].split('x')[1];
+            }
+            imgUploadValidate("#file_imageUrl3", '{{ MEDIA_URL }}', 266, 140, imgWidth3, imgHeight3);
+
+            {% ifequal action "add" %}
+                noZeroNumValidate('.txt_taskId', 11);
+                if (noZeroNumValidate('.txt_taskId', 11) == 0) {
+                    validateUnique('{% url 'ajax:validateUnique_taskId' %}', '.txt_taskId');
+                }
+            {% endifequal %}
+            textBoxValidate('.txt_title', 50);
+
+            $.each(GOLBAL_ERROR, function (index, items) {
+                result.code = items.status + result.code;
+                if (items.status == -1) {
+                    result.errorInfo = result.errorInfo + items.errorInfo + "\r";
+                }
+            });
+            return result;
+        }
+        /*----------------------保存任务描述数据----------------------*/
+        function saveTaskDesc() {
+            var result = formDataCommitValidate()
+            if (result.code == 0) {
+                form_taskDesc.submit();
+            } else {
+                warningPrompt(result.errorInfo);
+            }
+        }
+
+        /*--------------------DOM加载完后执行----------------------*/
+        $(function () {
+            {% ifequal action "add" %}
+                $('#taskDescTitle').text('添加免费任务描述信息');
+            {% endifequal %}
+            {% ifequal action "edit" %}
+                $('#taskDescTitle').text('修改免费任务描述信息');
+                $('.txt_taskId').attr('disabled', true);
+            {% endifequal %}
+            getSize('#file_imageUrl1');
+            getSize('#file_imageUrl2');
+            getSize('#file_imageUrl3');
+        });
+        /*----------------------图片预览----------------------*/
+        function changeImage(current) {
+            var imgfile = window.URL.createObjectURL($(current)[0].files[0]);
+            $(current).parent('.form-group').find('.previewImg').attr('src', imgfile);
+            getSize(current);
+        }
+        function getSize(imgField) {
+            var img = new Image()
+            img.src = $(imgField).parent('.form-group').find('.previewImg').attr('src')
+            img.onload = function () {
+                $(imgField).parent('.form-group').find('.imgSize').text('上传图片尺寸(266*140):' + img.width + 'x' + img.height);
+            }
+        }
+        /*-------------------------------------------------------END--------------------------------------------------------*/
+    </script>
+    <!--任务与相关文章-->
+    <div class="modal-header active bg-success">
+        <h4 class="modal-title" id="taskDescTitle">
+            添加免费任务描述信息</h4>
+    </div>
+    <div style="height: 85vh;overflow: scroll;overflow-x: auto">
+        <div class="container-fluid" style="border-bottom: 1px #ddd solid;padding-top: 10px">
+            <div class="row-fluid">
+                <div class="col-md-8">
+                    <form enctype="multipart/form-data" id="form_taskDesc" method="post"
+                          action="{% url 'mz_course:taskDesc_save' %}">
+                        {% ifnotequal action "add" %}
+                            <input type="hidden" name="id" value="{{ taskDesc.id }}">
+                            <input type="hidden" name="task_id" value="{{ taskDesc.task_id }}">
+                        {% endifnotequal %}
+                        <input type="hidden" name="action" value="{{ action }}">
+                        <input type="hidden" name="operator_id" value="{{ request.session.userid }}">
+                        <input type="hidden" name="old_img1_path" value="{{ taskDesc.img1 }}">
+                        <input type="hidden" name="old_img2_path" value="{{ taskDesc.img2 }}">
+                        <input type="hidden" name="old_img3_path" value="{{ taskDesc.img3 }}">
+                        <div class="form-group">
+                            <div class="previewImgDiv">
+                                <img class="previewImg img-thumbnail" id="previewImg1" alt="上传图片尺寸要求:266*140"
+                                     src="{{ MEDIA_URL }}{{ taskDesc.img1 }}"/>
+                                <div class="text-info"><span class="imgSize" id="imgSize1">上传图片尺寸(266*140)</span></div>
+                            </div>
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label>项目配图1:</label>
+                            <input class="inputArea1 file_imageUrl" name="img1" type="file" accept="image/*"
+                                   id="file_imageUrl1" onchange="changeImage(this)"/>
+                            <span class="inputAreaError"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="previewImgDiv">
+                                <img class="previewImg img-thumbnail" id="previewImg2" alt="上传图片尺寸要求:266*140"
+                                     src="{{ MEDIA_URL }}{{ taskDesc.img2 }}"/>
+                                <div class="text-info"><span class="imgSize" id="imgSize2">上传图片尺寸(266*140)</span></div>
+                            </div>
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label>项目配图2:</label>
+                            <input class="inputArea1 file_imageUrl" name="img2" type="file" accept="image/*"
+                                   id="file_imageUrl2" onchange="changeImage(this)"/>
+                            <span class="inputAreaError"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="previewImgDiv">
+                                <img class="previewImg img-thumbnail" id="previewImg3" alt="上传图片尺寸要求:266*140"
+                                     src="{{ MEDIA_URL }}{{ taskDesc.img3 }}"/>
+                                <div class="text-info"><span class="imgSize" id="imgSize3">上传图片尺寸(266*140)</span></div>
+                            </div>
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label>项目配图3:</label>
+                            <input class="inputArea1 file_imageUrl" name="img3" type="file" accept="image/*"
+                                   id="file_imageUrl3" onchange="changeImage(this)"/>
+                            <span class="inputAreaError"></span>
+                        </div>
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label>任务ID:</label>
+                            <input class="inputArea1 txt_taskId form-control" name="task_id"
+                                   type="text" value="{{ taskDesc.task_id }}"/>
+                            <span class="inputAreaError"></span>
+                        </div>
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label>标题:</label>
+                            <input class="inputArea1 txt_title form-control" name="title" type="text"
+                                   value="{{ taskDesc.title }}"/>
+                            <span class="inputAreaError"></span>
+                        </div>
+                        <div class="form-group">
+                            <a href="javascript:void(0);" onclick="saveTaskDesc()"
+                               role="button" title="保存" class="btn btn-default btn-success btn-sm active">
+                                <span class="glyphicon glyphicon-edit" style="margin-right: 3px"></span>保存</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

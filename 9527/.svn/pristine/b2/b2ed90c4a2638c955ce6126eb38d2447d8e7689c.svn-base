@@ -1,0 +1,94 @@
+{% extends "pager.html" %}
+{% block content %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js" xmlns="http://www.w3.org/1999/html"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    <script type="text/javascript">
+        function onQuery() {
+            var url;
+            url = "{% url 'mz_common:userMeetingCount_list' %}?action=onQuery"+getPage();
+            window.location.href=url
+        }
+        function keyword_search() {
+            var key_word = encodeURIComponent($('#txt_search').val());
+            var url;
+            url = "{% url 'mz_common:userMeetingCount_list' %}?action=search&key_word="+key_word+"&page_index=1";
+            window.location.href=url
+        }
+        function editUserMeetingCount(id) {
+            var url;
+            url = "{% url 'mz_common:userMeetingCount_edit' %}?id="+encodeURI(id);
+            window.location.href=url
+    }
+    </script>
+    <div class="input-group mySearch">
+        <input type="text" id="txt_search" name="txt_search" class="form-control" value="{{ key_word }}"
+               placeholder="输入用户名进行搜索"/>
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-default" id="btn_search" onclick="keyword_search()">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </span>
+    </div>
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="onQuery()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <!--内容-->
+    <div>
+    <table class="table table-striped table-responsive table-bordered table-hover">
+        <thead >
+        <colgroup>
+            <col width="150px">
+            <col width="300px">
+            <col width="200px"/>
+            <col width="100px"/>
+            <col width="100px"/>
+        </colgroup>
+        <tr>
+            <th style="text-align: center;vertical-align: middle " rowspan="2">ID</th>
+            <th style="vertical-align: middle" rowspan="2">专业</th>
+            <th style="text-align: center;vertical-align: middle" rowspan="2">用户帐号</th>
+            <th style="vertical-align: middle" rowspan="2">当前次数</th>
+            <th style="text-align: center;vertical-align: middle" rowspan="2">直播次数</th>
+            <th style="vertical-align: middle">操作</th>
+        </tr>
+        </thead>
+        <tbody id="dataTable">
+        {% if userMeetingCounts %}
+            {% for userMeetingCount in userMeetingCounts %}
+                <tr class="text_over_flow">
+                <td align="center">
+                    {{ userMeetingCount.id }}
+                </td>
+                <td align="center">
+                    {{ userMeetingCount.career_name }}
+                </td>
+                <td align="center">
+                    {{ userMeetingCount.username }}
+                </td>
+                <td align="center">
+                    {{ userMeetingCount.count }}
+                </td>
+                <td align="center">
+                    {{ userMeetingCount.max_count }}
+                </td>
+                <td>
+                    <a href="javascript:void(0)" title="编辑"
+                       onclick="editUserMeetingCount({{ userMeetingCount.id }})"
+                       class="btn btn-default btn-success btn-sm  active"
+                       style="margin-right:3px;" role="button">
+                        <i class="glyphicon glyphicon-edit" style="margin-right: 3px;"></i>修改次数</a>
+                </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+    </table>
+    </div>
+{% endblock %}

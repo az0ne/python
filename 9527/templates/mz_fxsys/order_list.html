@@ -1,0 +1,185 @@
+{% extends "pager.html" %}
+{% block content %}
+    <!-- 搜索 -->
+    <form class="form-inline" action="{% url 'mz_fxsys:get_order' %}" method="get"
+          style="margin-top: 7px;display: inline-block">
+        <input type="hidden" value="search" name="action">
+        <div class="form-group" id="price">
+            <label for="order_price">订单价格</label>
+            <select class="order_price" name="order_price" id="order_price" value="{{ order_price }}">
+                <option value=''>全部</option>
+                <option value='3000'>3000-微课</option>
+                <option value='6999'>6999-非保就业课程</option>
+                <option value='8800'>8800-保就业课程</option>
+                <option value='19800'>19800-线下课程</option>
+            </select>
+        </div>
+        <div class="form-group" id="name">
+            <label for="exampleInputEmail2">用户</label>
+            <input  type="text" id="user_name" class="form-control" name="user_name" placeholder="用户电话/姓名">
+        </div>
+        <div class="form-group" id="date">
+            <label for="date">签单日期</label>
+            <input size="16" type="text" name="start_date" id="datetimeStart" readonly class="form_datetime"
+                   placeholder="起始日期" value="{{ start_date }}">
+            <i style="margin: 0 5px 0 -22px" class="glyphicon glyphicon-remove-circle start_date_clean" title="清空"></i>
+            <span>—</span>
+            <input size="16" type="text" name="end_date" id="datetimeEnd" readonly class="form_datetime"
+                   placeholder="截止日期" value="{{ end_date }}">
+            <i style="margin: 0 5px 0 -22px" class="glyphicon glyphicon-remove-circle end_date_clean" title="清空"></i>
+        </div>
+        <input type="hidden" value="1" name="page_index">
+        <button type="submit" class="btn btn-default">搜索</button>
+    </form>
+    <!-- 扩展功能栏  -->
+    <div class="function_btn" style="display: inline">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <a style="padding: 5px; height: 30px;" href="{% url 'mz_fxsys:get_order' %}"
+                   class="btn btn-default btn-sm active" role="button">
+                    <i class="glyphicon glyphicon-refresh" style="margin-right: 3px"></i>刷新
+                </a>
+            </li>
+            <li style="float: right;margin-right: 5px">
+                <a role="button" style="padding: 5px; height: 30px;" href="{% url 'mz_fxsys:get_order' %}?action=add"
+                   class="btn btn-default btn-sm btn-sm active">
+                    <i class="glyphicon glyphicon-plus" style="margin-right: 3px"></i>新增
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th width="30px" style="text-align: center;vertical-align: middle">ID</th>
+                <th width="100px" style="text-align: center;vertical-align: middle">用户名(推广人)</th>
+                <th width="90px" style="text-align: center;vertical-align: middle">订单编号(推广编号)</th>
+                <th width="70px" style="text-align: center;vertical-align: middle">价格</th>
+                <th width="70px" style="text-align: center;vertical-align: middle">学生姓名(被推荐人)</th>
+                <th width="100px" style="text-align: center;vertical-align: middle">签单时间(推荐时间)</th>
+                <th width="46px" style="vertical-align: middle">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if orders %}
+                {% for order in orders %}
+                    <tr class="text_over_flow">
+                        <td align="center" title="{{ order.id }}">
+                            {{ order.id }}
+                        </td>
+                        <td align="center"
+                            title="{{ order.username }}{% if order.full_name %}:{{ order.full_name }}{% endif %}">
+                            {{ order.username }}{% if order.full_name %}:{{ order.full_name }}{% endif %}
+                        </td>
+                        <td align="center" title="{{ order.order_No|default_if_none:"" }}">
+                            {{ order.order_No|default_if_none:"" }}
+                        </td>
+                        <td align="center" title="{{ order.order_price }}">
+                            {{ order.order_price }}
+                        </td>
+                        <td align="center" title=" {{ order.student_name }}">
+                            {{ order.student_name }}
+                        </td>
+                        <td align="center" title="{{ order.date|date:"Y-m-d H:i:s" }}">
+                            {{ order.date|date:"Y-m-d H:i:s" }}
+                        </td>
+                        <td>
+                            {% if request.session.role.name == '管理员' or request.session.role.name == '运营二部（分销）' %}
+                            <a href="{% url 'mz_fxsys:get_order' %}?id={{ order.id }}&action=edit" title="编辑"
+                               class="btn btn-default btn-success btn-sm  active"
+                               style="margin-right:3px;" role="button"><i class="glyphicon glyphicon-edit"
+                                                                          style="margin-right: 3px;"></i>编辑</a>
+                            <a href="javascript:void(0)" title="删除"
+                               onclick="del({{ order.id }}, '{{ order.order_No }}')"
+                               class="btn btn-default btn-danger btn-sm active" style="margin-right:3px;" role="button"><i
+                                    class="glyphicon glyphicon-trash" style="margin-right: 3px;"></i>删除</a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            {% else %}
+                <tr>
+                    <td colspan="7">查询到0条数据！</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 删除警示框  -->
+    <div class="modal fade" id="modal_del" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_delarticlemod">
+                        删除警示</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="delMessage"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureDel()"
+                            id="btn_ensureDelarticle">确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript"
+            src="/static/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript">
+        var datetimeStart = $('#datetimeStart'), datetimeEnd = $('#datetimeEnd'),
+                start_date_clean = $('.start_date_clean'), end_date_clean = $('.end_date_clean');
+        $(function () {
+            $("#order_price option[value='" + {{ order_price }} +"']").attr("selected", "selected");
+        });
+        function onQuery() {
+            var url = "{% url 'mz_fxsys:get_order' %}?" + getPage();
+            window.location.href = url;
+        }
+        ;
+        function del(id, title) {
+            selectDelRowId = id;
+            uname = title;
+            $('#delMessage').text('确定要删除“' + title + '"吗？');
+            $('#modal_del').modal('show');
+        }
+        ;
+        function ensureDel() {
+            var id = selectDelRowId;
+            var url = "{% url 'mz_fxsys:del_order' %}?id=" + encodeURI(id) + "&order_No=" + encodeURIComponent(uname) + getPage();
+            window.location.href = url;
+        }
+        ;
+        $("#datetimeStart").datetimepicker({
+            format: 'yyyy.mm.dd',
+            minView: 'month',
+            language: 'zh-CN',
+            autoclose: true,
+        }).on("click", function () {
+            $("#datetimeStart").datetimepicker("setEndDate", $("#datetimeEnd").val());
+        });
+        $("#datetimeEnd").datetimepicker({
+            format: 'yyyy.mm.dd',
+            minView: 'month',
+            language: 'zh-CN',
+            autoclose: true,
+        }).on("click", function () {
+            $("#datetimeEnd").datetimepicker("setStartDate", $("#datetimeStart").val());
+        });
+        start_date_clean.off('click').on('click', function () {
+            datetimeStart.val('');
+        });
+        end_date_clean.off('click').on('click', function () {
+            datetimeEnd.val('');
+        });
+    </script>
+{% endblock %}

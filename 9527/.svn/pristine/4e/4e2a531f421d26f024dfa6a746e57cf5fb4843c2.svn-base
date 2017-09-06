@@ -1,0 +1,108 @@
+{% extends "index.html" %}
+{% block pager %}
+{% load  staticfiles %}
+
+<script>
+    $(document).ready(function(){
+        $(".a_del_item").click(function(){
+        window.type="item"
+        window.item_id=$(this).attr('name');
+        $('#delMessage').text('确定要删除该知识点吗？');
+        $('#modal_del').modal('show');
+        });
+
+        $(".a_del_chapter").click(function(){
+        window.type="chapter"
+        window.chapter_id=$(this).attr('name');
+        $('#delMessage').text('确定要删除该章节吗？该章节下所有内容将被删除！');
+        $('#modal_del').modal('show');
+        });
+    });
+
+    function ensureDel() {
+        var course_id = $("#course_id_input").val()
+        if (window.type=="item"){
+         var url = "/wiki/wikiCourse/wikiItem_list/?action=delete&id="+window.item_id+"&course_id="+course_id;
+        }
+        if(window.type=="chapter"){
+         var url = "/wiki/wikiCourse/wikiChapter_list/?action=delete&id="+window.chapter_id+"&course_id="+course_id;
+        }
+        window.location.href = url;
+    }
+</script>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5 col-lg-4">
+            <h3>《{{ course.name }}》</h3>
+            <input id="course_id_input" class="hidden" value="{{ course.id }}">
+        </div>
+         <div class="col-md-2 col-lg-2 col-md-offset-2">
+            <a href="/wiki/wikiCourse/wikiChapter_edit/?action=add&course_id={{ course.id }}">
+                <h3>添加章节</h3>
+            </a>
+        </div>
+        <div class="col-md-3 col-lg-2">
+            <a  href="/wiki/wikiCourse/wikiItem_edit/?action=add&course_id={{ course.id }}">
+                <h3>添加知识点</h3>
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for ret in result %}
+            <div class="col-md-10 col-sm-10 col-lg-10 text-left">
+                 <hr/>
+                <div class="col-md-4 col-sm-5 col-lg-4" >
+                    <h4>第{{ forloop.counter}}章&nbsp;{{ ret.chapter.name }}</h4>
+                </div>
+                <div class="col-md-4 col-md-offset-2">
+                    <div class="col-md-1 col-sm-1 col-lg-1"><a href="/wiki/wikiCourse/wikiChapter_edit/?action=show&id={{ ret.chapter.id }}&course_id={{ course.id }}" data-toggle="tooltip"title="查看章节信息"><span class="glyphicon glyphicon-th"></span></a></div>
+                    <div class="col-md-1 col-sm-1 col-lg-1"><a href="/wiki/wikiCourse/wikiChapter_edit/?action=edit&id={{ ret.chapter.id }}&course_id={{ course.id }}" data-toggle="tooltip"title="修改章节信息"><span class="glyphicon glyphicon-edit"></span></a></div>
+                    <div class="col-md-1 col-sm-1 col-lg-1"><a class="a_del_chapter" name="{{ ret.chapter.id }}" href="#" data-toggle="tooltip"title="删除该章节"><span class="glyphicon glyphicon-remove"></span></a></div>
+                    <!--<div class="col-md-1"><a href="/wiki/wikiChapter/list/?action=delete&id={{ ret.chapter.id }}&course_id={{ course.id }}" data-toggle="tooltip"title="删除该章节"><span class="glyphicon glyphicon-remove"></span></a></div>-->
+                </div>
+            </div>
+
+            {% for item in ret.items %}
+            <div class="col-md-6 col-sm-7 col-lg-6 text-center" style="background-color:#DCDCDC;margin:10px;">
+                <h5>
+                    <div class="row text-info">
+                        <div class="col-md-1 col-lg-1 col-sm-1"><{{ forloop.counter }}></div>
+                        <div class="col-md-7 col-lg-7 col-sm-4">{{ item.name }}</div>
+                        <div class="col-md-1 col-lg-1 col-sm-1"><a href="/wiki/wikiCourse/wikiItem_edit/?action=show&id={{ item.id }}&course_id={{ course.id }}" data-toggle="tooltip"title="查看知识点"><span class="glyphicon glyphicon-th"></span></a></div>
+                        <div class="col-md-1 col-lg-1 col-sm-1"><a href="/wiki/wikiCourse/wikiItem_edit/?action=edit&id={{ item.id }}&course_id={{ course.id }}" data-toggle="tooltip"title="修改知识点"><span class="glyphicon glyphicon-edit"></span></a></div>
+                        <div class="col-md-1 col-lg-1 col-sm-1"><a href="/wiki/wikiCourse/wikiSEO_edit/?action=edit&obj_id={{ item.id }}&obj_type=WIKIITEM&course_id={{ course.id }}" data-toggle="tooltip"title="编辑SEO信息"><span class="glyphicon glyphicon-leaf"></span></a></div>
+                        <div class="col-md-1 col-lg-1 col-sm-1"><a class="a_del_item" name="{{ item.id }}" href="#" data-toggle="tooltip"title="删除该知识点"><span class="glyphicon glyphicon-remove"></span></a></div>
+                        <!--<div class="col-md-1"><a href="/wiki/wikiItem/list/?action=delete&id={{ item.id }}&course_id={{ course.id }}" data-toggle="tooltip"title="删除知识点"><span class="glyphicon glyphicon-remove"></span></a></div>-->
+                    </div>
+                </h5>
+            </div>
+        {% endfor %}
+       {% endfor %}
+    </div>
+</div>
+
+<!-- 删除警示框  -->
+    <div class="modal fade" id="modal_del" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_del">
+                        删除警示</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="delMessage"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureDel()" id="btn_ensureDel">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

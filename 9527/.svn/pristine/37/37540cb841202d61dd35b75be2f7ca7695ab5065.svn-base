@@ -1,0 +1,189 @@
+{% extends "index.html" %}
+{% block pager %}
+    {% load  staticfiles %}
+    <div class="alert alert-info"><h4>微课课程</h4></div>
+    <div class="container">
+        {#     微信课程#}
+        <form id="wechat_banner_form" action="{% url 'mz_wechat:wechat_banner_save' %}" method="post"
+              enctype="multipart/form-data">
+            <div class="col-lg-8 col-md-8, col-sm-8">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <span>微信课程banner</span>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group row">
+                            <label for="title" class="col-sm-3 col-md-3 col-lg-3 control-label">图片标题：</label>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <input type="text" class="form-control" id="title" name="title"
+                                       value="{{ banner.title|default_if_none:"" }}" placeholder="请输入图片标题">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="url"
+                                   class="col-sm-3 col-md-3 col-lg-3 control-label">跳转链接：</label>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <input type="text" class="form-control" id="url" name="url"
+                                       value="{{ banner.url|default_if_none:"" }}" placeholder="请输入图片跳转链接">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="index" class="col-sm-3 col-md-3 col-lg-3 control-label">显示顺序：</label>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <input type="number" class="form-control" id="index" name="index"
+                                       value="{{ banner.index|default_if_none:"" }}" placeholder="请输入显示顺序">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="index" class="col-sm-3 col-md-3 col-lg-3 control-label">上传图片：</label>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <input type="file" id="upload" name="image">
+                            </div>
+                        </div>
+                        <div class="form-group row  image_show">
+                            <label for="ad_image" class="col-sm-3 col-md-3 col-lg-3 control-label"></label>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <img id="pic" src="{{ MEDIA_URL }}{{ banner.image_url }}" class="img-responsive"
+                                     alt="图片" width="320" height="240">
+                            </div>
+                        </div>
+                        <div class="form-group text-danger row image_show" style="margin-top: 8px;">
+                            <label for="image_size" class="col-sm-3 col-md-3 col-lg-3 control-label"></label>
+                            <div class="col-sm-6 col-md-6 col-lg-6">
+                                <span>要求图片尺寸（1080*405）</span>
+                                <span>
+                             上传图片尺寸为:
+                             <span id="img_width">0</span><span>x</span><span id="img_height">0</span>
+                         </span>
+                            </div>
+                        </div>
+                        <input type="hidden" name="action" value="{{ action }}">
+                        <input type="hidden" name="banner_id" value="{{ banner.id }}">
+                        <input type="hidden" name="old_image" value="{{ banner.image_url }}">
+                    </div>
+                </div>
+
+            </div>
+            <div class="row col-lg-8 col-md-8, col-sm-8">
+                <div class="col-md-offset-10 col-lg-offset-10 col-sm-offset-10">
+                    <input type="button" class="btn btn-primary" onclick="check_submit()" value="确定">
+                </div>
+
+            </div>
+        </form>
+    </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+
+            {% ifequal action "show" %}
+                $(".btn").addClass("hidden");
+            {% endifequal %}
+
+            $("#add_wechat_career_show_btn").click(function () {
+                wechat_career_edit_show();
+            });
+
+            $("#add_wechat_career_cancel_btn").click(function () {
+                wechat_career_edit_hidden();
+            });
+
+            $("#add_wechat_career_submit_btn").click(function () {
+                modify_wechat_career();
+            });
+
+            {% if not banner.image_url %}
+                $(".image_show").css("display", "none")
+            {% endif %}
+
+            $(".text-danger").css("display", "none")
+
+            $("#upload").click(function () {
+                load_image_choosed();
+            })
+
+            var check = "{{ course_info.is_active }}"
+            if (check == "1") {
+                $("#is_active").prop("checked", true)
+            }
+
+            $("#wechat_banner_form").validate({
+                rules: {
+                    title: {
+                        required: true,
+                    },
+                    url: {
+                        required: true,
+                    },
+                    index: {
+                        required: true,
+                    },
+                },
+                messages: {
+                    title: {
+                        required: "请输入标题",
+                    },
+                    url: {
+                        required: "请输入跳转链接",
+                    },
+                    index: {
+                        required: "请输入显示顺序",
+                    },
+                }
+            })
+        });
+
+
+        var load_image_choosed = function () {
+            $("#upload").on("change", function () {
+                var objUrl = getObjectURL(this.files[0]);  //获取图片的路径，该路径不是图片在本地的路径
+                if (objUrl) {
+                    $("#pic").attr("src", objUrl);      //将图片路径存入src中，显示出图片
+                    getBackImgSize();
+                    $(".image_show").css("display", "inline");
+                }
+                $(".image_show").removeClass("hidden");
+            });
+        }
+
+        function getObjectURL(file) {  //建立一個可存取到該file的url
+            var url = null;
+            if (window.createObjectURL != undefined) { // basic
+                url = window.createObjectURL(file);
+            } else if (window.URL != undefined) { // mozilla(firefox)
+                url = window.URL.createObjectURL(file);
+            } else if (window.webkitURL != undefined) { // webkit or chrome
+                url = window.webkitURL.createObjectURL(file);
+            }
+            return url;
+        }
+
+        //获取上传列表图片的尺寸
+        function getBackImgSize() {
+            var img = new Image();
+            img.src = $('#pic').attr('src');
+            img.onload = function () {  // 等待图片加载完后，才能获取到图片的信息
+                $('#img_width').text(img.width);
+                $('#img_height').text(img.height);
+            }
+        }
+
+        function check_submit() {
+            var width = $("#img_width").text();
+            var height = $("#img_height").text();
+            if ((width == 1080 && height == 405) || (width == 0 && height == 0)) {
+                $("#wechat_banner_form").submit();
+            }
+            else {
+                warningPrompt("图片尺寸必须为1080*405！");
+            }
+        }
+
+    </script>
+{% endblock %}
+
+

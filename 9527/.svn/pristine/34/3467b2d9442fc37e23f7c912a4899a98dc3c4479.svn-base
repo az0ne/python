@@ -1,0 +1,114 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript">
+        /*-------------------------------------------------------BEGIN--------------------------------------------------------*/
+        /*---------------提交form表单时，检查有无数据不合法的错误---------------*/
+        function formDataCommitValidate() {
+            var result = {};
+            result.code = 0;
+            result.errorInfo = '';
+            GOLBAL_ERROR = [];  //  初始化验证数据合法性的全局变量
+            selectValidate('.txt_careerName');
+            noZeroNumValidate('.txt_discussId1');
+            noZeroNumValidate('.txt_discussId2');
+            noZeroNumValidate('.txt_discussId3');
+
+            $.each(GOLBAL_ERROR, function (index, items) {
+                result.code = items.status + result.code;
+                if (items.status == -1) {
+                    result.errorInfo = result.errorInfo + items.errorInfo + "\r";
+                }
+            });
+            return result;
+        }
+        /*----------------------保存Banner数据----------------------*/
+        function saveDiscuss() {
+            var result = formDataCommitValidate()
+            if (result.code == 0) {
+                form_discuss.submit();
+            } else {
+                warningPrompt(result.errorInfo);
+            }
+
+        }
+
+        /*--------------------DOM加载完后执行----------------------*/
+        $(function () {
+            addObjectNameOption('{% url 'ajax:careerIntroduce_name' %}', '#txt_add_careerName');
+            {% ifequal action "add" %}
+                $('#discussTitle').text('添加职业课程问答列表信息');
+                $('.txt_careerIntroduceId').parent('.form-group').css('display', 'none');
+                $('#txt_add_careerName').attr('disabled', false);
+            {% endifequal %}
+            {% ifequal action "edit" %}
+                $('#discussTitle').text('修改职业课程问答列表信息');
+                $('#txt_add_careerName').val({{ careerIntroduce.id }});
+                $('#txt_add_careerName').attr('disabled', true);
+            {% endifequal %}
+        });
+        /*-------------------------------------------------------END--------------------------------------------------------*/
+    </script>
+    <!--职业课程问答列表信息-->
+    <div class="modal-dialog" role="document" style="background-color:#ffffff;width: 100%">
+        {% csrf_token %}
+        <form enctype="multipart/form-data" id="form_discuss" method="post"
+              action="{% url 'mz_course:careerIntroduceDiscuss_update' %}">
+            <div class="modal-header active">
+                <h4 class="modal-title" id="discussTitle">
+                    修改职业课程问答列表信息</h4>
+                <div style="float: right;margin-top: -35px;margin-right: 12px;">
+                    <button type="button" class="btn btn-info active"
+                            id="btn_saveDiscuss" onclick="saveDiscuss()">保存
+                    </button>
+                </div>
+            </div>
+            <div class="container-fluid content">
+                <div class="row-fluid">
+                    <div class="col-md-8">
+                        {% ifnotequal action "add" %}
+                            <input type="hidden" name="id" value="{{ careerIntroduce.id }}">
+                        {% endifnotequal %}
+                        {% ifequal action "add" %}
+                            <input type="hidden" name="career_id" value="{{ career_id }}">
+                        {% endifequal %}
+                        <input type="hidden" name="action" value="{{ action }}">
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label for="txt_add_careerName">课程名称:</label>
+                            <select class="inputArea1 txt_careerName form-control" name="id"
+                                    type="text"
+                                    id="txt_add_careerName" value="{{ careerIntroduce.name }}">
+                            </select>
+                            <span class="inputAreaError lbl_careerNameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label for="txt_add_careerIntroduceDiscussId1">评论ID1:</label>
+                            <input class="inputArea1 txt_discussId1 form-control" name="discuss_id1"
+                                   id="txt_add_careerIntroduceDiscussId1"
+                                   type="text" value="{{ careerIntroduce.discuss_id1 }}"/>
+                            <span class="inputAreaError lbl_careerIntroduceDiscussId1Error"></span>
+                        </div>
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label for="txt_add_careerIntroduceDiscussId2">评论ID2:</label>
+                            <input class="inputArea1 txt_discussId2 form-control" name="discuss_id2"
+                                   id="txt_add_careerIntroduceDiscussId2"
+                                   type="text" value="{{ careerIntroduce.discuss_id2 }}"/>
+                            <span class="inputAreaError lbl_careerIntroduceDiscussIdError"></span>
+                        </div>
+                        <div class="form-group">
+                            <span class="notEmpty1" style="color: red">*</span>
+                            <label for="txt_add_careerIntroduceDiscussId3">评论ID3:</label>
+                            <input class="inputArea1 txt_discussId3 form-control" name="discuss_id3"
+                                   id="txt_add_careerIntroduceDiscussId3"
+                                   type="text" value="{{ careerIntroduce.discuss_id3 }}"/>
+                            <span class="inputAreaError lbl_careerIntroduceDiscussIdError"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

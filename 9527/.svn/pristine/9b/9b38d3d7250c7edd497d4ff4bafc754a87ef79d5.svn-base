@@ -1,0 +1,214 @@
+{% extends "index.html" %}
+{% block pager %}
+    {% load  staticfiles %}
+    <div class="container-fluid add_or_edit_order">
+        <div class="row">
+            <div class="col-md-8" id="titleart">
+                <h2 class="text-info">{% if action == 'add' %}添加收支明细信息{% endif %}</h2>
+                <hr>
+            </div>
+            <div class="col-md-8">
+
+                 <form id="payments" action="
+                        {% if action == 'add' %}{% url 'mz_fxsys:add_payments' %}{% endif %}"
+                      method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group" id="phone">
+                        <span style="color: red;margin-left: -8px;">*</span>
+                        <label for="issued">人员</label>
+{#                        <select type="text" class="form-control" id="issued" name="user">#}
+                            <input type="text" value="{{ user_input }}" name="user_input"
+                                   class="form-control"
+                                   id="user_input" placeholder="输入用户账号">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span style="color: red;margin-left: -8px;">*</span>
+                        <label for="payments_type">收入类型</label>
+                        <select type="text" class="form-control" id="payments_type"
+                                value="{{ payments.payments_type }}"
+                                name="payments_type">
+                            <option value="1">静态返利</option>
+                            <option value="2">推广佣金</option>
+                            <option value="7">返利提现</option>
+                            <option value="8">推广提现</option>
+                            <option value="9">冻结</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="orderNO" style="display: none">
+                        <label for="order_id">订单ID</label>
+                        <select type="text" class="form-control" id="order_id" name="order_id"
+                                value="{{ payments.order_id|default_if_none:"" }}">
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span style="color: red;margin-left: -8px;">*</span>
+                        <label for="origin">来源</label>
+                        <input type="text" class="form-control" id="origin"
+                               value="{{ payments.origin|default_if_none:"" }}"
+                               name="origin" placeholder="请输入来源姓名" readonly="readonly">
+                    </div>
+                    {% if action == 'add' %}
+                        <div class="form-group">
+                            <span style="color: red;margin-left: -8px;">*</span>
+                            <label for="money">金额</label>
+                            <input size="16" type="text" id="money" name="money"
+                                   class="form-control"
+                                   value="{{ payments.money }}"
+                                   placeholder="请输入金额">
+                        </div>
+                    {% endif %}
+                    <div class="form-group">
+                        <span style="color: red;margin-left: -8px;">*</span>
+                        <label for="date">日期</label>
+                        <input size="16" type="text" id="date" name="date" readonly
+                               class="form_datetime form-control"
+                               value="{{ order.date|date:"Y-m-d" }}"
+                               placeholder="请选择日期">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm save" style="display: none">保存</button>
+                    <button type="button" class="btn btn-primary btn-sm edit" style="display: none">修改</button>
+                    <button type="button" class="btn btn-default btn-sm goback">返回</button>
+                </form>
+                <hr>
+                <div class="form-group">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ STATIC_URL }}js/vendor/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript"
+            src="/static/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.validate.js"></script>
+    <script type="application/javascript">
+        var goback = $('.goback'), edit = $('.edit'), save = $('.save'), form_control = $('.form-control'),
+                issued = $('#issued'), order_list = [], payments_type = $('#payments_type');
+        $(function () {
+            //动态select选项
+            $.ajax({
+                url: "{% url 'mz_fxsys:get_all_user_ajax' %}",
+                type: "get",
+                async: false,
+                success: function (data) {
+                    var selectinfo = [];
+                    $.each(data.result, function (index, items) {
+
+                        if (items.full_name == null) {
+                            items.full_name = ''
+                            selectinfo.push('<option value="' +
+                                    items.id + "_" + items.username + '">' + items.username + '</option>'
+                            );
+                        } else {
+                            selectinfo.push('<option value="' +
+                                    items.id + "_" + items.username + '">' + items.username + ':' + items.full_name + '</option>'
+                            );
+                        }
+                    });
+                    $("#issued").append(selectinfo.toString());
+                }
+            });
+            $.ajax({
+                url: "{% url 'mz_fxsys:get_order_all' %}",
+                type: "get",
+                async: false,
+                success: function (data) {
+                    var selectinfo = [];
+                    selectinfo.push('<option value="0">无</option>');
+                    $.each(data.result, function (index, items) {
+                        selectinfo.push('<option value="' + items.id + '">' + items.id + ':' + items.order_No + '</option>'
+                        );
+                    });
+                    $("#order_id").append(selectinfo.toString());
+                }
+            });
+            //数据绑定
+            $("#issued option[value='" + {{ order.user_id }} +"']").attr('selected', 'selected');
+            $("#origin").val('当日平台奖学金');
+            {% if action == "show" %}
+                form_control.attr('readonly', 'readonly');
+                edit.show();
+                save.hide();
+            {% else %}
+                form_control.removeAttr('readonly');
+                edit.hide();
+                save.show();
+            {% endif %}
+        });
+        // 收支类型更改
+        payments_type.off('change').on('change', function () {
+            var val = $(this).val();
+            console.info(val);
+            switch (val) {
+                case '1':
+                    $('#origin').val('当日平台奖学金').attr('readonly', 'readonly');
+                        $('#orderNO').hide();
+                    break;
+                case '2':
+                    $('#orderNO').show();
+                    $('#origin').val('').removeAttr('readonly');
+                    break;
+                case '3':
+                    $('#orderNO').show();
+                    $('#origin').val('').removeAttr('readonly');
+                    break;
+                case '4':
+                    $('#orderNO').show();
+                    $('#origin').val('').removeAttr('readonly');
+                    break;
+                default:
+                    $('#orderNO').hide();
+                    $('#origin').val('').removeAttr('readonly');
+            }
+        });
+        // 更改收入类型时，推广佣金、感恩奖、领导奖显示订单id栏
+{#        $("#payments_type").off('change').on('change', function(){#}
+{#            var payments_type = $('#payments_type').val();#}
+{#            if(payments_type == 2 || payments_type == 3 || payments_type == 4){#}
+{#                $('#order_id').show();#}
+{#            }#}
+{#            else{#}
+{#                $('#order_id').hide();#}
+{#            }#}
+{#        })#}
+        // 回退按钮
+        goback.off('click').on('click', function () {
+            history.go(-1)
+        });
+        // 日期课件
+        $("#date").datetimepicker({
+            format: 'yyyy-mm-dd',
+            language: 'zh-CN',
+            minView: 'month',
+            autoclose: true,
+            endDate: new Date(),
+        });
+        // 更改为编辑模式
+        edit.off('click').on('click', function () {
+            form_control.removeAttr('readonly');
+            edit.hide();
+            save.show();
+        });
+
+        $("#payments").validate({
+            rules: {
+                origin: {
+                    required: true,
+                },
+                money: {
+                    required: true,
+                }
+            },
+            messages: {
+                origin: {
+                    required: "请输入来源于XX",
+                },
+                money: {
+                    required: "请输入金额",
+                }
+            }
+        });
+
+    </script>
+{% endblock %}

@@ -1,0 +1,199 @@
+{% extends "pager.html" %}
+
+{% block content %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js" xmlns="http://www.w3.org/1999/html"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    <script type="text/javascript">
+        function onQuery() {
+            var search_type = encodeURIComponent($('#search_type').val());
+            var url;
+            url = "{% url 'mz_common:careerobjrelation_list' %}?action=search&type=" + search_type + getPage();
+            window.location.href = url;
+        }
+        function delCareerObjRelation(id, obj_name, career_name) {
+            selectDelRowId = id;
+            $('#delCareerObjRelationMessage').text("删除对象【" + obj_name + "】与专业课程【" + career_name + "】的对应关系？");
+            $('#modal_delCareerObjRelation').modal('show');
+        }
+        function ensureDelCareerObjRelation() {
+            var id = selectDelRowId;
+            var url = "{% url 'mz_common:careerobjrelation_list' %}?action=delete&id=" + encodeURI(id) + getPage();
+            $.ajax({
+                url:url,
+                type:'GET',
+                async:true,
+                dataType:'json',
+                success:function (data) {
+                    if (data.state == 'success'){
+                        location.reload(true)
+                    }
+                    else{
+                        alert(data.message)
+                    }
+                }
+            });
+        }
+        function keyword_search() {
+            var search_type = encodeURIComponent($('#search_type').val());
+            var keyword = encodeURIComponent($('#txt_search').val());
+            var url;
+            url = "{% url 'mz_common:careerobjrelation_list' %}?action=search&type=" + search_type + "&keyword=" + keyword + "&page_index=1";
+            window.location.href = url;
+        }
+        function addCareerObjRelation() {
+            var url;
+            url = "{% url 'mz_common:careerobjrelation_edit' %}?action=add";
+            window.location.href = url
+        }
+        function editcareerobjrelation(id) {
+            var url;
+            url = "{% url 'mz_common:careerobjrelation_edit' %}?action=update&id=" + encodeURI(id);
+            window.location.href = url;
+        }
+
+        <!--将下拉框search_type选择的类型存到cookie里面-->
+        function setCookie(name, value) {
+            var exp = new Date();
+            exp.setTime(exp.getTime() + 24 * 60 * 60 * 1000);
+            document.cookie = name + "=" + decodeURI(value) + ";expires=" + exp.toGMTString();
+        }
+        function getCookie(name) {
+            var regExp = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+            var arr = document.cookie.match(regExp);
+            if (arr == null) {
+                return null;
+            }
+            return decodeURIComponent(arr[2])
+        }
+
+    </script>
+    <div>
+    <b class="text-danger">{{ error }}</b>
+    </div>
+    <div class="input-group mySearch">
+        <input type="text" id="txt_search" name="txt_search" class="form-control" value="{{ key_word }}"
+               placeholder="课程名字/文章标题进行搜索"/>
+    </div>
+    <div class="input-group mySearch">
+        <select name="search_type" id="search_type" class="form-control" title="类型筛选"
+                onclick="setCookie('search_type',this.selectedIndex)">
+            <option value="COURSE">COURSE</option>
+            <option value="ARTICLE">ARTICLE</option>
+        </select>
+    <span class="input-group-btn">
+        <button type="button" class="btn btn-default" id="btn_search" onclick="keyword_search()">
+            <span class="glyphicon glyphicon-search"></span>
+        </button>
+    </span>
+        <!--获取search_type存在cookie中的值-->
+        <script type="text/javascript">
+
+            var selectedIndex = getCookie('search_type');
+            if (selectedIndex != null) {
+                document.getElementById('search_type').selectedIndex = selectedIndex
+            }
+        </script>
+    </div>
+    <!-- 扩展功能栏-->
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="keyword_search()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+            <li style="float: right;margin-right: 5px">
+                <button type="button" id="btn-addCareerObjRelation" onclick="addCareerObjRelation()"
+                        class="btn btn-default btn-info btn-sm active">
+                    <span class="glyphicon glyphicon-plus">新增</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <!--刪除课程介绍警示框-->
+    <div class="modal fade" id="modal_delCareerObjRelation" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #6d7e99">
+                        删除提示框</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id=delCareerObjRelationMessage></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureDelCareerObjRelation()"
+                            id="btn_ensureDelCareerObjRelation">确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <colgroup>
+                <col width="150px">
+                <col width="300px">
+                <col width="100px"/>
+                <col width="300px"/>
+                <col width="150px"/>
+            </colgroup>
+            <tr>
+                <th style="text-align: center;vertical-align: middle" rowspan="2">ID</th>
+                <th style="vertical-align: middle" rowspan="2">课程名字/文章标题</th>
+                <th style="text-align: center;vertical-align: middle" rowspan="2">类型</th>
+                <th style="vertical-align: middle" rowspan="2">专业课程</th>
+                <th style="text-align: center;vertical-align: middle" rowspan="2">1：已激活<br/>0：未激活</th>
+                <th style="vertical-align: middle">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if careerobjrelation %}
+                {% for careerobjrelation_line in careerobjrelation %}
+                    <tr class="text_over_flow">
+                        <td align="center">
+                            {{ careerobjrelation_line.id }}
+                        </td>
+                        <td>
+                            {{ careerobjrelation_line.obj_name|default_if_none:"空" }}
+                        </td>
+                        <td align="center">
+                            {{ careerobjrelation_line.type }}
+                        </td>
+                        <td>
+                            {{ careerobjrelation_line.career_name|default_if_none:"无对应专业" }}
+                        </td>
+                        <td align="center">
+                            {{ careerobjrelation_line.is_actived }}
+                        </td>
+                        <td>
+                            <a href="javascript:void(0);" title="删除"
+                               onclick="delCareerObjRelation({{ careerobjrelation_line.id }},'{{ careerobjrelation_line.obj_name }}','{{ careerobjrelation_line.career_name|default_if_none:"无对应专业" }}')"
+                               class="btn btn-default btn-danger btn-sm active" style="margin-right:3px;" role="button">
+                                <i class="glyphicon glyphicon-trash" style="margin-right: 3px;"></i>删除</a>
+                            <a href="javascript:void(0)" title="编辑"
+                               onclick="editcareerobjrelation({{ careerobjrelation_line.id }})"
+                               class="btn btn-default btn-success btn-sm  active"
+                               style="margin-right:3px;" role="button">
+                                <i class="glyphicon glyphicon-edit" style="margin-right: 3px;"></i>修改激活状态</a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="7">查询到0条数据！</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

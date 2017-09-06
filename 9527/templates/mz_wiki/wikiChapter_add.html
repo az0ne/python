@@ -1,0 +1,126 @@
+{% extends "index.html" %}
+{% block pager %}
+{% load  staticfiles %}
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-md-10" id="titleart">
+             {% ifequal action "add" %}
+            <h3>新增WIKI课程章节</h3>
+            <input form="form_wikiCourseChapter" type="hidden" name="action" value="add">
+             {% endifequal %}
+             {% ifequal action "edit" %}
+             <h3>编辑WIKI课程章节</h3>
+            <input form="form_wikiCourseChapter" type="hidden" name="action" value="edit">
+            {% endifequal %}
+            {% ifequal action "show" %}
+             <h3>查看WIKI课程章节</h3>
+            <input form="form_wikiCourseChapter" type="hidden" name="action" value="show">
+            {% endifequal %}
+        </div>
+
+        {% ifnotequal action 'show' %}
+        <div class="col-md-8">
+            <form class="form-horizontal" role="form" id="form_wikiCourseChapter" action="/wiki/wikiCourse/wikiChapter_save/" method="post">
+                {% csrf_token %}
+                    <input type="hidden" name="id" value="{{ wikiChapter.id }}">
+                    <input type="hidden" name="course_id" value="{{ course.id|default_if_none:"" }}">
+                <div class="form-group">
+                    <label for="wikiCourse_input" class="col-sm-2 control-label">对应wiki课程：</label>
+                    <div class="col-sm-10">
+                        <input id="wikiCourse_input" type="text" class="form-control" value="{{ course.name }}" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="chapter_name" class="col-sm-2 control-label">章节名称：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="name" id="chapter_name"
+                               value="{{ wikiChapter.name }}" placeholder="请输入要新添加的章节名称" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="video_course_id" class="col-sm-2 control-label">小课程ID：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="video_course_id" id="video_course_id"
+                               value="{{ wikiChapter.video_course_id|default_if_none:"" }}" placeholder="请输入小课程ID" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="wikiChapter_index_input" class="col-sm-2 control-label">顺序：</label>
+                    <div class="col-sm-10">
+                        <input id="wikiChapter_index_input" type="text" name="index" class="form-control" value="{% ifequal action 'add'%}999{% else %}{{ wikiChapter.index }}{% endifequal %}"
+                               required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-default">提交</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        {% endifnotequal %}
+
+        {% ifequal action 'show' %}
+        <div class="col-md-4">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>所属课程：</td>
+                        <td>《{{ course.name }}》</td>
+                    </tr>
+                    <tr>
+                        <td>章节名称：</td>
+                        <td>{{  wikiChapter.name }}</td>
+                    </tr>
+                    <tr>
+                        <td>小课程ID：</td>
+                        <td>{{  wikiChapter.video_course_id }}</td>
+                    </tr>
+                    <tr>
+                        <td>顺序：</td>
+                        <td>{{ wikiChapter.index }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        {% endifequal %}
+    </div>
+</div>
+
+<script>
+    $().ready(function() {
+         $("#form_wikiCourseChapter").validate({
+              rules: {
+
+                  name: {
+                      required: true,
+                  },
+                  video_course_id:{
+                      required:true,
+                  },
+
+                  index: {
+                      required: true,
+                      min:0,
+                      max:999
+                  }
+              },
+              messages: {
+
+                  name: {
+                      required: "请输入章节名称",
+                  },
+                   video_course_id: {
+                      required: "请输入小课程ID",
+                  },
+                  index: "请输入权重(0-999)",
+
+              }
+          })
+    });
+
+</script>
+{% endblock %}

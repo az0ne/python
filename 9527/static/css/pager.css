@@ -1,0 +1,33 @@
+#pager ul.pages {
+    border: medium none;
+    display: block;
+    font: 14px "Microsoft YaHei","微软雅黑","sans-serif";
+    margin: 10px 0 50px;
+    padding: 0;
+    text-transform: uppercase;
+}
+#pager ul.pages li {
+    background-color: #eee;
+    border-left-width: 0;
+    border-radius: 3px;
+    color: #888;
+    float: left;
+    list-style: outside none none;
+    margin: 0 3px 0 0;
+    padding: 4px 7px;
+    text-decoration: none;
+}
+#pager ul.pages li:hover {
+    background-color: #3c4852;
+    color: #fff;
+}
+#pager ul.pages li.pgNext {
+}
+#pager ul.pages li.pgEmpty {
+    display: none;
+}
+#pager ul.pages li.pgCurrent {
+    background-color: #29c06d;
+    color: #fff;
+    font-weight: 700;
+}

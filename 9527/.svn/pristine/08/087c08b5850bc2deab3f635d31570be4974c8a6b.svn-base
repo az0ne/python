@@ -1,0 +1,109 @@
+{% extends "index.html" %}
+{% block pager %}
+    {% load  staticfiles %}
+    <div class="container-fluid add_or_edit_order">
+        <div class="row">
+            <div class="col-md-8" id="titleart">
+                <h2 class="text-info">{% if action == 'add' %}添加总收益额{% else %}修改{{ order.ordername }}
+                    总收益额信息{% endif %}</h2>
+                <hr>
+            </div>
+            <div class="col-md-8">
+                <form id="total_revenue" action="
+
+
+                        {% if action == 'add' %}{% url 'mz_fxsys:add_total_revenue' %}{% else %}{% url 'mz_fxsys:edit_total_revenue' %}?uid={{ total_revenue.id }}{% endif %}"
+                      method="post"
+                      enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group" id="phone">
+                        <span style="color: red;margin-left: -8px;">*</span>
+                        <label for="total_revenue">总收益额</label>
+                        <input size="16" type="text" id="total_revenue" name="total_revenue"
+                               class="form-control"
+                               value="{{ total_revenue.total_revenue|default_if_none:"0.00" }}"
+                               placeholder="请输入总收益额(上线1200)">
+                    </div>
+                    <div class="form-group">
+                        <span style="color: red;margin-left: -8px;">*</span>
+                        <label for="date">日期</label>
+                        <input size="16" type="text" id="date" name="date" readonly
+                               class="form_datetime form-control"
+                               value="{{ total_revenue.date|date:"Y-m-d" }}"
+                               placeholder="请选择日期">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm save" style="display: none">保存</button>
+                    <button type="button" class="btn btn-primary btn-sm edit" style="display: none">修改</button>
+                    <button type="button" class="btn btn-default btn-sm goback">返回</button>
+                </form>
+                <hr>
+                <div class="form-group">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript"
+            src="/static/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.validate.js"></script>
+    <script type="application/javascript">
+        var goback = $('.goback'), edit = $('.edit'), save = $('.save'), order_No = $('#order_No'),
+                form_control = $('.form-control'), issued = $('#issued');
+        $(function () {
+            {% if action == "show" %}
+                form_control.attr('readonly', 'readonly');
+                edit.show();
+                save.hide();
+            {% else %}
+                form_control.removeAttr('readonly');
+                edit.hide();
+                save.show();
+            {% endif %}
+            jQuery.validator.addMethod("nonnegative_number", function (value, element) {
+                var length = value.length;
+                var nonnegative_number = /^\d+(\.{0,1}\d+){0,1}$/;
+                return this.optional(element) || (length > 0 && nonnegative_number.test(value));
+            }, "请输入非负数！");
+            // 验证数据合法性
+            $("#total_revenue").validate({
+                rules: {
+                    total_revenue: {
+                        required: true,
+                        nonnegative_number: true,
+                        max:1200,
+                    },
+                    date: {
+                        required: true,
+                    },
+                },
+                messages: {
+                    total_revenue: {
+                        required: "总收益额不能为空！",
+                        max: $.validator.format("请输入不大于 {0} 的数值"),
+                    },
+                    date: {
+                        required: "日期不能为空",
+                    },
+                }
+            });
+        });
+        // 回退按钮
+        goback.off('click').on('click', function () {
+            history.go(-1)
+        });
+        // 日期课件
+        $("#date").datetimepicker({
+            format: 'yyyy-mm-dd',
+            minView: 'month',
+            language: 'zh-CN',
+            autoclose: true,
+        });
+        // 更改为编辑模式
+        edit.off('click').on('click', function () {
+            form_control.removeAttr('readonly');
+            edit.hide();
+            save.show();
+        });
+
+    </script>
+{% endblock %}

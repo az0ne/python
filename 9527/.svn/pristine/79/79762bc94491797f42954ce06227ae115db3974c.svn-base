@@ -1,0 +1,105 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    <script type="text/javascript">
+        function delTaskDesc(modal_name, title, url) {
+            $('#title_delTaskDesc').text(modal_name);
+            $('#btn_ensureDelTaskDesc').attr('onclick', 'ensureDelTaskDesc("' + url + '")');
+            $('#delTaskDescMessage').text('确定要删除“' + title + '”吗？');
+            $('#modal_delTaskDesc').modal('show');
+        }
+        function ensureDelTaskDesc(url) {
+            window.location.href = url;
+        }
+        $(function () {
+            $('.inputArea1').attr('disabled', true);
+        });
+    </script>
+    <!--刪除任务警示框-->
+    <div class="modal fade" id="modal_delTaskDesc" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_delTaskDesc"></h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="delTaskDescMessage"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureDelTaskDesc()"
+                            id="btn_ensureDelTaskDesc">确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--任务与相关文章-->
+    <div class="modal-header active bg-success">
+        <h4 class="modal-title" style="display: inline-block">
+            任务与相关文章信息</h4>
+    </div>
+    <div style="height: 85vh;overflow: scroll;overflow-x: auto">
+        {% if taskArticles %}
+            {% for taskArticle in taskArticles %}
+                <div class="container-fluid" style="border-bottom: 1px #ddd solid;padding-top: 10px">
+                    <div class="row-fluid">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <span class="notEmpty1" style="color: red">*</span>
+                                <label for="txt_add_taskDescStoryName">文章标题:</label>
+                                <input class="inputArea1 txt_taskDescStoryName form-control" name="story_name"
+                                       type="text"
+                                       id="txt_add_taskDescStoryName" value="{{ taskArticle.article_title }}"/>
+                                <span class="inputAreaError lbl_taskDescStoryNameError"></span>
+                            </div>
+                            <div class="form-group">
+                                <span class="notEmpty1" style="color: red">*</span>
+                                <label for="txt_add_taskDescStoryTitle">文章链接:</label>
+                                <input class="inputArea1 txt_taskDescStoryTitle form-control" name="story_title"
+                                       type="text" placeholder="请输入文章链接"
+                                       id="txt_add_taskDescStoryTitle" value="{{ taskArticle.article_url }}"/>
+                                <span class="inputAreaError lbl_taskDescStoryTitleError"></span>
+                            </div>
+                            <div class="form-group">
+                                <span class="notEmpty1" style="color: red">*</span>
+                                <label for="txt_add_storyVideoUrl">序号:</label>
+                                <input class="inputArea1 txt_storyVideoUrl form-control" name="story_video_url"
+                                       type="text"
+                                       value="{{ taskArticle.index }}" id="txt_add_storyVideoUrl"
+                                       placeholder="请输入序号"/>
+                                <span class="inputAreaError lbl_storyVideoUrlError"></span>
+                            </div>
+                            <div class="form-group">
+                                <span class="notEmpty1" style="color: red">*</span>
+                                <label for="txt_add_taskDescStoryInfo">出现位置:</label>
+                                <select class="inputArea1 txt_taskDescStoryInfo form-control"
+                                        id="txt_add_taskDescStoryInfo" value="{{ taskArticle.type }}"
+                                        name="story_info">
+                                    <option value="0">基础准备</option>
+                                    <option value="1">学习资料</option>
+                                </select>
+                                <span class="inputAreaError lbl_taskDescStoryInfoError"></span>
+                            </div>
+                            <div class="form-group">
+                                <a href="{% url 'mz_course:taskArticle_edit' %}?action=edit&taskId=&id={{ taskArticle.id }}"
+                                   role="button" title="修改" class="btn btn-default btn-success btn-sm active">
+                                    <span class="glyphicon glyphicon-edit" style="margin-right: 3px"></span>修改</a>
+                                <a href="javascript:void(0);"
+                                   onclick="delTaskDesc('删除任务与相关文章信息','{{ taskArticle.article_title }}','{% url 'mz_course:taskArticle_list' %}?action=delete&id={{ taskArticle.id }}&taskId={{ taskArticle.task_id }}')"
+                                   role="button" title="删除" class="btn btn-default btn-danger btn-sm active">
+                                    <span class="glyphicon glyphicon-trash" style="margin-right: 3px"></span>删除</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <label class="text-danger">无任务相关文章</label>
+        {% endif %}
+    </div>
+{% endblock %}

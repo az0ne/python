@@ -1,0 +1,66 @@
+{% extends "index.html" %}
+{% block pager %}
+{% load  staticfiles %}
+
+
+
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-md-10">
+            <form class="form-horizontal" role="form" id="wikiSEO_form" action="/wiki/wikiCourse/wikiSEO_save/" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="obj_type" value="{{ obj_type }}">
+                <input type="hidden" name="obj_id" value="{{ obj.id }}">
+                <input type="hidden" name="course_id" value="{{ course_id }}">
+                <div class="form-group">
+                    <div class="col-md-6 " id="title">
+
+                        {% ifequal obj_type "WIKICOURSETYPE" %}
+                        <h3>编辑WIKI课程库分类SEO信息</h3>
+                        {% endifequal %}
+
+                        {% ifequal obj_type "WIKICOURSE" %}
+                         <h3>编辑WIKI课程库SEO信息</h3>
+                        {% endifequal %}
+
+                        {% ifequal obj_type "WIKIITEM" %}
+                         <h3>编辑WIKI课程库知识点SEO信息</h3>
+                        {% endifequal %}
+
+                        <h4><b>{{obj.name }}</b></h4>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="seo_title" class="col-sm-2 control-label">SEO标题：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <input type="text" class="form-control" name="seo_title" id="seo_title" value="{{ wikiSEO.seo_title }}" placeholder="请输入SEO标题" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="seo_keywords" class="col-sm-2 control-label">SEO关键字：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <input type="text" class="form-control" name="seo_keywords" id="seo_keywords" value="{{ wikiSEO.seo_keywords }}" placeholder="请输入SEO关键字" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="seo_description" class="col-sm-2 control-label">SEO描述：</label>
+                    <div class="col-sm-10 col-md-6">
+                        <input type="text" class="form-control" name="seo_description" id="seo_description" value="{{ wikiSEO.seo_description }}" placeholder="请输入SEO详细描述" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">提交</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

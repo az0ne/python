@@ -1,0 +1,200 @@
+# -*- coding: utf-8 -*-
+import datetime
+from mz_fxsys.tool import get_cycle_start_time
+from utils.logger import logger as log
+from utils.tool import dec_timeit
+from db.api.apiutils import APIResult
+from db.cores.mysqlconn import dec_make_conn_cursor
+import logging
+logging.basicConfig()
+
+# ------------------------------------------- asset table start ------------------------------------------------------ #
+@dec_timeit
+@dec_make_conn_cursor
+def add_new_asset(conn, cursor, user_id):
+    """新增asset数据"""
+    try:
+        cursor.execute(
+            """
+                insert into mz_fxsys_new_asset (user_id) values(%s)
+            """, (user_id,)
+        )
+        conn.commit()
+    except Exception as e:
+        log.warn(
+            "execute exception: %s."
+            "statement: %s" % (e, cursor.statement)
+        )
+        raise e
+    return APIResult(result=True)
+
+
+@dec_timeit
+@dec_make_conn_cursor
+def check_all_profit(conn, cursor):
+
+    # 查询所有可以反奖学金的用户
+    sql_all_user = """
+        select * from mz_fxsys_user 
+    """
+
+    sql_reward_count = """
+        select count(id) as reward_count from mz_fxsys_orders where user_id=%s
+    """
+
+    # 累计返利
+    sql_total_rebate = """
+        select coalesce(SUM(money),0) as total_rebate
+        from mz_fxsys_payments
+        WHERE user_id = %s and payments_type = 1
+        """
+    # 当前返利
+    sql_current_rebate = """
+        select coalesce(SUM(money),0) as current_rebate
+        from mz_fxsys_payments
+        WHERE user_id = %s and payments_type in (1,7,9)
+        """
+    # 可提现返利
+    sql_available_rebate = """
+        select coalesce(SUM(money),0) as available_rebate
+            from mz_fxsys_payments
+            WHERE user_id = %s and payments_type = 1 and to_days(date) <= to_days(%s)
+            or payments_type in (7,9) and user_id = %s
+        """
+
+    # 已经提现返利
+    sql_already_rebate = """
+        select coalesce(SUM(money),0) as already_rebate
+        from mz_fxsys_payments
+        WHERE user_id = %s and payments_type = 7
+        """
+    # 冻结返利
+    sql_frozen_rebate = """
+        select coalesce(SUM(money),0) as frozen_rebate
+        from mz_fxsys_payments
+        WHERE user_id = %s and payments_type = 9
+        """
+
+    # 总累计收益
+    sql_total_profit = """
+        select coalesce(SUM(money),0) as total_profit
+        from mz_fxsys_payments
+        WHERE user_id = %s and payments_type in (1,2)
+        """
+
+    # 推广累计
+    sql_total_reward = """
+        select coalesce(SUM(money),0) as total_reward
+        from mz_fxsys_payments
+        WHERE user_id = %s and payments_type = 2
+        """
+
+    # 当前推广
+    sql_current_reward = """
+        select coalesce(SUM(money),0) as current_reward
+        from mz_fxsys_payments
+        WHERE user_id = %s and payments_type in (2,8)
+        """
+
+    # 已经提现返利
+    sql_already_reward = """
+        select coalesce(SUM(money),0) as already_reward
+        from mz_fxsys_payments
+        WHERE user_id = %s and payments_type = 8
+        """
+
+    # 推广可提现收益
+    sql_available_reward = """
+        select coalesce(SUM(money),0) as available_reward
+        from mz_fxsys_payments
+        WHERE user_id = %s and payments_type in (2,8)
+        """
+    # 昨日返利
+    sql_yesterday_rebate = """
+        select distinct(a.cash_back_day) 
+        from mz_fxsys_user as a
+        left join mz_fxsys_payments as b
+        on a.id = b.user_id
+        WHERE b.user_id = %s and b.payments_type = 1 and a.is_suspend = 0 and a.is_graduate = 0
+        """
+    sql_new_asset = """
+        insert INTO mz_fxsys_new_asset
+          (user_id,total_profit,total_available_cash,total_rebate,current_rebate,available_rebate,
+          already_rebate,frozen_rebate,current_reward,total_reward,available_reward,already_reward,reward_count)
+        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+        ON DUPLICATE KEY UPDATE total_profit=%s,total_available_cash = %s,total_rebate=%s,
+          current_rebate=%s,available_rebate=%s,already_rebate=%s,frozen_rebate=%s,current_reward=%s,total_reward=%s,
+          available_reward=%s,already_reward=%s,reward_count=%s
+    """
+    sql_quantitation_new_asset = """
+        update mz_fxsys_new_asset
+        set yesterday_rebate=%s WHERE user_id=%s 
+        """
+    try:
+        cursor.execute(sql_all_user)
+        user_list = cursor.fetchall()
+        print datetime.datetime.now()
+        for user in user_list:
+
+            # 累计返利
+            cursor.execute(sql_total_rebate, (user['id'],))
+            total_rebate = cursor.fetchone()["total_rebate"]
+            # 当前返利
+            cursor.execute(sql_current_rebate, (user['id'],))
+            current_rebate = cursor.fetchone()["current_rebate"]
+            # 更新时间
+            activate_date = user["activate_date"]
+            now_date = datetime.datetime.now()
+            if activate_date:
+                now_date = get_cycle_start_time(activate_date, now_date)
+            # 可提现返利
+            cursor.execute(sql_available_rebate, (user['id'], now_date, user['id']))
+            available_rebate = cursor.fetchone()["available_rebate"]
+            # 已经提现返利
+            cursor.execute(sql_already_rebate, (user['id'],))
+            already_rebate = cursor.fetchone()["already_rebate"]
+            # 冻结返利
+            cursor.execute(sql_frozen_rebate, (user['id'],))
+            frozen_rebate = cursor.fetchone()["frozen_rebate"]
+            # 总收益
+            cursor.execute(sql_total_profit, (user['id'],))
+            total_profit = cursor.fetchone()["total_profit"]
+            # 推广可提现
+            cursor.execute(sql_available_reward, (user['id'],))
+            available_reward = cursor.fetchone()["available_reward"]
+            # 推广累计
+            cursor.execute(sql_total_reward, (user['id'],))
+            total_reward = cursor.fetchone()["total_reward"]
+            # 已提现推广
+            cursor.execute(sql_already_reward, (user['id'],))
+            already_reward = cursor.fetchone()["already_reward"]
+            # 当前推广
+            cursor.execute(sql_current_reward, (user['id'],))
+            current_reward = cursor.fetchone()["current_reward"]
+            # 推广累积数
+            cursor.execute(sql_reward_count, (user['id'],))
+            reward_count = cursor.fetchone()["reward_count"]
+
+            # 总可提现
+            total_available = available_reward + available_rebate
+            # 插入并更新资产表
+            params = [total_profit, total_available, total_rebate, current_rebate,
+                      available_rebate, abs(already_rebate), abs(frozen_rebate), current_reward, total_reward,
+                      available_reward, abs(already_reward), reward_count]
+
+            # 昨日返利
+            if user['cash_back_way'] == 2:
+                cursor.execute(sql_yesterday_rebate, (user['id'],))
+                yesterday_rebate = cursor.fetchone()["cash_back_day"]
+                cursor.execute(sql_quantitation_new_asset, (yesterday_rebate, user['id'], ))
+
+            cursor.execute(sql_new_asset, [user['id']]+params+params)
+            conn.commit()
+        print datetime.datetime.now()
+    except Exception as e:
+        log.warn(
+            "execute exception: %s. "
+            "statement: %s" % (e, cursor.statement))
+        raise e
+    return APIResult(result=True)
+

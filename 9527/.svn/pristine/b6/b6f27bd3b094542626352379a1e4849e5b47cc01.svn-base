@@ -1,0 +1,114 @@
+{% extends "pager.html" %}
+{% block pager %}
+    <style rel="stylesheet">
+        .careerObjRelation_add {
+            margin-top: 50px;
+            margin-left: 50px;
+        }
+    </style>
+    <div class="container careerObjRelation_add">
+        <div class="row">
+            <div class="col-md-8">
+                <form action="{% url 'mz_common:careerobjrelation_add' %}" method="post" id="careerObjRelationform">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="add">
+                    <div class="form-group">
+                        <label for="obj_id">课程（文章）名称:</label>
+                        <input type="number" class="form-control" id="obj_id" name="obj_id" value=""
+                               placeholder="请输入课程（文章）ID">
+                    </div>
+                    <div class="form-group">
+                        <label for="obj_type">添加类型:</label>
+                        <select name="obj_type" class="form-control" id="obj_type">
+                            <option value="">--------</option>
+                            <option value="COURSE">COURSE</option>
+                            <option value="ARTICLE">ARTICLE</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="career_id">专业ID:（不选默认为0）</label>
+                        <select name="career_id" class="form-control" id="career_id">
+                            <option value="0">--------</option>
+                            {% for career in career_course %}
+                                <option value="{{ career.id }}">{{ career.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="is_actived">激活状态:</label>
+                        <select name="is_actived" class="form-control" id="is_actived" onchange="ajax_error()">
+                            <option value="">--------</option>
+                            <option value="0">未激活</option>
+                            <option value="1">已激活</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-primary" onclick="check()" id="button">提交</button>
+                        <b class="text-danger" id="error"></b>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <script src="{{ STATIC_URL }}js/vendor/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery.validate.js"></script>
+    <script type="text/javascript">
+
+        function check() {
+            $("#careerObjRelationform").submit()
+        }
+        $(document).ready(function () {
+            $("#careerObjRelationform").validate({
+                rules: {
+                    obj_id: {
+                        required: true
+                    },
+                    obj_type: {
+                        required: true
+                    }
+
+                },
+                messages: {
+                    obj_id: {
+                        required: "请填写课程（文章）ID"
+                    },
+                    obj_type: {
+                        required: "请选择添加类型"
+                    }
+
+                }
+            })
+        });
+
+        $("#button").attr('disabled', true);
+        function ajax_error() {
+            var obj_id = encodeURIComponent($('#obj_id').val());
+            var career_id = encodeURIComponent($('#career_id').val());
+            var obj_type = encodeURIComponent($('#obj_type').val());
+            var is_actived = encodeURIComponent($('#is_actived').val());
+            var url = "{% url 'mz_common:careerobjrelation_check' %}?action=add&career_id=" + career_id + '&obj_id=' + obj_id + '&is_actived=' + is_actived + '&obj_type=' + obj_type;
+            $.ajax({
+                url: url,
+                type: 'GET',
+                async: true,
+                dataType: 'json',
+                success: function (data) {
+                    $('#error').text(data.error);
+                    if (data.error == '') {
+                        $('#button').removeAttr('disabled')
+
+                    }
+                    else {
+                        $('#button').attr('disabled', true)
+                    }
+                },
+                error: function () {
+                    alert('出错了!')
+                }
+            });
+        }
+
+    </script>
+{% endblock %}

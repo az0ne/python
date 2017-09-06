@@ -1,0 +1,83 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    <script type="text/javascript">
+        function delCareerIntroduce(modal_name, title, url) {
+            $('#title_delCareerIntroduce').text(modal_name);
+            $('#btn_ensureDelCareerIntroduce').attr('onclick', 'ensureDelCareerIntroduce("' + url + '")');
+            $('#delCareerIntroduceMessage').text('确定要删除“' + title + '”吗？');
+            $('#modal_delCareerIntroduce').modal('show');
+        }
+        function ensureDelCareerIntroduce(url) {
+            window.location.href = url;
+        }
+        $(function () {
+            $('.inputArea1').attr('disabled', true);
+        });
+    </script>
+    <!--刪除课程介绍警示框-->
+    <div class="modal fade" id="modal_delCareerIntroduce" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_delCareerIntroduce"></h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="delCareerIntroduceMessage"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureDelCareerIntroduce()"
+                            id="btn_ensureDelCareerIntroduce">确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-header active bg-success">
+        <h4 class="modal-title" style="display: inline-block">
+            学生作品介绍信息</h4>
+    </div>
+    <div class="content">
+        {% if students %}
+            {% for student in students %}
+                <div class="container-fluid" style="border-bottom: 1px #ddd solid;padding-top: 10px">
+                    <div class="row-fluid">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <div class="previewImgDiv">
+                                    <img class="previewImg img-thumbnail" src="{{ MEDIA_URL }}{{ student.img_url }}"
+                                         alt="上传图片尺寸要求为:800*420"/>
+                                    <div class="text-info">
+                                        <span class="imgSize">上传图片尺寸(800*420)</span></div>
+                                </div>
+                                <span class="notEmpty1" style="color: red">*</span>
+                                <label for="txt_add_studentImgUrl">作品图:</label>
+                                <input class="inputArea1 txt_studentImgUrl" name="img_url" type="file" accept="image/*"
+                                       id="txt_add_studentImgUrl" value="{{ student.img_url }}"/>
+                                <span class="inputAreaError lbl_studentImgUrlError"></span>
+                            </div>
+                            <div class="form-group">
+                                <a href="{% url 'mz_course:careerIntroduce_student_edit' %}?action=edit&careerId=&studentId={{ student.id }}"
+                                   id="btn_saveTeacher" role="button" title="修改"
+                                   class="btn btn-default btn-success btn-sm active">
+                                    <span class="glyphicon glyphicon-edit" style="margin-right: 3px"></span>修改</a>
+                                <a href="javascript:void(0);"
+                                   onclick="delCareerIntroduce('删除学员作品介绍信息','{{ student.id }}','{% url 'mz_course:careerIntroduce_student_list' %}?action=delete&id={{ student.id }}&careerId={{ student.career_id }}')"
+                                   id="btn_delCareerIntroduceStudent" role="button" title="删除"
+                                   class="btn btn-default btn-danger btn-sm active">
+                                    <span class="glyphicon glyphicon-trash" style="margin-right: 3px"></span>删除</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <label class="text-danger">该课程无学生作品介绍信息</label>
+        {% endif %}
+    </div>
+{% endblock %}

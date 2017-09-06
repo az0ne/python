@@ -1,0 +1,60 @@
+<div class="panel panel-default" style="border-radius: 0;">
+	<!--搜索框-->
+	<div class="input-group mysearch">
+		<input type="text" id="txt_search" class="form-control" placeholder="输入查询关键字" />
+		<span class="input-group-btn">
+						<button type="button" class="btn btn-default" id="btn_search">
+							<span class="glyphicon glyphicon-search"></span>
+		</button>
+		</span>
+	</div>
+	<!-- 扩展功能栏-->
+	<div class="function_btn">
+		<ul class="nav navbar-btn">
+			<li>
+				<button type="button" id="btn_addNewCourse" class="btn btn-default btn-info btn-sm active">
+    					<span class="glyphicon glyphicon-plus">添加专业课程</span>
+    				</button>
+			</li>
+		</ul>
+	</div>
+	<!--课程模态框-->
+	<div class="modal fade" id="modal_course" role="dialog" aria-labelledby="myModelLable1">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-lable="close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="madalTitle_course">MODAL TITLE</h4>
+				</div>
+				<div class="modal-body input-group">
+					<label>课程名</label>
+					<input type="text" class="form-control" id="txt_courseName" />
+					<label></label>
+				</div>
+				<div class="modal-footer">
+					<p id="errorMessage" class="text-danger" style="float: left;"></p>
+					<button type="button" id="btn_courseName" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-primary" id="btn_addCourseTask">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--数据显示列表-->
+	<div>
+		<table class="table table-striped table-responsive table-bordered table-hover">
+			<thead>
+				<tr>
+					<th>专业课程名</th>
+					<th>图片</th>
+					<th>介绍</th>
+					<th>发布时间</th>
+					<th>学生数量</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody id="courseTableRow"></tbody>
+		</table>
+	</div>
+	<!--分页-->
+	<div class="pagination"></div>
+</div>

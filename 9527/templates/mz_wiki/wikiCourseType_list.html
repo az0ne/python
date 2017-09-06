@@ -1,0 +1,72 @@
+{% extends "index.html" %}
+{% block pager %}
+{% load  staticfiles %}
+<script>
+    $(document).ready(function(){
+        $(".a_del").click(function(){
+         window.type_id=$(this).attr('id');
+        $('#delMessage').text('确定要删除该分类吗？该分类下所有内容将被删除！');
+        $('#modal_del').modal('show');
+        });
+    });
+
+    function ensureDel() {
+        var id = window.type_id
+        var url = "/wiki/wikiCourseType/list/?action=delete&id="+id;
+        window.location.href = url;
+    }
+</script>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 col-lg-4 col-sm-6 " style="margin-left:30px;">
+            <h3>wiki课程库分类</h3>
+        </div>
+        <div class="col-md-2 col-lg-2 col-sm-4 col-md-offset-4">
+            <a  href="/wiki/wikiCourseType/edit/?action=add">
+                <h3><span class="glyphicon glyphicon-plus"></span></h3>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        {% for type in types %}
+        <div class="col-md-5 col-sm-8 col-lg-5 text-center" style="background-color:#DCDCDC;margin:20px;">
+            <h5>
+                <div class="row">
+                    <div class="col-md-6 col-sm-7 col-lg-6"> <a>{{ type.name }}</a></div>
+                    <div class="col-md-1 col-sm-1 col-lg-1"><a href="/wiki/wikiCourseType/edit/?action=show&id={{ type.id }}" data-toggle="tooltip"title="查看分类信息"><span class="glyphicon glyphicon-th"></span></a></div>
+                    <div class="col-md-1 col-sm-1 col-lg-1"><a href="/wiki/wikiCourseType/edit/?action=edit&id={{ type.id }}" data-toggle="tooltip"title="修改分类信息"><span class="glyphicon glyphicon-edit"></span></a></div>
+                    <div class="col-md-1 col-sm-1 col-lg-1"><a href="/wiki/wikiCourse/wikiSEO_edit/?action=edit&obj_id={{ type.id }}&obj_type=WIKICOURSETYPE" data-toggle="tooltip"title="编辑SEO信息"><span class="glyphicon glyphicon-leaf"></span></a></div>
+                    <div class="col-md-1 col-sm-1 col-lg-1"><a class="a_del" id="{{ type.id }}" href="#" data-toggle="tooltip"title="删除该分类"><span class="glyphicon glyphicon-remove"></span></a></div>
+                    <!--<div class="col-md-1"><button type="button" /wiki/wikiCourseType/list/?action=delete&id={{ type.id }} class="btn btn-link btn-small" data-toggle="tooltip" title="删除该分类"><span class="glyphicon glyphicon-remove"></span></button></div>-->
+                </div>
+            </h5>
+        </div>
+       {% endfor %}
+    </div>
+</div>
+
+<!-- 删除警示框  -->
+    <div class="modal fade" id="modal_del" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_del">
+                        删除警示</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="delMessage"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureDel()" id="btn_ensureDel">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

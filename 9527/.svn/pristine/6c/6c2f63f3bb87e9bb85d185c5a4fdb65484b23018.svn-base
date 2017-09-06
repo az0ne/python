@@ -1,0 +1,73 @@
+{% extends "index.html" %}
+
+{% block pager %}
+    <div class="alert alert-info"><h4>登录和注册人数统计</h4></div>
+    <div class="container">
+        <div class="row">
+                <div class="form-group col-lg-8 col-md-8 col-sm-8">
+                    <label for="start_date" class="control-label col-lg-2 col-md-2 col-sm-2">
+                        起始时间： </label>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input id="start_date" class="form-control" type="date" name="start_date">
+                    </div>
+
+                </div>
+
+                <div class="form-group col-lg-8 col-md-8 col-sm-8">
+                    <label for="end_date" class="control-label col-lg-2 col-md-2 col-sm-2">
+                        结束时间：
+
+                    </label>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input id="end_date" class="form-control" type="date" name="end_date">
+                    </div>
+                </div>
+            <div class="form-group col-md-5 col-lg-5 col-sm-5">
+                <input  type="button" class="btn btn-primary" id="submit" value="确定" onclick="get_statistical()"/>
+            </div>
+        </div>
+        <hr>
+        <div id="result" class="row" style="display: none">
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                <h4>
+                    <ul>
+                        <li>该时间段内登录人数为：<span id="login_num" style="color: red"></span></li>
+                        <li>该时间段内注册人数为：<span id="joined_num" style="color: red"></span></li>
+                        <li>当前总注册人数为：<span id="total_count" style="color: red"></span></li>
+                    </ul>
+                </h4>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        function get_statistical() {
+            var start = $("#start_date").val();
+            var end = $("#end_date").val();
+            $.ajax({
+                type: "get",
+                url: "{% url "mz_common:statistical_ajax" %}",
+                data: {start_date: start, end_date: end},
+                dataType: "json",
+                beforeSend: function () {
+                    $("#result").css("display", "none");
+                    $("#submit").prop("disabled",true);
+                },
+                success: function (data) {
+                    if (data.status == "success") {
+                        $("#login_num").text(data.result.last_login_num);
+                        $("#joined_num").text(data.result.date_joined_num);
+                        $("#total_count").text(data.result.total_count);
+                    }
+                },
+                complete: function () {
+                    $("#result").css("display", "block");
+                    $("#submit").prop("disabled",false);
+                }
+            });
+        }
+    </script>
+{% endblock %}
+

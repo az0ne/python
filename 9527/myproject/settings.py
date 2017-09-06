@@ -1,0 +1,177 @@
+# -*- coding:utf-8-*-
+
+"""
+Django settings for myproject project.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/1.7/topics/settings/
+
+For the full list of settings and their values, see
+https://docs.djangoproject.com/en/1.7/ref/settings/
+"""
+
+# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import os
+import datetime
+from django.conf import global_settings
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+# Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = '@jnij-!oo=13f&jj)orx8s+il&brk6=)-!l5#-n)%-x#j$y)2q'
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = True
+
+TEMPLATE_DEBUG = True
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates'),
+)
+
+ALLOWED_HOSTS = []
+
+# Application definition
+
+INSTALLED_APPS = (
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'mz_course',
+    'mz_common',
+    'mz_seo',
+    'mz_back',
+    'mz_ads',
+    'mz_article',
+    'mz_fxsys',
+)
+
+MIDDLEWARE_CLASSES = (
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+)
+
+ROOT_URLCONF = 'myproject.urls'
+
+WSGI_APPLICATION = 'myproject.wsgi.application'
+
+# Database
+# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+
+
+
+DATABASES = {
+    # dev
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'dev_lps_20170820a',
+        'HOST': 'rm-bp1q9x0s7w5igdb75o.mysql.rds.aliyuncs.com',
+        'USER': 'dev',
+        'PASSWORD': '65fg_weArd',
+        'PORT': '3306',
+    }
+}
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'lps_20160704',
+#         'HOST': '192.168.1.142',
+#         'USER': 'maizi',
+#         'PASSWORD': 'maizi123',
+#         'PORT': '3306',
+#     }
+# }
+
+# 默认的sqlite3数据库
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+# Internationalization
+# https://docs.djangoproject.com/en/1.7/topics/i18n/
+
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'Asia/Shanghai'
+
+USE_I18N = True
+
+USE_L10N = True
+
+USE_TZ = True
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.7/howto/static-files/
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static').replace("\\", "/"), '/static/')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads/').replace("\\", "/")
+MEDIA_URL = '/uploads/'
+BANNER_URL = 'new_img/'
+ARTICLE_ROOT = 'Article/'
+
+MYSQL_HOST = DATABASES['default']['HOST']
+MYSQL_PORT = DATABASES['default']['PORT']
+MYSQL_USER = DATABASES['default']['USER']
+MYSQL_PASSWORD = DATABASES['default']['PASSWORD']
+MYSQL_DB = DATABASES['default']['NAME']
+MYSQL_POOL_NAME = "db_pool"
+MYSQL_POOL_SIZE = 2
+MYSQL_POOL_WAIT_SECONDS = 32
+
+REDIS_HOST = "127.0.0.1"
+REDIS_PORT = 6379
+REDIS_CACHE_PREFIX = "cache"
+REDIS_POOL_SIZE = 2
+REDIS_PASSWORD = None
+
+CACHE_PREFIX = "db_cache"
+
+PAGE_SIZE = 10
+
+
+UPLOAD_CONFIG_PATH = 'db/api/config/upload.json'
+UPLOAD_IMG_PATH = 'uploads/new_img/'
+UPLOAD_FILE_PATH = 'uploads/new_file/'
+UPLOAD_VIDEO_PATH = 'uploads/new_video/'
+
+ARTICLE_IMG_UPLOAD_PATH = 'uploads/Article/' + datetime.date.today().strftime('%Y/%m/')
+COURSE_IMG_UPLOAD_PATH = "uploads/course/" + datetime.date.today().strftime('%Y/%m/')
+
+# session expiration time
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_COOKIE_AGE = 60 * 60 * 2
+
+PWD_HASH_TYPE = "pbkdf2_sha256"
+
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.request",
+)
+
+WECHAT_APPID = 'wx6c7177b5e7305539'
+WECHAT_SECRET = '6acbb964533bcf8684c64bcbb1a84db1'
+
+# 运营系统api地址
+OPERATION_API_HOST = 'http://121.41.96.44:38000'
+OPERATION_NEW_STUDENT_API_HOST = 'http://121.41.96.44:36000'
+
+MONGO_HOST = "192.168.1.142"
+MONGO_PORT = 27017
+MONGO_DB_NAME = "main_website"

@@ -1,0 +1,122 @@
+{% extends "pager.html" %}
+{% block content %}
+    <script type="text/javascript">
+
+        function onQuery() {
+            var url = "{% url 'mz_homepage:homepageArticle_list' %}?action=query" + getPage();
+            window.location.href = url;
+        }
+        function refresh() {
+            var currentUrl = window.location.href;
+            window.location.href = currentUrl;
+        }
+
+        function editHomepageArticle(id) {
+            var currentUrl = window.location.href.split("action=search")[1];
+            currentUrl = currentUrl ? currentUrl : "";
+            var url = "{% url 'mz_homepage:homepageArticle_edit' %}?action=edit&id=" + encodeURI(id) + currentUrl;
+            window.location.href = url;
+        }
+
+        function keyword_search() {
+            var keyword = encodeURIComponent($('#txt_search').val());
+            var url = "{% url 'mz_homepage:homepageArticle_list' %}?action=search&page_index=1";//依赖page_index位置
+            window.location.href = url;
+        }
+
+        $(document).ready(function () {
+            addNameOption('{% url 'ajax:get_is_homepage_articleTypeName' %}', '#slt_articleTypeName', '全部');
+            $('#txt_search').val('{{ keyword }}');
+            var articleType = '{{ articleType }}' ? '{{ articleType }}' : '0_全部';
+            window.onload = function () {
+                $('#slt_articleTypeName').val(articleType);
+            }
+        });
+
+    </script>
+    <!-- 搜索 -->
+    <form class="form-inline" action="{% url 'mz_homepage:homepageArticle_list' %}" method="get"
+          style="margin-top: 7px;display: inline-block">
+        <input type="hidden" value="{{ article_type }}" id="setcatictype">
+        <input type="hidden" value="search" name="action">
+        <input type="hidden" value="{{ sort }}" id="setsort">
+{#        <div class="form-group" style="margin-left: 30px">#}
+{#            <label for="txt_search">标题搜索:</label>#}
+{#            <input type="text" class="form-control" id="txt_search" name="keyword" value="{{ keyword }}"#}
+{#                   placeholder="请输入文章标题查询">#}
+{#        </div>#}
+        <div class="form-group" style="margin-left: 10px">
+            <label for="exampleInputEmail2">类型选择:</label>
+            <select class="form-control" name="articleType" id="slt_articleTypeName">
+            </select>
+        </div>
+        <input type="hidden" value="1" name="page_index">
+        <button type="submit" class="btn btn-default">搜索</button>
+    </form>
+    <!-- 扩展功能栏  -->
+    <div class="function_btn" style="display: inline">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="refresh()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th class="table_id">ID</th>
+                <th width="auto">文章标题</th>
+                <th width="auto">文章短标题</th>
+                <th style="text-align: center" width="160px">发表时间</th>
+                <th style="text-align: center" width="100px">文章类型</th>
+                <th style="text-align: center" width="108px">首页显示顺序</th>
+                <th width="140px">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if homepageArticles %}
+                {% for homepageArticle in homepageArticles %}
+                    <tr class="text_over_flow">
+                        <td align="center" title="{{ homepageArticle.id }}">
+                            {{ homepageArticle.id }}
+                        </td>
+                        <td title="{{ homepageArticle.title|default_if_none:"" }}">
+                            {{ homepageArticle.title|default_if_none:"" }}
+                        </td>
+                        <td title="{{ homepageArticle.sub_title|default_if_none:"" }}">
+                            {{ homepageArticle.sub_title|default_if_none:"" }}
+                        </td>
+                        <td title="{{ homepageArticle.publish_date|date:"Y-m-d H:i:s" }}" style="text-align: center">
+                            {{ homepageArticle.publish_date|date:"Y-m-d H:i:s" }}
+                        </td>
+                        <td title="{{ homepageArticle.articletype_name|default_if_none:"" }}"
+                            style="text-align: center">
+                            {{ homepageArticle.articletype_name|default_if_none:"" }}
+                        </td>
+                        <td title="{{ homepageArticle.homepage_index|default_if_none:"" }}" style="text-align: center">
+                            {{ homepageArticle.homepage_index|default_if_none:"" }}
+                        </td>
+                        <td data-id="{{ homepageArticle.id }}">
+                            <a href="javascript:void(0)" title="修改显示顺序"
+                               onclick="editHomepageArticle({{ homepageArticle.id }})"
+                               class="btn btn-default btn-success btn-sm  active"
+                               style="margin-right:3px;" role="button"><i class="glyphicon glyphicon-edit"
+                                                                          style="margin-right: 3px;"></i>修改显示顺序</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="7">查询到0条数据！</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

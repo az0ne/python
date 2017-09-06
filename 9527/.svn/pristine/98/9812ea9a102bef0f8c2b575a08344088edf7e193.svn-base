@@ -1,0 +1,90 @@
+{% extends "index.html" %}
+{% block pager %}
+<script type="text/javascript">
+
+      function  searchQuery() {
+        var url = "{% url 'mz_course:public_meeting_list' %}"+"?action=search&keyword="+$("#keyword_search").val();
+        window.location.href=url;
+        }
+
+      function editPage(action,id){
+        var url = "{% url 'mz_course:public_meeting_edit' %}"+"?action="+action+"&id="+id;
+        window.location.href=url;
+      }
+
+
+</script>
+    <!-- 搜索 -->
+    <div class="input-group mySearch">
+        <input type="text" id="keyword_search" class="form-control" value="{{ keyword }}" placeholder="输入关键字"/>
+	<span class="input-group-btn">
+        <button type="button" class="btn btn-default" id="btn_search" onclick="searchQuery()">
+            <span class="glyphicon glyphicon-search"></span>
+        </button>
+	</span>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th width="auto">职业课程</th>
+                <th width="auto">课程老师</th>
+                <th width="auto">QQ群号码（1）</th>
+                <th width="auto">QQ群号码（2）</th>
+                <th width="auto">生效QQ群</th>
+                <th width="auto">开课时间</th>
+                <th width="auto">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable" >
+                {% if meetings %}
+                    {% for meeting in meetings %}
+                    <tr>
+                        <td title="{{ meeting.name|default_if_none:''}}">
+                            {{ meeting.name|default_if_none:'' }}
+                        </td>
+                        <td title="{{ meeting.teacher_name|default_if_none:''}}">
+                            {{ meeting.teacher_name|default_if_none:'' }}
+                        </td>
+                        <td title="{{ meeting.qq_group_1|default_if_none:''}}">
+                            {{ meeting.qq_group_1|default_if_none:''}}
+                        </td>
+                        <td title="{{ meeting.qq_group_2|default_if_none:''}}">
+                            {{ meeting.qq_group_2|default_if_none:''}}
+                        </td>
+                        {% ifequal meeting.enter_qq  1 %}
+                        <td title="{{ meeting.qq_group_1|default_if_none:''}}">
+                            {{ meeting.qq_group_1|default_if_none:''}}
+                        </td>
+                        {% else %}
+                        <td title="{{ meeting.qq_group_2|default_if_none:''}}">
+                            {{ meeting.qq_group_2|default_if_none:''}}
+                        </td>
+                        {% endifequal %}
+                        <td title="{{ meeting.class_time|date:'Y-m-d H:i:s'}}">
+                            {{ meeting.class_time|date:"Y-m-d H:i:s"}}
+                        </td>
+                        <td>
+                            <a href="javascript:void(0)" title="查看" onclick="editPage('show','{{meeting.id}}')"
+                               class="btn btn-default btn-success btn active" style="margin-right:3px;" role="button">
+                                <i class="glyphicon glyphicon-search" style="margin-right: 3px;"></i>查看
+                            </a>
+                            <a href="javascript:void(0)" title="编辑" onclick="editPage('edit','{{meeting.id}}')"
+                               class="btn btn-default btn-info btn active" style="margin-right:3px;" role="button">
+                                <i class="glyphicon glyphicon-edit" style="margin-right: 3px;"></i>编辑
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="6">查询到0条数据！</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}
+

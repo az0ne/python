@@ -1,0 +1,4 @@
+
+label.error {
+  color: #ea002f;
+}

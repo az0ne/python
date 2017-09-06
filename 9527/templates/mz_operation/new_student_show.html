@@ -1,0 +1,154 @@
+{% extends "index.html" %}
+{% block pager %}
+    {% load  staticfiles %}
+    {% ifequal action 'show' %}
+        <div class="alert alert-info"><h4>新学员信息</h4></div>
+        <div class="col-md-10 col-sm-8 col-lg-8">
+            <table class="table table-striped table-responsive table-bordered table-hover">
+                {#                <thead>#}
+                {#                <tr>#}
+                {#                    <th width="200px;">#}
+                {#                        新学员内容#}
+                {#                    </th>#}
+                {#                    <th>#}
+                {#                        内容详情#}
+                {#                    </th>#}
+                {##}
+                {#                </tr>#}
+                {#                </thead>#}
+                <tbody class="text_over_flow">
+                <tr class="warning" style="font-weight:bold;">
+                    <td>
+                        <span>学员信息</span>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>信息是否完善：</span>
+                    </td>
+                    <td>
+                        {{ study_info.is_perfect|yesno:"已完善,未完善" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>学员id：</span>
+                    </td>
+                    <td>
+                        {{ student_id|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>学员姓名：</span>
+                    </td>
+                    <td>
+                        {{ study_info.nick_name|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>学员手机：</span>
+                    </td>
+                    <td>
+                        {{ study_info.mobile|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>学员QQ：</span>
+                    </td>
+                    <td>
+                        {{ study_info.qq|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>学员微信：</span>
+                    </td>
+                    <td>
+                        {{ study_info.wechat|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr class="warning" style="font-weight:bold;">
+                    <td>
+                        <span>课程信息</span>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <span>课程id：</span>
+                    </td>
+                    <td>
+
+                        {{ career.id|default_if_none:"" }}
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>课程名称：</span>
+                    </td>
+                    <td>
+                        {{ career.name|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr class="warning" style="font-weight:bold;">
+                    <td>
+                        <span>老师信息</span>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>老师ID：</span>
+                    </td>
+                    <td>
+                        {{ teacher.id|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>老师姓名：</span>
+                    </td>
+                    <td>
+                        {{ teacher.name|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>老师手机：</span>
+                    </td>
+                    <td>
+                        {{ teacher.mobile|default_if_none:"" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>是否与新学员沟通：</span>
+                    </td>
+                    <td>
+                        {{ new_student_communicate|yesno:"已沟通,未沟通" }}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <span>提醒老师时间：</span>
+                    </td>
+                    <td>
+                        {{ notify_teacher_time|default_if_none:"" }}
+                    </td>
+                </tr>
+
+
+                </tbody>
+            </table>
+        </div>
+    {% endifequal %}
+{% endblock %}

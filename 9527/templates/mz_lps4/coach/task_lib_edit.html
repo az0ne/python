@@ -1,0 +1,183 @@
+{% extends "index.html" %}
+{% block pager %}
+    {% load  staticfiles %}
+    <div class="alert alert-info"><h4>任务球解锁，老师辅导信息库</h4></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <form id="task_lib_form" action="{% url 'mz_lps4:tasklibSave' %}" method="post">
+                    {% csrf_token %}
+                    <input id="action" type="hidden" name="action" value="{{ action }}">
+                    <input id="coach_id" type="hidden" name="coach_id" value="{{ task.id }}">
+                    <div class="form-group row">
+                        <label for="title" class="col-sm-3 col-md-3 col-lg-3 control-label">职业课程:</label>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <select class="form-control" id="career_selete_coach_task" name="career_id">
+                                <option value=0>请选择</option>
+                                {% for career in career_courses %}
+                                    <option value={{ career.id }}>{{ career.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="title" class="col-sm-3 col-md-3 col-lg-3 control-label">任务球:</label>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <select id="task" class="form-control" name="task_id">
+                                <option id="task_first_option" value=0>请选择</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="title" class="col-sm-3 col-md-3 col-lg-3 control-label">老师id:</label>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            {#                            <select class="form-control" id="coach_teacher_select">#}
+                            {#                                <option id="teacher_first_option" value=0>请选择</option>#}
+                            {#                            </select>#}
+                            <input id="teacher_id" class="form-control" name="teacher_id" type="number"
+                                   value="{{ task.teacher_id }}"
+                                   placeholder="请输入老师id">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="warn_three_hour" class="col-sm-3 col-md-3 col-lg-3 control-label">回复内容:</label>
+                        <div class="col-sm-6 col-md-6 col-lg-6">
+                            <textarea rows="8" name="content" class="form-control"
+                                      placeholder="请输入回复内容">{{ task.content }}</textarea>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">提交</button>
+                    <button type="button" class="btn btn-warning">返回</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <script>
+        $(function () {
+            {% ifequal action 'edit'%}  // 显示相关信息
+                $('#career_selete_coach_task').val({{ task.career_id }});
+                get_task_by_career();
+                $('#career_selete_coach_task').attr('disabled', 'disabled');
+                $('#task').attr('disabled', 'disabled');
+                $('#teacher_id').attr('disabled', 'disabled');
+            {% endifequal %}
+
+            $('#career_selete_coach_task').change(function () {
+                get_task_by_career();
+            });
+            $('#task').change(function () {
+                check_task_is_have();
+            });
+// ******************** 表单验证×××××××××××××××××××××××××××××××××××××××××××
+            $("#task_lib_form").validate({
+                rules: {
+                    career_id: {
+                        required: true,
+                        min: 1
+                    },
+                    task_id: {
+                        required: true,
+                        min: 1
+                    },
+                    teacher_id: {
+                        required: true,
+                    },
+                    content: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    career_id: {
+                        min: "请选择职业课程",
+                    },
+                    task_id: {
+                        min: "请选择任务球",
+                    },
+                    teacher_id: {
+                        required: "请输入老师id",
+                    },
+                    content: {
+                        required: "请输入回复内容",
+                    }
+
+                }
+            })
+            // ***************** end 表单验证******************************
+        });
+
+        var get_task_by_career = function () {
+            var career_id = $('#career_selete_coach_task option:selected').val();
+            console.log(career_id)
+            if (career_id > 0) {
+                $.ajax({
+                    url: '{% url 'mz_lps4:getTaskByCarrer' %}',
+                    dataType: 'json',
+                    data: {'career_id': career_id},
+                    method: 'get',
+                    beforeSend: function () {
+                        $("#task").val(0);
+                        $("#task_first_option").nextAll().remove();
+                        {#                            $("#teacher_first_option").nextAll().remove();#}
+                        layer.load(1, {
+                            shade: [0.1, '#fff'] //0.1透明度的白色背景
+                        });
+                    },
+                    success: function (data) {
+                        if (data.status == 'success') {
+                            console.log('get task by career success.')
+                            for (var i = 0; i < data.tasks.length; i++) {
+                                console.log(data.tasks[i].task_name);
+                                $('<option/>', {
+                                    val: data.tasks[i].task_id,
+                                    text: data.tasks[i].task_name
+                                }).appendTo($("#task"))
+                            }
+                            if ('{{ action }}' == 'edit') {
+                                console.log('in edit ajax');
+                                $('#task').val({{ task.task_id }});
+                            }
+                            //根据career_id 加载老师，暂时取消
+                            {#                                for (var i=0;i<data.teachers.length;i++ ){#}
+                            {#                                    console.log("nick_name:{0}".format(data.teachers[i].nick_name));#}
+                            {#                                    console.log("_________");#}
+                            {#                                    console.log("real_name:{0}".format(data.teachers[i].real_name));#}
+                            {##}
+                            {#                                    $('<option/>',{#}
+                            {#                                        val:data.teachers[i].teacher_id,#}
+                            {#                                        text:data.teachers[i]._name#}
+                            {#                                    }).appendTo($("#coach_teacher_select"))#}
+                            {#                                }#}
+                            }
+                    },
+                    complete: function () {
+                        layer.closeAll('loading');
+                        }
+                });
+            }
+            }
+
+        var check_task_is_have = function () {
+            var task_id = $('#task option:selected').val()
+            var career_id = $('#career_selete_coach_task option:selected').val()
+            $.ajax({
+                url: '{% url 'mz_lps4:check_task_is_have' %}',
+                dataType: 'json',
+                data: {'task_id': task_id, 'career_id': career_id},
+                success: function (data) {
+                    if (data.status == 'success') {
+                        if (data.is_have) {
+                            layer.alert('该任务球内容已存在，请重新选择。');
+                            $('#task').val(0);
+                        }
+                    }
+                    else {
+                        layer.alert(data.msg);
+                    }
+                }
+            });
+        }
+    </script>
+{% endblock %}

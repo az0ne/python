@@ -1,0 +1,79 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js" xmlns="http://www.w3.org/1999/html"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#update_menu').bind('click', function () {
+            layer.confirm('确定要更新公众号菜单吗？', {
+                    btn: ['确定','取消'] //按钮
+                }, function(){
+                    $.ajax({
+                        url: '{% url 'mz_wechat:set_menu' %}',
+{#                        data: {'page': page},#}
+                        dataType: 'json',
+                        type: 'GET',
+                        beforeSend: function (XHR) {
+                            layer.load();
+                        },
+                        success: function (data) {
+                            layer.closeAll('loading');
+                            if (data.status == 'success') {
+                                layer.msg('更新成功', {time: 1000, icon: 6});
+                            } else {
+                                layer.msg('更新失败，错误信息：' + data.message, {time: 1000, icon: 5});
+                            }
+                        },
+                        error: function () {
+                            layer.closeAll('loading');
+                            layer.msg('服务器异常', {time: 1000, icon: 5});
+                        }
+                    });
+                }, function(){
+
+                }
+            );
+        });
+
+        $('#update_news').bind('click', function () {
+            layer.confirm('确定要同步微信图文到后台吗？', {
+                    btn: ['确定','取消'] //按钮
+                }, function(){
+                    $.ajax({
+                        url: '{% url 'mz_wechat:sync_wechat_news' %}',
+{#                        data: {'page': page},#}
+                        dataType: 'json',
+                        type: 'GET',
+                        beforeSend: function (XHR) {
+                            layer.load();
+                        },
+                        success: function (data) {
+                            layer.closeAll('loading');
+                            if (data.status == 'success') {
+                                layer.msg('同步成功', {time: 1000, icon: 6});
+                            } else {
+                                layer.msg('同步失败，错误信息：' + data.message, {time: 1000, icon: 5});
+                            }
+                        },
+                        error: function () {
+                            layer.closeAll('loading');
+                            layer.msg('服务器异常', {time: 1000, icon: 5});
+                        }
+                    });
+                }, function(){
+
+                }
+            );
+        });
+    });
+    </script>
+    <!--首页标题-->
+    <div class="modal-dialog center-block" role="document" style="background-color:#ffffff;width: 100%">
+        <h1>手动更新页</h1>
+        <div class="modal-footer"></div>
+        <div class="center">
+            <button id="update_menu">更新菜单到微信</button>
+            <button id="update_news">同步图文到本地</button>
+        </div>
+    </div>
+{% endblock %}
+

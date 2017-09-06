@@ -1,0 +1,263 @@
+{% extends "pager.html" %}
+{% block content %}
+    <script type="text/javascript">
+
+        function onQuery() {
+
+            var url = "{% url 'mz_article:article_list' %}?action=query" + getPage();
+            window.location.href = url;
+        }
+
+        function delarticle(id, title) {
+            selectDelRowId = id;
+            $('#delarticleMessage').text('确定要删除“' + title + '”文章吗？');
+            $('#modal_delarticle').modal('show');
+        }
+
+        function ensureDelarticle() {
+            var id = selectDelRowId;
+            var url = "{% url 'mz_article:article_list' %}?action=delete&id=" + encodeURI(id) + getPage();
+            window.location.href = url;
+        }
+        //浏览点赞修改
+        function chaginfo(id) {
+            var url = "{% url 'mz_article:article_chaginfo' %}?id=" + encodeURI(id) + getPage();
+            window.location.href = url;
+        }
+
+        //附图页面入口
+        function addpic(id) {
+            var urlkeyword = $("#txt_search").val();
+            var url = "{% url 'mz_article:article_addpic' %}?id=" + encodeURI(id) + "&keyword=" + encodeURI(urlkeyword) + getPage();
+            window.location.href = url;
+        }
+
+
+        function editarticle(id) {
+            var urlkeyword = $("#txt_search").val();
+            var url = "{% url 'mz_article:article_edit' %}?action=edit&id=" + encodeURI(id) + "&keyword=" + encodeURI(urlkeyword) + getPage();
+            window.location.href = url;
+        }
+
+        function showarticle(id) {
+            var url = "{% url 'mz_article:article_edit' %}?action=show&id=" + encodeURI(id);
+            window.location.href = url;
+        }
+
+
+        function addarticle() {
+            var url = "{% url 'mz_article:article_edit' %}?action=add" + getPage();
+            window.location.href = url;
+        }
+
+        function keyword_search() {
+            var keyword = encodeURIComponent($('#txt_search').val());
+            var url = "{% url 'mz_article:article_list' %}?action=search&keyword=" + keyword + "&page_index=1";//依赖page_index位置
+            window.location.href = url;
+        }
+
+
+        function checkcareer(id) {
+            var urlkeyword = $("#txt_search").val();
+            var urlchk = "{% url 'mz_article:article_list' %}?action=careerchk&id=" + encodeURI(id) + "&keyword=" + urlkeyword + getPage();//不选中
+            window.location.href = urlchk;
+        }
+
+
+        function checkcareered(id) {
+            var urlkeyword = $("#txt_search").val();
+            var urlchked = "{% url 'mz_article:article_list' %}?action=careerchked&id=" + encodeURI(id) + "&keyword=" + urlkeyword + getPage();//选中
+            window.location.href = urlchked;
+        }
+
+
+        $(document).ready(function () {
+            // 绑定文章职业课程下拉列表框
+            addObjectNameOption('{% url 'ajax:careerCourse_name' %}', '#careerCourseId', '全部');
+            addObjectNameOption('{% url 'ajax:get_all_articleTypeName' %}', '#articleTypeId', '全部');
+
+            // 绑定选择了的项到下拉列表框
+            window.onload = function () {
+                console.info({{ careerCourseId }}, {{ articleTypeId }}, {{ sort }})
+                $('#careerCourseId').val({{ careerCourseId }});
+                $('#articleTypeId').val({{ articleTypeId }});
+                $('#sort').val({{ sort }});
+            }
+
+            //排序
+            $("#sort").change(function () {
+                var keyword = $("#txt_search").val();
+                var articleTypeId = $("#articleTypeId").val();
+                var careerCourseId = $('#careerCourseId').val();
+                var sort = $("#sort").val();
+                var sorturl = "{% url 'mz_article:article_list' %}?action=search&keyword=" + encodeURI(keyword) + "&articleTypeId=" + encodeURI(articleTypeId) + "&careerCourseId=" + encodeURI(careerCourseId) + "&sort=" + encodeURI(sort) + getPage();
+                window.location.href = sorturl
+
+            });
+
+        });
+
+
+    </script>
+    <!-- 搜索 -->
+    <form class="form-inline" action="{% url 'mz_article:article_list' %}" method="get"
+          style="margin-top: 7px;display: inline-block">
+        <input type="hidden" value="search" name="action">
+        <div class="form-group">
+            <label for="txt_search">标题搜索</label>
+            <input type="text" class="form-control" id="txt_search" name="keyword" value="{{ keyword }}"
+                   placeholder="请输入文章标题查询">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail2">类型选择</label>
+            <select class="form-control" name="articleTypeId" id="articleTypeId">
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail2">职业课程</label>
+            <select class="form-control" name="careerCourseId" id="careerCourseId"></select>
+        </div>
+        <button type="submit" class="btn btn-default">搜索</button>
+        <label for="sort" style="margin-left: 22px">排序选择</label>
+        <select class="form-control" name="sort" id="sort">
+            <option value="1">ID排序</option>
+            <option value="2">点赞排序</option>
+            <option value="3">浏览排序</option>
+        </select>
+        <input type="hidden" value="1" name="page_index">
+    </form>
+    <!-- 扩展功能栏  -->
+    <div class="function_btn" style="display: inline">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="onQuery()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+            <li style="float: right;margin-right: 5px">
+                <button type="button" id="btn_addnewarticle" onclick="addarticle()"
+                        class="btn btn-default btn-info btn-sm active">
+                    <span class="glyphicon glyphicon-plus">新增</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th class="table_id" style="text-align: center;vertical-align: middle">ID</th>
+                <th width="220px" style="text-align: center;vertical-align: middle;">文章标题</th>
+                <th width="70px" style="text-align: center;vertical-align: middle">文章点赞</th>
+                <th width="70px" style="text-align: center;vertical-align: middle">文章浏览</th>
+                <th width="80px" style="vertical-align: middle">用户名</th>
+                <th width="80px" style="vertical-align: middle">文章类型</th>
+                <th width="130px" style="vertical-align: middle">职业课程</th>
+                <th width="160px" style="text-align: center;vertical-align: middle">发表时间</th>
+                <th width="430px" style="vertical-align: middle">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if articles %}
+                {% for article in articles %}
+                    <tr class="text_over_flow">
+                        <td align="center" title="{{ article.id }}">
+                            {{ article.id }}
+                        </td>
+                        <td title="{{ article.title|default_if_none:"" }}">
+                            {{ article.title|default_if_none:"" }}
+                        </td>
+                        <td align="center" title="{{ article.praise_count|default_if_none:"" }}">
+                            {{ article.praise_count|default_if_none:"" }}
+                        </td>
+                        <td align="center" title="{{ article.view_count|default_if_none:"" }}">
+                            {{ article.view_count|default_if_none:"" }}
+                        </td>
+                        <td title="{{ article.nick_name|default_if_none:"" }}">
+                            {{ article.nick_name|default_if_none:"" }}
+                        </td>
+                        <td title="{{ article.articletype_name|default_if_none:"" }}">
+                            {{ article.articletype_name|default_if_none:"" }}
+                        </td>
+                        <td title="{{ article.careerCourse_name|default_if_none:"" }}">
+                            {{ article.careerCourse_name|default_if_none:"" }}
+                        </td>
+                        <td align="center" title="{{ article.publish_date|date:"Y-m-d H:i:s" }}">
+                            {{ article.publish_date|date:"Y-m-d H:i:s" }}
+                        </td>
+                        <td data-id="{{ article.id }}">
+                            {% ifequal article.is_career 1 %}
+                                <a href="javascript:void(0)" title="显示"
+                                   onclick="checkcareer({{ article.id }})"
+                                   class="btn btn-default btn-default btn-sm active"
+                                   style="margin-right:3px;" role="button"><i
+                                        class="glyphicon glyphicon-ok" style="margin-right: 3px;"></i>选中</a>
+                            {% else %}
+                                <a href="javascript:void(0)" title="关闭"
+                                   onclick="checkcareered({{ article.id }})"
+                                   class="btn btn-default btn-warning btn-sm"
+                                   style="margin-right:3px;" role="button"><i
+                                        class="glyphicon glyphicon-remove" style="margin-right: 3px;"></i>关闭</a>
+                            {% endifequal %}
+                            <a href="javascript:void(0)" title="附图"
+                               onclick="chaginfo({{ article.id }})"
+                               class="btn btn-default btn-info btn-sm active"
+                               style="margin-right:3px;" role="button"><i
+                                    class="glyphicon glyphicon-search" style="margin-right: 3px;"></i>点赞浏览</a>
+
+                            <a href="javascript:void(0)" title="附图"
+                               onclick="addpic({{ article.id }})"
+                               class="btn btn-default btn-info btn-sm active"
+                               style="margin-right:3px;" role="button"><i
+                                    class="glyphicon glyphicon-search" style="margin-right: 3px;"></i>附图</a><a
+                                href="javascript:void(0)" title="查看"
+                                onclick="showarticle({{ article.id }})"
+                                class="btn btn-default btn-info btn-sm active"
+                                style="margin-right:3px;" role="button"><i
+                                class="glyphicon glyphicon-search" style="margin-right: 3px;"></i>查看</a><a
+                                href="javascript:void(0)" title="编辑" onclick="editarticle({{ article.id }})"
+                                class="btn btn-default btn-success btn-sm  active"
+                                style="margin-right:3px;" role="button"><i class="glyphicon glyphicon-edit"
+                                                                           style="margin-right: 3px;"></i>编辑</a>
+                            <a href="javascript:void(0)" title="删除"
+                               onclick="delarticle({{ article.id }}, '{{ article.title }}')"
+                               class="btn btn-default btn-danger btn-sm active" style="margin-right:3px;" role="button"><i
+                                    class="glyphicon glyphicon-trash" style="margin-right: 3px;"></i>删除</a></td>
+                    </tr>
+                {% endfor %}
+
+            {% else %}
+                <tr>
+                    <td colspan="9">查询到0条数据！</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 删除警示框  -->
+    <div class="modal fade" id="modal_delarticle" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_delarticlemod">
+                        删除警示</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="delarticleMessage"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="ensureDelarticle()"
+                            id="btn_ensureDelarticle">确定
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

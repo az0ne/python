@@ -1,0 +1,266 @@
+{% extends "pager.html" %}
+{% block content %}
+<script type="text/javascript">
+    function onQuery() {
+        var url = window.location.href;
+        if (url.indexOf('&page_index') != -1) {
+            url = url.replace(/&page_index=\d*/, getPage2('&'));
+        }
+        else if (url.indexOf('?page_index') != -1) {
+            url = url.replace(/\?page_index=\d*/, getPage2('?'));
+        }
+        else {
+            if (url.indexOf('?') != -1) {
+                url += getPage2('&');
+            }
+            else {
+                url += getPage2('?');
+            }
+        }
+        window.location.href = url;
+    }
+
+    function delLearn(nick_name, course_name, class_id, student_id) {
+        $('#delLearnMessage').text('确定要删除"' +nick_name+ '"在"' + course_name + '"的试学吗？');
+        var del_btn = $('#btn_ensureDelLearn');
+        del_btn.unbind();
+        del_btn.on({'click': function () {
+            ensureDelLearn(class_id, student_id);
+        }});
+
+        $('#modal_del_learn').modal('show');
+    }
+
+    function ensureDelLearn(class_id, student_id) {
+        $.ajax({
+            url: '{% url 'mz_back:try_learn_list' %}',
+            method: 'GET',
+            dataType: 'json',
+            data: {'action': 'delete', 'class_id': class_id, 'student_id': student_id},
+            success:function(result){
+                if (result['success']) {
+                    onQuery()
+                } else {
+                    $('#delLearnMessage').text(result['message']);
+                    var del_btn = $('#btn_ensureDelLearn');
+                    del_btn.unbind();
+                    del_btn.on({'click': function () {
+                        $('#modal_del_learn').modal('hide');
+                    }});
+                    $('#modal_del_learn').modal('show');
+                }
+            }
+        });
+    }
+
+{##}
+{#    function editlearn(id) {#}
+{#        var url = "/backAdmin/employ_teacher/edit/?action=edit&id=" + encodeURI(id);#}
+{#        window.location.href = url;#}
+{#    }#}
+{##}
+    function showlearn(class_id, student_id, show) {
+        /*
+         *show: 0:查看详情, 1:首次班会结束后, 2:答疑班会结束后
+         */
+        var url = "{% url 'mz_back:try_learn_detail' %}?class_id=" + encodeURI(class_id) + "&student_id=" + encodeURI(student_id);
+        if (show == 1) {
+            url += "&show=first_meeting"
+        }
+        else if (show == 2) {
+            url += "&show=QA_meeting"
+        }
+        window.location.href = url;
+    }
+{##}
+{##}
+{#    function addlearn() {#}
+{#        var url = "/backAdmin/employ_teacher/edit/?action=add";#}
+{#        window.location.href = url;#}
+{#    }#}
+{##}
+{##}
+    function learnQuery() {
+        var mobile = encodeURIComponent($('#search_mobile').val());
+        var search_try_learn_name = encodeURIComponent($('#search_try_learn_name').val());
+        var search_try_learn_time = encodeURIComponent($('#search_try_learn_time').val());
+        var url = "{% url 'mz_back:try_learn_list' %}?action=search&mobile=" + mobile + "&try_learn_name=" + search_try_learn_name + "&try_learn_time=" + search_try_learn_time + "&page_index=1";
+        window.location.href = url;
+    }
+
+    function learnExport(type) {
+        var mobile = encodeURIComponent($('#search_mobile').val());
+        var search_try_learn_name = encodeURIComponent($('#search_try_learn_name').val());
+        var search_try_learn_time = encodeURIComponent($('#search_try_learn_time').val());
+        var url = "{% url 'mz_back:try_learn_list' %}?action=export&mobile=" + mobile + "&try_learn_name=" + search_try_learn_name + "&try_learn_time=" + search_try_learn_time;
+        if (type == 1) {
+            url += '&export_type=all'
+        }
+        else {
+            url += getPage2('&')
+        }
+        window.location.href = url;
+    }
+
+</script>
+    <!-- 搜索 -->
+{#    <div class="input-group mySearch">#}
+{#        <input type="text" id="search_mobile" class="form-control" {% if s_mobile %} value="{{ s_mobile }}"{% endif %} placeholder="输入手机"/>#}
+{#        <span class="input-group-btn">#}
+{#            <button type="button" class="btn btn-default" id="btn_search" onclick="learnQuery()">#}
+{#                <span class="glyphicon glyphicon-search"></span>#}
+{#            </button>#}
+{#	    </span>#}
+{#    </div>#}
+{#    <div class="input-group mySearch">#}
+{#        <input type="text" id="search_try_learn_name" class="form-control" {% if s_try_learn_name %} value="{{ s_try_learn_name }}"{% endif %} placeholder="输入试学课程名"/>#}
+{#        <span class="input-group-btn">#}
+{#            <button type="button" class="btn btn-default" id="btn_search" onclick="learnQuery()">#}
+{#                <span class="glyphicon glyphicon-search"></span>#}
+{#            </button>#}
+{#        </span>#}
+{#    </div>#}
+    <div class="mySearch2">
+        <form class="form-inline" action="{% url 'mz_back:try_learn_list' %}?action=search" method="get">
+            <div class="form-group">
+                <label for="exampleInputName2">手机：</label>
+                <input type="text" name="mobile" id="search_mobile" class="form-control" {% if s_mobile %} value="{{ s_mobile }}"{% endif %} placeholder="输入手机">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail2">试学课程：</label>
+                <input type="text" name="try_learn_name" id="search_try_learn_name" class="form-control" {% if s_try_learn_name %} value="{{ s_try_learn_name }}"{% endif %} placeholder="输入试学课程名"/>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail2">试学时间：</label>
+                <input type="text" name="try_learn_time" id="search_try_learn_time" class="form-control" {% if s_try_learn_time %} value="{{ s_try_learn_time }}"{% endif %} placeholder="输入试学时间"/>
+            </div>
+            <button type="submit" class="btn btn-default">查询</button>
+            <a href="{% url 'mz_back:try_learn_list' %}" class="btn btn-default">清空查询</a>
+            <button type="button" class="btn btn-default" onclick="learnExport(0)">导出当前页</button>
+            <button type="button" class="btn btn-default" onclick="learnExport(1)">导出所有</button>
+        </form>
+    </div>
+
+    <!-- 扩展功能栏  -->
+    <div class="function_btn">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="onQuery()"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-refresh">刷新</span>
+                </button>
+            </li>
+            <li style="float: right;margin-right: 5px;display: none">
+                <button type="button" id="btn_addnewrolemenu" onclick="addlearn()"
+                        class="btn btn-default btn-info btn-sm active">
+                    <span class="glyphicon glyphicon-plus">新增</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th class="table_id">ID</th>
+                <th width="auto">姓名（昵称）</th>
+                <th width="auto">手机</th>
+                <th width="auto">麦子账号</th>
+                <th width="auto">试学课程</th>
+                <th width="auto">试学班老师</th>
+                <th width="auto">试学时间</th>
+                <th width="auto">加班时间</th>
+                <th width="auto">首次班会开始时间</th>
+                <th width="auto">答疑班会开始时间</th>
+                <th width="180px">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if try_learn_list %}
+                {% for learn in try_learn_list %}
+                    <tr class="text_over_flow">
+                        <td align="center" title="{{ learn.id }}">
+                            {{ learn.id }}
+                        </td>
+                        <td title="{{ learn.nick_name }}">
+                            {{ learn.nick_name }}
+                        </td>
+                        <td title="{{ learn.mobile }}">
+                            {{ learn.mobile }}
+                        </td>
+                        <td title="{{ learn.username }}">
+                            {{ learn.username }}
+                        </td>
+                        <td title="{{ learn.try_learn_name }}">
+                            {{ learn.try_learn_name }}
+                        </td>
+                        <td title="{{ learn.teacher_name }}">
+                            {{ learn.teacher_name }}
+                        </td>
+                        <td title="{{ learn.try_learn_time }}">
+                            {{ learn.try_learn_time }}
+                        </td>
+                        <td title="{{ learn.join_class_date|date:"Y年m月d日 H点i分" }}">
+                            {{ learn.join_class_date|date:"Y-m-d H:i" }}
+                        </td>
+                        <td title="{{ learn.first_startline|date:"Y年m月d日 H点i分" }}">
+                            {{ learn.first_startline|date:"H:i" }}
+                        </td>
+                        <td title="{{ learn.QA_startline|date:"Y年m月d日 H点i分" }}">
+                            {{ learn.QA_startline|date:"H:i" }}
+                        </td>
+                        <td data-id="{{ learn.id }}">
+{#                            <a href="javascript:void(0)" title="查看" onclick="showlearn({{ learn.class_id }}, {{ learn.id }}, 0)" class="btn btn-default btn-info btn-sm active" style="margin-right:3px;" role="button">#}
+{#                                <i class="glyphicon glyphicon-search" style="margin-right: 3px;"></i>#}
+{#                                查看详情#}
+{#                            </a>#}
+{#                            <a href="javascript:void(0)" title="查看" onclick="showlearn({{ learn.class_id }}, {{ learn.id }}, 1)" class="btn btn-default btn-info btn-sm active" style="margin-right:3px;" role="button">#}
+{#                                <i class="glyphicon glyphicon-search" style="margin-right: 3px;"></i>#}
+{#                                首次班会结束后#}
+{#                            </a>#}
+                            <a href="javascript:void(0)" title="查看" onclick="showlearn({{ learn.class_id }}, {{ learn.id }}, 2)" class="btn btn-default btn-info btn-sm active" style="margin-right:3px;" role="button">
+                                <i class="glyphicon glyphicon-search" style="margin-right: 3px;"></i>
+                                查看详情
+                            </a>
+                            {% if request.session.role.name == '管理员' %}
+                            <a href="javascript:void(0)" title="删除" onclick="delLearn('{{ learn.nick_name }}', '{{ learn.try_learn_name }}', '{{ learn.class_id }}', '{{ learn.id }}')" class="btn btn-default btn-danger btn-sm active" style="margin-right:3px;" role="button">
+                                <i class="glyphicon glyphicon-remove" style="margin-right: 3px;"></i>
+                                删除
+                            </a>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+
+            {% else %}
+                <label>查询到0条数据！</label>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+
+
+<!-- 删除警示框  -->
+    <div class="modal fade" id="modal_del_learn" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-danger active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_deladminrolemod">
+                        删除警告</h4>
+                </div>
+                <div class="modal-body">
+                    <h3 class="text-danger text-center active" id="delLearnMessage"></h3>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" id="btn_ensureDelLearn">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

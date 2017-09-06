@@ -1,0 +1,63 @@
+{% extends "pager.html" %}
+{% block content %}
+<script type="text/javascript">
+
+    function onQuery() {
+        var sendemail = $("#sendcourse").val();
+        var url = "{% url 'mz_course:courseinfo' %}?action=query&coursename="+ encodeURI(sendemail) + getPage();
+        window.location.href = url;
+    }
+
+
+
+
+    function showstudyinfo(id, datequery, username) {
+        var url = "{% url 'mz_common:studydetail' %}?id=" + encodeURI(id) + "&date=" + encodeURI(datequery) + "&username=" + encodeURI(username);
+        window.location.href = url;
+    }
+
+</script>
+    <div class="alert alert-info" style="height: 55px;margin-bottom: 1px">
+        <h4 style="margin-bottom: -15px">小课程信息</h4>
+    </div>
+    <input type="hidden" value="{{ coursename }}" id="sendcourse">
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th class="200px">小课程名</th>
+                <th width="200px">小课程seo_title</th>
+                <th width="auto">小课程seo_keywords</th>
+                <th width="auto">小课程seo_description</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable">
+            {% if courseinfos %}
+                {% for courseinfo in courseinfos %}
+                    <tr class="text_over_flow">
+                        <td align="center">
+                            {{ courseinfo.name }}
+                        </td>
+                        <td>
+                            {{ courseinfo.seo_title }}
+                        </td>
+                        <td>
+                            {{ courseinfo.seo_keywords }}
+                        </td>
+                        <td>
+                            {{ courseinfo.seo_description }}
+                        </td>
+                        <td data-id="{{ wikilink.id }}"><a href="javascript:void(0)" title="详情查看"
+                                                           onclick="showstudyinfo({{ studyinfo.id }}, '{{ studyinfo.datetime|date:"Y-m-d"}}', '{{ studyinfo.name }}')"
+                                                           class="btn btn-default btn-info btn-sm active"
+                                                           style="margin-right:3px;" role="button"><i
+                                class="glyphicon glyphicon-search" style="margin-right: 3px;"></i>详情查看</a></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                <label>查询到0条数据！</label>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

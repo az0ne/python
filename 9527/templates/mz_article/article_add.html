@@ -1,0 +1,332 @@
+{% extends "index.html" %}
+{% block pager %}
+{% load  staticfiles %}
+<head xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="{{ STATIC_URL }}js/ueditor/ueditor.all.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="{{ STATIC_URL }}js/ueditor/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/ueditor/ueditor.parse.js"></script>
+    <style type="text/css" rel="stylesheet">
+        .newarticle{
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid newarticle">
+    <div class="row">
+        <div class="col-md-8" id="titleart">
+            <h2 class="text-info">文章详情页</h2>
+            <hr>
+        </div>
+        <div class="col-md-8">
+            <form id="articleedit" action="{% url 'mz_article:article_save' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% ifnotequal action "add" %}
+                    <input type="hidden" name="id" value="{{ article.id }}">
+                    <input type="hidden" name="action" value="edit">
+                    <input type="hidden" name="keyword" value="{{ keyword }}">
+                {% else %}
+                    <input type="hidden" name="action" value="add">
+                {% endifnotequal %}
+                    <input id="hidenarticletype" type="hidden" value="{{ article.article_type_id }}">
+                    <input id="hidencareercourse" type="hidden" value="{{ careercourse.id }}">
+                    <input id="hidentag" type="hidden" value="{{ tags }}">
+                <div class="form-group">
+                    {% ifnotequal action "add" %}
+                    <label for="articlecover">文章封面图片</label>
+                    <div class="row">
+                        <div class="col-xs-6 col-md-3">
+                            <a href="#">
+                                <img src="{{ MEDIA_URL }}{{ article.title_image }}" alt="上传默认图片大小：210 * 140(学生作品类型图片大小：438 * 292)" class="img-rounded previewImg" style="width: 200px;">
+                            </a>
+                        </div>
+                    </div>
+                    {% else %}
+                        <label for="articlecover">文章封面图片</label>
+                        <div class="row" style="display: none">
+                            <div class="col-xs-6 col-md-3">
+                                <a href="#">
+                                    <img src="{{ MEDIA_URL }}{{ article.title_image }}" alt="上传图片大小：210 * 140"
+                                         class="img-rounded previewImg" style="width: 200px;">
+                                </a>
+                            </div>
+                        </div>
+                    {% endifnotequal %}
+                    <input type="file" id="articlecover" name="title_image" onchange="changeImage()" style="margin-top: 8px">
+                    <input type="hidden" value="{{ article.title_image }}" name="old_image">
+                    <input type="hidden" value="{{ page_index }}" name="page_index">
+                    <div class="text-danger" style="margin-top: 8px"><span>图片尺寸(默认图片大小：210 * 140;学生作品类型图片大小：438 * 292)  : </span><span class="imgWidth">0</span><span>x</span><span class="imgHeight">0</span></div>
+                    <label for="article_type_id" style="margin-top: 5px;">选择文章类别</label>
+                    <select class="form-control" value="{{ article.article_type_id }}" name="article_type" id="article_type_id" style="margin-top: 8px">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="careercourse">选择文章的对应职业课程</label>
+                    <select class="form-control" name="careercourse" id="careercourse">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" value="1" name="is_top" id="istop"> 文章置顶
+                        <input type="hidden" value="{{ article.is_top }}" id="febtop">
+                    </label>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label for="seottl">SEO标题</label>
+                    <input type="text" class="form-control" id="seottl" value="{% if article.seo_title %}{{ article.seo_title }}{% else %}{% endif %}" name="seo_title" placeholder="请输入SEO标题">
+                </div>
+                <div class="form-group">
+                    <label for="seokeywd">SEO关键词</label>
+                    <input type="text" class="form-control" id="seokeywd" value="{% if article.seo_keywords %}{{ article.seo_keywords }}{% else %}{% endif %}" name="seo_keywords" placeholder="请输入SEO关键字">
+                </div>
+                <div class="form-group">
+                    <label for="seodcpt">SEO描述</label>
+                    <textarea class="form-control" rows="3" id="seodcpt" placeholder="请输入" name="seo_description">{% if article.seo_description %}{{ article.seo_description }}{% else %}{% endif %}</textarea>
+                </div>
+                <hr>
+                <div class="form-group">
+                    <label for="articletitle">文章标题</label>
+                    <input type="text" class="form-control" id="articletitle" name="title" value="{% if article.title %}{{ article.title }}{% else %}{% endif %}" placeholder="请输入标题">
+                </div>
+                <div class="form-group">
+                    <label for="articlesubtitle">首页文章短标题</label>
+                    <input type="text" class="form-control" id="articlesubtitle" name="sub_title" value="{% if article.sub_title %}{{ article.sub_title }}{% else %}{% endif %}" placeholder="请输入首页文章短标题">
+                </div>
+                <div class="form-group">
+                    <label for="articledig">文章摘要</label>
+                    <textarea class="form-control" rows="3" id="articledig" placeholder="200字以内" name="abstract">{% if article.abstract %}{{ article.abstract }}{% else %}{% endif %}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="articledig">文章标签(按住Ctrl多选)</label>
+                    <select multiple class="form-control" id="coursetagselect" value="{{ article.tag_id }}" name="tag" style="height: 150px">
+                    </select>
+                </div>
+                <input type="hidden" value="{{ article.content }}" id="con">
+                <div class="form-group" id="articleide">
+                    <!-- 加载编辑器的容器 -->
+                    <script id="editor" name="content" type="text/plain"></script>
+                </div>
+                {% ifnotequal action "show" %}
+                    <button type="submit" class="btn btn-primary" id="tagsub">提交</button>
+                {% else %}
+                    <button type="button" class="btn btn-primary" disabled="false">提交</button>
+                {% endifnotequal %}
+                    <button type="button" class="btn btn-info" onclick="goback()">返回</button>
+            </form>
+            <hr>
+            <div class="form-group">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{{ STATIC_URL }}js/vendor/jquery.min.js"></script>
+<script src="{{ STATIC_URL }}js/jquery.validate.js"></script>
+<script type="application/javascript">
+
+//回退按钮
+    function goback() {
+        history.go(-1)
+    }
+
+
+//验证
+    $(document).ready(function () {
+        $("#articleedit").validate({
+            rules: {
+                content: {
+                    required: true,
+                },
+                title: {
+                    required: true,
+                }
+            },
+            messages: {
+                content: {
+                    required: "请输入内容",
+                },
+                title: {
+                    required: "请输入标题",
+                }
+
+            }
+        })
+    });
+
+//图片预览
+function changeImage() {
+    $('.previewImg').attr('src', window.URL.createObjectURL($('#articlecover')[0].files[0]));
+    getImgSize();
+}
+
+function getImgSize() {
+    var img = new Image();
+    img.src = $('.previewImg').attr('src');
+    img.onload = function () {  // 等待图片加载完后，才能获取到图片的信息
+        $('.imgWidth').text(img.width);
+        $('.imgHeight').text(img.height);
+    }
+}
+
+
+
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
+
+
+    function isFocus(e){
+        alert(UE.getEditor('editor').isFocus());
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function setblur(e){
+        UE.getEditor('editor').blur();
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function insertHtml() {
+        var value = prompt('插入html代码', '');
+        UE.getEditor('editor').execCommand('insertHtml', value)
+    }
+    function createEditor() {
+        enableBtn();
+        UE.getEditor('editor');
+    }
+    function getAllHtml() {
+        alert(UE.getEditor('editor').getAllHtml())
+    }
+    function getContent() {
+        var arr = [];
+        arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+        arr.push("内容为：");
+        arr .push(UE.getEditor('editor').getContent());
+        alert(arr.join("\n"));
+    }
+
+    //ueditor解析
+    ue.ready(function () {
+        var test = $("#con").val();
+        ue.setContent(test);
+    });
+
+
+
+    //动态select选项
+    $(document).ready(function () {
+        getImgSize();
+        $.ajax({
+            url: "{% url 'ajax:careerCourse_name' %}",
+            type: "get",
+            async: false,
+            success: function (data) {
+                var selectinfo = [];
+                $.each(data.result, function (id, selectname) {
+                    selectinfo.push('<option value="' +
+                            selectname.id + '">' + selectname.id + ':' + selectname.name + '</option>'
+                    );
+                });
+                $("#careercourse").append(selectinfo.toString());
+            }
+        });
+
+        $.ajax({
+            url: "{% url 'ajax:get_all_articleTypeName' %}",
+            type: "get",
+            async: false,
+            success: function (list) {
+                var selectinfo = [];
+                $.each(list.result, function (id, selectname) {
+                    selectinfo.push('<option value="' +
+                            selectname.id + '">' + selectname.id + ':' + selectname.name + '</option>'
+                    );
+                });
+                $("#article_type_id").append(selectinfo.toString());
+            }
+        });
+
+        $.ajax({
+            url: "{% url 'ajax:courseTagAll_name' %}",
+            type: "get",
+            async: false,
+            success: function (data) {
+                var selectinfo = [];
+                $.each(data.result, function (id, selectname) {
+                    selectinfo.push('<option value="' +
+                            selectname.id + '">' + selectname.id + ':' + selectname.name + '</option>'
+                    );
+                });
+                $("#coursetagselect").append(selectinfo.toString());
+            }
+        });
+
+
+        //数据绑定
+        articletypevalue = $("#hidenarticletype").val();
+        $("#article_type_id option[value='" + articletypevalue + "']").attr("selected", "selected");
+
+        careercoursevalue = $("#hidencareercourse").val();
+        $("#careercourse option[value='" + careercoursevalue + "']").attr("selected", "selected");
+        //复选框绑定
+        coursetagvalue = $("#hidentag").val();
+        coursetagvaluejson = $.parseJSON(coursetagvalue);
+        $.each(coursetagvaluejson, function (index, item) {
+            var selec = item.id;
+            $("#coursetagselect option[value='" + selec + "']").attr("selected", "selected");
+        });
+
+        //istop默认选中参数
+        var istop = $("#febtop").val();
+        if(istop == 1){
+            $("#istop").attr("checked", true)
+        }else {
+            $("#istop").attr("checked", false)
+        }
+
+        //pageindex传值
+        var currenturl = window.location.search.split("page_index=")[1];
+        $("#pageindex").attr("value", currenturl)
+
+    });
+
+
+//判断图片大小
+$("#articleedit").submit(function () {
+    var width = $('.imgWidth').text();
+    var height = $('.imgHeight').text();
+    var articletype = $('#article_type_id').val();//210*140
+    if (width == 438&&height == 292&&articletype == 100){
+        return true
+    }else if(width == 210&&height == 140&&articletype != 100){
+        return true
+    }else {
+        alert("图片正确尺寸:210 * 140(学生作品类别的文章图片尺寸为:438 * 292)。");
+        return false
+    }
+
+});
+
+
+
+//判断多项中是否同时选择无
+//$("#articleedit").submit(function () {
+//    var sss = $("#coursetagselect").val();//获取数组
+//    var arrleng = sss.length;//数组长度
+//    var inleng = $.inArray("0",sss);//0是否在数组中
+//   if (arrleng >= 2&&inleng >= 0){
+//       alert("多项文章标签中不能选择无！");
+//        return false
+//   }else {
+//        return true
+//    }
+
+//{)
+
+
+</script>
+
+</body>
+{% endblock %}

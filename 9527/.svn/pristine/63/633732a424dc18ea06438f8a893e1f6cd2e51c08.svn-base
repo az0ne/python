@@ -1,0 +1,242 @@
+{% extends "pager.html" %}
+{% block content %}
+<div class="mySearch2">
+        <form class="form-inline" action="{% url 'mz_common:onevone_meeting_list' %}" method="get">
+            <input type="hidden" name="action" value="search">
+            <div class="form-group">
+                <label for="select_career">专业：</label>
+                <select id="select_career" class="form-control" name="career">
+                    <option value="">请选择</option>
+                    {% for career in careers %}
+                        <option value={{ career.id }} {% ifequal career.id keywords.career_id %}selected{% endifequal %}>{{ career.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="select_career">状态：</label>
+                <select id="select_career" class="form-control" name="status">
+                    <option value="">选择状态</option>
+                    <option value="CREATE" {% ifequal keywords.status 'CREATE'%}selected{% endifequal %}>已创建</option>
+                    <option value="DATED" {% ifequal keywords.status 'DATED'%}selected{% endifequal %}>已预约</option>
+                    <option value="ENDED" {% ifequal keywords.status 'ENDED'%}selected{% endifequal %}>已结束</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="teacher_nick_name">教师姓名：</label>
+                <input type="text" name="nick_name" id="teacher_nick_name" class="form-control"
+                       value="{{ keywords.nick_name }}" placeholder="请输入教师姓名"/>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail2">开始时间：</label>
+                <input type="date" name="start_time" id="start_time" class="form-control" value="{{ keywords.start_time|default_if_none:"" }}" />
+            </div>
+            <div class="form-group">
+                <label for="user_id">学生id：</label>
+                <input type="text" name="user_id" id="user_id" class="form-control" value="{% ifnotequal keywords.user_id 0 %}{{ keywords.user_id }}{% endifnotequal %}"  placeholder="请输入学生的id"/>
+            </div>
+            <div class="form-group">
+                <label for="phone">phone：</label>
+                <input type="text" name="phone" id="phone" class="form-control" value="{{ keywords.phone }}" placeholder="请输入学生的手机号"/>
+            </div>
+            <button type="submit" class="btn btn-info">查询</button>
+            <button id="reset_search_btn" type="button" class="btn btn-default" onclick="onQuery()">清空查询</button>
+        </form>
+    </div>
+
+
+{#    <!-- 扩展功能栏  -->#}
+{#    <div class="function_btn">#}
+{#        <ul class="nav navbar-btn">#}
+{#            <li style="float: right">#}
+{#                <button type="button" id="btn_refresh" onclick="onQuery()"#}
+{#                        class="btn btn-default btn-sm active">#}
+{#                    <span class="glyphicon glyphicon-refresh">刷新</span>#}
+{#                </button>#}
+{#            </li>#}
+{##}
+{#        </ul>#}
+{#    </div>#}
+
+        <form id="status_form" action="{% url 'mz_common:onevone_meeting_update_status'%}" method="post">
+            {% csrf_token %}
+            <input type="hidden" id="meeting_status" name="status" value="">
+            <input type="hidden" id="meeting_id" name="id" value="">
+        </form>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th width="70px;">ID</th>
+                <th width="auto;">专业</th>
+                <th width="auto;">老师</th>
+                <th width="auto;">开始时间</th>
+                <th width="auto;">结束时间</th>
+                <th width="75px;">学生id</th>
+                <th width="auto;">预约号码</th>
+                <th width="220px;">状态</th>
+                <th width="360px;">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable" class="text_over_flow">
+            {% if meetings %}
+                {% for meeting in meetings %}
+            <tr>
+                <td title="{{ meeting.id|default_if_none:""}}">
+                    {{ meeting.id|default_if_none:""}}
+                </td>
+                <td title="{{ meeting.career_name|default_if_none:""}}">
+                    {{ meeting.career_name|default_if_none:"" }}
+                </td>
+                <td title="{{ meeting.nick_name|default_if_none:""}}">
+                    {{ meeting.nick_name|default_if_none:"" }}
+                </td>
+                <td title="{{ meeting.start_time|date:"Y-m-d H:i:s" }}">
+                    {{ meeting.start_time|date:"Y-m-d H:i:s"}}
+                </td>
+                <td title="{{ meeting.end_time|date:'Y-m-d H:i:s'}}">
+                    {{ meeting.end_time|date:"Y-m-d H:i:s" }}
+                </td>
+                <td title="{{ meeting.user_id|default_if_none:""}}">
+                    {{ meeting.user_id|default_if_none:""}}
+                </td>
+
+                <td title="{{ meeting.phone|default_if_none:"" }}">
+                    {{ meeting.phone|default_if_none:"" }}
+                </td>
+                <td>
+                    <div class="input-group">
+                        <select id="select_{{ meeting.id }}" class="form-control">
+                        <option value="">选择状态</option>
+                        <option value="CREATE" {% ifequal meeting.status 'CREATE'%}selected{% endifequal %}>已创建</option>
+                        <option value="DATED"{% ifequal meeting.status 'DATED'%}selected{% endifequal %}>已预约</option>
+                        <option value="START"{% ifequal meeting.status 'START'%}selected{% endifequal %}>已开始</option>
+                        <option value="ENDED"{% ifequal meeting.status 'ENDED'%}selected{% endifequal %}>已结束</option>
+                        </select>
+                        <div class="input-group-btn">
+                            <a href="javascript:void(0)" title="操作" class="btn btn-default btn-success active" style="margin-right:3px;width:80px" role="button"
+                            onclick="showStatusModal({{ meeting.id }})">
+                            确定</a>
+                        </div>
+                    </div>
+
+                </td>
+                <td>
+                    <a href="javascript:void(0)" title="查看详情" onclick="showInfo({{ meeting.id }})"
+                       class="btn btn-default btn-info active" style="margin-right:3px;" role="button">
+                        查看详情
+                    </a>
+                     <a href="javascript:void(0)" title="修改信息" onclick="updateInfo({{ meeting.id }})"
+                        class="btn btn-default btn-primary active" style="margin-right:3px;" role="button">
+                        修改信息
+                     </a>
+
+                     <a href="javascript:void(0)"title="删除直播"class="btn btn-default btn-danger active"
+                         style="margin-right:3px;" onclick="delete_modal({{meeting.id}})" role="button">
+                        删除直播
+                     </a>
+                </td>
+            </tr>
+                {% endfor %}
+            {% else %}
+            <tr><td colspan="9"><label>查询到0条数据！</label></td></tr>
+            </tbody>
+            {% endif %}
+        </table>
+    </div>
+
+
+<!-- 提示确认框  -->
+    <div class="modal fade" id="modal_confirm" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-primary active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_deladminrolemod">
+                       确认提醒</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6 col-sm-6">
+                           <h5><b>确认要更改状态为<span id="show_msg" class="text-danger"></span>吗？</b></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="modalConfirm()" id="btn_confirm">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- 删除确认框  -->
+    <div class="modal fade" id="modal_delete" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header btn-primary active">
+                    <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" style="text-shadow:3px 3px 2px #000" id="title_date_reply">
+                       删除提醒</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-6 col-sm-6">
+                           <h5><b>确认要删除ID为<span id="delete_id" class="text-danger">0</span>直播信息吗？</b></h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                    <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary active" onclick="deleteInfo()" id="btn_course_time">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    function  onQuery() {  //刷新页面
+        window.location.href = "{% url 'mz_common:onevone_meeting_list' %}?action=query" + getPage();
+    }
+
+    function delete_modal (id) {
+        $("#delete_id").text(id)
+        $("#modal_delete").modal('show')
+    }
+
+     function  deleteInfo() {
+         var id = $("#delete_id").text()
+         var url = "{% url 'mz_common:onevone_meeting_delete'%}?id="+id;
+         window.location.href=url;
+    }
+
+    function updateInfo(id){
+        var url = "{% url 'mz_common:onevone_meeting_edit' %}?action=edit&id="+id;
+        window.location.href = url;
+    }
+
+    function showInfo(id) {
+        var url = "{% url 'mz_common:onevone_meeting_edit' %}?action=show&id="+id;
+        window.location.href = url;
+    }
+
+    function showStatusModal(id) {   //弹出摸态框，保存相关参数
+
+        var selected_status =$("#select_"+id).find("option:selected").val();
+        var selected_text =$("#select_"+id).find("option:selected").text();
+        $('#meeting_id').val(id);
+        $('#meeting_status').val(selected_status);
+        $('#show_msg').text(selected_text);
+        $('#modal_confirm').modal('show');
+
+    }
+
+    function modalConfirm(){   //提交更新课程状态的form表单
+        $('#status_form').submit();
+    }
+
+
+</script>
+
+{% endblock %}

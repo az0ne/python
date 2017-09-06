@@ -1,0 +1,105 @@
+{% extends "index.html" %}
+{% block pager %}
+    <script type="text/javascript">
+
+
+        function addReply(id) {
+            var url = "{% url 'mz_wechat:menu_reply_edit' %}?action=add&menu_id={0}".format(id);
+            window.location.href = url;
+        }
+        function showReply(id) {
+            var url = "{% url 'mz_wechat:menu_reply_edit' %}?action=show&id={0}".format(id);
+            window.location.href = url;
+        }
+        function delReply(menu_id) {
+            var id = $('#reply_id').val();
+            var url = "{% url 'mz_wechat:menu_reply_del' %}?menu_id={0}&id={1}".format(menu_id,id);
+            window.location.href = url;
+        }
+
+        function showDelModal(id){
+            $('#reply_id').val(id);
+            $('#modal_del_aks').modal('show');
+        }
+
+
+    </script>
+      <!-- 扩展功能栏  -->
+    <div class="function_btn" style="display: inline">
+        <ul class="nav navbar-btn">
+            <li style="float: right">
+                <button type="button" id="btn_refresh" onclick="addReply({{menu_id}})"
+                        class="btn btn-default btn-sm active">
+                    <span class="glyphicon glyphicon-edit">添加回复</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <table class="table table-striped table-responsive table-bordered table-hover">
+            <thead>
+            <tr>
+                <th class="auto">回复类型</th>
+                <th width="auto">回复内容</th>
+                <th width="auto">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataTable" class="text_over_flow">
+            {% if replys %}
+            {% for reply in replys %}
+            <tr>
+                <td title="{{ reply.type_name }}">{{ reply.type_name }}</td>
+                <td title="{{ reply.content }}">{{ reply.content }}</td>
+                <td>
+                    <a href="javascript:void(0)" title="删除" onclick="showDelModal({{ reply.id }})"
+                         class="btn btn-default btn-primary btn active" style="margin-right:3px;" role="button">
+                         <i class="glyphicon glyphicon-edit" style="margin-right: 3px;"></i>删除回复
+                    </a>
+                    {% ifequal reply.type 5 %}
+                    <a href="javascript:void(0)" title="查看" onclick="showReply({{ reply.id }})"
+                         class="btn btn-default btn-primary btn active" style="margin-right:3px;" role="button">
+                         <i class="glyphicon glyphicon-edit" style="margin-right: 3px;"></i>查看
+                    </a>
+                    {% endifequal %}
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="3">查询到0条数据！</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+
+<!-- 提示确认框  -->
+<div class="modal fade" id="modal_del_aks" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header btn-primary active">
+                <button type="button" class="close" data-dismiss='modal' aria-lable='close'><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="text-shadow:3px 3px 2px #000">
+                    确认提醒</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-6">
+                        <input id="reply_id" class="hidden"  type="text" value="">
+                        <h5><b id="show_msg">确认要删除该条信息吗？</b></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span class="text-danger selectRowId" style="float: left;display: none"></span>
+                <button type="button" class="btn btn-danger active" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary active" onclick="delReply({{ menu_id }})" id="btn_confirm">确定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

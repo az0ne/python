@@ -1,0 +1,60 @@
+<div class="modal-dialog modal-sm modal-content zy_yourHomework2">
+    <a class="zy_newclose"></a>
+
+    <p class="color33 font18 pt textC"><a class="color5e">&lt;&lt;返回</a><span>{{ user_task_record.stage_task.stage.name }} - {{ user_task_record.stage_task.task.name }}</span></p>
+
+    <div class="zy_yourHomework2_div">
+        <p class="font16 color33 marginB10">作业需求</p>
+
+        <p class="font14 color99 marginB20">{{ project.description }}</p>
+
+        <p class="font16 color33 marginB10">作业截图</p>
+
+        <div class="zy_yourHomework2_divImg marginB29">
+            {% for img in project_image %}
+            <a href=""><img src="{{ MEDIA_URL }}{{ img.image }}"></a>
+            {% endfor %}
+        </div>
+        <p class="font16 color33 marginB10">作业描述</p>
+
+        <p class="font14 color99 marginB20" style="word-break: break-all">{{ project_record.desc }}</p>
+
+        <p class="marginB10"><span class="font16 color33">作业文件</span><span class="font14 color66" style="margin-left:50px;"></span>
+            <a class="colorff adownload" href="{{ MEDIA_URL }}{{ project_record.upload_file }}"><img src="{{ STATIC_URL }}mz_lps3/images/rightico004.png">下载</a></p>
+    </div>
+
+    {% if is_marking %}
+    <div class="zy_mytask_foot">
+    <p class="font16 color33 marginB10">评分</p>
+    <a class="Arial font20 color5e">{{ user_task_record.score }}</a>
+    <p class="font16 color33 marginB10">评语</p>
+    <p class="font14 color99 marginB20" style="word-break: break-all">{{ project_record.remark }}</p>
+    </div>
+
+
+    {% else %}
+    <div class="zy_mytask_foot">
+        <table class="color33 font16">
+            <tr>
+                <td style="width:56px;">评分</td>
+                <td class="yourHomeworkD">
+                    <a class="Arial font20" v="优">A</a>
+                    <a class="Arial font20" v="良">B</a>
+                    <a class="Arial font20" v="差">C</a>
+                    <a class="Arial font20" v="不及格">D</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top;">评语</td>
+                <td><textarea id="desc-remark" class="zy_mypersonal_txt"></textarea></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><a id="remark-submit" class="bold font14 colorff a3 textC" style="margin:0;">提交</a></td>
+            </tr>
+        </table>
+    </div>
+    <input type="hidden" value="/lps3/teacher/project_marking/{{ class_id }}/{{ student_id }}/{{ stage_task_id }}/" id="project_marking">
+    {% endif %}
+
+</div>

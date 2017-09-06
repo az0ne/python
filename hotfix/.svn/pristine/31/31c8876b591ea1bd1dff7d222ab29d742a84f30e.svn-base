@@ -1,0 +1,51 @@
+{% extends "mz_common/global.html" %}
+{% block title %}IT技术wiki库-IT技术在线学习-麦子学院{% endblock %}
+{% block keywords%}产品经理，软件测试，android，iOS，嵌入式，物联网，php，python，ui，web前端，wiki{% endblock %}
+{% block description%}麦子学院wiki库为麦子学院独创的软件开发|android、iOS、python、php、软件测试，产品运营，产品经理，智能硬件|嵌入式、物联网，设计|ui设计、游戏原画设计基础教程学习平台，提供了大量的最新原创教程和在线实例，让您可以更好的学习IT技术。{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/wikistyle.css?v={{ time_stamp }}"/>
+{% endblock %}
+
+{% block container %}
+{% include 'header/index_header.html' %}
+		<div class="wikiPage">
+			<div class="container">
+				<div class="wikiPageNavBar">
+					{% include 'mz_wiki/wikiTypeNav.html' %}
+	            </div>			
+				<div class="wikiPageList">
+                    {% for course_data in course_data_list %}
+                    <div class="rowList">
+                        {% for k, v in course_data.items %}
+                        <h2>{{ k }}</h2>
+                        <ul>
+                            {% for course in v %}
+                            <li>
+                                <a href="{% url 'wiki:item_detail' course.short_name course.first_item_short_name %}"  title="{{ course.name }}">
+                                    <p><img src="{{ MEDIA_URL }}{{ course.img_url }}" {% if course.img_title %}alt="{{ course.img_title }}" {% endif %}/></p>
+                                    <div class="list-con">
+                                        <h4>{{ course.name }}</h4>
+                                        <span>{{ course.info }}</span>
+                                    </div>
+                                </a>
+                            </li>
+                            {% endfor %}
+
+                        </ul>
+                        {% endfor %}
+					</div>
+                    {% endfor %}
+				</div>
+			</div>
+		</div>
+{% endblock %}
+{% block footer %}
+{% include 'mz_wiki/wikiFooter.html' %}
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/wikiArticle.js?v={{ time_stamp }}"></script>
+{% endblock %}
+

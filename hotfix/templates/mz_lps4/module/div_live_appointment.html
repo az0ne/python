@@ -1,0 +1,15 @@
+{% if to_begin_meeting %}
+    <div class="live-appointment">
+        <h2>约课</h2>
+        <!--立即进入-->
+        <div class="enter">
+            <p class="tip">你已预约的直播即将开始</p>
+            <div class="times">
+                <p class="live-time">{{ to_begin_meeting.start_time|date:"H : i" }} - {{ to_begin_meeting.end_time|date:"H : i" }}</p>
+                <p class="date-time"><span class="fl">{{ to_begin_meeting.start_time|date:"l" }}</span><span class="fr">{{ to_begin_meeting.start_time|date:"m月d日" }}</span></p>
+            </div>
+            <p class="txt">{{ to_begin_meeting.content }}<a href="{% url 'lps4:student_service' career_id %}?detail={{ to_begin_meeting.id }}&status=enter">查看问题详情</a></p>
+            <a href="{{ to_begin_meeting.join_url }}" class="appointment-btn" id="{{ to_begin_meeting.id }}">立即进入</a>
+        </div>
+    </div>
+{% endif %}

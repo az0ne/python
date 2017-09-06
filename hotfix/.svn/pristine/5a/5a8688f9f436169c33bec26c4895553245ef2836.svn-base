@@ -1,0 +1,80 @@
+{% extends "mz_common/base4.html" %}
+{% block title %}{{ free488_task_desc.title }} - 麦子学院{% endblock %}
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+
+{% block csstype %}free-learn pro-answer{% endblock %}
+
+{% block container %}
+    {% include 'header/header.html' %}
+    {% include 'mz_usercenter/div_user_header.html' %}
+    <div class="main-container">
+        <div class="breadcrumbs"><a href="/lps3f/{{ course_short_name }}/syllabus/" class="font14 color66" onclick="zhuge.track('点击返回任务路线图', {'页面名称':'项目答疑面板','按钮位置':'面包屑'});">&lt;&lt;
+            返回课程任务路线图</a></div>
+        <div class="answer-con">
+            <!-- tastus-tag no试学未开始 go-on试学中 end试学已结束 -->
+            <h1 class="font30 color66">{{ free488_task_desc.title }}
+                {% if free488_class.is_not_started %}<span class="status-tag no font12">试学未开始</span>
+                {% elif free488_class.is_ongoing %}<span class="status-tag go-on font12">试学中</span>
+                {% elif free488_class.is_finished %}<span class="status-tag end font12">试学已结束</span>
+                {% endif %}
+            </h1>
+
+            <p class="see-more">
+                <span class="font14 color66">试学时间：</span>
+                <span class="font20 color33">{{ free488_class.class_time_range_text }}</span>
+                <span class="three font14 color66">（{{ free488_class.class_time_range }}天）</span>
+                <span class="four font14 color66">导师：<i class="font20 color33">{{ teacher.staff_name }}</i></span>
+                <span class="show-detail font14">展开详情</span>
+            </p>
+            {% include 'mz_lps3_free/student/div_pro_info.html' %}
+            <ul class="tab-nav">
+                <input type="hidden" id="show_current_stage" value="{{ free488_class_stage }}">
+                <li data-hash="1"><i>1</i>项目破冰</li>
+                <li data-hash="2"><i>2</i>项目进阶</li>
+                <li data-hash="3"><i>3</i>项目成绩</li>
+                {% if free488_class.is_finished %}
+                    <li data-hash="4"><i>4</i>课程推荐</li>
+                {% endif %}
+            </ul>
+            <ul class="tab-box">
+                <li data-hash="1">
+                    {% include 'mz_lps3_free/student/learning_index_tab1.html' %}
+                </li>
+                <li data-hash="2">
+                    {% include 'mz_lps3_free/student/learning_index_tab2.html' %}
+                </li>
+                <li data-hash="3">
+                    {% include 'mz_lps3_free/student/learning_index_tab3.html' %}
+                </li>
+                {% if free488_class.is_finished %}
+                    <li data-hash="4">
+                        {% include 'mz_lps3_free/student/learning_index_tab4.html' %}
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer/footer_1.html' %}
+    {% if 0 %}
+        <div class="footer-section">
+            <div class="inner">
+                <div class="col_l font26 color66">企业直通班课程</div>
+                <div class="col_r"><span class="font16 color66">试学期间报名，最高立享立减<i class="min-3000 font20">¥
+                    3000</i> 优惠</span><a
+                        class="enroll" href="">我要报名</a></div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block sea_script %}
+    <script type="text/javascript">
+        seajs.use("/js/lps4/src/main", function (main) {
+            main.loading("proAnswer");
+        });
+    </script>
+{% endblock %}

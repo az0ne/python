@@ -1,0 +1,29 @@
+{% extends "mz_backend/base.html" %}
+{% block title %}加入班级{% endblock %}
+{% block container %}
+<form action="{% url 'backend:change_class_2_view' %}" method="post">
+    {% csrf_token %}
+    <table width="500px">
+        <tr>
+            <td colspan="2">
+                <h3>班级转换必须为同一个职业课程下的班级，请谨慎操作！</h3>
+            </td>
+        </tr>
+        <tr>
+            <td>用户账号(手机或email)：</td>
+            <td><input type="text" name="account" class="input-text lh25" size="30" /></td>
+        </tr>
+        <tr>
+            <td>原班级编号(或班级名称)：</td>
+            <td><input type="text" name="old_class_no" class="input-text lh25" size="30" /></td>
+        </tr>
+        <tr>
+            <td>新班级编号(或班级名称)：</td>
+            <td><input type="text" name="new_class_no" class="input-text lh25" size="30" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="下一步：确认转班信息" class="ext_btn ext_btn_submit"></td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

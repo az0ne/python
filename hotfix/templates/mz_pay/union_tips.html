@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>麦子学院 - 转向银联</title>
+</head>
+<body>
+请稍后，正在跳转到银联 ...
+
+<form id = "unionform" action="https://gateway.95516.com/gateway/api/frontTransReq.do" method="post">
+    <input type="hidden" name="txnType" id="txnType" value="01"/>
+    <input type="hidden" name="channelType" id="channelType" value="07"/>
+    <input type="hidden" name="currencyCode" id="currencyCode" value="156"/>
+    <input type="hidden" name="txnSubType" id="txnSubType" value="01"/>
+    <input type="hidden" name="version" id="version" value="5.0.0"/>
+    <input type="hidden" name="signMethod" id="signMethod" value="01"/>
+    <input type="hidden" name="encoding" id="encoding" value="UTF-8"/>
+    <input type="hidden" name="bizType" id="bizType" value="000201"/>
+    <input type="hidden" name="accessType" id="accessType" value="0"/>
+    <input type="hidden" name="frontUrl" id="frontUrl" value="{{ data.frontUrl }}"/>
+    <input type="hidden" name="merId" id="merId" value="{{ data.merId }}"/>
+    <input type="hidden" name="txnAmt" id="txnAmt" value="{{ data.txnAmt }}"/>
+    <input type="hidden" name="backUrl" id="backUrl" value="{{ data.backUrl }}"/>
+    <input type="hidden" name="certId" id="certId" value="{{ data.certId }}"/>
+    <input type="hidden" name="signature" id="signature" value="{{ data.signature }}"/>
+    <input type="hidden" name="orderId" id="orderId" value="{{ data.orderId }}"/>
+    <input type="hidden" name="txnTime" id="txnTime" value="{{ data.txnTime }}"/>
+    <!--<input type="hidden" name="payTimeout" id="payTimeout" value=""/>-->
+    <!--<input type="hidden" name="orderTimeout" id="orderTimeout" value=""/>-->
+    <input style="display: none" type="submit">
+</form>
+</body>
+</html>
+<script>
+    window.onload = function(){
+        document.forms["unionform"].submit();
+    }
+</script>

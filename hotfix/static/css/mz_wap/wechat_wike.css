@@ -1,0 +1,149 @@
+html { font-size: 20px; }
+
+body { padding: 0; margin: 0; border: 0; font-family: Arial,"microsoft yahei"; color: #000; line-height: 1.6; height: 100%; background: #f5f5f5; position: relative; }
+
+ul, li, ol { list-style: none; padding: 0; }
+
+a { -webkit-tap-highlight-color: transparent; text-decoration: none; display: inline-block; color: #000; }
+
+em { font-style: normal; }
+
+img { display: block; width: 100%; }
+
+strong, span, em { display: inline-block; }
+
+strong, h1, h2, h3, h4, h5, h6 { font-weight: normal; }
+
+/* sass of wechat-list */
+#banner { margin: 0; padding: 0; width: 100%; }
+
+.course_title { line-height: 2rem; font-size: 1.4rem; font-weight: bold; margin: 1.5rem 0 0 1%; }
+
+.wike_list { margin: 0rem 1rem; }
+.wike_list ul { font-size: 0; }
+.wike_list li { display: inline-block; width: 48%; background: #E7EAEF; margin: 0.5rem 1%; }
+.wike_list li a { width: 100%; }
+.wike_list li a .need_pay { float: right; height: 1.5rem; width: 1.5rem; margin-right: 0.5rem; background: url(/static/images/wapwike/wechat_wike.png) 0 0 no-repeat; background-position: 0 -38px; }
+.wike_list li a span { font-size: 1rem; }
+.wike_list li a .wike_title, .wike_list li a .tea { line-height: 1.5rem; font-size: 1.2rem; margin: 0rem 0.75rem; color: #999; }
+.wike_list li a .wike_title { max-height: 3.2rem; height: 3.2rem; line-height: 1.6rem; font-size: 1.3rem; overflow: hidden; color: #000; margin-bottom: 0.8rem; }
+.wike_list li a .tea { margin-bottom: 0.45rem; }
+.wike_list li img { width: 100%; min-height: 9rem; margin-bottom: 0.6rem; }
+
+.my_course, .relative_course { margin: 1rem; font-size: 0; }
+.my_course .list, .relative_course .list { background: #F3F5F8; margin-bottom: 1rem; }
+.my_course .list:last-child, .relative_course .list:last-child { margin-bottom: 0; }
+.my_course .list a, .relative_course .list a { vertical-align: top; height: 9rem; width: 46.09375%; }
+.my_course .list .text, .relative_course .list .text { display: inline-block; vertical-align: top; width: 53.90625%; height: 100%; min-height: 9rem; }
+.my_course .list .text p, .relative_course .list .text p { margin: 0.5rem; }
+.my_course .list .text .course_name, .relative_course .list .text .course_name { display: inline-block; font-size: 1.3rem; line-height: 1.6rem; max-height: 3.2rem; overflow: hidden; margin-bottom: 1rem; }
+.my_course .list .text .from, .relative_course .list .text .from { font-size: 1.2rem; line-height: 1.5rem; color: #999; }
+
+.empty { text-align: center; }
+.empty img { display: inline-block; width: 9.95rem; height: 10.9rem; margin: 10rem 0rem 2rem; }
+.empty p { display: inline-block; width: 100%; height: 1px; font-size: 32px; color: #9AA5A3; margin: 0rem 0rem 4rem 0rem; }
+.empty a { font-size: 1.4rem; width: 9rem; height: 3.4rem; color: #fff; line-height: 3.4rem; background: #13CF86; border-radius: 8px; }
+
+.video { position: relative; font-size: 0; }
+.video .pay_inform { z-index: 20; position: absolute; height: 100%; width: 100%; font-size: 1.6rem; opacity: 0.9; background: #1F2020; color: #FFF; text-align: center; vertical-align: middle; }
+.video .pay_inform span { margin-top: 15%; margin-bottom: 1rem; }
+.video .pay_inform .pay_btn { display: block; color: #FFF; width: 9rem; height: 3.4rem; font-size: 1.4rem; line-height: 3.4rem; background: #179c16; border-radius: 0.4rem; margin: 0  auto; }
+
+.tab .tabTit { width: 100%; text-align: center; line-height: 4.15rem; color: #9AA5A3; font-size: 0; border-bottom: 1px solid #C0C8C5; border-top: 1px solid #C0C8C5; }
+.tab .tabTit li { display: inline-block; font-size: 1.4rem; width: 50%; vertical-align: top; border-bottom: 4px solid #fff; }
+.tab .tabTit .qa_tab { position: relative; }
+.tab .tabTit .qa_tab em { font-size: 1.3rem; line-height: 2rem; font-weight: bold; color: #FFF; position: absolute; display: inline-block; height: 2rem; width: 2rem; background: url(/static/images/wapwike/wechat_wike.png) 0 0 no-repeat; background-position: 0 -190px; }
+.tab .tabTit .on { color: #000; border-bottom: 4px solid #00DD87; }
+
+.tempWrap { margin-bottom: 4.4rem; }
+
+.content { /* course detail */ /* course quersion and answer */ }
+.content .cd_cont { margin-top: 1.3rem; margin-bottom: 5rem; /* course introduce */ /* teacher information */ /* course catalog */ /* FAQ */ /* relative course */ }
+.content .cd_cont .course_intro, .content .cd_cont .tea, .content .cd_cont .FAQ, .content .cd_cont .course_catalog { padding: 0rem 1rem; }
+.content .cd_cont p { display: table; margin: 0; }
+.content .cd_cont .course_intro { border-bottom: 1px solid #C0C8C5; margin-bottom: 1rem; padding-bottom: 1rem; }
+.content .cd_cont .course_intro .title { width: 100%; margin-bottom: 0.75rem; font-size: 1.4rem; line-height: 2rem; }
+.content .cd_cont .course_intro i { display: inline-block; width: 1.5rem; height: 1.4rem; background: url(/static/images/wapwike/wechat_wike.png) 0 0 no-repeat; background-position: 0 0; margin-right: 0.5rem; vertical-align: middle; }
+.content .cd_cont .course_intro .learn_num { font-size: 1.2rem; line-height: 1.4rem; vertical-align: middle; color: #9AA5A3; }
+.content .cd_cont .tea, .content .cd_cont .FAQ { border-bottom: 1px solid #C0C8C5; margin-bottom: 1rem; font-size: 0; }
+.content .cd_cont .tea .avatar, .content .cd_cont .FAQ .avatar { position: relative; vertical-align: middle; display: inline-block; }
+.content .cd_cont .tea .avatar img, .content .cd_cont .FAQ .avatar img { width: 4.4rem; height: 4.4rem; border-radius: 100%; overflow: hidden; }
+.content .cd_cont .tea .avatar .job_tag, .content .cd_cont .tea .avatar .std_tag, .content .cd_cont .FAQ .avatar .job_tag, .content .cd_cont .FAQ .avatar .std_tag { font-size: 0; position: absolute; bottom: 0; right: 0; height: 1.4rem; width: 1.4rem; border-radius: 100%; overflow: hidden; background: url(/static/images/wapwike/wechat_wike.png) 0 0 no-repeat; z-index: 5; }
+.content .cd_cont .tea .avatar .gold_tea, .content .cd_cont .FAQ .avatar .gold_tea { background-position: 0 -240px; }
+.content .cd_cont .tea .avatar .pay_std, .content .cd_cont .FAQ .avatar .pay_std { background-position: 0 -276px; }
+.content .cd_cont .tea .tea_name, .content .cd_cont .tea .std_name, .content .cd_cont .FAQ .tea_name, .content .cd_cont .FAQ .std_name { vertical-align: middle; font-size: 1.4rem; line-height: 2rem; margin-left: 0.8rem; }
+.content .cd_cont .tea .tea_title, .content .cd_cont .FAQ .tea_title { vertical-align: middle; background: #FFA311; border-radius: 0.2rem; font-size: 1.2rem; color: #FFF; padding: 0rem 0.4rem; line-height: 2rem; margin-left: 0.8rem; }
+.content .cd_cont .tea .tea_intro, .content .cd_cont .FAQ .tea_intro { display: table; height: 1px; font-size: 1.3rem; color: #9AA5A3; line-height: 2rem; margin-left: 5.2rem; margin-bottom: 1rem; }
+.content .cd_cont .course_catalog { border-bottom: 1px solid #C0C8C5; margin-bottom: 1rem; }
+.content .cd_cont .course_catalog .title { font-size: 1.4rem; margin-bottom: 1.5rem; }
+.content .cd_cont .course_catalog a { width: 100%; margin-bottom: 1.5rem; color: #9AA5A3; font-size: 0; }
+.content .cd_cont .course_catalog a .lesson_name { font-size: 1.3rem; line-height: 2rem; max-height: 2rem; max-width: 65.625%; overflow: hidden; }
+.content .cd_cont .course_catalog a .lesson_name .pay_state { width: 3rem; background: #9AA5A3; line-height: 1.5rem; border-radius: 0.2rem; font-size: 1.2rem; margin-right: 0.5rem; text-align: center; color: #fff; }
+.content .cd_cont .course_catalog a .lesson_name .need_pay { background: #FFA311; }
+.content .cd_cont .course_catalog a em { font-size: 1.3rem; vertical-align: top; }
+.content .cd_cont .course_catalog a .lesson_time { font-size: 1.3rem; float: right; }
+.content .cd_cont .FAQ { border-bottom: 1px solid #C0C8C5; margin-bottom: 1rem; }
+.content .cd_cont .FAQ .title { font-size: 1.4rem; margin-bottom: 1rem; }
+.content .cd_cont .FAQ li { border-bottom: 1px solid #C0C8C5; margin-bottom: 1rem; }
+.content .cd_cont .FAQ li:last-child { border-bottom: 0; }
+.content .cd_cont .FAQ .question_cont { display: table; height: 1px; margin: -1rem 0rem 0.5rem 5.2rem; font-size: 1.4rem; line-height: 2rem; color: #9AA5A3; }
+.content .cd_cont .FAQ .answer_cont { display: table; height: 1px; margin-left: 5.5rem; font-size: 1.4rem; line-height: 2rem; color: #9AA5A3; margin-bottom: 1rem; }
+.content .cd_cont .FAQ .answer_cont span { font-weight: bold; vertical-align: middle; }
+.content .cd_cont .FAQ .answer_cont:before { content: ''; display: inline-block; vertical-align: middle; width: 0.15rem; height: 1.5rem; background: #00DD87; margin-right: 0.5rem; border-radius: 0.4rem; }
+.content .cd_cont .relative_course .list { width: 14.8rem; }
+.content .cd_cont .relative_course .list a { width: 100%; }
+.content .cd_cont .relative_course .title { font-size: 1.4rem; line-height: 2rem; margin-bottom: 1rem; }
+.content .cd_cont .relative_course img { width: 54%; margin: 0 auto; }
+.content .cd_cont .relative_course .text { display: block; text-align: center; background: #F3F5F8; width: 100%; min-height: 0; }
+.content .qa_cont { display: none; margin-bottom: 5rem; }
+.content .qa_cont ul { padding: 0rem 1rem; margin: 0; }
+.content .qa_cont li { border-bottom: 1px solid #C0C8C5; padding-top: 1rem; }
+.content .qa_cont li:last-child { border-bottom: 0; }
+.content .qa_cont .avatar { position: relative; vertical-align: middle; display: inline-block; margin-bottom: 1rem; }
+.content .qa_cont .avatar img { width: 4.4rem; height: 4.4rem; border-radius: 100%; overflow: hidden; }
+.content .qa_cont .avatar .std_tag { font-size: 0; position: absolute; bottom: 0; right: 0; height: 1.4rem; width: 1.4rem; border-radius: 100%; overflow: hidden; background: url(/static/images/wapwike/wechat_wike.png) 0 0 no-repeat; }
+.content .qa_cont .avatar .gold_tea { background-position: 0 -240px; }
+.content .qa_cont .avatar .pay_std { background-position: 0 -276px; }
+.content .qa_cont .std_name { vertical-align: middle; font-size: 1.4rem; line-height: 2rem; margin-left: 0.8rem; color: #9AA5A3; }
+.content .qa_cont .question_1v1 { display: table; height: 1px; margin: -1rem 0rem 0.5rem 5.2rem; font-size: 1.4rem; line-height: 2rem; }
+.content .qa_cont .answer_1v1 { display: table; height: 1px; margin: 0rem 0rem 1rem 5.2rem; font-size: 1.4rem; line-height: 2rem; color: #9AA5A3; }
+.content .qa_cont .answer_1v1 span { font-weight: bold; }
+.content .qa_cont .answer_1v1:before { content: ''; display: inline-block; vertical-align: middle; width: 0.15rem; height: 1.5rem; background: #00DD87; margin: 0rem 0.5rem 0rem 0rem; border-radius: 0.4rem; }
+
+.switch { width: 100%; height: 5rem; position: fixed; left: 0; bottom: 0; /* question and answer */ /* go pay */ }
+.switch .qa_filed { display: none; width: 100%; height: 3.95rem; font-size: 0; background: #fff; border-top: 1px solid rgba(0, 0, 0, 0.1); padding: 0.5rem 0rem; z-index: 15; }
+.switch .qa_filed .qa_box { width: 100%; display: box; display: moz-box; display: -webkit-box; }
+.switch .qa_filed .qa_border { height: 3.95rem; margin: 0rem 1rem; padding-left: 1rem; border: 1px solid #C0C8C5; border-radius: 8px; color: #9AA5A3; -moz-box-flex: 1; -webkit-box-flex: 1; box-flex: 1; }
+.switch .qa_filed .qa_border .qa_txt { width: 95%; margin-top: 0.75rem; line-height: 2.5rem; font-size: 1.5rem; -webkit-appearance: none; background: none; border: 0; outline: none; }
+.switch .qa_filed .qa_btn { margin-right: 1rem; width: 6rem; line-height: 3.95rem; font-size: 1.5rem; text-align: center; color: #fff; padding: 0; border: 0; background: #13CF86; border-radius: 8px; }
+.switch .go_pay { width: 100%; height: 4.95rem; background: #fff; z-index: 10; font-size: 0; border-top: 1px solid rgba(0, 0, 0, 0.1); }
+.switch .go_pay span { font-size: 1.7rem; height: 4.95rem; vertical-align: top; line-height: 4.95rem; }
+.switch .go_pay .price_txt { width: 52.03125%; color: #9AA5A3; text-align: center; border-right: 1px solid #DFE5E2; }
+.switch .go_pay .price_txt em { color: #FFA311; font-size: 2rem; min-width: 3.1rem; }
+.switch .go_pay .icon { width: 16.875%; text-align: center; }
+.switch .go_pay .icon i { display: inline-block; margin-top: 1rem; height: 2.4rem; width: 2.4rem; background: url(/static/images/wapwike/wechat_wike.png) 0 0 no-repeat; background-position: 0 -132px; }
+.switch .go_pay .lj_pay { width: 30.9375%; background: #FF4949; color: #fff; padding: 0; border: 0; text-align: center; }
+
+.discuss_loading { display: none; position: fixed; left: 0; right: 0; top: 0; bottom: 0; background: rgba(0, 0, 0, 0.1); text-align: center; z-index: 15; }
+.discuss_loading .center { position: fixed; top: 40%; left: 50%; width: 7.5rem; margin-left: -3.75rem; }
+.discuss_loading .center img { display: inline-block; height: 4rem; width: 4rem; }
+
+.discuss_result { display: none; position: fixed; text-align: center; z-index: 15; left: 0; top: 0; margin: 0; color: #fff; width: 100%; background: #13CF86; height: 4.4rem; line-height: 4.4rem; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09); }
+
+/* sass of pay page*/
+.pay { font-size: 1.4rem; line-height: 2rem; }
+.pay .base_info, .pay .pay_info { background: #fff; padding: 1.5rem 1rem 0rem; margin-bottom: 1rem; }
+.pay .base_info p, .pay .pay_info p { padding-bottom: 1.5rem; }
+.pay .base_info span, .pay .pay_info span { display: table-cell; vertical-align: top; color: #9AA5A3; }
+.pay .base_info .title, .pay .pay_info .title { width: 7rem; color: #000; }
+.pay .base_info .cont, .pay .pay_info .cont { margin-left: 7rem; }
+.pay .pay_info { margin-bottom: 4rem; }
+.pay .pay_info p { position: relative; }
+.pay .pay_info .cont { position: absolute; right: 0; top: 0; color: #000; }
+.pay .pay_info .price { font-size: 1.7rem; font-weight: bold; }
+.pay .pay_info .wx_pay { vertical-align: middle; }
+.pay .pay_info .wx_pay:before { content: ''; display: inline-block; height: 2.4rem; width: 2.4rem; background: url(/static/images/wapwike/wechat_wike.png) 0 0 no-repeat; vertical-align: middle; margin-right: 1rem; background-position: 0 -77px; }
+.pay .pay_btn { height: 4rem; margin: 0rem 1rem; line-height: 4rem; background: #179C16; border: 1px solid #179C16; border-radius: 0.4rem; font-size: 1.4rem; color: #FFF; text-align: center; }
+
+.fail_info { width: 100%; margin: 7.5rem 0rem; text-align: center; font-size: 1.7rem; }
+.fail_info i { content: ''; display: inline-block; height: 6rem; width: 6rem; background-image: url(data:image/png;base64,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); }

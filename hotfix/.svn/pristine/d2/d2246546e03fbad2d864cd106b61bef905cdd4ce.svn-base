@@ -1,0 +1,342 @@
+@import 'core/reset';
+@import 'core/common';
+@import 'core/var';
+@import 'core/function';
+
+@import 'header';
+@import 'toolbar';
+
+$bg: url(../images/article_Icon.png) no-repeat #f1eff0;
+.article-list {
+    .head-container {
+        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    }
+}
+// 文章列表布局样式 
+.main_container {
+    width: 1160px;
+    margin: 0 auto 60px;
+    &:before, &:after {
+        @extend .CLEARFIX;
+    }
+    .layout_left {
+        width: 830px;
+        .no_data {
+            text-align: center;
+            min-height: 490px;
+            padding: 190px 0;
+            &:before {
+                content: '';
+                @extend .vam;
+                margin-right: 20px;
+                width: 118px;
+                height: 112px;
+                background:url(../images/lesson_video_lists.png) 0 -389px no-repeat;
+            }
+        }
+    }
+    .layout_right {
+        width: 300px;
+        background: #fbfbfb;
+        padding: 20px;
+        margin-bottom: 60px;
+    }
+
+    .article_lists {
+        margin-bottom: 30px;
+        li {
+            padding-bottom: 30px;
+            overflow: hidden;
+            &:last-child {
+                border-bottom: 1px dotted #ececec;
+            }
+        }
+        .fl {
+            width: 210px;
+            height: 140px;
+            display: block;
+            img {
+                max-width: 100%;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        .fr {
+            width: 600px;
+            p:last-child {
+                span, a {
+                    @extend .vam;
+                    margin-right: 20px;
+                }
+                a.hot_tag:before {
+                    content:'';
+                    @extend .vam;
+                    width: 14px;
+                    height: 14px;
+                    margin-right: 10px;
+                    background: url("../images/article_Icon.png") 0 -160px no-repeat;
+                }
+            }
+        }
+    }
+    .hot_lesson, .tag_yun {
+        h2 {
+            position: relative;
+            &:before {
+                content: '';
+                width: 0;
+                height: 100%;
+                border-left: 4px solid #5ecfba;
+                position: absolute;
+                left: -20px;
+                top: 0;
+            }
+        }
+    }
+    .tag_yun {
+        .hot_tag_link {
+            overflow: hidden;
+            li {
+                float: left;
+                width: 48%;
+                height: 30px;
+                line-height: 30px;
+                margin: 0 1% 1% 0;
+                a {
+                    display: block;
+                    padding: 0 8px;
+                    color: #666666;
+                }
+                a:hover, &.active a {
+                    background: #ffffff;
+                    color: #5ecfba;
+                }
+            }
+        }
+    }
+    .hot_lesson {
+        .hot_lesson_lists {
+            margin-left: -20px;
+            overflow: hidden;
+            li {
+                width: 120px;
+                height: 70px;
+                float: left;
+                margin-left: 20px;
+                margin-bottom: 20px;
+                a {
+                    display: table-cell;
+                    vertical-align: middle;
+                    width: 120px;
+                    height: 70px;
+                    position: relative;
+                    img {
+                        width: 60px;
+                        height: 60px;
+                        margin: 0 30px;
+                    }
+                    span {
+                        position: absolute;
+                        width: 100%;
+                        height: 19px;
+                        line-height: 19px;
+                        left: 0;
+                        bottom:0;
+                        display: none;
+                        text-align: center;
+                        background: rgba(0,0,0,.3);
+                    }
+                }
+                &:hover {
+                    span {display: block;}
+                }
+            }
+        }
+    }
+    .article_index_ad {
+        padding-top: 20px;
+        border-top: 1px dashed #ececec;
+        width: 100%;
+        height: 147px;
+        overflow: hidden;
+        img {
+            width: 100%;
+        }
+    }
+} 
+// 文章导航分类样式
+.article_nav_lists {
+    width: 100%;
+    background: rgba(251, 251, 251, 1);
+    &:before, &:after {
+        @extend .CLEARFIX;
+    }
+    li {
+        @extend .fl;
+        height: 53px;
+        line-height: 53px;
+        width: 100px;
+        text-align: center;
+        position: relative;
+        a {
+            display: block;
+        }
+    }
+    .active {
+        a {
+            color: #5ecfba;
+        }
+        &:after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 0;
+            border-bottom: 2px solid #5ecfba;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+    }
+}
+// 文章列表分页样式
+.pagination {
+    display:inline-block;
+    padding-left:0;
+    margin:20px 0;
+    border-radius:2px;
+    & > li {
+        a, span {
+            position:relative;
+            float:left;
+            padding:6px 12px;
+            line-height:1.42857;
+            text-decoration:none;
+            color:#777;
+            background-color:#fff;
+            border:1px solid #ddd;
+            margin-left:-1px;
+        }
+    }
+}
+.pagination-a {
+    .pagination {
+        & > li {
+            & > a {
+                border:none;
+                background-color: #f1eff0;
+                margin-right:5px;
+                &:hover {
+                    background-color: #e5e3e4;
+                }
+            }
+            & > .active, & > .active:hover {
+                background-color:#5ecfba;
+                color:#fff;
+            }
+            & > .rally {
+                float: left;
+                margin-right: 5px;
+                border: none;
+                background: none;
+                &:hover, &:focus {
+                    background: none;
+                }
+            }
+            & > span {
+                border: 0;
+                &:hover {
+                    background: none;
+                }
+            }
+        }
+    }
+}
+.zypage {
+    text-align: center;
+    display: table;
+    width: 100%;
+    font-size: 14px;
+    color: #5ecfbb;
+    margin-bottom: 70px;
+    & > a {
+        @extend .vam;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        background: #5ecfbb;
+        text-align: center;
+        color: #fff;
+        margin: 0 5px;
+        border-radius: 50%;
+        cursor: pointer;
+        &:hover {
+            background: #51b5a2;
+        }
+    }
+    & > a.zy_hide {
+        background:none;
+        color: #5ecfbb;
+    }
+}
+.zypageTxt {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid #b3c3c0;
+    margin: 0 10px;
+    font-size: 12px;
+    color: #000000;
+}
+.zypageBtn {
+    width: 40px;
+    height: 30px;
+    border-radius: 2px;
+    background: #5ecfbb;
+    color: #ffffff;
+    text-align: center;
+    line-height: 30px;
+    border:0;
+    outline:0;
+    margin-left: 15px;
+    cursor: pointer;
+}
+.zypage_div {
+    @extend .vam;
+    a {
+        @extend .vam;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        background: #f1eff0;
+        text-align: center;
+        color: #666666;
+        margin: 0 5px;
+        cursor: pointer;
+        font-size: small;
+        &:hover, &.jp-current {
+            background: #5ecfba;
+            color: #ffffff;
+        }
+        &.jp-previous {
+            background: $bg;
+            background-position: 10px -195px;
+        }
+        &.jp-next {
+            background: $bg;
+            background-position: 10px -238px;
+        }
+        &.jp-first {
+            background: $bg;
+            background-position: 10px -174px;
+        }
+        &.jp-last {
+            background: $bg;
+            background-position: 10px -217px;
+        }
+        &.jp-disabled {
+            pointer-events:none;
+        }
+    }    
+}
+@import 'footer';

@@ -1,0 +1,65 @@
+{% extends "mz_common/base.html" %}
+{% block title %}直播班会{% endblock %}
+{% block custom_css %}
+    <link href="{{ STATIC_URL }}mz_lps3/css/style.css" rel="stylesheet" type="text/css"/>
+    <style>
+    body{ background: #f5f5f5;}
+    </style>
+{% endblock %}
+
+{% block container %}
+<div class="container">
+	<div class="new_nav color99 font14"><a href="{% url 'lps3:teacher_class' class_id %}"><< 返回主任务面板</a></div>
+	<p class="font30 color33">直播班会</p>
+    {% for year,class_meeting_1 in class_meeting_dict.iteritems %}
+    <div class="d-year-row clearfix"><span class="d-year">{{ year }}</span></div>
+    <div class="d-month-list clearfix">
+        {% for month,class_meeting_lst in class_meeting_1.iteritems %}
+        <div class="clearfix d-now-month">
+            <div class="d-month-icon Arial font18 colorff textC">{{ month }}<span class="font12 YaHei">月</span></div>
+            {% for class_meeting in class_meeting_lst %}
+            <div class="zy_d_item">
+                <a class="d-item c-item-l d-active" href="{% if class_meeting.video %}{% url "lps3:class_meeting_player" class_id class_meeting.video.play_id %}{% else %}#{% endif %} " target="_blank">
+                    <div class="d-itemL">
+                        <h2>{{ class_meeting.content }}</h2>
+                        <span class="d-week">{{ class_meeting.d_week }}</span><span class="d-date">{{ class_meeting.d_date}}</span><span class="d-time">{{ class_meeting.d_time}}</span>
+                    </div>
+                    {% if class_meeting.video %}
+                    <div class="d-live-icon"></div>
+                    {% endif %}
+                </a>
+                <p class="gaoqing color66 font12" class_meeting_id="{{ class_meeting.id }}">考勤记录</p>
+            </div>
+            {% endfor %}
+        </div>
+    	{% endfor %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block custom_script %}
+<div class="modal fade" id="teacherAttendance" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+<script src="{{ STATIC_URL }}mz_lps3/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	//班级考勤
+    $(".zy_d_item>p").on("click", function () {
+        var class_meeting_id=$(this).attr('class_meeting_id')
+        $.ajax({
+            type: 'GET',
+            url: '/lps3/teacher/attendance/{{ class_id }}/'+class_meeting_id+'/',
+            dataType: "html",
+            success: function (data) {
+                $("#teacherAttendance").html(data);
+                $('#teacherAttendance').modal('show');
+                $(".zy_newclose").unbind().click(function(){
+		            $("#teacherAttendance").modal('hide');
+	            });
+            }
+        });
+    });
+})
+</script>
+{% endblock %}
+

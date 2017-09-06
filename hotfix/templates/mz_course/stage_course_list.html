@@ -1,0 +1,154 @@
+{% extends "mz_common/base.html" %}
+
+{% block title %}
+    {% if catagories != 'all' or sort_by != '0' or tag != 'all' %}
+        {% if tag != 'all' or sort_by != '0' %}{% if sort_by != '0' %}{{ sort_by_chinese }}{% endif %}{% if tag != 'all' %}{{ tag_name }}{% endif %}视频教程-{% endif %}{% if catagories != 'all' %}{{ catagory_name }}-{% endif %}课程库-麦子学院
+    {% else %}
+        {{ seo.seo_title }}
+    {% endif %}
+{% endblock %}
+{% block keywords%}
+    {% if tag != 'all' %}
+        {{ tag_name }}，{{ tag_name }}学习，{% if sort_by != '0' %}{{ sort_by_chinese }}{% endif %}{{ tag_name }}视频教程
+    {% elif catagories != 'all' %}
+        {{ catagory_name }}，{{ catagory_name }}学习，{% if sort_by != '0' %}{{ sort_by_chinese }}{% endif %}{{ catagory_name }}视频教程
+    {% elif sort_by != '0' %}
+        {{ sort_by_chinese }}学习，{% if sort_by != '0' %}{{ sort_by_chinese }}{% endif %}视频教程
+    {% else %}
+        {{ seo.seo_keyword }}
+    {% endif %}
+{% endblock %}
+{% block description%}IT职业在线学习，视频教程免费观看，为软件开发人员提供包括Android开发教程、iOS开发教程、手游开发教程、python基础教程、嵌入式开发教程、产品经理教程、C语言教程、html5教程、php教程等多门编程语言在内的IT职业课程的学习。{% endblock %}
+{% block custom_css %}
+<link type="text/css" rel="stylesheet" href="/static/css/style.css"/>
+{% endblock %}
+{% block container %}
+
+<div class="zy_main">
+	<div class="container">
+        <div class="zy_top_nav font14"><a href="{% url 'index_front' %}">首页</a>  >  全部课程</div>
+        <div class="zy_course">
+        	<ul>
+            	<li class="zmm1">
+                	<div class="d1 color99">课程方向:</div>
+                    <div class="d2"><a {% if catagories == 'all' %}class="aH"{% endif %} href="{% url 'course:stage_course_list' 'all' 'all' sort_by 1 %}">全部</a>
+                    {% for c in catagories_list %}
+                        <a {% if catagories == c.short_name %}class="aH"{% endif %} href="{% url 'course:stage_course_list' c.short_name 'all' sort_by 1 %}">{{ c.name }}</a>
+                    {% endfor %}
+                    </div>
+                </li>
+                <li class="zmm2">
+                	<div class="d1 color99">课程分类:</div>
+                    <div class="d2">
+                        <a {% if tag == 'all' %}class="aH"{% endif %} href="{% url 'course:stage_course_list' catagories 'all' sort_by 1 %}">全部</a>
+                        {% for t in tag_list %}
+                        <a {% if tag == t.short_name %}class="aH"{% endif %} href="{% url 'course:stage_course_list' catagories t.short_name sort_by 1 %}">{{ t.name }}</a>
+                        {% endfor %}
+                    </div>
+                </li>
+                <li class="zmm3" style="position: relative;">
+                	<div class="d1 color99">课程热度:</div>
+                    <div class="d2">
+                        {% for k, v in sort_by_list_chinese %}
+                            <a {% if sort_by == k %}class="aH"{% endif %}
+                               href="{% url 'course:stage_course_list' catagories tag k 1 %}{% if keyword %}?catagory={{ keyword }}{% endif %}">
+                               {{ v }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                    {% if ad %}
+                        <a title="{{ ad.title }}" class="guanggao" href="{{ ad.callback_url }}" target="_blank">
+                        <img alt="{{ ad.title }}" style="width: 500px; height: 40px;" src="{{ MEDIA_URL }}{{ ad.image_url }}">
+                        </a>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+
+        <ul class="zy_course_list">
+            {% for course in course_list %}
+                <li>
+                    <a title="{{ course.name }}"
+                       href="{% url 'course:course_detail_view' course.id %}">
+
+
+                        <p>
+                            <i class="VLCico{% if course.need_pay %} vip_user{% endif %}"></i>
+                            <i class="VLCico{% if course.course_status == 0 %} status_on {% else %} status_end{% endif %}"></i>
+                            <img alt="{{ course.name }}" src="{{ MEDIA_URL }}{{ course.image }}">
+                        </p>
+
+                        <div class="">
+                            <p class="font14">{{ course.name|slice:'16' }}</p>
+
+                            <p class="description">{{ course.description }}</p>
+
+                            <p class="color99">{{ course.click_count }}人正在学习</p>
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        {% include 'mz_common/paginater_2.html' %}
+        {% if rows_count == 0 %}
+            <div style="text-align: center;color: gray;font-size: 16px;padding: 67px 0;">
+            <p><img src="/static/images/no_course.png"></p>
+                <p>抱歉，暂无相关课程</p>
+                <p>看看其他精彩课程吧</p>
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block custom_script %}
+<script type="text/javascript">
+$(function(){
+    if($(window).height()<700) {
+        var d2 = $(".zy_course > ul > li > div.d2");
+        d2.each(function(){
+            $(this).html($("<div></div>").html($(this).html()));
+        });
+        var px,moveN;
+        function touchstartBind(e){
+            var touch = event.targetTouches[0];
+            px=touch.pageX;
+            moveN=parseInt($(this).children().css("left"),10);
+        }
+        function touchmoveBind(e){
+            e.preventDefault();
+            var touch = event.targetTouches[0];
+            $(this).children().css("left",(moveN+touch.pageX-px)+"px");
+        }
+        function touchendBind(e){
+            moveN=parseInt($(this).children().css("left"),10);
+            var huh=$(this).children().width()-$(this).width()
+            if(moveN>0){
+                $(this).children().animate({"left":0},300);
+            }
+            if(huh>0&&-moveN>huh){
+                $(this).children().animate({"left":-huh},300);
+            }
+            if(huh<=0){
+                $(this).children().animate({"left":0},300);
+            }
+        }
+        $(".zy_course > ul > li > div.d2").unbind().bind({"touchstart":touchstartBind,
+        "touchmove":touchmoveBind,
+        "touchend":touchendBind});
+
+    }
+    $('.zy_course_list li').stop().hover(function(){
+        $(this).find('.description').show();
+    },function(){
+        $(this).find('.description').hide();
+    });
+})
+</script>
+{% endblock%}

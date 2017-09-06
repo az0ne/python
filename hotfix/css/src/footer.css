@@ -1,0 +1,81 @@
+/* 首页 footer 样式 */
+.footer-container { background: #333333; border-top: 4px solid #5ecfba; }
+.v5-footer-links {padding-top: 50px; padding-bottom: 60px; display:table; width:1160px;margin: 0 auto; height:176px;border-bottom: 1px solid #666666;}
+.v5-footer-links dl {	float: left}
+.v5-footer-links dt {	font-size: 14px;	height: 45px;	line-height: 45px;	color: #cccccc;	font-weight: bold;}
+.v5-footer-links .f-link {	width: 578px}
+.v5-footer-links .f-link ul {	padding-top: 5px}
+.v5-footer-links .f-link li {	font-size: 14px;	line-height: 24px;	padding-bottom: 16px}
+.v5-footer-links .f-link li a {	float: left; margin-right: 10px; color:#999999; font-size: 12px;}
+.v5-footer-links .f-link li a:hover {color: #ffffff}
+.v5-footer-links .f-link li span {	float: left;	margin: 0 5px}
+.v5-footer-links .webmap,.v5-footer-links .follow {	float: right;	margin-left: 70px}
+.v5-footer-links .webmap{ width: 204px; margin-left: 0;}
+.v5-footer-links .webmap li {line-height: 25px; float: left; width: 102px;}
+.v5-footer-links .webmap li a{ color:#999999;}
+.v5-footer-links .webmap li a:hover {color: #ffffff}
+.v5-footer-links .follow{padding-left: 45px; margin-left: 20px;}
+.v5-footer-links .follow li {padding: 6px;float: left; text-align: center;color:#999999;box-sizing: border-box;height: 166px;}
+.v5-footer-links .follow li p{ line-height: 1.4; margin-bottom: 10px;}
+.v5-footer-links .follow li a {	display: inline-block;	height: 24px;	line-height: 24px;color:#999999;}
+.v5-footer-links .follow li a:hover {color: #ffffff}
+.v5-footer-links .follow li a span {	float: left;	width: 24px;	height: 24px;	margin-right: 10px;	background: url(../images/follow.png) no-repeat}
+.v5-footer-links .follow li a span.sina {	background-position: 0 0}
+.v5-footer-links .follow li a span.weixin {	background-position: 0 -30px}
+.v5-footer-links .follow li a span.qq {	background-position: 0 -60px}
+.v5-footer-bottom {	padding: 20px 0; color: #999999;}
+.v5-footer-bottom a{color: #999999;}
+
+/* 文章列表页 footer 样式 */
+.article_footer {background: rgba(56, 54, 55, 1);}
+.article_footer .container {width: 1160px;margin: 0 auto;}
+.article_footer .footer-logo,.article_footer .webmap {float: left;}
+.article_footer .webmap {margin-left: 40px;text-align: left;}
+.article_footer .webmap a {padding: 0 10px;color: #999999;}
+.article_footer .webmap a:first-child {padding-left: 0;}
+.article_footer .hot-line {float: right;}
+.article_footer .hot-line span,.article_footer .hot-line a {display: inline-block;vertical-align: top;}
+
+.article_footer .hot-line .weixin-qrcode,.article_footer .hot-line .weibo-qrcode,.article_footer .hot-line .sevenDaysRefunds:before {
+    outline: none;width: 34px;height: 34px;
+    background: url(../images/article_Icon.png) 0 0 no-repeat;
+}
+.article_footer .hot-line .weixin-qrcode {background-position: 0 0;margin-left: 50px;position: relative;}
+.article_footer .hot-line .weibo-qrcode {background-position: 0 -80px;margin-left: 20px;}
+.article_footer .hot-line .weixin-qrcode:hover {background-position: 0 -40px;}
+.article_footer .hot-line .weibo-qrcode:hover {background-position: 0 -120px;}
+.v5-footer-bottom:after,.v5-footer-bottom:before {content:'';clear: both;display: table;}
+
+.article_footer .weixin-qrcode .weixin-box {
+  position: absolute;
+  width: 118px;
+  height: 127px;
+  bottom: 36px;
+  right: -42px;
+  -webkit-transition: opacity 0.25s, transform .3s;
+  -moz-transition: opacity 0.25s, transform .3s;
+  transition: opacity 0.25s, transform .3s;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  max-width: 0;
+  -webkit-transform: scale(0.01);
+  -ms-transform: scale(0.01);
+  transform: scale(0.01);
+  -webkit-transform-origin: center bottom;
+  -ms-transform-origin: center bottom;
+  transform-origin: center bottom;
+  background: url(../images/weixin3.png) no-repeat 0 0;
+}
+.article_footer .weixin-qrcode:hover .weixin-box {
+  display: block;
+  visibility: visible;
+  opacity: 1;
+  filter: alpha(opacity=100);
+  max-width: none;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+/*7天退款*/
+.article_footer .hot-line .sevenDaysRefunds{color:#69d5c2;font-size: 12px;margin-left: 10px;}
+.article_footer .hot-line .sevenDaysRefunds:before{width:24px;content: "";display: block;background-position: 0 -610px;margin: 0 auto;}

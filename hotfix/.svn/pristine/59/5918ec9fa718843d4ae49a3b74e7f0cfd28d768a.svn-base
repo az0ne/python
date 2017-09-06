@@ -1,0 +1,70 @@
+{% extends "mz_backend/base.html" %}
+{% block title %}推荐阅读列表{% endblock %}
+{% block container %}
+    <div id="forms" class="mt10">
+        <div class="box">
+            <div class="box_border">
+                <div class="box_top"><b class="pl15">查询条件</b></div>
+                <div class="box_center">
+                    <form action="{% url 'backend:recommend_reading_index' %}" class="jqtransform">
+                        <table class="form_table pt15 pb15" width="600px" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td class="td_right">类型：</td>
+                                <td>
+                                    <select name="reading_type" class="select">
+                                        <option value="-1" {% if request.REQUEST.reading_type == '-1' %}selected{% endif %}>全部</option>
+                                        {% for choice in choices %}
+                                        <option value={{ choice.0 }} {% if request.REQUEST.reading_type == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                <td class="td_right">
+                                    <input type="submit" value="提交查询" class="ext_btn ext_btn_submit">
+                                </td>
+                                <td class="td_right">
+                                  <a href="{% url 'backend:recommend_reading_add' %}">新增</a>
+                                </td>
+                            </tr>
+
+                        </table>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="table" class="mt10">
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+        <div class="box span10 oh">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table">
+                <tr>
+                    <th width="40px">类型</th>
+                    <th width="180px">标题</th>
+                    <th width="200px">链接</th>
+                    <th width="60px">操作</th>
+                </tr>
+                {% for reading in readings %}
+                <tr class="tr">
+                    <td>
+                      {% if reading.reading_type == choices.0.0 %}{{ choices.0.1 }}{% endif %}
+                      {% if reading.reading_type == choices.1.0 %}{{ choices.1.1 }}{% endif %}
+                      {% if reading.reading_type == choices.2.0 %}{{ choices.2.1 }}{% endif %}
+                    </td>
+                    <td>{{ reading.title }}</td>
+                    <td>{{ reading.url }}</td>
+                    <td>
+                      <a href="{% url 'backend:recommend_reading_edit' reading.id%}">编辑</a>
+                      <a href="{% url 'backend:recommend_reading_delete' reading.id%}">删除</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+{% endblock %}

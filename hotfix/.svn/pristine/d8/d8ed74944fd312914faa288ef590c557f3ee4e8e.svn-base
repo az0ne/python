@@ -1,0 +1,16 @@
+<p class="font16 color33 pt">课件</p>
+<div class="playlist scroll-pane" style="overflow:hidden;">
+    <ul class="zrjiaoxue">
+        {% for cw in course_resource %}
+            <li class="font14">
+                <img src="/images/min_rar.png">
+                <span class="title">{{ cw.name }}</span>
+                <a {% if user.is_authenticated and not course.need_pay or is_paid %}
+                    href="{{ MEDIA_URL }}{{ cw.download_url }}" target="_blank"
+                {% else %}
+                    href="javascript:void(0)"
+                {% endif %} class="colorff a">下载</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

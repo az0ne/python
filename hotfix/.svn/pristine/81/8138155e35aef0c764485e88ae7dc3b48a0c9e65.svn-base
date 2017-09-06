@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=0.5,maximum-scale=0.5,user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>麦子学院微课</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/mz_wap/wechat_wike.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/mz_wap/_carousel.css"/>
+</head>
+<body>
+<div id="banner"></div>
+<div class="wike_list">
+    {% for career in careers %}
+        {% if career.courses %}
+        <p class="course_title">{{ career.name }}</p>
+        <ul>
+            {% for course in career.courses %}
+                <li>
+                    <a href="{% url 'wike:wechat_course' course.course_id %}" target="_self">
+                        <img class="ui-imglazyload" src="/static/images/mz_wap/imgloading.gif"
+                             data-url="{{ MEDIA_URL }}{{ course.image }}" alt="{{ course.course_name }}">
+                        <p class="wike_title">{{ course.course_name }}</p>
+                        <p>
+                            <span class="tea">{{ course.teacher_name }}</span><span>主讲</span>
+                            <i class="need_pay"></i>
+                        </p>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    {% endfor %}
+</div>
+<script src="/static/js/wap_wike/zepto.min.js" type="text/javascript"></script>
+<script src="/static/js/mz_wap/imglazyload.js" type="text/javascript"></script>
+<script src="/2016/dev/_carousel.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(function(){
+        $(".ui-imglazyload").picLazyLoad();
+    });
+    var scroll1 = new Scroll({
+        insert_location: document.getElementById('banner'),
+        width: screen.width * 2,
+        index: true,
+        imgs: {{ banners|safe }}
+
+    });
+    $(window).resize(function () {
+        var ban_width = screen.width * 2;
+        scroll1.width = screen.width * 2;
+        $('.lbi-container,.lbi-out').css({'width': ban_width + 'px'});
+        $('.lbi-inner').css({'width': ban_width * 5 + 'px'}).find('img').css({'width': ban_width + 'px'});
+    });
+    scroll1.init();
+</script>
+</body>
+</html>

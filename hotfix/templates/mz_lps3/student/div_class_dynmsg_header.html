@@ -1,0 +1,36 @@
+<!-- user-banner -->
+<div class="user-banner user-banner-2">
+<div class="container">
+    <div class="column-layout user-banner-in">
+        <div class="column-col-m">
+            <div class="column-layout">
+                <div class="column-col-ml">
+                    <div class="u-photo-box"><a href="/u/{{ userinfo.id }}" uid="{{ userinfo.id }}" class="u-photo" id="photo1"><img src="{{ userinfo.avatar_url.url }}" alt=""></a>{% if userinfo.is_teacher %}<i class="ico ico-umark-2"></i>{% elif userinfo.is_student %}<i class="ico ico-umark-1"></i>{% endif %}</div>
+                </div>
+                <div class="column-col-m column-full">
+                    <!-- 老师  -->
+                    <div dy-v="11-11-00-00" class="u-text-info">
+                        <span class="u-name">{{ userinfo.nick_name }}</span>
+                        {% if userinfo.is_teacher %}
+                            <span class="u-status u-teacher-status">
+                        {% elif userinfo.is_student %}
+                            <span class="u-status u-student-status">
+                        {% endif %}
+                        <span class="text">{% if is_unlockstage %}直通班学员{% else %}普通学员{% endif %}</span>
+                        </span>
+                        <span class="u-title"><i>班级排名</i><i>学习总进度</i></span>
+                        <p class="u-introduction"><i{% if rank_change_num != 0 %} class="{{ rank_change_status }}"{% endif %}>{{ rank_number }}/{{ student_count }}</i><i>{{ total_progress }}%</i></p>
+                    </div>
+                </div>
+                <div class="column-col-mr graduation-time">
+                    <div class="cut-time marginB10">
+                        <span>离毕业</span>
+                        <span class="font12 color66">还有<b>{{ class_time_left }}</b>天</span>
+                    </div>
+                    <a class="check-plan font14 colorff">查看出勤&计划</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

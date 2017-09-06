@@ -1,0 +1,27 @@
+<div class="modal-dialog modal-sm modal-content zy_yourHomework2">
+    <a class="zy_newclose"></a>
+
+    <p class="color33 font18 pt"><a class="color5e">
+        &lt;&lt;返回
+    </a><span>{{ item_record.user_task_record.stage_task.stage.name }} - {{ item_record.knowledge_item.parent.name }}</span></p>
+
+    <div class="zy_yourHomework2_div">
+        <p class="font16 color33 marginB10">作业需求</p>
+
+        <p class="font14 color99 marginB20">{{ project.description }}</p>
+
+        <p class="font16 color33 marginB10">作业截图</p>
+
+        <div class="zy_yourHomework2_divImg marginB29">
+            {% for img in project_image %}
+            <a href=""><img src="{{ MEDIA_URL }}{{ img.image }}"></a>
+            {% endfor %}
+        </div>
+        <p class="font16 color33 marginB10">作业描述</p>
+
+        <p class="font14 color99 marginB20">{{ project_record.desc }}</p>
+
+        <p class="marginB10"><span class="font16 color33">作业文件</span><span class="font14 color66" style="margin-left:50px;"></span>
+            <a class="colorff adownload" href="{{ MEDIA_URL }}{{ project_record.upload_file }}"><img src="{{ STATIC_URL }}mz_lps3/images/rightico004.png">下载</a></p>
+    </div>
+</div>

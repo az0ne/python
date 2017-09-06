@@ -1,0 +1,164 @@
+{% extends "mz_common/global.html" %}
+{% load course_filter %}
+{% load article_filter %}
+
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/lessonVideoList.css?v={{ time_stamp }}"/>
+<style type="text/css">body {background:#f5f5f5;}.footer-container {border-top: none;}</style>
+{% endblock %}
+{% block csstype %}video-lists{% endblock %}
+{% block container %}
+{% include 'header/index_header.html' %}
+<div class="indexNav color99 font14 center">
+    <a href="/">首页</a> > <a href="{% url 'course:stage_course_list_all' %}">课程库</a> > {{ course.name }}
+</div>
+<div class="video-lists-container vlesson-info">
+    <div class="fl vlesson-infoL">
+        <i class="VLCico{% if course.need_pay %} vip_user{% endif %}"></i>
+        <i class="VLCico{% if course.course_status == 0 %} status_on{% else %} status_end{% endif %}"></i>
+        <img src="{{ MEDIA_URL }}{{ course.image }}" alt="{{ course.name }}">
+    </div>
+    <div class="fl vlesson-infoR">
+        <h1 class="color33 font24 marginB10">{{ course.name }}</h1>
+        <p class="color66 font14 marginB10 p2">{{ course.description }}</p>
+        <p class="lv_tag marginB20">{% if career_courses %}<a target="_blank" href="{% url 'course:career_course_detail' career_courses.short_name %}">{{ career_courses.name }}</a>{% endif %}</p>
+        <p class="color66 font14 lv_tag2 marginB20"><span><i class="VLCico icolist"></i>{{ lessons|length }}章节</span>|<span><i class="VLCico icopeople"></i>{{ course.click_count }}次播放</span></p>
+        <p class="lv_btn"><a href="{% url 'course:lesson_video_view' course.id lessons.0.id %}" class="a1 font14">查看课程视频</a>{% if career_courses.qq %}<a href="http://shang.qq.com/wpa/qunwpa?idkey={{ career_courses.qq_key }}" target="_blank" class="a2 color66 VLCico">学习交流群<br>{{ career_courses.qq }}</a></p>{% endif %}
+    </div>
+</div>
+<div class="video-lists-container marginB40">
+    <div class="VLCleft">
+        <ul class="tab_menu font16 color66">
+            <li class="active"><span>课程目录</span></li>
+            <li><span>Wiki资料</span></li>
+            <li><span>相关文章</span></li>
+            <li><span>课件下载</span></li>
+        </ul>
+        <div class="tab_box">
+            <div>
+                {% if ad %}
+                <div style="width: 768px; margin: 0 auto;">
+{#                    <a href="{% url 'course:course_detail' career_courses.short_name %}" target="_blank" style="display: block; width: 100%; height: 132px; padding-bottom: 10px; padding-top: 10px;">#}
+                    <a href="{{ ad.url }}" target="_blank" style="display: block; width: 100%; height: 132px; padding-bottom: 10px; padding-top: 10px;">
+                        <img src="{{ MEDIA_URL }}{{ ad.img_url }}" title="{{ ad.img_title }}">
+                    </a>
+                </div>
+                {% endif %}
+                <div class="lesson-time">
+                    <div class="fl font14 color66"><i class="VLCico"></i>{{ course_video_length }}小时学习时长</div>
+                    {% if career_courses %}
+                    <div class="fr font14 color66">更全面的职业课程大纲<a class="just-check colorff" href="{% url 'course:course_detail' career_courses.short_name %}" target="_blank">立即查看</a></div>
+                    {% endif %}
+                </div>
+                <ul class="lesson-lists">
+                    {% for lesson in lessons %}
+                    <li><a href="{% url 'course:lesson_video_view' course.id lesson.id %}" target="_blank" class="font14 color66"><span class="fl">{{ forloop.counter }}.{{ lesson.name }}</span><span class="fr color99">{{ lesson.video_length|second2duration }}</span></a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div>
+                <ul class="wiki_lists">
+                    {% for wiki_item in wiki_item_list %}
+                        {% url 'wiki:item_detail' wiki_item.course_short_name wiki_item.item_short_name as item_detail_url %}
+                    <li>
+                        <div class="img">
+                            <a href="{{ item_detail_url }}" title="{{ wiki_item.img_title }}" target="_blank"><img src="{{ MEDIA_URL }}{{ wiki_item.img_url }}" alt="{{ wiki_item.img_title }}" ></a>
+                        </div>
+                        <div class="text">
+                            <h3 class="font18 marginB10 bold"><a class="color33" href="{{ item_detail_url }}" target="_blank">{{ wiki_item.name }}</a></h3>
+                        <p class="font14 color66">{{ wiki_item.tidy_content|slice:'150' }}...
+                            <a class="color5e" href="{{ item_detail_url }}" target="_blank">查看原文</a>
+                        </p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% if not wiki_item_list %}
+                <div class="no_data font20 colore3">暂无相关内容~</div>
+            {% endif %}
+            </div>
+
+            <div>
+                <ul class="article_lists">
+                    {% for article in articles %}
+                    <li>
+                        <a class="col_l" href="{% url 'article_detail_view' article.id %}" target="_blank"><img src="{{ MEDIA_URL }}{{ article.title_image }}" alt="{{ article.title }}"></a>
+                        <div class="col_r">
+                            <h3 class="font18 marginB10 bold"><a class="color33" href="{% url 'article_detail_view' article.id %}" target="_blank">{{ article.title }}</a></h3>
+                            <p class="font14 color66">{% if article.abstract %}{{ article.abstract | safe }}{% else %}{% endif %}
+                                <a class="color5e" href="{% url 'article_detail_view' article.id %}" target="_blank">查看原文</a></p>
+                            <p class="lv_tag">{% for id, name in article.tag.items %}<a href="{% url 'artilcle_list_tag_view' id %}" target="_blank">{{ name }}</a>{% endfor %}</p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% if not articles %}
+                <div class="no_data font20 colore3">暂无相关内容~</div>
+            {% endif %}
+            </div>
+            <div>
+                <ul class="lesson_download">
+                    {% for cw in courseware %}
+                    <li>
+                        <div class="col_l"><img src="/images/rar.png" alt=""><span class="font14 color66">{{ cw.name }}</span><span class="font12 color66">所属章节：{{ cw.name }}</span></div>
+                        {% if user.is_authenticated %}
+                            <a class="col_r font14 colorff" href="{{ MEDIA_URL }}{{ cw.download_url }}">下载</a>
+                        {% else %}
+                            <a class="col_r font14 colorff globalLoginBtn">下载</a>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="no_data font20 colore3" {% if courseware %}style="display: none;"{% endif %}>暂无相关内容~</div>
+            </div>
+        </div>
+    </div>
+    <div class="VLCright">
+        <div class="teacher-info marginB20">
+            <a href="{% url 'u:index' teacher.id %}" target="_blank"><img src="{{ MEDIA_URL }}{{ teacher.avatar_middle_thumbnall }}" alt="{{ career_courses.name }}{{ teacher.nick_name }}"></a>
+            <div>
+                <h3 class="font16 color33 marginB14">{{ teacher.nick_name }}</h3>
+                <a href="{% url 'u:index' teacher.id %}" target="_blank">TA的课程</a>
+            </div>
+            <p class="font14 color66">{{ teacher.description }}</p>
+        </div>
+        {% if career_courses %}
+        <div class="vocation-lesson marginB20">
+            <h3 class="font16 color33 bold marginB20">更专业的职业课程</h3>
+            <a class="marginB10" href="{% url 'course:course_detail' career_courses.short_name %}" target="_blank" style="background: {{ career_courses.course_color }};"><img src="{{ MEDIA_URL }}{{ career_courses.image }}" alt="{{ career_courses.name }}"><span class="font14">{{ career_courses.student_count }}位同学正在学习</span></a>
+            <p class="font16 color66">{{ career_courses.name }}</p>
+        </div>
+        {% endif %}
+
+        {% if course_list %}
+        <div class="other-user">
+            <h3 class="font16 color33 bold marginB20">看过该课程的同学也在学</h3>
+            {% if course_list|length == 1 %}
+                <a class="marginB10" href="{% url 'course:course_detail_view' course_list.0.id %}" target="_blank"><img src="{{ MEDIA_URL }}{{ course_list.0.image }}" alt="{{ course_list.0.name }}"><span class="font14">{{ course_list.0.click_count }}次播放</span></a>
+            {% elif course_list|length > 1 %}
+                <a class="marginB10" href="{% url 'course:course_detail_view' course_list.0.id %}" target="_blank"><img src="{{ MEDIA_URL }}{{ course_list.0.image }}" alt="{{ course_list.0.name }}"><span class="font14">{{ course_list.0.click_count }}次播放</span></a>
+                <ul>
+                {% for cour in course_list %}
+                    {% if not forloop.first %}
+                    <li><a class="font14 color66" href="{% url 'course:course_detail_view' cour.id %}" target="_blank">{{ cour.name }}</a></li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer%}
+{% include 'footer/footer_2.html' %}
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/lessonVideoList.js?v={{ time_stamp }}"></script>
+{% endblock %}

@@ -1,0 +1,96 @@
+/* 文章详情正文样式 */
+.article_detail .article_source span,.article_detail .articl_source a {display: inline-block;vertical-align: middle;margin-right: 20px;}
+.article_detail  {padding-right: 50px;box-sizing: border-box;}
+.article_detail #article{font-size: 16px;}
+.article_detail img {max-width: 100%;}
+.article_detail .article_source a {margin-right: 10px;}
+.article_detail .article_source a.hot_tag:before {
+    content:'';display: inline-block;vertical-align: middle;width: 14px;height: 14px;margin-right: 10px;
+    background: url("../images/article_Icon.png") 0 -160px no-repeat;
+}
+.article_foot {text-align: center;padding-top: 30px;border-top: 1px solid #ececec;margin: 30px 0;position: relative;}
+.article_foot .praise-btn:before,
+.article_foot .praise-btn > i,.article_foot .praise-btn span {display: inline-block;vertical-align: middle;}
+
+.article_foot .praise-btn {display: block;width: 134px;padding: 10px 20px;border-radius: 74px;border: 1px solid #E2E2E2;box-sizing: border-box;text-align: left;margin: 0 auto;}
+.article_foot .praise-btn.disabled_praise {cursor: not-allowed;}
+.article_foot .share-ibox {position: absolute;top: 40px;right: 0;}
+.article_foot .praise-btn:before {content: '';width: 20px;height: 20px;background: url(../images/article_Icon.png) 0 -508px no-repeat;}
+.article_foot .praise-btn.good:before {background-position: 0 -538px;}
+.article_foot .praise-btn > i {border-left: 1px solid #E2E2E2;height: 20px;margin: 0 10px 0 10px;}
+.article_foot .praise-btn.good > i {border-left: 1px solid #5ecfba;}
+.article_foot .praise-btn span {height: 20px;line-height: 20px;}
+.article_foot .praise-btn span > i {font-style: normal;font-size: 14px;}
+.article_foot .praise-btn.good span {color: #5ecfba;}
+.article_foot .praise-btn.good {border: 1px solid #5ecfba;}
+
+.article_foot .jiathis_style .jtico {padding: 0 !important;width: 30px !important;height: 30px !important;background: url(../images/article_Icon.png) 0 0 no-repeat;margin-right: 10px;}
+.article_foot .jiathis_style .jtico_tqq {background-position: 0 -268px;}
+.article_foot .jiathis_style .jtico_tqq:hover {background-position: 0 -308px;}
+.article_foot .jiathis_style .jtico_qzone {background-position: 0 -348px;}
+.article_foot .jiathis_style .jtico_qzone:hover {background-position: 0 -388px;}
+.article_foot .jiathis_style .jtico_weixin {background-position: 0 0;}
+.article_foot .jiathis_style .jtico_weixin:hover {background-position: 0 -40px;}
+.article_foot .jiathis_style .jtico_tsina {background-position: 0 -80px;margin-right: 0;}
+.article_foot .jiathis_style .jtico_tsina:hover {background-position: 0 -120px;}
+
+/* 未登录评论样式 */
+.reviews_container {margin-top: 80px;}
+.reviews_container .load_message {height: 40px;line-height: 40px;text-align: center;background: rgba(243, 243, 243, 1);font-size: 12px;color: #666666;cursor: pointer;margin-top: 20px;}
+.reviews_container .reviews_textarea {width: 100%;height: 110px;border: 1px solid #d2d2d2;}
+.reviews_container .reviews_textarea textarea {width: 100%;height: 100%;resize: none;padding: 10px;box-sizing: border-box;cursor: not-allowed;background: rgba(240, 240, 240, 1);font-size: 14px;}
+.reviews_container .not_sign {position: relative;height: 40px;margin-top: 10px;margin-bottom: 40px;font-size: 14px;color: #999999;}
+.reviews_container .not_sign p {position: absolute;left: 0;top: 0;}
+.reviews_container .not_sign .disabled_reviews {position: absolute;right: 0;top: 0;padding: 0;border: none;width: 120px;height: 40px;color: #ffffff;cursor: not-allowed;outline: none;}
+.reviews_container .reviews_num {font-size: 14px;color: #333333;padding: 20px 0;border-top: 1px solid #ececec;}
+
+.reviews_lists .item .col_l,.reviews_lists .item .col_r {display: table-cell;vertical-align: top;}
+.reviews_lists .item .col_l {padding-top: 20px;}
+.reviews_lists .item .col_l a {display: block;width: 50px;height: 50px;border-radius: 50%;overflow: hidden;}
+.reviews_lists .item .col_l img {width: 100%;}
+
+.reviews_lists .item .col_r {padding: 20px 0 0 20px;}
+.reviews_lists .item .col_r p {font-size: 14px;margin-bottom: 10px;}
+.reviews_lists .item .col_r .reviews_content {color: #666666;}
+.reviews_lists .item .col_r .reviews_answer {text-align: right;margin-bottom: 20px;}
+.reviews_lists .item .col_r .reviews_answer a {font-size: 12px;}
+.reviews_lists .item .col_r p .nike_name {margin-right: 20px;color: #666666;}
+.reviews_lists .item .col_r p .date_time {color: #999999;font-size: 12px;}
+.reviews_lists .child {border-top: 1px solid #ececec;}
+.reviews_lists .child:last-child {border-bottom: 1px solid #ececec;}
+.reviews_lists .col_r .submit_reviews {margin-top: 10px;margin-bottom: 40px;text-align: right;position: relative;}
+.reviews_lists .col_r .submit_reviews button {padding: 0;border: none;width: 120px;height: 40px;color: #ffffff;background: rgba(94, 207, 186, 1);outline: none;}
+
+/* 登录评论样式 */
+.sign_reviews .col_l,.sign_reviews .col_r {display: table-cell;vertical-align: top;}
+.sign_reviews .col_l a {display: block;width: 50px;height: 50px;border-radius: 50%;overflow: hidden;}
+.sign_reviews .col_l img {width: 100%;}
+.sign_reviews .col_r {width: 100%;padding-left: 20px;}
+.sign_reviews .col_r p {margin-bottom: 10px;}
+.sign_reviews .col_r .nike_name {font-size: 14px;color: #666666;}
+.sign_reviews .col_r .submit_reviews {margin-top: 10px;margin-bottom: 40px;text-align: right;position: relative;overflow: hidden;}
+.sign_reviews .col_r .submit_reviews span {
+    display: block;position: absolute;left: -100px;top: 0;
+    -webkit-transition:left .3s ease 0s;-moz-transition:left .3s ease 0s;-o-transition:left .3s ease 0s;transition:left .3s ease 0s;
+}
+.sign_reviews .col_r .submit_reviews button {padding: 0;border: none;width: 120px;height: 40px;color: #ffffff;background: rgba(94, 207, 186, 1);outline: none;}
+
+/* 相关课程样式 */
+.related_lesson h2, .related_recommend h2 {position: relative;}
+.related_lesson h2:before,.related_recommend h2:before {content: '';width: 0;height: 100%;border-left: 4px solid #5ecfba;position: absolute;left: -20px;top: 0;}
+
+.related_lesson .related_lesson_lists .col_l {display: block;width: 84px;height: 84px;background: #5ecfba;float: left;}
+.related_lesson .related_lesson_lists .col_r {float: left;margin-left: 20px;}
+.related_lesson .related_lesson_lists h3,.related_lesson .related_lesson_lists p {margin-bottom: 5px;}
+.related_lesson .related_lesson_lists h3 a {font-size: 14px;color: #333333;}
+.related_lesson .related_lesson_lists p {color: #666666;}
+.related_lesson .related_lesson_lists .col_r p:last-child {color: #999999;}
+.related_lesson .related_lesson_lists p i {display: inline-block;vertical-align: middle;height: 16px;border-left: 1px solid #cccccc;margin: 0 10px;}
+
+.related_recommend .related_recommend_lists li {padding-left: 16px;padding-bottom: 20px;border-left: 1px solid #e2e2e2;position: relative;}
+.related_recommend .related_recommend_lists li:before {content: '';display: inline-block;width: 16px;height: 16px;position: absolute;top: 0;left: -8px;background: #fbfbfb url(../images/article_Icon.png) 1px -566px no-repeat;}
+.related_recommend .related_recommend_lists li:last-child {border-left: none;}
+.related_recommend .related_recommend_lists li a {font-size: 14px;color: #666666;}
+.related_recommend .related_recommend_lists li p {margin-top: 5px;}
+.related_recommend .related_recommend_lists li .date_time,.related_recommend .related_recommend_lists li .nike_name {font-size: 12px;color: #999999;}
+.related_recommend .related_recommend_lists li .date_time {margin-right: 20px;}

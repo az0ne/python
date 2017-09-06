@@ -1,0 +1,75 @@
+<div class="modal fade" id="myAgreement" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-content zy_myAgreement">
+        <p class="textC font30 color33">麦子学院就业服务协议</p>
+        <div class="zy_myAgreement_div">
+        	<div>
+                <div style="margin:50px 0 20px;position:relative;">
+                    <h2 class="font14 bold marginB20">甲方：成都麦子信息技术有限公司（盖章）</h2>
+                    <h2 class="font14 bold marginB50">乙方：{{ real_name }}{% if request.user.id_number %} （身份证号：{{ request.user.id_number }}）{% endif %}</h2>
+                    <img src="{{ STATIC_URL }}mz_lps3/images/yinzhang.png" style="position:absolute;opacity:0.75;left:220px;top:-30px;width: 90px;" alt="yinzhang"/>
+                </div>
+                <p>作为国内IT在线教育创新领导品牌，甲方将向乙方提供技术教学及就业服务。为清晰培训过程、提高培训质量，经双方沟通协商，甲、乙双方签订以下协议。甲方为本项目提供优质的教学、服务和管理，并承诺在完成本项目学习后获得良好的就业结果！</p><br>
+                <span style="font-weight: 600">一、服务内容及期限</span><br /><br />
+                <p>甲方拟向乙方提供技术教学及就业服务，服务期限为：开学（付款入学）之日起1年。</p><br>
+                <span style="font-weight: 600">二、甲方责任、权利和义务</span><br /><br />
+                <p>1、甲方有责任在乙方培训期间，按照《学员学习异动管理条例》及学员相关管理规定对乙方进行严格管理，并根据规定对乙方表现进行评定考核；</p>
+                <p>2、甲方承诺向乙方提供符合要求的技能培养内容和考核体系，并提供符合企业需求的相关培训课程，课程内容全部来源于国内外一线大师亲自设计制作；</p>
+                <p>3、甲方承诺配备技术导师、班主任、就业辅导老师为学生提供教学、学习、就业服务管理；</p>
+                <p>4、甲方承诺对于遵守并通过相关培训项目制作及考核的毕业学员，进入麦子学院雇主人才库，并做好就业安置与推荐服务，大专及以上学历学员，学员求职时所在城市（中国大陆） {{ intention_job_city }}，学历 {{ degree }}，承诺薪酬不低于 {{ salary }} 元/月（税前）。</p>
+                <p>5、如非乙方原因导致面试成功但未能通过1个月试用期（经甲方核实），甲方继续为乙方提供岗位机会；</p>
+                <p>6、乙方毕业答辩结束后，乙方指定需就业城市，处于偏远地区或三线城市中经济偏弱，导致无相关岗位或岗位不足以支撑其成功就业的（能满足招聘岗位要求的岗位数低于30家），甲方可免除就业安置义务；但在服务有效期内，乙方变更就业地点，且变更后的就业地满足就业推荐条件，甲方仍需提供就业安置和推荐服务。</p>
+                <p>7、乙方在求职过程中，有2次（含2次）以上由于专业能力问题导致面试失败者，甲方向乙方提供补课或重学服务，在个人能力提升且达到就业标准后，再提供就业安置和推荐服务。</p>
+                <span style="font-weight: 600">三、乙方责任、权利和义务</span><br /><br />
+                <p>1、乙方参加本项目后，须遵守《学员学习异动管理条例》及学员相关管理规定，同时积极配合各项教学计划，努力学习；</p>
+                <p>2、乙方应承担实训期间的所有费用，并按照甲方要求进行入学、学习、就业等各项工作；</p><br>
+                <p>3、乙方应自行负责学习期间的人身安全和心理健康，鉴于网络学习的特殊性，对乙方学习期间发生的任何伤、病、财产损失、第三人侵权或被第三人侵权等，甲方不承担任何责任。</p><br>
+                <span style="font-weight: 600">四、就业服务标准</span><br /><br />
+                <p>学员同时满足以下四个条件方可享受甲方提供的就业服务：</p>
+                <p>1、完成所有课程（项目制作、模拟面试等）并完成毕业考核，达到就业标准；</p>
+                <p>2、培训费用已缴清；</p>
+                <p>3、提供《个人简历》；</p>
+                <p>4、观看就业指导课全部课程。</p><br>
+                <span style="font-weight: 600">五、有以下几种情况，不再提供就业服务</span><br /><br />
+                <p>1、乙方在获得甲方的面试通知后，不得私自放弃或更换他人，不得无故迟到和缺席，否则甲方有权取消乙方此后的推荐机会，甲方基于本合同的义务终止；</p><br />
+                <p>2、乙方因疾病或心理生理障碍等不可抗拒因素而导致无法就业，则甲方不承担就业安置和推荐服务；</p><br />
+                <p>3、乙方属于在读学生且半年内无法取得高校毕业证，导致无法签订劳动合同者，甲方不承担就业安置和推荐服务。乙方在取得毕业证后，经专业考核评定通过者，甲方可以给予就业安置和推荐服务；</p><br />
+                <p>4、乙方在甲方学习期间，违反学员管理制度3次以上（含3次），甲方不承担就业安置和推荐服务，具体条款参考《学员管理制度》；</p><br />
+                <p>5、乙方应在培训期间提交个人简历，在毕业答辩结束后15天内，仍未提交个人简历者视为自动放弃甲方就业推荐机会，甲方不承担就业安置和推荐服务。但经乙方说明，确有特殊情况者，甲方可以视情况提供就业安置和推荐服务；</p><br />
+                <p>6、超过本协议服务有效期的，甲方不再提供就业安置和推荐服务。经乙方说明，确有特殊情况者，甲方可以视情况提供就业安置和推荐服务。</p><br />
+                <p>7、年龄超过35周岁且无相关工作经验者，甲方只提供就业指导与推荐服务。</p><br />
+                <p>8、大专以下学历者，甲方只予以提供就业指导服务。</p><br />
+                <p>9、乙方在自开班之日起到毕业结束，时间超过8个月（含休学时间），甲方只提供就业指导与推荐服务。</p><br />
+                <span style="font-weight: 600">六、培训后退款</span><br /><br />
+                <p>1、如乙方符合本协议第四条标准并不具备第五条排除情况者，至本协议服务有效期届满之时乙方仍未能成功就业的，可由乙方提出申请，确系无法就业情况者，经甲方核实后，甲方将全额退还乙方所有培训费用；</p>
+                <p>2、就业未达标全额退费周期为：乙方提出退费申请后1个月内。</p><br />
+
+                <span style="font-weight: 600">七、不可抗力条款 </span><br /><br />
+                <p>对不可抗力所造成的影响，双方应及时协商解决办法和补救措施。因不可抗力不能履行协议的一方，应尽力采取合理措施减轻可能给对方造成的损失，否则应对由此而扩大的损失承担赔偿责任。本协议所称不可抗力，是指不能预见、不能避免、并不能克服的客观情况，如重大疾病、自然灾害、瘟疫、战争、骚乱等。</p><br />
+                <span style="font-weight: 600">八、适用法律及争议解决方法</span><br /><br />
+                <p>1、甲方拥有对本协议的解释权，协议的履行、解释及争议解决均适用中华人民共和国有关法律；</p>
+                <p>2、双方在履行本协议中如发生争议，应先由双方协商解决。如协商不成，依法向甲方所在地人民法院提起诉讼。</p><br />
+                <span style="font-weight: 600">九、协议的补充、 变更、修改</span><br /><br />
+                <p>对本协议的任何补充、变更、修改应采用书面补充协议形式。补充协议在双方签署后与本协议具有同等法律效力。</p><br />
+                <span style="font-weight: 600">十、生效及终止条款</span><br /><br />
+                <p>1、本协议由甲方盖章、乙方同意后生效；</p>
+                <p>2、本协议正本及附件均一式二份，具有同等法律效力，甲、乙各执一份；</p>
+                <p style="margin-bottom: 50px">3、本协议约定的服务期限届满，本协议终止。</p>
+                <p style="line-height: 1.5;margin-bottom: 150px" class="font14">以下无正文。</p>
+                <div style="font-size: 0;">
+                    <div style="display: inline-block;width: 50%;vertical-align: bottom;font-size: 14px;">
+                        <p class="marginB20" style="position:relative;">甲方：（盖章）<img src="/static/images/yinzhang.png" style="position:absolute;opacity:0.75;left:150px;top:-65px;width: 90px;" alt="yinzhang"></p>
+                        <p class="marginB10 color00 bold">成都麦子信息技术有限公司</p>
+                        <p><span>{{ now_time|date:'Y' }}</span>&nbsp;年&nbsp;<span>{{ now_time|date:'m' }}</span>&nbsp;月&nbsp;<span>{{ now_time|date:'d' }}</span>&nbsp;日</p>
+                    </div>
+                    <div style="display: inline-block;width: 50%;vertical-align: bottom;font-size: 14px;text-align: right;">
+                        <p class="marginB50 color00">乙方：{{ real_name }}</p>
+                        <p><span>{{ now_time|date:'Y' }}</span>&nbsp;年&nbsp;<span>{{ now_time|date:'m' }}</span>&nbsp;月&nbsp;<span>{{ now_time|date:'d' }}</span>&nbsp;日</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="zy_myAgreementB">
+        	<label><input type="checkbox" id="myAgreement_checkbox"><span>我已经阅读并同意以上协议</span></label><a pd="2" class="bold font14 colorff a3 marginB10 greyBG" id="myAgreement_submit">提交</a>
+        </p>
+    </div>
+</div>

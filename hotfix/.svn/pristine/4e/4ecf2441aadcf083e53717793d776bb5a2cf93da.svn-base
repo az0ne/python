@@ -1,0 +1,1658 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="产品经理,产品经理培训,产品经理培训课程,产品经理学习">
+    <meta name="description" content="
+麦子学院,专业在线产品经理培训机构,提供史上最靠谱的产品经理培训课程,定制化产品经理学习路线,名师1对1指导,通过通俗易懂的讲解,丰富有趣的实战,轻松学习产品经理,升级为实力派产品经理大牛。">
+    <title>产品经理 - 产品经理培训- 产品经理培训课程 - 麦子学院</title>
+
+    <script src="/static/js/new_wap_js/html-size-calculation.js"></script>
+    <link rel="stylesheet" href="/static/css/new_wap_css/gloable.css"/>
+    <link rel="stylesheet" href="/static/css/new_wap_css/mz-pm.css">
+
+    <link rel="stylesheet" href="/static/css/new_wap_css/header.css"/>
+    <link rel="stylesheet" href="/static/css/new_wap_css/swiper.min.css"/>
+    <script src="/static/js/new_wap_js/zepto.min.js"></script>
+    <script src="/static/js/new_wap_js/mzConsultation.js"></script>
+    <script src="/static/js/new_wap_js/swiper.min.js"></script>
+    <script src="/static/js/new_wap_js/main.js"></script>
+    <script type="text/javascript">
+        <!-- 百度统计代码 -->
+        var _hmt = _hmt || [];
+        (function () {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e3879546912fd4b2d6e909e064d49262";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</head>
+
+<body class="hd-fiexd">
+
+
+{% include "mz_wap/new_wap/wap_header.html" %}
+<div class="lq-pm-box">
+    <div class="banner">
+        <h2 class="fz64">5招4个月带你成为</h2>
+        <p class="fz74"> 优秀的产品经理</p>
+        <div class="banner-btns mzub mzub-pc mt50 pb50">
+            <!--<a href="#" class="mzub mzub-ac mzub-pc fz28">购买课程</a>-->
+            <a href="javascript:;" class="mzub mzub-ac mzub-pc fz28 mzconsultation">立即咨询</a>
+        </div>
+        <div class="banner-item tx-l">
+            <section class="fz20 mzub plr40">
+                <span class="mzub-f1"><i class="mzicon mzicon-fuxuan pr10"></i>签保就业协议</span>
+                <span class="mzub-f1"><i class="mzicon mzicon-fuxuan pr10"></i>1对1辅导</span>
+                <span class="mzub-f1"><i class="mzicon mzicon-fuxuan pr10"></i> 硅谷名师课程</span>
+            </section>
+            <section class="fz20 cff mzub plr40">
+                <span class="mzub-f1"><i class="mzicon mzicon-fuxuan pr10"></i>10个项目</span>
+                <span class="mzub-f1"><i class="mzicon mzicon-fuxuan pr10"></i>2年经验</span>
+                <span class="mzub-f1"><i class="mzicon mzicon-fuxuan pr10"></i> 年薪15万</span>
+            </section>
+        </div>
+    </div>
+    <div class="mz-cuose-tab bb pm-mz-cuose-tab">
+        <ul class="mzub">
+            <li class="mzub-f1 mzub mzub-ac mzub-pc active">
+                <a href="javascript:;">课程介绍</a>
+            </li>
+            <li class="mzub-f1 mzub mzub-ac mzub-pc">
+                <a href="javascript:;">课程目录</a>
+            </li>
+            <!--<li class="mzub-f1 mzub mzub-ac mzub-pc">
+                <a href="javascript:;">学员评论<b>（238）</b></a>
+            </li>-->
+        </ul>
+    </div>
+    <section class="mz-cuose-tabwrap">
+        <!-- 课程介绍 begin  -->
+        <section class="mz-cuose-tabcon active">
+            <!--有人说产品经理是CEO学前班 start-->
+            <div class="mz-pm-cuose-tab-c1 ">
+                <div class="mz-pm-cuose-tab-tit tx-c">
+                    <h3>有人说产品经理是CEO学前班</h3>
+                </div>
+                <div class="mz-pm-cuose-tab-c1-main">
+                    <div class="mz-pm-cuose-tab-c1-main-box1">
+                        <div class="pic mb20">
+                            <img src="/static/images/new_wap_images/pm_images/pm-con1-qiaobusi.jpg" alt="乔布斯">
+                        </div>
+                        <div class="words mzub-te">
+                            stven jobs·苹果CEO
+                        </div>
+                    </div>
+                    <div class="mz-pm-cuose-tab-c1-main-box2 mz-pm-cuose-tab-c1-main-box2-ma">
+                        <div class="pic mb20">
+                            <img src="/static/images/new_wap_images/pm_images/pm-con1-mahuateng.jpg" alt="马化腾">
+                        </div>
+                        <div class="words mzub-te">
+                            马化腾·腾讯CEO
+                        </div>
+                    </div>
+                    <div class="mz-pm-cuose-tab-c1-main-box2 mz-pm-cuose-tab-c1-main-box2-wang">
+                        <div class="pic mb20">
+                            <img src="/static/images/new_wap_images/pm_images/pm-con1-wangxiaochuan.jpg" alt="王小川">
+                        </div>
+                        <div class="words mzub-te">
+                            王小川·搜狗CEO
+                        </div>
+                    </div>
+                    <div class="mz-pm-cuose-tab-c1-main-box2 mz-pm-cuose-tab-c1-main-box2-zhang">
+                        <div class="pic mb20">
+                            <img src="/static/images/new_wap_images/pm_images/pm-con1-zhangxiaolong.jpg" alt="张小龙">
+                        </div>
+                        <div class="words mzub-te">
+                            张小龙·微信CEO
+                        </div>
+                    </div>
+                    <div class="mz-pm-cuose-tab-c1-main-box3">
+                        <div class="pic mb20">
+                            <img src="/static/images/new_wap_images/pm_images/pm-con1-zhouhongyi.jpg" alt="周鸿祎">
+                        </div>
+                        <div class="words mzub-te">
+                            周鸿祎·奇虎360CEO
+                        </div>
+                    </div>
+                    <div class="mz-pm-cuose-tab-c1-main-des">
+                        <div class="words">
+                            他们都是产品经理
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--有人说产品经理是CEO学前班 end-->
+            <!--产品经理的光明前景 start-->
+            <div class="mz-pm-cuose-tab-c1 mz-pm-cuose-tab-c2 ">
+                <div class="mz-pm-cuose-tab-tit mz-pm-cuose-tab-tit2 tx-c">
+                    <h3>产品经理的光明前景</h3>
+                </div>
+                <div class="mz-pm-cuose-tab-c2-box1">
+                    <div class="words tx-c">产品经理平均薪酬</div>
+                    <div class="salary tx-c">&yen;13940</div>
+                </div>
+                <div class="mz-pm-cuose-tab-c2-box2">
+                    <div class="graphic-data">
+                        <div class="data data1 mzub-te">
+                            31.1%
+                        </div>
+                        <div class="data data2 mzub-te">
+                            11.3%
+                        </div>
+                        <div class="data data3 mzub-te">
+                            17.4%
+                        </div>
+                        <div class="data data4 mzub-te">
+                            25.6%
+                        </div>
+                    </div>
+                    <div class="data-analyze clear">
+                        <div class="salary-analysis mr fl">
+                            <span class="db fl span1"></span>10000-15000元
+                        </div>
+                        <div class="salary-analysis fl">
+                            <span class="db fl span2"></span>15000-20000元
+                        </div>
+                        <div class="salary-analysis mr fl">
+                            <span class="db fl span1"></span>20000-30000元
+                        </div>
+                        <div class="salary-analysis fl">
+                            <span class="db fl span1"></span>8000-15000元
+                        </div>
+                    </div>
+                </div>
+                <a href="javascript:;" class="mz-pm-cuose-tab-c2-btns db tx-c mzconsultation">立即报名</a>
+            </div>
+            <!--产品经理的光明前景 end-->
+            <!--麦子如何让你成为两年以上工作经验的产品经理 start-->
+            <div class="mz-cuose-tab-c4">
+                <div class="mz-cuose-tab-tit tx-c">
+                    <h3>麦子如何让你成为<br/>两年以上工作经验的产品经理</h3>
+                </div>
+                <ul class="mz-cuose-tab-c4-list">
+                    <li class="mzub">
+                        <div class="mz-cuose-tab-c4-icon mzub mzub-ac mzub-pc mr30">
+                            <i class="mzicon mzicon-jiaoxue cff fz44"></i>
+                        </div>
+                        <div class="mzub-f1 mz-cuose-tab-c4-txt">
+                            <h5 class="fz30 lh1 c33">1对1教学</h5>
+                            <p>采用师徒制，1位专属导师全面负责你的教学工作，手把手带你制定目标，考核，批改作业，学习答疑 。</p>
+                        </div>
+                    </li>
+                    <li class="mzub">
+                        <div class="mz-cuose-tab-c4-icon mzub mzub-ac mzub-pc mr30">
+                            <i class="mzicon mzicon-yyshipin cff fz44"></i>
+                        </div>
+                        <div class="mzub-f1 mz-cuose-tab-c4-txt">
+                            <h5 class="fz30 lh1 c33">1对1直播</h5>
+                            <p>学生可以随时在PC和APP发起约课，跟自己的导师约直播课程，1对1直播，私人订制，专属讲解。 </p>
+                        </div>
+                    </li>
+                    <li class="mzub">
+                        <div class="mz-cuose-tab-c4-icon mzub mzub-ac mzub-pc mr30">
+                            <i class="mzicon mzicon-zan cff fz44"></i>
+                        </div>
+                        <div class="mzub-f1 mz-cuose-tab-c4-txt">
+                            <h5 class="fz30 lh1 c33">名师指导</h5>
+                            <p>麦子的导师多为国内外知名互联网公司8年以上的企业经验大牛，也许你的老师就是美国的Facebook，Google，国内的BAT的大牛老师。</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="mz-cuose-tab-c5">
+                <div class="mz-cuose-tab-tit02 tx-c">
+                    <h3>独创LPS（学习过程系统）</h3>
+                    <p>重塑学习过程，学习足迹完全数字化</p>
+                </div>
+                <div class="mz-cuose-video-box mt20 plr30 video_introduce1">
+                    <a href="javascript:;" class="db"
+                       data-href="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/gwsp/ksrsnew.mp4"
+                       onclick="zhuge.track('UI设计', {'名称': '快速认识麦子学院'})">
+                        <img src="/static/images/new_wap_images/mz-cuose-video-box-pic01.png" alt="">
+                    </a>
+                </div>
+                <div class="mzub mzub-pc pt10 mt30">
+                    <a href="javascript:;" class="mz-consultation mz-m-btn mzub mzub-ac mzub-pc mz30 cff">什么是LPS？</a>
+                </div>
+            </div>
+            <!--麦子如何让你成为两年以上工作经验的产品经理 end-->
+            <!--麦子老师 start-->
+            <div class="mz-cuose-tab-c6 mz-pm-cuose-tab-c4 ">
+                <div class="course-des-c4-slider">
+                    <h3>看看麦子的老师们，<br/>
+                        选择他们拜师吧，1对1指导 </h3>
+                    <div class="course-des-c4-slider-bg"></div>
+                    <div class="course-des-c4-slider-bg2"></div>
+                    <div class="course-des-c4-slider-con">
+                        <div class="course-des-c4-slider-hd">
+                            <div class="course-des-c4-slider-hd-list bs-wrapper banner-wrapper">
+                                <div class="bs-slide banner-slide">
+                                    <div class="course-des-c4-slid-pic">
+                                        <img src="/static/images/new_wap_images/teacher-fuhao.jpg" alt="傅淏"/>
+                                    </div>
+                                    <div class="course-des-c4-slid-txt">
+                                        <h6>傅淏</h6>
+                                        <b>曾任职UC、盛大产品经理</b>
+                                        <p>十年产品总监经验，完成多个不同类型的互联网产品（SNS、APP、Game、Study、Music、OA），兼具系统产品运营经验的市场分析与产品设计专家。
+                                        </p>
+                                        <a href="javascript:;" class="mz-transition mzconsultation">跟老师聊聊</a>
+                                    </div>
+                                </div>
+                                <div class="bs-slide banner-slide">
+                                    <div class="course-des-c4-slid-pic">
+                                        <img src="/static/images/new_wap_images/teacher-zangyiliang.jpg" alt="张艺良"/>
+                                    </div>
+                                    <div class="course-des-c4-slid-txt">
+                                        <h6>张艺良</h6>
+                                        <b>奇虎360核心业务高级产品经理，互联网企业资深产品经理，事业部产品专家</b>
+                                        <p>擅长细分领域的产品项目把控及产品动态分析，对移动APP及产品运营有着丰富的实操经验。
+                                        </p>
+                                        <a href="javascript:;" class="mz-transition mzconsultation">跟老师聊聊</a>
+                                    </div>
+                                </div>
+                                <div class="bs-slide banner-slide">
+                                    <div class="course-des-c4-slid-pic">
+                                        <img src="/static/images/new_wap_images/teacher-daiyoubin.jpg" alt="代有彬"/>
+                                    </div>
+                                    <div class="course-des-c4-slid-txt">
+                                        <h6>代有彬</h6>
+                                        <b>曾任美乐乐曾任美乐乐家居网产品经理、中国电信高级产品经理、红掌视频联合创始人、极果鲜创始人</b>
+                                        <p>擅长互联网创业、产品前期策划、产品设计、领导团队等。</p>
+                                        <a href="javascript:;" class="mz-transition mzconsultation">跟老师聊聊</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="course-des-c4-slider-pagination banner-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--麦子老师 end-->
+            <!--独创5招系统产品经理学习内容 start-->
+            <div class="mz-pm-cuose-tab-c1 mz-pm-cuose-tab-c5 ">
+                <div class=" mz-pm-cuose-tab-tit mz-pm-cuose-tab-tit2 tx-c">
+                    <h3>独创5招系统产品经理学习内容</h3>
+                </div>
+                <div class="mz-pm-cuose-c5-main clear">
+                    <div class="mz-pm-cuose-c5-top">
+                        <span class="guide db fl tx-c">01</span>
+                        <span class="words">定义</span>
+                    </div>
+                    <div class="mz-pm-cuose-c5-main clear">
+                        <div class="mz-pm-cuose-c5-main-left fl">
+                            <div class="mz-pm-cuose-c5-main-chunk">
+                                <div class="mz-pm-c5-main-chunk-zindex1">
+                                    <h5 class="tx-c">调研</h5>
+                                    <p class="tx-c">市场调查</p>
+                                    <p class="tx-c">目标用户调查</p>
+                                    <p class="tx-c">竞争分析</p>
+                                    <p class="tx-c">盈利分析</p>
+                                </div>
+                                <span class="db triangle-right"></span>
+                            </div>
+                            <div class="mz-pm-cuose-c5-main-chunk">
+                                <div class="mz-pm-c5-main-chunk-zindex1">
+                                    <h5 class="tx-c">原型设计</h5>
+                                    <p class="tx-c">业务流程</p>
+                                    <p class="tx-c">用户行为、用例</p>
+                                    <p class="tx-c">界面布局</p>
+                                    <p class="tx-c">信息架构</p>
+                                </div>
+                                <span class="db triangle-right"></span>
+                            </div>
+                            <div class="mz-pm-cuose-c5-main-chunk">
+                                <div class="mz-pm-c5-main-chunk-zindex1">
+                                    <h5 class="tx-c">代码</h5>
+                                    <p class="tx-c">开发进度</p>
+                                    <p class="tx-c">团队协作</p>
+                                    <p class="tx-c">需求管理</p>
+                                </div>
+                                <span class="db triangle-right"></span>
+                            </div>
+                            <div class="mz-pm-cuose-c5-main-chunk">
+                                <div class="mz-pm-c5-main-chunk-zindex1">
+                                    <h5 class="tx-c">准备发布</h5>
+                                    <p class="tx-c">用户教育</p>
+                                    <p class="tx-c">销售培训</p>
+                                    <p class="tx-c">推广方案</p>
+                                    <p class="tx-c">运营策略</p>
+                                    <p class="tx-c">产品定价</p>
+                                </div>
+                                <span class="db triangle-right"></span>
+                            </div>
+                        </div>
+                        <div class="mz-pm-cuose-c5-main-mid fl">
+                            <ul>
+                                <li class="mzub mzub-ac mzub-pc circle li1 ">
+                                    <i class="mzicon mzicon-pen "></i>
+                                </li>
+                                <li class="mzub mzub-ac mzub-pc circle li2">
+                                    <i class="mzicon mzicon-file "></i>
+                                </li>
+                                <li class="mzub mzub-ac mzub-pc words-circle li3">
+                                    <span class="words fl">设计</span>
+                                    <span class="guide db fr tx-c">02</span>
+                                </li>
+                                <li class="mzub mzub-ac mzub-pc circle li4">
+                                    <i class="mzicon mzicon-design "></i>
+                                </li>
+                                <li class="mzub mzub-ac mzub-pc circle li5">
+                                    <i class="mzicon mzicon-brush "></i>
+                                </li>
+                                <li class="mzub mzub-ac mzub-pc words-circle li6">
+                                    <span class="words fl">开发</span>
+                                    <span class="guide db fr tx-c">03</span>
+                                </li>
+                                <li class="mzub mzub-ac mzub-pc circle li7">
+                                    <i class="mzicon mzicon-code "></i>
+                                </li>
+                                <li class="mzub mzub-ac mzub-pc circle li8">
+                                    <i class="mzicon mzicon-test "></i>
+                                </li>
+                                <li class="mzub mzub-ac mzub-pc words-circle li9">
+                                    <span class="words fl">发布</span>
+                                    <span class="guide db fr tx-c">04</span>
+                                </li>
+                                <li class="mzub mzub-ac mzub-pc circle li10">
+                                    <i class="mzicon mzicon-fabu "></i>
+                                </li>
+                                <li class="mzub mzub-ac mzub-pc words-circle li11">
+                                    <span class="guide db fl tx-c mr20">05</span>
+                                    <span class="words fr">改进</span>
+                                </li>
+                                <li class="mzub mzub-ac mzub-pc circle li12">
+                                    <i class="mzicon mzicon-data "></i>
+                                </li>
+                                <li class="mzub mzub-ac mzub-pc words-circle li13">
+                                    <span class="words fl">定义</span>
+                                    <span class="guide db fr tx-c">...</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mz-pm-cuose-c5-main-right fr">
+                            <div class="mz-pm-cuose-c5-main-chunk">
+                                <div class="mz-pm-c5-main-chunk-zindex1">
+                                    <h5 class="tx-c">需求文档</h5>
+                                    <p class="tx-c">产品目标</p>
+                                    <p class="tx-c">用户需求</p>
+                                    <p class="tx-c">功能列表</p>
+                                </div>
+                                <span class="db triangle-right"></span>
+                            </div>
+                            <div class="mz-pm-cuose-c5-main-chunk">
+                                <div class="mz-pm-c5-main-chunk-zindex1">
+                                    <h5 class="tx-c">视觉设计</h5>
+                                    <p class="tx-c">视觉设计</p>
+                                    <p class="tx-c">功能、操作界面</p>
+                                    <p class="tx-c">交互设计</p>
+                                </div>
+                                <span class="db triangle-right"></span>
+                            </div>
+                            <div class="mz-pm-cuose-c5-main-chunk last-chunk">
+                                <div class="mz-pm-c5-main-chunk-zindex1">
+                                    <h5 class="tx-c">测试</h5>
+                                    <p class="tx-c">用例测试</p>
+                                    <p class="tx-c">可用性测试</p>
+                                    <p class="tx-c">用户体验测试</p>
+                                </div>
+                                <span class="db triangle-right"></span>
+                            </div>
+                            <div class="mz-pm-cuose-c5-main-chunk mb10 ">
+                                <div class="mz-pm-c5-main-chunk-zindex1">
+                                    <h5 class="tx-c">数据分析</h5>
+                                    <p class="tx-c">用户反馈</p>
+                                    <p class="tx-c">功能改进</p>
+                                    <p class="tx-c">数据分析</p>
+                                    <p class="tx-c">运营车辆调整</p>
+                                    <p class="tx-c">数据挖掘</p>
+                                </div>
+                                <span class="db triangle-right"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="javascript:;" class="see-curriculum mz-m-btn mz-pm-c3-btn mzub mzub-ac mzub-pc mz30 cff">查看完整课程大纲</a>
+            </div>
+            <!--独创5招系统产品经理学习内容 end-->
+            <div class="mz-cuose-tab-c9 mz-pm-cuose-c6">
+                <div class="online-to-offline-con">
+                    <div class="mz-cuose-tab-tit tx-c">
+                        <h3>除了线上还可以选择线下学习</h3>
+                        <p>【互联网工厂】模式，让你在互联网公司上班一样学习</p>
+                    </div>
+                    <div class="mzub mt30 pt30">
+                        <dl class="mzub-f1 mz-line-left">
+                            <dt class="mzub mzub-ac mzub-pe">
+                                传统线下
+                            </dt>
+                            <dd class="mzub mzub-ac mzub-pe">
+                                集中开班
+                            </dd>
+                            <dd class="mzub mzub-ac mzub-pe">
+                                一般的项目练习
+                            </dd>
+
+                            <dd class="mzub mzub-ac mzub-pe">
+                                老师水平参差不齐
+                            </dd>
+                            <dd class="mzub mzub-ac mzub-pe">
+                                一个老师对50个学生
+                            </dd>
+                            <dd class="mzub mzub-ac mzub-pe">
+                                学习环境差，50人挤<br/>在一个小屋里
+                            </dd>
+                            <dd class="mzub mzub-ac mzub-pe">
+                                传统授课，所有人听<br/>一样的内容
+                            </dd>
+                        </dl>
+                        <dl class="online-to-offline-con-vs pm-online-to-offline-con-vs">
+                            <dt class="mzub mzub-ac mzub-pc">VS</dt>
+                            <dd class="mzub mzub-ac mzub-pc">
+                                <i class="mzicon mzicon-time fz38"></i>
+                            </dd>
+                            <dd class="mzub mzub-ac mzub-pc">
+                                <i class="mzicon mzicon-more fz38"></i>
+                            </dd>
+                            <dd class="mzub mzub-ac mzub-pc">
+                                <i class="mzicon mzicon-men fz38"></i>
+                            </dd>
+                            <dd class="mzub mzub-ac mzub-pc">
+                                <i class="mzicon mzicon-computer fz38"></i>
+                            </dd>
+                            <dd class="mzub mzub-ac mzub-pc">
+                                <i class="mzicon mzicon-environment fz38"></i>
+                            </dd>
+                            <dd class="mzub mzub-ac mzub-pc">
+                                <i class="mzicon mzicon-tea fz38"></i>
+                            </dd>
+                        </dl>
+                        <dl class="mzub-f1 mz-line-right">
+                            <dt class="mzub mzub-ac">
+                                麦子线下
+                            </dt>
+                            <dd class="mzub mzub-ac">
+                                随到随学
+                            </dd>
+                            <dd class="mzub mzub-ac">
+                                互联网公司商业项目
+                            </dd>
+                            <dd class="mzub mzub-ac">
+                                8年以上的工程型老师
+                            </dd>
+                            <dd class="mzub mzub-ac">
+                                一个老师对15个学生
+                            </dd>
+                            <dd class="mzub mzub-ac">
+                                互联网公司环境，和<br/>麦子员工一起办公
+                            </dd>
+                            <dd class="mzub mzub-ac">
+                                因材施教，1对1指<br/>导
+                            </dd>
+                        </dl>
+                    </div>
+
+                </div>
+            </div>
+            <div class="mz-cuose-tab-c10 mz-pm-cuose-c7">
+                <div class="mz-cuose-tab-tit tx-c plr30">
+                    <h3>强大的校企合作就业服务体系</h3>
+                    <p>麦子学院携手linkedin、拉勾、智联招聘、猎聘等一线招聘平台， 实现实习就业权威保障！
+                    </p>
+                </div>
+                <div class="mzub mzub-pc cooperative-partner-pic plr40 ml20 mr20 mt50">
+                    <img src="/static/images/new_wap_images/cooperative-partner.png" alt=""/>
+                </div>
+                <div class="mz-cuose-video-box mt20 plr30 video_introduce1">
+                    <a href="javascript:;" class="db"
+                       data-href="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/gwsp/jyhznew.mp4"
+                       onclick="zhuge.track('UI设计', {'名称': '就业合作'})">
+                        <img src="/static/images/new_wap_images/mz-cuose-video-box-pic02.png" alt="">
+                    </a>
+                </div>
+                <div class="mzub mzub-pc pt30 mt30">
+                    <a href="javascript:;" class="mz-m-btn mz-pm-c7-m-btn mzub mzub-ac mzub-pc mz30 cff mzconsultation">咨询保就业服务</a>
+                </div>
+            </div>
+            <div class="mz-cuose-tab-c11 mz-pm-cuose-c8">
+                <div class="mz-cuose-tab-tit tx-c plr30">
+                    <h3>在中国，你叫的上名字的互联网公司
+                        几乎都有我们学生</h3>
+                    <p>与超过1000家A轮融资后互联网公司建立输送关系
+                    </p>
+                </div>
+                <div class="mz-students-box">
+                    <div class="mz-students-contaier">
+                        <div class="mz-students-wrap">
+                            <div class="mz-students-container clear bs-wrapper">
+
+                                <div class="bs-slide mz-students-slide">
+                                    <div class="description-e-slider-con-pic">
+                                        <img src="/static/images/new_wap_images/dx-st-chenlong.png"
+                                             alt="陈龙-月薪10k入职赛尔互联">
+                                    </div>
+                                    <div class="description-e-slider-con-txt">
+                                        <b>陈龙</b>
+                                        <p>月薪10K，赛尔互联</p>
+                                    </div>
+                                </div>
+                                <div class="bs-slide mz-students-slide">
+                                    <div class="description-e-slider-con-pic">
+                                        <img src="/static/images/new_wap_images/dx-st-huagnqingqing.png"
+                                             alt="黄青青-月薪8k入职聚簇云网络">
+                                    </div>
+                                    <div class="description-e-slider-con-txt">
+                                        <b>黄青青</b>
+                                        <p>月薪8K，聚簇云网络</p>
+                                    </div>
+                                </div>
+                                <div class="bs-slide mz-students-slide">
+                                    <div class="description-e-slider-con-pic">
+                                        <img src="/static/images/new_wap_images/dx-st-huangzikai.png"
+                                             alt="黄子楷-月薪12k入职麦盛">
+                                    </div>
+                                    <div class="description-e-slider-con-txt">
+                                        <b>黄子楷</b>
+                                        <p>月薪12k，入职麦盛</p>
+                                    </div>
+                                </div>
+                                <div class="bs-slide mz-students-slide">
+                                    <div class="description-e-slider-con-pic">
+                                        <img src="/static/images/new_wap_images/dx-st-wangxincheng.png"
+                                             alt="王欣晨-月薪10k入职环球网">
+                                    </div>
+                                    <div class="description-e-slider-con-txt">
+                                        <b>王欣晨</b>
+                                        <p>月薪9.3K，环球网</p>
+                                    </div>
+                                </div>
+                                <div class="bs-slide mz-students-slide">
+                                    <div class="description-e-slider-con-pic">
+                                        <img src="/static/images/new_wap_images/dx-wangziqiang.png"
+                                             alt="王子强-月薪12k入职明与简科技">
+                                    </div>
+                                    <div class="description-e-slider-con-txt">
+                                        <b>王子强</b>
+                                        <p>月薪12k，明与简科技</p>
+                                    </div>
+                                </div>
+                                <div class="bs-slide mz-students-slide">
+                                    <div class="description-e-slider-con-pic">
+                                        <img src="/static/images/new_wap_images/dx-st-xuexinyu.png" alt="薛馨予-月薪10k入职爱客">
+                                    </div>
+                                    <div class="description-e-slider-con-txt">
+                                        <b>薛馨予</b>
+                                        <p>月薪10K，入职爱客</p>
+                                    </div>
+                                </div>
+                                <div class="bs-slide mz-students-slide">
+                                    <div class="description-e-slider-con-pic">
+                                        <img src="/static/images/new_wap_images/dx-st-zhaotiansheng.png"
+                                             alt="赵田生-月薪9.5k入职知名互联网公司">
+                                    </div>
+                                    <div class="description-e-slider-con-txt">
+                                        <b>赵田生</b>
+                                        <p>月薪9.5K，入职知名医药互联网</p>
+                                    </div>
+                                </div>
+                                <div class="bs-slide mz-students-slide">
+                                    <div class="description-e-slider-con-pic">
+                                        <img src="/static/images/new_wap_images/dx-st-zhouwenyu.png"
+                                             alt="周文语-月薪10k入职上海知名互联网公司">
+                                    </div>
+                                    <div class="description-e-slider-con-txt">
+                                        <b>周文语</b>
+                                        <p>月薪10k，入职上海知名互联网公司</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mz-cuose-video-box plr30 video_introduce1">
+                    <a href="javascript:;" class="db"
+                       data-href="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/gwsp/xyft1new.mp4"
+                       onclick="zhuge.track('UI设计', {'名称': '麦子学员访谈（一）'})">
+                        <img src="/static/images/new_wap_images/mz-cuose-video-box-pic03.png" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="mz-cuose-tab-c12 mz-pm-cuose-c9">
+                <p class="course-description-nine-tit pm-course-description-nine-tit-c8 plr30">
+                    <b>保</b>就业， <b>保</b>底薪，<b>0</b>元入学，<b>0</b>风险
+                </p>
+                <div class="course-description-nine-r plr30 tx-c">
+                    <strong>签订保就业，保底薪协议，<br>
+                        <b>未达到高底薪就业全额退款</b>
+                    </strong>
+                </div>
+                <div class="mzub mzub-pc pt30 mt10">
+                    <a href="javascript:;" class="mz-m-btn mz-pm-c3-btn mzub mzub-ac mzub-pc mz30 cff mz-consultation">了解详情</a>
+                </div>
+                <div class="employment-security-pic mt30 pt40 plr20">
+                    <img src="/static/images/new_wap_images/employment-security-pic.png" alt=""/>
+                </div>
+            </div>
+            <div class="mz-cuose-tab-c13 mz-pm-cuose-c10">
+                <h4 class="mz-cuose-tab-tit04 mzub mzub-ac mzub-pc fz28">媒体报道</h4>
+                <div class="media-coverage">
+                    <div class="media-coverage-cantainer">
+                        <div class="media-coverage-box bs-wrapper">
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic01.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic02.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic03.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic04.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic05.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic06.jpg" alt=""/>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <h4 class="mz-cuose-tab-tit04 mzub mzub-ac mzub-pc fz28">合作企业</h4>
+                <div class="media-coverage">
+                    <div class="media-coverage-cantainer">
+                        <div class="media-coverage-box bs-wrapper">
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic07.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic08.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic09.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic10.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic11.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic12.jpg" alt=""/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h4 class="mz-cuose-tab-tit04 mzub mzub-ac mzub-pc fz28">合作院校</h4>
+                <div class="media-coverage">
+                    <div class="media-coverage-cantainer">
+                        <div class="media-coverage-box bs-wrapper">
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic13.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic14.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic15.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic16.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic17.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic18.jpg" alt=""/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h4 class="mz-cuose-tab-tit04 mzub mzub-ac mzub-pc fz28">荣誉奖项</h4>
+                <div class="media-coverage">
+                    <div class="media-coverage-cantainer">
+                        <div class="media-coverage-box bs-wrapper">
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic19.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic20.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic21.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic22.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic23.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic24.jpg" alt=""/>
+                            </div>
+                            <div class="bs-slide media-coverage-slide">
+                                <img src="/static/images/new_wap_images/media-coverage-pic19.jpg" alt=""/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mz-cuose-tab-c14 mz-pm-cuose-c11">
+                <div class="mz-full-slidebox"
+                     style="background-image: url(/static/images/new_wap_images/pm_images/mz-full-slidebox-pic-pm.jpg);">
+                    <div class="mz-full-slide-wrap bs-wrapper">
+                        <div class="mz-full-slide bs-slide">
+                            <div class="mzub mzub-ac mzub-pc full-slide-pic">
+                                <img src="/static/images/new_wap_images/full-slide-ali.png" alt=""/>
+                            </div>
+                            <p class="mzub-te3">“麦子学院是IT在线教育的创领者，我们希望有更多像麦子一样的教育培训机构，将学习和就业效果做到极致。”</p>
+                            <div class="full-slide-txt tx-c">
+                                <b>王晓斐</b>
+                                <span>阿里云教育创业部总监</span>
+                            </div>
+                        </div>
+                        <div class="mz-full-slide bs-slide">
+                            <div class="mzub mzub-ac mzub-pc full-slide-pic">
+                                <img src="/static/images/new_wap_images/full-slide-baidu.png" alt=""/>
+                            </div>
+                            <p class="mzub-te3">“大数据显示，麦子学院在国内IT在线教育行业内有极高的就业率我们希望在未来与麦子学院的定制化就业学习模式进行更加深入的合作。”</p>
+                            <div class="full-slide-txt tx-c">
+                                <b>陈月</b>
+                                <span>百度总监</span>
+                            </div>
+                        </div>
+                        <div class="mz-full-slide bs-slide">
+                            <div class="mzub mzub-ac mzub-pc full-slide-pic">
+                                <img src="/static/images/new_wap_images/full-slide-360.png" alt=""/>
+                            </div>
+                            <p class="mzub-te3">
+                                “智能化、数据化的学习过程监控，领先创新的LPS在线教育模式，高效可靠的商业项目训练，为社会培养1万+的高技能IT人才，我们会同与麦子学院一道，以IT技术服务为核心服务更多的企业和个人。”</p>
+                            <div class="full-slide-txt tx-c">
+                                <b>徐旭升</b>
+                                <span>360教育总监</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mz-full-slide-pagination">
+                    </div>
+                </div>
+            </div>
+            <div class="mz-cuose-tab-c15 mz-pm-cuose-c12">
+                <h6>现在行动，你有机会参加<br/>麦子学院的50%的奖学金计划</h6>
+                <div class="mzub mzub-pc pt30 mt5">
+                    <a href="javascript:;" class="mz-m-btn02 mzub mzub-ac mzub-pc mz30 cff mzconsultation">立即报名</a>
+                </div>
+            </div>
+            <footer class="mz-footer">
+                <p class="fz20 tx-c">© 2012-2017 www.maiziedu.com </p>
+                <p class="fz20 tx-c">蜀ICP备13014270号-4 Version 5.0.0 release20160127</p>
+                <div class="Industry-verification-pic mt30">
+                    <img src="/static/images/new_wap_images/Industry-verification-pic.png" alt="行业验证"/>
+                </div>
+            </footer>
+        </section>
+        <!-- 课程介绍 -->
+
+        <!-- 课程目录 begin  -->
+        <section class="mz-cuose-tabcon  ">
+            <div class="mz-cuose-tab2-c1 bb">
+                <div class="ly-course-catalog">
+                    <ul>
+                        <li class="ly-course-item">
+                            <div class="ly-course-text clear">
+                                <div class="ly-course-item-title">
+                                    <div class="ly-course-icon">
+                                        <b>1</b>
+                                    </div>
+                                    <p class="">打造产品经理思维</p>
+                                </div>
+
+                                <p class="ly-course-item-intro">
+                                    产品思维是产品经理的灵魂，这一刻你将成为真正的产品经理！本阶段主要培养您的立体化思维、养成产品经理视角，并能够立体化、结构化的表达您的想法，以及如何站在用户角度设计、塑造和表达一款产品。
+                                </p>
+                            </div>
+                            <div class="ly-course-li">
+                                <ul class="clear">
+                                    <li class="ly-course-li1 clear">
+                                        <ul class="course-li1-ul clear">
+                                            <li class="ly-course-list">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">01</span>
+                                                    <h6 class="fl">立体化思维</h6>
+                                                </div>
+                                                <ol class="ly-list-item">
+                                                    <li>· 线性思维</li>
+                                                    <li>· 平面思维</li>
+                                                    <li>· 立体化思维</li>
+                                                    <li>· 重点、难点突破</li>
+                                                    <li>· 极限与方法</li>
+                                                    <li>· 立体化思维应用</li>
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">02</span>
+                                                    <h6 class="fl">立体化表达</h6>
+                                                </div>
+                                                <ol class="ly-list-item">
+                                                    <li>· 结构化表达及
+                                                        <div>&nbsp;&nbsp; 功能设计</div>
+                                                    </li>
+                                                    <li>· 结构化表达</li>
+                                                    <li>· 产品经理实操</li>
+                                                    <li>· 功能设计实例</li>
+                                                    <li>· 表达方法总结</li>
+                                                    <li>· 表达技巧提升</li>
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list ">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">03</span>
+                                                    <h6 class="fl">换位思考</h6>
+                                                </div>
+                                                <ol class="ly-list-item ">
+                                                    <li>· 产品经理与用户
+                                                        <p>&nbsp;&nbsp;的距离</p>
+                                                    </li>
+                                                    <li>· 哪些环节需要
+                                                        <p>&nbsp;&nbsp;换位思考</p>
+                                                    </li>
+                                                    <li>· 怎么换位思考</li>
+                                                    <li>· 换位思考案例</li>
+                                                    <li>· 自我品牌设计</li>
+                                                    <li>· 主观题练习</li>
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list ly-course-list-add ">
+                                                <i class="mzicon mzicon-add"></i>
+                                                <p>显示本章节所有内容</p>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="ly-course-item">
+                            <div class="ly-course-text clear">
+                                <div class="ly-course-item-title">
+                                    <div class="ly-course-icon">
+                                        <b>2</b>
+                                    </div>
+                                    <p class="">功能定位&amp;PRD文档</p>
+                                </div>
+
+                                <p class="ly-course-item-intro">
+                                    作为产品经理的基础实战演练！我们会有产品大牛手把手全程指导、带你实操精品商业实战案例，包含产品定位、功能设计、需求文档写作等各种维度，此刻你已是一名有经验的产品经理。
+                                </p>
+                            </div>
+                            <div class="ly-course-li">
+                                <ul class="clear">
+                                    <li class="ly-course-li1 clear">
+                                        <ul class="course-li1-ul clear">
+                                            <li class="ly-course-list">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">01</span>
+                                                    <h6 class="fl">产品精准定位（项目实战）</h6>
+                                                </div>
+                                                <ol class="ly-list-item">
+                                                    <li>· 市场分析</li>
+                                                    <li>· 自身SWOT分析</li>
+                                                    <li>· 竞品选择原理</li>
+                                                    <li>· 项目战略定位</li>
+                                                    <li>· 项目功能定位</li>
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">02</span>
+                                                    <h6 class="fl">核心功能设计（项目实战）</h6>
+                                                </div>
+                                                <ol class="ly-list-item">
+                                                    <li>· 功能设计原理</li>
+                                                    <li>· 用户分析</li>
+                                                    <li>· 功能分析</li>
+                                                    <li>· 流程总结</li>
+                                                    <li>· 需求清单</li>
+                                                    <li>· 产品功能结构</li>
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list ">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">03</span>
+                                                    <h6 class="fl">PRD文档写作（项目实战）</h6>
+                                                </div>
+                                                <ol class="ly-list-item ">
+                                                    <li>· 需求文档概述</li>
+                                                    <li>· 功能详细描述</li>
+                                                    <li>· 移动App导航
+                                                        <p>&nbsp;&nbsp;框架设计</p>
+                                                    </li>
+                                                    <li>· 线框图设计
+                                                        <p>&nbsp;&nbsp;基本思路</p>
+                                                    </li>
+                                                    <li>· 需求文档其他内容</li>
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list ly-course-list-add ">
+                                                <i class="mzicon mzicon-add"></i>
+                                                <p>显示本章节所有内容</p>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="ly-course-item">
+                            <div class="ly-course-text clear">
+                                <div class="ly-course-item-title">
+                                    <div class="ly-course-icon">
+                                        <b>3</b>
+                                    </div>
+                                    <p class="">千万级产品设计奥秘详解</p>
+                                </div>
+
+                                <p class="ly-course-item-intro">
+                                    高级产品经理进阶课程，教你用“五层级”方法去做一个千万级产品，此方法为十年产品总监归纳的毕生经验，循此法度，则虽未上线也可确知：产品已达千百万量级！
+                                </p>
+                            </div>
+                            <div class="ly-course-li">
+                                <ul class="clear">
+                                    <li class="ly-course-li1 clear">
+                                        <ul class="course-li1-ul clear">
+                                            <li class="ly-course-list">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">01</span>
+                                                    <h6 class="fl">五层级标准第一层：快（项目实战）</h6>
+                                                </div>
+                                                <ol class="ly-list-item ">
+                                                    <li style="width: 100%;">· 了解产品经理着重要把握的设计层面</li>
+                                                    <li style="width: 100%;">· 掌握快的设计原则</li>
+                                                    <li style="width: 100%;">· 让用户在已知、未知、与不可控领域
+                                                        <p>&nbsp;&nbsp;感受到快</p>
+                                                    </li>
+
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">02</span>
+                                                    <h6 class="fl">五层级标准第二层：准</h6>
+                                                </div>
+                                                <ol class="ly-list-item">
+                                                    <li>· 功能设计原理</li>
+                                                    <li>· 准的定义</li>
+                                                    <li>· "准"之SLOGAN</li>
+                                                    <li>· "准"之内容</li>
+                                                    <li>· "准"之交互</li>
+                                                    <li>· "准"之定制化</li>
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list ">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">03</span>
+                                                    <h6 class="fl">五层级标准第三层：舒适</h6>
+                                                </div>
+                                                <ol class="ly-list-item ">
+                                                    <li>· 舒适的定义</li>
+                                                    <li>· 舒适的视觉应用</li>
+                                                    <li>· 舒适的交互应用</li>
+                                                    <li>· 舒适的多输出反馈</li>
+                                                    <li>· 实现舒适的用户
+                                                        <p>&nbsp;&nbsp;体验</p>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list ">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">04</span>
+                                                    <h6 class="fl">五层级标准第四层：认同</h6>
+                                                </div>
+                                                <ol class="ly-list-item ">
+                                                    <li>· 如何让用户
+                                                        <p>&nbsp;&nbsp;认同产品</p>
+                                                    </li>
+                                                    <li>· 语言认同</li>
+                                                    <li>· 美术风格认同</li>
+                                                    <li>· 功能设计认同</li>
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list ">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">05</span>
+                                                    <h6 class="fl">五层级标准第五层：分享</h6>
+                                                </div>
+                                                <ol class="ly-list-item ">
+                                                    <li>· 如何让用户主动
+                                                        <p>&nbsp;&nbsp;分享</p>
+                                                        <p></p>
+                                                    </li>
+                                                    <li>· 分享渠道</li>
+                                                    <li>· 分享情节设定</li>
+                                                    <li>· 分享活动设计</li>
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list ">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">06</span>
+                                                    <h6 class="fl">五层级设计原理总结</h6>
+                                                </div>
+                                                <ol class="ly-list-item ">
+                                                    <li>· "快"&amp;实战演练</li>
+                                                    <li>· "准"&amp;实战演练</li>
+                                                    <li>· "舒适"&amp;实战演练</li>
+                                                    <li>· "认同"&amp;实战演练</li>
+                                                    <li>· "分享"&amp;实战演练</li>
+                                                    <li>· 深入掌握五层级</li>
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list ly-course-list-add ">
+                                                <i class="mzicon mzicon-add"></i>
+                                                <p>显示本章节所有内容</p>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="ly-course-item">
+                            <div class="ly-course-text clear">
+                                <div class="ly-course-item-title">
+                                    <div class="ly-course-icon">
+                                        <b>4</b>
+                                    </div>
+                                    <p class="">实战项目全面强化升级</p>
+                                </div>
+
+                                <p class="ly-course-item-intro">
+                                    产品商业实战强化训练，十年产品总监手把手带你做产品！实操多个的精品商业实战案例，包含竞品分析、互联网思维方式、大项目管理方法、产品的数据分析等各种维度，让你成为商业实战经验丰富的产品经理。
+                                </p>
+                            </div>
+                            <div class="ly-course-li">
+                                <ul class="clear">
+                                    <li class="ly-course-li1 clear">
+                                        <ul class="course-li1-ul clear">
+                                            <li class="ly-course-list">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">01</span>
+                                                    <h6 class="fl">功能设计之痛点、爆点</h6>
+                                                </div>
+                                                <ol class="ly-list-item ">
+                                                    <li>· 抓住痛点，能让产品很好地生存</li>
+                                                    <li>· 计好爆点，能让产品在竞争中迅速取胜</li>
+                                                    <li>· 项目实战演练</li>
+
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">02</span>
+                                                    <h6 class="fl">强大的竞品分析</h6>
+                                                </div>
+                                                <ol class="ly-list-item ">
+                                                    <li>· 基本概念</li>
+                                                    <li>· 竞品分析的时间点</li>
+                                                    <li>· 为什么要做竞品
+                                                        <p>&nbsp;&nbsp;分析</p>
+                                                    </li>
+                                                    <li>· 竞品分析的维度</li>
+                                                    <li>· 竞品分析难点突破</li>
+                                                    <li>· 项目竞品分析</li>
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list ">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">03</span>
+                                                    <h6 class="fl">互联网思维方式</h6>
+                                                </div>
+                                                <ol class="ly-list-item ">
+                                                    <li>· 以用户为中心</li>
+                                                    <li>· 专注：少即是多</li>
+                                                    <li>· 迭代思维</li>
+                                                    <li>· 众包思维</li>
+
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list ">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">04</span>
+                                                    <h6 class="fl">全项目管理高级实战演练（上）</h6>
+                                                </div>
+                                                <ol class="ly-list-item ">
+                                                    <li>· 项目管理深入讲解</li>
+                                                    <li>· 五层级原则设计关键点映射</li>
+                                                    <li>· 需求文档描述深入讲解</li>
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list ">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">05</span>
+                                                    <h6 class="fl">全项目管理高级实战演练（下）</h6>
+                                                </div>
+                                                <ol class="ly-list-item ">
+                                                    <li>· 交互设计深入讲解</li>
+                                                    <li>· 五层级原则设计关键点映射</li>
+                                                    <li>· 项目经历分享</li>
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list ">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">06</span>
+                                                    <h6 class="fl">互联网产品的数据分析</h6>
+                                                </div>
+                                                <ol class="ly-list-item ">
+                                                    <li>· 数据分析用途</li>
+                                                    <li>· 数据分析术语</li>
+                                                    <li>· 第三方后台管理
+                                                        <p>&nbsp;&nbsp;及数据统计平台</p>
+                                                    </li>
+                                                    <li>· 数据分析的思路及
+                                                        <p>&nbsp;&nbsp;方法</p>
+                                                        <p></p>
+                                                    </li>
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list ly-course-list-add ">
+                                                <i class="mzicon mzicon-add"></i>
+                                                <p>显示本章节所有内容</p>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="ly-course-item">
+                            <div class="ly-course-text clear">
+                                <div class="ly-course-item-title">
+                                    <div class="ly-course-icon">
+                                        <b>5</b>
+                                    </div>
+                                    <p class="">就业与职业规划秘笈</p>
+                                </div>
+
+                                <p class="ly-course-item-intro">
+                                    为你高薪就业做准备，针对你的实际情况进行面试指导，如何写简历，如何了解、选择公司、如何谈薪酬，都会一一进行专业辅导，而且会对您的产品职业生涯进行一对一规划，让你少走弯路，快速进入互联网名企。
+                                </p>
+                            </div>
+                            <div class="ly-course-li">
+                                <ul class="clear">
+                                    <li class="ly-course-li1 clear">
+                                        <ul class="course-li1-ul clear">
+                                            <li class="ly-course-list">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">01</span>
+                                                    <h6 class="fl">产品经理面试宝典</h6>
+                                                </div>
+                                                <ol class="ly-list-item">
+                                                    <li>· 简历准备</li>
+                                                    <li>· 项目材料准备</li>
+                                                    <li>· 了解公司</li>
+                                                    <li>· 了解项目</li>
+                                                    <li>· 产品感的体现</li>
+                                                    <li>· 面试准备</li>
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list">
+                                                <div class="ly-course-li1-title">
+                                                    <span class="ly-li1-num fl">02</span>
+                                                    <h6 class="fl">产品经理职业规划设计</h6>
+                                                </div>
+                                                <ol class="ly-list-item ">
+                                                    <li>· 产品的创新之路</li>
+                                                    <li>· 自我提升之路</li>
+                                                    <li>· 不再纸上谈兵</li>
+                                                    <li>· 内功修炼</li>
+                                                    <li>· 自我修养</li>
+                                                    <li>· 从专能到全能</li>
+                                                </ol>
+                                            </li>
+                                            <li class="ly-course-list ly-course-list-add ">
+                                                <i class="mzicon mzicon-add"></i>
+                                                <p>显示本章节所有内容</p>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tab2FooterBox clear">
+                <div class="tab2FooterBox-content">
+
+                    <p class="tab2FooterTitle">推荐基础课程</p>
+                    <ul class="tab2CommonBox clear">
+                        <li class="tab2FooterImg ">
+                            <a href="#" target="_blank">
+                                <div class="tab2FooterImgBox">
+                                    <img src="/static/images/new_wap_images/footer_link/tab2_link1.png" alt="快速提升UI设计能力"
+                                         class="ur-img img-responsive">
+
+                                </div>
+                                <div class="item-tag">
+                                    <p class="item-tag1">快速提升UI设计能力</p>
+                                    <div class="item-tag2">
+                                        <i class="mzicon mzicon-men"></i>
+                                        <span>29409人学习</span>
+                                    </div>
+
+                                </div>
+
+                            </a>
+                        </li>
+                        <li class="tab2FooterImg ">
+
+                            <a href="#" target="_blank">
+                                <div class="tab2FooterImgBox">
+                                    <img src="/static/images/new_wap_images/footer_link/tab2_link2.png"
+                                         alt="学习UX第一季-轻松入门" class="ur-img img-responsive">
+                                </div>
+                                <div class="item-tag">
+                                    <p class="item-tag1">学习UX第一季-轻松入门</p>
+                                    <div class="item-tag2">
+                                        <i class="mzicon mzicon-men"></i>
+                                        <span>54635人学习</span>
+                                    </div>
+                                </div>
+
+                            </a>
+                        </li>
+                        <li class="tab2FooterImg ">
+                            <a href="#" target="_blank">
+
+                                <div class="tab2FooterImgBox">
+                                    <img src="/static/images/new_wap_images/footer_link/tab2_link3.png"
+                                         alt="Motion5动画基础 " class="ur-img img-responsive">
+
+                                </div>
+                                <div class="item-tag">
+                                    <p class="item-tag1">Motion5动画基础 </p>
+                                    <div class="item-tag2">
+                                        <i class="mzicon mzicon-men"></i>
+                                        <span>24616人学习</span>
+                                    </div>
+                                </div>
+
+                            </a>
+                        </li>
+                        <li class="tab2FooterImg ">
+                            <a href="#" target="_blank">
+                                <div class="tab2FooterImgBox">
+                                    <img src="/static/images/new_wap_images/footer_link/tab2_link4.png" alt="图形图像基础"
+                                         class="ur-img img-responsive">
+
+                                </div>
+
+                                <div class="item-tag">
+                                    <p class="item-tag1">图形图像基础</p>
+                                    <div class="item-tag2">
+                                        <i class="mzicon mzicon-men"></i>
+                                        <span>20411人学习</span>
+                                    </div>
+                                </div>
+
+                            </a>
+                        </li>
+                        <li class="tab2FooterImg ">
+                            <a href="#" target="_blank">
+
+                                <div class="tab2FooterImgBox">
+                                    <img src="/static/images/new_wap_images/footer_link/tab2_link5.png" alt="移动UI设计规范"
+                                         class="ur-img img-responsive">
+
+                                </div>
+                                <div class="item-tag">
+                                    <p class="item-tag1">移动UI设计规范</p>
+                                    <div class="item-tag2">
+                                        <i class="mzicon mzicon-men"></i>
+                                        <span>20021人学习</span>
+                                    </div>
+                                </div>
+
+                            </a>
+                        </li>
+                        <li class="tab2FooterImg ">
+                            <a href="#" target="_blank">
+
+                                <div class="tab2FooterImgBox">
+                                    <img src="/static/images/new_wap_images/footer_link/tab2_link6.png"
+                                         alt="MUI项目实训-社交APP的设计" class="ur-img img-responsive">
+
+                                </div>
+                                <div class="item-tag">
+                                    <p class="item-tag1">MUI项目实训-社交APP的设计</p>
+                                    <div class="item-tag2">
+                                        <i class="mzicon mzicon-men"></i>
+                                        <span>11317人学习</span>
+                                    </div>
+                                </div>
+
+                            </a>
+                        </li>
+                        <li class="tab2FooterImg ">
+                            <a href="#" target="_blank">
+
+                                <div class="tab2FooterImgBox">
+                                    <img src="/static/images/new_wap_images/footer_link/tab2_link7.png" alt="玩转高级图标设计"
+                                         class="ur-img img-responsive">
+
+                                </div>
+                                <div class="item-tag">
+                                    <p class="item-tag1">玩转高级图标设计</p>
+                                    <div class="item-tag2">
+                                        <i class="mzicon mzicon-men"></i>
+                                        <span>13279人学习</span>
+                                    </div>
+                                </div>
+
+                            </a>
+                        </li>
+                        <li class="tab2FooterImg ">
+                            <a href="#" target="_blank">
+                                <div class="tab2FooterImgBox">
+                                    <img src="/static/images/new_wap_images/footer_link/tab2_link8.png" alt="玩转sketch"
+                                         class="ur-img img-responsive">
+
+                                </div>
+
+                                <div class="item-tag">
+                                    <p class="item-tag1">玩转sketch</p>
+                                    <div class="item-tag2">
+                                        <i class="mzicon mzicon-men"></i>
+                                        <span>18998人学习</span>
+                                    </div>
+
+                                </div>
+
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="tab2Bottom">
+                    <div class="copyright commonBox">
+                        <p class="tab2CopyrightText ">© 2012-2017 www.maiziedu.com<br>蜀ICP备13014270号-4 Version 5.0.0 rel
+                        </p>
+                        <div class="copyrightImgBox">
+                            <a href="https://www.anquan.org/authenticate/cert/?site=www.maiziedu.com&amp;at=business"
+                               target="_blank" class="industry-validate" rel="nofollow">
+                                <img src="/static/images/new_wap_images/footer_link/footer_safety.png" alt="anquan">
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 课程目录 end  -->
+
+        <!-- 学员评论（238） begin  -->
+        <section class="mz-cuose-tabcon ">
+            <div class="mz-cuose-tab3-c1">
+                <div class="mzedu-student-review">
+                    <div class="mzedu-student-review-t-box">
+                        <div class="mzedu-student-review-t">
+                            <div class="mz-wrap clear">
+                                <div class="mzedu-student-review-t-l fl">
+                                    <h6>综合评分</h6>
+                                    <div class="clear">
+                                        <b>10.00</b>
+                                        <div class="mzedu-student-review-score dib">
+                                            <i class="mzicon mzicon-star"></i>
+                                            <i class="mzicon mzicon-star"></i>
+                                            <i class="mzicon mzicon-star"></i>
+                                            <i class="mzicon mzicon-star"></i>
+                                            <i class="mzicon mzicon-star"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mzedu-student-review-t-r fr">
+                                    <ul class="clear">
+                                        <li>
+                                            <b>课程质量</b>
+                                            <strong>10.00</strong>
+                                        </li>
+                                        <li>
+                                            <b>老师满意度</b>
+                                            <strong>10.00</strong>
+                                        </li>
+                                        <li>
+                                            <b>简洁易懂</b>
+                                            <strong>10.00</strong>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mzedu-student-review-b">
+                        <div class="mz-wrap">
+                            <b class="mzedu-student-review-b-tit">全部评价</b>
+                            <div class="mzedu-student-review-bcontainer">
+                                <ul class="clear">
+                                    <li>
+                                        <div class="review-bcontainer-t-pic">
+                                            <img src="/static/images/new_wap_images/st_headphoto.png"
+                                                 alt="st_headphoto">
+                                        </div>
+                                        <div class="clear review-bcontainer-t">
+                                            <div class="fl review-bcontainer-t-l">
+                                                <b>周安伟</b>
+                                                <div class="mzedu-student-review-score dib">
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                </div>
+                                            </div>
+                                            <span class="fr">
+													45分钟前
+												</span>
+                                        </div>
+                                        <div class="review-bcontainer-contxt">
+                                            <div class="review-bcontainer-txt-sdu">
+                                                作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很
+                                                nice。1 天半看了 1/3 了，毫无难度，通俗易懂。唯一的一点不足就是这不是 Vue 2.0
+                                                的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                                            </div>
+                                            <div class="review-bcontainer-txt-tec">
+                                                <b>老师回复：</b>感谢支持~ 能学会使用 Vue 开发实战项目就是本门课的宗旨~由于课程录制时间比较早选择的是 1.0 的。
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="review-bcontainer-t-pic">
+                                            <img src="/static/images/new_wap_images/st_headphoto.png"
+                                                 alt="st_headphoto">
+                                        </div>
+                                        <div class="clear review-bcontainer-t">
+                                            <div class="fl review-bcontainer-t-l">
+                                                <b>周安伟</b>
+                                                <div class="mzedu-student-review-score dib">
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                </div>
+                                            </div>
+                                            <span class="fr">
+													45分钟前
+												</span>
+                                        </div>
+                                        <div class="review-bcontainer-contxt">
+                                            <div class="review-bcontainer-txt-sdu">
+                                                作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很
+                                                nice。1 天半看了 1/3 了，毫无难度，通俗易懂。唯一的一点不足就是这不是 Vue 2.0
+                                                的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                                            </div>
+                                            <div class="review-bcontainer-txt-tec">
+                                                <b>老师回复：</b>感谢支持~ 能学会使用 Vue 开发实战项目就是本门课的宗旨~由于课程录制时间比较早选择的是 1.0 的。
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="review-bcontainer-t-pic">
+                                            <img src="/static/images/new_wap_images/st_headphoto.png"
+                                                 alt="st_headphoto">
+                                        </div>
+                                        <div class="clear review-bcontainer-t">
+                                            <div class="fl review-bcontainer-t-l">
+                                                <b>周安伟</b>
+                                                <div class="mzedu-student-review-score dib">
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                </div>
+                                            </div>
+                                            <span class="fr">
+													45分钟前
+												</span>
+                                        </div>
+                                        <div class="review-bcontainer-contxt">
+                                            <div class="review-bcontainer-txt-sdu">
+                                                作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很
+                                                nice。1 天半看了 1/3 了，毫无难度，通俗易懂。唯一的一点不足就是这不是 Vue 2.0
+                                                的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                                            </div>
+                                            <div class="review-bcontainer-txt-tec dn">
+                                                <b>老师回复：</b>感谢支持~ 能学会使用 Vue 开发实战项目就是本门课的宗旨~由于课程录制时间比较早选择的是 1.0 的。
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="review-bcontainer-contxt review-bcontainer-contxt-add">
+                                            <i class="mzicon mzicon-add"></i>
+                                            <p>加载更多评论</p>
+                                        </div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mzedu-student-review-copyright">
+                        <div class="tab2Bottom">
+                            <div class="copyright commonBox">
+                                <p class="tab2CopyrightText ">© 2012-2017 www.maiziedu.com<br>蜀ICP备13014270号-4 Version
+                                    5.0.0 rel</p>
+                                <div class="copyrightImgBox">
+                                    <a href="https://www.anquan.org/authenticate/cert/?site=www.maiziedu.com&amp;at=business"
+                                       target="_blank" class="industry-validate" rel="nofollow">
+                                        <img src="/static/images/new_wap_images/footer_link/footer_safety.png"
+                                             alt="anquan">
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <!-- 学员评论  end  -->
+    </section>
+</div>
+
+{% include 'mz_wap/new_wap/new_footer.html' %}
+</body>
+
+</html>
+
+<script>
+    $(function () {
+        //头部底部JS
+        HeaderFooterFn()
+        //老师模块轮播
+        var teacherSwiper = new Swiper('.course-des-c4-slider-hd', {
+            loop: true,
+            autoplay: 2500,
+            speed: 700,
+            autoplayDisableOnInteraction: false,
+            wrapperClass: 'banner-wrapper',
+            slideClass: 'banner-slide',
+            paginationClickable: false,
+            pagination: '.banner-pagination',
+        });
+        //学生模块轮播
+        var SpaceBetween = 0.53333 * (16 * ($(window).width() / 320));
+        var studentsSwiper = new Swiper('.mz-students-wrap', {
+            initialSlide: 1,
+            loop: true,
+            autoplay: 2500,
+            speed: 700,
+            autoplayDisableOnInteraction: false,
+            wrapperClass: 'bs-wrapper',
+            slideClass: 'bs-slide',
+            slidesPerView: 3,
+            paginationClickable: true,
+            spaceBetween: SpaceBetween
+        });
+        //媒体报道模块轮播
+        var mediaCoverageSwiper = new Swiper('.media-coverage-cantainer', {
+            initialSlide: 1,
+            loop: false,
+            autoplay: false,
+            speed: 700,
+            autoplayDisableOnInteraction: false,
+            wrapperClass: 'bs-wrapper',
+            slideClass: 'bs-slide',
+            paginationClickable: false,
+            slidesPerView: 3,
+            paginationClickable: true,
+            spaceBetween: SpaceBetween
+        });
+        //底部全屏模块轮播
+        var mzFullSlideSwiper = new Swiper('.mz-full-slidebox', {
+            loop: true,
+            autoplay: 2500,
+            speed: 700,
+            autoplayDisableOnInteraction: false,
+            wrapperClass: 'mz-full-slide-wrap',
+            slideClass: 'mz-full-slide',
+            paginationClickable: false,
+            pagination: '.mz-full-slide-pagination',
+        });
+
+    })
+    < script
+    type = "text/javascript" >// 谷歌
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-61416428-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+
+<script type="text/javascript">// 离线宝
+document.write('<script type="text/javascript"  data-lxb-uid="10986738" data-lxb-gid="198532" src="http://lxbjs.baidu.com/api/asset/api.js?t=' + new Date().getTime() + '" charset="utf-8"></scr' + 'ipt>');
+if (document.getElementById("callBtn")) document.getElementById("callBtn").onclick = function () {
+    lxb.call(document.getElementById("telInput"));
+}
+</script>
+
+</script>

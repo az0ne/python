@@ -1,0 +1,132 @@
+{% extends "mz_common/global.html" %}
+{% block title %}iOS应用开发金牌讲师-iOS培训-麦子学院{% endblock %}
+{% block keywords%}iOS，iOS开发，iOS培训，iOS学习，iOS应用开发{% endblock %}
+{% block description%}麦子学院iOS应用开发金牌讲师—阿拉坦老师，有着4年ios开发经验，融资金额超过2亿美元的“货车帮APP”IOS研发主程之一，腾讯系创业明星级千万用户产品掌游宝用户社交首席主程，对APP产品架构和交互体验研究深入，有着丰富的iOS开发及教学经验，善于结合工作、生活中的实际案例, 通过层层引导和深入浅出的方式加深学生对知识点的认识和理解。{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/teacherIntroduce.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block indexhead %}{% endblock %}
+
+{% block container %}
+{% include 'header/header.html' %}
+<div class="addTeacher_container">
+    <div class="addTeacher_banner">
+        <div class="teacher">
+            <span class="image"><a href="" target="_blank"><img src="{{ STATIC_URL }}img/teacherIntroduce/alt104.jpg" alt="iOS应用开发金牌讲师"/></a></span>
+            <strong>敬文涛</strong>
+            <span>iOS应用开发金牌讲师</span>
+            <p>索尼明星机型系统研发工程师之一，某千万级用户社交App核心成员之一，贵州省电子政务云平台顶层架构师之一，是国内早期的明星IOS工程师。</p>
+            <a href="{% url 'course:course_detail' 'ios' %}" target="_blank">报名TA的课程</a>
+        </div>
+    </div>
+	<div class="info">
+        <ul>
+            <li>带班数<strong>14</strong></li>
+            <li>累积毕业人数<strong>532</strong></li>
+            <li>就业率<strong>98<span>%</span></strong></li>
+        </ul>
+    </div>
+    <div class="works">
+        <h3>讲师作品</h3>
+        <div class="works_bxslider">
+            <div  class="teach_bxslider">
+                <ul>
+                    <li>
+                        <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceIosTea1.png" alt="作品1"/></p>
+                        <div class="text"><strong>作品1</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                    </li>
+                    <li>
+                        <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceIosTea2.png" alt="作品2"/></p>
+                        <div class="text"><strong>作品2</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                    </li>
+                    <li>
+                        <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceIosTea3.png" alt="作品3"/></p>
+                        <div class="text"><strong>作品3</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                    </li>
+                </ul>
+            </div>
+            <a href="javascript:;" class="prev"></a>
+            <a href="javascript:;" class="next"></a>
+            <span class="pageState"></span>
+        </div>
+    </div>
+    <div class="experience">
+        <h3>讲师经历</h3>
+        <ul>
+            <li>
+                <span>2015</span>
+                <div class="infos">
+                    <strong>麦子学院</strong>
+                    <p>iOS金牌讲师，凭借多年开发经验、对移动领域的前瞻性理解和丰富的教学经验，对课程体系中的每个知识要点都了如指掌。授课实战性强，讲解入木三分、意寓隽永，并能够将企业团队开发模式带入课堂，深受广大学员的喜爱。</p>
+                </div>
+            </li>
+            <li>
+                <span>2014</span>
+                <div class="infos">
+                    <strong>拓尔思</strong>
+                    <p>参与过多个政府项目的咨询规划，包括贵州七朵云的电子政务云顶层平台架构、中纪委监察部APP等。有着丰富的项目开发经验，多款产品在APP Store成功上线。</p>
+                    <em>参与项目</em>
+                    <p>《汉中市政府门户》、《贵州省电子政务云平台》、《中纪委监察部APP》、《西藏之声APP》、《遵义市政府门户》</p>
+                </div>
+            </li>
+            <li>
+                <span>2012</span>
+                <div class="infos">
+                    <strong>中科创达</strong>
+                    <p>参与Sony多款手机系统开发工作。有着丰富的系统开发经验。</p>
+                    <em>参与项目</em>
+                    <p>《Sony Z系列手机》</p>
+                </div>
+            </li>
+            <li>
+                <span>2011</span>
+                <div class="infos">
+                    <strong>Myriad </strong>
+                    <p>与来自日本、澳大利亚的全球三个团队协作，参与日本Softbank手机的Pivot应用开发。</p>
+                    <em>参与项目</em>
+                    <p>《Pivot应用》</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <dl class="sendWord">
+        <dt><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceIosImg.png" alt="讲师寄语"/></dt>
+        <dd>
+            <h3>讲师寄语</h3>
+            <p>麦子iOS课程以方便初学者最高效率掌握iOS开发的核心知识并从零基迅速化身为高大上的iOS工程师而建设。教学过程中注重基本语法的学习、编程思维的训练，编程技能锻炼。给到你打开璀璨的软件世界之潘多拉魔盒的钥匙。互联网是个无法用言语形容、无法用世俗价值衡量的奇幻世界，编程是个大脑和键盘碰撞出来的艺术；在麦子学习iOS，让十亿个iPhone用户触摸到你APP只差一步之遥，这一步麦子为你助力，加油吧！骚年们！</p>
+            <a href="{% url 'course:course_detail' 'ios' %}" target="_blank">报名TA的课程</a>
+        </dd>
+    </dl>
+    <div class="stu_works">
+        <h3>学生作品</h3>
+        <div class="student_bxslider">
+            <div  class="stu_bxslider">
+                <ul>
+                    <li>
+                        <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceIosStu1.jpg" alt="学生作品"/>
+                    </li>
+                    <li>
+                        <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceIosStu2.jpg" alt="学生作品"/>
+                    </li>
+                    <li>
+                        <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceIosStu3.jpg" alt="学生作品"/>
+                    </li>
+                </ul>
+            </div>
+            <a href="javascript:;" class="prev"></a>
+            <a href="javascript:;" class="next"></a>
+            <span class="pageState"></span>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/lib/superSlider/jquery.SuperSlide.2.1.1.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/teacherIntroduce.js?v={{ time_stamp }}"></script>
+{% endblock %}

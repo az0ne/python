@@ -1,0 +1,48 @@
+<div class="hide searchwrap" id="searchwrap">
+    <div class="search_area">
+        <div class="search_box">
+            <div class="search_border">
+                <div class="search_div">
+                    <div><input type="text" placeholder="Android" name="search" class="search_txt"><em class="empty"></em></div>
+                </div>
+            </div>
+            <span class="cancel">取消</span>
+        </div>
+    </div>
+    <div class="suggest">
+        <div class="career_course">
+            <ul>
+            </ul>
+        </div>
+        <div class="search_teacher">
+            <ul>
+            </ul>
+        </div>
+        <div class="course_course">
+            <ul>
+            </ul>
+        </div>
+    </div>
+    <!-- <div class="search_content">
+        {% include 'mz_wap/module/div_search_adbanner.html' %}
+        <div class="hot_skill">
+            <h3><span>热门技能</span></h3>
+            <ul>
+                <li><a href="/course/oam/">运维</a></li>
+                <li><a href="/course/op/">网络运营</a></li>
+                <li><a href="/course/pm/">产品经理</a></li>
+                <li><a href="/course/ios/">IOS</a></li>
+                <li><a href="/course/android/">Android</a></li>
+                <li><a href="/course/python/">Python</a></li>
+                <li><a href="/course/php/">PHP</a></li>
+                <li><a href="/course/qrsqd/">嵌入式</a></li>
+                <li><a href="/course/iot/">物联网</a></li>
+                <li><a href="/course/gd/">平面设计</a></li>
+                <li><a href="/course/ui/">UI设计</a></li>
+                <li><a href="/course/te/">软件测试</a></li>
+                <li><a href="/course/web/">Web前端</a></li>
+            </ul>
+        </div>
+    </div> -->
+</div>
+<div id="page-id" hidden>0</div>

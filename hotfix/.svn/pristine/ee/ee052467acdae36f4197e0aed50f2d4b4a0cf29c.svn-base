@@ -1,0 +1,31 @@
+server {
+    listen 80;
+    servername dev.microoh.com;
+}
+
+upstream microoh {
+    server localhost:8000;
+    }
+
+server {
+    listen 80;
+    server_name dev.microoh.com;
+    location /static/ {
+        root /home/www/static/microoh;
+        }
+    location / {
+        try_files $request_uri @microoh;
+    }
+    location @microoh {
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        if (!-f $request_filename){
+            proxy_pass http://microoh;
+            break;
+            }
+            proxy_intercept_errors on;
+            proxy_redirect off;
+            proxy_connnect_timeout 60;
+    }
+
+}

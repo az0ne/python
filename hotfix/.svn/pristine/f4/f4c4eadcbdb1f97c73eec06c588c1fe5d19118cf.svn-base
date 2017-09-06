@@ -1,0 +1,78 @@
+.wikiPage{font-family: "microsoft yahei";background: #f5f5f5;font-size: 12px;color:#757576;overflow: hidden;}
+.wikiPage a{text-decoration: none;}
+.wikiPage li{list-style: none;}
+.wikiPage img{max-width: 100%;}
+.wikiPageNavBar strong,.wikiPageNavBar .navBar a:hover,.wikiPageNavBar .navBar a.active{background-image: url(/static/images/wikiIcon.png);background-repeat: no-repeat;}
+
+.wikiPage .container{width: 1160px;margin: 0 auto;padding: 20px 0 60px;}
+.show_wiki{line-height: 40px;}
+/*导航区*/
+.wikiPageNavBar{width: 200px;background: #fff;float:left;}
+.wikiPageNavBar strong{display: block;padding-left:48px;line-height: 56px;font-size: 18px;font-weight: bold;background-position: 19px 1px;}
+.wikiPageNavBar strong a{color: #333;}
+.wikiPageNavBar .navBar li{border-top: 1px solid #f5f5f5;padding: 0 20px;}
+.wikiPageNavBar .navBar a{color: #666;line-height: 56px;font-size: 14px;display: block;}
+.wikiPageNavBar .navBar i{width: 20px;height: 20px;display: block;line-height:normal;float: left;margin: 18px 10px 0 0;overflow: hidden;}
+.wikiPageNavBar .navBar a:hover,.wikiPageNavBar .navBar a.active{color: #5ecfba;background-position: 140px -56px;}
+.wikiPageNavBar .navBar>li{position: relative;}
+.wikiPageNavBar .navBar ul{width:200px;position: absolute;left: -200px;top:0;background: #fff;display: none;}
+.wikiPageNavBar .navBar ul a:hover,.wikiPageNavBar .navBar ul a.active{background: none;}
+.wikiPageNavBar .navBar ul li{border:0;}
+.wikiPageNavBar .navBar ul a{border-top:1px solid #f5f5f5;}
+.wikiPageNavBar .navBar>li:hover ul{display: block;}
+/*列表*/
+.wikiPage .wikiPageList{min-height:1040px;margin-left:220px;padding: 0 40px 40px;overflow: hidden;background: #fff;}
+.wikiPage h2{line-height: 56px;height:56px;font-size: 18px;font-weight: bold;color: #333;}
+.wikiPageList .rowList{overflow: hidden;margin-top: 10px;}
+.wikiPageList ul{overflow: hidden;}
+.wikiPageList li{width:33.33%;float:left;}
+.wikiPageList a{display: block;overflow: hidden;padding: 20px;}
+.wikiPageList a>p{width: 36px;height: 36px;overflow: hidden;float: left;}
+.wikiPageList h4{font-size: 16px;color: #666;font-weight: bold;}
+.wikiPageList .list-con{margin-left: 56px;}
+.wikiPageList .list-con span{display:block;height:38px;overflow:hidden;line-height: 1.6;font-size: 12px;color:#757576;font-weight: normal;word-break:break-all;margin-top: 6px;}
+.wikiPageList a:hover{background: #f5f5f5;}
+.wikiPageList a:hover h4{color: #5ecfba;}
+
+.wikiFoot{background: #323232;overflow: hidden;}
+/*友情链接*/
+.wikiFootLinks{width: 1140px;margin: 0 auto;padding: 55px 10px 70px;border-bottom: 1px solid #666;}
+.wikiFootLinks h3{font-size: 18px;color: #999;font-weight: bold;line-height: 26px;}
+.wikiFootLinks .navLink{margin-top: 12px;}
+.wikiFootLinks .navLink a{color: #999;font-size: 14px;line-height: 20px;margin: 0 5px;}
+.wikiFootLinks .navLink a:hover{color: #fff;}
+
+/****内容页****/
+.wikiArticleNavBar{float:right;}
+.wikiArticleNavBar .wikiPageNavBar{float: none;}
+.wikiArticleNavBar .wikiAdsense{width: 200px;margin-top:20px;overflow: hidden;}
+.wikiArticleNavBar .wikiAdsense a{display: block;}
+.wikiArticleNavBar .wikiAdsense img{width: 100%;max-width: 100%;}
+.wikiArticleNavBar ul.navBar a:hover,.wikiArticleNavBar ul.navBar a.active{background: none!important;}
+.wikiPageNavMenu{float:left;}
+.wikiPageNavMenu strong{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+.wikiPageNavMenu .navBar li{border: 0;}
+.wikiPageNavMenu .navBar a{border-top: 1px solid #f5f5f5;}
+.wikiArticleContent{margin: 0 220px;padding:12px 30px 40px;background: #fff;}
+.wikiPrevNextLinks{height: 32px;line-height:32px;}
+.wikiPrevNextBottomLinks{border-top: 1px solid #f5f5f5;margin-top: 20px;}
+.wikiPrevNextLinks a{color: #999;font-size: 14px;}
+.wikiPrevNextLinks .prevLinks{float: left;}
+.wikiPrevNextLinks .nextLinks{float: right;}
+.wikiArticleContent .cont{padding-top:26px;word-break:break-all;padding-bottom: 12px;border-top: 1px solid #f5f5f5;color: #333;font-size: 14px;}
+.wikiArticleContent h3,.wikiArticleContent h1{font-size: 18px;color: #333;font-weight: bold;margin-bottom: 10px;}
+/*.wikiArticleContent .cont p{line-height: 1.7;color: #333;font-size: 14px;}*/
+/*.wikiArticleContent .cont strong{padding: 12px 10px;display: block;}*/
+/*.wikiArticleContent .cont em{font-size: 12px;color: #333;font-style:normal;margin-top: 10px;display: block;}*/
+/*.wikiArticleContent .code{background: #e5e5e5;padding: 0 20px;}*/
+/*.wikiArticleContent .code strong{line-height: 38px;font-size: 18px;color: #666;font-weight: bold;}*/
+/*.wikiArticleContent .code .coding{background: #fff;padding: 18px 16px;line-height: 26px;font-size: 14px;color: #333;}*/
+/*.wikiArticleContent .cont .try{padding: 20px 0;line-height: 40px;overflow: hidden;}*/
+/*.wikiArticleContent .try a{width: 118px;height: 40px;font-size: 14px;color: #fff;text-align: center;background: #5ecfba;border-radius: 3px;display: block;float: left;}*/
+/*.wikiArticleContent .try span{margin-left: 128px;font-size: 12px;color: #999;display: block;}*/
+/*.wikiArticleContent .cont>a{color: #4eb9a5;border-bottom: 1px solid #7acabb;margin-top: 20px;font-size: 14px;display: inline-block;}*/
+.wikiArticleAbout{margin-top: 20px;overflow: hidden;}
+.wikiArticleAbout ul{margin-top:5px;}
+.wikiArticleAbout a{color: #999;font-size: 14px;line-height: 1.8;}
+.wikiArticleAbout a:hover{color: #5ecfba;}
+

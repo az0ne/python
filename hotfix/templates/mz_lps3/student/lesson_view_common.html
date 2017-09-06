@@ -1,0 +1,26 @@
+    <div class="zvrightSreen2" style="display:block;">
+    	<p class="font16 color33 pt marginB16">提问</p>
+        <div class="zv_messgae">
+
+            {% if not user.is_authenticated %}
+                <p><textarea class="zv_messgae_txt"></textarea></p>
+                <p class="fr marginB10"><a class="font14 colorff zv_messgae_btn">发表评论</a><label class="zv_messgae_label" style="display: none;"><input id="zv_messgae_txtCB" type="checkbox" >取消回复</label></p>
+            {% else %}
+                <p><textarea class="zv_messgae_txt"></textarea></p>
+                <p class="fr marginB10"><a class="font14 colorff zv_messgae_btn">发表评论</a><label class="zv_messgae_label"  style="display: none;"><input id="zv_messgae_txtCB" type="checkbox">取消回复</label></p>
+            {% endif %}
+
+            <div class="playlist2">
+            	<ul class="zv_messgaelist"></ul>
+                <p class="textC"><a class="color5e newlmore">加载更多</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!--<script src="http://192.168.1.109:8002/group/static/js/ajaxfps-lps3.js"></script>-->
+    <script>
+
+        //$(function(){
+        //    page_commment(2, 'lps3');
+        //})
+    </script>

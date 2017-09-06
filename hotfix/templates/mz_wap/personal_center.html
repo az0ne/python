@@ -1,0 +1,201 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}个人中心 - 基本资料 - 麦子学院{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/css/mz_wap/mobilebone.css"/>
+    <link rel="stylesheet"  href="/static/css/mz_wap/personalcenter.css"/>
+{% endblock %}
+{% block csstype %}personalCenter{% endblock %}
+{% block container %}
+    <div id="pagePersonal" class="page out">
+        <div class="headTitle">
+            <a href="javascript:;" class="back">首页</a>
+            <h3>个人信息</h3>
+        </div>
+        <div class="infos">
+            <ul>
+                <li>
+                    <strong>头像</strong>
+                    <p class="img">
+                        <img src="{{ MEDIA_URL }}{{ avatar }}" alt=""/>
+                        {% if is_pay %}
+                        <i class="pays"></i>
+                        {% endif %}
+                    </p>
+                </li>
+                <li>
+                    <strong>昵称</strong>
+                    <a href="#&pageNickname"><em id="nick">{{ nick_name }}</em></a>
+                </li>
+                <li>
+                    <strong>真实姓名</strong>
+                    <a href="#&pageRealname">
+                        <em id="real">
+                        {% if user.real_name %}{{ real_name }}{% endif %}
+                        </em>
+                    </a>
+                </li>
+                <li>
+                    <strong>电话</strong>
+                    <span class="tel">{{ mobile }}</span>
+                </li>
+                <li>
+                    <strong>性别</strong>
+                    <span>{{ gender }}</span>
+                </li>
+                <li>
+                    <strong>生日</strong>
+                    <span>{{ birthday }}</span>
+                </li>
+                <li>
+                    <strong>QQ</strong>
+                    <span>{{ qq }}</span>
+                </li>
+            </ul>
+            {% if orders %}
+            <div class="order">
+                <a href="#&pageOrder"><strong>订单信息</strong></a>
+            </div>
+            {% endif %}
+            <div class="quit">
+                <input type="button" value="退出"/>
+            </div>
+        </div>
+    </div>
+    <div id="pageNickname" class="page out">
+        <div class="pageTitle">
+            <a href="#&pagePersonal" data-rel="back" class="back">返回</a>
+            <h3>昵称</h3>
+            <a href="javascript:;" class="keep">保存</a>
+        </div>
+        <div class="revise">
+            <input type="text" id="nickName" value="{{ nick_name }}"/>
+        </div>
+    </div>
+    <div id="pageRealname" class="page out">
+        <div class="pageTitle">
+            <a href="#&pagePersonal" data-rel="back" class="back">返回</a>
+            <h3>真实姓名</h3>
+            <a href="javascript:;" class="keep">保存</a>
+        </div>
+        <div class="revise">
+            <input type="text" id="realName" value="{{ real_name }}"/>
+        </div>
+    </div>
+    <div id="pageOrder" class="page out">
+        <div class="pageTitle">
+            <a href="#&pagePersonal" data-rel="back" class="back">个人信息</a>
+            <h3>订单信息</h3>
+        </div>
+        <div class="orderInfos">
+            {% for order in orders %}
+            <h4>{{ order.course_name }}</h4>
+            <ul>
+                <li>
+                    <strong>订单编号：</strong>
+                    <span>{{ order.order_no }}</span>
+                </li>
+                <li>
+                    <strong>入学时间：</strong>
+                    <span>{{ order.text_join_class_time }}</span>
+                </li>
+                <li>
+                    <strong>支付金额：</strong>
+                    <span>{{ order.pay_money }}</span>
+                </li>
+                <li>
+                    <strong>支付方式：</strong>
+                    <span>{{ order.text_pay_way }}</span>
+                </li>
+                <li>
+                    <strong>支付类型：</strong>
+                    <span>{{ order.text_pay_type }}</span>
+                </li>
+                <li>
+                    <strong>交易号：</strong>
+                    <span>{{ order.trade_no }}</span>
+                </li>
+            </ul>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="indexQuitBox">
+        <strong>确定退出登录？</strong>
+        <p><a class="ok">确定</a><span class="cancel">取消</span></p>
+    </div>
+    <div class="bg indexBg"></div>
+{% endblock %}
+{% block custom_script %}
+    <script src="/static/js/mz_wap/mobilebone.js"></script>
+    <script src="/static/js/mz_wap/zepto.1.2.0.js"></script>
+    <script src="{{STATIC_URL}}js/mz_wap/login.js"></script>
+    <script>
+        $(function(){
+            textLength();
+
+            $('.keep').bind("touchend",function(){
+                if($(this).parents('.page').attr('id') == 'pageNickname'){
+                    var new_nick_name = $("#nickName").val();
+                    if(new_nick_name == $('#nick').text()){
+                        window.location.href='#&pagePersonal';
+                        return;
+                    }else{
+                        $.ajax({
+                            type: "POST",
+                            url: "{% url 'wap_save_user_info' %}",
+                            data: {
+                                nick_name: new_nick_name
+                                },
+                            success:function(data){
+                                if(data.success) {
+                                    $('#nick').text(new_nick_name);
+                                    window.location.href = '#&pagePersonal';
+                                }else{
+                                    alert(data.message)
+                                }
+                            }
+                        });
+                    }
+                }
+                if($(this).parents('.page').attr('id') == 'pageRealname'){
+                    var new_real_name = $("#realName").val();
+                    if(new_real_name ==$('#real').text()) {
+                        window.location.href = '#&pagePersonal';
+                        return;
+                    }else{
+                        $.ajax({
+                            type: "POST",
+                            url: "{% url 'wap_save_user_info' %}",
+                            data: {
+                                real_name: new_real_name
+                                },
+                            success:function(data){
+                                if(data.success) {
+                                    $('#real').text(new_real_name);
+                                    window.location.href = '#&pagePersonal';
+                                }else{
+                                    alert(data.message)
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+
+            $(".indexQuitBox .ok").bind("touchend",function(){
+               window.location.href = "{% url 'user:logout' %}";
+            });
+            $(".headTitle .back").bind("touchend",function(){
+                window.location.href = "{% url 'index_front' %}";
+            });
+         });
+
+        function textLength(){
+            var	windowWidth = $(window).width();
+            $(".personalCenter .orderInfos li span").css("max-width",windowWidth - 180);
+            $(".personalCenter .infos li a em").css("max-width",windowWidth - 210);
+        }
+        $(window).resize(function(){
+            textLength();
+        });
+    </script>
+{% endblock %}

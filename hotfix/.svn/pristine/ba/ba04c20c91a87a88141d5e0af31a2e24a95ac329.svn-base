@@ -1,0 +1,5 @@
+<div class="switch_btn">
+    <a href="{% url 'wap_search_course' keyword 1 %}" class="course_btn {% if temp_name == 'course' %}active{% endif %}">职业技能</a>
+    <a href="{% url 'wap_search_wiki' keyword 1 %}" class="wiki_btn {% if temp_name == 'wiki' %}active{% endif %}">WIKI技能</a>
+    <a href="{% url 'wap_search_article' keyword 1 %}" class="article_btn {% if temp_name == 'article' %}active{% endif %}">文章干货</a>
+</div>

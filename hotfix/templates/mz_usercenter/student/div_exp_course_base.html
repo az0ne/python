@@ -1,0 +1,113 @@
+<div class="personalCmainR font14 tryStudentsCourseList">
+    <p class="personalCmainRtit font22 color33">免费试学课程</p>
+    {% if cstudent_dict %}
+        {% for created, cstudent_list in cstudent_dict %}
+        <ul class="personalCenterStasteList">
+            {% for c in cstudent_list %}
+                {% if c.class_name %}
+                <li>
+                    <div class="img fl">
+                        <a href="{% url 'lps3f:student:class_index' c.class_id %}">
+                        <img src={{ c.careercourse_image }} alt="{{ c.careercourse_name }}"></a>
+                    </div>
+                    <div class="fl courseInfo">
+                        <a class="title" href="{% url 'lps3f:student:class_index' c.class_id %}">
+                            <strong class="font20 color33">{{ c.careercourse_name }}</strong>
+                            {% if c.is_ongoing %}
+                                <em class="active">试学中</em>
+                            {% elif c.is_not_started %}
+                                <em class="ordered">已预约</em>
+                            {% else %}
+                                <em class="over">试学已结束</em>
+                            {% endif %}
+                        </a>
+                        <p class="day color99">{{ c.class_name }}（{{ c.meeting_duration }}天）</p>
+                        <a class="go-panel" href="{% url 'lps3f:student:class_index' c.class_id %}">进入试学面板</a>
+                        {% if c.is_not_started %}
+                            <span class="font12 color99 tip">我们会在试学开始前，通过短信的方式提醒您</span>
+                        {% endif %}
+                    </div>
+                    {% if not c.is_finished %}
+                        <div class="fl classMeeting">
+                            <span class="color66">{{ c.about_to_begin_clmt.content }}
+                                <strong class="font16">{{ c.about_to_begin_clmt.d_week }}（{{ c.about_to_begin_clmt.d_date }}）{{ c.about_to_begin_clmt.d_time }}</strong>
+                            </span>
+                            <a target="_blank" class="personalCbtn" href="{{ c.about_to_begin_clmt.join_url }}"
+                               style="background-color: #faae0b">
+                               {% if c.about_to_begin_clmt.status == 2 %}
+                                   进入班会
+                               {% else %}
+                                   未开始
+                               {% endif %}
+                            </a>
+                        </div>
+                    {% endif %}
+                </li>
+                {% elif c.class_id %}
+                <li>
+                    <div class="img fl"><a href="{% url 'lps3:student_class' c.class_id %}">
+                        <img src={{ c.careercourse_image }} alt="{{ c.careercourse_name }}"></a></div>
+                    <div class="font font14 fl">
+                        <a href="{% url 'lps3:student_class' c.class_id %}">
+                        <p class="font20 color33">
+                            {{ c.careercourse_name }}</p></a>
+                        {% if c.is_just_beginning %}
+                            <p class="color66 marginB10">&nbsp;</p>
+                        {% else %}
+                            <p class="color66 marginB10">解锁任务：{{ c.current_task_name }}</p>
+                        {% endif %}
+                        {% if head_user.id == student_id %}
+                        <p class="pcbtnP"><a class="a1" href={% url 'lps3:student_class' c.class_id %}>继续学习</a><a class="a2" href={% url 'pay:pay_view2' %}?career_id={{ c.careercourse_id }}>立即报名</a></p>
+                    </div>
+                    <div class="fl pcircle color99 textC" percents="{{ c.current_task_progress }}">
+                        已完成<br><span class="color66 font22">{{ c.current_task_progress }}%</span>
+                        <svg width="100px" height="100px" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="44" stroke="#e6e6e6" stroke-width="10" fill="none" />
+                            <circle class="c" stroke-dasharray="0,280" cx="50" cy="50" r="44" stroke="#5ecfba" stroke-width="10" fill="none" />
+                        </svg>
+                        {% endif %}
+                    </div>
+                </li>
+                {% else %}
+                <li>
+                    <div class="img fl"><a href="{% url 'lps4_index' c.careercourse_id %}">
+                        <img src={{ c.careercourse_image }} alt="{{ c.careercourse_name }}"></a></div>
+                    <div class="font font14 fl">
+                        <a href="{% url 'lps4_index' c.careercourse_id %}">
+                        <p class="font20 color33">
+                            {{ c.careercourse_name }}</p></a>
+                        {% if c.is_just_beginning %}
+                            <p class="color66 marginB10">&nbsp;</p>
+                        {% else %}
+                            <p class="color66 marginB10">解锁任务：{{ c.current_task_name }}</p>
+                        {% endif %}
+                        {% if head_user.id == student_id %}
+                        <p class="pcbtnP"><a class="a1" href={% url 'lps4_index' c.careercourse_id %}>继续学习</a><a class="a2" href={% url 'pay:pay_view2' %}?career_id={{ c.careercourse_id }}>立即报名</a></p>
+                    </div>
+                    <div class="fl pcircle color99 textC" percents="{{ c.current_task_progress }}">
+                        已完成<br><span class="color66 font22">{{ c.current_task_progress }}%</span>
+                        <svg width="100px" height="100px" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="44" stroke="#e6e6e6" stroke-width="10" fill="none" />
+                            <circle class="c" stroke-dasharray="0,280" cx="50" cy="50" r="44" stroke="#5ecfba" stroke-width="10" fill="none" />
+                        </svg>
+                        {% endif %}
+                    </div>
+                </li>
+                {% endif %}
+            {% endfor %}
+            <div class="pcsLine">
+                <i class="personalCico pcICO12"></i>
+                <div class="color66 pf"><span class="font20">{{ created.0 }}</span><br>{{ created.1 }}</div>
+            </div>
+        </ul>
+        {% endfor %}
+    {% else %}
+        <div class="textC nulldata">
+            <p class="marginB29"><img src="/images/no_lesson.png"></p>
+            <p class="font22 color33 marginB10">体验课程记录暂时空空</p>
+            <p class="font14 color66">专业课程免费体验</p>
+            <p class="font14 color66 marginB10">学习视频、测验、项目、名师班会...你想要的都在这里</p>
+            <p><a href="{% url 'course:career_course_list' %}" class="personalCbtn">我要体验</a></p>
+        </div>
+    {% endif %}
+</div>

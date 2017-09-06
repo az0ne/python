@@ -1,0 +1,71 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/student_breadcrumb.html" %}
+
+
+<div class="tabbable">
+{% include "mz_nadmin/parts/student_tabs.html" %}
+
+<div class="tab-content">
+<div class="tab-pane active">
+
+{% include "mz_nadmin/modules/msgs.html" %}
+
+{% if my_courses.end_index >= 1 %}
+<div class="table-responsive">
+<table class="table table-bordered table-condensed table-hover">
+    <thead>
+        <th class="col-md-6">职业课程名称</th>
+        <th class="col-md-2">班级编号</th>
+        <th class="col-md-2">学力值</th>
+        <th class="col-md-2">班级排名</th>
+    </thead>
+    <tbody>
+        {% for career_course in career_courses %}
+        <tr>
+            <td>
+                <a href="{% url 'nadmin:user_student_career_course_info' student.id career_course.id %}">
+                    {{ career_course }}
+                </a>
+            </td>
+            <td>
+                {% if career_course.study_point != "NotSignUp" %}
+                    {{ career_course.study_point.classobj.id }}
+                {% else %}
+                    未报名
+                {% endif %}
+            </td>
+            <td>
+                {% if career_course.study_point != "NotSignUp" %}
+                    {{ career_course.study_point.mypoint }}
+                {% else %}
+                    未报名
+                {% endif %}
+            </td>
+            <td>
+                {% if career_course.cur_ranking != "NotSignUp" %}
+                    {{ career_course.cur_ranking }}
+                {% else %}
+                    未报名
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% else %}
+<p class="text-muted">
+    <small>没有任何职业课程</small>
+</p>
+{% endif %}
+
+</div>
+</div>
+</div>
+{% endblock %}
+
+
+

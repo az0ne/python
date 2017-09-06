@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=0.5,maximum-scale=0.5,user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>视频分享页</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/microCourseStyle.css"/>
+</head>
+<body>
+<div class="appShare">
+    <div class="appShareVideo">
+        <div class="video">
+            <video autoplay controls src="{{ lessons.video_url }}"></video>
+        </div>
+        <h2>{{ lessons.name }}</h2>
+    </div>
+    <div class="appShareCount">
+        <ul></ul>
+        <span><strong>{{ lessons.play_count }}</strong>人正在学习</span>
+    </div>
+    <div class="appShareTeacher">
+        <p class="img"><img src="/uploads/{{ teacher_info.avatar_url }}"/></p>
+        <div class="txt">
+            <strong>{{ teacher_info.nick_name }}</strong>
+            <p>{{ teacher_info.description }}</p>
+        </div>
+    </div>
+    <div class="appShareCourse">
+        <h3>课程章节</h3>
+        <ul>
+            {% for course_lesson in course_lessons %}
+                <li><a href="{% url 'wap:video_play' course_id course_lesson.id %}" class="font14 color66"><span
+                        class="fl">{{ forloop.counter }}.{{ course_lesson.name }}</span></a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="apply">
+        <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.maiziedu.app">打开应用</a>
+        <span>在线学习好助手</span>
+    </div>
+    <a href="{% url 'index_front' %}" class="more">了解更多</a>
+</div>
+</body>
+<script src="/static/js/jquery-1.8.2.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function(){
+        var total_images = 30;
+        var need_images = 9;
+
+        // 头像太多, hardcode is stupid, so generate the head image url dynamically.
+        var generate_head_image_url = function (index) {
+            return "{{STATIC_URL}}images/wapwike/head_images/" + index + "_small.png";
+        }
+
+        // 记录视频下方的参与用户的头像
+        var hot_head_images = {};
+
+        var generate_hot_images = function () {
+            for (var i = 0; i < need_images; i++) {  // 从头像中随机生成需要的hot_head_image
+                while (true) {
+                    console.info(Math.floor(Math.random() * total_images));
+                    var index = Math.floor(Math.random() * total_images);
+                    if (!hot_head_images[index]) { //不存在, 添加, 并跳出循环
+                        hot_head_images[index] = true;
+                        break;
+                    }
+                }
+            }
+            var html = '';
+            for (key in hot_head_images) {	// 渲染到页面
+                html += '<li><img src="' + generate_head_image_url(key) + '" alt=""/></li>'
+            }
+            $(".appShareCount ul").html(html);
+        };
+
+        generate_hot_images();
+    });
+</script>
+</html>

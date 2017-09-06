@@ -1,0 +1,483 @@
+@import 'core/reset';
+@import 'core/common';
+@import 'core/var';
+@import 'core/function';
+
+@import 'header';
+@import 'toolbar';
+/* 文章详情正文样式 */
+.article-detail {
+    .head-container {
+        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+    }
+}
+.main_container {
+    width: 1160px;
+    margin: 0 auto 60px;
+    &:before, &:after {
+        @extend .CLEARFIX;
+    }
+    .layout_left {
+        width: 830px;
+        .no_data {
+            text-align: center;
+            min-height: 490px;
+            padding: 190px 0;
+            &:before {
+                content: '';
+                @extend .vam;
+                margin-right: 20px;
+                width: 118px;
+                height: 112px;
+                background:url(../images/lesson_video_lists.png) 0 -389px no-repeat;
+            }
+        }
+    }
+    .layout_right {
+        width: 300px;
+        background: #fbfbfb;
+        padding: 20px;
+        margin-bottom: 60px;
+    }
+    .tag_yun {
+        h2 {
+            position: relative;
+            &:before {
+                content: '';
+                width: 0;
+                height: 100%;
+                border-left: 4px solid #5ecfba;
+                position: absolute;
+                left: -20px;
+                top: 0;
+            }
+        }
+        .hot_tag_link {
+            overflow: hidden;
+            li {
+                @extend .fl;
+                width: 48%;
+                height: 30px;
+                line-height: 30px;
+                margin: 0 1% 1% 0;
+                a {
+                    display: block;
+                    padding: 0 8px;
+                    color: #666666;
+                }
+                a:hover, &.active a {
+                    background: #ffffff;
+                    color: #5ecfba;
+                }
+            }
+        }
+    }
+}
+.indexNav {
+    padding: 22px 0;
+    a {
+        color: #999;
+        margin: 0 2px;
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+}
+.article_detail {
+    padding-right: 50px;
+    .article_source {
+        span, a {
+            @extend .vam;
+            margin-right: 20px;
+        }
+        a {
+            margin-right: 10px;
+            &.hot_tag:before {
+                content:'';
+                @extend .vam;
+                width: 14px;
+                height: 14px;
+                margin-right: 10px;
+                background: url("../images/article_Icon.png") 0 -160px no-repeat;
+            }
+        }
+    }
+    #article{
+        font-size: 16px;
+    }
+    img {
+        max-width: 100%;
+    }
+}
+.article_foot {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid #ececec;
+    margin: 30px 0;
+    position: relative;
+    .praise-btn {
+        display: block;
+        width: 134px;
+        padding: 10px 20px;
+        border-radius: 74px;
+        border: 1px solid #E2E2E2;
+        text-align: left;
+        margin: 0 auto;
+        &:before, & > i, span {
+            @extend .vam;
+        }
+        &.disabled_praise {
+            cursor: not-allowed;
+        }
+        &.good {
+            border: 1px solid #5ecfba;
+            & > i {
+                border-left: 1px solid #5ecfba;
+            }
+            &:before {
+                background-position: 0 -538px;
+            }
+            span {
+                color: #5ecfba;
+            }
+        }
+        & > i {
+            border-left: 1px solid #E2E2E2;
+            height: 20px;
+            margin: 0 10px 0 10px;
+        }
+        span {
+            height: 20px;
+            line-height: 20px;
+            & > i {
+                font-style: normal;
+                font-size: 14px;
+            }
+        }
+        &:before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: url(../images/article_Icon.png) 0 -508px no-repeat;
+        }
+    }
+    .share-ibox {
+        position: absolute;
+        top: 40px;
+        right: 0;
+    }
+    #bdshare {
+        a {
+            padding: 0 !important;
+            width: 30px !important;
+            height: 30px !important;
+            background: url(../images/article_Icon.png) 0 0 no-repeat;
+            margin-right: 10px;
+        }
+        .popup_sqq {
+            background-position: 0 -268px !important;
+            &:hover {
+                background-position: 0 -308px !important;
+            }
+        }
+        .popup_qzone {
+            background-position: 0 -348px !important;
+            &:hover {background-position: 0 -388px !important;}
+        }
+        // .jtico_weixin {
+        //     background-position: 0 0;
+        //     &:hover {
+        //         background-position: 0 -40px;
+        //     }
+        // }
+        .popup_tsina {
+            background-position: 0 -80px !important;
+            margin-right: 0;
+            &:hover {
+                background-position: 0 -120px !important;
+            }
+        }
+    }
+}
+/* 未登录评论样式 */
+.reviews_container {
+    margin-top: 80px;
+    .load_message {
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        background: rgba(243, 243, 243, 1);
+        font-size: 12px;
+        color: #666666;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+    .reviews_textarea {
+        width: 100%;
+        height: 110px;
+        border: 1px solid #d2d2d2;
+        textarea {
+            width: 100%;
+            height: 100%;
+            resize: none;
+            padding: 10px;
+            cursor: not-allowed;
+            background: rgba(240, 240, 240, 1);
+            font-size: 14px;
+        }
+    }
+    .not_sign {
+        position: relative;
+        height: 40px;
+        margin-top: 10px;
+        margin-bottom: 40px;
+        font-size: 14px;
+        color: #999999;
+        p {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .disabled_reviews {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 0;
+            border: none;
+            width: 120px;
+            height: 40px;
+            color: #ffffff;
+            cursor: not-allowed;
+            outline: none;
+        }
+    }
+    .reviews_num {
+        font-size: 14px;
+        color: #333333;
+        padding: 20px 0;
+        border-top: 1px solid #ececec;
+    }
+} 
+.reviews_lists {
+    .item {
+        .col_l, .col_r {
+            display: table-cell;
+            vertical-align: top;
+        }
+        .col_l {
+            padding-top: 20px;
+            a {
+                display: block;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                overflow: hidden;
+            }
+            img {
+                width: 100%;
+            }
+        }
+        .col_r {
+            padding: 20px 0 0 20px;
+            overflow: hidden;
+            p {
+                font-size: 14px;
+                margin-bottom: 10px;
+                .nike_name {
+                    margin-right: 20px;
+                    color: #666666;
+                }
+                .date_time {
+                    color: #999999;
+                    font-size: 12px;
+                }
+            }
+            .reviews_content {
+                color: #666666;
+            }
+            .reviews_answer {
+                text-align: right;
+                margin-bottom: 20px;
+                a {
+                    font-size: 12px;
+                }
+            }
+            .submit_reviews {
+                margin-top: 10px;
+                margin-bottom: 40px;
+                text-align: right;
+                position: relative;
+                span {
+                    display: block;
+                    position: absolute;
+                    left: -100px;
+                    top: 0;
+                    -webkit-transition:left .3s ease 0s;
+                    -moz-transition:left .3s ease 0s;
+                    -o-transition:left .3s ease 0s;
+                    transition:left .3s ease 0s;
+                }
+                button {
+                    padding: 0;
+                    border: none;
+                    width: 120px;
+                    height: 40px;
+                    color: #ffffff;
+                    background: rgba(94, 207, 186, 1);
+                    outline: none;
+                }
+            }
+        }
+    }
+    .child {
+        border-top: 1px solid #ececec;
+        &:last-child {
+            border-bottom: 1px solid #ececec;
+        }
+    }
+}
+/* 登录评论样式 */
+.sign_reviews .col_l,.sign_reviews .col_r {
+    display: table-cell;
+    vertical-align: top;
+}
+.sign_reviews {
+    .col_l {
+        a {
+            display: block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        img {
+            width: 100%;
+        }
+    }
+    .col_r {
+        width: 100%;
+        padding-left: 20px;
+        p {
+            margin-bottom: 10px;
+        }
+        .nike_name {
+            font-size: 14px;
+            color: #666666;
+        }
+        .submit_reviews {
+            margin-top: 10px;
+            margin-bottom: 40px;
+            text-align: right;
+            position: relative;
+            overflow: hidden;
+            span {
+                display: block;
+                position: absolute;
+                left: -100px;
+                top: 0;
+                -webkit-transition:left .3s ease 0s;
+                -moz-transition:left .3s ease 0s;
+                -o-transition:left .3s ease 0s;
+                transition:left .3s ease 0s;
+            }
+            button {
+                padding: 0;
+                border: none;
+                width: 120px;
+                height: 40px;
+                color: #ffffff;
+                background: rgba(94, 207, 186, 1);
+                outline: none;
+            }
+        }
+    }
+}
+/* 相关课程样式 */
+.related_lesson, .related_recommend {
+    h2 {
+        position: relative;
+        &:before {
+            content: '';
+            width: 0;
+            height: 100%;
+            border-left: 4px solid #5ecfba;
+            position: absolute;
+            left: -20px;
+            top: 0;
+        }
+    }
+}
+.related_lesson {
+    .related_lesson_lists {
+        .col_l {
+            display: block;
+            width: 84px;
+            height: 84px;
+            background: #5ecfba;
+            @extend .fl;
+        }
+        .col_r {
+            @extend .fl;
+            margin-left: 20px;
+            p:last-child {
+                color: #999999;
+            }
+        }
+        h3, p {
+            margin-bottom: 5px;
+        }
+        h3 {
+            a {
+                font-size: 14px;
+                color: #333333;
+            }
+        }
+        p {
+            color: #666666;
+            i {
+                @extend .vam;
+                height: 16px;
+                border-left: 1px solid #cccccc;
+                margin: 0 10px;
+            }
+        }
+    }
+}
+.related_recommend {
+    .related_recommend_lists {
+        li {
+            padding-left: 16px;
+            padding-bottom: 20px;
+            border-left: 1px solid #e2e2e2;
+            position: relative;
+            &:before {
+                content: '';
+                display: inline-block;
+                width: 16px;
+                height: 16px;
+                position: absolute;
+                top: 0;
+                left: -8px;
+                background: #fbfbfb url(../images/article_Icon.png) 1px -566px no-repeat;
+            }
+            &:last-child {
+                border-left: none;
+            }
+            a {
+                font-size: 14px;
+                color: #666666;
+            }
+            p {
+                margin-top: 5px;
+            }
+            .date_time, .nike_name {
+                font-size: 12px;
+                color: #999999;
+            }
+            .date_time {
+                margin-right: 20px;
+            }
+        }
+    }
+} 
+@import 'footer';

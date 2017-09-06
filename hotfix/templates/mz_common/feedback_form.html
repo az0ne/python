@@ -1,0 +1,97 @@
+{% extends "mz_common/base.html" %}
+{% block title %}意见反馈-麦子学院_专业的IT在线职业教育平台{% endblock %}
+{% block keywords%}IT自学APP，IT在线学习APP，麦子学院APP{% endblock %}
+{% block description%}麦子学院官方APP是IT在线学习移动端工具，不仅可以免费观看Android开发、iOS开发视频教程，还能离线缓存自定义章节，是您IT在线学习的好帮手！{% endblock %}
+{% block custom_css %}
+<link href="/static/aboutus/Content/style.css" rel="stylesheet">
+{% endblock %}
+{% block container %}
+<div class="microoh-main" style="padding-top:0px;">
+	<div class="container">
+		<ol class="breadcrumb">
+            <li><a href="/">首页</a></li>
+            <li class="active">联系我们</li>
+        </ol>
+        <div id="tab">
+	        <div id="left-bar">
+				<ul>
+                    <li class="buttom-border"><a href="/common/about"><span class="cn">关于我们</span><span class="en">About us</span></a></li>
+                    <li class="buttom-border"><a href="/common/join"><span class="cn">加入我们</span><span class="en">Join us</span></a></li>
+                    <li class="buttom-border"><a href="/common/contact"><span class="cn">联系我们</span><span class="en">Contacts</span></a></li>
+                    <li class="buttom-border cur"><a href="/common/feedback/"><span class="cn">意见反馈</span><span class="en">Feedback</span></a></li>
+				</ul>
+			</div>
+            <div class="tabCon font14 zytabCon" style="width:870px;">
+                <form method="post" action="" enctype="multipart/form-data" id="orfrom">
+                    <p class="font24 color33" style="margin-bottom:4px;">欢迎反馈问题，您的意见和建议是我们前进的动力！</p>
+                    <p class="poPzy color33">我们会认真查阅您反馈的每一个问题，并尽快给您答复。在这里您可以提出遇到的问题，也可以发表自己的建议和想法。<a href="/common/feedback/">查看已有反馈</a></p>
+                    <script type="text/javascript" src="/js/lib/ueditor/ueditor.config.js"></script>
+                    <script type="text/javascript" src="/js/lib/ueditor/ueditor.all.min.js"></script>
+                    <div class="zzedit">
+                        <script id="id_content" name="content" type="text/plain" style="width:100%"></script>
+                        <script type="text/javascript">
+                            var id_content =UE.getEditor('id_content',{
+                                toolbars:[['insertcode', 'simpleupload']],
+                                autoClearinitialContent: true,
+                                autoFloatEnabled: false,
+                                wordCount: false,
+                                initialContent:'<p style="color:#999;font-size:14px;font-family:Microsoft YaHei;padding:10px;">请详细描述您发现问题的页面和操作过程，便于我们快速定位并解决您的问题</p>',
+                                elementPathEnabled: false,
+                                initialFrameHeight: 170
+                            });
+                        </script>
+                    </div>
+                    <p class="zytabConZ">您的反馈类型 <span class="red" style="margin-right:30px;">*</span>
+                        <select id="id_categorie" name="categorie" valid="select" errorF="请选择分类">
+                            <option value="" selected="selected">请选择分类</option>
+                            <option value="0">bug</option>
+                            <option value="1">功能建议</option>
+                            <option value="2">交互体验</option>
+                            <option value="3">吐个槽</option>
+                            <option value="4">表个扬</option>
+                            <option value="5">课程建议</option>
+                        </select>
+                    </p>
+                    <p class="visible">您希望这个问题：
+                        <label><input type="radio" name="visible" value="1" checked />大家都可见</label>
+                        <label><input type="radio" name="visible" value="2"/>仅自己可见</label>
+                    </p>
+                    <p>如果您希望得到反馈，请留下您的联系方式：</p>
+                    <table style="width:100%; margin-bottom:30px;">
+                        <tr>
+                            <td>昵称 <span class="red">*</span>&nbsp;<input type="text" class="yjtxt" name="nickname" placeholder="请填写昵称" valid="empty js num" num="1-10" maxlength="10"></td>
+                            <td style="text-align:right;">QQ号<span class="red">*</span>&nbsp;<input type="text" class="yjtxt" valid="empty js qq" name="qq" value="" placeholder="仅用于采纳和发奖品通知" maxlength="11"></td>
+                            <td style="text-align:center">邮箱<span class="red">*</span>&nbsp;<input type="text" class="yjtxt" name="email" value="" valid="empty js email" placeholder="您的电子邮件地址" maxlength="60"></td>
+                        </tr>
+                    </table>
+                    <p style="text-align:center;"><input type="submit" class="yjbtn" value="提交反馈"></p>
+                </form>
+                <script src="/static/js/valid.js"></script>
+                <script>
+                    $(function(){
+                        $("#orfrom").submit(function () {
+                            var str = id_content.getContentTxt();
+                            if (str.length < 10||str=="请详细描述您发现问题的页面和操作过程，便于我们快速定位并解决您的问题") {
+                                if (!$(".zzedit").hasClass("validerror")) {
+                                    $(".zzedit").addClass("validerror").after("<p class='red'>反馈内容不少于10个字（20个字符）</p>");
+                                }
+                                return false;
+                            }
+                            else {
+                                $(".zzedit").removeClass("validerror").next("p.red").remove();
+                            }
+                        });
+
+                        $("#orfrom").valid();
+                        $(".zzcontainer").css("minHeight", $(window).height() - 145);
+                    });
+                </script>
+            </div>
+        <div style="clear:both;"></div>
+        <div class="footers" style="margin-bottom:50px;"></div>
+    </div>
+</div>
+{% endblock %}
+{% block footer%}
+{% include 'footer/footer_1.html' %}
+{% endblock %}

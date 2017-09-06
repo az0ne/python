@@ -1,0 +1,223 @@
+{% extends "mz_common/base.html" %}
+{% block title %}{{ sclass.display_name }} - 麦子学院{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}mz_lps3/css/style.css"/>
+<style type="text/css">
+    body { background: #f5f5f5;}
+    .breadcrumbs {width: 1160px;margin: 0 auto;height: 40px;margin-top: -8px;}
+    .breadcrumbs a,.breadcrumbs span {display: block;float: left;height: 40px;line-height: 40px;margin-right: 5px;font-size: 14px;}
+</style>
+{% endblock %}
+{% load my_filter %}
+{% block container %}
+{% include 'mz_lps3/student/div_class_dynmsg_header.html' %}
+<div class="zyTopMenu3"><a class="aH">{{ sclass.display_name }}</a></div>
+<div class="breadcrumbs color66">
+    <a href="{% url 'lps3:student_class' class_id %}">任务面板</a>
+    <span>&gt;</span>
+    <span class="">班级排行榜</span>
+</div>
+<div class="container class-ranking">
+    <h2 class="font16 color33">班级排名</h2>
+    <a class="check-rules font12 color5e">查看排名规则</a>
+    <ul class="tab_menu">
+        <li class="active">成绩排行榜</li>
+        <li>进度排行榜</li>
+    </ul>
+    <div class="tab_box">
+        <div>
+            <ul class="class-ranking-lists">
+                {% for student in class_score_rank %}
+                    <li {% if student.student_id == student_id %}class="mine{% if forloop.counter == 1 %} bill_1{% elif forloop.counter == 2 %} bill_2{% elif forloop.counter == 3 %} bill_3{% endif %}" {% else %}{% if forloop.counter == 1 %}class="bill_1"{% elif forloop.counter == 2 %}class="bill_2"{% elif forloop.counter == 3 %}class="bill_3"{% endif %}{% endif %}>
+                    <div class="col-l"><i>{% if forloop.counter != 1 and forloop.counter != 2 and forloop.counter != 3 %}{{student.rank}}{% endif %}</i><a href="{% url 'u:index' student.student_id %}" target="_blank"><img src="{{ MEDIA_URL }}{{student.avatar_url}}" alt=""></a><span class="nike-name" student_id="{{student.student_id}}">{{student.nick_name}}</span></div>
+                    <div class="col-r"><span class="scores">{{student.score}}分</span><span class="task-log">任务记录</span></div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="hide-none">
+            <ul class="progress-ranking-lists">
+                {% for student in class_progress_rank %}
+                    <li {% if student.student_id == student_id %}class="active{% if forloop.counter == 1 %} bill_1{% elif forloop.counter == 2 %} bill_2{% elif forloop.counter == 3 %} bill_3{% endif %}" {% else %}{% if forloop.counter == 1 %}class="bill_1"{% elif forloop.counter == 2 %}class="bill_2"{% elif forloop.counter == 3 %}class="bill_3"{% endif %}{% endif %}>
+                        <div><i>{% if forloop.counter != 1 and forloop.counter != 2 and forloop.counter != 3 %}{{student.rank}}{% endif %}</i><span>{{student.nick_name}}</span><a href="{% url 'u:index' student.student_id %}" target="_blank"><img src="{{ MEDIA_URL }}{{student.avatar_url}}" alt=""></a></div>
+                        <ol>
+                            <li class="progress-line" progress="{{student.progress}}"></li>
+                            <li class="even"></li>
+                            <li class="odd"></li>
+                            <li class="even"></li>
+                            <li class="odd"></li>
+                        </ol>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="percent-number">
+                <ul>
+                    <li>0%</li>
+                    <li>25%</li>
+                    <li>50%</li>
+                    <li>75%</li>
+                    <li>100%</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 2016-04-13 排名规则弹窗-->
+<div class="modal fade YaHei" id="check-rules" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-content" style="width: 470px;">
+        <h4><span>排名规则</span></h4>
+        <p class="marginB20">1.成绩排行榜是根据在任务中提交的项目作业所获得得评分来进行排名的，分数的换算规则为：获得A评分得30分，获得B评分得20分，获得C评分得10分，获得D评分得0分。 </p>
+        <p class="marginB20">2.进度排行榜是根据在任务面板中完成的任务数和总任务数的比值得出，完成每一个任务中的项目作业就可以解锁下一任务。</p>
+        <p class="marginB29">3.班级成绩排行榜和进度排行榜的数据每天更新一次，期间可能会和自己学习数据不一致。</p>
+        <a class="I-know">我已了解</a>
+    </div>
+</div>
+<div class="modal fade YaHei" id="task-log" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+
+<!--20160411查看出勤&计划日历弹窗-->
+<div class="modal fade YaHei" id="check-plan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-content" style="width: 550px;">
+        <a class="close"></a>
+        <div class="calender">
+            <div class="selectmouth">
+                <p class="lastmonth"></p>
+                <input type="text" class="selectdate" value="" readonly=readonly />
+                <p class="nextmonth"></p>
+            </div>
+            <table class="data_table" cellspacing="0px">
+                <thead>
+                    <tr>
+                        <td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                    </tr>
+                    <tr>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                    </tr>
+                    <tr>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                    </tr>
+                    <tr>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                    </tr>
+                    <tr>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                    </tr>
+                    <tr>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                        <td><span></span><span></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<input type="hidden" value="0" id="timestampe"/>
+<input type="hidden" id="class_id" name="class_id" value="{{ class_id }}"/>
+{% endblock %}
+
+{% block footer%}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block custom_script %}
+<script type="text/javascript" src="{{ STATIC_URL }}mz_lps3/js/d-progress-bar.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}mz_lps3/js/check-plan-date.js"></script>
+<script type="text/javascript">
+    $(function(){
+        // 班级排名选项卡
+        var $div_li = $('.tab_menu li');
+        $div_li.click(function(){
+            $(this).addClass('active').siblings().removeClass('active');
+            var index = $div_li.index(this);
+            $('div.tab_box > div').eq(index).show().siblings().hide();
+
+            zhuge.track($(this).text(), {
+                "事件位置": "LPS班级面板"
+            });
+        });
+
+        // 排名规则
+        $('.check-rules').click(function(){
+            $('#check-rules').modal('show');
+        });
+        $('.I-know').click(function(){
+            $('#check-rules').modal('hide');
+        });
+
+        // 任务记录
+        $('.task-log').each(function(i){
+            $('.task-log').eq(i).click(function(){
+                var class_id = $('#class_id').val();
+                var student_id = $('.class-ranking-lists .nike-name').eq(i).attr('student_id');
+
+                $.ajax({
+                    url: '/lps3/student/finished_task_record/' + class_id + '/' + student_id + '/',
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data){
+                        if(data.status == true){
+                            $('#task-log').html(data.data);
+                            $('#task-log').modal('show');
+                            $('#task-log .close').click(function(){
+                                $('#task-log').modal('hide');
+                            });
+                        }
+                    }
+                });
+            })
+        });
+
+        var oProgress = $(".progress-line");
+        oProgress.each(function(){
+            if(parseInt($(this).attr("progress")*100, 10) == 0.0){
+                $(this).css('padding-right','0').html('');
+            }else{
+                $(this).css('padding-right','10px').html(Math.round($(this).attr("progress")*100, 10)+'%');
+            }
+
+            $(this).animateProgress(Math.round($(this).attr("progress")*100, 10), 1000, function () {});
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,18 @@
+<!--前往直播室弹窗开始-->
+<!--<div class="modal fade" id="live-start" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+{% load my_filter %}
+    <div class="modal-dialog modal-sm modal-content zy_mysuccess textC">
+        <!--<a class="zy_newclose"></a>-->
+        <img src="{{ STATIC_URL }}mz_lps3/images/dsw-live.png" class="zy_mysuccess_topI">
+        <p class="font16 color1b">{{ class_name | cutStrNN:30}} <span class="color66">的班会</span></p>
+        <p><span class="color1b">"{{ meeting_content | cutStrNN:30}}"</span></p>
+        <p class="font16 color66"><span class="color66">还有 <span class="colorfa0">15分钟</span> 就要开始啦！</span></p>
+        <p class="font16 color66 marginB29">赶紧前往直播室吧！</p>
+
+        <div class="zy_mytask_foot textC">
+            <a class="bold font14 colorff a3" id="zy_newclose_cm_{{index}}" href="{{ meeting_url }}" target="_blank" style="margin-right: 20px;">前往直播室</a>
+            <a class="bold font14 color5e a4" id="zy_newclose_cm_{{index}}">一会儿再去</a>
+        </div>
+    </div>
+<!--</div>-->
+<!-- 前往直播室弹窗结束 -->

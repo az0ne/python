@@ -1,0 +1,63 @@
+{% extends "mz_common/base4.html" %}
+{% block title %}{{ sclass.display_name }} LPS3.0 教务端 - 统计 - 满意度详情 - 麦子学院{% endblock %}
+{% block custom_css %}
+<style>
+body{ background: #f5f5f5;}
+</style>
+{% endblock %}
+
+{% block container %}
+{% include 'header/header.html' %}
+<div class="statisticsDNav font14"><span class="s">满意度详情</span>班级：{{ satisfaction_class_info.class_coding }}&nbsp;&nbsp;&nbsp;&nbsp;专业：{{ satisfaction_class_info.careercourse }}&nbsp;&nbsp;&nbsp;&nbsp;教师：{{ satisfaction_class_info.teacher }}&nbsp;&nbsp;&nbsp;&nbsp;教务：{{ satisfaction_class_info.edu_admin }}&nbsp;&nbsp;&nbsp;&nbsp;统计时间：{{ year }}年{{ month }}月</div>
+<section class="sManage center" style="margin-top:0;" >
+
+    <table class="sManage_table color66">
+        <tr>
+            <th style="width:65px">序号</th>
+            <th style="width:150px">学生</th>
+            {% for v in qt_result.values %}
+                <th style="width:76px">{{ v }}</th>
+            {% endfor %}
+            <th style="width:78px;">总分</th>
+            <th style="width:240px;">您认为带班教师还有哪些优点和缺点，并请指出对带班教师的总体评价和希望</th>
+            <th>请提出您对麦子学院的希望和建议</th>
+        </tr>
+        {% for k, v in sq_result.items %}
+            <tr class="people">
+                <td>{{ forloop.counter }}</td>
+                <td>{{ v.name }}/{% if v.mobile %}{{ v.mobile }}{% else %}暂无手机号{% endif %}</td>
+                {% for val in v.det.values %}
+                    <td class="ssMore">{{ val.topic_sum }}
+
+                        <div class="ssMorediv"><i></i>
+                            {% for item_index, score, item_id, ques_stem in val.score_det %}
+                                {% with item_id as qi_id %}
+                                    <p><span>{{ item_index }}.{{ ques_stem }}</span> {{ score }}分</p>
+
+                                {% endwith %}
+                            {% endfor %}
+                        </div>
+                    </td>
+
+                {% endfor %}
+
+                <td>{{ v.sum_score }}</td>
+                <td>{{ v.sq_1 }}</td>
+                <td>{{ v.sq_2 }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+
+</section>
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block sea_script %}
+<script>seajs.use("/js/lps4/dist/main",function(main){main.loading("statisticsM");});</script>
+{% endblock %}
+
+{% block baidu %}{% endblock %}{% block 53kf %}{% endblock %}

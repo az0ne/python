@@ -1,0 +1,11 @@
+{# 用户模块的 breadcrumb #}
+
+
+<ul class="breadcrumb">
+    <li><a href="#">用户模块</a></li>
+    <li class="active"><a href="#">教师帐号</a></li>
+
+    
+</ul>
+
+

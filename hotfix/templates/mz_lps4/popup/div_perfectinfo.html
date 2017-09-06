@@ -1,0 +1,40 @@
+<div class="modal fade YaHei" id="perfectinfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-content" style="width: 700px;">
+        <div class="onejiongroup font16 color66"><i></i>
+            <h2 class="textC">欢迎加入麦子学院开启全新的学习生涯</h2>
+            <div class="step">
+                <div class="show_progress">
+                    {% if is_user_info %}
+                    <i class="first_check active"></i><i class="first_progress active"></i>
+                    {% else %}
+                    <i class="first_check"></i><i class="first_progress"></i>
+                    {% endif %}
+
+                    <i class="second_progress"></i><i class="second_check"></i>
+                </div>
+                <div>
+                    <div class="first_txt{% if is_user_info %} on{% endif %}">第一步：基本资料</div>
+                    <div class="second_txt">第二步：学习信息</div>
+                </div>
+            </div>
+            <div class="txt">
+            	<h3>亲爱的同学：</h3>
+            	<p>很高兴你选择麦子学院，在线学习{{ trace_career_name }}职业课程。<br/>
+            	我是你的课程导师，{% if teacher.real_name %}{{ teacher.real_name }}{% else %}{{ teacher.nick_name }}{% endif %}。接下来需要你耐心办理完入学相关手续后，方可开始你的学习！</p>
+            </div>
+            {% if is_user_info %}
+                <a href="{% url 'home:student:study_info' %}?class={{ class_id }}" class="textC">办理入学手续<i></i></a>
+            {% else %}
+                <a href="{% url 'home:base:index' %}?class={{ class_id }}" class="textC">办理入学手续<i></i></a>
+            {% endif %}
+            <div class="footer">
+            <h3>在以后的学习过程中有任何疑问都可以与我沟通</h3>
+            <ul>
+                <li><i class="wx"></i>{% if teacher.wechat %}{{ teacher.wechat }}{% endif %}</li>
+                <li><i class="qq"></i>{% if teacher.qq %}{{ teacher.qq }}{% endif %}</li>
+                <li><i class="phone"></i>{% if teacher.mobile %}{{ teacher.mobile }}{% endif %}</li>
+            </ul>
+            </div>
+        </div>
+    </div>
+</div>

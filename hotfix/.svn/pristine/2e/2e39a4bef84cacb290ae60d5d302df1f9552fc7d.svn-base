@@ -1,0 +1,10 @@
+{% extends 'mz_usercenter/usercenter_base.html' %}
+{% block usercenter_right_panel %}
+    <div class="personalCmainR font14 resume">
+        <div class="resumeTip">
+            <p><img src="/images/resume/resumeImg01.png" alt="越早完善你的简历，就业机会越多哦！"/></p>
+            <strong>越早完善你的简历，就业机会越多哦！</strong>
+        </div>
+        <a href="{% url 'home:student:resume_info' %}?intro=1" class="resumeA">高薪就业从这里开始</a>
+    </div>
+{% endblock %}

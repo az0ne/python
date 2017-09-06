@@ -1,0 +1,113 @@
+{% if not cur_careercourse.is_set_plan %}
+<!--计划设置-->
+<div class="modal fade" id="plansetModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-800">
+        <form id="plansetform" action="" method="post">
+        <div class="planset-modal-content">
+            <div class="planset-modal-body">
+                <h1 class="text-center text-micv5">计划调查表</h1>
+                <div class="planset-header">
+                    <h4>现在您可以调整学习计划。</h4>
+                    <small>我们为您推荐了新手/有一定基础的课程计划，选择后您仍可以根据实际情况微调学习计划</small>
+                    <div class="basal-c cf">
+                        <span class="ft18 text-micv5">您是：</span>
+                        <label>
+                            <input type="radio" id="radio_novice" name="iCheck" value="novice" onclick="novice()" checked>新手
+                        </label>
+                        <label>
+                            <input type="radio" id="radio_have_basic" name="iCheck" value="basic" onclick="have_basic()">有一点基础
+                        </label>
+                    </div>
+                </div>
+                {% for stage in cur_careercourse.stages_list %}
+                <div class="planset-list">
+                    <h4 class="text-micv5">{{ stage.name }}</h4>
+                    <ul>
+                        {% for course in stage.courses_list %}
+                        <li class="row">
+                            <div class="col-sm-8">{{ course.name }}</div>
+                            <div class="col-sm-4 text-right">
+                                <label>
+                                    <input type="radio" id="iCheck_{{ course.id }}_know" name="iCheck_{{ course.id }}" class="know" value="know">了解
+                                </label>
+                                <label>
+                                    <input type="radio" id="iCheck_{{ course.id }}_unknow" name="iCheck_{{ course.id }}" class="unknow" value="unknow" checked>不了解
+                                </label>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="planset-modal-footer text-center">
+                <a href="#" id="build_learning_plan_btn" onclick="build_learning_plan()" class="btn btn-micv5 btn-v5-md">生成计划</a>
+                <div id="planset-tips" class="tips-error bg-warning" style="width: 200px;margin: 0 auto;margin-top: 10px;">错误提示</div>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+<script>
+//有一定基础
+function have_basic(){
+    $.get("/lps/course/novice/{{ cur_careercourse.id }}/", function(data){
+        if(data.status!="failure"){
+            $.each(data, function(index, item) {
+                if(item.is_novice){
+                    $("#iCheck_"+item.id+"_know").iCheck('check');
+                    $("#iCheck_"+item.id+"_unknow").iCheck('uncheck');
+                }else{
+                    $("#iCheck_"+item.id+"_know").iCheck('uncheck');
+                    $("#iCheck_"+item.id+"_unknow").iCheck('check');
+                }
+            });
+        }
+    });
+}
+
+//新手
+function novice(){
+    $('.row .know').iCheck('uncheck');
+    $('.row .unknow').iCheck('check');
+}
+
+//生成计划
+function build_learning_plan(){
+    $.ajax({
+        cache: false,
+        type: "POST",
+        url:"/lps/learning/plan/{{ cur_careercourse.id }}/build/",
+        data:$('#plansetform').serialize(),
+        async: true,
+        beforeSend:function(XMLHttpRequest){
+            $("#build_learning_plan_btn").attr("disabled","disabled");
+            $("#planset-tips").html("学习计划生成中，请稍后...").show(500);
+        },
+        success: function(data) {
+            if(data.status == "success"){
+                // $("#planset-tips").html(data.message).removeClass('bg-warning').removeClass('bg-danger').addClass("bg-success").show().delay(1000).fadeOut(500,function(){
+                //     location.reload();
+                // });
+                location.reload();
+            }else if(data.status == "failure"){
+                $("#planset-tips").html(data.message).show(500);
+            }
+        }
+    });
+}
+
+$(function(){
+    $('input[type=radio]').iCheck({
+        checkboxClass: 'icheckbox_flat-green',
+        radioClass: 'iradio_flat-green'
+    });
+    $('#radio_have_basic').on('ifClicked', function(event){
+        have_basic()
+    });
+    $('#radio_novice').on('ifClicked', function(event){
+        novice()
+    });
+})
+</script>
+{% endif %}

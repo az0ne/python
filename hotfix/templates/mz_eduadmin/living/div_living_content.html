@@ -1,0 +1,38 @@
+<div class="textC font18 color66 marginB38 broadcast_tit">
+    <a class="prev" p="{{ step_prev }}"></a>
+    {{ start_date }} 到 {{ end_date }} 班会排期
+    <a class="next" {% if step_next != 3 %} p="{{ step_next }}" {% endif %}></a>
+</div>
+{% if is_data %}
+<ul class="broadcastList">
+
+    {% for week,living_total in living_data.iteritems %}
+    <li>
+        <div class="th textC">{{ week }}<br>（{{ living_total.times }}场/
+            <span {% if living_total.numbers > 150 %}class="colorf76"{% endif %} >{{ living_total.numbers }}人</span>）
+        </div>
+        {% for livings in living_total.data_lst %}
+        <div class="bBox textC font14 color66">
+            {% if livings.status == 0 %}<span class="type type2">未开</span>{% endif %}
+            {% if livings.status == 1 %}<span class="type">结束</span>{% endif %}
+            {% if livings.status == 2 %}<span class="type type3">进行</span>{% endif %}
+            <span class="pnum">{{ livings.current_student_count }}人</span>
+            {% if livings.status == 1 %}
+            <a class="hover" class_meeting_id="{{ livings.class_meeting_id }}" class_id="{{ livings.class_id }}">查看考勤</a>
+            {% else %}
+            <a class="hover" href="{{ livings.join_url }}?nickname={{ livings.edu_admin_name }}&token={{ livings.token }}">进入班会</a>
+            {% endif %}
+            <p class="color99">{{ livings.coding }}</p>
+            <p class="color5e font20">{{ livings.startline|date:"H:i" }}</p>
+            <p class="pc"><span>老师<br>{{ livings.teacher_name }}</span><span class="s2">教务<br>{{ livings.edu_admin_name }}</span></p>
+            <p class="bottom"><span>{{ livings.content }}</span></p>
+        </div>
+        {% endfor %}
+    </li>
+    {% endfor %}
+{% else %}
+    <div class="nodata"><span>暂未查询到班会排期哦~</span></div>
+{% endif %}
+
+
+</ul>

@@ -1,0 +1,110 @@
+{% extends "mz_common/global.html" %}
+{% block title %}软件测试专业负责人-软件测试培训-麦子学院{% endblock %}
+{% block keywords%}软件测试，软件测试培训{% endblock %}
+{% block description%}曾任Camelot Business Inc 集团高级测试工程师、主要从事银行性能测试，精通系统测试/web测试/性能测试等相关技术及理论体系。{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/teacherIntroduce.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block indexhead %}{% endblock %}
+
+{% block container %}
+{% include 'header/header.html' %}
+<div class="addTeacher_container">
+    <div class="addTeacher_banner">
+        <div class="teacher">
+            <span class="image"><a href="/u/36413/" target="_blank"><img src="http://www.maiziedu.com/uploads/avatar/2016/04/104_7Va86Yb.png" alt="软件测试专业负责人"/></a></span>
+            <strong>胡海亮</strong>
+            <span>软件测试专业负责人</span>
+            <p>曾任Camelot Business Inc 集团高级测试工程师、主要从事银行性能测试，精通系统测试/web测试/性能测试等相关技术及理论体系。</p>
+            <a href="{% url 'course:course_detail' 'te' %}" target="_blank">报名TA的课程</a>
+        </div>
+    </div>
+	<div class="info">
+        <ul>
+            <li>带班数<strong>9</strong></li>
+            <li>累积毕业人数<strong>270</strong></li>
+            <li>就业率<strong>98<span>%</span></strong></li>
+        </ul>
+    </div>
+    <div class="works">
+        <h3>讲师作品</h3>
+        <div class="works_bxslider">
+            <div class="teach_bxslider">
+                <ul>
+                    <li>
+                        <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceTeTea1.png" alt="WordPress"/></p>
+                        <div class="text"><strong>WordPress</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                    </li>
+                    <li>
+                        <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceTeTea2.png" alt="360安全卫士"/></p>
+                        <div class="text"><strong>360安全卫士</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                    </li>
+                </ul>
+            </div>
+            <a href="javascript:;" class="prev"></a>
+            <a href="javascript:;" class="next"></a>
+            <span class="pageState"></span>
+        </div>
+    </div>
+    <div class="experience">
+        <h3>讲师经历</h3>
+        <ul>
+            <li>
+                <span>2016</span>
+                <div class="infos">
+                    <strong>麦子学院</strong>
+                    <p>麦子学院软件测试专业负责人及软件测试项目经理；凭借多年金融测试经验，对软件测试有着自己独特的见解和领悟，设计的课程体系全面且与当前企业需求紧密联系。所带课程特色：通俗易懂、层层深入、理论加项目实战、具有时效性、实战性、针对性。</p>
+                    <!--<em>参与项目</em>
+                    <p>战神3、上古卷轴4、蝙蝠侠阿甘之城、黑道圣徒4</p>-->
+                </div>
+            </li>
+            <li>
+                <span>2009</span>
+                <div class="infos">
+                    <strong>Camelot Business Inc 集团</strong>
+                    <p>负责需求调研，业务模型及测试模型设计，同时编写计划、方案、报告等技术文档对各种协议利用Java、C、Python等开发语言进行脚本开发，对性能调优进行分析并解决相关问题:涉及到应用服务器、中间件、数据库等问题在测试活动的开展过程中对测试人员及第三方工程师进行业务知识培训。</p>
+                    <em>参与项目</em>
+                    <p>吉林农信核心项目、四川农信核心大机性能测试、兴业银行贷款系统、DB2数据库表空间释放项目、
+北京农商银行信贷系统可靠性测试</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <dl class="sendWord">
+        <dt><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceTeImg.jpg" alt="讲师寄语"/></dt>
+        <dd>
+            <h3>讲师寄语</h3>
+            <p>麦子学院软件测试以完整的理论架构体系为基础、拓展部分为辅助、实战项目为引导这种理论加实战的课程不但适合零基础学员还是适合在职技能提升。教学过程更是注重实战演练，层层通关，步步为营，稳打稳扎这样的课程及学习模式难道不会成就你的测试人生吗？测试是一门技术，亦是一门科学，更是一门艺术志同道合的你赶快来麦子吧！让我们共同打开你的艺术之门，从此让你在测试的艺术道路上绽放光芒，描绘出属于你的艺术杰作吧！</p>
+            <a href="{% url 'course:course_detail' 'te' %}" target="_blank">报名TA的课程</a>
+        </dd>
+    </dl>
+    <div class="stu_works">
+        <h3>学生作品</h3>
+        <div class="student_bxslider">
+            <div class="stu_bxslider">
+                <ul>
+                    <li>
+                        <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceTeStu1.png" alt="学生作品"/>
+                    </li>
+                    <li>
+                        <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceTeStu2.png" alt="学生作品"/>
+                    </li>
+                </ul>
+            </div>
+            <a href="javascript:;" class="prev"></a>
+            <a href="javascript:;" class="next"></a>
+            <span class="pageState"></span>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer%}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/lib/superSlider/jquery.SuperSlide.2.1.1.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/teacherIntroduce.js?v={{ time_stamp }}"></script>
+{% endblock %}

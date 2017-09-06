@@ -1,0 +1,20 @@
+{% if stage_tree_list %}
+<div class="ability-tree">
+    <h2>点亮能力树</h2>
+    <dl class="ability-tree-lists">
+        {% for s in stage_tree_list %}
+            <dt class="{% if s.last_stage_status_flag == True %}finish{% else %}future{% if forloop.first %} first{% endif %}{% endif %}"></dt>
+            <dd class="future{% if s.stage_is_finish == True %} finish{% endif %}{% if s.stage_is_current == True %} on{% endif %}">
+                {% if s.stage_is_current == False %}
+                    {{ s.stage_name }}
+                {% else %}
+                    {% for t in s.tasks %}
+                        <div class="ability-dot{% if forloop.first %} start{% elif forloop.last %} end{% endif %}{% if t.task_status == True %} now{% endif %}">{{ t.task_name }}</div>
+                    {% endfor %}
+                {% endif %}
+            </dd>
+        {% endfor %}
+        <dt class="future last finish"></dt>
+    </dl>
+</div>
+{% endif %}

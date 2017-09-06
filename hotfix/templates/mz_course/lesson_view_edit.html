@@ -1,0 +1,111 @@
+<!--zhouyi:新增 7-24-->
+<div id="edit" class="tab-pane">
+    {% if user.is_authenticated %}
+    <!--已登录显示-->
+    <div class="suitangBox" id="suitangBox">
+    	<div class="suitangBoxL">
+        	<form action="" method="post" id="zyform">
+        		<textarea class="YaHei" name="daima" id="daima"></textarea>
+            </form>
+            <div class="suitangBoxBottom">
+                <a class="zzbtn" onClick="customreset()">重置代码</a><a class="zzbtn2" onClick="customSubmit()">提交运行</a><a onClick="fullScreen()" class="zop t3out"></a><a onClick="exitFullscreen()" class="zop zclose t3out"></a>
+            </div>
+        </div>
+        <div class="suitangBoxR">
+        	<pre id="commandResult" style="padding: 10px; display: block; background: none;"></pre>
+            <div class="zdiv t5o">运行成功，您已顺利完成本章节随堂作业！您的作业已保存<i><br></i>，请继续加油！<a onClick="customSubmitC()"></a></div>
+
+        </div>
+
+    </div>
+    {% else %}
+    <!--未登录显示-->
+    <div class="zyerror textC c63 fontS14">
+        <p style="margin:30px 0;"><img src="/static/images/deng.png"></p>
+        <p style="margin-bottom:25px;">登陆后，可以在线编写代码，实时查看运行结果边学边练，快速提升能力！</p>
+        <p><a class="editbtn yahei" href="#" onclick="login_popup()">立即登录</a></p>
+    </div>
+    {% endif %}
+
+</div>
+<script>
+
+    function customreset(){
+        $("#daima").val("");
+    };
+    function save_command(code,output){
+        console.log("sss")
+        $.ajax({
+            type: "post",
+            url: "/course/commandsave/",
+            data: {"code":code,"output":output,
+                "lesson_id":{{ cur_lesson.id }}, "course_id":{{ cur_careercourse.id }}},
+            dataType: "json",
+            success: function(msg){
+                //alert("success")
+            },
+            complete: function(msg){
+                //alert("hello world")
+            }
+        })
+    };
+function customSubmit(){
+    //提交运行
+    var code = $("#daima").val();
+
+    $.ajax({
+        type: "get",
+        url: "{{ online_code_url }}",
+        data: {"code":code,"lesson_id":{{ cur_lesson.id }}, "course_id":{{ cur_careercourse.id }},"user_id":{{user.id}}},
+        dataType: "json",
+        success: function(msg){
+            var data = msg.data.cmdOutput;
+            var message = msg.message;
+            if(message=="ok"){
+                $("#commandResult").html(data);
+                save_command(code,data);
+                $(".suitangBoxR .zdiv").addClass("up");
+            }
+            else{
+                $("#commandResult").html(data);
+            }
+
+        },
+        error:function(e){
+            console.log(e)
+        }
+
+    });
+}
+function customSubmitC(){
+	$(".suitangBoxR .zdiv").removeClass("up");
+}
+
+function launchFullscreen(element) {
+  if(element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if(element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if(element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen();
+  } else if(element.msRequestFullscreen) {
+    element.msRequestFullscreen();
+  }
+
+}
+
+function exitFullscreen() {
+  if(document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if(document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if(document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
+}
+
+function fullScreen(){
+	launchFullscreen(document.getElementById("suitangBox"));
+}
+
+</script>

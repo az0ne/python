@@ -1,0 +1,69 @@
+{% extends "mz_common/global.html" %}
+{% load article_filter %}
+{% block title %}麦子学院 - 辅导列表{% endblock %}
+{% block keywords %}麦子学院，辅导列表{% endblock %}
+{% block description %}辅导列表{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="/css/teaOneVOneTutor.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% load article_filter %}
+{% block container %}
+    {% include 'header/index_header.html' %}
+    <div class="tutor_list">
+        <div class="tutor_left">
+            <a href="{% url 'lps4:teacher_coach_list' career_id student_id %}?order_by=all"
+               class="{% if order_by == 'all' %}active {% endif %}all">全部</a>
+            <a href="{% url 'lps4:teacher_coach_list' career_id student_id %}?order_by=todo"
+               class="{% if order_by == 'todo' %}active {% endif %}future">未回复</a>
+            <a href="{% url 'lps4:teacher_coach_list' career_id student_id %}?order_by=done"
+               class="{% if order_by == 'done' %}active {% endif %}past">已回复</a>
+        </div>
+        <div class="tutor_right">
+            <div class="top">
+                <a href="{% url 'lps4:teacher_create_coach' career_id student_id %}" class="add_tutor"><span>+</span>新建辅导信息</a>
+            </div>
+            <div class="main">
+                <ul>
+                    {% for coach in data %}
+                        <li>
+                            {% if coach.teacher_replay_count > 0 %}
+                                <i></i>
+                            {% endif %}
+                            <div class="avater_info">
+                                <img src="{{ MEDIA_URL }}{{ coach.head }}" alt="{{ coach.nick_name }}">
+                                <span>{{ coach.nick_name }}</span>
+                            </div>
+                            <a href="{% url 'lps4:coach_detail' coach.id %}" target="_blank" class="detail">
+                                <div class="content">
+                                {{ coach.abstract|safe|content_brief:'130' }}
+                                </div>
+                            </a>
+                            <p class="relate_info">{{ coach.create_date|date:'Y年m月d日 H:i' }}
+                                {% if coach.source %}提问于{% if coach.source_type == 11 %} <a href="{{ coach.url }}" target="_blank">{{ coach.source }}</a>{% else %} {{ coach.source }} {% endif %}{% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div style="" class="zypage yahei marginB38">
+                <div class="zypage_div" style="-moz-user-select: none;">
+                    {% for p in page_count_list %}
+                        {% if p.isdigit %}
+                            <a {% if p == page_index %}class="jp-current"{% endif %}
+                               href="{% url 'lps4:teacher_coach_list' career_id student_id %}?page={{ p }}&order_by={{ order_by }}">{{ p }}</a>
+                        {% else %}
+                            <a><span>...</span></a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+{% block footer %}{% endblock %}
+{% block toolbarDiv %}{% endblock %}
+{% block google %}{% endblock %}
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/teaOneVOneList.js?v={{ time_stamp }}"></script>
+{% endblock %}

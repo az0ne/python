@@ -1,0 +1,111 @@
+<p style="padding-top: 20px; display: none;"><a href="{{ FPS_HOST }}ask/" target="_blank"><img src="/static/images/ad000.png"></a></p>
+<div class="kcyh_div" time="{{ seconds_countdown }}" style="display: none">
+    <span style="font-size: 18px;color:#ffffff; margin-left: 306px;">距离提价还有 <b style=" font-size: 34px; color:#ffe584;">2</b> 天</span>
+    <div class="kcyh_div_digits"></div>
+</div>
+<div class="tab-pane active" id="comm">
+                {% if not user.is_authenticated %}
+                  <div id="commentbox" class="media">
+                  <a href="javascript:void(0);" class="pull-left">
+                    <img src="/uploads/avatar/default_small.png" class="media-object">
+                  </a>
+                  <div class="media-body">
+                    <h4 class="media-heading">
+                      <span class="user-name">尚未登录</span>
+                    </h4>
+                    <div class="comment-input">
+                      <textarea disabled="" placeholder="我要评论" rows="3" class="form-control"></textarea>
+                      <div class="not-logged">
+                        <p>请先<a data-target="#loginModal" data-toggle="modal" href="#">登录</a>或<a data-target="#registerModal" data-toggle="modal" href="">注册</a></p>
+                      </div>
+                      <div class="btnbox">
+                        <button disabled="" class="btn btn-micv5 btn-lg-fts btn-micv5-disabled" type="button">发布评论</button>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {% else %}
+                <div id="commentbox" class="media">
+                  <a class="pull-left" href="/u/{{ user.id }}/" style="cursor: pointer;">
+                    <img class="media-object" src="/uploads/{{ user.avatar_small_thumbnall }}">
+                  </a>
+                  <div class="media-body">
+                    <h4 class="media-heading">
+                      <span class="user-name">{{user.nick_name}}</span>
+                    </h4>
+                    <div class="comment-input">
+                      <textarea id="ueditor" style="width:648px;height:100px" rows="3" placeholder="学习过程中有什么疑问就在这里提出来吧，大家和老师都会帮助你的哦!"></textarea>
+                      <div class="btnbox" style="position: relative;">
+                        <button type="button" class="btn btn-micv5 btn-lg-fts" id ="release_com" >发布评论</button>
+                          <!--<a href="{{ FPS_HOST }}ask/publish/" target="_blank" class="gomoreZZ">更多问题，可以去麦子圈提问哦>></a>-->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endif%}
+                  <div id="comment_list">
+                  <p id="load_message" class="text-center no-message">沙发空缺中，还不快抢！</p>
+
+                  </div>
+                    <!--zhouyi-->
+                    <div class="zypage yahei" style="display: none;">
+                      <div class="zypage_div"></div>
+                      <!--<a class="zy_prev zy_arrow"></a><a>1</a><a>2</a><a>3</a><a class="zy_hide">...</a><a>20</a><a class="zy_next zy_arrow"></a>-->
+                      共<span id="page-pane2"></span>页，第<input type="text" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" class="zypageTxt">页 <input type="botton" class="zypageBtn" value="跳转">
+                    </div>
+                    <input type="hidden" id="loadmore_page" value = "1">
+              </div>
+
+              <input type="hidden" id="pic_url" value = "/uploads/{{user.avatar_url}}">
+              <input type="hidden" id="cur_name" value = "{{user.nick_name}}">
+              <input type="hidden" id="is_teacher" value = "{{user.is_teacher}}">
+              <input type="hidden" id="use_id" value = "{{user.id}}">
+              <!--zhouyi-->
+              <script src="/static/js/zPages.js"></script>
+              <script>
+                $(function(){
+                  {% ifequal discuzz_provider 'LPS' %}
+                  var com_pn={{ com_pn }};
+                  if(com_pn>1) {
+                      $(".zypage").show();
+                      $(".zypage_div").zPages({
+                          perPage: com_pn, //总页数
+                          first:"",
+                          last:"",
+                          funC: page_commment,
+                          callback    : function( pages, items){
+                              $("#page-pane2").html(pages.count);
+                          }
+                      });
+                  }
+                  else{
+                      $(".zypage").hide();
+                  }
+                  {% endifequal %}
+                  $(".zypageBtn").unbind().click(function(){
+                      var zbn=parseInt($(".zypageTxt").val(),10);
+                      getopage(zbn,com_pn)
+                  });
+                    $(".kcyh_div_digits").countdown({
+                        image: "{{ STATIC_URL }}mz_lps4/images/digits.png",
+                        startTime: timeStr2($(".kcyh_div").attr("time"))
+                    });
+                    $(".kcyh_div").unbind().click(function(){
+                        $("#KFLOGO").children().eq(0).trigger("click");
+                    });
+                    function timeStr2(nts){
+                        var dd = parseInt(nts / 60 / 60 / 24, 10);
+                        var hh = parseInt(nts / 60 / 60 % 24, 10);
+                        var mm = parseInt(nts / 60 % 60, 10);
+                        var ss = parseInt(nts / 1000 % 60, 10);
+                        $(".kcyh_div > span>b").html(dd);
+                        dd = checkTime(dd);
+                        hh = checkTime(hh);
+                        mm = checkTime(mm);
+                        ss = checkTime(ss);
+                        return dd+":"+hh+":"+mm+":"+ss;
+                    }
+                })
+              </script>

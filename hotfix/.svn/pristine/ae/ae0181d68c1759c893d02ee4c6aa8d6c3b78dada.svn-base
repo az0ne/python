@@ -1,0 +1,1883 @@
+{% extends "mz_common/global.html" %} {% block title %}成都UI设计培训-成都ui培训机构-成都ui培训学校-麦子学院{% endblock %}
+{% block keywords %}成都ui设计培训,成都ui培训,ui设计培训学校,成都ui设计培训班{% endblock %}
+{% block description %}
+    麦子学院成都ui设计培训,成都专业UI设计培训机构,提供史上最靠谱的UI设计培训课程,定制化UI设计学习路线,名师1对1指导,通过通俗易懂的讲解,丰富有趣的实战,轻松学习UI界面设计,升级为实力派UI界面设计师。{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/css/mz_new_ad/web-css/style.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mz_new_ad/common.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mxl_style/land/common.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mxl_style/land/main.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mxl_style/land/mxl-footer.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mxl_style/land/ui-design.css?v={{ time_stamp }}">
+
+    <link rel="stylesheet" href="/static/css/mxl_style/land/new-footer.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/yz-css/yz-form.css?v={{ time_stamp }}">
+
+{% endblock %} {% block csstype %}new_web{% endblock %}
+
+{% block container %}
+    {% include 'header/new_ui_header.html' %}
+    <div class="mz-ui-design">
+        <div class="mz-banner">
+            <div class="mz-wrap banner-con" style="background: url(/static/images/mxl_images/land/ui-banner-con-bg-line.png) no-repeat left top;
+}">
+                <div class="banner-btns">
+                    {% if is_normal_class %}
+                        {% if short_name %}
+                            <a href="{% url 'lps4_index' short_name %}">继续学习</a>
+                        {% else %}
+                            <a href="{% url 'course:access_to_class' course_id %}">继续学习</a>
+                        {% endif %}
+                    {% else %}
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'pay:pay_view2' %}?career_id={{ career_id }}" target="_blank">购买课程</a>
+                        {% else %}
+                            <a href="javascript:void 0" data-toggle="modal" data-target="#loginModal">购买课程</a>
+                        {% endif %}
+                    {% endif %}
+                    <!--<a href="javascript:;" class="mzconsultation">购买课程</a>-->
+                    <a href="javascript:;" class="active mzconsultation">立即咨询</a>
+                </div>
+            </div>
+        </div>
+        <div class="mzedu-tab">
+            <div class="mz-wrap">
+                <ul>
+                    <li class="active">课程介绍</li>
+                    <li>课程目录</li>
+                    <!--<li>学员评论<b>（238）</b></li>-->
+                </ul>
+            </div>
+        </div>
+        <div class="mzedu-tab-wrap">
+            <!--课程介绍 begin-->
+            <div class="mzedu-tab-con active">
+                <div class="course-description-c1">
+                    <div class="mz-tb-tit">
+                        <h3>UI设计是什么 </h3>
+                        <p>用户界面设计——让产品有品位，让操作更舒适。</p>
+                    </div>
+                    <div class="mz-wrap">
+                        <div class="ui-design-c1-listbox">
+                            <ul class="clear">
+                                <li>
+                                    <div class="ui-design-c1-pic ui-design-c1-pic01"></div>
+                                    <div class="ui-design-c1-txt">
+                                        <h6>用户体验设计</h6>
+                                        <p>了解用户期望、用户习惯，构架产品设计，从用户角度，实现产品可操作性。</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="ui-design-c1-pic ui-design-c1-pic02"></div>
+                                    <div class="ui-design-c1-txt">
+                                        <h6>界面设计</h6>
+                                        <p>通过ICON设计、LOGO设计、图标设计等界面设计，实现产品构架界面展示。</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="ui-design-c1-pic ui-design-c1-pic03"></div>
+                                    <div class="ui-design-c1-txt">
+                                        <h6>交互设计</h6>
+                                        <p>结合用户需求，实现产品界面交互，让界面优美动起来。</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <a href="javascript:;" class="mz-btn-dx04 mz-transition mzconsultation">立即报名</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-description-c2">
+                    <div class="mz-wrap">
+                        <div class="mz-tb-tit">
+                            <h3>UI前景就业如何</h3>
+                        </div>
+                        <div class="internet-operation-c2-prospect">
+                            <img src="/static/images/mxl_images/land/ui-design-c2-prospect.jpg" alt="UI前景就业如何"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-description-c-uits">
+                    <div class="mz-wrap">
+                        <div class="mz-tb-tit">
+                            <h3>UI学完后能做什么</h3>
+                        </div>
+                        <div class="course-description-c-ui-info">
+                            <div class="course-ui-info-c1">电商<br/>设计</div>
+                            <div class="course-ui-info-c2">淘宝<br/>装修</div>
+                            <div class="course-ui-info-c3">手机UI</div>
+                            <div class="course-ui-info-c4">网页<br/>设计</div>
+                            <div class="course-ui-info-c5">VI</div>
+                            <div class="course-ui-info-c6">平面<br/>设计</div>
+                            <div class="course-ui-info-c7">移动<br/>交互</div>
+                            <div class="course-ui-info-c8">电商<br/>设计</div>
+                            <div class="course-ui-info-c9">照片<br/>美化</div>
+                            <div class="course-ui-info-c10">APP</div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="course-description-c3">
+                    <div class="mz-wrap">
+                        <div class="mz-tb-tit">
+                            <h3>麦子如何让你成为两年以上工作经验的UI设计师</h3>
+                        </div>
+                        <div class="course-d-c3-list-container">
+                            <ul class="clear">
+                                <li>
+                                    <div class="course-d-c3-list-pic fl">
+                                        <img src="/static/images/mxl_images/land/uic3-list-pic01.png" alt=""/>
+                                    </div>
+                                    <div class="course-d-c3-list-txt fl">
+                                        <h6>1对1教学</h6>
+                                        <p>采用师徒制，1位专属导师全面负责你的教学工作，手把手带你制定目标，考核，批改作业，学习答疑 。</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="course-d-c3-list-pic fl">
+                                        <img src="/static/images/mxl_images/land/uic3-list-pic02.png" alt=""/>
+                                    </div>
+                                    <div class="course-d-c3-list-txt fl">
+                                        <h6>1对1直播</h6>
+                                        <p>学生可以随时在PC和APP发起约课，跟自己的导师约直播课程，1对1直播，私人订制，专属讲解 。</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="course-d-c3-list-pic fl">
+                                        <img src="/static/images/mxl_images/land/uic3-list-pic03.png" alt=""/>
+                                    </div>
+                                    <div class="course-d-c3-list-txt fl">
+                                        <h6>名师指导</h6>
+                                        <p>导师多为国内外知名互联网公司8年以上的企业经验大牛，也许你的老师就是Facebook，Google，BAT的大牛。</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="lps-descript-box clear">
+                                <div class="fl video_introduce1">
+                                    <!--<a href="#" class="lps-descript-video">
+                                        <img src="/static/images/mxl_images/land/lps-descript-video.png" alt="" />
+                                    </a>-->
+                                    <a href="javascript:;" class="lps-descript-video db"
+                                       data-href="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/gwsp/ksrsnew.mp4"
+                                       onclick="zhuge.track('UI设计', {'名称': '快速认识麦子学院'})">
+                                        <img src="/static/images/mxl_images/land/lps-descript-video.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="lps-descript-r fr">
+                                    <b>专业的LPS（学习过程系统）</b>
+                                    <span>重塑学习过程，学习足迹完全数字化</span>
+                                    <a href="javascript:;" class="mz-transition mz-dx-btn mzconsultation">什么是LPS？</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-description-c4">
+                    <div class="mz-wrap">
+                        <div class="mz-tb-tit">
+                            <h3>看看麦子的老师们，选择他们拜师吧，1对1指导 </h3>
+                        </div>
+                        <div class="course-des-c4-slider">
+                            <div class="course-des-c4-slider-bg"></div>
+                            <div class="course-des-c4-slider-bg2"></div>
+                            <div class="course-des-c4-slider-con">
+                                <div class="course-des-c4-slider-hd">
+                                    <ul class="clear">
+                                        <li>
+                                            <div class="course-des-c4-slid-pic">
+                                                <img src="/static/images/mxl_images/land/teacher-liuhaochen.jpg"
+                                                     alt="刘昊琛"/>
+                                            </div>
+                                            <div class="course-des-c4-slid-txt">
+                                                <h6>刘昊琛 </h6>
+                                                <b>高级UI设计师、《火影忍者》 设计主创之一</b>
+                                                <p>毕业于日本九州产业大学，专注移动产品及智能交互终端的UI设计，曾参与多个知名企业的大型项目视觉设计、APP设计等。
+                                                </p>
+                                                <a href="javascript:;" class="mz-transition mzconsultation">跟老师聊聊</a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="course-des-c4-slid-pic">
+                                                <img src="/static/images/mxl_images/land/teacher-Riva.jpg" alt="Riva"/>
+                                            </div>
+                                            <div class="course-des-c4-slid-txt">
+                                                <h6>Riva </h6>
+                                                <b>高级视频交互设计师</b>
+                                                <p>全球设计公司visual&interaction designer，任职于palo alto美国总部,
+                                                    熟悉硅谷软件产品的开发及最新科技流行趋势。
+                                                </p>
+                                                <a href="javascript:;" class="mz-transition mzconsultation">跟老师聊聊</a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="course-des-c4-slid-pic">
+                                                <img src="/static/images/mxl_images/land/teacher-xingtianbo.jpg"
+                                                     alt="邢天博"/>
+                                            </div>
+                                            <div class="course-des-c4-slid-txt">
+                                                <h6>邢天博</h6>
+                                                <b>高级UI设计师</b>
+                                                <p>前百度UI资深设计师， 7年UI设计经验。17年的美术功底，获取各类竞赛奖项达47次， 4A设计公司任职设计总监。</p>
+                                                <a href="javascript:;" class="mz-transition mzconsultation">跟老师聊聊</a>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="course-des-c4-slid-pic">
+                                                <img src="/static/images/mxl_images/land/teacher-maqing.jpg"
+                                                     alt="马  青 "/>
+                                            </div>
+                                            <div class="course-des-c4-slid-txt">
+                                                <h6>马  青 </h6>
+                                                <b>资深画师</b>
+                                                <p>前腾讯TgameUI设计师、索尼首席UI设计师，擅长界面设计、传统美术绘画，作品多次发表于国内权威杂志。</p>
+                                                <a href="javascript:;" class="mz-transition mzconsultation">跟老师聊聊</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="course-des-c4-slider-bd">
+                                    <ul>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-description-c5">
+                    <div class="mz-tb-tit mz-wrap">
+                        <h3>课程大纲</h3>
+                        <p>视觉营销创意设计，人机交互设计原则，UI设计交互与流程，以开发视角让做好设计</p>
+                    </div>
+                    <div class="internet-description-five-list">
+                        <ul>
+                            <li>
+                                <div class="mz-wrap clear">
+                                    <div class="description-five-list-num fl">
+                                        01
+                                    </div>
+                                    <div class="description-five-list-txt fl">
+                                        <h6>视觉设计基础篇</h6>
+                                        <p>
+                                            掌握UI设计工具的使用后，通过学习素描光影关系、色彩原理与搭配及构图原理，打好成为UI设计师的美术造型基础和树立色彩审美意识，并能利用色彩原理进行相关案例设计与制作。</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="mz-wrap clear">
+                                    <div class="description-five-list-num fl">
+                                        02
+                                    </div>
+                                    <div class="description-five-list-txt fl">
+                                        <h6>UI设计师入门篇</h6>
+                                        <p>树立设计师意识，了解UI发展规律及就业前景，并通过本阶段的学习能独立完成图标作品设计、平面作品设计及手绘作品设计等。</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="mz-wrap clear">
+                                    <div class="description-five-list-num fl">
+                                        03
+                                    </div>
+                                    <div class="description-five-list-txt fl">
+                                        <h6>多平台界面设计篇</h6>
+                                        <p>基于用户界面设计准则和移动新特征，了解UI设计流程和学习后，能独立完成移动端框架设计和产品界面设计。</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="mz-wrap clear">
+                                    <div class="description-five-list-num fl">
+                                        04
+                                    </div>
+                                    <div class="description-five-list-txt fl">
+                                        <h6>交互设计思维篇</h6>
+                                        <p>通过对产品设计思维的掌握和原型图、脑图设计学习后，充分了解用户体验的重要性，学习触摸式设计和界面优化设计，成为一名真正懂交互的UI设计师。</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="mz-wrap clear">
+                                    <div class="description-five-list-num fl">
+                                        05
+                                    </div>
+                                    <div class="description-five-list-txt fl">
+                                        <h6>Html5学习篇</h6>
+                                        <p>基于web端知识的学习，在个人能力的基础上进一步提高，并能独立完成PC端及移动端的各种响应式网站制作。</p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="mz-wrap clear">
+                                    <div class="description-five-list-num fl">
+                                        06
+                                    </div>
+                                    <div class="description-five-list-txt fl">
+                                        <h6>动效设计及项目实战</h6>
+                                        <p>学习AE在UI交互过程中的动态效果设计方法和把握动画节奏。并以实战项目来进阶工作经验，让你快速成长为全能的UI设计师 。</p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="javascript:;" class="mz-btn-dx03 mz-transition see-kcdg">查看完整课程大纲</a>
+                </div>
+                <div class="students-presentation">
+                    <div class="mz-wrap">
+                        <div class="mz-tb-tit">
+                            <h3>学员作品</h3>
+                        </div>
+                        <div class="students-presentation-list">
+                            <ul class="clear">
+                                <li>
+                                    <div class="students-presentation-list-pic">
+                                        <img src="/static/images/mxl_images/land/students-presentation-list-pic01.jpg"
+                                             alt="LOGO设计"/>
+                                    </div>
+                                    <b class="tudents-presentation-list-pic">LOGO设计</b>
+                                </li>
+                                <li>
+                                    <div class="students-presentation-list-pic">
+                                        <img src="/static/images/mxl_images/land/students-presentation-list-pic02.jpg"
+                                             alt="界面设计"/>
+                                    </div>
+                                    <b class="tudents-presentation-list-pic">界面设计</b>
+                                </li>
+                                <li>
+                                    <div class="students-presentation-list-pic">
+                                        <img src="/static/images/mxl_images/land/students-presentation-list-pic03.jpg"
+                                             alt="网页设计"/>
+                                    </div>
+                                    <b class="tudents-presentation-list-pic">网页设计</b>
+                                </li>
+                                <li>
+                                    <div class="students-presentation-list-pic">
+                                        <img src="/static/images/mxl_images/land/students-presentation-list-pic04.jpg"
+                                             alt="图标设计"/>
+                                    </div>
+                                    <b class="tudents-presentation-list-pic">图标设计</b>
+                                </li>
+                                <li class="students-presentation-item05">
+                                    <div class="students-presentation-list-pic">
+                                        <img src="/static/images/mxl_images/land/students-presentation-list-pic05.jpg"
+                                             alt="网页设计"/>
+                                    </div>
+                                    <b class="tudents-presentation-list-pic">网页设计</b>
+                                </li>
+                                <li class="students-presentation-item06">
+                                    <div class="students-presentation-list-pic">
+                                        <img src="/static/images/mxl_images/land/students-presentation-list-pic06.jpg"
+                                             alt="界面展示"/>
+                                    </div>
+                                    <b class="tudents-presentation-list-pic">界面展示</b>
+                                </li>
+                                <li class="students-presentation-item07">
+                                    <div class="students-presentation-list-pic">
+                                        <img src="/static/images/mxl_images/land/students-presentation-list-pic07.jpg"
+                                             alt="网页设计"/>
+                                    </div>
+                                    <b class="tudents-presentation-list-pic">网页设计</b>
+                                </li>
+                                <li class="students-presentation-item08">
+                                    <div class="students-presentation-list-pic">
+                                        <img src="/static/images/mxl_images/land/students-presentation-list-pic08.jpg"
+                                             alt="界面设计"/>
+                                    </div>
+                                    <b class="tudents-presentation-list-pic">界面设计</b>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <p class="tx-c color33" style="padding-top: 26px;color: #999;">以上为学员临摹作品，最终解释权归其所有，若原作者有任何疑问，请致电官方联系:4008628862</p>
+                    </div>
+
+                </div>
+                <div class="online-to-offline">
+                    <div class="mz-wrap">
+                        <div class="mz-tb-tit">
+                            <h3>除了线上还可以选择线下学习</h3>
+                            <p>【互联网工厂】模式，让你在互联网公司上班一样学习</p>
+                        </div>
+                        <div class="online-to-offline-con clear">
+                            <dl class="fl mz-line-through">
+                                <dt>
+                                    传统线下培训
+                                </dt>
+                                <dd class="clear">
+                                    <div class="online-to-offline-d-l fl">
+                                        <i class="mzicon mzicon-bangong"></i>
+                                    </div>
+                                    <div class="online-to-offline-d-r fl">
+                                        <b>学习环境</b>
+                                        <p>学习环境差，50人挤在一个小屋里</p>
+                                    </div>
+                                </dd>
+                                <dd class="clear">
+                                    <div class="online-to-offline-d-l fl">
+                                        <i class="mzicon mzicon-computer"></i>
+                                    </div>
+                                    <div class="online-to-offline-d-r fl">
+                                        <b>教学模式</b>
+                                        <p>1个老师对50个学生</p>
+                                    </div>
+                                </dd>
+                                <dd class="clear">
+                                    <div class="online-to-offline-d-l fl">
+                                        <i class="mzicon mzicon-tea"></i>
+                                    </div>
+                                    <div class="online-to-offline-d-r fl">
+                                        <b>传统授课</b>
+                                        <p>传统授课，所有人听一样的内容</p>
+                                    </div>
+                                </dd>
+                                <dd class="clear">
+                                    <div class="online-to-offline-d-l fl">
+                                        <i class="mzicon mzicon-time"></i>
+                                    </div>
+                                    <div class="online-to-offline-d-r fl">
+                                        <b>开班时间</b>
+                                        <p>传统授课，所有人听一样的内容</p>
+                                    </div>
+                                </dd>
+                                <dd class="clear">
+                                    <div class="online-to-offline-d-l fl">
+                                        <i class="mzicon mzicon-men"></i>
+                                    </div>
+                                    <div class="online-to-offline-d-r fl">
+                                        <b>师资团队</b>
+                                        <p>老师水平参差不齐</p>
+                                    </div>
+                                </dd>
+                                <dd class="clear">
+                                    <div class="online-to-offline-d-l fl">
+                                        <i class="mzicon mzicon-xiangmu"></i>
+                                    </div>
+                                    <div class="online-to-offline-d-r fl">
+                                        <b>项目实战</b>
+                                        <p>含金量一般的项目练习</p>
+                                    </div>
+                                </dd>
+                            </dl>
+                            <div class="online-to-offline-con-vs fl">VS</div>
+                            <dl class="fr">
+                                <dt>
+                                     麦子线下培训
+                                </dt>
+                                <dd class="clear">
+                                    <div class="online-to-offline-d-l fl">
+                                        <i class="mzicon mzicon-bangong"></i>
+                                    </div>
+                                    <div class="online-to-offline-d-r fl">
+                                        <b>学习环境</b>
+                                        <p>互联网公司环境，宽敞明亮办公室和麦子员工一起办公</p>
+                                    </div>
+                                </dd>
+                                <dd class="clear">
+                                    <div class="online-to-offline-d-l fl">
+                                        <i class="mzicon mzicon-computer"></i>
+                                    </div>
+                                    <div class="online-to-offline-d-r fl">
+                                        <b>教学模式</b>
+                                        <p>
+4个老师对1个学生(专业老师、教务老师、项目老师、就业老师)
+</p>
+                                    </div>
+                                </dd>
+                                <dd class="clear">
+                                    <div class="online-to-offline-d-l fl">
+                                        <i class="mzicon mzicon-tea"></i>
+                                    </div>
+                                    <div class="online-to-offline-d-r fl">
+                                        <b>传统授课</b>
+                                        <p>因材施教，根据个人进度1对1指导</p>
+                                    </div>
+                                </dd>
+                                <dd class="clear">
+                                    <div class="online-to-offline-d-l fl">
+                                        <i class="mzicon mzicon-time"></i>
+                                    </div>
+                                    <div class="online-to-offline-d-r fl">
+                                        <b>开班时间</b>
+                                        <p>随到随学</p>
+                                    </div>
+                                </dd>
+                                <dd class="clear">
+                                    <div class="online-to-offline-d-l fl">
+                                        <i class="mzicon mzicon-men"></i>
+                                    </div>
+                                    <div class="online-to-offline-d-r fl">
+                                        <b>师资团队</b>
+                                        <p>8年以上的一直在企业实操的工程型老师</p>
+                                    </div>
+                                </dd>
+                                <dd class="clear">
+                                    <div class="online-to-offline-d-l fl">
+                                        <i class="mzicon mzicon-xiangmu"></i>
+                                    </div>
+                                    <div class="online-to-offline-d-r fl">
+                                        <b>项目实战</b>
+                                        <p>有机会直接参与互联网公司商业项目</p>
+                                    </div>
+                                </dd>
+                            </dl>
+
+                        </div>
+                        <a href="javascript:;" class="mz-btn-dx05 mz-transition db mzconsultation">咨询线下课程</a>
+                    </div>
+                </div>
+                <div class="course-description-c7">
+                    <div class="mz-wrap">
+                        <div class="mz-tb-tit">
+                            <h3>强大的校企合作就业服务体系</h3>
+                            <p>麦子学院携手linkedin、拉勾、智联招聘、猎聘等一线招聘平台，实现实习就业权威保障！</p>
+                        </div>
+                        <div class="clear">
+                            <div class="course-description-seven-left fl">
+                                <div class="course-description-cooperation-pic">
+                                    <img src="/static/images/mxl_images/land/course-description-cooperation-pic.png"
+                                         alt=""/>
+                                </div>
+                                .
+                                <a href="javascript:;" class="mz-btn-dx02 mz-transition mzconsultation">咨询保就业服务</a>
+                            </div>
+                            <div class="fr video_introduce1">
+                                <!--<a href="#" class="course-description-seven-right"><img src="/static/images/mxl_images/land/course-description-seven-right.png" alt="" /></a>-->
+                                <a href="javascript:;" class="course-description-seven-right db"
+                                   data-href="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/gwsp/jyhznew.mp4"
+                                   onclick="zhuge.track('UI设计', {'名称': '就业合作'})">
+                                    <img src="/static/images/mxl_images/land/course-description-seven-right.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="course-description-c8">
+                    <div class="mz-wrap video_introduce1">
+                        <div class="mz-tb-tit">
+                            <h3>在中国，你叫的上名字的互联网公司几乎都有我们学生</h3>
+                            <p>与拉勾，猎聘，智联招聘接口打通 ，并且与超过1000家A轮融资后互联网公司建立输送关系</p>
+                        </div>
+                        <div class="course-description-e-slider">
+                            <div class="course-description-e-prev"></div>
+                            <div class="course-description-e-next"></div>
+                            <div class="course-description-e-slider-container">
+                                <div class="course-description-e-slider-con">
+                                    <ul>
+                                        <li>
+                                            <div class="description-e-slider-con-pic">
+                                                <img src="/static/images/mxl_images/land/dx-st-chenlong.png"
+                                                     alt="陈龙-月薪10k入职赛尔互联"/>
+                                            </div>
+                                            <div class="description-e-slider-con-txt">
+                                                <b>陈龙</b>
+                                                <p>月薪10K，赛尔互联</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="description-e-slider-con-pic">
+                                                <img src="/static/images/mxl_images/land/dx-st-huagnqingqing.png"
+                                                     alt="黄青青-月薪8k入职聚簇云网络"/>
+                                            </div>
+                                            <div class="description-e-slider-con-txt">
+                                                <b>黄青青</b>
+                                                <p>月薪8K，聚簇云网络</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="description-e-slider-con-pic">
+                                                <img src="/static/images/mxl_images/land/dx-st-huangzikai.png"
+                                                     alt="黄子楷-月薪12k入职麦盛"/>
+                                            </div>
+                                            <div class="description-e-slider-con-txt">
+                                                <b>黄子楷</b>
+                                                <p>月薪12k，入职麦盛</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="description-e-slider-con-pic">
+                                                <img src="/static/images/mxl_images/land/dx-st-wangxincheng.png"
+                                                     alt="王欣晨-月薪10k入职环球网"/>
+                                            </div>
+                                            <div class="description-e-slider-con-txt">
+                                                <b>王欣晨</b>
+                                                <p>月薪9.3K，环球网</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="description-e-slider-con-pic">
+                                                <img src="/static/images/mxl_images/land/dx-wangziqiang.png"
+                                                     alt="王子强-月薪12k入职明与简科技"/>
+                                            </div>
+                                            <div class="description-e-slider-con-txt">
+                                                <b>王子强</b>
+                                                <p>月薪12k，明与简科技</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="description-e-slider-con-pic">
+                                                <img src="/static/images/mxl_images/land/dx-st-xuexinyu.png"
+                                                     alt="薛馨予-月薪10k入职爱客"/>
+                                            </div>
+                                            <div class="description-e-slider-con-txt">
+                                                <b>薛馨予</b>
+                                                <p>月薪10K，入职爱客</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="description-e-slider-con-pic">
+                                                <img src="/static/images/mxl_images/land/dx-st-zhaotiansheng.png"
+                                                     alt="赵田生-月薪9.5k入职知名互联网公司"/>
+                                            </div>
+                                            <div class="description-e-slider-con-txt">
+                                                <b>赵田生</b>
+                                                <p>月薪9.5K，入职知名医药互联网</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="description-e-slider-con-pic">
+                                                <img src="/static/images/mxl_images/land/dx-st-zhouwenyu.png"
+                                                     alt="周文语-月薪10k入职上海知名互联网公司"/>
+                                            </div>
+                                            <div class="description-e-slider-con-txt">
+                                                <b>周文语</b>
+                                                <p>月薪10k，入职上海知名互联网公司</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--<a href="#" class="course-description-e-video">
+                            <img src="/static/images/mxl_images/land/course-description-e-video.png" alt="" />
+                        </a>-->
+                        <a href="javascript:;" class="course-description-e-video"
+                           data-href="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/gwsp/xyft1new.mp4"
+                           onclick="zhuge.track('UI设计', {'名称': '麦子学员访谈（一）'})">
+                            <img src="/static/images/mxl_images/land/course-description-e-video.png" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="course-description-c9">
+                    <div class="mz-wrap">
+                        <p class="course-description-nine-tit">
+                            <b>保</b>就业， <b>保</b>底薪，<b>0</b>元入学，<b>0</b>风险
+                        </p>
+                        <div class="clear course-description-nine-con">
+                            <div class="course-description-nine-l fl">
+                                <img src="/static/images/mxl_images/land/course-description-nine-l.png" alt=""/>
+                            </div>
+                            <div class="course-description-nine-r fr">
+                                <strong>签订保就业，保底薪协议，<br>
+                                    <b>未达到高底薪就业全额退款</b>
+                                </strong>
+                                <a href="javascript:;" class="mz-btn-dx02 mz-transition mzconsultation">了解详情</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+					<div class="tab1">
+						<div class="tab1-media">
+							<div class="media-content">
+								<h4>媒体报道</h4>
+								<ul>
+									<li>
+										<a href="http://tech.sina.com.cn/i/2015-11-13/doc-ifxkszhk0231260.shtml" rel="nofollow" target="_blank">
+											<img src="/static/images/mxl_images/land/footerlink/link1.png" alt="新浪" onclick="zhuge.track('新浪', {'来源': 'px页媒体报道'})">
+										</a>
+									</li>
+									<li>
+										<a href="http://science.china.com.cn/2016-03/17/content_8645350.htm" rel="nofollow" target="_blank">
+											<img src="/static/images/mxl_images/land/footerlink/link2.png" alt="21CN财经" onclick="zhuge.track('21CN财经', {'来源': 'px页媒体报道'})">
+										</a>
+									</li>
+									<li>
+										<a href="http://36kr.com/p/5039661.html" rel="nofollow" target="_blank">
+											<img src="/static/images/mxl_images/land/footerlink/link3.png" alt="36kr" onclick="zhuge.track('36Kr', {'来源': 'px页媒体报道'})">
+										</a>
+									</li>
+									<li>
+										<a href="http://news.ifeng.com/a/20151126/46403469_0.shtml" rel="nofollow" target="_blank">
+											<img src="/static/images/mxl_images/land/footerlink/link4.png" alt="凤凰" onclick="zhuge.track('凤凰', {'来源': 'px页媒体报道'})">
+										</a>
+									</li>
+									<li>
+										<a href="http://edu.qq.com/a/20151201/056651.htm" rel="nofollow" target="_blank">
+											<img src="/static/images/mxl_images/land/footerlink/link5.png" alt="腾讯网" onclick="zhuge.track('腾讯网', {'来源': 'px页媒体报道'})">
+										</a>
+									</li>
+									<li>
+										<a href="http://learning.sohu.com/20160513/n449228783.shtml" rel="nofollow" target="_blank">
+											<img src="/static/images/mxl_images/land/footerlink/link6.png" alt="搜狐网" onclick="zhuge.track('搜狐网', {'来源': 'px页媒体报道'})">
+										</a>
+									</li>
+								</ul>
+								<h4>合作企业</h4>
+								<ul>
+									<li>
+										<a href="http://study.163.com/" rel="nofollow" target="_blank">
+											<img src="/static/images/mxl_images/land/footerlink/link7.png" alt="网易云课堂" onclick="zhuge.track('网易云课堂', {'来源': 'px页合作企业'})">
+										</a>
+									</li>
+									<li>
+										<a href="http://maiziedu.ke.qq.com/" rel="nofollow" target="_blank">
+											<img src="/static/images/mxl_images/land/footerlink/link8.png" alt="腾讯课堂" onclick="zhuge.track('腾讯课堂', {'来源': 'px页合作企业'})">
+										</a>
+									</li>
+									<li>
+										<a href="http://www.miguxue.com/" rel="nofollow" target="_blank">
+											<img src="/static/images/mxl_images/land/footerlink/link9.png" alt="咪咕学堂" onclick="zhuge.track('咪咕学堂', {'来源': 'px页合作企业'})">
+										</a>
+									</li>
+									<li>
+										<a href="https://www.aliyun.com/" rel="nofollow" target="_blank">
+											<img src="/static/images/mxl_images/land/footerlink/link10.png" alt="阿里云" onclick="zhuge.track('阿里云', {'来源': 'px合作企业'})">
+										</a>
+									</li>
+									<li>
+										<a href="http://www.iqiyi.com/" rel="nofollow" target="_blank">
+											<img src="/static/images/mxl_images/land/footerlink/link11.png" alt="爱奇艺" onclick="zhuge.track('爱奇艺', {'来源': 'px合作企业'})">
+										</a>
+									</li>
+									<li>
+										<a href="http://www.chuanke.com/" rel="nofollow" target="_blank">
+											<img src="/static/images/mxl_images/land/footerlink/link12.png" alt="百度传课" onclick="zhuge.track('百度传课', {'来源': 'px合作企业'})">
+										</a>
+									</li>
+								</ul>
+								<h4>合作院校</h4>
+								<ul>
+									<li>
+										<a href="http://www.suse.edu.cn/" rel="nofollow" target="_blank">
+											<img src="/static/images/mxl_images/land/footerlink/link13.png" alt="四川理工大学" onclick="zhuge.track('四川理工大学', {'来源': 'px页合作院校'})">
+										</a>
+									</li>
+									<li>
+										<a href="http://www.scu.edu.cn/" rel="nofollow" target="_blank">
+											<img src="/static/images/mxl_images/land/footerlink/link14.png" alt="四川大学" onclick="zhuge.track('四川大学', {'来源': 'px页合作院校'})">
+										</a>
+									</li>
+									<li>
+										<a href="http://www.cdut.edu.cn/default.html" rel="nofollow" target="_blank">
+											<img src="/static/images/mxl_images/land/footerlink/link15.png" alt="成都理工大学" onclick="zhuge.track('成都理工大学', {'来源': 'px页合作院校'})">
+										</a>
+									</li>
+									<li>
+										<a href="http://www.uestc.edu.cn/" rel="nofollow" target="_blank">
+											<img src="/static/images/mxl_images/land/footerlink/link16.png" alt="电子科技大学" onclick="zhuge.track('电子科技大学', {'来源': 'px页合作院校'})">
+										</a>
+									</li>
+									<li>
+										<a href="" rel="nofollow" target="_blank">
+											<img src="/static/images/mxl_images/land/footerlink/link17.png" alt="四川师范大学" onclick="zhuge.track('四川师范大学', {'来源': 'px页合作院校'})">
+										</a>
+									</li>
+									<li>
+										<a href="" rel="nofollow" target="_blank">
+											<img src="/static/images/mxl_images/land/footerlink/link18.png" alt="西南科技大学" onclick="zhuge.track('西南科技大学', {'来源': 'px页合作院校'})">
+										</a>
+									</li>
+								</ul>
+							</div>
+							<!-- 荣誉奖项 begin-->
+							<div class="mz-wrap">
+								<div class="new-mz-prize">
+									<h4>荣誉奖项</h4>
+									<div class="new-mz-prize-list">
+										<ul class="clear">
+											<li>
+												<img src="/static/images/mxl_images/land/new-mz-prize-list-pic01.png" alt="麦子学院-最具口碑影响力在线教育机构
+" />
+											</li>
+											<li>
+												<img src="/static/images/mxl_images/land/new-mz-prize-list-pic02.png" alt="麦子学院-领军企业" />
+											</li>
+											<li>
+												<img src="/static/images/mxl_images/land/new-mz-prize-list-pic03.png" alt="麦子学院-中国最具创新在线教育品牌
+" />
+											</li>
+											<li>
+												<img src="/static/images/mxl_images/land/new-mz-prize-list-pic04.png" alt="麦子学院-2015年度影响力在线教育品牌
+" />
+											</li>
+											<li>
+												<img src="/static/images/mxl_images/land/new-mz-prize-list-pic05.png" alt="麦子学院-中国品牌价值在线教育机构" />
+											</li>
+											<li>
+												<img src="/static/images/mxl_images/land/new-mz-prize-list-pic06.png" alt="麦子学院-2015年最具影响力教育品牌" />
+											</li>
+											<li>
+												<img src="/static/images/mxl_images/land/new-mz-prize-list-pic07.png" alt="麦子学院-2013年度金金牌合作机构" />
+											</li>
+											<li>
+												<img src="/static/images/mxl_images/land/new-mz-prize-list-pic08.png" alt="麦子学院-特色职业教育品牌" />
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!--荣誉奖项 end-->
+						</div>
+					</div>
+
+                <!--底部轮播和版权 begin-->
+                <div class="footer-banner"
+                     style="background: url(/static/images/mxl_images/land/footer-banner-bg.jpg) no-repeat center top #14ddab;">
+                    <div class="footer-banner-c mz-wrap">
+                        <div class="footer-banner-c-bd">
+                            <ul class="clear">
+                                <li>
+                                    <div class="footer-banner-c-pic">
+                                        <img src="/static/images/mxl_images/land/footer-banner-c-pic01.png"
+                                             alt="麦子学院是IT在线教育的创领者"/>
+                                    </div>
+                                    <p>麦子学院是IT在线教育的创领者，我们希望有更多像麦子一样的教育培训机构，将学习和就业效果做到极致。</p>
+                                    <div class="footer-banner-c-name-info">
+                                        <b>王晓斐</b>
+                                        <span>阿里云教育创业部总监</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="footer-banner-c-pic">
+                                        <img src="/static/images/mxl_images/land/footerlink/baidu.png"
+                                             alt="麦子学院是IT在线教育的创领者">
+
+                                    </div>
+                                    <p>“大数据显示，麦子学院在国内IT在线教育行业内有极高的就业率我们希望在未来与麦子学院的定制化就业学习模式进行更加深入的合作”</p>
+                                    <div class="footer-banner-c-name-info">
+                                        <b>陈月</b>
+                                        <span>百度总监</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="footer-banner-c-pic">
+                                        <img src="/static/images/mxl_images/land/footerlink/360.png"
+                                             alt="麦子学院是IT在线教育的创领者">
+
+                                    </div>
+                                    <p>
+                                        “智能化、数据化的学习过程监控，领先创新的LPS在线教育模式，高效可靠的商业项目训练，为社会培养1万+的高技能IT人才，我们会同与麦子学院一道，以IT技术服务为核心服务更多的企业和个人”</p>
+                                    <div class="footer-banner-c-name-info">
+                                        <b>徐旭升</b>
+                                        <span>360教育总监</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="footer-banner-c-hd">
+                            <ul>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="mz-scholarship-program" style="background: #002551">
+                    <div class="mz-wrap">
+                        <h6>现在行动，参加麦子学院五周年助学红包疯抢计划！</h6>
+                        <a href="javascript:;" class="mz-scholarship-program-btn mz-transition mzconsultation">立即报名</a>
+
+                    </div>
+                </div>
+                <div class="yz-form-container">
+                    <div class="yz-form-box">
+                        <h3 class="yz-form-tit">体验试学</h3>
+                        <span class="yz-form-tag">* 请放心填写，我们会对您的信息严格保密</span>
+                        <form id="yz-form">
+                            <div class="yz-input-box yz-name">
+                                <i></i>
+                                <b></b>
+                                <input type="text" placeholder="您的姓名" name="name">
+                                <div class="yz-errortip">姓名不能为空</div>
+                            </div>
+                            <div class="yz-input-box yz-phone">
+                                <i></i>
+                                <b></b>
+                                <input type="text" placeholder="您的电话" name="phone">
+                                <div class="yz-errortip">请填写正确的电话号码</div>
+                            </div>
+                            <button class="yz-submit" type="button">提交</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="mz-new-copyright" style="background: #002551">
+                    <div class="mz-wrap clear">
+                        <a href="http://www.maiziedu.com/" class="mz-copyright-logo db fl" target="_blank">
+                            <img src="/static/images/mxl_images/land/copyright-logo.png" alt=""/>
+                        </a>
+                        <div class="mz-new-copyright-r fr">
+                            <div class="mz-new-copyright-r-txt fl tx-r">
+                                © 2012-2017 www.maiziedu.com<br/> 蜀ICP备13014270号-4 Version 5.0.0 release20160127
+                            </div>
+                            <a href="https://www.anquan.org/authenticate/cert/?site=www.maiziedu.com&amp;at=business"
+                               target="_blank" class="mz-cp-industry-validate db fl" rel="nofollow">
+                                <img src="/static/images/mxl_images/land/mz-cp-industry-validate.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!--底部轮播和版权 end-->
+            </div>
+            <!--课程介绍 end-->
+            <!-- 课程目录 begin -->
+            <div class="mzedu-tab-con">
+                <div class="mz-wrap">
+                    <div class="ly-course-catalog">
+                        <ul>
+                            <li class="ly-course-item">
+                                <div class="ly-course-text clear">
+                                    <div class="ly-course-item-title">
+                                        <div class="ly-course-icon">
+                                            1
+                                        </div>
+                                        <p class="">视觉设计基础篇</p>
+                                    </div>
+
+                                    <p class="ly-course-item-intro">
+                                        视觉设计基础篇
+                                        掌握UI设计工具的使用后，通过学习素描光影关系、色彩原理与搭配及构图原理，打好成为UI设计师的美术造型基础和树立色彩审美意识，并能利用色彩原理进行相关案例设计与制作。
+                                    </p>
+                                </div>
+                                <div class="ly-course-li">
+                                    <ul class="clear">
+                                        <li class="ly-course-li1 clear">
+                                            <ul class="course-li1-ul clear">
+                                                <li class="ly-course-list">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">01</span>
+                                                        <h6 class="fl">Photoshop应用</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item">
+                                                        <li>· 控制面板</li>
+                                                        <li>· 图像编辑</li>
+                                                        <li>· 图像合成</li>
+                                                        <li>· 校色调色</li>
+                                                        <li>· 功能色效</li>
+                                                        <li>· 色彩设定</li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">02</span>
+                                                        <h6 class="fl">Illustrator应用</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item">
+                                                        <li>· 描边绘图
+                                                        </li>
+                                                        <li>· 上色</li>
+                                                        <li>· 艺术画笔</li>
+                                                        <li>· 矢量图形处理功能</li>
+                                                        <li>· 贝赛尔曲线的使用</li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list ">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">03</span>
+                                                        <h6 class="fl">素描光影关系</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>·黑－白－灰
+                                                        </li>
+                                                        <li>· 光源及高光
+                                                        </li>
+                                                        <li>· 亮面及暗面</li>
+                                                        <li>· 明暗交界线</li>
+                                                        <li>· 光照射物体的明暗变化</li>
+                                                        <li>· 反光</li>
+
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list ">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">04</span>
+                                                        <h6 class="fl">色彩原理与搭配</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>·光色原理
+                                                        </li>
+                                                        <li>· 三原色
+                                                        </li>
+                                                        <li>· 光的反射</li>
+                                                        <li>· 如何考核</li>
+                                                        <li>· 光源色</li>
+                                                        <li>· 物体色</li>
+                                                        <li>· 暗面和固有色</li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list ">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">05</span>
+                                                        <h6 class="fl">构图原理</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>·构图的基本法则
+                                                        </li>
+                                                        <li>· 水平式
+                                                        </li>
+                                                        <li>· 垂直式及S形</li>
+                                                        <li>· 三角形及圆形</li>
+                                                        <li>· 长方形</li>
+                                                        <li>· 西方构图</li>
+                                                    </ol>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="ly-course-item">
+                                <div class="ly-course-text clear">
+                                    <div class="ly-course-item-title">
+                                        <div class="ly-course-icon">
+                                            2
+                                        </div>
+                                        <p class="">UI设计师入门篇</p>
+                                    </div>
+
+                                    <p class="ly-course-item-intro">
+                                        树立设计师意识，了解UI发展规律及就业前景，并通过本阶段的学习能独立完成图标作品设计、平面作品设计及手绘作品设计等。
+                                    </p>
+                                </div>
+                                <div class="ly-course-li">
+                                    <ul class="clear">
+                                        <li class="ly-course-li1 clear">
+                                            <ul class="course-li1-ul clear">
+                                                <li class="ly-course-list">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">01</span>
+                                                        <h6 class="fl">UI简述</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item">
+                                                        <li>· UI的工作内容</li>
+                                                        <li>· UI设计师的职责</li>
+                                                        <li>· 从事UI行业的人群</li>
+                                                        <li>· 执行命令</li>
+                                                        <li>· UI设计师在工作中扮演的角色</li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">02</span>
+                                                        <h6 class="fl">设计美术</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item">
+                                                        <li>· 设计色彩</li>
+                                                        <li>· 设计构成</li>
+                                                        <li>· 设计手绘</li>
+                                                        <li>· 美术基础提升</li>
+                                                        <li>· 项目实战</li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list ">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">03</span>
+                                                        <h6 class="fl">图标设计</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>· 剪影图标实训</li>
+                                                        <li>· 扁平图标实训</li>
+                                                        <li>· 拟真图标实训
+                                                        </li>
+                                                        <li>· 卡通图标风格实训
+                                                        </li>
+                                                        <li>· 复古图标风格实训</li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list ">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">04</span>
+                                                        <h6 class="fl">现代UI设计</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>· Windows磁片设计</li>
+                                                        <li>· Google纸片设计</li>
+                                                        <li>· 声音检测案例剖析
+                                                        </li>
+                                                        <li>· 扁平化起缘
+                                                        </li>
+                                                        <li>· 扁平化变革</li>
+                                                    </ol>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="ly-course-item">
+                                <div class="ly-course-text clear">
+                                    <div class="ly-course-item-title">
+                                        <div class="ly-course-icon">
+                                            3
+                                        </div>
+                                        <p class="">多平台界面设计篇</p>
+                                    </div>
+
+                                    <p class="ly-course-item-intro">
+                                        基于用户界面设计准则和移动新特征，了解UI设计流程和学习后，能独立完成移动端框架设计和产品界面设计
+                                    </p>
+                                </div>
+                                <div class="ly-course-li">
+                                    <ul class="clear">
+                                        <li class="ly-course-li1 clear">
+                                            <ul class="course-li1-ul clear">
+                                                <li class="ly-course-list">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">01</span>
+                                                        <h6 class="fl">移动新特征</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>
+                                                            · 用户基本类型及特征
+                                                        </li>
+                                                        <li>
+                                                            · 用户隐私及平台差异
+                                                        </li>
+                                                        <li>
+                                                            · 智能家居与穿戴设备
+                                                        </li>
+                                                        <li>
+                                                            · 云与应用摄像头
+                                                        </li>
+                                                        <li>
+                                                            · 硬件交互方式环境
+                                                        </li>
+                                                        <li>
+                                                            · 响应式Web设计
+                                                        </li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">02</span>
+                                                        <h6 class="fl">用户界面设计准则</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item">
+                                                        <li>· GUI 设计原则</li>
+                                                        <li>· 同行准则</li>
+                                                        <li>· WIN设计原则</li>
+                                                        <li>· IOS设计原则</li>
+                                                        <li>· UI的问题</li>
+                                                        <li>· NUI设计原则</li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list ">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">03</span>
+                                                        <h6 class="fl">设计流程</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>· ID与团队合作</li>
+                                                        <li>· 细节及其建议</li>
+                                                        <li>· 开始设计</li>
+                                                        <li>· 后期工作</li>
+                                                        <li>· 设计流程前期工作</li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list ">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">04</span>
+                                                        <h6 class="fl">框架设计</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>· 框架是什么</li>
+                                                        <li>· 框架与信息</li>
+                                                        <li>· 手机信息架构</li>
+                                                        <li>· 深度与广度</li>
+                                                        <li>· APP架构设计</li>
+                                                        <li>· 导航设计模</li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list ">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">05</span>
+                                                        <h6 class="fl">平台规范</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>· IOS
+                                                        </li>
+                                                        <li>· IPHONE</li>
+                                                        <li>· IPAD</li>
+                                                        <li>· iWATCH</li>
+                                                        <li>· ANDROID</li>
+                                                        <li>· WINDOWS PHONE</li>
+                                                    </ol>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="ly-course-item">
+                                <div class="ly-course-text clear">
+                                    <div class="ly-course-item-title">
+                                        <div class="ly-course-icon">
+                                            4
+                                        </div>
+                                        <p class="">交互设计思维篇</p>
+                                    </div>
+
+                                    <p class="ly-course-item-intro">
+                                        交互设计思维篇 通过对产品设计思维的掌握和原型图、脑图设计学习后，充分了解用户体验的重要性，学习触摸式设计和界面优化设计，成为一名真正懂交互的UI设计师。
+                                    </p>
+                                </div>
+                                <div class="ly-course-li">
+                                    <ul class="clear">
+                                        <li class="ly-course-li1 clear">
+                                            <ul class="course-li1-ul clear">
+                                                <li class="ly-course-list">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">01</span>
+                                                        <h6 class="fl">产品设计思维</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>· 设计方法论</li>
+                                                        <li>· 需求分析</li>
+                                                        <li>· 产品案例分析</li>
+                                                        <li>· 设计思维</li>
+                                                        <li>· 设计逻辑</li>
+                                                        <li>· 编写需求文档</li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">02</span>
+                                                        <h6 class="fl">原型纸本</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>· 什么是原型</li>
+                                                        <li>· 原型的分类及意义</li>
+                                                        <li>· 线框原型图与手绘</li>
+                                                        <li>· 纸本手工思考</li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list ">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">03</span>
+                                                        <h6 class="fl">用户体验</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>· 什么是用户体验</li>
+                                                        <li>· 用户体验基本特征</li>
+                                                        <li>· 用户体验构成要素</li>
+                                                        <li>· 信息流与任务流</li>
+                                                        <li>· 如何设计好的用户体验</li>
+                                                        <li>· 用户体验层次</li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list ">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">04</span>
+                                                        <h6 class="fl">触摸式设计</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>· 触摸</li>
+                                                        <li>· 合理设置操作区</li>
+                                                        <li>· 拇指操作区</li>
+                                                        <li>· 触摸式界面设计手法</li>
+                                                        <li>· 触觉与手势</li>
+                                                        <li>· 手指特征以内容为主导</li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list ">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">05</span>
+                                                        <h6 class="fl">界面优化设计</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>· 页面布局</li>
+                                                        <li>· 栅格系统</li>
+                                                        <li>· 信息扁平化</li>
+                                                        <li>· 动态数据可视化</li>
+                                                        <li>· 横竖屏切换设计</li>
+                                                        <li>· 精细的视差</li>
+                                                    </ol>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="ly-course-item">
+                                <div class="ly-course-text clear">
+                                    <div class="ly-course-item-title">
+                                        <div class="ly-course-icon">
+                                            5
+                                        </div>
+                                        <p class="">Html5学习篇</p>
+                                    </div>
+
+                                    <p class="ly-course-item-intro">
+                                        Html5学习篇 基于web端知识的学习，在个人能力的基础上进一步提高，并能独立完成PC端及移动端的各种响应式网站制作。
+                                    </p>
+                                </div>
+                                <div class="ly-course-li">
+                                    <ul class="clear">
+                                        <li class="ly-course-li1 clear">
+                                            <ul class="course-li1-ul clear">
+                                                <li class="ly-course-list">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">01</span>
+                                                        <h6 class="fl">HTML + CSS 实现网页布局</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>· 表单控件</li>
+                                                        <li>· CSS选择器及属性</li>
+                                                        <li>· DIV+CSS盒子模型</li>
+                                                        <li>· 浏览器调试工具</li>
+                                                        <li>· PC端网页布局</li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">02</span>
+                                                        <h6 class="fl">Javascript 脚本编程</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>· Javascript简介</li>
+                                                        <li>· m变量和数据模型</li>
+                                                        <li>· 表达式和运算符</li>
+                                                        <li>· 兼容性问题</li>
+                                                        <li>· 正则表达式及表单验证实战</li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list ">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">03</span>
+                                                        <h6 class="fl">HTML5</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>· html5新标签</li>
+                                                        <li>· html5新的网页结构</li>
+                                                        <li>· Html5新特性</li>
+                                                        <li>· html5新事件</li>
+                                                        <li>· html5+css3的应用前景</li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list ">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">04</span>
+                                                        <h6 class="fl">CSS3及响应式设计</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>· CSS3新增选择器</li>
+                                                        <li>· CSS3新增动画效果</li>
+                                                        <li>· media queries响应式</li>
+                                                        <li>· 兼容性问题</li>
+                                                        <li>· 移动端响应式网站设计</li>
+                                                    </ol>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="ly-course-item">
+                                <div class="ly-course-text clear">
+                                    <div class="ly-course-item-title">
+                                        <div class="ly-course-icon">
+                                            6
+                                        </div>
+                                        <p class="">动效设计及项目实战</p>
+                                    </div>
+
+                                    <p class="ly-course-item-intro">
+                                        动效设计及项目实战 学习AE在UI交互过程中的动态效果设计方法和把握动画节奏。并以实战项目来进阶工作经验，让你快速成长为全能的UI设计师 。</p>
+                                </div>
+                                <div class="ly-course-li">
+                                    <ul class="clear">
+                                        <li class="ly-course-li1 clear">
+                                            <ul class="course-li1-ul clear">
+                                                <li class="ly-course-list">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">01</span>
+                                                        <h6 class="fl">After Effects应用</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>· 图形视频处理</li>
+                                                        <li>· 路径功能特技控制</li>
+                                                        <li>· 多层剪辑</li>
+                                                        <li>· 关键帧编辑</li>
+                                                        <li>· 动态效果设计</li>
+                                                        <li>· 渲染</li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">02</span>
+                                                        <h6 class="fl">动效提案设计</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>· 动效原则</li>
+                                                        <li>· 提案方式设计</li>
+                                                        <li>· 动效设计方法</li>
+                                                        <li>· 动画节奏把控</li>
+                                                        <li>· 交互设计提案准备</li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list ">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">03</span>
+                                                        <h6 class="fl">移动UI实战项目</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>· 项目模拟</li>
+                                                        <li>· 界面设计</li>
+                                                        <li>· 交互思维</li>
+                                                        <li>· 项目成品</li>
+                                                        <li>· 效果图提案展示</li>
+                                                        <li>· 互联网行业设计规范</li>
+                                                    </ol>
+                                                </li>
+                                                <li class="ly-course-list ">
+                                                    <div class="ly-course-li1-title">
+                                                        <span class="ly-li1-num fl">04</span>
+                                                        <h6 class="fl">UI行业项目</h6>
+                                                    </div>
+                                                    <ol class="ly-list-item ">
+                                                        <li>· 面试技巧</li>
+                                                        <li>· 简历制作</li>
+                                                        <li>· 项目材料准备</li>
+                                                        <li>· 了解公司</li>
+                                                        <li>· 面试准备</li>
+                                                    </ol>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    </li>
+                    </ul>
+                </div>
+                <div class="tab2">
+                    <div class="tab2-footer">
+                        <div class="footer-box">
+                            <h2>推荐基础课程</h2>
+
+                            <ul>
+
+                                <li>
+                                    <a href="/course/424/" target="_blank">
+                                        <div class="item-tag">
+                                            <p class="item-tag1">快速提升UI设计能力</p>
+                                            <p class="item-tag2">29409人学习</p>
+                                        </div>
+                                        <img src="/static/images/mxl_images/land/footerlink/01914D373734CF4337F4978C02691CA3.png"
+                                             alt="快速提升UI设计能力" class="ur-img">
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="/course/374/" target="_blank">
+                                        <div class="item-tag">
+                                            <p class="item-tag1">学习UX第一季-轻松入门</p>
+                                            <p class="item-tag2">54635人学习</p>
+                                        </div>
+                                        <img src="/static/images/mxl_images/land/footerlink/mxlqsrm.png"
+                                             alt="学习UX第一季-轻松入门" class="ur-img">
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="/course/615/" target="_blank">
+                                        <div class="item-tag">
+                                            <p class="item-tag1">Motion5动画基础 </p>
+                                            <p class="item-tag2">24616人学习</p>
+                                        </div>
+                                        <img src="/static/images/mxl_images/land/footerlink/Motion5.png"
+                                             alt="Motion5动画基础 " class="ur-img">
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="/course/729/" target="_blank">
+                                        <div class="item-tag">
+                                            <p class="item-tag1">图形图像基础</p>
+                                            <p class="item-tag2">20411人学习</p>
+                                        </div>
+                                        <img src="/static/images/mxl_images/land/footerlink/imagebase.png" alt="图形图像基础"
+                                             class="ur-img">
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="/course/727/" target="_blank">
+                                        <div class="item-tag">
+                                            <p class="item-tag1">移动UI设计规范</p>
+                                            <p class="item-tag2">20021人学习</p>
+                                        </div>
+                                        <img src="/static/images/mxl_images/land/footerlink/UIshejiguifan.png"
+                                             alt="移动UI设计规范" class="ur-img">
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="/course/701/" target="_blank">
+                                        <div class="item-tag">
+                                            <p class="item-tag1">MUI项目实训-社交APP的设计</p>
+                                            <p class="item-tag2">11317人学习</p>
+                                        </div>
+                                        <img src="/static/images/mxl_images/land/footerlink/APPsheji.png"
+                                             alt="MUI项目实训-社交APP的设计" class="ur-img">
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="/course/703/" target="_blank">
+                                        <div class="item-tag">
+                                            <p class="item-tag1">玩转高级图标设计</p>
+                                            <p class="item-tag2">13279人学习</p>
+                                        </div>
+                                        <img src="/static/images/mxl_images/land/footerlink/wanzhuangaoji.png"
+                                             alt="玩转高级图标设计" class="ur-img">
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="/course/748/" target="_blank">
+                                        <div class="item-tag">
+                                            <p class="item-tag1">玩转sketch</p>
+                                            <p class="item-tag2">18998人学习</p>
+                                        </div>
+                                        <img src="/static/images/mxl_images/land/footerlink/Sketch.png" alt="玩转sketch"
+                                             class="ur-img">
+                                    </a>
+                                </li>
+
+                            </ul>
+                        </div>
+
+                        <div class="copyright">
+                            <div class="copyright-box">
+                                <img src="/static/images/mxl_images/land/footerlink/footer-logo.png" class="ps-left"
+                                     alt="logo">
+                                <div class="ps-right">
+                                    © 2012-2016 www.maiziedu.com<br>蜀ICP备13014270号-4 Version 5.0.0 release20160127
+                                </div>
+                                <a href="https://www.anquan.org/authenticate/cert/?site=www.maiziedu.com&amp;at=business"
+                                   target="_blank" class="industry-validate" rel="nofollow"><img
+                                        src="/static/images/mxl_images/land/footerlink/hangye_validate.png"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 课程目录 end -->
+            <!-- 学员评论 begin -->
+            <div class="mzedu-tab-con">
+                <div class="mzedu-student-review">
+                    <div class="mzedu-student-review-t">
+                        <div class="mz-wrap clear">
+                            <div class="mzedu-student-review-t-l fl">
+                                <h6>综合评分</h6>
+                                <div class="clear">
+                                    <b>10.00</b>
+                                    <div class="mzedu-student-review-score dib">
+                                        <i class="mzicon mzicon-star"></i>
+                                        <i class="mzicon mzicon-star"></i>
+                                        <i class="mzicon mzicon-star"></i>
+                                        <i class="mzicon mzicon-star"></i>
+                                        <i class="mzicon mzicon-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mzedu-student-review-t-r fr">
+                                <ul class="clear">
+                                    <li>
+                                        <b>课程质量</b>
+                                        <strong>10.00</strong>
+                                    </li>
+                                    <li>
+                                        <b>老师满意度</b>
+                                        <strong>10.00</strong>
+                                    </li>
+                                    <li>
+                                        <b>简洁易懂</b>
+                                        <strong>10.00</strong>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mzedu-student-review-b">
+                        <div class="mz-wrap">
+                            <b class="mzedu-student-review-b-tit">全部评价</b>
+                            <div class="mzedu-student-review-bcontainer">
+                                <ul class="clear">
+                                    <li>
+                                        <div class="review-bcontainer-t-pic">
+                                            <img src="/static/images/mxl_images/land/review-bcontainer-t-pic.jpg"
+                                                 alt=""/>
+                                        </div>
+                                        <div class="clear review-bcontainer-t">
+                                            <div class="fl review-bcontainer-t-l">
+                                                <b>周安伟</b>
+                                                <div class="mzedu-student-review-score dib">
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                </div>
+                                            </div>
+                                            <span class="fr">
+											45分钟前
+										</span>
+                                        </div>
+                                        <div class="review-bcontainer-contxt">
+                                            <div class="review-bcontainer-txt-sdu">
+                                                作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很
+                                                nice。1 天半看了 1/3 了，毫无难度，通俗易懂。唯一的一点不足就是这不是 Vue 2.0
+                                                的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                                            </div>
+                                            <div class="review-bcontainer-txt-tec">
+                                                <b>老师回复：</b>感谢支持~ 能学会使用 Vue 开发实战项目就是本门课的宗旨~由于课程录制时间比较早选择的是 1.0 的。
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="review-bcontainer-t-pic">
+                                            <img src="/static/images/mxl_images/land/review-bcontainer-t-pic.jpg"
+                                                 alt=""/>
+                                        </div>
+                                        <div class="clear review-bcontainer-t">
+                                            <div class="fl review-bcontainer-t-l">
+                                                <b>周安伟</b>
+                                                <div class="mzedu-student-review-score dib">
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                </div>
+                                            </div>
+                                            <span class="fr">
+											45分钟前
+										</span>
+                                        </div>
+                                        <div class="review-bcontainer-contxt">
+                                            <div class="review-bcontainer-txt-sdu">
+                                                作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很
+                                                nice。1 天半看了 1/3 了，毫无难度，通俗易懂。唯一的一点不足就是这不是 Vue 2.0
+                                                的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="review-bcontainer-t-pic">
+                                            <img src="/static/images/mxl_images/land/review-bcontainer-t-pic.jpg"
+                                                 alt=""/>
+                                        </div>
+                                        <div class="clear review-bcontainer-t">
+                                            <div class="fl review-bcontainer-t-l">
+                                                <b>周安伟</b>
+                                                <div class="mzedu-student-review-score dib">
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                </div>
+                                            </div>
+                                            <span class="fr">
+											45分钟前
+										</span>
+                                        </div>
+                                        <div class="review-bcontainer-contxt">
+                                            <div class="review-bcontainer-txt-sdu">
+                                                作为一个刚入门的前端工程师
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="review-bcontainer-t-pic">
+                                            <img src="/static/images/mxl_images/land/review-bcontainer-t-pic.jpg"
+                                                 alt=""/>
+                                        </div>
+                                        <div class="clear review-bcontainer-t">
+                                            <div class="fl review-bcontainer-t-l">
+                                                <b>周安伟</b>
+                                                <div class="mzedu-student-review-score dib">
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                </div>
+                                            </div>
+                                            <span class="fr">
+											45分钟前
+										</span>
+                                        </div>
+                                        <div class="review-bcontainer-contxt">
+                                            <div class="review-bcontainer-txt-sdu">
+                                                作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很
+                                                nice。1 天半看了 1/3 了，毫无难度，通俗易懂。唯一的一点不足就是这不是 Vue 2.0
+                                                的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                                            </div>
+                                            <div class="review-bcontainer-txt-tec">
+                                                <b>老师回复：</b>感谢支持~ 能学会使用 Vue 开发实战项目就是本门课的宗旨~由于课程录制时间比较早选择的是 1.0 的。
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="review-bcontainer-t-pic">
+                                            <img src="/static/images/mxl_images/land/review-bcontainer-t-pic.jpg"
+                                                 alt=""/>
+                                        </div>
+                                        <div class="clear review-bcontainer-t">
+                                            <div class="fl review-bcontainer-t-l">
+                                                <b>周安伟</b>
+                                                <div class="mzedu-student-review-score dib">
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                </div>
+                                            </div>
+                                            <span class="fr">
+											45分钟前
+										</span>
+                                        </div>
+                                        <div class="review-bcontainer-contxt">
+                                            <div class="review-bcontainer-txt-sdu">
+                                                作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很
+                                                nice。1 天半看了 1/3 了，毫无难度，通俗易懂。唯一的一点不足就是这不是 Vue 2.0
+                                                的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                                            </div>
+                                            <div class="review-bcontainer-txt-tec">
+                                                <b>老师回复：</b>感谢支持~ 能学会使用 Vue 开发实战项目就是本门课的宗旨~由于课程录制时间比较早选择的是 1.0 的。
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="review-bcontainer-t-pic">
+                                            <img src="/static/images/mxl_images/land/review-bcontainer-t-pic.jpg"
+                                                 alt=""/>
+                                        </div>
+                                        <div class="clear review-bcontainer-t">
+                                            <div class="fl review-bcontainer-t-l">
+                                                <b>周安伟</b>
+                                                <div class="mzedu-student-review-score dib">
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                </div>
+                                            </div>
+                                            <span class="fr">
+											45分钟前
+										</span>
+                                        </div>
+                                        <div class="review-bcontainer-contxt">
+                                            <div class="review-bcontainer-txt-sdu">
+                                                作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很
+                                                nice。1 天半看了 1/3 了，毫无难度，通俗易懂。唯一的一点不足就是这不是 Vue 2.0
+                                                的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                                            </div>
+                                            <div class="review-bcontainer-txt-tec">
+                                                <b>老师回复：</b>感谢支持~ 能学会使用 Vue 开发实战项目就是本门课的宗旨~由于课程录制时间比较早选择的是 1.0 的。
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="review-bcontainer-t-pic">
+                                            <img src="/static/images/mxl_images/land/review-bcontainer-t-pic.jpg"
+                                                 alt=""/>
+                                        </div>
+                                        <div class="clear review-bcontainer-t">
+                                            <div class="fl review-bcontainer-t-l">
+                                                <b>周安伟</b>
+                                                <div class="mzedu-student-review-score dib">
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                    <i class="mzicon mzicon-star"></i>
+                                                </div>
+                                            </div>
+                                            <span class="fr">
+											45分钟前
+										</span>
+                                        </div>
+                                        <div class="review-bcontainer-contxt">
+                                            <div class="review-bcontainer-txt-sdu">
+                                                作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很
+                                                nice。1 天半看了 1/3 了，毫无难度，通俗易懂。唯一的一点不足就是这不是 Vue 2.0
+                                                的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                                            </div>
+                                            <div class="review-bcontainer-txt-tec">
+                                                <b>老师回复：</b>感谢支持~ 能学会使用 Vue 开发实战项目就是本门课的宗旨~由于课程录制时间比较早选择的是 1.0 的。
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="review-load-more-item">
+                                        <div class="load-more-comment">
+                                            <div class="mzicon mzicon-add"></div>
+                                            <p>加载更多评论</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <div class="copyright-box clear">
+                        <a href="http://www.maiziedu.com/" class="ft-mz-logo">
+                            <img src="/static/images/mxl_images/land/footerlink/mxl-ft-mz-logo.png" alt="logo">
+                        </a>
+                        <div class="ps-right">
+                            © 2012-2016 www.maiziedu.com<br>蜀ICP备13014270号-4 Version 5.0.0 release20160127
+                        </div>
+                        <a href="https://www.anquan.org/authenticate/cert/?site=www.maiziedu.com&amp;at=business"
+                           target="_blank" class="industry-validate" rel="nofollow"><img
+                                src="/static/images/mxl_images/land/footerlink/hangye_validate.png"></a>
+                    </div>
+                </div>
+            </div>
+            <!-- 学员评论 end -->
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block custom_script %}
+
+    <script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/static/js/mxl_js/land/mzWaterfall.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/static/js/mxl_js/land/main.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/static/js/mxl_js/land/mzConsultation.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/dev/index_yz.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/static/js/yz-js/yz-form.js?v={{ time_stamp }}"></script>
+
+
+    <script>
+        desSlider();
+        DescriptionSlider();
+        goTop();
+        //咨询
+        $(".mzconsultation,.ly-course-list").click(function () {
+            mzConsultation()
+        });
+        //查看课程大纲
+        $(".see-kcdg").click(function () {
+            $(".mz-wrap").find("li").eq(1).trigger("click");
+        });
+        //底部全屏轮播
+        footerBannerSlider();
+    </script>
+
+{% endblock %}

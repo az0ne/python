@@ -1,0 +1,224 @@
+/* 把rem转换为rem */
+ @import 'var';
+
+$bg: url(/static/images/mz_wap/search_result_icon.png) 0 0 no-repeat;
+.container{
+	.content{
+		position: absolute;
+		top: pxToRem(0);
+		.article{
+			margin-bottom: pxToRem(32);
+			.ads{
+				margin: pxToRem(0 9);
+				a{	
+					display: block;
+				}
+			}
+			.sear_result_article_list{
+				ul{
+					li{
+						border-bottom: pxToRem(1) solid #ddd;
+						a{	
+							color: #000;
+							margin: pxToRem(17 9);
+							display: block;
+							.img{
+								width: pxToRem(236);
+								height: pxToRem(150);
+								float: left;
+								overflow: hidden;
+							}
+							.txt{
+								height: pxToRem(150);
+								font-size: pxToRem(26);
+								line-height: pxToRem(30);
+								margin: pxToRem(0 10 0 250);
+								position: relative;
+								h3{
+									color: #3b3b3b;
+									@include maxwidth(360);
+									font-weight: bold;
+									font-size: pxToRem(30);
+									margin-bottom: pxToRem(10);
+								}
+								p{
+									color: #5d5d5d;
+									@include maxheight(60);
+									@include multi-line-hidden(2);
+									em{
+										color: #ff8960;
+									}
+								}
+								dl{
+									font-size: 0;
+									position: absolute;
+									left: 0;
+									bottom: 0;
+									overflow: hidden;
+									white-space: nowrap;
+									max-width: pxToRem(360);
+									dd{
+										color: #8c8c8c;
+										@include fz-lh(22);
+										display: inline-block;
+										margin-right: pxToRem(15);
+									}
+								}
+								.chapter{
+									padding-right: pxToRem(11);
+									border-right: pxToRem(1) solid #ddd;
+									&:before{
+										@extend %pseudo-class;
+										width: pxToRem(17);
+										height: pxToRem(17);
+										margin-right: pxToRem(7);
+										background: $bg;
+										background-position: pxToRem( 0 -84);
+									}
+								}
+								.time{
+									&:before{
+										@extend %pseudo-class;
+										background: $bg;
+										height: pxToRem(23);
+										width: pxToRem(23);
+										margin: pxToRem(-4 7 0 0);
+										background-position: pxToRem(0 -103);
+									}
+								}
+								.tag{
+									&:before{
+										@extend %pseudo-class;
+										background: $bg;
+										height: pxToRem(23);
+										width: pxToRem(23);
+										margin: pxToRem(-4 7 0 0);
+										background-position: pxToRem(0 -130);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		.load_more{
+			margin-bottom: pxToRem(43);
+			a{
+				text-decoration: none;
+				@include fz-lh(30);
+				color: #ffa800;
+				display: block;
+				text-align: center;
+				margin: 0 auto;
+				padding: pxToRem(20 0);
+				max-width: pxToRem(326);
+				border: 2px solid #ffae11;
+				border-radius: pxToRem(35);
+				span{
+					
+				}
+			}
+		}
+		.empty_recommend{
+			ul{
+				overflow: hidden;
+				margin: pxToRem(20 9 30 0);
+				li{
+					display: inline-block;
+					width: 33.33%;
+					height: auto;
+					float: left;
+					a{
+						display: block;
+						margin: pxToRem(8);
+					}
+					.img{
+						overflow: hidden;
+						margin-bottom: pxToRem(10);
+					}
+					.course_name{
+						color: #333;
+						@include fz-lh(26);
+						@include maxheight(26);
+						@include multi-line-hidden(1);
+					}
+				}
+			}
+		}
+		/* 热门标签，相关课程 */
+		.hot_tag,.relate_course{
+			font-size: pxToRem(24);
+			border-top: 2px solid #eee;
+			margin-top: pxToRem(16);
+			h3{
+				text-align: center;
+				font-size: 0;
+				span{
+					padding: pxToRem(0 4);
+					background: #fff;
+					font-size: pxToRem(24);
+					font-weight: bold;
+					margin: pxToRem(-12) auto 0;
+					line-height: pxToRem(24);
+				}
+			}
+		}
+		.hot_tag{
+			ul{
+				font-size: 0;
+				margin: pxToRem(54 30 18 5) ;
+				li{
+					@include fz-lh(30);
+					display: inline-block;
+					margin: pxToRem(0 0 43 25);
+					background: #eaeaea;
+					border-radius: pxToRem(23);
+					a{
+						color: #b1b1b1;
+						text-decoration: none;
+						padding: pxToRem(11 35);
+					}
+				}
+				.selected{
+					background: #ff9342;
+					a{
+						color: #fff;
+					}
+				}
+			}		
+		}
+		.relate_course{
+			ul{
+				margin: pxToRem(20 8 0);
+				li{
+					width: 50%;
+					height: auto;
+				    float: left;
+					a{
+						margin: pxToRem(8);
+						display: block;
+						.img{
+							overflow: hidden;
+							img{
+								width: 100%;
+							    height: auto;
+							    font-size: pxToRem(24);
+							}
+						}
+						.txt{
+							strong{
+								width: 100%;
+								text-align: center;
+							    height: pxToRem(28);
+							    overflow: hidden;
+							    font-size: pxToRem(22);
+							    color: #333;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

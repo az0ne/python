@@ -1,0 +1,99 @@
+.banner {
+  background-image: url(/static/images/new_wap_images/ui-banner.jpg); }
+
+.banner-tit {
+  width: 3.28rem;
+  height: 1.14667rem;
+  background: url(/static/images/new_wap_images/banner-tit-bg.svg) no-repeat;
+  background-size: contain;
+  margin: 1.44rem 0 0 1.33333rem; }
+
+.mz-ui-list01-pic {
+  width: 3.68rem;
+  height: 3.25333rem;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center; }
+
+.mz-ui-list01-pic01 {
+  background-image: url(/static/images/new_wap_images/mz-ui-list01-pic01-1.svg); }
+
+.mz-ui-list01-pic02 {
+  background-image: url(/static/images/new_wap_images/mz-ui-list01-pic02.svg); }
+
+.mz-ui-list01-pic03 {
+  background-image: url(/static/images/new_wap_images/mz-ui-list01-pic03.svg); }
+
+.mz-ui-list01 {
+  margin-top: 1.86667rem;
+  padding: 0 1.33333rem; }
+  .mz-ui-list01 li {
+    margin-bottom: 2.02667rem; }
+    .mz-ui-list01 li:last-child {
+      margin-bottom: 0; }
+
+.mz-ui-list01-txt p {
+  line-height: 1.12rem;
+  margin-top: 0.53333rem; }
+
+.mz-cuose-tab-c3 {
+  background: #f7f7f7;
+  padding: 1.6rem 0; }
+
+.course-description-c-ui-info {
+  padding: 1.22667rem 0.8rem 0; }
+  .course-description-c-ui-info img {
+    display: block;
+    width: 100%; }
+
+.students-presentation-list {
+  padding: 0.96rem 0.8rem 0.8rem; }
+  .students-presentation-list ul {
+    position: relative;
+    height: 47.14667rem; }
+  .students-presentation-list li {
+    width: 8.96rem;
+    position: absolute;
+    box-shadow: 0 0.05333rem 0.48rem rgba(0, 0, 0, 0.18);
+    -webkit-box-shadow: 0 0.05333rem 0.48rem rgba(0, 0, 0, 0.18); }
+    .students-presentation-list li:nth-of-type(2n+1) {
+      float: left;
+      left: 0; }
+    .students-presentation-list li:nth-of-type(2n+2) {
+      right: 0; }
+    .students-presentation-list li:nth-of-type(3) {
+      top: 7.33333rem; }
+    .students-presentation-list li:nth-of-type(4) {
+      top: 8.96rem; }
+    .students-presentation-list li:nth-of-type(5) {
+      top: 21.86667rem; }
+    .students-presentation-list li:nth-of-type(6) {
+      top: 28.05333rem; }
+    .students-presentation-list li:nth-of-type(7) {
+      top: 31.68rem; }
+    .students-presentation-list li b {
+      display: block;
+      height: 1.6rem;
+      background: #fff;
+      line-height: 1.6rem;
+      font-size: 0.64rem;
+      padding: 0 0.26667rem;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis; }
+
+.students-presentation-list-pic img {
+  display: block;
+  width: 100%; }
+
+.description-e-slider-con-txt {
+  position: relative; }
+  .description-e-slider-con-txt:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 0.08rem;
+    background: #03d7a5; }

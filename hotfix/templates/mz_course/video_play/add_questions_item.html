@@ -1,0 +1,77 @@
+{% load date_convert_tag %}
+{% load my_filter %}
+<li class="parent_discuss" id="{{ q.id }}">
+
+    <input class="object_id" type="hidden" value="{{ q.object_id }}"/>
+    <input class="last_id" type="hidden" value="{{ q.id }}"/>
+    <input class="answer_user_id" type="hidden" value="{{ q.user_id }}"/>
+    <input class="answer_nick_name" type="hidden" value="{{ q.nick_name }}"/>
+
+    <div class="avatar colorf3">
+        <a href="{% if q.user_id == user.id %}
+                     {% url 'home:index' %}
+                 {% else %}
+                     {% url 'u:index' q.user_id %}
+                 {% endif %}"
+           title="{{ q.nick_name }}" target="_blank">
+
+            <img src="{{ MEDIA_URL }}{{ q.head }}" alt="{{ q.nick_name }}">
+            {% if student_class %}<em title="直通班学员" class="role vip"></em>{% endif %}
+        </a>
+    </div>
+
+    <div class="parent_text _reply">
+        <h3>
+            <a href="{% if q.user_id == user.id %}{% url 'home:index' %}{% else %}{% url 'u:index' q.user_id %}{% endif %}"
+               class="colorf3 font18" target="_blank">{{ q.nick_name }}</a>
+            <span class="time colorC0">{% date_convert q.create_date %}</span>
+        </h3>
+        <p class="color33">{{ q.comment }}</p>
+
+        <div class="txt_img">
+            <ul>
+                {% for real_m, m in q.materials %}
+                <li class="img_mc {% if q.materials|length == 1 %}
+                                  {% elif q.materials|length == 2 %}img_mc2
+                                  {% elif q.materials|length == 3 %}img_mc3
+                                  {% elif q.materials|length == 4 %}img_mc2{% endif %}">
+                    <img _src="{{ MEDIA_URL }}{{ real_m }}" src="{{ MEDIA_URL }}{{ m }}" data-tag='showBigImg'>
+                    <span class="ckdt">查看大图</span>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="parent_lower" data-discuss-id="{{ q.id }}">
+            <em class="reply" title="回复"></em>
+            <em value='1920' class="like {% if q.is_praise %}selected{% endif %}" title="点赞"></em>
+            {% if q.object_content %}
+            <span class="quiz_time question-current color6f">提问于 <span class="color4c">{{ q.object_content }}</span></span>
+            {% endif %}
+        </div>
+
+        <div class="parent_reply">
+            <div class="log_user_avatar">
+                <a href="{% url 'home:index' %}" title="{{ user.nick_name }}">
+                    <img src="{{ MEDIA_URL }}{{ user.avatar_middle_thumbnall }}" alt="{{ user.nick_name }}">
+                    {% if student_class %}
+                        <em title="直通班学员" class="role vip"></em>
+                    {% elif group_name == 'teacher' %}
+                        <em title="金牌老师" class="role gold_tea"></em>
+                    {% endif %}
+                </a>
+            </div>
+
+            <div class="input_area">
+                <textarea name="reply_content" id=""></textarea>
+            </div>
+
+            <div class="button">
+                <button name="cancel" class="cancel">取消</button>
+                <button name='submit' class="submit">回复</button>
+            </div>
+        </div>
+    </div>
+    <p class="more_discuss" value="查看剩余{{ q.child_post_count }}条回复↓" style="display: none">收起↑</p>
+    <dl class="children_discuss" style="display: none"></dl>
+</li>

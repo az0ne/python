@@ -1,0 +1,35 @@
+<ul class="nav nav-tabs nav-append-content">
+    {% if course %}
+
+    <li {% if tabs_active == "info" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:courses_edit' course.id %}">基本信息</a>
+    </li>
+    <li {% if tabs_active == "lessons" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:courses_edit_lessons' course.id %}">章节管理</a>
+    </li>
+    <li {% if tabs_active == "paper" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:courses_edit_paper' course.id %}">课程总测验</a>
+    </li>
+    <li {% if tabs_active == "project" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:courses_edit_project' course.id %}">项目制作</a>
+    </li>
+
+    {% else %}
+
+    <li class="active">
+        <a href="#">基本信息</a>
+    </li>
+    <li class="disabled">
+        <a href="javascript:void(0);">章节管理</a>
+    </li>
+    <li class="disabled">
+        <a href="javascript:void(0);">课程总测验</a>
+    </li>
+    <li class="disabled">
+        <a href="javascript:void(0);">项目制作</a>
+    </li>
+
+    {% endif %}
+</ul>
+
+

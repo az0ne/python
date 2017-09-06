@@ -1,0 +1,34 @@
+<div class="modal fade" id="myAgreement3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-content zy_myAgreement">
+        <p class="textC font30 color33">服务承诺</p>
+        <div class="zy_myAgreement_div">
+        	<div style="line-height: 1.4;">
+                <p>
+                    <b>一、教学内容</b><br><br>
+                    学员在保证正常的学习付出的前提下，学习时间一般为4-6个月，根据专业不同而设定不同。学习过程中以达到对应岗位的企业要求为目标，会包含日常视频学习、指导老师1V1指导，日常学习练习、任务考核等环节。<br><br>
+                    <b>二、教学过程</b><br><br>
+                    在学员的学习过程中，提供不少于3000分钟的1v1教学、就业服务。授课的主要内容是根据当学员的学习计划以及学生的学习进度，进行重难点讲解、项目经验分享、集中答疑、项目实战等内容的教学。<br>
+                    在同学的日常学习过程中，教师通过学生实际的学习过程，给予学习计划、疑问辅导等1V1服务，保证学习进度和学习效果。<br>
+                    学生在入学后一个月内，遵守各项学生守则并达到指定完成度的前提下，可以通过补足学费差额，申请从兴趣学习转为就业保障；申请通过后，补签就业保障协议。<br><br>
+                    <b>三、师资配备</b><br><br>
+                    每个学员由专业带班教师至少1人，督导老师1人，就业指导老师1人进行服务（就业班级配备）。<br>
+                    带班教师：主要负责学生学习计划、疑问辅导、根据学生作业和疑问情况给出正确的指导意见，帮助学生更好的掌握课程要求的知识内容。<br>
+                    督导老师：主要负责学员日常督促与管理，沟通协调教师和学员间的时间与进度，解决学员非专业性问题。<br>
+                    就业指导老师：主要负责有就业要求的同学的就业推荐服务、就业技能提升等课程内容。<br>
+                    <b>四、毕业标准</b><br><br>
+                    对于兴趣学习的同学，我们的毕业标准和就业班的标准是相同的。学员需要达到规定时间的学习和作业提交的完成度后，完成毕业设计项目并通过毕业设计答辩，才有资格获得麦子学院的毕业认证。<br>
+                    <b>五、投诉与举报</b><br><br>
+                    为了给予学员更好地服务体验与教学质量，欢迎学员对我们的服务各个环节给予监督和考察。对于影响学生学习效果和体验的任何情况，可以直接通过下面的联系方式进行建议与举报，我们会在第一时间给予处理及反馈：<br><br>
+                    邮箱：caliber@maiziedu.com &nbsp;&nbsp;chanpinyanfa@maiziedu.com<br>
+                    QQ：130313399<br>
+                    电话：400-862-8862<br>
+                    工作时间：周一至周五 10:00-17:00<br>
+                </p>
+
+            </div>
+        </div>
+        <p class="zy_myAgreementB">
+        	<label><input type="checkbox" id="myAgreement3_checkbox"><span>我知道了</span></label><a pd="3" class="bold font14 colorff a3 marginB10 greyBG" id="myAgreement3_submit">提交</a>
+        </p>
+    </div>
+</div>

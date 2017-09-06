@@ -1,0 +1,101 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}{{ lesson.name }}-{{ course.name }}-麦子学院{% endblock %}
+{% block keywords %}{% if seo.seo_keywords %}{{ seo.seo_keywords }}{% endif %}{% endblock %}
+{% block description %}{% if seo.seo_description %}{{ seo.seo_description }}{% endif %}{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet"  href="/static/css/mz_wap/course_style.css"/>
+{% endblock %}
+
+{% load date_convert_tag %}
+
+{% block container %}
+
+    <input id="need_pay" value="{% if course.need_pay %}True{% endif %}" type="hidden">
+    <!--若有class_id表示学生在lps系统里看视频-->
+    <input id="is_paid" value="{% if is_paid %}True{% endif %}" type="hidden">
+
+	<section class="course-banner">
+		<video autoplay controls="controls" preload="" poster="" src="{{lesson.video_url}}">
+            <source src="{{lesson.video_url}}" type="video/mp4">
+        </video>
+        <h2>{{ lesson.name }}</h2>
+	</section>
+	<div class="course-count">
+        <ul></ul>
+        <span><strong>{{lesson.play_count}}</strong>人正在学习</span>
+    </div>
+    <dl class="course-teacher">
+		<dt><a href="{% url 'teacher_detail' teacher.id %}"><img class="ui-imglazyload" data-url="{{ MEDIA_URL }}{{ teacher.avatar_url }}" alt="{{ teacher.nick_name }}老师" /></a></dt>
+		<dd>
+			<strong>{{ teacher.nick_name }}</strong>
+			<p>{{ teacher.description }}</p>
+		</dd>
+	</dl>
+	<article class="course-chapter" id="course-section">
+		<h3>课程章节</h3>
+		<ol>
+            {% for lsn in lesson_list %}
+            <li {% if lsn.id == lesson.id %}class="active"{% endif %}>
+				<a href="{% url 'lesson_detail' course.id lsn.id %}">{{ forloop.counter }}. {{ lsn.name }}</a>
+			</li>
+            {% endfor %}
+		</ol>
+		<span class="course-expand">展开全部</span>
+	</article>
+
+    {% if wiki_item_list %}
+    <article class="course-chapter" id="wiki">
+        <h3>WIKI资料<a href="{% url 'wiki_index' %}">更多 ></a></h3>
+        {% include 'mz_wap/module/div_wiki_lists.html' %}
+        <span class="course-expand">展开全部</span>
+    </article>
+    {% endif %}
+
+	<article class="course-exchange">
+		<h3>学习交流</h3>
+		{% if asks %}
+			<div id="common-list">
+				<ul>
+					{% for ask in asks %}
+					<li>
+						<p><img class="ui-imglazyload" data-url="{{MEDIA_URL}}{{ask.head}}" alt="{{ask.nick_name}}"/></p>
+						<div class="info">
+							<span>{% if ask.create_date %}<time>{% date_convert ask.create_date %}</time>{% endif %}<strong>{{ask.nick_name}}</strong></span>
+							<p>{{ask.comment}}</p>
+							{% if ask.c_nick_name %}
+							<div class="comment-next">
+								<p><img class="ui-imglazyload" src="{{MEDIA_URL}}{{ask.c_head}}" alt="{{ask.c_nick_name}}"></p>
+								<div class="info">
+									<span><strong>{{ask.c_nick_name}}</strong>{% if ask.c_group_name == 'teacher' %}<em>老师</em>{% endif %}</span>
+									<p>{{ ask.c_comment }}</p>
+								</div>
+							</div>
+							{% endif %}
+						</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+		{% else %}
+			<a href="javascript:void(0)" class="loading">暂无评论</a>
+		{% endif %}
+	</article>
+	<div class="course-down">
+		<a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.maiziedu.app">打开麦子学院手机端，随时离线学课程。</a>
+	</div>
+	<div class="bg"></div>
+	<div class="tips-box">
+		<span class="close-box"></span>
+		<div class="tips">
+			<h4></h4>
+			<p>免费体验只能学习前两个任务哦~, 报名学员即可进行完整学习.</p>
+			<a onclick="_MEIQIA('showPanel')">咨询小麦</a>
+		</div>
+	</div>
+{% endblock %}
+{% block custom_script %}
+    <script src="/static/js/mz_wap/zepto.js"></script>
+    <script src="/static/js/mz_wap/main.js"></script>
+    <script src="/static/js/mz_wap/imglazyload.js"></script>
+    <script src="{{STATIC_URL}}js/mz_wap/lesson_video_play.js"></script>
+{% endblock %}

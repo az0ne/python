@@ -1,0 +1,395 @@
+# -*- coding: utf-8 -*-
+
+from django.core.cache import cache
+from django.template import loader, RequestContext
+from django.http import HttpResponse, Http404
+
+import db.api.common.homepage
+from utils.logger import logger as log
+
+from mz_lps4.class_dict import CAREER_ID_TO_SHORT_NAME
+from db.api.course.career_course_intro import user_class_type, get_career_intro, get_career_intro_discuss, \
+    get_career_intro_tech_article, get_career_intro_student_article, free_class_start_time, get_career_course_info
+from utils.is_logined import is_logined
+from mz_course.models import CareerCourse, Stage, ShowStage, StudentProjectImage
+from db.api.lps.record import add_record_usercareer
+from mz_lps.models import Class, ClassStudents
+from django.db.models.aggregates import Sum, Count
+
+def web(request):
+    """web前端"""
+    # 游客读取首页缓存
+    # openid 第三方（QQ,微信）
+    # verify_email 验证邮箱
+
+    #购买课程按钮跳转代码开始
+
+    course_id = u'web'
+    result = get_career_course_info(course_id)
+    if result.is_error():
+        raise Exception('get_career_course_info')
+    career_course = result.result()
+    if not career_course:
+        raise Http404
+    career_id = career_course['id']
+    short_name = CAREER_ID_TO_SHORT_NAME.get(career_id)
+
+    data = {}
+
+    # user报名情况判断
+    user = request.user
+    if user.is_authenticated():
+        result = user_class_type(user_id=user.id, career_id=career_id)
+        is_normal_class = result.result()['is_normal_class']
+        if result.is_error():
+            raise Exception('user_class_type')
+            data.update(result.result())
+
+    # 购买课程按钮跳转代码結束
+
+    # if request.user.is_anonymous() and not request.GET.get('openid') and not request.GET.get('verify_email'):
+    #     html = cache.get('ad_web_html')
+    #     if html:
+    #         return HttpResponse(html)
+
+    t = loader.get_template('mz_line/web.html')
+    # 推荐课程
+    hot_courses = db.api.common.homepage.get_hot_course_list(_enable_cache=True)
+    if hot_courses.is_error():
+        hot_course_data_list = []
+    else:
+        hot_course_data_list = hot_courses.result()
+    try:
+        hot_course_datas = hot_course_data_list[1][1]
+    except Exception, e:
+        log.warn('e:{0}'.format(str(e)))
+        hot_course_datas = []
+
+        # data.update(
+        #     {
+        #         'career_id': career_id,
+        #         'short_name': short_name,
+        #         'course_id': course_id,
+        #         'hot_course_datas': hot_course_datas,
+        #         'is_normal_class': is_normal_class
+        #     }
+        # )
+
+    html = t.render(RequestContext(request, locals()))
+    # 游客保存首页缓存
+    if request.user.is_anonymous() and not request.GET.get('openid') and not request.GET.get('verify_email'):
+        cache.set('ad_web_html', html, 5 * 60)
+
+    return HttpResponse(html)
+
+
+def op(request):
+    """op"""
+    # 游客读取首页缓存
+    # openid 第三方（QQ,微信）
+    # verify_email 验证邮箱
+
+    # 购买课程按钮跳转代码开始
+
+    course_id = u'op'
+    result = get_career_course_info(course_id)
+    if result.is_error():
+        raise Exception('get_career_course_info')
+    career_course = result.result()
+    if not career_course:
+        raise Http404
+    career_id = career_course['id']
+    short_name = CAREER_ID_TO_SHORT_NAME.get(career_id)
+
+    data = {}
+
+    # user报名情况判断
+    user = request.user
+    if user.is_authenticated():
+        result = user_class_type(user_id=user.id, career_id=career_id)
+        is_normal_class = result.result()['is_normal_class']
+        if result.is_error():
+            raise Exception('user_class_type')
+            data.update(result.result())
+
+            # 购买课程按钮跳转代码結束
+
+    t = loader.get_template('mz_line/op.html')
+    # 推荐课程
+    hot_courses = db.api.common.homepage.get_hot_course_list(_enable_cache=True)
+    if hot_courses.is_error():
+        hot_course_data_list = []
+    else:
+        hot_course_data_list = hot_courses.result()
+    try:
+        hot_course_datas = hot_course_data_list[1][1]
+    except Exception, e:
+        log.warn('e:{0}'.format(str(e)))
+        hot_course_datas = []
+    # data.update(
+    #     {
+    #         'career_id': career_id,
+    #         'short_name': short_name,
+    #         'course_id': course_id,
+    #         'hot_course_datas': hot_course_datas,
+    #         'is_normal_class': is_normal_class
+    #     }
+    # )
+
+    html = t.render(RequestContext(request, locals()))
+    # 游客保存首页缓存
+    if request.user.is_anonymous() and not request.GET.get('openid') and not request.GET.get('verify_email'):
+        cache.set('ad_op_html', html, 5 * 60)
+
+    return HttpResponse(html)
+
+
+def pm(request):
+    """pm"""
+    # 游客读取首页缓存
+    # openid 第三方（QQ,微信）
+    # verify_email 验证邮箱
+
+    # 购买课程按钮跳转代码开始
+
+    course_id = u'npm'
+    result = get_career_course_info(course_id)
+    if result.is_error():
+        raise Exception('get_career_course_info')
+    career_course = result.result()
+    if not career_course:
+        raise Http404
+    career_id = career_course['id']
+    short_name = CAREER_ID_TO_SHORT_NAME.get(career_id)
+
+    data = {}
+
+    # user报名情况判断
+    user = request.user
+    if user.is_authenticated():
+        result = user_class_type(user_id=user.id, career_id=career_id)
+        is_normal_class = result.result()['is_normal_class']
+        if result.is_error():
+            raise Exception('user_class_type')
+            data.update(result.result())
+
+    # 购买课程按钮跳转代码結束
+
+    if request.user.is_anonymous() and not request.GET.get('openid') and not request.GET.get('verify_email'):
+        html = cache.get('ad_pm_html')
+        if html:
+            return HttpResponse(html)
+
+    t = loader.get_template('mz_line/pm.html')
+    # 推荐课程
+    hot_courses = db.api.common.homepage.get_hot_course_list(_enable_cache=True)
+    if hot_courses.is_error():
+        hot_course_data_list = []
+    else:
+        hot_course_data_list = hot_courses.result()
+    try:
+        hot_course_datas = hot_course_data_list[1][1]
+    except Exception, e:
+        log.warn('e:{0}'.format(str(e)))
+        hot_course_datas = []
+    # data.update(
+    #     {
+    #         'career_id': career_id,
+    #         'short_name': short_name,
+    #         'course_id': course_id,
+    #         'hot_course_datas': hot_course_datas,
+    #         'is_normal_class': is_normal_class
+    #     }
+    # )
+    html = t.render(RequestContext(request, locals()))
+    # 游客保存首页缓存
+    if request.user.is_anonymous() and not request.GET.get('openid') and not request.GET.get('verify_email'):
+        cache.set('ad_pm_html', html, 5 * 60)
+
+    return HttpResponse(html)
+
+
+def python(request):
+    """python"""
+    # 游客读取首页缓存
+    # openid 第三方（QQ,微信）
+    # verify_email 验证邮箱
+
+    # 购买课程按钮跳转代码开始
+
+    course_id = u'python'
+    result = get_career_course_info(course_id)
+    if result.is_error():
+        raise Exception('get_career_course_info')
+    career_course = result.result()
+    if not career_course:
+        raise Http404
+    career_id = career_course['id']
+    short_name = CAREER_ID_TO_SHORT_NAME.get(career_id)
+
+    data = {}
+
+    # user报名情况判断
+    user = request.user
+    if user.is_authenticated():
+        result = user_class_type(user_id=user.id, career_id=career_id)
+        is_normal_class = result.result()['is_normal_class']
+        if result.is_error():
+            raise Exception('user_class_type')
+            data.update(result.result())
+
+    # 购买课程按钮跳转代码結束
+
+    if request.user.is_anonymous() and not request.GET.get('openid') and not request.GET.get('verify_email'):
+        html = cache.get('ad_python_html')
+        if html:
+            return HttpResponse(html)
+
+    t = loader.get_template('mz_line/python.html')
+    # 推荐课程
+    hot_courses = db.api.common.homepage.get_hot_course_list(_enable_cache=True)
+    if hot_courses.is_error():
+        hot_course_data_list = []
+    else:
+        hot_course_data_list = hot_courses.result()
+    try:
+        hot_course_datas = hot_course_data_list[1][1]
+    except Exception, e:
+        log.warn('e:{0}'.format(str(e)))
+        hot_course_datas = []
+    # data.update(
+    #     {
+    #         'career_id': career_id,
+    #         'short_name': short_name,
+    #         'course_id': course_id,
+    #         'hot_course_datas': hot_course_datas,
+    #         'is_normal_class': is_normal_class
+    #     }
+    # )
+    html = t.render(RequestContext(request, locals()))
+    # 游客保存首页缓存
+    if request.user.is_anonymous() and not request.GET.get('openid') and not request.GET.get('verify_email'):
+        cache.set('ad_python_html', html, 5 * 60)
+
+    return HttpResponse(html)
+
+def ui(request):
+    """web前端"""
+    # 游客读取首页缓存
+    # openid 第三方（QQ,微信）
+    # verify_email 验证邮箱
+
+    # 购买课程按钮跳转代码开始
+
+    course_id = u'ui'
+    result = get_career_course_info(course_id)
+    if result.is_error():
+        raise Exception('get_career_course_info')
+    career_course = result.result()
+    if not career_course:
+        raise Http404
+    career_id = career_course['id']
+    short_name = CAREER_ID_TO_SHORT_NAME.get(career_id)
+
+    data = {}
+
+    # user报名情况判断
+    user = request.user
+    if user.is_authenticated():
+        result = user_class_type(user_id=user.id, career_id=career_id)
+        is_normal_class = result.result()['is_normal_class']
+        if result.is_error():
+            raise Exception('user_class_type')
+            data.update(result.result())
+
+    # 购买课程按钮跳转代码結束
+
+    if request.user.is_anonymous() and not request.GET.get('openid') and not request.GET.get('verify_email'):
+        html = cache.get('ad_ui_html')
+        if html:
+            return HttpResponse(html)
+
+    t = loader.get_template('mz_line/ui.html')
+    # 推荐课程
+    hot_courses = db.api.common.homepage.get_hot_course_list(_enable_cache=True)
+    if hot_courses.is_error():
+        hot_course_data_list = []
+    else:
+        hot_course_data_list = hot_courses.result()
+    try:
+        hot_course_datas = hot_course_data_list[1][1]
+    except Exception, e:
+        log.warn('e:{0}'.format(str(e)))
+        hot_course_datas = []
+    # data.update(
+    #     {
+    #         'career_id': career_id,
+    #         'short_name': short_name,
+    #         'course_id': course_id,
+    #         'hot_course_datas': hot_course_datas,
+    #         'is_normal_class': is_normal_class
+    #     }
+    # )
+    html = t.render(RequestContext(request, locals()))
+    # 游客保存首页缓存
+    if request.user.is_anonymous() and not request.GET.get('openid') and not request.GET.get('verify_email'):
+        cache.set('ad_ui_html', html, 5 * 60)
+
+    return HttpResponse(html)
+
+def ai(request):
+    """机器学习"""
+    # 游客读取首页缓存
+    # openid 第三方（QQ,微信）
+    # verify_email 验证邮箱
+
+    # 购买课程按钮跳转代码开始
+
+    # course_id = u'ai'
+    # result = get_career_course_info(course_id)
+    # if result.is_error():
+    #     raise Exception('get_career_course_info')
+    # career_course = result.result()
+    # if not career_course:
+    #     raise Http404
+    # career_id = career_course['id']
+    # short_name = CAREER_ID_TO_SHORT_NAME.get(career_id)
+    #
+    # data = {}
+    #
+    # # user报名情况判断
+    # user = request.user
+    # if user.is_authenticated():
+    #     result = user_class_type(user_id=user.id, career_id=career_id)
+    #     is_normal_class = result.result()['is_normal_class']
+    #     if result.is_error():
+    #         raise Exception('user_class_type')
+    #         data.update(result.result())
+    #
+    # # 购买课程按钮跳转代码結束
+    #
+    # if request.user.is_anonymous() and not request.GET.get('openid') and not request.GET.get('verify_email'):
+    #     html = cache.get('ad_ai_html')
+    #     if html:
+    #         return HttpResponse(html)
+
+    t = loader.get_template('mz_course/course_introduce/new_ai.html')
+    # 推荐课程
+    # hot_courses = db.api.common.homepage.get_hot_course_list(_enable_cache=True)
+    # if hot_courses.is_error():
+    #     hot_course_data_list = []
+    # else:
+    #     hot_course_data_list = hot_courses.result()
+    # try:
+    #     hot_course_datas = hot_course_data_list[1][1]
+    # except Exception, e:
+    #     log.warn('e:{0}'.format(str(e)))
+    #     hot_course_datas = []
+
+    html = t.render(RequestContext(request, locals()))
+    # 游客保存首页缓存
+    if request.user.is_anonymous() and not request.GET.get('openid') and not request.GET.get('verify_email'):
+        cache.set('ad_ai_html', html, 5 * 60)
+
+    return HttpResponse(html)
+

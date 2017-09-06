@@ -1,0 +1,41 @@
+<!-- user-banner -->
+<style>
+    #qwe .btn-warn{ display: none;}
+</style>
+<div class="user-banner">
+<div class="container">
+    <div class="column-layout user-banner-in">
+        <div class="column-col-m">
+            <div class="column-layout">
+                <div class="column-col-ml">
+                    <div class="u-photo-box"><a href="{{ FPS_HOST }}common/dynmsg/{{ userinfo.id }}" uid="{{ userinfo.id }}" class="u-photo" id="photo1"><img src="{{ userinfo.uImg }}" alt=""></a>{% if userinfo.uStatusStyle == 2 %}<i class="ico ico-umark-2"></i>{% elif userinfo.uStatusStyle == 1 %}<i class="ico ico-umark-1"></i>{% endif %}</div>
+                </div>
+                <div class="column-col-m column-full">
+                    <!-- 老师  -->
+                    <div dy-v="11-11-00-00" class="u-text-info">
+                        <span class="u-name">{{ userinfo.uName }}</span>
+                        {% if userinfo.uStatusStyle == 2 %}
+                            <span class="u-status u-teacher-status">
+                        {% elif userinfo.uStatusStyle == 1 %}
+                            <span class="u-status u-student-status">
+                        {% endif %}
+                        <span class="text">{{ userinfo.uStatus }}</span>
+                        </span>
+                        <span class="u-title">职位：{{ userinfo.uTitle }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;积分：<font style="color:#ffad0f;font-size:16px;font-weight:bold">{{ userinfo.points }}</font></span>
+                        <p class="u-introduction">{{ userinfo.uIntr }}</p>
+                    </div>
+                </div>
+                <div class="column-col-mr">
+                    <div class="u-else-box">
+                        <ul class="list-inline">
+                            <li><a href="{{ FPS_HOST }}common/social/?list_type=follows"><span class="i-num">{{ userinfo.gz }}</span><span class="i-type">关注</span></a></li>
+                            <li><a href="{{ FPS_HOST }}common/social/?list_type=fans"><span class="i-num">{{ userinfo.fs }}</span><span class="i-type">粉丝</span></a></li>
+                        </ul>
+                        <a dy-v="10-10-10-10" href="/home/settings/" class="btn btn-set"><i class="ico ico-set"></i><span class="ico-label-text">个人设置</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<title>高校专区</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="职业">
+<meta name="description" content="测试尘世">
+<meta name="baidu-site-verification" content="TlN38QiORE" />
+<link href="http://dev.microoh.com/static/css/base.css" rel="stylesheet">
+<link href="http://dev.microoh.com/static/css/microoh-v5.css" rel="stylesheet">
+<link href="http://dev.microoh.com/static/css/flat-ui.css" rel="stylesheet">
+<link href="../static/css/develop.css" rel="stylesheet">
+<link rel="shortcut icon" type="image/x-icon" href="http://dev.microoh.com/static/images/favicon.ico" />
+<!--[if lt IE 9]>
+<script src="http://dev.microoh.com/static/js/html5shiv.min.js"></script>
+<script src="http://dev.microoh.com/static/js/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="microoh-main">
+  <header class="navbar navbar-default navbar-fixed-top affix" data-offset-top="64">
+    <div class="container">
+      <div class="navbar-header"> <a class="navbar-brand" href="http://dev.microoh.com/" title="麦子学院"><img src="http://dev.microoh.com/static/images/logo.png"><img src="http://dev.microoh.com/static/images/logo-font.png"></a> </div>
+      <div class="collapse navbar-collapse" id="microoh-navbar-collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <li class="visible-xs visible-sm"><a href="http://dev.microoh.com/">首页</a></li>
+          <li><a href="http://dev.microoh.com/course/">企业直通班</a></li>
+          <li class="visible-md visible-lg"> <a href="http://bbstest.microoh.com">论坛</a> </li>
+          <li><a href="http://dev.microoh.com/common/apppage/">移动APP</a></li>
+        </ul>
+        <form class="navbar-form navbar-left" role="search" onSubmit="return false">
+          <div class="form-group"> <i class="v5-icon v5-icon-search"></i>
+            <input type="text" class="form-control" id="search" placeholder="搜索你感兴趣的课程">
+          </div>
+          <div class="search-dp" id="hotkeyword">
+            <!--推荐关键词-->
+            <div class="hotkeyword">
+              <h4>推荐搜索关键词</h4>
+              <ul class="cf">
+                <li>加载中……</li>
+              </ul>
+            </div>
+          </div>
+        </form>
+        <div class="v5-topbar-login">
+          <div class="v5-topbar-login-off"> <a href="#" onClick="login_popup()" class="visible-md visible-lg">登录</a> <a href="http://dev.microoh.com/user/mobile/login/" class="visible-xs visible-sm">登录</a> </div>
+        </div>
+        <div class="navbar-search-btn visible-xs visible-sm"> <a href="http://dev.microoh.com/common/mobile/search/" class="sch"></a> </div>
+      </div>
+      <div class="search-dp" id="keyword-group">
+        搜索结果
+        <div class="keyword-group scroll-pane">
+          <dl class="">
+            <dt>职业课程</dt>
+            <dd class="careercourses cf"></dd>
+          </dl>
+          <dl class="">
+            <dt>课程</dt>
+            <dd class="courses cf"></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!--  当前位置  -->
+  <!-- <div class="colleges-bg">
+    <div class="container visible-md visible-lg">
+      <ol class="breadcrumb">
+        <li><a href="http://dev.microoh.com/">首页</a></li>
+        <li class="active">高校专区</li>
+      </ol>
+    </div>
+  </div> -->
+
+
+  <!--  高校介绍  -->
+  <div class="colleges-wrap colleges-info colleges-info-top">
+    <div class="container">
+      <div class="row info-about">
+        <div class="col-md-3 col-lg-3">
+          <div class="img"><img src="/static/images/colleges/pic-12.png" alt=""/></div>
+        </div>
+        <div class="col-md-9 col-lg-9">
+          <div class="info">
+            <h3>四川大学</h3>
+            <p>四川大学（Sichuan University），简称川大，是中国“985工程”和“211工程”重点建设的大学之一，首批入选“2011计划”、“珠峰计划”、“卓越计划”、“111计划”的高校之一，是国家32所副部级大学之一，教育部批准建研究生院的56所高校之一，研究生自主划线的34所名牌大学之一，“国家海外高层次人才创新创业基地”。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--  专业课程  -->
+  <div class="colleges-wrap colleges-info">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+          <div class="colleges-info-col-l">
+            <div class="uc-h1">专业课程</div>
+            <ul class="course-list">
+              <li>
+                <div class="row">
+                  <div class="col-xs-12 col-md-3">
+                    <div class="pic" style="background-color: #9D7CD4"><i></i><img src="/static/images/colleges/pic-20.png" alt=""/></div>
+                  </div>
+                  <div class="col-xs-9 col-md-6">
+                    <div class="text">
+                      <div>
+                        <h2>iOS应用开发</h2>
+                        <span>教学探索</span>
+                      </div>
+                      <p class="desc">国内第一套系统全面深度的iOS8的职业课程，基于Swift语言，但同时会掌握OC，学习iOS应用开发各个方面，同时学习iOS8的新特性，学完简历会增加多个商业项目，具备相当于两年的iOS工程师经验</p>
+                      <p class="else"><img src="/static/images/colleges/pic-18.png" alt=""/>453人正在学习</p>
+                    </div>
+                  </div>
+                  <div class="col-xs-3 col-md-3">
+                    <div class="btn-box"><i></i><a class="btn" href="collegesLogin.html">立即学习</a></div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row">
+                  <div class="col-xs-12 col-md-3">
+                    <div class="pic" style="background-color:#46A4D4"><i></i><img src="/static/images/colleges/pic-09.png" alt=""/></div>
+                  </div>
+                  <div class="col-xs-9 col-md-6">
+                    <div class="text">
+                      <div>
+                        <h2>iOS应用开发</h2>
+                        <span>教学探索</span>
+                      </div>
+                      <p class="desc">国内第一套系统全面深度的iOS8的职业课程，基于Swift语言，但同时会掌握OC，学习iOS应用开发各个方面，同时学习iOS8的新特性，学完简历会增加多个商业项目，具备相当于两年的iOS工程师经验</p>
+                      <p class="else"><img src="/static/images/colleges/pic-18.png" alt=""/>453人正在学习</p>
+                    </div>
+                  </div>
+                  <div class="col-xs-3 col-md-3">
+                    <div class="btn-box"><i></i><a class="btn" href="collegesLogin.html">立即学习</a></div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="row">
+                  <div class="col-xs-12 col-md-3">
+                    <div class="pic" style="background-color: #FF7670"><i></i><img src="/static/images/colleges/pic-19.png" alt=""/></div>
+                  </div>
+                  <div class="col-xs-9 col-md-6">
+                    <div class="text">
+                      <div>
+                        <h2>iOS应用开发</h2>
+                        <!-- <span>教学探索</span> -->
+                      </div>
+                      <p class="desc">国内第一套系统全面深度的iOS8的职业课程，基于Swift语言，但同时会掌握OC，学习iOS应用开发各个方面，同时学习iOS8的新特性，学完简历会增加多个商业项目，具备相当于两年的iOS工程师经验</p>
+                      <p class="else"><img src="/static/images/colleges/pic-18.png" alt=""/>453人正在学习</p>
+                    </div>
+                  </div>
+                  <div class="col-xs-3 col-md-3">
+                    <div class="btn-box"><i></i><a class="btn" href="collegesLogin.html">立即学习</a></div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+          <div class="colleges-info-col-r">
+            <div class="uc-h1">院校通知</div>
+            <ul class="notice-list">
+              <li><a href="##">院校通知的标题</a></li>
+              <li><a href="##">院校通知的标题</a></li>
+              <li><a href="##">院校通知的标题</a></li>
+              <li><a href="##">院校通知的标题</a></li>
+            </ul>
+            <div class="notice-list-more"><a href="##">查看更多</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="v5-footer colleges-foot">
+    <div class="container">
+      <div class="v5-footer-bottom">
+        <p>© 2012-2014 <a href="www.maiziedu.com">maiziedu.com</a> | 服务条款 | 蜀ICP备13014270号-4 Version 4.0.1 release20140721.1</p>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="/static/js/jquery-1.11.1.min.js"></script>
+  <script></script>
+</body>
+</html>

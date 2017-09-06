@@ -1,0 +1,19 @@
+<svg id="uic3-list-pic01" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="174" height="174" viewBox="0 0 174 174">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #14ddab;
+        filter: url(#filter);
+      }
+    </style>
+    <filter id="filter" x="0" y="0" width="174" height="174" filterUnits="userSpaceOnUse">
+      <feOffset result="offset" dy="5" in="SourceAlpha"/>
+      <feGaussianBlur result="blur" stdDeviation="6.782"/>
+      <feFlood result="flood" flood-color="#14ddab" flood-opacity="0.18"/>
+      <feComposite result="composite" operator="in" in2="blur"/>
+      <feBlend result="blend" in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <circle id="椭圆_6" data-name="椭圆 6" class="cls-1" cx="86.5" cy="81.5" r="41.5"/>
+  <image id="教学" x="65" y="62" width="43" height="40" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAoCAMAAABQF/NcAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABdFBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8AAADwyHpWAAAAenRSTlMADLncMpLdwfKNi9b8tZXwtOIDJRKl7xNprSyB2AroZx8mWru+ivTjWwVMegddzyB0RFTaGdlRwBVVygQLT0GQdgEWGMf3bA0OsS+C7e71v+f7HqEkVraJq6SXw/GYmf6I06b4+t/lyyIUYjm9lnFcrnByG2PzXuvmJ3wT/zgAAAABYktHRACIBR1IAAAACXBIWXMAABYlAAAWJQFJUiTwAAABlElEQVQ4y7WUV1PCQBSFl1iwIEECKIoF7AV7x4ax916x997b/fXuJSaT3QTcF89L5p75ZnPumU2IQwIxZWSSLEEUIJs4ISc3T0D54CIFlBeRG2TigUJvclB8aVk/BHS2yAlysSAbxPQlaJaGeBWUsWw5shXIuqwNVLKsH70wshGpSmJUXeNlWYentq5eMC/drkG0hz9lZhvzmpoF2ShdrSUJt7bxaufYDOyhA81Oa2ddLNuNXg+yvVa2j2X7qTUQQ3ZwiJfC7zY8Mhr/j85IeEyUVcdhYlJzp6YdjHw8O4P7zqI5F5DnzVpYXOLu5LJxJ1esna2y7Bp668hubPLainF3cnulrkNgN61XNX11O5QV/eZ36Te/B4n9g7/lDsEhORL+Rx0T78np2a9Oz9HSpzMcLhLGeHlFk4ypmq6T77hRdd0mAO7KpvSRjR85BIiaZkUGuLff9IGe+sg4SgAgKIZSmMZ4skejFjcs28B2p6aI8Wx7qh7DDMdfUqJaG0+DxviaBtUyvxlTs/T+QVJL+fz6xucPkuQBSKGbn9IAAAAASUVORK5CYII="/>
+</svg>

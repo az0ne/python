@@ -1,0 +1,62 @@
+<ul class="d-task-list">
+    {% for knowledge in knowledges %}
+        <li class="{% if forloop.first %}first{% else %}d-odd{% endif %}
+                   {% if knowledge.is_done %}complete{% endif %}
+                   {% if knowledge.knowledge_id == current_knowledge_id or task_is_guide%}active activeH {% endif %}
+                   ">
+            <div class="clearfix ">
+                <span class="bold">{{ forloop.counter }}.{{ knowledge.name }}</span>
+                <span class="fr"><i class="d-icon-plus"></i></span>
+            </div>
+            <ol class="zyleve1">
+                {% for item in knowledge.get_items %}
+                    <li class="{% if item.id == current_item.id %}liH{% endif %}">
+                        {% if item.is_lesson or item.can_be_unlocked or not item.is_undo %}
+                            <a href="{% url 'lps3:student_knowledgeitem' class_id stagetask_id item.id %}">
+                        {% else %}
+                            <a desc="unlock">
+                        {% endif %}
+
+                        {% if item.is_doing and not item.is_lesson %}
+                            <input type="hidden" desc="unfinish" class="zyunfinish">
+                        {% elif item.can_be_unlocked %}
+                            <input type="hidden" desc="unfinish" class="zyunfinish">
+                        {% endif %}
+
+                        <span class="fl">
+                            <i class="
+                            {% if item.obj_type == "LESSON" %}d-icon-lesson-video
+                            {% elif item.obj_type == "CODE" %}d-icon-lesson-data
+                            {% elif item.obj_type == "TEST" %}d-icon-lesson-note
+                            {% elif item.obj_type == "PROJECT" %}d-icon-lesson-code
+                            {% endif %}                            
+                            {% if item.is_doing %}half
+                            {% elif item.is_done %}complete{% endif %}
+                            "></i>
+                            {{ forloop.parentloop.counter }}.{{ forloop.counter }}.{{ item.get_name }}
+                        </span>
+                        {% if item.id == current_item.id %}<span class="color5e font12 marginR10">最近学习</span>{% endif %}
+                        {% if item.obj_type == "LESSON" %}
+                            <span class="color99 font12 marginR10">{{ item.get_video_length }}</span>
+                        {% endif %}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ol>
+        </li>
+    {% endfor %}
+    <li class="last {% if not usertask.is_going %}complete{% endif %}">
+        <div class="clearfix ">
+            <i class="project-do">项目制作</i>
+
+            {% if all_items_have_done or usertask.has_done %}
+                <a href="{% url 'lps3:student_project_task' class_id stagetask_id %}">
+            {% else %}
+                <a hid_href="{% url 'lps3:student_project_task' class_id stagetask_id %}">
+            {% endif %}
+            <span>{{ usertask.stage_task.task.project.title }}</span>
+            </a>
+        </div>
+    </li>
+
+</ul>

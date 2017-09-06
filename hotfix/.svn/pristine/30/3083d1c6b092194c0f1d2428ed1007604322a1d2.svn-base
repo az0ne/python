@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=0.5,maximum-scale=0.5,user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>APP分享落地页</title>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/microCourseStyle.css"/>
+</head>
+<body>
+<div class="appShare">
+    <h2>{{ careerCourseName.name }}任务地图</h2>
+    <ul>
+        {% if courseStages %}
+            {% for courseStage in courseStages %}
+                <li>
+                <h3>{{ courseStage.name }}</h3>
+                {% for  courseTask in courseTasks %}
+                    {% ifequal courseStage.id courseTask.careerCourse_id %}
+                        {% if forloop.counter == 1 %}
+                            <dl class="active">
+                                <dt><span>开始学习</span></dt>
+                                <dd><strong title="{{ courseTask.task_name|default_if_none:"无任务" }}">
+                                    {{ courseTask.task_name|default_if_none:"无任务" }}</strong></dd>
+                            </dl>
+                        {% else %}
+                            <dl>
+                                <dt><span></span></dt>
+                                <dd><strong title="{{ courseTask.task_name|default_if_none:"无任务" }}">
+                                    {{ courseTask.task_name|default_if_none:"无任务" }}</strong></dd>
+                            </dl>
+                        {% endif %}
+                    {% endifequal %}
+                {% endfor %}
+            {% endfor %}
+        {% else %}
+            <h1 style="color: crimson;text-align: center">无任何课程阶段</h1>
+        {% endif %}
+
+    </ul>
+    <div class="apply">
+        <a href="http://a.app.qq.com/o/simple.jsp?pkgname=com.maiziedu.app">打开应用</a>
+        <span>在线学习好助手</span>
+    </div>
+    <a href="{% url 'index_front' %}" class="more">了解更多</a>
+</div>
+</body>
+</html>

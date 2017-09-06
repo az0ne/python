@@ -1,0 +1,45 @@
+<form id="classmeeting_info" class="modal-dialog modal-sm modal-content zy_myClassmeeting" method="post"
+      action="{% url 'lps3:create_classmeeting' %}" autocomplete="off">
+    {#        <div class="modal-dialog modal-sm modal-content zy_myClassmeeting">#}
+    <a class="zy_newclose"></a>
+
+    <p class="color5e font18 pt">新建班会</p>
+
+    <div class="zy_myClassmeeting_div">
+        <table>
+            <tr>
+                <td style="width:84px;">班会主题<span class="colorf10">*</span></td>
+                <td><input name="subject" type="text" class="zy_mypersonal_txt zy_mypersonal_txt0" placeholder="二十字以内" maxlength="20"></td>
+            </tr>
+            <tr>
+                <td>日期<span class="colorf10">*</span></td>
+                <td><input name="date" type="text" class="zy_mypersonal_txt datetimepicker2 zy_mypersonal_txt1"
+                           placeholder="年/月/日"></td>
+            </tr>
+            <tr>
+                <td>时间<span class="colorf10">*</span></td>
+                <td><input name="time" type="text" class="zy_mypersonal_txt datetimepicker1 zy_mypersonal_txt2"
+                           placeholder="00:00"
+                           max="10"></td>
+            </tr>
+            <tr>
+                <td>参加班级<span class="colorf10">*</span></td>
+                <td class="joinClass">
+                    <div class="joinClass_div"><span title="{{ tclass }}"><i>{{ tclass }}</i></span></div>
+                    <input id="joinClass" name="joinClass" type="hidden" value="{{ tclass }}">
+                    <a class="joinClassBtn"><i class="i1"></i><i class="i2"></i>
+                        <div class="sreachClass">
+                            <p><img src="{{ STATIC_URL }}mz_lps3/images/sreachbg.png"><input type="text" class="sreachClassTxt"></p>
+                            <div class="sreachClass_div"></div>
+                        </div>
+                    </a>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="zy_mytask_foot textC">
+        <a type="button" id="classmeeting_info_submit" class="bold font14 colorff a3 marginB10" onclick="classmeeting_form_submit()">创建</a>
+    </div>
+
+</form>

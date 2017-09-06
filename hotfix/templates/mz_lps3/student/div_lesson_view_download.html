@@ -1,0 +1,17 @@
+<p class="font16 color33 pt marginB16">课件</p>
+<div class="playlist3 scroll-pane" style="overflow:hidden;">
+    <ul class="zrjiaoxue">
+        {% load  download_icon_tag %}
+        {% for item in course_resource_list %}
+            <!--<li class="font14"><img src="{% download_icon item.download_url %}">{{ item.name }}-->
+            <li class="font14"><img src="{{ STATIC_URL }}mz_lps3/images/rar.png"><span class="ss title">{{ item.name }}</span>
+                <a class="colorff a" href="{{ MEDIA_URL }}{{ item.download_url }}">下载</a>
+            </li>
+        {% endfor %}
+        {% for item in lesson_resource_list %}
+            <li class="font14"><img src="{{ STATIC_URL }}mz_lps3/images/rar.png"><span class="ss title">{{ item.name }}</span>
+                <a class="colorff a" href="{{ MEDIA_URL }}{{ item.download_url }}">下载</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>

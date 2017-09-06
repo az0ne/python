@@ -1,0 +1,141 @@
+* { padding: 0px; margin: 0px; }
+
+.breadcrumb { margin-bottom: 0; padding: 20px 0; border-radius: 2px; list-style: outside none none; font-size: 14px; color: #81918e; }
+
+.breadcrumb a { text-decoration: none; color: #81918e; }
+
+.breadcrumb > li { display: inline-block; }
+
+.breadcrumb > li + li:before { color: #ccc; content: ">"; padding: 0 5px; }
+
+#left-bar { width: 260px; outline: 1px #e2e2e2 solid; float: left; }
+
+#left-bar li { cursor: pointer; height: 49px; list-style-type: none; padding-left: 40px; color: #81918e; font-size: 16px; font-weight: bold; }
+
+#left-bar li a { color: #81918e; }
+
+.buttom-border { border-bottom: 1px #e2e2e2 solid; }
+
+#left-bar .cur a { color: #5ecfba; }
+
+#left-bar li span { display: block; }
+
+.en { font-size: 12px; }
+
+.cn { margin-top: 15px; }
+
+#tab .tabCon { float: left; position: relative; }
+
+#p1, #p2, #p3 { font-size: 14px; color: #323232; }
+
+#tab .tabCon div.cur { display: block; filter: alpha(opacity=100); }
+
+#tab .tabCon div h2 { padding-top: 20px; color: #5ecfba; }
+
+#tab .tabCon { padding-left: 30px; }
+
+#tab .tabCon div h3 { color: #323232; padding-bottom: 10px; }
+
+.line { margin-top: 50px; display: block; }
+
+.line p { line-height: 20px; }
+
+.ico { display: block; margin-top: 50px; position: relative; }
+
+.ico li { list-style-type: none; width: 58px; height: 58px; margin-right: 20px; float: left; cursor: pointer; }
+
+#qq { background: url(../Images/qq.png); }
+
+#qq:hover { background: url(../Images/qq-hover.png); }
+
+#sina { background: url(../Images/sina.png); }
+
+#sina:hover { background: url(../Images/sina-hover.png); }
+
+#wx { background: url(../Images/wx.png); }
+
+#wx:hover { background: url(../Images/wx-hover.png); }
+
+#qun, #ewm { display: block; }
+
+#qun { width: 140px; height: 48px; background: url(../Images/qq-alert.png); position: absolute; top: -45px; text-align: center; line-height: 40px; display: none; }
+
+#ewm { width: 143px; height: 147px; background: url(../Images/wx-alert.png); position: absolute; display: block; left: 150px; top: -140px; display: none; }
+
+.map { height: 300px; width: 700px; margin-top: 30px; display: block; }
+
+.ad { width: 840px; height: 77px; display: block; }
+
+.buttons { padding-top: 60px; padding-bottom: 50px; }
+
+.buttons li { float: left; width: 110px; height: 40px; border: 1px solid #5ecfba; list-style-type: none; text-align: center; line-height: 40px; margin-right: 10px; color: #5ecfba; }
+
+.buttons li:hover { color: #ffffff; background: #5ecfba; }
+
+/*意见反馈*/
+.font24{ font-size:24px;}
+input{ vertical-align:middle;}
+.inradio{ color:#666666; margin-right:10px;}
+.inradio input{ margin-right:6px;}
+.yjtxt{ border:1px solid #cccccc; border-radius:3px; background:#ffffff; padding:4px; width:218px;}
+.zytabCon p{ margin-bottom:30px;}
+.yjbtn{ background:#5ecfba; color:#ffffff; width:100px; height:36px; line-height:36px; text-align:center; border:0;}
+.poPzy{ position:relative;}
+.poPzy>a{ position:absolute; right:0; top:-22px; color:#1bbc9b;}
+.poPzy>a:hover{ text-decoration:underline;}
+.zzedit{ width:100%; margin-bottom:10px;}
+.zy_list_tit{ position:relative; color:#999; font-size:14px; border-bottom:1px solid #d9d9d9; padding-bottom:10px; width:100%;}
+.zy_list_tit a{ margin-right:30px; color:#999;}
+.zy_list_tit a.aH{ color:#666666; font-size:16px;}
+a.goFK{ margin:0 !important; color:#1bbc9b; position:absolute; right:0; top:0;}
+a.goFK:hover{ text-decoration:underline;color:#1bbc9b;}
+.tabFeedback>div{display: none;font-size: 12px;}
+.tabFeedback>div.cur{display: block;}
+.pagination-a .pagination>li>a{border: none;background-color: #f1eff0;margin-right: 5px;}
+.pagination-a .pagination>li>a:hover{background-color: #e5e3e4;}
+.tabFeedback .zypage_div{vertical-align: middle;}
+.tabFeedback .zypage{font-size: 12px;color: #999;}
+.tabFeedback .zypageTxt,.tabFeedback .zypageBtn{height: 25px;font-size: 12px;line-height: normal;}
+.tabFeedback .zypageTxt{width: 38px;color: #999;border-color: #f0f0f0;}
+.tabFeedback .zypageBtn{width: 42px;background-color: #fff;color: #666;border: 1px solid #f0f0f0;}
+.tabFeedback .no-feedback{text-align: center;color: gray;font-size: 32px;padding-top: 67px;}
+.pagination-a .pagination > li > span{border: none;margin-right: 5px;}
+.pagination-a .pagination > li > span:hover{background-color: none;}
+.pagination-a .pagination>li>.active, .pagination-a .pagination>li>.active:hover{background-color: #5ecfba!important;color: #fff;}
+.zy_list_ul{ display:table;}
+.zy_list_ul img{ max-width:100%;}
+.zy_list_ul>li{ float:left; width:100%; border-bottom:1px solid #ececec; padding:20px 0;}
+.zy_list_ul_img{ width:50px; float:left;margin-right:16px;}
+.zy_list_ul_img a{ display:block; width:50px; overflow:hidden; height:50px; border-radius:50%;}
+.zy_list_ul_font{ width:772px; float:left; line-height:1.8; }
+.zy_list_ul_font .pt{ color:#666666;}
+.zy_list_ul_font .pt span{ color:#bbbbbb; margin-left:24px;}
+.zy_list_ul2{ display:table; padding-top:20px; width:100%;}
+.zy_list_ul2>li{ float:left; width:100%; border-top:1px solid #ececec; padding-top:20px; box-sizing:border-box; margin-bottom:10px;}
+.zy_list_ul2>li:last-child{ margin-bottom:0;}
+.zy_list_ul_font2{margin-left:64px;line-height:1.8; }
+.zy_list_ul_font2 .pt span{ color:#bbbbbb; margin-left:24px;}
+
+a{ cursor:pointer !important;}
+.verror{ color:red; margin-left:10px; position: absolute; bottom: -24px; left: 78px;}
+.validerror{ border: 1px solid red;}
+.zytabCon table td{ position: relative;}
+.zytabCon table td span.vright{ display: none; }
+.zytabConZ{margin-top: 30px;}
+.zytabConZ .verror{ position: relative; bottom: auto; left: auto;}
+.zytabCon .visible label{font-weight: normal;margin-left:30px;}
+.zytabCon .visible input{display: inline-block;vertical-align: middle;margin-top: -2px;}
+.feedbackClosed{color: #fff;margin: 0 auto;background-color: #5ecfba;width: 126px;height: 36px;text-align: center;line-height: 36px;border-radius: 3px;display: block;}
+.feedbackClosed:hover{color: #fff;}
+.microoh-main{background: #f5f5f5; padding-top: 30px;}
+.feedbackmain{padding:0;}
+
+
+/*?意见反馈 */
+.zy_list_ul_font .pt span.readyAccept {
+	background: #5ecfba;font-size: 10px;color: #fff;border-radius: 2px;
+	padding: 0 5px;margin-left: 5px;text-align: center;box-sizing:border-box;
+}
+@media (max-width: 1200px) { #left-bar { display: none; }
+  .ad { display: none; }
+  .buttons { display: none; } }

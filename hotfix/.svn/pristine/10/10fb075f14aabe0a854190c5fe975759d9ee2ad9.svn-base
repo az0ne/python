@@ -1,0 +1,185 @@
+@import 'core/reset';
+@import 'core/common';
+@import 'core/var';
+@import 'core/function';
+
+$bg: url(../images/video_play/video_play_icon.png) 0 0 no-repeat;
+.zyNewVideo_main {
+    height: 100%;
+    position: relative;
+}
+
+.zvideo_index {
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+
+    .bottom-module {
+        width: 100%;
+        height: 60px;
+        background-color: #121212;
+        .title{
+            margin-left: 20px;
+            @include font_3_key(20px,60px,#b2b2b2);
+        }
+        .down-load,.share{
+            display: inline-block;
+            margin-right: 40px;
+            position: relative;
+            @include font_3_key(18px,60px,#666);
+            i{
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 10px;
+                background: $bg;
+            }
+            &:hover{
+                color: #fff;
+                i{
+                    background-position-x: -150px;
+                }
+            }
+        }
+        .down-load{
+            i{  
+                height: 22px;
+                width: 17px;
+                background-position: -100px -41px;
+            }
+            &:hover{
+                .weixin-box {
+                    visibility: visible; 
+                    opacity: 1; 
+                    filter: alpha(opacity=100); 
+                    -webkit-transform: scale(1); 
+                    -ms-transform: scale(1); 
+                    transform: scale(1);
+                }
+            }
+        }
+        .share{
+            i{
+                height: 22px;
+                width: 22px;
+                background-position: -100px -205px;
+            }
+            &:hover{
+                .jiathis_style {
+                    visibility: visible; 
+                    opacity: 1; 
+                    filter: alpha(opacity=100); 
+                    -webkit-transform: scale(1); 
+                    -ms-transform: scale(1); 
+                    transform: scale(1);
+                }
+            }
+        }
+        .jiathis_style {
+            width: 138px;
+            height: 46px;
+            font-size: 0;
+            padding: 0 6px;
+            border-radius: 2px;
+            z-index: 1500;
+            background: rgba(255, 255, 255, 1);
+            position: absolute;
+            left: -39px;
+            bottom: 68px;
+            max-width: 138px;
+            -webkit-transition: opacity 0.25s,transform 0.3s;
+            -moz-transition: opacity 0.25s,transform 0.3s;
+            transition: opacity 0.25s,transform 0.3s;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            -webkit-transform: scale(0.01);
+            -ms-transform: scale(0.01);
+            transform: scale(0.01);
+            -webkit-transform-origin: center bottom;
+            -ms-transform-origin: center bottom;
+            transform-origin: center bottom;
+            &:after {
+                content: '';
+                width: 0;
+                height: 0;
+                position: absolute;
+                left: 61px;
+                bottom: -16px;
+                border-top: 8px solid rgba(255, 255, 255, 1);
+                border-right: 8px solid transparent;
+                border-bottom: 8px solid transparent;
+                border-left: 8px solid transparent;
+            }
+            a {
+                display: inline-block;
+                width: 34px;
+                height: 34px;
+                margin: 6px 4px;
+                background: $bg;
+                .jtico {
+                    display: none !important;
+                }
+                &:hover {
+                    background-position-x: -150px;
+                }
+            }
+            .jiathis_button_cqq {
+                background-position: -100px -73px;
+            }
+            .jiathis_button_qzone {
+                background-position: -100px -117px;
+            }
+            .jiathis_button_tsina {
+                background-position: -100px -161px;
+            }
+        }
+        .weixin-box {
+            background-color: rgba(255,255,255,1);
+            width: 118px;
+            border-radius: 2px;
+            z-index: 1500;
+            position: absolute;
+            left: -9px;
+            bottom: 68px;
+            -webkit-transition: opacity 0.25s,transform 0.3s;
+            -moz-transition: opacity 0.25s,transform 0.3s;
+            transition: opacity 0.25s,transform 0.3s;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            max-width: 118px;
+            -webkit-transform: scale(0.01);
+            -ms-transform: scale(0.01);
+            transform: scale(0.01);
+            -webkit-transform-origin: center bottom;
+            -ms-transform-origin: center bottom;
+            transform-origin: center bottom;
+            &:after {
+                content: '';
+                width: 0;
+                height: 0;
+                position: absolute;
+                left: 51px;
+                border-top: 8px solid rgba(255,255,255,1);
+                border-right: 8px solid transparent;
+                border-bottom: 8px solid transparent;
+                border-left: 8px solid transparent;
+            }
+            em {
+                display: block;
+                margin: 4px;
+                width: 110px;
+                height: 110px;
+                background: url(../images/application_QRcode.png) 0 0 no-repeat;
+                background-size: cover;
+
+            }
+            p {
+                font-size: 12px;
+                line-height: 12px;
+                margin-bottom: 6px;
+                color: #333;
+                text-align: center;
+            }
+        }
+    }
+}

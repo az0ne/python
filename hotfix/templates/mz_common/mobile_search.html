@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>搜索</title>
+<link href="/static/css/base.css" rel="stylesheet">
+<link href="/static/css/microoh-v5.css" rel="stylesheet">
+<link href="/static/css/animate.css" rel="stylesheet">
+<link href="/static/css/develop.css" rel="stylesheet">
+<!--[if lt IE 9]>
+<script src="/static/js/html5shiv.min.js"></script>
+<script src="/static/js/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+
+<div class="container-fluid page-search">
+<div class="wap_top textC" style="position: relative;">
+	<a href="/" class="colorff" style="color: #ffffff;">麦子学院</a>
+    <div class="wap_top_tou">
+        {% if not user.is_authenticated %}
+        <a href="{% url 'user:mobile_login_view' %}" style="border-radius: inherit; overflow: inherit; width: 100px; text-align: left; color: #ffffff; margin-top: 7px; font-size: 16px;">登录</a>
+        {% else %}
+    	<a><img src="/uploads/{{user.avatar_url}}"></a>
+        <div class="wap_top_tou_menu">
+        	<i></i>
+        	<ul>
+            	<li><a href="{{ FPS_HOST }}chat/?type=system">我的消息{% if new_message_count > 0 %}<span class="color5e">{{ new_message_count }}</span>{% endif %}</a></li>
+                <li><a href="{{ FPS_HOST }}common/dynmsg/{{ user.id }}/">个人中心</a></li>
+                <li><a href="/user/logout/" class="color5e">退出</a></li>
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+    <a href="/common/mobile/search/" class="wap_top_a"><img style="width: 18px;" src="{{ FPS_HOST }}static/iphone/images/wap_u8.png"></a>
+</div>
+  <div id="microoh-navbar-collapse">
+    <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <i class="v5-icon v5-icon-search"></i>
+        <input type="text" class="form-control" id="search" placeholder="搜索你感兴趣的课程">
+      </div>
+      <div class="search-dp" id="hotkeyword">
+      	<!--推荐关键词-->
+        <div class="hotkeyword">
+          <h4>推荐搜索关键词</h4>
+          <ul class="cf">
+              <li>加载中……</li>
+          </ul>
+        </div>
+      </div>
+      <!--搜索结果-->
+      <div class="search-dp" id="keyword-group">        
+        <div class="keyword-group scroll-pane">
+          <dl>
+            <dt>职业课程</dt>
+            <dd class="careercourses cf">
+
+            </dd>
+          </dl>
+          <dl>
+            <dt>其他课程</dt>
+            <dd class="courses cf">
+
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+    </form>  
+  </div>  
+</div>
+
+<script src="/static/js/jquery-1.11.1.min.js"></script>
+<script src="/static/js/jquery.placeholder.js"></script>
+<script src="/static/js/mz-common.js"></script>
+<script src="/static/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/static/js/jquery.mousewheel.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/microoh-v5.js"></script>
+<script src="/static/js/ie10-viewport-bug-workaround.js"></script>
+<script type="text/javascript">
+$(function() {
+  
+});
+</script>
+</body>
+</html>

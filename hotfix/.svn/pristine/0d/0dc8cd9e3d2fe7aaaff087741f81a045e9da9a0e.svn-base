@@ -1,0 +1,26 @@
+<div class="modal fade YaHei" id="live-ready" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm" style="width: 625px;">
+        <div class="modal-content">
+            <a class="close"></a>
+			<ul class="tab-box">
+				<li class="web">
+					<h5 class="web select">网页端直播</h5>
+					<p>免安装进入</p>
+					<p class="video-sound">视频语音</p>
+					<p>与老师交流互动</p>
+					<p>查看老师演示</p>
+					<a class="come-into" href="" target="_blank">进入</a>
+				</li>
+				<li class="client">
+					<h5 class="client">客户端直播</h5>
+					<p class="installation">免安装进入</p>
+					<p>视频语音</p>
+					<p>与老师交流互动</p>
+					<p>查看老师演示</p>
+					<a href="" target="_blank">进入</a>
+				</li>
+			</ul>
+        </div>
+    </div>
+</div>

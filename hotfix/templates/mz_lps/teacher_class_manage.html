@@ -1,0 +1,133 @@
+{% extends "mz_common/base.html" %}
+
+{% block title %} 管理班级 {% endblock %}
+
+{% block breadcrumb %}
+
+{% if user.is_teacher %}
+    {% include "mz_user/teacher_header.html" %}
+{% endif %}
+
+<div class="container">
+<ol class="breadcrumb">
+    <li><a href="{% url 'user:teacher_center' %}">{% if request.user.is_academic_teacher %}我的专业{% else %}我的班级{% endif %}</a></li>
+    <li class="active">{{ class_.career_course.name }}{% if not request.user.is_academic_teacher %} {{ class_.display_name }} {% endif %}</li>
+</ol>
+</div>
+{% endblock %}
+{% block container %}
+<div class="container">
+    <div class="online-player"><div class="all-new"></div>
+        {% if live_room != None %}
+        <div id="live-online" class="row chart-legend chart-legend-online">
+            <span class="legend"><span class="video-recorder"></span><span class="online-font">我的直播室</span></span>
+            <div class="flats"><input type="checkbox"{% if live_room.live_is_open == 1 %} checked {% endif %}data-live_id="{{ live_room.live_id }}" data-toggle="switch" id="switch-online" /></div>
+            <a id="join_class_btn" class="btn btn-micv5" href="{% url 'lps:live_play' %}?live_id={{ live_room.live_id }}" target="_blank" style="float:right;{% if live_room.live_is_open == 1 %}display: block;{% else %}display: none;{% endif %}">进入我的教室</a>
+        </div>
+        {% else %}
+        <div id="live-offline" class="row offline-chart-legend chart-legend-online">
+            <span class="offline-legend"><span class="video-recorder"></span><span class="offline-font">尚未开通直播室</span></span>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<div class="container uc-boxb">
+    <h4>{{ class_.career_course.name }}{% if not request.user.is_academic_teacher %} {{ class_.display_name }} {% endif %}</h4>
+    <div class="chart-column-box">
+    <div id="chart-column-a" class="chart-column">
+        <div class="chart-column-x">
+            <div class="chart-title-x">学员通过课程数情况</div>
+            <div class="chart-title-y">总课程数</div>
+            <div class="scroll-pane-tc scroll-pane">
+                <div class="chart-row">
+                    {% for student in students %}
+                    <div class="chart-col-box" data-course-total="{{ student.passed_courses_count }}">
+                        <div class="chart-col">
+                            <div class="chart-name">{% if request.user.is_academic_teacher %}{{ student.user.real_name }}{% else %}{{ student.user.nick_name }}{% endif %}</div>
+                            <div class="chart-bar"></div>
+                            <div class="chart-portrait"><a href="{% url 'lps:student_detail' class_.id student.user.id %}"><img src="{{ MEDIA_URL }}{{ student.user.avatar_small_thumbnall }}"></a></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="chart-column-y"></div>
+    </div>
+    <div id="chart-column-b" class="chart-column">
+        <div class="chart-column-x">
+            <div class="chart-title-x">学员学力排名</div>
+            <div class="chart-title-y">总学力数</div>
+            <div class="scroll-pane-tc scroll-pane">
+                <div class="chart-row">
+                    {% for student in students %}
+                    <div class="chart-col-box" data-ability-total="{{ student.study_point }}">
+                        <div class="chart-col">
+                            <div class="chart-name">{% if request.user.is_academic_teacher %}{{ student.user.real_name }}{% else %}{{ student.user.nick_name }}{% endif %}</div>
+                            <div class="chart-bar"></div>
+                            <div class="chart-portrait"><a href="{% url 'lps:student_detail' class_.id student.user.id %}"><img src="{{ MEDIA_URL }}{{ student.user.avatar_small_thumbnall }}"></a></div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="chart-column-y"></div>
+    </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block custom_script %}
+<script>
+    $(function(){
+        function chart_bar(chart_id,chart_type,attr_sum){
+            var sum = attr_sum,nums = [],chart_h = 218;
+            var chart_type_tag = $('#'+chart_id).find('.chart-col');
+            var chart_type_len = chart_type_tag.length;
+            if(!chart_type_len){return false}
+            $('.chart-row').width(chart_type_len*50);
+            chart_type_tag.each(function(i){
+                nums[i] = parseInt($(this).parent().attr(chart_type));
+                //sum += nums[i];
+            });
+            for (var i = 0; i < chart_type_len; ++i) {
+                chart_type_tag.eq(i).css('height',(nums[i]/sum)*chart_h).addClass('in');
+            };
+            $('.scroll-pane').jScrollPane({
+                autoReinitialise: true
+            });
+        }
+        $("#switch-online").on('switchChange.bootstrapSwitch',function(event,state){
+            var $currentTarget = $(event.currentTarget),
+                    live_id = $currentTarget.data("live_id");
+            $.post(
+                    "{% url 'lps:update_live_room_status' %}",
+                    {
+                        live_id: live_id,
+                        live_is_open: state==true?1:0
+                    }
+            )
+            .done( function(res) {
+                    if (res == "ok") {
+                        if($("#switch-online").attr("checked"))
+                            $("#join_class_btn").show()
+                        else
+                            $("#join_class_btn").hide()
+                    }else if(res == "noauth"){
+                        alert("权限验证失败");
+                    }  else {
+                        console.dir(res);
+                        alert("操作失败, 请稍后再试一次吧");
+                    }
+            })
+            .error( function(xhr) {
+                    console.dir(xhr);
+                    alert("操作失败，请稍后再试一试吧");
+            });
+        });
+        chart_bar('chart-column-a','data-course-total',{{ courses_count }});
+        chart_bar('chart-column-b','data-ability-total',{{ study_point_count }});
+    });
+</script>
+{% endblock %}

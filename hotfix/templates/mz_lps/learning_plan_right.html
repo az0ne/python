@@ -1,0 +1,50 @@
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+{% if cur_careercourse.is_unlockstage %}
+    <div class="row info-tips">
+        <div class="col-sm-6">
+            <em>{{ret.mypoint}}</em>
+            <span>我的学力</span>
+        </div>
+        <div class="col-sm-6">
+            <em>{{rank}}</em>
+            <span>班级排名</span>
+        </div>
+    </div>
+    <div class="rank-list">
+        <h5>本班学员学力排行榜</h5>
+    <div id="rank_ul">
+
+
+
+        {% for stu in all_stu_page %}
+            <ul class="media-rank" style="{% if forloop.counter != 1 %}display:none{% endif %}">
+                {% for st in stu%}
+                <li class="media">
+                        <em class="{% if st.rankid <= 3 %}bg-greyred{% else %} bg-v5 {% endif %}">{{st.rankid}}</em>
+                        <a class="pull-left" href="javascript:void(0)">
+                            <img class="media-object" src="{{MEDIA_URL}}{{st.user.avatar_small_thumbnall}}">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{st.user.nick_name}}</h4>
+                            <h5>{{st.study_point}}</h5>
+                        </div>
+                </li>
+                {% endfor %}
+            </ul>
+        {% endfor%}
+
+
+</div>
+<div class="btn-box text-right">
+              <a href="javascript:void(0);" class="btn btn-micv5 pre_page">上一页</a>
+              <a href="javascript:void(0);" class="btn btn-micv5 next_page">下一页</a>
+            </div>
+    </div>
+{% else %}
+    <!--没有班级-->
+    <div class="no-class text-center">
+      <h4>你还没有加入任何班级哦！</h4>
+      <button class="btn btn-micv5 btn-v5-md" style="width: 150px; margin-top: 12px;" data-toggle="modal" data-target="#paymentModal" >立即报名</button>
+    </div>
+</div>
+{% endif%}

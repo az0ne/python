@@ -1,0 +1,82 @@
+{% extends "mz_common/global.html" %}
+{% load article_filter %}
+{% block title %}{{ ori_keyword }}-{{ ori_keyword }}视频教程-麦子学院{% endblock %}
+{% block keywords %}{{ ori_keyword }},{{ ori_keyword }}教程,{{ ori_keyword }}视频教程{% endblock %}
+{% block description %}
+    {% if searchResults.result.items.0.description %}
+        {{ searchResults.result.items.0.description|content_brief:'200' }}
+    {% else %}
+        "麦子学院wiki库为麦子学院独创的软件开发|android、iOS、python、php、软件测试，产品运营，产品经理，智能硬件|嵌入式、物联网，设计|ui设计、游戏原画设计基础教程学习平台，提供了大量的最新原创教程和在线实例，让您可以更好的学习IT技术。
+    {% endif %}
+{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/searchResult.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block csstype %}search_result_bg{% endblock %}
+{% block container %}
+    {% include 'header/index_header.html' %}
+    <input type="hidden" value="{{ app }}" class="search_app">
+    <div class="center search_result">
+        <div class="search_result_left search_result_job_left">
+            <div class="navMenu font14"><a href="/search/course/{{ keyword }}-1/" class="skill active">职业技能</a>|<a
+                    href="/search/wiki/{{ keyword }}-1/" class="wiki">技能WIKI</a>|<a
+                    href="/search/article/{{ keyword }}-1/" class="article">文章干货</a></div>
+            {% include 'mz_search_result/div_search_adbanner.html' %}
+            {% if searchResults.result.items %}
+                <ul class="list">
+                    {% for item in searchResults.result.items %}
+                        <li>
+                            {% if item.image %}
+                                <a href="/course/{{ item.id }}/" target="_blank" class="img"><img
+                                        src="{{ MEDIA_URL }}{{ item.image }}"
+                                        alt="{{ item.name|safe }}"/></a>
+                            {% else %}
+                            {% endif %}
+                            <div class="txt">
+                                <h3><a href="/course/{{ item.id }}/" target="_blank">{{ item.name|safe }}</a></h3>
+                                <p>{{ item.description|safe }}</p>
+                                <dl>
+                                    <dt><a href="/course/{{ item.career_course_name.0.1 }}/"
+                                           target="_blank">{{ item.career_course_name.0.0 }}</a></dt>
+                                    <dd><span class="chapter">{% if item.chapter_num %}{{ item.chapter_num }}
+                                        章节{% else %}{% endif %}</span>|<span
+                                            class="num">{{ item.click_count }}人正在学习</span></dd>
+                                </dl>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                {% include 'mz_search_result/search_result_no_content.html' %}
+            {% endif %}
+            {% if searchResults.result.rkeys %}
+                <div class="relate">
+
+                    <h2>相关搜索</h2>
+                    <ul>
+                        {% for keyw in searchResults.result.rkeys %}
+                            <li><a href="/search/{{ app }}/{{ keyw }}-1/" target="_blank">{{ keyw }}</a></li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+            {% else %}
+            {% endif %}
+
+            {% include 'mz_common/paginater_3.html' %}
+        </div>
+        {% block search_result_right_panel %}
+            {% include 'mz_search_result/search_result_right.html' %}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer/footer_1.html' %}
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/searchResult.js?v={{ time_stamp }}"></script>
+{% endblock %}

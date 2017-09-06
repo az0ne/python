@@ -1,0 +1,116 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}PHP开发金牌讲师-PHP培训-麦子学院{% endblock %}
+{% block keywords%}PHP，PHP开发，PHP培训，PHP学习{% endblock %}
+{% block description%}麦子学院PHP开发金牌讲师—李景山，6年php开发及教学经验，翠花网络创始人、主要负责学员实训、授课经验丰富，讲课内容层次由浅入深，通俗易懂，善于活跃课堂气氛，学生在欢乐的气氛中学到知识，因材施教，注重对学生自我思考与解决问题能力的培养。融资千万级别邦印信息技术有限联合技术创始人，负责百万级网站流量的架构、开发、管理。{% endblock %}
+
+{% block custom_css %}
+    <link rel="stylesheet"  href="/static/css/mz_wap/stylev1.2.css"/>
+{% endblock %}
+{% block container %}
+		<div class="wapv12 teacherDetail">
+			<div class="banner">
+				<p class="img"><img class="ui-imglazyload" data-url="http://www.maiziedu.com/uploads/homepage/2016/04/李景山-104.jpg" alt="李景山"/></p>
+				<strong>李景山</strong>
+				<span>PHP开发金牌讲师</span>
+				<p>6年php开发及教学经验，翠花网络创始人、主要负责学员实训、授课经验丰富，讲课内容层次由浅入深，通俗易懂，善于活跃课堂气氛，学生在欢乐的气氛中学到知识，因材施教，注重对学生自我思考与解决问题能力的培养。融资千万级别邦印信息技术有限联合技术创始人，负责百万级网站流量的架构、开发、管理。</p>
+				<a href="{% url 'course:course_detail' 'php' %}">报名TA的课程</a>
+			</div>
+			<ul class="infos">
+				<li><a>带班数<span><mark>14</mark>个</span></a></li>
+				<li><a>累积毕业<span><mark>540</mark>人</span></a></li>
+				<li><a>就业率<span><mark>98</mark>%</span></a></li>
+			</ul>
+			<div class="teacherWork">
+				<h3>讲师作品</h3>
+				<div class="slider" id="slider1">
+					<div class="bd">
+						<ul>
+							<li>
+								<p><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroducePhpTea1.png" alt="四川农民合作组织名录系统"/></p>
+								<strong>四川农民合作组织名录系统</strong>
+							</li>
+							<li>
+								<p><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroducePhpTea2.png" alt="咸宁房产网"/></p>
+								<strong>咸宁房产网</strong>
+							</li>
+							<li>
+								<p><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroducePhpTea3.png" alt="68design"/></p>
+								<strong>68design</strong>
+							</li>
+						</ul>
+					</div>
+	                <a class="prev" href="javascript:void(0)"></a>
+	                <a class="next" href="javascript:void(0)"></a>
+				</div>
+			</div>
+			<div class="live">
+				<h3>讲师经历</h3>
+				<ul>
+					<li>
+						<strong>2015</strong>
+						<strong>麦子学院</strong>
+						<p>麦子学院php开发金牌讲师：凭借多年开发教学经验、对高并发、高可用后端应用的前瞻性理解和丰富的教学经验，对课程体系中的每个知识要点都了如指掌。专业功底深厚，讲解精辟透彻，善于启迪思路，剖析背景，从源头上讲解php开发语言。</p>
+					</li>
+					<li>
+						<strong>2014</strong>
+						<strong>邦印信息技术有限公司</strong>
+						<p>担任整个网络的技术架构负责人、负责后端、前端、移动端、微信端口等综合开发的技术支持、管理等工作。</p>
+						<em>参与项目</em>
+						<p>《邦印网》</p>
+					</li>
+					<li>
+						<strong>2012</strong>
+						<strong>翠花网络</strong>
+						<p>负责学员实训，授课经验丰富，讲课内容层次由浅入深，通俗易懂，善于活跃课堂气氛，学生在欢乐的气氛中学到知识，因材施教，注重对学生自我思考与解决问题能力的培养，培养出数百名高薪就业的学员，目前大部分就职于一线互联网企业主程岗位。</p>
+						<em>参与项目</em>
+						<p>《翠花网络学员实训项目》</p>
+					</li>
+				</ul>
+			</div>
+			<div class="word">
+				<p class="img"><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroducePhpTea.jpg" alt="李景山"/></p>
+				<h3>讲师寄语</h3>
+				<p class="txt">回顾PHP近10年来的发展过程，PHP的发展势头不可阻挡，必将成为未来web开发领域的主流技术体系，在麦子学院，你的IT职业生涯将从这里启航。老师以多年行业经验和知识积累带你进入这扇大门。骐骥一跃，不能十步；驽马十驾，功在不舍。选择一个对的方向并坚定不移的走下去，你就会收获自己想要的。</p>
+				<a href="{% url 'course:course_detail' 'php' %}">报名TA的课程</a>
+			</div>
+			<div class="studentWork">
+				<h3>学生作品</h3>
+				<div class="slider slider2" id="slider2">
+					<div class="bd">
+						<ul>
+							<li><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroducePhpStu1.png" alt="学生作品"/></li>
+							<li><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroducePhpStu2.png" alt="学生作品"/></li>
+							<li><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroducePhpStu3.png" alt="学生作品"/></li>
+                            <li><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroducePhpStu4.png" alt="学生作品"/></li>
+						</ul>
+					</div>
+					<span class="pageState"></span>
+				</div>
+			</div>
+		</div>
+{% endblock %}
+{% block custom_script %}
+		<script src="/static/js/mz_wap/zepto.1.2.0.js"></script>
+		<script src="/static/js/mz_wap/slider.js"></script>
+	    <script src="/static/js/mz_wap/imglazyload.js"></script>
+	    <script type="text/javascript">
+	    	TouchSlide({
+	    		slideCell: "#slider1",
+				mainCell: ".bd ul",
+				effect: "left",
+				autoPlay: true,
+				prevCell: ".prev",
+				nextCell: ".next"				
+	    	});
+	    	TouchSlide({
+	    		slideCell: "#slider2",
+				mainCell: ".bd ul",
+				effect: "left",
+				autoPlay: true,
+	    	});
+	    
+	    	$(function(){
+	    		$(".ui-imglazyload").picLazyLoad();//图片延迟加载
+	    	});
+	    </script>
+{% endblock %}

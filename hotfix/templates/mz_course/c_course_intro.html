@@ -1,0 +1,114 @@
+{% extends "mz_common/base.html" %}
+{% block title %}课程介绍页{% endblock %}
+{% load split_filter %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}mz_lps3/css/style.css"
+          xmlns="http://www.w3.org/1999/html"/>
+    <style>
+        body {
+            background: #f5f5f5;
+        }
+    </style>
+{% endblock %}
+
+{% block container %}
+    <div>c_course_intro</div>
+    <div>专业<br/>
+        名字
+        <div>{{ cur_careercourse.name }}</div>
+        <br/>
+        一句话介绍
+        <div>{{ cur_careercourse.brief_intro }}</div>
+        <br/>
+        专业详细描述
+        <div>{{ cur_careercourse.description }}</div>
+        <br/>
+    </div>
+    <div>老师<br/>
+        {% for teacher in show_teachers %}
+            姓名
+            <div>{{ teacher.nick_name }}</div><br/>
+            简介
+            <div>{{ teacher.position }}</div><br/>
+            引导语
+            <div>{{ teacher.description }}</div><br/>
+            大图
+            <div>{{ teacher.teacher_photo }}</div>
+            <img width="300" src="{{ MEDIA_URL }}{{ teacher.teacher_photo }}" alt=""/><br/><br/>
+            小图
+            <div>{{ teacher.avatar_middle_thumbnall }}</div>
+            <img width="100" src="{{ MEDIA_URL }}{{ teacher.avatar_middle_thumbnall }}" alt=""/><br/><br/>
+        {% endfor %}
+    </div>
+    <div>学生作品<br/>
+        {% if 'ios' in cur_careercourse.name|lower or "and" in cur_careercourse.name|lower %}
+            竖版图片
+            {% for image in studentprojectimage %}
+                <div>{{ image.image_url }}</div><br/>
+                <img width="400" src="{{ MEDIA_URL }}{{ image.image_url }}" alt=""/>
+            {% endfor %}
+        {% else %}
+            横版图片
+            {% for image in studentprojectimage %}
+                <div>{{ image.image_url }}</div><br/>
+                <img width="400" src="{{ MEDIA_URL }}{{ image.image_url }}" alt=""/>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div>展示阶段<br/>
+        {% for stage in showstages %}
+            名字
+            <div>{{ stage.name }}</div><br/>
+            描述
+            <div>{{ stage.description }}</div><br/>
+            任务数、知识点数、测试项数
+            <div>{% for item in stage.task_knowledge_test|split:',' %}
+                {% if forloop.counter == 0 %}
+                    <div>任务数{{ item }}</div><br/>
+                {% elif forloop.counter == 1 %}
+                    <div>知识点数{{ item }}</div><br/>
+                {% else %}
+                    <div>测试项数{{ item }}</div><br/>
+                {% endif %}
+            {% endfor %}</div><br/>
+            任务列表
+            <div>{% for task in stage.task_list|split:',' %}
+                <div>{{ task }}</div><br/>
+            {% endfor %}</div><br/>
+            阶段配图<br/>
+            <div>{{ stage.image_url }}</div>
+            <img width="600" src="{{ MEDIA_URL }}{{ stage.image_url }}" alt=""/>
+        {% endfor %}
+    </div>
+    <div>mz_c_course_price: {{ mz_c_course_price }}</div>
+    <div>
+        <div>button_pay_status: {{ button_pay_status }}</div>
+        {% if user.is_authenticated %}
+            <a class="btn btn-micv5 btn-xlg" href="{% url 'pay:pay_view2' %}?career_id={{ cur_careercourse.id }}"
+               target="_blank"
+               {% if button_pay_status == 2 %}style="display:none;"{% endif %}>{% if button_pay_status == 1 %}
+                支付余款{% else %}立即报名{% endif %}</a><br/><br/>
+            <a class="btn btn-micv5 btn-xlg" href="{% url 'pay:pay_view2' %}?career_id={{ cur_careercourse.id }}&loan=1"
+               target="_blank"
+               {% if button_pay_status == 2 %}style="display:none;"{% endif %}>{% if button_pay_status == 1 %}
+                分期支付{% else %}分期支付{% endif %}</a><br/>
+        {% else %}
+            <a class="btn btn-micv5 btn-xlg" href="#" data-toggle="modal" data-target="#loginModal">立即报名</a><br/><br/>
+            <a class="btn btn-micv5 btn-xlg" href="#" data-toggle="modal" data-target="#loginModal">分期支付</a>
+        {% endif %}
+    </div>
+    <div>
+        <div>button_study_status: {{ button_study_status }}</div>
+        {% if user.is_authenticated %}
+            <a class="btn btn-micv5 btn-xlg" href="study">{% if button_study_status == 0 %}免费体验学习{% else %}
+                继续学习{% endif %}</a>
+        {% else %}
+            <a class="btn btn-micv5 btn-xlg" href="#" data-toggle="modal" data-target="#loginModal">免费体验学习</a>
+        {% endif %}
+    </div><br/>
+    <div>
+        <a class="btn btn-micv5 btn-xlg" href="{% url 'course:career_course_detail' cur_careercourse.short_name %}">查看免费教学视频</a>
+    </div>
+{% endblock %}
+{% block custom_script %}
+{% endblock %}

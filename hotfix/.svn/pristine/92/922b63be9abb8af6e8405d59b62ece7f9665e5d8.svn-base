@@ -1,0 +1,25 @@
+@import 'var';
+
+.topwrap {
+	width: 100%;
+}
+.toolbar {
+	position: fixed;
+	bottom: pxToRem(60);
+	right: pxToRem(30);
+	a {
+		display: block;
+		border-radius: 50%;
+		background: $sprite;
+		width: pxToRem(88);
+		height: pxToRem(88);
+		box-shadow: 0 pxToRem(4) pxToRem(12) 0 rgba(0,0,0,0.2);
+	}
+	a:first-child {
+		margin-bottom: pxToRem(30);
+		background-position: 0 0;
+	}
+	a:last-child {
+		background-position: 0 -108px;
+	}
+}

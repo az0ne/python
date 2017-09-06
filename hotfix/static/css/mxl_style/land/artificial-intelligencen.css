@@ -1,0 +1,324 @@
+.mz-artificial-intelligencen .mz-banner {
+  height: 587px;
+  background: url(/static/images/mxl_images/land/mz-artificial-intelligencen-banner.jpg) no-repeat center top;
+  padding: 110px 0 0 0; }
+.mz-artificial-intelligencen .banner-con {
+  background: none; }
+.mz-artificial-intelligencen .banner-con {
+  color: #dfe4ff; }
+  .mz-artificial-intelligencen .banner-con h3 {
+    font-size: 50px;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff; }
+  .mz-artificial-intelligencen .banner-con b {
+    font-size: 30px;
+    line-height: 1;
+    display: block;
+    margin: 28px 0 35px 0; }
+  .mz-artificial-intelligencen .banner-con .mzicon {
+    padding-right: 8px;
+    font-size: 26px; }
+  .mz-artificial-intelligencen .banner-con p {
+    font-size: 26px; }
+  .mz-artificial-intelligencen .banner-con span {
+    padding-right: 30px; }
+.mz-artificial-intelligencen .banner-btns {
+  padding: 50px 0 0 0; }
+  .mz-artificial-intelligencen .banner-btns .active {
+    color: #3a5ee2; }
+.mz-artificial-intelligencen .mzedu-tab li:before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 3px solid #3a5ee2;
+  bottom: 0;
+  opacity: 0;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s; }
+.mz-artificial-intelligencen .mzedu-tab li.active, .mz-artificial-intelligencen .mzedu-tab li:hover {
+  color: #3a5ee2; }
+  .mz-artificial-intelligencen .mzedu-tab li.active:before, .mz-artificial-intelligencen .mzedu-tab li:hover:before {
+    opacity: 1; }
+  .mz-artificial-intelligencen .mzedu-tab li.active b, .mz-artificial-intelligencen .mzedu-tab li:hover b {
+    color: #3a5ee2; }
+.mz-artificial-intelligencen .mz-btn-dx {
+  color: #3a5ee2;
+  border: 1px solid #3a5ee2; }
+  .mz-artificial-intelligencen .mz-btn-dx:hover {
+    color: #fff;
+    background: #3a5ee2; }
+.mz-artificial-intelligencen .ly-course-item-title {
+  color: #7493f7; }
+.mz-artificial-intelligencen .ly-course-list {
+  background-color: #f5f8ff;
+  height: 290px; }
+  .mz-artificial-intelligencen .ly-course-list:hover {
+    background-color: #3a5ee2; }
+.mz-artificial-intelligencen .ly-li1-num {
+  color: #7493f7; }
+.mz-artificial-intelligencen .ly-course-icon {
+  background: url(/static/images/mxl_images/land/course-icon01.png); }
+.mz-artificial-intelligencen .mzedu-student-review-t-l {
+  color: #3a5ee2; }
+.mz-artificial-intelligencen .mzedu-student-review-score {
+  text-shadow: 0 0 22px rgba(49, 103, 244, 0.4);
+  -webkit-text-shadow: 0 0 22px rgba(49, 103, 244, 0.4); }
+.mz-artificial-intelligencen .mzedu-student-review-t-r li strong {
+  color: #3a5ee2; }
+.mz-artificial-intelligencen .review-bcontainer-t-l .mzedu-student-review-score .mzicon {
+  color: #3a5ee2; }
+.mz-artificial-intelligencen .review-bcontainer-contxt {
+  background: #F5F8FF; }
+.mz-artificial-intelligencen .review-bcontainer-txt-tec {
+  background: #ecf0f9; }
+  .mz-artificial-intelligencen .review-bcontainer-txt-tec b {
+    color: #3a5ee2; }
+.mz-artificial-intelligencen .mzedu-student-review-bcontainer li:hover .review-bcontainer-contxt,
+.mz-artificial-intelligencen .mzedu-student-review-bcontainer li:hover .load-more-comment {
+  background: #3a5ee2; }
+.mz-artificial-intelligencen .load-more-comment {
+  background: #f5f8ff; }
+  .mz-artificial-intelligencen .load-more-comment .mzicon,
+  .mz-artificial-intelligencen .load-more-comment p {
+    color: #3a5ee2; }
+.mz-artificial-intelligencen .mz-dx-btn {
+  background: #3a5ee2;
+  margin-top: 152px; }
+  .mz-artificial-intelligencen .mz-dx-btn:hover {
+    background: #5070e5; }
+.mz-artificial-intelligencen .course-description-c4 {
+  background: #0d122f; }
+.mz-artificial-intelligencen .course-des-c4-slider:before {
+  background: #1a2042; }
+.mz-artificial-intelligencen .course-des-c4-slider-bg {
+  background: #131836; }
+.mz-artificial-intelligencen .course-des-c4-slider-bg2 {
+  background: #0e1331;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0 50px rgba(0, 0, 0, 0.1);
+  bottom: -64px; }
+.mz-artificial-intelligencen .course-des-c4-slider-bg:before {
+  background: #838594; }
+.mz-artificial-intelligencen .course-des-c4-slider-bg2:before {
+  background: #3d4159; }
+.mz-artificial-intelligencen .course-des-c4-slid-txt a {
+  color: #3a5ee2; }
+  .mz-artificial-intelligencen .course-des-c4-slid-txt a:hover {
+    color: #3268f4; }
+.mz-artificial-intelligencen .course-des-c4-slider-bd .active {
+  border-color: #219df2; }
+.mz-artificial-intelligencen .offlineCenter i {
+  background: #3a5ee2; }
+.mz-artificial-intelligencen .offlineVS {
+  color: #3a5ee2; }
+.mz-artificial-intelligencen .mz-btn-dx02 {
+  background: #3a5ee2; }
+  .mz-artificial-intelligencen .mz-btn-dx02:hover {
+    background: #5070e5; }
+.mz-artificial-intelligencen .course-description-c2 {
+  background: #fff; }
+.mz-artificial-intelligencen .course-description-c5 .mz-tb-tit p {
+  font-size: 20px;
+  color: #333333;
+  padding: 10px 0;
+  font-weight: normal; }
+.mz-artificial-intelligencen .internet-operation-c2-prospect {
+  width: 926px; }
+.mz-artificial-intelligencen .course-description-c3 {
+  padding: 60px 0 0 0;
+  border-top: 1px solid #f1f1f1; }
+.mz-artificial-intelligencen .lps-descript-video {
+  max-height: 386px;
+  width: 538px;
+  margin-right: 80px; }
+.mz-artificial-intelligencen .lps-descript-r .mz-dx-btn {
+  margin-top: 70px; }
+.mz-artificial-intelligencen .course-description-c5 {
+  margin-top: 180px;
+  background: #fff;
+  border-top: 1px solid #f1f1f1;
+  padding: 60px 0; }
+.mz-artificial-intelligencen .course-description-c6 {
+  padding: 60px 0 80px; }
+.mz-artificial-intelligencen .internet-operation-c1-list {
+  overflow: hidden; }
+.mz-artificial-intelligencen .course-description-nine-tit b {
+  color: #3a5ee2; }
+.mz-artificial-intelligencen .mz-scholarship-program, .mz-artificial-intelligencen .mz-new-copyright {
+  background: #002650; }
+.mz-artificial-intelligencen .mz-scholarship-program a:hover {
+  background: #3a5ee2;
+  border-color: #3a5ee2; }
+.mz-artificial-intelligencen .mzedu-student-review-score .mzicon {
+  text-shadow: 0 0 22px rgba(58, 94, 226, 0.2);
+  -webkit-text-shadow: 0 0 22px rgba(58, 94, 226, 0.2); }
+
+.description-five-list-num {
+  opacity: 0.2;
+  filter: alpha(opacity=20); }
+
+.course-des-c4-slid-pic {
+  background: #fff; }
+
+.c1-artificial-intelligencen-lsit span.mzicon {
+  display: block;
+  text-align: center;
+  font-size: 70px;
+  color: #3a5ee2;
+  line-height: 1; }
+
+.course-description-c2-artificial-intelligencen {
+  background: #fff;
+  border-top: 1px solid #f1f1f1;
+  padding: 68px 0 100px; }
+
+.c2-artificial-intelligencen-lsitbox {
+  overflow: hidden;
+  padding-top: 90px; }
+  .c2-artificial-intelligencen-lsitbox ul {
+    width: 110%; }
+  .c2-artificial-intelligencen-lsitbox li {
+    float: left;
+    width: 184px;
+    overflow: hidden;
+    margin: 0 58px; }
+    .c2-artificial-intelligencen-lsitbox li p {
+      color: #333333;
+      font-size: 18px;
+      line-height: 1;
+      margin-top: 40px;
+      text-align: center; }
+
+.c2-artificial-intelligencen-pic {
+  width: 184px;
+  height: 184px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center center; }
+  .c2-artificial-intelligencen-pic img {
+    display: block;
+    width: 100%; }
+
+.c2-artificial-intelligencen-pic01 {
+  background-image: url(/static/images/mxl_images/land/c2-artificial-intelligencen-pic01.png);
+  background-image: -webkit-image-set(url(/static/images/mxl_images/land/c2-artificial-intelligencen-pic01.png) 1x, url(/static/images/mxl_images/land/c2-artificial-intelligencen-pic01.svg) 2x); }
+
+.c2-artificial-intelligencen-pic02 {
+  background-image: url(/static/images/mxl_images/land/c2-artificial-intelligencen-pic02.png);
+  background-image: -webkit-image-set(url(/static/images/mxl_images/land/c2-artificial-intelligencen-pic02.png) 1x, url(/static/images/mxl_images/land/c2-artificial-intelligencen-pic02.svg) 2x); }
+
+.c2-artificial-intelligencen-pic03 {
+  background-image: url(/static/images/mxl_images/land/c2-artificial-intelligencen-pic03.png);
+  background-image: -webkit-image-set(url(/static/images/mxl_images/land/c2-artificial-intelligencen-pic03.png) 1x, url(/static/images/mxl_images/land/c2-artificial-intelligencen-pic03.svg) 2x); }
+
+.c2-artificial-intelligencen-pic04 {
+  background-image: url(/static/images/mxl_images/land/c2-artificial-intelligencen-pic04.png);
+  background-image: -webkit-image-set(url(/static/images/mxl_images/land/c2-artificial-intelligencen-pic04.png) 1x, url(/static/images/mxl_images/land/c2-artificial-intelligencen-pic04.svg) 2x); }
+
+.course-artificial-intelligencen-dowork {
+  background: #f9f9f9;
+  padding: 60px 0 80px; }
+
+.course-artificial-intelligencen-dowork-list {
+  overflow: hidden;
+  position: relative;
+  padding-top: 60px; }
+
+.course-artificial-intelligencen-dowork-item {
+  float: left;
+  width: 290px;
+  margin: 0 5px; }
+
+.course-artificial-intelligencen-dowork-item-ts {
+  width: 890px;
+  height: 220px;
+  position: absolute;
+  left: 0;
+  bottom: 0; }
+  .course-artificial-intelligencen-dowork-item-ts .course-artificial-intelligencen-dowork-txt {
+    width: 290px;
+    height: 220px; }
+  .course-artificial-intelligencen-dowork-item-ts .course-artificial-intelligencen-dowork-pic {
+    width: 600px;
+    height: 220px; }
+
+.course-artificial-intelligencen-dowork-pic {
+  overflow: hidden; }
+  .course-artificial-intelligencen-dowork-pic:hover img {
+    transform: scale(1.02);
+    -webkit-transform: scale(1.02); }
+  .course-artificial-intelligencen-dowork-pic img {
+    display: block;
+    width: 100%;
+    transition: .4s;
+    -webkit-transition: .4s; }
+
+.course-artificial-intelligencen-dowork-item-ts01 .course-artificial-intelligencen-dowork-txt {
+  height: 230px;
+  padding-top: 46px; }
+
+.course-artificial-intelligencen-dowork-txt {
+  text-align: center;
+  width: 290px;
+  height: 160px;
+  padding: 16px 30px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: #fff; }
+  .course-artificial-intelligencen-dowork-txt h6 {
+    line-height: 46px;
+    color: #333333;
+    font-weight: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 20px; }
+  .course-artificial-intelligencen-dowork-txt p {
+    color: #888888;
+    line-height: 26px; }
+  .newai-online {
+  padding: 64px 0 80px; }
+
+.newai-online-list {
+  width: 892px;
+  margin: 0 auto;
+  padding: 30px 20px 60px; }
+  .newai-online-list li {
+    background: #fff;
+    padding: 40px 0 40px 84px;
+    border-radius: 75px;
+    box-shadow: 0 4px 20px rgba(90, 112, 224, 0.3);
+    -webkit-box-shadow: 0 4px 20px rgba(90, 112, 224, 0.3);
+    margin-top: 30px; }
+  .newai-online-list i {
+    display: block;
+    width: 70px;
+    height: 70px;
+    background-repeat: no-repeat;
+    float: left;
+    background-image: url(/static/images/mxl_images/land/newai-bg.png); }
+
+.newai-list-txt {
+  width: 600px;
+  float: left;
+  margin-left: 40px; }
+  .newai-list-txt h4 {
+    line-height: 1;
+    font-size: 24px;
+    color: #333333; }
+  .newai-list-txt p {
+    font-size: 16px;
+    line-height: 36px;
+    margin-top: 12px; }
+
+.newai-list-pic02 {
+  background-position: center -80px; }
+
+.newai-list-pic03 {
+  background-position: center -160px; }
+.pt60{
+  padding-top:60px;
+}

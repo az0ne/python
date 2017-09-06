@@ -1,0 +1,22 @@
+<div class="quiz">
+    <div class="left">
+        <a href="{{ SITE_URL }}/u/{{ teacher.id }}" target="_blank">
+            <img src="{{ MEDIA_URL }}{{ teacher.avatar_url }}" alt=""/></a>
+        <span class="font22 color66">{{ teacher.staff_name }}</span>
+    </div>
+    <div class="right">
+        <p class="font14 color66">答疑时间</p>
+
+        <p class="answer-time font20 color33">10:00-21:00</p>
+
+        <p class="font12 color66">期间老师会在2小时内答复你你也可以随时给老师留言</p>
+        <!--这里需要一个判断开班时间来判断是否可以答疑-->
+        {% if free488_class.is_ongoing %}
+            <a href="http://wpa.qq.com/msgrd?v=3&uin={{ cclass.teacher.qq }}&site=qq&menu=yes" target="_blank" class="tiwen in" onclick="zhuge.track('点击提问', {'页面名称':'项目答疑面板','按钮位置':'答疑时间'});">提问</a>
+        {% else %}
+            <a href="javascript:void(0)" class="tiwen out">提问</a>
+            <span class="hover-tips">{% if free488_class.is_not_started %}班会开始后，可向老师提问{% else %}试学已结束{% endif %}</span>
+        {% endif %}
+
+    </div>
+</div>

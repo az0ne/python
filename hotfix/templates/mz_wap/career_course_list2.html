@@ -1,0 +1,108 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}{{career_course.seo_title}} - 麦子学院{% endblock %}
+{% block keywords %}{{career_course.seo_keyword}}{% endblock %}
+{% block description %}{{career_course.seo_description}}{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/css/mz_wap/search_style.css"/>
+    <link rel="stylesheet" href="/static/css/mz_wap/header-tab.css"/>
+    <link rel="stylesheet"  href="/static/css/mz_wap/wap2.0.css"/>
+{% endblock %}
+{% block csstype %}syllabus{% endblock %}
+{% block container %}
+    {% include 'mz_wap/module/wiki_header1.html' %}
+		<div class="syllabusHeader">
+			<div class="syllabusBanner">
+				<p><img class="ui-imglazyload" style="background:{{ career_course.course_color_px }}" src="{{ MEDIA_URL }}{{ career_course.image_px }}" alt="{{ career_course.name }}"></p>
+				<span class="tips">已有<mark>{{ career_course.student_count }}</mark>位同学与你并肩作战</span>
+				<h2>{{ career_course.name }}</h2>
+				<p class="infos"><span>{{ total_courses }}课程</span><span>{{ need_days }}天学习时长</span></p>
+			</div>
+			<p class="txt">{{ career_course.description }}</p>
+		</div>
+
+		{% for stage in stages %}
+		<div class="syllabusList">
+			<h3><span>{{ stage.name }}</span></h3>
+			<div class="detail">
+				<p>{{ stage.description }}</p>
+				<ul>
+					{% for course in stage.course_list %}
+					<li><a href="{% url 'course_detail' course.id %}">
+						<p>
+						{% if course.course_status == 0 %}
+							<span class="smallCourse-stage-state updating">更新中</span>
+						{% else %}
+							<span class="smallCourse-stage-state complete">已完结</span>
+						{% endif %}
+						{% if course.need_pay %}
+							<span class="course-stage-state" style="left: 0; right: 0; top: 0;position:absolute;" ><img src="/static/images/label_ztb.png" alt="报班学员"/></span>
+						{% endif %}
+						<img class="ui-imglazyload" data-url="{{MEDIA_URL}}{{course.image}}" alt="{{course.name}}"/></p>
+						<strong>{{course.name}}</strong>
+						<span>预计学习时长：{{course.need_days}}天</span>
+					</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+		{% endfor %}
+		<div class="marB"></div>
+		<div class="foot-bottom" id="foot">
+	        <a href="tel:400-862-8862" class="phone">立即致电</a>
+            <a onclick="_MEIQIA('showPanel')"  class="consulte">在线咨询</a>
+	    </div>
+{#	    <div class="syllabusEnter"><a onclick="javascript:jump53kf()">立即报名</a></div>#}
+{% endblock %}
+
+{% block custom_script %}
+		<script src="/static/js/mz_wap/zepto.js"></script>
+	    <script src="/static/js/mz_wap/imglazyload.js"></script>
+	    <script src="/static/js/mz_wap/main.js"></script>
+        <script src="{{ STATIC_URL }}js/mz_wap/search_suggest1.js"></script>
+	    <script type="text/javascript">
+	    	var $syllabusList = $(".syllabusList");
+		    /*window.onload = function(){
+		    	var oneUlHeights = 0;
+				oneUlHeights = $syllabusList.eq(0).find(".detail>p").height();
+	    		oneUlHeights = oneUlHeights + $syllabusList.eq(0).find("ul").height();
+	    		$syllabusList.eq(0).find(".detail").css("height",oneUlHeights);
+	    		$syllabusList.eq(0).find("h3").addClass("expand");
+			}*/
+	    	$(function(){
+				$syllabusList.eq(0).find(".detail").css("height","auto");
+	    		$syllabusList.eq(0).find("h3").addClass("expand");
+	    		var display = false;
+	    			//ulHeights = 0,
+	    			//$syllabusListUl;
+	    		$syllabusList.children("h3").bind("touchend",function(){
+	    			//$syllabusListUl = $(this).siblings(".detail").find("ul");
+	    			//ulHeights = $(this).siblings(".detail").children("p").height();
+	    			//ulHeights = ulHeights + $syllabusListUl.height();
+	    			if($(this).hasClass("expand")){
+	    				display=false;
+	    			}else{
+	    				display = !display;
+	    			};
+	    			//$(this).siblings("ul").css("height",display? ulHeights+"px": "0px");
+	    			if(display){
+	    				$(this).addClass("expand");
+	    				$(this).siblings(".detail").css("height","auto");
+	    			}else{
+	    				$(this).removeClass("expand");
+	    				$(this).siblings(".detail").css("height","0");
+	    			};
+	    			//ulHeights = 0;
+	    			return false;
+	    		});
+				//根据屏幕宽度设置h3-span的宽度
+				screenWidth();
+	    	});
+			function screenWidth(){
+				var	windowWidth = $(window).width();
+				$(".syllabusList h3 span").css("max-width",windowWidth - 130);
+			}
+			$(window).resize(function(){
+				screenWidth();
+			});
+	    </script>
+{% endblock %}

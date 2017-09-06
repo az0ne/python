@@ -1,0 +1,70 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/teacher_breadcrumb.html" %}
+
+<div class="row">
+<div class="col-md-6">
+<form class="form-inline" role="form" action="#">
+    <fieldset>
+        <div class="form-group">
+            <label for=""></label>
+            <input type="text" id="q" name="q" class="form-control input-sm" placeholder="搜索用户名">
+        </div>
+        <button type="submit" class="btn btn-sm btn-primary">搜索</button>
+    </fieldset>
+</form>
+</div>
+<div class="col-md-6">
+    <p class="text-right">
+        <a href="{% url 'nadmin:teachers_create' %}" class="btn btn-primary btn-xs">
+            + 添加账户
+        </a>
+    </p>
+</div>
+</div>
+
+<br>
+
+{% include "mz_nadmin/modules/msgs.html" %}
+<div class="table-responsive">
+<table class="table table-bordered table-striped table-condensed table-hover">
+    <thead>
+        <th class="col-md-4">邮箱帐号</th>
+        <th class="col-md-4">手机号码</th>
+        <th class="col-md-4">注册时间</th>
+    </thead>
+    <tbody>
+        {% for teacher in teachers %}
+        <tr>
+            <td>
+                {% if teacher.email %}
+                <a href="{% url 'nadmin:teachers_info' teacher.id %}">{{ teacher.email }}</a>
+                {% else %}
+                    <span class="text-muted">尚未注册</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if teacher.mobile %}
+                    <a href="{% url 'nadmin:teachers_info' teacher.id %}">{{ teacher.mobile }}</a>
+                {% else %}
+                    <span class="text-muted">尚未注册</span>
+                {% endif %}
+            </td>
+            <td>
+                {{ teacher.date_joined|date:"Y/m/d" }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% include "mz_nadmin/modules/page_info.html" with items=teachers %}
+
+{% endblock %}
+
+
+
+

@@ -1,0 +1,124 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}游戏原画设计金牌讲师-游戏原画培训-麦子学院{% endblock %}
+{% block keywords%}游戏原画，游戏原画设计，游戏原画培训，原画设计，原画培训{% endblock %}
+{% block description%}麦子学院游戏原画金牌讲师—马青老师，曾参与过多款娱乐产品的的方案界面设计及APP界面设计，熟悉项目开发交互流程，有着丰富的游戏原画设计和培训经验，善于结合工作、生活中的实际案例, 通过层层引导和深入浅出的方式加深学生对知识点的认识和理解。擅长界面设计、概念设计及传统美术绘画，作品多次发表于国内权威杂志《美术》和《中国版画年鉴》。{% endblock %}
+
+{% block custom_css %}
+    <link rel="stylesheet"  href="/static/css/mz_wap/stylev1.2.css"/>
+{% endblock %}
+{% block container %}
+		<div class="wapv12 teacherDetail">
+			<div class="banner">
+				<p class="img"><img class="ui-imglazyload" data-url="http://www.maiziedu.com/uploads/avatar/2016/05/104_z7zZVlp.png" alt="马青"/></p>
+				<strong>马青</strong>
+				<span>游戏原画&概念设计讲师</span>
+				<p>曾任职于上海gamania，上海Massiveblack。 参与过多款娱乐产品的的方案界面设计及APP界面设计，熟悉项目开发交互流程，有着丰富的UI设计和培训经验。 擅长界面设计、概念设计及传统美术绘画，作品多次发表于国内权威杂志《美术》和《中国版画年鉴》。</p>
+				<a href="{% url 'course:course_detail' 'ui' %}">报名TA的课程</a>
+			</div>
+			<ul class="infos">
+				<li><a>带班数<span><mark>12</mark>个</span></a></li>
+				<li><a>累积毕业<span><mark>456</mark>人</span></a></li>
+				<li><a>就业率<span><mark>96</mark>%</span></a></li>
+			</ul>
+			<div class="teacherWork">
+				<h3>讲师作品</h3>
+				<div class="slider" id="slider1">
+					<div class="bd">
+						<ul>
+							<li>
+								<p><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroduceUiStu1.jpg" alt="PAINTING"/></p>
+								<strong>PAINTING</strong>
+							</li>
+							<li>
+								<p><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroduceUiStu2.jpg" alt="TOY story"/></p>
+								<strong>TOY story</strong>
+							</li>
+							<li>
+								<p><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroduceUiStu3.jpg" alt="游戏人物设计"/></p>
+								<strong>游戏人物设计</strong>
+							</li>
+                            <li>
+                                <p><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroduceUiStu4.jpg" alt="MAGICAL LAND"/></p>
+                                <strong>MAGICAL LAND</strong>
+                            </li>
+							<li>
+                                <p><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroduceUiStu5.jpg" alt="游戏人物设计"/></p>
+                                <strong>游戏人物设计</strong>
+                            </li>
+						</ul>
+					</div>
+	                <a class="prev" href="javascript:void(0)"></a>
+	                <a class="next" href="javascript:void(0)"></a>
+				</div>
+			</div>
+			<div class="live">
+				<h3>讲师经历</h3>
+				<ul>
+					<li>
+						<strong>2015</strong>
+						<strong>麦子学院</strong>
+						<p>UI设计金牌讲师,教学风格幽默，有极强的设计思维与美术功底，将设计理念与商业实战完美结合，细化每一个知识点，开辟了学员高薪就业极速通道。</p>
+					</li>
+					<li>
+						<strong>2013</strong>
+						<strong>成都趣胤网络科技有限公司</strong>
+						<p>任艺术总监，负责PC和移动端界面设计风格制定，视觉包装方案等。独立负责项目整体界面设计。对总体艺术包装，设计思维有着深刻而独立的见解。</p>
+						<em>参与项目</em>
+						<p>多个娱乐产品界面设计</p>
+					</li>
+					<li>
+						<strong>2010</strong>
+						<strong>上海gamania</strong>
+						<p>任高级UI设计师，负责页面设计以及产品包装等，拥有深厚的美术基础，对色彩掌控、界面展示、风格打造有着丰富经验，擅长创作拥有艺术感和实践性的UI界面。</p>
+						<em>参与项目</em>
+						<p>上海gamania泛娱乐产品界面设计</p>
+					</li>
+				</ul>
+			</div>
+			<div class="word">
+				<p class="img"><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherImg.jpg" alt="马青"/></p>
+				<h3>讲师寄语</h3>
+				<p class="txt">在设计麦子学院UI课程时，考虑更多的是审美与设计思路的贯穿性，不仅关注学员的设计能力，也关注学员基础能力的培养，目的在于为互联网行业培养更多优秀合格的ui设计师。</p>
+				<a href="{% url 'course:course_detail' 'ui' %}">报名TA的课程</a>
+			</div>
+			<div class="studentWork">
+				<h3>学生作品</h3>
+				<div class="slider slider2" id="slider2">
+					<div class="bd">
+						<ul>
+							<li><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroduceUiTea1.jpg" alt="学生作品"/></li>
+							<li><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroduceUiTea2.jpg" alt="学生作品"/></li>
+							<li><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroduceUiTea3.jpg" alt="学生作品"/></li>
+                            <li><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroduceUiTea4.jpg" alt="学生作品"/></li>
+						</ul>
+					</div>
+					<span class="pageState"></span>
+				</div>
+			</div>
+		</div>
+{% endblock %}
+{% block custom_script %}
+		<script src="/static/js/mz_wap/zepto.1.2.0.js"></script>
+		<script src="/static/js/mz_wap/slider.js"></script>
+	    <script src="/static/js/mz_wap/imglazyload.js"></script>
+	    <script type="text/javascript">
+	    	TouchSlide({
+	    		slideCell: "#slider1",
+				mainCell: ".bd ul",
+				effect: "left",
+				autoPlay: true,
+				prevCell: ".prev",
+				nextCell: ".next"				
+	    	});
+	    	TouchSlide({
+	    		slideCell: "#slider2",
+				mainCell: ".bd ul",
+				effect: "left",
+				autoPlay: true,
+	    	});
+	    
+	    	$(function(){
+	    		$(".ui-imglazyload").picLazyLoad();//图片延迟加载
+	    	});
+	    </script>
+{% endblock %}

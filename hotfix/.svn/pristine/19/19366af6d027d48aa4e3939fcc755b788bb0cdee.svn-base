@@ -1,0 +1,17 @@
+{% for course in course_list %}
+<li>
+    <!--<a href="{% include 'mz_wap/53kf.html' %}">-->
+    <a href="{% url 'course_detail' course.id %}">
+    <p><img class="ui-imglazyload" data-url="{{ MEDIA_URL }}{{ course.image}}" alt="{{ course.name}}"/></p>
+    <div class="list_info">
+        <strong>{{ course.name}}</strong>
+        <em>讲师：{{ course.nick_name }} </em>
+        <span><mark>{{ course.click_count}}</mark>人正在学习</span>
+    </div>
+</a></li>
+{% endfor %}
+<script>
+    $(function() {
+        $(".ui-imglazyload").picLazyLoad();
+    })
+</script>

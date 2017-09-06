@@ -1,0 +1,176 @@
+{% extends "mz_wap/base.html" %}
+{% load split_filter %}
+{% block title %}{{ cur_careercourse_values.seo_title_px }}{% endblock %}
+{% block keywords %}{{ cur_careercourse_values.seo_keyword_px }}{% endblock %}
+{% block description %}{{ cur_careercourse_values.seo_description_px }}{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/css/mz_wap/search_style.css"/>
+    <link rel="stylesheet" href="/static/css/mz_wap/header-tab.css"/>
+    <link rel="stylesheet" href="/static/css/mz_wap/enter_style.css"/>
+{% endblock %}
+{% block csstype %}career_course_detail{% endblock %}
+{% block container %}
+    {% include 'mz_wap/module/wiki_header1.html' %}
+    <section class="enter-course-banner">
+        <p><img class="ui-imglazyload" data-url="{{ MEDIA_URL }}{{ cur_careercourse_values.image_px }}"
+                style="background:{{ cur_careercourse_values.course_color_px }}"
+                src="/static/images/mz_wap/imgloading.gif" alt="{{ cur_careercourse.name }}"/></p>
+        <div class="txt">
+            <h1>{{ cur_careercourse.name }}</h1>
+            <p>{{ cur_careercourse.brief_intro }}</p>
+            {% if not user.is_authenticated %}
+                <a id="login" class="free_experience"
+                   style="color:{{ cur_careercourse_values.course_color_px }}">立即报名</a>
+            {% else %}
+                {% if pay_flag == 0 %}
+                    <a href="{% url 'register_career_course' cur_careercourse.id %}" class="free_experience"
+                       style="color:{{ cur_careercourse_values.course_color_px }}">立即报名</a>
+                {% endif %}
+            {% endif %}
+        </div>
+    </section>
+    <article class="enter-course-product">
+        <h2>不一样的{{ cur_careercourse.name }}教学</h2>
+        <p class="txt">{{ cur_careercourse.description_px }}</p>
+        <a onclick="_MEIQIA('showPanel')" class="kf-a marginB1">{% for duty in duties %}
+                            {% if forloop.first %}
+                                如何成为{{ duty.name }}
+                            {% endif %}
+                        {% endfor %} >></a>
+        <p><img class="ui-imglazyload" data-url="{{ MEDIA_URL }}{{ cur_careercourse_values.image_px_2 }}"
+                src="/static/images/mz_wap/imgloading.gif" alt="不一样的{{ cur_careercourse.name }}教学"/></p>
+    </article>
+    <article class="enter-course-process">
+        <h2>LPS系统</h2>
+        <h3>重塑在线学习过程</h3>
+        <p class="img"><img class="ui-imglazyload" data-url="/static/images/mz_wap/enter_course_process.jpg"
+                            src="/static/images/mz_wap/imgloading.gif" alt="重塑在线学习过程"/></p>
+        <ul class="enter-course-char">
+            <li>由浅入深关卡式提升</li>
+            <li>实名精英人脉强链接</li>
+            <li>名师绝招无保留传授</li>
+            <li>商业级项目全程精炼</li>
+            <a onclick="_MEIQIA('showPanel')" class="kf-a marginT1" style="display: inline-block">了解LPS学习系统 >></a>
+        </ul>
+        <div class="enter-course-slider" id="focus">
+            <h2>课程老师</h2>
+            <h3>来自一线互联网公式的专家导师</h3>
+            <div class="bd">
+                <ul>
+                    {% for teacher in show_teachers %}
+                        <li><a href="{% url 'teacher_detail' teacher.id %}">
+                            <p><img class="ui-imglazyload" data-url="{{ MEDIA_URL }}{{ teacher.teacher_photo }}"
+                                    src="/static/images/mz_wap/imgloading.gif" alt="{{ teacher.nick_name }}"/></p>
+                            <div class="details">
+                                <strong>{{ teacher.nick_name }}</strong>
+                                <span>{{ teacher.position }}</span>
+                                <p>{{ teacher.description }}</p>
+                            </div>
+                        </a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="dots hd">
+                <ol></ol>
+            </div>
+        </div>
+    </article>
+
+    {% if cur_careercourse.id != 12 and cur_careercourse.id != 128 %}
+        <article class="enter-course-works">
+            <h2>学生作品</h2>
+            <h3>3个月获取1-2年的项目实战经验</h3>
+            <ul class="poster-list"
+                {% if 'ios' in cur_careercourse_values.name|lower or "and" in cur_careercourse_values.name|lower %}ppt=1{% endif %}>
+                {% for image in show_studentprojectimage %}
+                    <li class="ui-imglazyload"><img src="{{ MEDIA_URL }}{{ image.image_url }}" alt="学生作品" width="100%">
+                    </li>
+                {% endfor %}
+            </ul>
+            <a onclick="_MEIQIA('showPanel')" class="kf-btn marginB1 marginT1">申请参与项目实战</a>
+        </article>
+    {% endif %}
+
+
+    {% if showstages_values %}
+        <article class="enter_course_content">
+            <h2>课程内容</h2>
+            <h3>{{ cur_careercourse.brief_intro }}</h3>
+            {% for stage in showstages_values %}
+                <figure>
+                    <p class="image"><img class="ui-imglazyload" data-url="{{ MEDIA_URL }}{{ stage.image_url }}"
+                                          src="/static/images/mz_wap/imgloading.gif" alt="{{ stage.name }}"/></p>
+                    <div class="info">
+                        <strong>{{ stage.name }}</strong>
+                        <span>{{ stage.description }}</span>
+                        {% with item=stage.task_knowledge_test|split:',' %}
+                            <p>{{ item.0 }}个任务， {{ item.1 }}个知识点， {{ item.2 }}项测试 </p>
+                        {% endwith %}
+                    </div>
+                    <ul>
+                        {% for task in stage.task_list|split:',' %}
+                            <li>• {{ task }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a onclick="_MEIQIA('showPanel')" class="kf-a marginT1 marginB1">查看本阶段学习重点 >></a>
+                </figure>
+            {% endfor %}
+            <a href="{% url 'career_course_video_list' cur_careercourse.short_name %}" class="enter-course-video">查看免费教学视频</a>
+        </article>
+    {% endif %}
+    <article class="agreement">
+        <h3>入学即签保就业法律协议</h3>
+        <strong>无法就业，承诺退款</strong>
+        <span>市场价格：<del>¥18000</del></span>
+        <span>麦子价格：<mark>¥{{ cur_careercourse.net_price }}</mark></span>
+    </article>
+    <footer>
+        © 2012-2016 www.maiziedu.com <br/>蜀ICP备13014270号-4 Version 5.0.0 release20160127
+    </footer>
+    <div class="foot-bottom enter-course-bottom" id="foot">
+        <a href="tel:400-862-8862" class="phone">立即致电</a>
+        <a onclick="_MEIQIA('showPanel')" class="consulte">在线咨询</a>
+{#        <a href="tel:400-862-8862" class="phone">立即报名</a>#}
+{#        <a onclick="javascript:jump53kf()">咨询小麦</a>#}
+    </div>
+    {% include 'mz_wap/login.html' %}
+{% endblock %}
+
+{% block custom_script %}
+    <script src="/static/js/mz_wap/zepto.js"></script>
+    <script src="/static/js/mz_wap/imglazyload.js"></script>
+    <script src="/static/js/mz_wap/slider.js"></script>
+    <script src="/static/js/mz_wap/main.js"></script>
+    <script src="{{ STATIC_URL }}js/mz_wap/login.js"></script>
+    <script src="{{ STATIC_URL }}js/mz_wap/search_suggest1.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //当屏幕宽度小于360，老师介绍文字控制在72个字以内，防止图片高度不够时无法容纳过多的文字
+            var winWith = $(window).width();
+            if (winWith < 720) {
+                $(".enter-course-slider .bd li").each(function () {
+                    var p_txt = $(this).find(".details").children("p").html();
+                    if (p_txt.length > 71) {
+                        var p_txt_content = p_txt.substr(0, 70) + '...';
+                        $(this).find(".details").children("p").html(p_txt_content);
+                    }
+                    ;
+                });
+            }
+            ;
+        });
+
+        function slides(id) {
+            TouchSlide({
+                slideCell: id,
+                titCell: ".hd ol", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+                mainCell: ".bd ul",
+                effect: "left",
+                autoPlay: true,//自动播放
+                autoPage: true //自动分页
+            });
+        }
+        slides("#focus");
+    </script>
+
+{% endblock %}

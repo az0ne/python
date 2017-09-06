@@ -1,0 +1,69 @@
+{% extends "mz_common/base.html" %}
+{% block title %}我的消息{% endblock %}
+{% block keywords%}{% endblock %}
+{% block description%}{% endblock %}
+{% block second_header %}
+{#{% if user.is_teacher %}#}
+{#    {% include "mz_user/teacher_header.html" %}#}
+{#{% else %}#}
+{#    {% if user.is_student %}#}
+{#        {% include "mz_user/student_header.html" %}#}
+{#    {% endif %}#}
+{#{% endif %}#}
+{% endblock %}
+{% block container %}
+<div class="uc-boxa">
+    <div class="uc-h1">我的消息</div>
+    <div class="uc-msg">
+    {% if message_list %}
+        {% for message in message_list %}
+        <dl>
+            <dt>
+{#                {% if message.action_type == "1" %}#}
+                <span class="r-time visible-md visible-lg">{{ message.date_action }}</span>系统消息：
+{#                {% else %}#}
+{#                    {% if message.action_type == "2" %}#}
+{#                    <span class="r-time visible-md visible-lg">{{ message.date_action }}</span><p class="sp_left">{{ message.userA.nick_name }}</p>在课程<a href="/lesson/{{ message.action_id.id }}" class="link-default">{{ message.action_id.name }}</a>回复您：#}
+{#                    {% elif message.action_type == "4" %}#}
+{#                    <span class="r-time visible-md visible-lg">{{ message.date_action }}</span><p class="sp_left">{{ message.userA.nick_name }}</p>在班级<a href="/lps2/learning/plan/{{ class_id }}" class="link-default">{{ class_number }}</a>回复您：#}
+{#                    {% else %}#}
+{#                    <span class="r-time visible-md visible-lg">{{ message.date_action }}</span>论坛消息：#}
+{#                    {% endif %}#}
+{#                {% endif %}#}
+            </dt>
+            <dd style="word-break:break-all">
+{#                <img class="avatar" src="" alt="">#}
+{#                {% if message.action_type == "2" or message.action_type == "3" %}#}
+{#                    {{ message.action_content }}#}
+{#                {% else %}#}
+                    {{ message.action_content|safe }}
+{#                {% endif %}#}
+            </dd>
+        </dl>
+        {% endfor %}
+        {% else %}
+        <div class="defult_mymessage"><span>您还没有收到任何消息</span></div>
+        {% endif %}
+
+    </div>
+    {% if page_count != 1 %}
+    <div class="page-bg-w">
+        <div class="row v5-pages">
+            <div class="col-sm-12 v5-pages-list">
+                <ul class="row fr">
+                    <li><a class="v5-icon v5-icon-prev" href="?page={{ pre_page }}"></a></li>
+                    {% for p in page_count_list %}
+                        <li><a class="page-num {% ifequal page_index p %} active {% endifequal %}"
+                               href="?page={{ p }}">{{ p }}</a></li>
+                    {% endfor %}
+                    <li><a class="v5-icon v5-icon-next" href="?page={{ next_page }}"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}

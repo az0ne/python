@@ -1,0 +1,13 @@
+<svg id="banner-tit-bg" xmlns="http://www.w3.org/2000/svg" width="123" height="43" viewBox="0 0 123 43">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #90f9df;
+        stroke-width: 1px;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="banner-tit-bg-2" data-name="banner-tit-bg" class="cls-1" d="M190,306H104.479l-4.452,7.011L95.574,306H88a10,10,0,0,1-10-10V281a10,10,0,0,1,10-10H190a10,10,0,0,1,10,10v15A10,10,0,0,1,190,306Z" transform="translate(-77.5 -270.5)"/>
+</svg>

@@ -1,0 +1,289 @@
+@charset "UTF-8";
+
+@import 'var';
+
+/*学生端--个人中心*/
+$personalcenterbg:url(/static/images/mz_wap/personalCenterIcon.png) no-repeat;
+$font-size:pxToRem(30) !default;
+$color:#3b3b3b !default;
+.personalCenter{
+  .page{
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  background: #f4f4f4;
+  font-size: $font-size;
+  color: $color;
+  .headTitle{
+    @include heights(98);
+    border-bottom: 1px solid #dfe1e0;
+    @include box-shadow( 0 pxToRem(2) pxToRem(5) pxToRem(2) rgba(0,0,0,.1));
+    padding: 0 pxToRem(24);
+    .back{
+      position: absolute;
+      color: #898989;
+      &:before{
+        @extend %pseudo-class;
+        width: pxToRem(20);
+        height: pxToRem(30);
+        background: $personalcenterbg;
+        background-position: -4px -188px;
+        margin: pxToRem(-4 10 0 0);
+      }
+    }
+    h3{
+      text-align: center;
+      font-size: $font-size;
+      font-weight: 800;
+    }
+  }
+  .infos{
+    margin-top: pxToRem(26);
+    ul{
+      background: #fff;
+      padding: 0 pxToRem(18);
+      @include box-shadow(0 pxToRem(2) pxToRem(5) pxToRem(2) rgba(0,0,0,.1));
+    }
+    a:after{
+      @extend %pseudo-class;
+      width: pxToRem(12);
+      height: pxToRem(20);
+      background: $personalcenterbg;
+      background-position: -2px -230px;
+      margin: pxToRem(-4 0 0 10);
+    }
+    li{
+      @include heights(100);
+      border-bottom: 1px solid #999;
+      padding-right: pxToRem(10);
+      &:first-child{
+        @include heights(148);
+        position: relative;
+      }
+      &:last-child{
+        border-bottom: none;
+      }
+      .img{
+        width: pxToRem(102);
+        height: pxToRem(102);
+        border-radius: 50%;
+        overflow: hidden;
+        float: right;
+        margin-top: pxToRem(20);
+        img{
+          border-radius: 50%;
+        }
+        i.pays{
+          width: pxToRem(42);
+          height: pxToRem(42);
+          display: block;
+          background: $personalcenterbg;
+          background-position: 0 0;
+          position: absolute;
+          right: 0;
+          bottom: pxToRem(22);
+        }
+      }
+      strong{
+        float: left;
+      }
+      span{
+      float: right;
+      color: #c1c1c1;
+        &.tel:before{
+          @extend %pseudo-class;
+          width: pxToRem(34);
+          height: pxToRem(34);
+          background: $personalcenterbg;
+          background-position: 0 -144px;
+          margin: pxToRem(-5 10 0 0);
+        }
+      }
+      a{
+        float: right;
+        color: #7e7e7e;
+        em{
+          display: inline-block;
+          vertical-align: middle;
+          margin-top: pxToRem(-5);
+          @include maxwidth(430);
+        }
+      }
+    }
+  }
+  .order{
+    @include heights(100);
+    @extend ul;
+    margin-top: pxToRem(30);
+    a{
+      color: $color;
+      display: block;
+      &:before{
+        @extend %pseudo-class;
+        width: pxToRem(33);
+        height: pxToRem(35);
+        background: $personalcenterbg;
+        background-position: 0 -47px;
+        margin: pxToRem(-3 10 0 0);
+      }
+      &:after{
+        float: right;
+        margin: pxToRem(40 10 0 0);
+      }
+    }
+  }
+  .quit{
+    margin: pxToRem(65 18);
+    height: pxToRem(100);
+    @include box-shadow(0 0 pxToRem(3) pxToRem(3) rgba(0,0,0,.06));
+    input{
+      width: 100%;
+      height: 100%;
+      background: #ffba00;
+      font-size: pxToRem(36);
+      color: #fff;
+      font-family: "Microsoft YaHei";
+    }
+  }
+
+  .pageTitle{
+    @extend .headTitle;
+    background: #fff;
+    position: relative;
+    .keep{
+      position: absolute;
+      top: 0;
+      right: pxToRem(24);
+      color: #ff9342;
+    }
+  }
+  .revise{
+    margin: pxToRem(30 12 0);
+    height: pxToRem(76);
+    background: #fff;
+    input{
+      height: 100%;
+      width: 100%;
+      font-size: $font-size;
+      color: #3c3c3c;
+      font-family: "Microsoft YaHei";
+      padding: 0 pxToRem(16);
+      @extend %box-sizing;
+    }
+  }
+  .orderInfos{
+    @extend .infos;
+    h4{
+      background: #fff;
+      @include heights(175);
+      padding: 0 pxToRem(24);
+      font-size: pxToRem(32);
+      color: #ff9342;
+      &:before{
+        @extend %pseudo-class;
+        width: pxToRem(37);
+        height: pxToRem(40);
+        background: $personalcenterbg;
+        background-position: 0 -92px;
+        margin: pxToRem(-3 12 0 0);
+      }
+    }
+    li{
+      border-top: 1px solid #999;
+      border-bottom: none;
+      &:first-child{
+        @include heights(100);
+      }
+      span{
+        float: left;
+        padding-left: pxToRem(10);
+        @include maxwidth(460);
+      }
+    }
+  }
+}
+
+/*老师端--个人中心*/
+.teacherPersonal{
+  background: #f4f4f4;
+  .info{
+    display: table;
+    width: 100%;
+    height: pxToRem(316);
+    background: url(/static/images/mz_wap/teacherpersonalbg.png) no-repeat left bottom;
+    background-size: cover;
+    .teach{
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      p{
+        width: pxToRem(102);
+        height: pxToRem(102);
+        border-radius: 50%;
+        margin: 0 auto;
+        img{
+          border-radius: 50%;
+        }
+      }
+      strong{
+        color: #fff;
+        font-size: pxToRem(32);
+        font-weight: 800;
+        padding-top: pxToRem(20);
+      }
+    }
+  }
+  .abstract{
+    padding:pxToRem(18 20 32);
+    background: #fff;
+    @include box-shadow(0 pxToRem(2) pxToRem(5) pxToRem(2) rgba(0,0,0,.1));
+    color: $color;
+    strong{
+      font-size: $font-size;
+      font-weight: 800;
+    }
+    p{
+      font-size: pxToRem(24);
+      line-height: pxToRem(42);
+      margin-top: pxToRem(12);
+      @include maxheight(126);
+    }
+  }
+  .course{
+    margin: pxToRem(40 0 60);
+    h4{
+      color: $color;
+      font-size: $font-size;
+      font-weight: 800;
+      padding: 0 pxToRem(20);
+    }
+    ul{
+      margin-top: pxToRem(16);
+    }
+    li{
+      padding: pxToRem(24 18);
+      border-bottom: 1px solid #e2e2e2;
+      .img{
+        width:pxToRem(230);
+        height:pxToRem(145);
+        overflow: hidden;
+        float: left;
+      }
+      .txt{
+        height:pxToRem(145);
+        margin-left: pxToRem(256);
+        a{
+          font-size: $font-size;
+          color: #666;
+          @include maxheight(80);
+        }
+        span{
+          font-size: pxToRem(26);
+          color: #999;
+          display: block;
+          margin-top: pxToRem(3);
+        }
+      }
+    }
+  }
+}

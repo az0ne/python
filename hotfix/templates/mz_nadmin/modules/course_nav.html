@@ -1,0 +1,37 @@
+{# 课程信息 nav #}
+
+<ul class="nav nav-tabs nav-append-content">
+    {% if is_edit %}
+
+    <li {% if active == "info" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:course_edit' career_course.id stage.id course.id %}">基本信息</a>
+    </li>
+    <li {% if active == "lessons" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:course_edit_lessons' career_course.id stage.id course.id %}">章节管理</a>
+    </li>
+    <li {% if active == "course_paper" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:course_edit_course_paper' career_course.id stage.id course.id %}">课程总测验</a>
+    </li>
+    <li {% if active == "course_project" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:course_edit_course_project' career_course.id stage.id course.id %}">项目制作</a>
+    </li>
+
+    {% else %}
+
+    <li {% if active == "info" %}class="active"{% endif %}>
+        <a href="#">基本信息</a>
+    </li>
+    <li>
+        <a href="#">章节管理</a>
+    </li>
+    <li>
+        <a href="#">课程总测验</a>
+    </li>
+    <li>
+        <a href="#">项目制作</a>
+    </li>
+
+    {% endif %}
+</ul>
+
+

@@ -1,0 +1,228 @@
+//1对1指导轮播
+function desSlider() {
+	$(".course-des-c4-slider-hd").find("li").eq(0).clone().appendTo($(".course-des-c4-slider-hd ul"))
+	var Len = $(".course-des-c4-slider-hd").find("li").length;
+	var oWidth = $(".course-des-c4-slider-hd").find("li").width();
+	var iNow = 0;
+	var Timer;
+	var oDesUl = $(".course-des-c4-slider-hd ul");
+	var tmp = ""
+	oDesUl.width(Len * oWidth);
+
+	for(var i = 0; i < Len - 1; i++) {
+		tmp += "<li></li>";
+	}
+	$(".course-des-c4-slider-bd ul").html(tmp);
+	$(".course-des-c4-slider-bd li").eq(0).addClass("active");
+
+	function goNext() {
+		if(!oDesUl.is(":animated")) {
+			if(iNow < Len - 2) {
+				iNow++
+				oDesUl.animate({
+					"left": -iNow * oWidth
+				}, 600)
+			} else {
+				iNow = 0;
+				oDesUl.animate({
+					"left": -(Len - 1) * oWidth
+				}, 600, function() {
+					oDesUl.css("left", 0)
+				})
+			}
+			$(".course-des-c4-slider-bd").find("li").eq(iNow).addClass("active").siblings().removeClass("active");
+		}
+	}
+	Timer = setInterval(goNext, 2000)
+	$(".course-des-c4-slider-con").hover(function() {
+		clearInterval(Timer)
+	}, function() {
+		clearInterval(Timer)
+		Timer = setInterval(goNext, 2000)
+	})
+	$(".course-des-c4-slider-bd").find("li").on("click", function() {
+		iNow = $(this).index() - 1;
+		goNext()
+	})
+}
+
+function DescriptionSlider() { //四个学生轮播
+
+	var oDescriptionSliderCon = $(".course-description-e-slider-con");
+	oDescriptionSliderCon.html($(".course-description-e-slider-con").html() + $(".course-description-e-slider-con").html());
+	var oStudenLiW = oDescriptionSliderCon.find("li").outerWidth(true);
+	var oStudenLen = $(".course-description-e-slider-con").find("li").length;
+	var iNow = 0;
+	oDescriptionSliderCon.width(oStudenLen * oStudenLiW);
+	var oPrev = $(".course-description-e-prev");
+	var oNext = $(".course-description-e-next");
+	var Timer;
+	oNext.click(Next);
+	Timer = setInterval(Next, 4000);
+	$(".course-description-e-slider").hover(function() {
+		clearInterval(Timer)
+	}, function() {
+		clearInterval(Timer);
+		Timer = setInterval(Next, 4000);
+
+	});
+
+	function Next() {
+		if(!oDescriptionSliderCon.is(":animated")) {
+			iNow++
+			if(iNow < oStudenLen / 2) {
+				oDescriptionSliderCon.animate({
+					"left": -iNow * oStudenLiW
+				}, 600)
+			} else {
+				iNow = 0;
+				oDescriptionSliderCon.animate({
+					"left": -(oStudenLen / 2) * oStudenLiW
+				}, 600, function() {
+					oDescriptionSliderCon.css("left", 0)
+				})
+			}
+		}
+	}
+	oPrev.click(Prev);
+
+	function Prev() {
+		if(!oDescriptionSliderCon.is(":animated")) {
+			if(iNow > 0) {
+				iNow--
+				oDescriptionSliderCon.animate({
+					"left": -iNow * oStudenLiW
+				}, 600)
+			} else {
+				iNow = oStudenLen / 2 - 1;
+				oDescriptionSliderCon.css("left", -(oStudenLen / 2) * oStudenLiW);
+				oDescriptionSliderCon.animate({
+					"left": -(iNow) * oStudenLiW
+				}, 600)
+			}
+		}
+	}
+}
+
+function goTop() {
+	$("html,body").animate({
+		"scrollTop": 0
+	}, 400)
+}
+$(function() {
+	var Timer;
+	var oBtn = false;
+	var iTop = $(".mzedu-tab").position().top;
+	$(".mzedu-tab").find("li").click(function() {
+		var index = $(this).index();
+		$("html,body").animate({
+			"scrollTop": iTop
+		}, 600)
+		if(!oBtn && index == 2) {
+			oBtn = true;
+			clearInterval(Timer);
+			Timer = setTimeout(function() {
+				mzWaterfal();
+			}, 60)
+		}
+		$(this).addClass("active").siblings().removeClass("active");
+		$(".mzedu-tab-wrap .mzedu-tab-con").eq(index).addClass("active").siblings(" .mzedu-tab-con").removeClass("active");
+	});
+
+	$(window).scroll(function() {
+		if($(this).scrollTop() >= iTop) {
+			$("body").addClass("mzedu-tab-fiexd")
+		} else {
+			$("body").removeClass("mzedu-tab-fiexd")
+
+		}
+	});
+})
+//底部全屏轮播
+$(function() {
+
+	var n = 0;
+	var $btn = $('.list-btn li');
+	var $assbox = $('.assess-box');
+	var $inner = $('.innerbox');
+	var timer;
+
+	function autoplay() {
+
+		$inner.animate({
+			"margin-left": (-800 * n) + 'px'
+		}, 500);
+		$btn.eq(n).addClass('active').siblings().removeClass('active');
+		n++;
+		if(n > 2) {
+			n = 0;
+		}
+		timer = setTimeout(autoplay, 4000);
+	}
+
+	$assbox.hover(function() {
+		clearTimeout(timer);
+	}, function() {
+		timer = setTimeout(autoplay, 4000);
+	});
+
+	$btn.click(function() {
+		$(this).addClass('active').siblings().removeClass('active');
+		n = $(this).index();
+		$inner.animate({
+			"margin-left": (-800 * n) + 'px'
+		}, 500);
+	})
+
+	autoplay();
+
+});
+
+//底部全屏轮播
+
+function footerBannerSlider() {
+	$(".footer-banner-c-bd").find("li").eq(0).clone().appendTo($(".footer-banner-c-bd ul"))
+	var Len = $(".footer-banner-c-bd").find("li").length;
+	var oWidth = $(".footer-banner-c-bd").find("li").width();
+	var iNow = 0;
+	var Timer;
+	var oDesUl = $(".footer-banner-c-bd ul");
+	var tmp = ""
+	oDesUl.width(Len * oWidth);
+
+	for(var i = 0; i < Len - 1; i++) {
+		tmp += "<li></li>";
+	}
+	$(".footer-banner-c-hd ul").html(tmp);
+	$(".footer-banner-c-hd li").eq(0).addClass("active");
+
+	function goNext() {
+		if(!oDesUl.is(":animated")) {
+			if(iNow < Len - 2) {
+				iNow++
+				oDesUl.animate({
+					"left": -iNow * oWidth
+				}, 600)
+			} else {
+				iNow = 0;
+				oDesUl.animate({
+					"left": -(Len - 1) * oWidth
+				}, 600, function() {
+					oDesUl.css("left", 0)
+				})
+			}
+			$(".footer-banner-c-hd").find("li").eq(iNow).addClass("active").siblings().removeClass("active");
+		}
+	}
+	Timer = setInterval(goNext, 2000)
+	$(".footer-banner").hover(function() {
+		clearInterval(Timer)
+	}, function() {
+		clearInterval(Timer)
+		Timer = setInterval(goNext, 2000)
+	})
+	$(".footer-banner-c-hd").find("li").on("click", function() {
+		iNow = $(this).index() - 1;
+		goNext()
+	})
+}

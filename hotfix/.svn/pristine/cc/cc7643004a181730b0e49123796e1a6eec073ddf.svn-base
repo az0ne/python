@@ -1,0 +1,37 @@
+<div class="modal fade YaHei" id="oto-order" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" style="width: 800px;">
+        <div class="modal-content">
+			<a class="close"></a>
+			<div class="select-title">
+                <p>你正在预约 <select name="orderTime" id="orderTime"></select>1V1直播</p>
+                <em class="error selectErr"></em>
+            </div>
+            <p class="tip"><span>你还剩余<em>{{ residue_count }}次</em>1V1直播课服务</span></p>
+            <div class="tabBox">
+                <div class="oto-order-form">
+                    <strong>请验证你的直播服务身份</strong>
+                    <div class="yueke-box">
+                        <input type="text" placeholder="输入手机号" name="phone-num" id="ops-phone-num" class="phone-num" value="{{ user.mobile }}"/>
+                        <div class="verification-box">
+                            <input type="text" placeholder="请输入短信验证码" name="verification" id="ops-verification" class="verification"/>
+                            <input type="button" id="ops-send-verify" value="获取验证码" class="send-verif"/>
+                        </div>
+                    </div>
+                    <a href="javascript:;" class="next">下一步</a>
+                </div>
+                <div class="oto-order-content">
+                    <div class="write">
+                        <div id="divUE" class="createInfos">
+                            <div><script id="onevone_ueditor" name="content" type="text/plain" style="width:100%"></script></div>
+                        </div>
+                    </div>
+                    <em class="error textErr"></em>
+                    <span class="tip1">确认使用后将扣除1次1V1直播服务</span>
+                    <input type="button" class="submitBtn" value="确认预约">
+                    <em class="tip2"></em>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

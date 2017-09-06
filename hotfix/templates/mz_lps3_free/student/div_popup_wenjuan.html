@@ -1,0 +1,71 @@
+{% if questionnaire_id == try_satis_questionnaire_id %}
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 600px;">
+            {% if qn %}
+                <div class="modal-head">
+                    <p class="font16 color33">亲爱的同学，</p>
+
+                    <p class="font14 color33">感谢您的信任，参与麦子的<span class="color5e">{{ course_name }}试学。</span></p>
+
+                    <p class="font14 color33">查看评语前，请先完成满意度调查哦~</p>
+                </div>
+                <p class="font14 color33">对整个试学过程，你还满意吗？</p>
+                <ul class="satisfy-list">
+                    {% for q in qn %}
+                        <li {% if forloop.counter == 1 %}class="now"{% endif %}>
+                            <p class="first font14 color33">{{ forloop.counter }}、 {{ q.stem }}</p>
+
+                            <p class="last" id="{{ q.id }}">
+                                {% for item in q.ques_options %}
+                                    <label value='{{ item.0 }}'>{{ item.1 }}</label>
+                                {% endfor %}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <p class="button-group">
+                    <a class="submit" href="javascript:void(0)">提交</a>
+                    <a class="next-time" href="javascript:void(0)">下次再说</a>
+                </p>
+                <span class="err_msg" style="color: #DB0000; margin-left: 80px"></span>
+            {% else %}
+                <div class="modal-head">
+                    <p class="font16 color33">获取问卷失败</p>
+                </div>
+                <p class="button-group">
+                    <a class="next-time" href="javascript:void(0)">离开</a>
+                </p>
+            {% endif %}
+        </div>
+    </div>
+{% else %}
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 460px;">
+            {% if qn %}
+                {% for q in qn %}
+                    <h2 class="font18 color33" id="{{ q.id }}">{{ q.stem }}</h2>
+                    <ul class="satisfy-list">
+                        {% for item in q.ques_options %}
+                            <li {% if forloop.counter == 1 %}class="now"{% endif %}>
+                                <label value='{{ item.0 }}'>{{ item.1 }}</label>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endfor %}
+                <p class="button-group">
+                    <a class="submit" href="javascript:void(0)">提交</a>
+                    <a class="next-time" href="javascript:void(0)">下次再说</a>
+                </p>
+                <span class="err_msg" style="color: #DB0000; margin-left: 16px"></span>
+            {% else %}
+                <div class="modal-head">
+                    <p class="font16 color33">获取问卷失败</p>
+                </div>
+                <p class="button-group">
+                    <a class="next-time" href="javascript:void(0)">离开</a>
+                </p>
+
+            {% endif %}
+        </div>
+    </div>
+{% endif %}

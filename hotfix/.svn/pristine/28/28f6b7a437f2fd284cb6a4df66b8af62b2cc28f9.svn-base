@@ -1,0 +1,69 @@
+{% extends "mz_common/global.html" %}
+{% load date_convert_tag %}
+{% load article_filter %}
+{% block title %}{% if tag %}{{ tag.name }}-{{ tag.name }}学习-麦子学院{% else %}{{ article_type_s_name.name }}-麦子学院{% endif %}{% endblock %}
+{% block keywords%}{% if tag %}{{ tag.name }}，{{ tag.name }}学习，{{ tag.name }}教程{% else %}麦子学院,IT学习,IT技术,IT在线学习,编程学习,android,ios,php,java,python,html5,cocos2dx{% endif %}{% endblock %}
+{% block description%}{% if tag %}{{ tag.name }}学习技巧、{{ tag.name }}最新资讯、{{ tag.name }}相关工具及标签就业情况分享，一手掌握！{% else %}麦子学院IT技术文章专注Android、python、iOS、物联网、产品经理、php、嵌入式、ui等IT技术分享，专门为互联网人才提供海量、优质的资源服务和信息分享，同时建立一个自由交流、学习探讨和共同提高的绝佳生态圈，让各类互联网爱好者和从业人员零距离交流。{% endif %}{% endblock %}
+
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/articleList.css?v={{ time_stamp }}"/>
+<style type="text/css">html, body {height: 100%;}.main_container {min-height: 100%;padding-top: 50px;}</style>
+{% endblock %}
+{% block csstype %}article-list{% endblock %}
+{% block container %}
+    {% include 'header/index_header.html' %}
+    <div class="main_container">
+        <div class="layout_left fl">
+            {% if article_type_list %}
+            <ul class="article_nav_lists marginB29">
+                {% for article_type in article_type_list %}
+                <li{% if article_type.short_name == article_type_s_name.short_name %} class="active"{% endif %}><a class="font14 color66" href="{% url 'article_list_view' article_type.short_name %}">{{ article_type.name }}</a></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <ul class="article_lists">
+                {% for article in article_data.article_list %}
+                <li><a href="{% url 'article_detail_view' article.id %}" target="_blank" class="fl"><img src="{{ MEDIA_URL }}{{ article.title_image }}" alt=""></a>
+
+                    <div class="fr">
+                        <h1 class="marginB10"><a href="{% url 'article_detail_view' article.id %}" class="font18 color33 bold" target="_blank">{{ article.title }}</a></h1>
+
+                        <p class="font14 color66 marginB14">{% if article.abstract %}{{ article.abstract | safe}}{% else %}{% endif %}</p>
+
+                        <p class="font12 color99"><span class="nick_name">{{ article.nick_name }}</span>{% if article.publish_date %}<span class="datetime">{% date_convert article.publish_date %}</span>{% endif %}
+                            {% for id, name in article.tag.items %}
+                            <a href="{% url 'artilcle_list_tag_view' id %}" class="hot_tag color99" target="_blank">{{ name }}</a>
+                            {% endfor %}
+                        </p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            {% if not article_data.article_list %}
+                <div class="no_data font20 colore3">暂无相关内容~</div>
+            {% endif %}
+            {% include 'mz_common/paginater.html' %}
+        </div>
+        <div class="layout_right fr">
+            {% include 'mz_common/article_hot_tag.html' %} {#引入热门tag#}
+            {% if career_courses %}
+            <div class="hot_lesson">
+                <h2 class="font16 color33 marginB20">热门课程</h2>
+                <ul class="hot_lesson_lists">
+                    {% for career_course in career_courses %}
+                    <li><a style="background: {{ career_course.course_color }}" href="{% url 'course:course_detail' career_course.short_name %}" target="_blank"><img src="{{ MEDIA_URL }}{{ career_course.image }}" alt=""><span class="font12 colorff">{{ career_course.name }}</span></a></li>{% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            {% include 'mz_common/article_ad.html' %} {#引入热门tag#}
+        </div>
+    </div>
+{% endblock %}
+{% block footer%}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+{% endblock %}

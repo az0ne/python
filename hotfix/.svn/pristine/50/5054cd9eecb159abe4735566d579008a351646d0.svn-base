@@ -1,0 +1,28 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}支付失败 - 麦子学院{% endblock %}
+{% block keywords %}支付失败{% endblock %}
+{% block description %}支付失败{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet"  href="{{STATIC_URL}}css/mz_wap/stylev1.2.css"/>
+{% endblock %}
+{% block container %}
+    <div class="wapv12 nopay">
+        <div class="tip">
+            <p><img src="{{STATIC_URL}}images/mz_wap/notPaid.png" alt="未支付"/></p>
+            <strong>对不起，报名未成功</strong>
+            <span>订单号：{% if order_no %}{{ order_no }}{% else %}0280810810580328{% endif %}</span>
+        </div>
+        <div class="cause">
+            <strong>失败原因：</strong>
+            <ul>
+                <li>服务器发生未知错误，请立刻联系客服进行人工处理</li>
+                <li>客服电话：400-8628862</li>
+            </ul>
+        </div>
+        <div class="alink">
+            <a href="{{ url }}" class="rePayment">重新支付</a>
+{#            <a href="{% include 'mz_wap/53kf.html' %}" class="custom">联系客服</a>#}
+             <a onclick="_MEIQIA('showPanel')" class="custom">联系客服</a>
+        </div>
+    </div>
+{% endblock %}

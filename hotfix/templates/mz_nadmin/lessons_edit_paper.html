@@ -1,0 +1,96 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/courses_breadcrumb.html"  %}
+
+<div class="tabbable">
+{% include "mz_nadmin/parts/lesson_tabs.html" %}
+
+<div class="tab-content">
+<div class="tab-pane active">
+
+    {% include "mz_nadmin/modules/msgs.html" %}
+
+    <p>
+        {% if lesson_paper %}
+        {# 为已有试卷添加试题 #}
+        <a href="{% url 'nadmin:lessons_edit_paper_quiz_create' course.id lesson.id lesson_paper.id %}"
+            class="btn btn-xs btn-primary">
+            + 添加试题
+        </a>
+        {% else %}
+        {# lesson 还没有对应的试卷 需要先创建一个试卷 #}
+        <a href="{% url 'nadmin:lessons_edit_paper_quiz_create' course.id lesson.id 'create' %}"
+            class="btn btn-xs btn-primary">
+            + 添加试题
+        </a>
+        {% endif %}
+    </p>
+
+    <br>
+
+    <form class="form-horizontal" role="form" id="paper_info_form" data-paper_id="{{ lesson_paper.id }}"
+          action="javascript:void(0);" method="post">
+
+    <div class="form-group">
+        <!--label class="col-md-2 control-label text-left" for="search_keywords">
+        </label-->
+        <div class="col-md-8">
+        <label class="checkbox">
+            <input type="checkbox" name="is_active" data-toggle="checkbox" {% if lesson_paper.is_active %}checked=""{% endif %}>
+            开启/关闭模块
+        </label>
+        </div>
+    </div>
+    </form>
+
+    {% if quizs.object_list.count > 0 %}
+    <div class="table-responsive">
+    <table class="table table-bordered table-condensed">
+        <thead>
+            <th class="col-md-1">序号</th>
+            <th class="col-md-9">测试题</th>
+            <th class="col-md-1">顺序</th>
+            <th class="col-md-1">操作</th>
+        </thead>
+        <tbody>
+            {% for quiz in quizs %}
+            <tr data-quiz_id="{{ quiz.id }}">
+                <td>
+                    {{ quiz.id }}
+                </td>
+                <td>
+                    <a href="{% url 'nadmin:lessons_edit_paper_quiz_edit' course.id lesson.id lesson_paper.id quiz.id %}">
+                        {{ quiz.question|truncatechars:128|escape }}
+                    </a>
+                </td>
+                <td>{{ quiz.index }}</td>
+                <td class="action_list">
+                    <span class="btn btn-xs btn-danger" data-action="delete">删除</span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% include "modules/page_info.html" with items=quizs %}
+    </div>
+    {% else %}
+    <p class="text-muted"><small>还没有任何随堂测试</small></p>
+    {% endif %}
+
+</div><!--/.tab-pane-->
+</div>
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+window.page.name = "lesson_paper";
+</script>
+{% endblock %}
+
+
+

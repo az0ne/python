@@ -1,0 +1,773 @@
+{% extends "mz_common/global.html" %}
+{% block title %}麦子学院 - 专业IT职业教育平台|ui培训|python培训|web前端培训|产品经理培训{% endblock %}
+{% block keywords %}麦子学院,IT职业培训,IT技能培训,IT在线教育,IT在线学习,编程学习,产品经理,python,ui设计,web前端,新媒体运营{% endblock %}
+{% block description %}麦子学院专注IT职业在线教育，提供产品经理、python开发、UI设计、web前端、网络运营、嵌入式、物联网、android开发、ios开发、php开发等一系列线上IT培训服务，推出在线教育智能化学习系统，保证在线学习效果，每年帮助上万名软件开发学习者成功就业。{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/index.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block csstype %}index{% endblock %}
+{% block container %}
+    {% include 'header/index_header.html' %}
+    <div class="main">
+        <div class="side-bar">
+            <div class="side-menu w1920">
+                <div class="w1920-scroll">
+                    <div class="hidden-box"></div>
+                    <div class="side-nav ">
+                        <h5>软件学院</h5>
+                        <ul>
+                            <li class="icon-4"><a href="{% url 'course:course_detail' 'python' %}" target="_blank" onclick="zhuge.track('首页侧边栏点击', {'课程来源': 'Python Web 开发'})">Python Web 开发</a></li>
+                            <li class="icon-3"><a href="{% url 'course:course_detail' 'web' %}" target="_blank" onclick="zhuge.track('首页侧边栏点击', {'课程来源': 'Web 前端开发'})">Web 前端开发</a></li>
+                             <li class="index-ai-icon"><a href="/land/ai/" target="_blank" onclick="zhuge.track('首页侧边栏点击', {'课程来源': '机器学习'})">机器学习</a></li>
+                            <li class="icon-1"><a href="{% url 'course:course_detail' 'ios' %}" target="_blank" onclick="zhuge.track('首页侧边栏点击', {'课程来源': 'iOS 应用开发'})">iOS 应用开发</a></li>
+                            <li class="icon-2"><a href="{% url 'course:course_detail' 'android' %}" target="_blank" onclick="zhuge.track('首页侧边栏点击', {'课程来源': 'Android 应用开发'})">Android 应用开发</a></li>
+                            <li class="icon-5"><a href="{% url 'course:course_detail' 'php' %}" target="_blank" onclick="zhuge.track('首页侧边栏点击', {'课程来源': 'PHP Web 开发'})">PHP Web 开发</a></li>
+                            <li class="icon-6"><a href="{% url 'course:course_detail' 'te' %}" target="_blank" onclick="zhuge.track('首页侧边栏点击', {'课程来源': '软件测试'})">软件测试</a></li>
+                            <li class="icon-13"><a href="{% url 'course:course_detail' 'oam' %}" target="_blank" onclick="zhuge.track('首页侧边栏点击', {'课程来源': '自动化运维＋云计算'})">自动化运维＋云计算</a></li>
+                            <li class="icon-15"><a href="{% url 'course:course_detail' 'sec' %}" target="_blank" onclick="zhuge.track('首页侧边栏点击', {'课程来源': '网络安全'})">网络安全</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="side-nav">
+                        <h5>设计学院</h5>
+                        <ul>
+                            <li class="icon-11"><a href="{% url 'course:course_detail' 'ui' %}" target="_blank" onclick="zhuge.track('首页侧边栏点击', {'课程来源': 'UI 设计'})">UI 设计</a></li>
+                            <li class="icon-12"><a href="{% url 'course:course_detail' 'gd' %}" target="_blank" onclick="zhuge.track('首页侧边栏点击', {'课程来源': '平面设计'})">平面设计</a></li>
+                        </ul>
+                    </div>
+                    <div class="side-nav">
+                        <h5>产品运营学院</h5>
+                        <ul>
+                            <li class="icon-9"><a href="{% url 'course:course_detail' 'npm' %}" target="_blank" onclick="zhuge.track('首页侧边栏点击', {'课程来源': '产品经理'})">产品经理</a></li>
+                            <li class="icon-16"><a href="{% url 'course:course_detail' 'op' %}" target="_blank" onclick="zhuge.track('首页侧边栏点击', {'课程来源': '互联网运营'})">互联网运营</a></li>
+    {#                        <li class="icon-14"><a href="/pages/adpc/chuangyeke/index.html?seo=daohang" target="_blank" onclick="zhuge.track('首页侧边栏点击', {'课程来源': '互联网商学院'})">新媒体内容创业</a></li>#}
+                        </ul>
+                    </div>
+                    <div class="side-nav">
+                        <h5>互联网商学院</h5>
+                        <ul>
+                            <li class="icon-10"><a href="{% url 'course:course_detail' 'business' %}" target="_blank" onclick="zhuge.track('首页侧边栏点击', {'课程来源': '互联网商学院'})">互联网商学院</a></li>
+                        </ul>
+                    </div>
+                    <div class="side-nav last">
+                        <h5>硬件学院</h5>
+                        <ul>
+                            <li class="icon-7"><a href="{% url 'course:course_detail' 'qrs' %}" target="_blank" onclick="zhuge.track('首页侧边栏点击', {'课程来源': '嵌入式系统开发'})">嵌入式系统开发</a></li>
+                            <li class="icon-8"><a href="{% url 'course:course_detail' 'iot' %}" target="_blank" onclick="zhuge.track('首页侧边栏点击', {'课程来源': '物联网开发'})">物联网开发</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <div class="side-menu w1280">
+                <div class="hidden-box"></div>
+                <div class="side-nav">
+                    <ul>
+                        <li class="icon-4"></li>
+                        <li class="icon-3"></li>
+                        <li class="icon-1"></li>
+                        <li class="icon-2"></li>
+                        <li class="icon-5"></li>
+                        <li class="icon-6"></li>
+                        <li class="icon-13"></li>
+                        <li class="icon-15"></li>
+                    </ul>
+                </div>
+                <div class="side-nav">
+                    <ul>
+                        <li class="icon-11"></li>
+                        <li class="icon-12"></li>
+                    </ul>
+                </div>
+
+                <div class="side-nav">
+                    <ul>
+                        <li class="icon-9"></li>
+                        <li class="icon-16"></li>
+
+                        <li class="icon-10"></li>
+                    </ul>
+                </div>
+                 <div class="side-nav last">
+                    <ul>
+                        <li class="icon-7"></li>
+                        <li class="icon-8"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="main-container">
+            <div class="slide">
+                <div class="slide-box">
+                    <ul>
+                        {% for banner in banner_lst %}
+                            <li style="background: {{ banner.bgcolor }} url({{ MEDIA_URL }}{{ banner.image_url }});background-repeat: no-repeat;background-position: center top;">
+                                <a href="{{ banner.url }}" target="_blank" title="{{ banner.image_title }}" onclick="zhuge.track('轮播图点击次数', {'课程': '{{ banner.image_title }}'})"></a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <ol class="slide-tab textR"></ol>
+                </div>
+            </div>
+            <div class="main-con-inner">
+                <!--5位导师-->
+                <div class="teach-box marginB30">
+                    <ul class="clearfix">
+                        <li>
+                            <a href="/land/pm/" title="产品经理-CEO的学前班" target="_blank">
+                                <img src="../images/index/index-change/teacher1.jpg" alt="产品经理-CEO的学前班">
+                                <span href="#" class="study">开始学习</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/land/ui/"  title="UI设计-互联网的视觉创意"  target="_blank">
+                                <img src="../images/index/index-change/teacher2.jpg" alt="UI设计-互联网的视觉创意">
+                                <span href="#" class="study">开始学习</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/land/web/" title="WEB前端-用户界面的构筑者" target="_blank">
+                                <img src="../images/index/index-change/teacher3.jpg" alt="WEB前端-用户界面的构筑者">
+                                <span href="#" class="study">开始学习</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/land/python/" title="Pytho-最有前景的开发职位" target="_blank">
+                                <img src="../images/index/index-change/teacher4.jpg" alt="Pytho-最有前景的开发职位">
+                                <span href="#" class="study">开始学习</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/land/op/" title="互联网运营-引领用户的大BOSS" target="_blank">
+                                <img src="../images/index/index-change/teacher5.jpg" alt="互联网运营-引领用户的大BOSS">
+                                <span href="#" class="study">开始学习</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 小课程开始 -->
+                <div class="course-container marginB30 ">
+                <!--UI设计-->
+                    {% for hot_course_data in hot_course_data_list %}
+                    <div class="title-box marginB7">
+                        <div class="mod-title clearfix">
+                            <h1 class="tit-txt">{{ hot_course_data.0.0 }}</h1>
+                            <a href="{% url 'course:stage_course_list' hot_course_data.0.1 'all' '0' '1' %}" target="_blank"><span>更多</span> <i class="tit-tag"></i></a>
+                        </div>
+                    </div>
+                    <div class="ui-container marginB30  ">
+                        <div class="ui-inner clearfix">
+                            <div class="ui-left">
+                             {% for career_newad in career_newad_list %}
+                                {% if forloop.counter == forloop.parentloop.counter%}
+                                <div class="ui-tag">
+                                    {% if career_newad.title1 %}
+                                     <a href="{{ career_newad.title1_url }}" class="on-line">{{ career_newad.title1 }} <i class="uitag"></i></a>
+                                    {% endif %}
+                                    {% if career_newad.title2 %}
+                                     <a href="{{ career_newad.title2_url }}" class="off-line">{{ career_newad.title2 }} <i class="uitag"></i></a>
+                                    {% endif %}
+                                </div>
+
+                                    <a href="{{ career_newad.title1_url }}" > <img src="{{ MEDIA_URL }}{{ career_newad.image }}" alt="{{ career_newad.image_title }}" class="ui-img" ></a>
+
+                                 {% endif %}
+                             {% endfor %}
+                            </div>
+                            <div class="ui-right ">
+                                <ul class="clearfix">
+                                    {% for hot_course in hot_course_data.1 %}
+                                    <li class="ui-img-hover">
+
+                                        <a href="{% url 'course:course_detail_view' hot_course.id %}" target="_blank">
+
+                                            <div class="item-tag">
+                                                <p class="item-tag1">{{ hot_course.name }}</p>
+                                                <p class="item-tag2">{{ hot_course.student_count }}人学习</p>
+                                            </div>
+                                            <div class="ui-imgbox">
+                                            <img src="{{ MEDIA_URL }}{{ hot_course.image }}" alt="{{ hot_course.name }}" class="ur-img img-responsive">
+
+                                            </div>
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                <!--职业学习路线-->
+                <div class="title-box marginB7">
+                    <div class="mod-title clearfix">
+                        <h1 class="tit-txt">职业学习路线</h1>
+                    </div>
+                </div>
+                <div class="career-container marginB30">
+                    <ul class="clearfix">
+                        <li>
+                            <a href="/course/npm/" target="_blank">
+                                <div class="career-tag">
+                                    <h1 class="font12 tea-tit">产品经理</h1>
+                                    <span class="font12 col-a1">ceo的学前班</span>
+                                </div>
+                                <div class="career-img career-img1"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/course/ui/" target="_blank">
+                                <div class="career-tag">
+                                    <h1 class="font12 tea-tit">UI 设计师</h1>
+                                    <span class="font12 col-a1">互联网的视觉创意</span>
+                                </div>
+                                <div class="career-img career-img2"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/course/op/" target="_blank">
+                                <div class="career-tag">
+                                    <h1 class="font12 tea-tit">互联网运营</h1>
+                                    <span class="font12 col-a1">引领用户的大BOSS</span>
+                                </div>
+                                <div class="career-img career-img3"></div>
+                            </a>
+                        </li>
+                        <!--<li>
+                            <a href="/course/op/" target="_blank">
+                                <div class="career-tag">
+                                    <h1 class="font12 tea-tit">机器学习</h1>
+                                    <span class="font12 col-a1">最前沿稀缺人工智能岗位</span>
+                                </div>
+                                <div class="career-img career-img-ai"></div>
+                            </a>
+                        </li>-->
+                        <li>
+                            <a href="/course/android/" target="_blank">
+                                <div class="career-tag">
+                                    <h1 class="font12 tea-tit">Android 开发工程师</h1>
+                                    <span class="font12 col-a1">市场缺口最大的移动应用开发岗位</span>
+                                </div>
+                                <div class="career-img career-img4"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/course/qrs/" target="_blank">
+                                <div class="career-tag">
+                                    <h1 class="font12 tea-tit">嵌入式开发工程师</h1>
+                                    <span class="font12 col-a1">多平台Linux开发工程师的摇篮</span>
+                                </div>
+                                <div class="career-img career-img5"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/course/iot/" target="_blank">
+                                <div class="career-tag">
+                                    <h1 class="font12 tea-tit">物联网开发工程师</h1>
+                                    <span class="font12 col-a1">拥有巨大的智能硬件市场人才需求</span>
+                                </div>
+                                <div class="career-img career-img6"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/course/php/" target="_blank">
+                                <div class="career-tag">
+                                    <h1 class="font12 tea-tit">PHP Web开发工程师</h1>
+                                    <span class="font12 col-a1">最易入门的千万级网站的开发岗</span>
+                                </div>
+                                <div class="career-img career-img7"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/course/web/" target="_blank">
+                                <div class="career-tag">
+                                    <h1 class="font12 tea-tit">Web 前端开发工程师</h1>
+                                    <span class="font12 col-a1">用户界面的构筑者</span>
+                                </div>
+                                <div class="career-img career-img8"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/course/python/" target="_blank">
+                                <div class="career-tag">
+                                    <h1 class="font12 tea-tit">Python Web 开发工程师</h1>
+                                    <span class="font12 col-a1">最有前景的开发职位</span>
+                                </div>
+                                <div class="career-img career-img9"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/course/te/" target="_blank">
+                                <div class="career-tag">
+                                    <h1 class="font12 tea-tit">软件测试工程师</h1>
+                                    <span class="font12 col-a1">软件质量最重要的防线</span>
+                                </div>
+                                <div class="career-img career-img10"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/course/oam/" target="_blank">
+                                <div class="career-tag">
+                                    <h1 class="font12 tea-tit">自动化 + 云计算</h1>
+                                    <span class="font12 col-a1">安全、稳定、快速的网络管家</span>
+                                </div>
+                                <div class="career-img career-img11"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/course/ios/" target="_blank">
+                                <div class="career-tag">
+                                    <h1 class="font12 tea-tit">iOS 软件开发工程师</h1>
+                                    <span class="font12 col-a1">最容易拿高薪的移动开发岗位</span>
+                                </div>
+                                <div class="career-img career-img12"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/course/gd/" target="_blank">
+                                <div class="career-tag">
+                                    <h1 class="font12 tea-tit">平面设计师</h1>
+                                    <span class="font12 col-a1">静态设计的多面手</span>
+                                </div>
+                                <div class="career-img career-img13"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/course/sec/" target="_blank">
+                                <div class="career-tag">
+                                    <h1 class="font12 tea-tit">网络安全</h1>
+                                    <span class="font12 col-a1">系统从此不再怕攻击</span>
+                                </div>
+                                <div class="career-img career-img14"></div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/course/business/" target="_blank">
+                                <div class="career-tag">
+                                    <h1 class="font12 tea-tit">互联网商学院</h1>
+                                    <span class="font12 col-a1">传统企业主 30 天玩转互联网</span>
+                                </div>
+                                <div class="career-img career-img15"></div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 参考文档 -->
+                <div class="goods-container marginB30">
+                    <ul class="goods-news clearfix">
+                        <li>
+                            <div class="news-title marginB30">
+                              <a href="http://www.maiziedu.com/wiki/"><h1 class="news-title">参考文档</h1></a>
+                            </div>
+                            <div class="news-box">
+                                <a href="{{ wiki_list.1.0.wiki_url }}" class="news-top">
+                                    <div class="modpage"></div>
+                                    <div class="news-tag">
+                                        <p class="news-tit">{{ wiki_list.1.0.abstract }}</p>
+                                    </div>
+                                    <img src="{{ MEDIA_URL }}{{ wiki_list.1.0.title_image }}" alt="{{ wiki_list.1.0.name }}">
+                                </a>
+                                <div class="news-bot">
+                                    {% for wiki in wiki_list.1 %}
+                                    <p><a href="{{ wiki.wiki_url }}">{{ wiki.title }}</a></p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </li>
+                        {% for article_data in article_data_list %}
+                        {%  with article_data.0 as article_type %}
+                        <li>
+                            <div class="news-title marginB30">
+                                <a href={% cycle 'article/job/','article/tech','article/industry' %} }> <h1 class="news-title">{{ article_type.name }}</h1></a>
+                            </div>
+                            {% with  article_data.1 as article_list %}
+                            <div class="news-box">
+                                <a href="{% url 'article_detail_view' article_list.0.id %}" class="news-top">
+                                    <div class="modpage"></div>
+                                    <div class="news-tag">
+                                        <p class="news-tit">{% if article_list.0.abstract %}
+                                                    {{ article_list.0.abstract }}
+                                                {% else %}
+                                                    {{ article_list.0.title }}
+                                                {% endif %}</p>
+                                    </div>
+                                    <img src="{{ MEDIA_URL }}{{ article_type.homepage_img }}" alt="{{ article_list.0.name }}">
+                                </a>
+                                <div class="news-bot">
+                                    {% for article in article_list %}
+                                    <p><a href="{% url 'article_detail_view' article.id %}">{{ article.title }}</a></p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endwith %}
+                        </li>
+                        {% endwith %}
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- 金牌导师 -->
+                <div class="title-box marginB7">
+                    <div class="mod-title clearfix">
+                        <h1 class="tit-txt">金牌导师</h1>
+                        <a href="/teacher/recruit/" target="_blank" onclick="zhuge.track('金牌讲师', {'页面名称':'首页','按钮位置':'申请成为麦子讲师'});"><span>成为导师</span> <i class="tit-tag"></i></a>
+                    </div>
+                </div>
+                <div class="goldtea-container marginB30">
+                    <ul class="goldtea-box clearfix">
+                        <li>
+                            <a class="goldtea1">
+                                <div>
+                                    <h4 class="font12 tea-tit">刘昊琛<i class="tea_tag"></i></h4>
+                                    <span class="font10 col-a1">UI 设计金牌导师</span>
+                                </div>
+                                <img src="../images/index/index-change/goldtea1.png" alt="刘昊琛-UI设计金牌导师">
+
+                            </a>
+                            <i class="star-img"></i>
+                        </li>
+                        <li>
+                            <a class="goldtea2">
+                                <div>
+                                    <h4 class="font12 tea-tit">范启凤<i class="tea_tag"></i></h4>
+                                    <span class="font10 col-a1">Web 前端金牌导师</span>
+                                </div>
+                                <img src="../images/index/index-change/goldtea02.png" alt="范启凤-Web前端金牌导师">
+                            </a>
+                            <i class="star-img"></i>
+                        </li>
+                        <li>
+                            <a class="goldtea3">
+                                <div>
+                                    <h4 class="font12 tea-tit">李希<i class="tea_tag"></i></h4>
+                                    <span class="font10 col-a1">Python 金牌导师</span>
+                                </div>
+                                <img src="../images/index/index-change/goldtea3.png" alt="李希-Python金牌导师">
+                            </a>
+                            <i class="star-img"></i>
+                        </li>
+                        <li>
+                            <a  class="goldtea4">
+                                <div>
+                                    <h4 class="font12 tea-tit">谭钧<i class="tea_tag"></i></h4>
+                                    <span class="font10 col-a1">Android 金牌导师</span>
+                                </div>
+                                <img src="../images/index/index-change/goldtea2.png" alt="谭钧-Android金牌导师">
+                            </a>
+                            <i class="star-img"></i>
+                        </li>
+                        <li>
+                            <a  class="goldtea5">
+                                <div>
+                                    <h4 class="font12 tea-tit">傅昊<i class="tea_tag"></i></h4>
+                                    <span class="font10 col-a1">产品经理金牌导师</span>
+                                </div>
+                                <img src="../images/index/index-change/goldtea4.png" alt="傅昊-产品经理金牌导师">
+                            </a>
+                            <i class="star-img"></i>
+                        </li>
+                        <li>
+                            <a  class="goldtea6">
+                                <div>
+                                    <h4 class="font12 tea-tit">张圣林<i class="tea_tag"></i></h4>
+                                    <span class="font10 col-a1">互联网运营金牌讲师</span>
+                                </div>
+                                <img src="../images/index/index-change/goldtea5.png" alt="张圣林-互联网金牌导师">
+                            </a>
+                            <i class="star-img"></i>
+                        </li>
+                        <li>
+                            <a  class="goldtea7">
+                                <div>
+                                    <h4 class="font12 tea-tit">Sundy<i class="tea_tag"></i></h4>
+                                    <span class="font10 col-a1">互联网商学院</span>
+                                </div>
+                                <img src="../images/index/index-change/goldtea_6.png" alt="sundy-互联网商学院">
+                            </a>
+                            <i class="star-img"></i>
+                        </li>
+                        <li>
+                            <a  class="goldtea8">
+                                <div>
+                                    <h4 class="font12 tea-tit">毕博<i class="tea_tag"></i></h4>
+                                    <span class="font10 col-a1">物联网开发金牌导师</span>
+                                </div>
+                                <img src="../images/index/index-change/goldtea7.png" alt="毕博-物联网开发金牌导师">
+                            </a>
+                            <i class="star-img"></i>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 关于麦子 -->
+                <div class="title-box marginB30">
+                    <div class="mod-title clearfix">
+                        <h1 class="tit-txt">关于麦子</h1>
+                    </div>
+                </div>
+                <div class="maizi-container marginB30 video_introduce1">
+                    <ul class="maizi-box clearfix">
+                        <li>
+                            <a href="javascript:void(null)" data-href="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/gwsp/ksrsnew.mp4" onclick="zhuge.track('首页视频介绍', {'名称': '快速认识麦子学院'})">
+                                <div class="modpage2"></div>
+                                <div class="maizi-tag">
+                                    <p class="maizi-tit1">3分钟快速认识麦子</p>
+                                    <p class="maizi-tit2">权威教学体系保障学习效果</p>
+                                </div>
+                                <img src="../images/index/index-change/video-img1.png" alt="这是一个图片">
+                                <i class="play-img"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(null)" data-href="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/gwsp/jyhznew.mp4"  onclick="zhuge.track('首页视频介绍', {'名称': '就业合作'})">
+                                <div class="modpage2"></div>
+                                <div class="maizi-tag">
+                                    <p class="maizi-tit1">就业合作</p>
+                                    <p class="maizi-tit2">Linkedin Data Tech</p>
+                                </div>
+
+                                <img src="../images/index/index-change/video-img2.png" alt="这是一个图片">
+
+                                <i class="play-img"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(null)" data-href="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/gwsp/jpjsftnew.mp4"  onclick="zhuge.track('首页视频介绍', {'名称': '麦子学院金牌讲师访谈'})">
+                                <div class="modpage2"></div>
+                                <div class="maizi-tag">
+                                    <p class="maizi-tit1">导师专访</p>
+                                    <p class="maizi-tit2">多元的教学模式</p>
+                                </div>
+                                <img src="../images/index/index-change/video-img3.png" alt="这是一个图片">
+                                <i class="play-img"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(null)" data-href="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/gwsp/xyft1new.mp4"  onclick="zhuge.track('首页视频介绍', {'名称': '麦子学员访谈（一）'})">
+                                <div class="modpage2"></div>
+                                <div class="maizi-tag">
+                                    <p class="maizi-tit1">学员访谈</p>
+                                    <p class="maizi-tit2">高薪学员代表</p>
+                                </div>
+                                <img src="../images/index/index-change/video-img4.png" alt="这是一个图片">
+                                <i class="play-img"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <!--媒体报道-->
+                <div class="media-container marginB30">
+                    <div class="media_reports ">
+                        <div class="col_left1">
+                            <h1 class="tit-txt1 marginB30">媒体报道</h1>
+                            <div class="common col_left">
+                        <ul>
+                            <li>
+                                <a href="http://tech.sina.com.cn/i/2015-11-13/doc-ifxkszhk0231260.shtml" rel="nofollow"
+                                   target="_blank">
+                                    <img src="/images/index/link_0.png" alt="新浪"
+                                         onclick="zhuge.track('新浪', {'来源': '首页媒体报道'})">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://science.china.com.cn/2016-03/17/content_8645350.htm" rel="nofollow"
+                                   target="_blank">
+                                    <img src="/images/index/link_1.png" alt="21CN财经"
+                                         onclick="zhuge.track('21CN财经', {'来源': '首页媒体报道'})">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://36kr.com/p/5039661.html" rel="nofollow" target="_blank">
+                                    <img src="/images/index/link_2.png" alt="36kr"
+                                         onclick="zhuge.track('36Kr', {'来源': '首页媒体报道'})">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://edu.qq.com/a/20151201/056651.htm" rel="nofollow" target="_blank">
+                                    <img src="/images/index/link_3.png" alt="腾讯网"
+                                         onclick="zhuge.track('腾讯网', {'来源': '首页媒体报道'})">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://news.ifeng.com/a/20151126/46403469_0.shtml" rel="nofollow"
+                                   target="_blank">
+                                    <img src="/images/index/link_4.png" alt="凤凰"
+                                         onclick="zhuge.track('凤凰', {'来源': '首页媒体报道'})">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://learning.sohu.com/20160513/n449228783.shtml" rel="nofollow"
+                                   target="_blank">
+                                    <img src="/images/index/index-change/link_15.png" alt="搜狐网"
+                                         onclick="zhuge.track('搜狐网', {'来源': '首页媒体报道'})">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                        </div>
+                        <div class="col_right1">
+                            <h1 class="tit-txt1 marginB30">合作企业</h1>
+                            <div class="common col_right">
+                                <div class="coop-etpr-lists">
+                            <ul>
+                                <li>
+                                    <a href="http://study.163.com/" target="_blank" rel="nofollow">
+                                        <img src="/images/index/link_6.png" alt="合作企业"
+                                             onclick="zhuge.track('网易云课堂', {'来源': '首页合作企业'})">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="http://maiziedu.ke.qq.com/" target="_blank" rel="nofollow">
+                                        <img src="/images/index/link_7.png" alt="合作企业"
+                                             onclick="zhuge.track('腾讯课堂', {'来源': '首页合作企业'})">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="http://www.miguxue.com/" target="_blank" rel="nofollow">
+                                        <img src="/images/index/link_8.png" alt="合作企业"
+                                             onclick="zhuge.track('咪咕学堂', {'来源': '首页合作企业'})">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://www.aliyun.com/" target="_blank" rel="nofollow">
+                                        <img src="/images/index/link_9.png" alt="合作企业"
+                                             onclick="zhuge.track('阿里云', {'来源': '首页合作企业'})">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="http://www.iqiyi.com/" target="_blank" rel="nofollow">
+                                        <img src="/images/index/link_10.png" alt="合作企业"
+                                             onclick="zhuge.track('爱奇艺', {'来源': '首页合作企业'})">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="http://www.chuanke.com/" target="_blank" rel="nofollow">
+                                        <img src="/images/index/link_11.png" alt="合作企业"
+                                             onclick="zhuge.track('百度传课', {'来源': '首页合作企业'})">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="http://edu.tv.sohu.com//" target="_blank" rel="nofollow">
+                                        <img src="/images/index/link_12.png" alt="合作企业"
+                                             onclick="zhuge.track('搜狐课堂', {'来源': '首页合作企业'})">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://xue.taobao.com/" target="_blank" rel="nofollow">
+                                        <img src="/images/index/link_13.png" alt="合作企业"
+                                             onclick="zhuge.track('淘宝教育', {'来源': '首页合作企业'})">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                                <dl class="switch">
+                                    <dd class="on" name='0'></dd>
+                                    <dd name='1'></dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 合作关系开始 -->
+                <div class="cooperate-container marginB30">
+                    <div class="cooperate">
+                        <div class="col_left1">
+                            <h1 class="tit-txt1 marginB30">获得奖项</h1>
+                            <div class="common col_left">
+                        <!--<h2 class="font20 color33 marginB29">获得奖项</h2>-->
+
+                        <div class="cooperate-slide">
+                            <ul class="slide-lists">
+                                <li>
+                                    <h4 class="font24 textC marginB20">“2015年度在线教育影响品牌”</h4>
+                                    <p><span class="font14">2015年12月 腾讯教育颁发</span></p>
+                                </li>
+                                <li>
+                                    <h4 class="font24 textC marginB20">“最具口碑影响力在线教育机构”</h4>
+                                    <p><span class="font14">2014年12月 新浪颁发</span></p>
+                                </li>
+                                <li>
+                                    <h4 class="font24 textC marginB20">“2016中国互联网教育评选盛典领军企业”</h4>
+                                    <p><span class="font14">2015年12月 中国远程教育杂志社颁发</span></p>
+                                </li>
+                                <li>
+                                    <h4 class="font24 textC marginB20">“回响中国中国最具创新力在线教育品牌”</h4>
+                                    <p><span class="font14">2014年12月 腾讯颁发</span></p>
+                                </li>
+                                <li>
+                                    <h4 class="font24 textC marginB20">“2015年度在线教育影响品牌”</h4>
+                                    <p><span class="font14">2015年12月 腾讯教育颁发</span></p>
+                                </li>
+                                <li>
+                                    <h4 class="font24 textC marginB20">“中国品牌价值在线教育机构”</h4>
+                                    <p><span class="font14">2015年12月 新浪颁发</span></p>
+                                </li>
+                            </ul>
+                        </div>
+                        <ol class="slide-tab textC"></ol>
+                    </div>
+                        </div>
+                        <div class="col_right1">
+                            <h1 class="tit-txt1 marginB30">合作院校</h1>
+                            <div class="common col_right" style="padding-top:40px;">
+                        <!--<h2 class="font20 color33 marginB29">合作院校</h2>-->
+                                <div class="coop-etpr-lists1">
+                                    <ul>
+                                        <li><a href="http://www.uestc.edu.cn/" target="_blank" rel="nofollow"><img
+                                                src="/images/index/cooperate_1.png" alt="合作院校"
+                                                onclick="zhuge.track('电子科技大学', {'来源': '首页合作院校'})"></a></li>
+                                        <li class="marginL4"><a href="http://www.scu.edu.cn/" target="_blank" rel="nofollow"><img
+                                                src="/images/index/cooperate_2.png" alt="合作院校"
+                                                onclick="zhuge.track('四川大学', {'来源': '首页合作院校'})"></a></li>
+                                        <li class="marginL4"><a href="http://www.cdut.edu.cn/default.html" target="_blank" rel="nofollow"><img
+                                                src="/images/index/cooperate_3.png" alt="合作院校"
+                                                onclick="zhuge.track('成都理工大学', {'来源': '首页合作院校'})"></a></li>
+                                        <li class="marginL4"><a href="http://www.xaufe.edu.cn/" target="_blank" rel="nofollow"><img
+                                                src="/images/index/cooperate_5.jpg" alt="合作院校"
+                                                onclick="zhuge.track('西安财经学院', {'来源': '首页合作院校'})"></a></li>
+                                        <li class="marginL4"><a href="http://www.suse.edu.cn/" target="_blank" rel="nofollow"><img
+                                                src="/images/index/cooperate_4.png" alt="合作院校"
+                                                onclick="zhuge.track('四川理工大学', {'来源': '首页合作院校'})"></a></li>
+
+                                    </ul>
+                                </div>
+                                <dl class="switch1">
+                                    <dd class="on" name='0'></dd>
+                                    <dd name='1'></dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 获得奖项开始 -->
+                <div class="company-container marginB30">
+                    <div class="company-inner">
+                        <h1 class="tit-txt1 marginB30">荣誉奖牌</h1>
+                        <div class="common company_medal">
+                            <ul class="medal_lists">
+                                <li><img src="{{ STATIC_URL }}img/index/01.png" alt="获得奖项"></li>
+                                <li><img src="{{ STATIC_URL }}img/index/02.png" alt="获得奖项"></li>
+                                <li><img src="{{ STATIC_URL }}img/index/03.png" alt="获得奖项"></li>
+                                <li><img src="{{ STATIC_URL }}img/index/04.png" alt="获得奖项"></li>
+                                <li><img src="{{ STATIC_URL }}img/index/05.png" alt="获得奖项"></li>
+                                <li><img src="{{ STATIC_URL }}img/index/06.png" alt="获得奖项"></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {% include 'footer/index_footer.html' %}
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/lib/superSlider/jquery.SuperSlide.2.1.1.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/index.js?v={{ time_stamp }}"></script>
+{% endblock %}

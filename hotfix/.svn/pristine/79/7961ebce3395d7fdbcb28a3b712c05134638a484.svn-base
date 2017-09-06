@@ -1,0 +1,16 @@
+<ul class="course-filter">
+    <li class="sort">
+        <dl>
+        {% for k, v in sort_by_list_chinese %}
+            <dd {% if sort_by == k %}class="active"{% endif %}>
+                <a href="{% url 'stage_course_list' category tag k 1 %}{% if keyword %}?catagory={{ keyword }}{% endif %}">
+               {% if v == "播放最多" %}最多{% else %}{{ v }}{% endif %}
+                </a>
+            </dd>
+        {% endfor %}
+        </dl>
+    </li>
+    <li class="filter" id="filter">
+    	<a href="javascript:void()">筛选<i></i></a>
+    </li>
+</ul>

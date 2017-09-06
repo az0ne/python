@@ -1,0 +1,117 @@
+<div class="head-container">
+    <div class="header">
+        <div class="wrap">
+            <a class="logo fl" href="/" onclick="zhuge.track('点击header-logo')">
+                <h2>
+                    <img src="/static/images/mz_new_ad/web-images/logo.png" alt="logo">
+                </h2>
+            </a>
+            <div class="tag-box">
+                <h3>人工智能</h3>
+                <span>职业课程</span>
+            </div>
+            <div class="toggle-box">
+                <div class="toggle-btn">
+                    切换课程 <span class="arrow_down"></span>
+                </div>
+                <div class="toggle-list">
+                    <h4>软件开发</h4>
+                    <ul class="clearfix">
+                        <li class="tog-item1"><a href="/course/python-px/" target="_blank" onclick="zhuge.track('px页下拉框点击',{'课程来源':'Python Web 开发'})">Python Web 开发</a></li>
+                        <li class="tog-item2"><a href="/course/php-px/" target="_blank" onclick="zhuge.track('px页下拉框点击',{'课程来源':'PHP Web 开发'})">PHP Web 开发</a></li>
+                        <li class="tog-item3"><a href="/course/oam-px/" target="_blank" onclick="zhuge.track('px页下拉框点击',{'课程来源':'自动化运维+云计算'})">自动化运维+云计算</a></li>
+                        <li class="tog-item4"><a href="/course/web-px/" target="_blank" onclick="zhuge.track('px页下拉框点击',{'课程来源':' Web 前端开发'})">Web 前端开发</a></li>
+                        <li class="tog-item5"><a href="/course/te-px/" target="_blank" onclick="zhuge.track('px页下拉框点击',{'课程来源':'软件测试'})">软件测试</a></li>
+                        <li class="tog-item6"><a href="/course/sec-px/" target="_blank" onclick="zhuge.track('px页下拉框点击',{'课程来源':'网络安全'})">网络安全</a></li>
+                        <li class="tog-item7"><a href="/course/ios-px/" target="_blank" onclick="zhuge.track('px页下拉框点击',{'课程来源':'iOS 应用开发'})">iOS 应用开发</a></li>
+                        <li class="tog-item8"><a href="/course/android-px/" target="_blank" onclick="zhuge.track('px页下拉框点击',{'课程来源':'Android 应用开发'})">Android 应用开发</a></li>
+                    </ul>
+                    <h4>互联网设计</h4>
+                    <ul class="clearfix">
+                        <li class="tog-item9"><a href="/course/ui-px/" target="_blank" onclick="zhuge.track('px页下拉框点击',{'课程来源':'UI 设计'})">UI 设计</a></li>
+                        <li class="tog-item10"><a href="/course/gd-px/" target="_blank" onclick="zhuge.track('px页下拉框点击',{'课程来源':'平面设计'})">平面设计</a></li>
+                    </ul>
+                    <h4>产品运营</h4>
+                    <ul class="clearfix">
+                        <li class="tog-item11"><a href="/course/npm-px/" target="_blank" onclick="zhuge.track('px页下拉框点击',{'课程来源':'产品经理'})">产品经理</a></li>
+                        <li class="tog-item12"><a href="/course/op-px/" target="_blank" onclick="zhuge.track('px页下拉框点击',{'课程来源':'互联网运营'})">互联网运营</a></li>
+                        <li class="tog-item13"><a href="/pages/adpc/chuangyeke/index.html?seo=daohang" target="_blank" onclick="zhuge.track('px页下拉框点击',{'课程来源':'新媒体内容创业'})">新媒体内容创业</a></li>
+                        <li class="tog-item14"><a href="/course/business-px/" target="_blank" onclick="zhuge.track('px页下拉框点击',{'课程来源':'互联网商学院'})">互联网商学院</a></li>
+                    </ul>
+                    <h4>硬件开发</h4>
+                    <ul class="clearfix">
+                        <li class="tog-item15"><a href="/course/iot-px/" target="_blank" onclick="zhuge.track('px页下拉框点击',{'课程来源':'物联网开发'})">物联网开发</a></li>
+                        <li class="tog-item16"><a href="/course/qrs-px/" target="_blank" onclick="zhuge.track('px页下拉框点击',{'课程来源':'嵌入式系统开发'})">嵌入式系统开发</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="topRight" login="{{ user.is_authenticated }}">
+
+                <!--<a class="mobile_app fl" href="/common/apppage/" target="_blank"></a>-->
+                {% if not user.is_authenticated %}
+                <div class="sign-box fl"><a class="a globalLoginBtn">登录</a><a class="a register" href="/user/signup/" target="_blank">注册</a></div>
+                {% else %}
+                <div class="top_user fl">
+                    <a class="top_meg top_megH" href="{% url 'home:base:get_my_message' %}" target="_blank">{% if not new_message_count == 0 %}<i class="Arial">{{ new_message_count }}</i>{% endif %}</a>
+                    <a class="ai" href="/home/" target="_blank"><img src="{{ MEDIA_URL }}{{ user.avatar_url }}"></a>
+                    <span class="nick_name">
+                        <a class="nick" href="/home/" target="_blank" data-name="{{ user.nick_name }}"></a>
+                        <a class="sign_out" href="/user/logout/">退出</a>
+                    </span>
+                </div>
+                {% endif %}
+            </div>
+            <div class="search-box">
+{#                <img src="/static/images/mz_new_ad/web-images/ser.png" alt="" class="ser_btn">#}
+                <div class="header-search">
+                    <input type="text" name="datasearch" autocomplete="off" class="data-search font12" id="data-search" placeholder="搜索你感兴趣的课程"aria-haspopup="false" role="combobox" aria-owns="dd_box" aria-autocomplete="list" value="{{ ori_keyword }}">
+                    <button class="search-btn"></button>
+                    <div class="hot-words">
+                        <a href="/search/course/产品经理-1/" target="_blank">产品经理</a>
+                        <a href="/search/course/web前端-1/" target="_blank">web前端</a>
+                        <a class="last" href="/search/course/ui-1/" target="_blank">ui</a>
+                    </div>
+
+                    <!--<div class="dd_listbox" id="dd_listbox" role="listbox" aria-expanded="true" id="dd_box" style="display: none;">-->
+                        <!--<div class="dd_courseitem dd_csitem" id="dd_csitem">职业课程<i></i></div>-->
+                        <!--<div class="incld_careers" id="incld_careers"></div>-->
+                        <!--<div class="dd_courseitem dd_tutor" id="dd_tutor">职业导师<i></i></div>-->
+                        <!--<div class="incld_teachers" id="incld_teachers"></div>-->
+                        <!--<div class="dd_courseitem dd_craft" id="dd_craft">职业技能<i></i></div>-->
+                        <!--<div class="course_name_ledg" id="course_name_ledg"></div>-->
+                    <!--</div>-->
+                </div>
+                <dl class="fLayerdl" id="fLayerdl" style="max-height: 180px; overflow-y: auto; display: none;">
+                <dd val="产品经理" v2="undefined">
+                    <a href="/search/course/产品经理-1/" target="_blank">产品经理</a>
+                </dd>
+                <dd val="web前端" v2="undefined">
+                    <a href="/search/course/web前端-1/" target="_blank">web前端</a>
+                </dd>
+                <dd val="UI设计" v2="undefined">
+                    <a href="/search/course/UI设计-1/" target="_blank">UI设计</a>
+                </dd>
+                <dd val="Python" v2="undefined">
+                    <a href="/search/course/Python-1/" target="_blank">Python</a>
+                </dd>
+                <dd val="运营" v2="undefined">
+                    <a href="/search/course/运营-1/" target="_blank">运营</a>
+                </dd>
+            </dl>
+
+                <div class="dd_listbox" id="dd_listbox" role="listbox" aria-expanded="true" id="dd_box" style="display: none;">
+                <div class="dd_courseitem dd_csitem" id="dd_csitem">职业课程<i></i></div>
+                <div class="incld_careers" id="incld_careers"></div>
+                <div class="dd_courseitem dd_tutor" id="dd_tutor">职业导师<i></i></div>
+                <div class="incld_teachers" id="incld_teachers"></div>
+                <div class="dd_courseitem dd_craft" id="dd_craft">职业技能<i></i></div>
+                <div class="course_name_ledg" id="course_name_ledg"></div>
+            </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+</div>

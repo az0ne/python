@@ -1,0 +1,166 @@
+/*试学班----教师端*/
+.tryTeacher strong,.tryTeacherModal strong{font-weight: normal;}
+.tryTeacher em{font-style: normal;}
+.tryTeacherCourseList .meetInfo em,#tryTeacherCorrWork .file a{background-image: url(../static/images/tryTeacherIcon.png);background-repeat: no-repeat;}
+
+.tryTeacher,#tryTeacherLearnData li{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing: content-box;}
+.tryTeacher{padding: 6px 40px 84px;}
+.tryTeacherTitle{padding: 18px 0;}
+.tryTeacherTitle strong{} 
+.tryTeacherTitle span{float: right;font-size: 14px;color: #00b38a;line-height: 1.6;}
+.tryTeacherTitle em{font-style: normal;font-size: 24px;height: 14px;line-height:7px;margin-right: 3px;display: inline-block;vertical-align: middle;}
+
+.tryTeacherCourseList{padding-bottom: 30px;}
+.tryTeacherCourseList .item{border: 1px solid #e0e0e0;padding: 20px 30px 30px;overflow: hidden;margin-bottom: 20px;}
+.tryTeacherCourseList .item p strong{font-size: 20px;margin-right: 10px;}
+.tryTeacherCourseList .item p span{display: block;color: #666;}
+.tryTeacherCourseList .item p.completed,.tryTeacherCourseList .item p.completed span{color: #999;}
+.tryTeacherCourseList .item ul,.tryTeacherCourseList .meetInfo{float: left;overflow: hidden;margin-top: 16px;}
+.tryTeacherCourseList .item li{float: left;border: 1px solid #e0e0e0;padding: 22px 18px;margin-right: 10px;}
+.tryTeacherCourseList .item li span{color: #666;float: left;}
+.tryTeacherCourseList .item li em{display: block;font-size: 16px;}
+.tryTeacherCourseList .item li a{width: 80px;height: 30px;line-height: 30px;text-align: center;color: #fff;border-radius: 3px;display: block;float: left;margin: 6px 0 0 30px;}
+.tryTeacherCourseList .item .meeting{background: #5ecfba;}
+.tryTeacherCourseList .item .notStart{background: #faae0b;}
+.tryTeacherCourseList .item li .completed{background: #ccc;}
+.tryTeacherCourseList .meetInfo{margin-left: 18px;width: 160px;height:88px;color: #666;position: relative;}
+.tryTeacherCourseList .meetInfo span{overflow: hidden;}
+.tryTeacherCourseList .meetInfo em{width: 42px;height: 42px;display: block;float: left;background-position: 0 0;margin-right: 10px;}
+.tryTeacherCourseList .meetInfo strong{display: block;font-size: 18px;color: #333;}
+.tryTeacherCourseList .meetInfo a{width: 156px;height: 36px;line-height: 36px;border: 2px solid #6ed4c1;display: block;text-align: center;color: #00b38a;border-radius: 3px;position: absolute;bottom: 0;}
+.personalCico.pcICOtry{width:20px;height:20px;display: inline-block;vertical-align: middle;background-image:url(../static/images/tryTeacherIcon.png);background-position: 0 -74px;}
+.personalCmainLmenu li>a:hover .pcICOtry,.personalCmainLmenu li>a.aH .pcICOtry{background-position: 0 -94px;}
+
+/*新增试学班modal*/
+#tryTeacherNewClassModal{max-height: 562px;margin: auto;}
+#tryTeacherNewClassModal .modal-dialog{width:460px;}
+.tryTeacherModal .modal-content{border-radius: 0;font-size: 14px;border-right:0;box-shadow: none;}
+.tryTeacherModal .modal-title{color:#1bbc9b;font-size: 18px;}
+#tryTeacherNewClassModal label{width:60px;font-weight:normal;}
+#tryTeacherNewClassModal .modal-body{padding: 20px 30px 30px;}
+#tryTeacherNewClassModal .form-group{margin-bottom:10px;}
+#tryTeacherNewClassModal .form-control{width: 314px;height: 38px;border-radius: 2px;}
+#tryTeacherNewClassModal .form-control.error{border-color: #f00;}
+#tryTeacherNewClassModal select,#tryTeacherNewClassModal input[type='date']{color: #999;}
+.tryTeacherNewClassAdd .first,.tryTeacherNewClassAdd .answer{padding-top: 10px;}
+.tryTeacherNewClassAdd strong{font-size: 16px;}
+.tryTeacherNewClassAdd .tips{font-size: 12px;color: #999;margin-left: 10px;display: none;}
+.tryTeacherNewClassAdd .tips em{color: #f00;font-style: normal;}
+.tryTeacherNewClassAdd .answer strong{display: block;}
+.tryTeacherNewClassAdd .answer .dates{height: 38px;line-height: 38px;}
+#tryTeacherNewClassModal .btn,.tryTeacherErrorBox .retry{width: 120px;height: 40px;border-radius: 3px;border: 0;font-weight: bold;}
+.tryTeacherNewClassAdd .create{margin: 10px 0 0 140px;background: #5ecfba;color: #fff;}
+.tryTeacherNewClassAdd .create:hover,.tryTeacherNewClassResult .confirm:hover,#tryTeacherCorrWork .submitBtn:hover,.tryTeacherErrorBox .retry:hover{background: #00b38a ;}
+
+/*失败*/
+.tryTeacherErrorBox{width:404px;height: 260px;margin: auto;}
+.tryTeacherErrorBox .modal-content{width: 400px;height: 200px;background: #fff;margin: auto;border-radius: 0;}
+.tryTeacherErrorBox strong{font-size: 20px;text-align: center;display: block;margin-top:50px;font-weight: normal;}
+.tryTeacherErrorBox .retry{background: #5ecfba;color: #fff;margin: 25px auto 0;display: block;text-align: center;line-height: 40px;font-size: 16px;font-weight: normal;cursor: pointer;}
+
+.tryTeacherNewClassResult{display: none;}
+.tryTeacherNewClassResult .result{background: #fff9df;padding: 18px 30px;overflow: hidden;}
+.tryTeacherNewClassResult p{border-bottom: 1px solid #e9e3c9;padding-bottom: 10px;}
+.tryTeacherNewClassResult p strong{font-size: 20px;}
+.tryTeacherNewClassResult p span{display: block;color: #999;margin-top: 5px;}
+.tryTeacherNewClassResult ul{padding: 12px 0 8px;overflow: hidden;}
+.tryTeacherNewClassResult li{width: 50%;float: left;color: #666;}
+.tryTeacherNewClassResult li strong{display: block;font-size: 16px;}
+.tryTeacherNewClassResult li em{font-style: normal;}
+.tryTeacherNewClassResult .confirm{margin-left: 10px;background: #5ecfba;color: #fff;}
+.tryTeacherNewClassResult .back{margin-left: 75px;background: #f5f5f5;color: #666;}
+.tryTeacherNewClassResult .back:hover{background: #f1f1f1;}
+/*无试学班*/
+.noTryLearn p{text-align: center;}
+.noTryLearn .marginB29{margin-top: 16px;}
+
+/*试学管理面板*/
+.tryTeacherManageBack{line-height: 1.5;font-size: 14px;}
+.tryTeacherManageBack a{color: #666;}
+.tryTeacherManage{padding: 30px 40px;min-height:670px;overflow: hidden;background: #fff;color: #666;}
+.tryTeacherManage strong{font-weight: normal;}
+.tryTeacherManage .title{font-size: 16px;overflow: hidden;}
+.tryTeacherManage .title h3{text-align: center;line-height: 32px;}
+.tryTeacherManage .title span{float: right;}
+.tryTeacherManage .title strong{font-size: 20px;color: #5ECFBA;}
+.tryTeacherManage .tableBox{border: 1px solid #e2e2e2;overflow: hidden;margin-top: 22px;}
+.tryTeacherManage .tableBox table{width: 100%;font-size: 14px;}
+.tryTeacherManage .tableBox th{height: 40px;line-height: 40px;background: #5ecfba;color: #fff;font-weight: normal;text-align: center;}
+.tryTeacherManage .tableBox th span{cursor: pointer;margin-left: 5px;}
+.tryTeacherManage .tableBox th span a{margin: 0;}
+.tryTeacherManage .tableBox td{height:74px;line-height:74px;text-align: center;}
+.tryTeacherManage .tableBox tbody tr:nth-child(even){background: #EFF7F9;}
+.tryTeacherManage .tableBox a{color: #666;margin: 0 20px;}
+.tryTeacherManage .tableBox a:hover{color: #5ECFBA;text-decoration: underline;}
+.tryTeacherManage .tableBox a.noWorks{color: #666;text-decoration: none;cursor: auto;}
+.tryTeacherManage .tableBox td p{width: 54px;height: 54px;float: left;overflow: hidden;line-height: normal;border-radius: 50%;vertical-align: middle;margin:10px 20px 0 50px;}
+.tryTeacherManage .tableBox td strong{float: left;width: 100px;display: block;text-align: left;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;}
+.tryTeacherManage .tableBox td img{max-width:100%;border-radius: 50%;}
+.tryTeacherManage .noAttend{color: #F01400;}
+.tryTeacherManage .tableBox th:first-child{width: 100px;}
+.tryTeacherManage .tableBox th:nth-child(2){width: 235px;}
+.tryTeacherManage .tableBox th:nth-child(3){width: 160px;}
+.tryTeacherManage .tableBox th:nth-child(n+4){width: 152px;}
+.tryTeacherManage .tableBox th:last-child{width: 279px;}
+
+/*批改作业*/
+#tryTeacherCorrWork .jspDrag,#tryTeacherLearnData .jspDrag{padding: 0;}
+#tryTeacherCorrWork{margin: auto;}
+#tryTeacherCorrWork .tryTeacherCorrWork{width: 620px;margin: 0 auto;max-height: 760px;background: #fff;}
+#tryTeacherCorrWork .modal-body{padding: 0;}
+#tryTeacherCorrWork .item,#tryTeacherCorrWork .file{padding: 0 29px;margin-top: 25px;}
+#tryTeacherCorrWork strong{font-size: 16px;}
+#tryTeacherCorrWork .item p{color: #666;margin-top: 6px;}
+#tryTeacherCorrWork .item ul{overflow: hidden;margin:10px 0 0 -10px;}
+#tryTeacherCorrWork .item li{width: 180px;height: 130px;overflow: hidden;float: left;margin-left:10px;background: #ccc;}
+#tryTeacherCorrWork .item img{max-width: 100%;}
+#tryTeacherCorrWork .file span{margin-left: 30px;color: #666;}
+#tryTeacherCorrWork .file a{width: 40px;height: 30px;line-height: 30px;background-color: #5ecfba;border-radius: 3px;color: #fff;float: right;padding-left: 30px;background-position: 10px -43px;}
+#tryTeacherCorrWork .assess{background: #f5f5f5;margin-top: 30px;padding: 30px;}
+#tryTeacherCorrWork .score strong{margin-right: 12px;}
+#tryTeacherCorrWork .score span{width: 40px;height: 40px;display: inline-block;background: #fff;color: #999;border-radius: 2px;line-height: 40px;text-align: center;font-size: 20px;margin: 0 5px;cursor: pointer;}
+#tryTeacherCorrWork .score span:hover,#tryTeacherCorrWork .score .active{background: #5ecfba;color: #fff;}
+#tryTeacherCorrWork .comment{margin-top: 20px;overflow: hidden;}
+#tryTeacherCorrWork .comment strong{float: left;}
+#tryTeacherCorrWork .comment p{margin-left: 55px;word-break: break-all;}
+#tryTeacherCorrWork .comment textarea{width: 470px;height: 78px;background: #fff;border: 1px solid #c1c1c1;padding:10px;}
+#tryTeacherCorrWork .submitBtn{width: 160px;height: 40px;background: #5ecfba;text-align: center;border: 0;color: #fff;font-weight: bold;border-radius: 3px;margin: 8px 0 0 55px;}
+
+/*学习数据*/
+#tryTeacherLearnData{margin: auto;}
+#tryTeacherLearnData .modal-data{width:530px;margin: 0 auto;}
+#tryTeacherLearnData .modal-data .data{overflow: hidden;}
+#tryTeacherLearnData .modal-body{padding: 10px 30px 40px;overflow: hidden;}
+#tryTeacherLearnData .data{height: 414px;}
+#tryTeacherLearnData .data li{height: 40px;padding: 5px 0;border-bottom: 1px solid #e8e8e8;}
+#tryTeacherLearnData .data li a{line-height:40px;display: block;padding: 0 8px;}
+#tryTeacherLearnData .data li a:hover,#tryTeacherLearnData li.active a{background: #f5f5f5;}
+#tryTeacherLearnData .data li strong{color: #666;}
+#tryTeacherLearnData .data li span{color: #1bbc9b;float: right;}
+#tryTeacherLearnData .test .backBtn{float: left;color: #5ecfba;cursor: pointer;}
+#tryTeacherLearnData .modal-test{width: 798px;margin: 0 auto;}
+#tryTeacherLearnData .modal-test .modal-content{border-color:#d1d1d1;}
+#tryTeacherLearnData .modal-test .modal-body{padding: 0;}
+#tryTeacherLearnData .test .modal-title{text-align: center;color: #3a3a3a;}
+#tryTeacherLearnData .test h5{height: 42px;line-height: 42px;background: #f6f6f6;font-size: 16px;padding: 0 20px;}
+#tryTeacherLearnData .test ol{padding: 20px;overflow: hidden;background: #ebebeb;}
+#tryTeacherLearnData .test ol li{line-height: 38px;border: 1px solid #fff;margin-bottom: 10px;background: #fff;padding: 0 12px;cursor: pointer;}
+#tryTeacherLearnData .test ol li span{margin-right:5px;}
+#tryTeacherLearnData .test ol li:hover{color: #1dc4a5;}
+#tryTeacherLearnData .test ol li.active{border-color: #1dc4a5;color: #1dc4a5;}
+#tryTeacherLearnData .test ol li.error{border-color: #ff725f;color: #ff725f;}
+#tryTeacherLearnData .test .infos{height: 26px;padding: 10px;overflow: hidden;text-align: center;}
+#tryTeacherLearnData .infos a{width: 62px;line-height: 24px;color: #1dc4a5;display: block;border: 1px solid #1dc4a5;border-radius: 3px;}
+#tryTeacherLearnData .infos a.lastQuest{float: left;}
+#tryTeacherLearnData .infos a.nextQuest{float: right;}
+#tryTeacherLearnData .infos a:hover{background: #1dc4a5;color: #fff;}
+#tryTeacherLearnData .infos ul{padding-top: 5px;}
+#tryTeacherLearnData .infos li{width:12px;height:12px;background:#e9e9e9;border-radius:50%;display: inline-block;margin: 0 5px;text-indent: -9999px;cursor: pointer;}
+#tryTeacherLearnData .infos li.right,#tryTeacherLearnData .infos li:hover{background: #69d5c2;border:0px solid #64baab;}
+#tryTeacherLearnData .infos li.error{background: #ff7e6a;border:0px solid #f01400;}
+#tryTeacherLearnData .infos li.active{border-width: 3px;}
+#tryTeacherLearnData .test{display: none;}
+/*无学员*/
+.tryTeacherNoStudents{text-align: center;margin-top: 94px;}
+
+

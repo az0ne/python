@@ -1,0 +1,12 @@
+{% extends 'mz_usercenter/usercenter_base.html' %}
+{% block usercenter_right_panel %}
+    {% include 'mz_usercenter/teacher/div_homepage_base.html' %}
+{% endblock %}
+{% block custom_script %}
+<link rel="stylesheet" type="text/css" href="/2016/lib/bxslider/jquery.bxslider.css"/>
+<script type="text/javascript" src="/2016/lib/layer/layer.js"></script>
+<script type="text/javascript" src="/2016/lib/bxslider/jquery.bxslider.js"></script>
+<script type="text/javascript" src="/2016/lib/echarts/echarts.min.js"></script>
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/educationalCenter.js"></script>
+{% endblock %}

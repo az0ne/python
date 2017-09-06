@@ -1,0 +1,59 @@
+<div class="bottom-module">
+    <!-- <div class="favorite">
+        <i></i><span>已收藏</span>
+    </div> -->
+    <div class="share">
+        <i></i><span>分享</span>
+        <div class="jiathis_style">
+            <a class="jiathis_button_cqq"></a>
+            <a class="jiathis_button_qzone"></a>
+            <a class="jiathis_button_tsina"></a>
+        </div>
+    </div>
+    <div class="down-load">
+        <i></i><span>下载</span>
+        <div class="weixin-box"><em></em><p>下载APP离线观看</p></div>
+    </div>
+    <div class="problem-con">
+        <div class="wrap">
+            <div class="focus">
+            {% if is_lps4 and lps4_teacher %}
+                <div class="selector font14" title="{% if lps4_teacher.real_name %}{{ lps4_teacher.real_name }}{% else %}{{ lps4_teacher.nick_name }}{% endif %}">{% if lps4_teacher.real_name %}{{ lps4_teacher.real_name }}{% else %}{{ lps4_teacher.nick_name }}{% endif %}</div>
+                <ul class="option t5o font14" index="1">
+                    <li class="selected" title="{% if lps4_teacher.real_name %}{{ lps4_teacher.real_name }}{% else %}{{ lps4_teacher.nick_name }}{% endif %}">{% if lps4_teacher.real_name %}{{ lps4_teacher.real_name }}{% else %}{{ lps4_teacher.nick_name }}{% endif %}</li>
+                    <li title="学习互动">学习互动</li>
+                </ul>
+                <span class="placeholder font14">您在这里向您的“{% if lps4_teacher.real_name %}{{ lps4_teacher.real_name }}{% else %}{{ lps4_teacher.nick_name }}{% endif %}”提问</span>
+            {% else %}
+                <div class="selector font14" title="学习互动">学习互动</div>
+                <ul class="option t5o font14" index="1">
+                    <li class="selected" title="学习互动">学习互动</li>
+                </ul>
+                <span class="placeholder font14">请输入你的问题</span>
+            {% endif %}
+                <a class="off"></a>
+            </div>
+            <div class="editor-con" style="display: none;">
+                <div class="bdeditor t5o" id="bdeditor">
+                    <p class="ctrl-v font14">( ctrl+V可以贴图片 )</p>
+                    <button class="tiwen-btn font14">提问</button>
+                </div>
+                <div class="tiwen-con t5o">
+                    <div class="message-wrap">
+                        <textarea class="text-msg font14" placeholder="请输入你的问题"></textarea>
+                        <!-- <div class="current-time"></div> -->
+                        <div class="upload-con">
+                            <a class="upload-img" href="javascript:void(0)"></a>
+                        </div>
+                        <button class="tiwen-btn font14">提问</button>
+                    </div>
+                    <!-- <div class="btn-box">
+                        <button class="tiwen-btn">提问</button>
+                        <button class="cancel-btn">取消</button>
+                    </div> -->
+                </div>
+
+            </div>
+        </div>                
+    </div>
+</div>

@@ -1,0 +1,80 @@
+{% extends "mz_backend/base.html" %}
+{% block title %}订单列表{% endblock %}
+{% block container %}
+    <div id="forms" class="mt10">
+        <div class="box">
+            <div class="box_border">
+                <div class="box_top"><b class="pl15">生成优惠码</b></div>
+                <div class="box_center">
+                    <form action="{% url 'backend:coupon_list_view' %}" class="jqtransform">
+                        <table class="form_table pt15 pb15" width="600px" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td class="td_right">金额：</td>
+                                <td class="">
+                                    <input type="text" name="Money" class="input-text lh30" size="40" value="{% if request.REQUEST.Money %}{{ request.REQUEST.Money }}{% endif %}" placeholder="请输入金额">
+                                </td>
+<!--                                 <td class="td_right">状态：</td>
+                                <td>
+                                    <select name="pay_status" class="select">
+                                        <option value="-1" {% if request.REQUEST.pay_status == '-1' %}selected{% endif %}>全部</option>
+                                        <option value="0" {% if request.REQUEST.pay_status == '0' %}selected{% endif %}>未支付</option>
+                                        <option value="1" {% if request.REQUEST.pay_status == '1' %}selected{% endif %}>支付成功</option>
+                                        <option value="2" {% if request.REQUEST.pay_status == '2' %}selected{% endif %}>支付失败</option>
+                                    </select>
+                                </td> -->
+                                <td class="td_right">
+                                    <input type="submit" value="生成优惠码" class="ext_btn ext_btn_submit">
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="table" class="mt10">
+        <div class="box span10 oh">
+            {% if status %}
+                {{status}}
+            {% else %}
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table">
+                <tr>
+                    <th>序号</th>
+                    <th>剩余张数</th>
+                    <th>优惠金额</th>
+                    <th>操作</th>
+                    <th>创建时间</th>
+                    <th>有效日期</th>
+                </tr>
+                {% for coupon in coupon_list %}
+                <tr class="tr">
+                    <td>{{ coupon.id }}</td>
+                    <td>{{ coupon.surplus }}</td>
+                    <td>{{ coupon.coupon_price }}</td>
+                    <td><a href="/backend/coupon/list/details/{{ coupon.id }}">查看</a></td>
+                    <td>{{coupon.createtime}}</td>
+                    <td>{{coupon.endtime}}</td>
+
+                </tr>
+                {% endfor %}
+            </table>
+            <div class="page mt10">
+                <div class="pagination">
+                    {% if coupon_list.has_previous %}
+                        <a href="?page={{ coupon_list.previous_page_number }}&keywords={{ request.REQUEST.keywords }}&pay_status={{ request.REQUEST.pay_status }}">上一页</a>
+                    {% endif %}
+
+                    <span class="current">
+                        {{ coupon_list.number }} of {{ coupon_list.paginator.num_pages }}
+                    </span>
+
+                    {% if coupon_list.has_next %}
+                        <a href="?page={{ coupon_list.next_page_number }}&keywords={{ request.REQUEST.keywords }}&pay_status={{ request.REQUEST.pay_status }}">下一页</a>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock %}

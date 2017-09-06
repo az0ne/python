@@ -1,0 +1,109 @@
+{% extends "mz_common/base4.html" %}
+
+{% block title %}
+{% ifequal meeting.id 9 %}web前端直播课-web前端学习-麦子学院{%endifequal%}
+{% ifequal meeting.id 13 %}python直播课-python学习-麦子学院{%endifequal%}
+{% ifequal meeting.id 14 %}php直播课-php学习-麦子学院{%endifequal%}
+{% ifequal meeting.id 128 %}UI设计直播课-UI设计学习-麦子学院{%endifequal%}
+{% ifequal meeting.id 132 %}产品经理直播课-产品经理学习-麦子学院{%endifequal%}
+{% ifequal meeting.id 134 %}平面设计直播课-平面设计学习-麦子学院{%endifequal%}
+{% endblock %}
+{% block keywords%}
+{% ifequal meeting.id 9 %}web前端学习，web前端在线学习，web前端开发，学web前端{%endifequal%}
+{% ifequal meeting.id 13 %}python直播课-python学习-麦子学院{%endifequal%}
+{% ifequal meeting.id 14 %}php直播课-php学习-麦子学院{%endifequal%}
+{% ifequal meeting.id 128 %}UI设计学习，UI设计在线学习，UI设计，学UI设计{%endifequal%}
+{% ifequal meeting.id 132 %}产品经理学习，产品经理在线学习，产品经理，学产品经理{%endifequal%}
+{% ifequal meeting.id 134 %}平面设计学习，平面设计在线学习，平面设计，学平面设计{%endifequal%}
+{% endblock %}
+{% block description%}
+{% ifequal meeting.id 9 %}web前端开发直播课程，是由麦子学院web前端开发金牌讲师通过定制的web前端学习路径、幽默诙谐的语言，深入浅出的对最新web前端开发知识进行讲解的在线直播课，让你轻松学web前端。{%endifequal%}
+{% ifequal meeting.id 13 %}python开发直播课程，是由麦子学院python开发金牌讲师通过定制的python学习路径、幽默诙谐的语言，深入浅出的对最新python开发知识进行讲解的在线直播课，让你轻松学python。{%endifequal%}
+{% ifequal meeting.id 14 %}php开发直播课程，是由麦子学院php开发金牌讲师通过定制的php学习路径、幽默诙谐的语言，深入浅出的对最新php开发知识进行讲解的在线直播课，让你轻松学php。{%endifequal%}
+{% ifequal meeting.id 128 %}UI设计直播课程，是由麦子学院UI设计金牌讲师通过定制的UI设计学习路径、幽默诙谐的语言，深入浅出的对最新UI设计知识进行讲解的在线直播课，让你轻松学UI设计。{%endifequal%}
+{% ifequal meeting.id 132 %}产品经理直播课程，是由麦子学院产品经理金牌讲师通过定制的产品经理学习路径、幽默诙谐的语言，深入浅出的对最新产品经理知识进行讲解的在线直播课，让你轻松学产品经理。{%endifequal%}
+{% ifequal meeting.id 134 %}平面设计直播课程，是由麦子学院平面设计金牌讲师通过定制的平面设计学习路径、幽默诙谐的语言，深入浅出的对最新平面设计知识进行讲解的在线直播课，让你轻松学平面设计。{%endifequal%}
+{% endblock %}
+
+{% block csstype %}course_appointment{% endblock %}
+
+{% block container %}
+{% include 'header/header.html' %}
+<div class="main">
+    <section class="main-container">
+        <div class="left">
+            <div class="chat-window">
+                <div class="img-box"><img src="{{MEDIA_URL}}{{teacher.avatar_url}}"></div>
+            </div>
+            <div class="teacher-window">
+                <div class="img-box"><img src="{{MEDIA_URL}}{{teacher.avatar_url}}"></div>
+                <div class="teach-intro">
+                    <h2 class="font24">{{teacher.name}}<small class="font14">{{teacher.title}}</small></h2>
+                    <p class="intro-desc font14">{{teacher.info}}</p>
+                    <h3 class="font18">{{ task.title}}</h3>
+                    <p class="intro-desc font14">{{ task.desc }}</p>
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><img data-src="{{ MEDIA_URL }}{{task.img1}}" class="swiper-lazy"><div class="swiper-lazy-preloader"></div></div>
+                            <div class="swiper-slide"><img data-src="{{ MEDIA_URL }}{{task.img2}}" class="swiper-lazy"><div class="swiper-lazy-preloader"></div></div>
+                            <div class="swiper-slide"><img data-src="{{ MEDIA_URL }}{{task.img3}}" class="swiper-lazy"><div class="swiper-lazy-preloader"></div></div>
+                        </div>                        
+                        <!-- 如果需要导航按钮 -->
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>           
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="appointment-form">
+                <h2></h2>
+                <p class="font18">直播课开始时间</p>
+                <div class="start-time font18">
+                    {{meeting.time_tuple.0}}年{{meeting.time_tuple.1}}月{{meeting.time_tuple.2}}日<strong><span class="hour">{{meeting.time_tuple.3}}&nbsp;&nbsp;{{meeting.time_tuple.4}}</span> 时 <span class="min">{{meeting.time_tuple.5}}&nbsp;&nbsp;{{meeting.time_tuple.6}}</span> 分 <span class="second">0&nbsp;&nbsp;0</span> 秒</strong>
+                </div>
+                <input type="text" placeholder="输入您的手机号" name="phone-num" id="phone-num" class="phone-num"/>
+                <div class="verification-box">
+                    <input type="text" placeholder="验证码" name="verification" id="verification" class="verification"/>
+                    <input type="button" value="获取验证码" class="send-verif"/>
+                </div>
+                <a href="javascript:void(0)" class="just-appo-btn">立即预约</a>
+            </div>
+        </div>
+    </section>
+    <div class="appo-success-modal t5o">
+        <div class="appo-success t5o">
+            <div class="left">
+                <div class="qr-code">
+                    <img src="/{{ qq_info.qq_image }}">
+                    <p>手机QQ扫一扫进群</p>
+                    <p>QQ群号:{{ qq_info.qq_group }}</p>
+                </div>
+            </div>
+            <div class="right">
+                <h1>
+                    <p class="font24">恭喜您已预约成功啦~</p>
+                    <span class="font14">我们已将直播群号发送至您手机</span>
+                </h1>
+                <a href="http://shang.qq.com/wpa/qunwpa?idkey={{ qq_info.qq_group_key }}" class="go-live">进入直播QQ群</a>
+            </div>
+            <div class="bottom">
+                <a href="javascript:void(0)" class="appo-success-close">关闭</a>
+            </div>
+        </div>
+    </div>
+    
+    <input type="hidden" id="meeting_career_id" value="{{meeting.id}}"/>
+    <input type="hidden" id="meeting_qq_group" value="{{qq_info.qq_group}}"/>
+    <input type="hidden" id="meeting_class_time" value="{{meeting.class_time}}"/>
+    <input type="hidden" id="task_title" value="{{ task.title}}"/>
+</div>
+{% endblock%}
+{% block footer%}
+{% include 'footer/footer_1.html' %}
+{% endblock%}
+{% block sea_script %}
+<script type="text/javascript">
+    seajs.use("/js/lps4/dist/main",function(main){main.loading("courseAppointment");});
+</script>
+{% endblock %}

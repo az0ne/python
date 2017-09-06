@@ -1,0 +1,27 @@
+
+<ul class="breadcrumb">
+    <li><a href="#">用户模块</a></li>
+
+    {% if is_teachers %}
+    <li class="active"><a href="{% url 'nadmin:users_teachers' %}">教师帐号</a></li>
+    {% endif %}
+
+    {% if is_teachers_create %}
+    <li><a href="{% url 'nadmin:users_teachers' %}">教师帐号</a></li>
+    <li class="active">新建教师账号</li>
+    {% endif %}
+
+    {% if is_teachers_edit %}
+    <li><a href="{% url 'nadmin:users_teachers' %}">教师帐号</a></li>
+    <li class="active">{{ teacher.username|escape }}</li>
+    {% endif %}
+
+    {% if is_classes_info %}
+    <li><a href="{% url 'nadmin:users_teachers' %}">教师帐号</a></li>
+    <li><a href="#">{{ teacher.username|escape }}</a></li>
+    <li class="active">{{ class_.display_name|escape }}</li>
+    {% endif %}
+
+</ul>
+
+

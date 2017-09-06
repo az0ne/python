@@ -1,0 +1,32 @@
+{% extends 'mz_usercenter/usercenter_base.html' %}
+{% block title %}他的主页-已报名课程{% endblock %}
+{% block usercenter_left_panel %}
+        <div class="personalCmainL font14">
+            <ul class="personalCmainLmenu">
+                <li><a class="aH">
+                    <i class="personalCico pcICO2 i1"></i>
+                    <span>已报名课程</span>
+                    <i class="personalCico pcICOa i2"></i></a>
+                </li>
+                <li><a href="{% url 'u:public_expcourse' user_id %}">
+                    <i class="personalCico pcICO3 i1"></i>
+                    <span>体验课程</span>
+                    <i class="personalCico pcICOa i2"></i></a>
+                </li>
+                <li><a href={% url 'u:public_discuss' user_id %}>
+                    <i class="personalCico pcICOanswer i1"></i>
+                    <span>TA的问答</span>
+                    <i class="personalCico pcICOa i2"></i></a>
+            </li>
+            </ul>
+        </div>
+{% endblock %}
+
+{% block usercenter_right_panel %}
+        {% include 'mz_usercenter/student/div_my_course_base.html' %}
+    <script>var otherPage=true;</script>
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/personalCenterSinfo.js?v={{ time_stamp }}"></script>
+{% endblock %}

@@ -1,0 +1,467 @@
+{% extends "mz_common/base.html" %}
+{% block title %}企业直通班报名付款 - 麦子学院{% endblock %}
+{% block custom_css %}
+<link href="/static/lps2/css/abc.css?201607251458" rel="stylesheet" />
+<link href="/static/lps2/css/panel.css" rel="stylesheet"/>
+<link href="/css/src/tryStudnets.css" rel="stylesheet"/>
+{% endblock %}
+{% block container %}
+<div class="p-main">
+    <div class="container">
+        <div class="pay-lesson-header marginB50"><h1 class="font24 color32">报名专业：{{ career_course.name }}</h1><h2 class="font20 color99">报名班级：{{ passresponse_data.class.name }}({{ passresponse_data.class.coding }})</h2></div>
+        <div class="pay-teacher-desc marginB50 clearfix">
+            <div class="teacher-icon fl"><img src="{{ MEDIA_URL }}{{ passresponse_data.teacher.avatar_url }}"></div>
+            <div class="teacher-info fl">
+                <h2 class="font20 marginB20"><span>{{ passresponse_data.teacher.nick_name }}</span>{{ passresponse_data.teacher.position }}</h2>
+                <p class="font14 color33 marginB20"><span>教学特点：</span><span>{{ passresponse_data.teacher.teach_feature|slice:"60"|default:"" }}</span></p>
+                <p class="font14 color33 marginB10"><span>个人简介：</span><span>{{ passresponse_data.teacher.description }}</span></p>
+            </div>
+        </div>
+        {% if passresponse_data.balance_pay != 0%}
+        <div class="pay-choice">
+            <!-- 全款支付方式开始 -->
+                {% if career_course.enable_free_488 and passresponse_data.buybtn_status == '0' %}
+                    <div class="employmentPreference marginB38">
+                    <span class="pay-label font18 color8e">学习目的：</span>
+                    <em class="i-group font18 checked">就业</em>
+                    <em class="i-group font18 interest">兴趣学习<br />（无需就业服务）</em>
+                    <span class="tips"><i></i><em>“保就业”，是麦子学院针对{{ passresponse_data.all_pay }}全款学员推出的承诺就业服务若选择"无需就业服务"，学习价格可享受立减{{ passresponse_data.jobless_discounted_price }}</em></span>
+        	        </div>
+                {%endif %}
+            {% if loan == '0' %}
+                <div class="price-box marginB38">
+                    <span class="pay-label font18 color8e">支付金额：</span>
+                    {% if passresponse_data.buybtn_status == '1' %}
+                        <em class="i-group all_pay font18 checked" pay_type="final_pay">余款 : &yen;{{ passresponse_data.balance_pay }}</em>
+                    {% endif %}
+                    {% if passresponse_data.buybtn_status == '0' %}
+                        {% if career_course.enable_free_488 %}
+                        <em class="i-group all_pay font18 checked" pay_type="all_pay">全款 : &yen;{{ passresponse_data.all_pay }}</em>
+{#                        <span class="wk-clear font12 color99" style="display: none;">两周后结清余款</span>#}
+                        {% else %}
+                        <em class="i-group all_pay font18 checked" pay_type="all_pay">全款 : &yen;{{ passresponse_data.all_pay }}</em>
+                        <em class="i-group first_pay font18" pay_type="first_pay">试学 : &yen;{{ passresponse_data.first_pay }}</em>
+                        <span class="wk-clear font12 color99" style="display: none;">两周后结清余款</span>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <div class="pay-type font18">
+                    <span class="pay-label color8e">支付方式：</span>
+                    <span class="pay-type-list">
+                        <em class="item item-active" num="1"><img src="/static/lps2/images/pay-4.png"/></em>
+                        <em class="item" num="4"><img style="vertical-align: middle;" src="/static/images/wx_pay.png"/></em>
+                        <em class="item yhk" num="8"><img src="/static/images/yhk_pay.png"/>银行卡支付</em>
+                    </span>
+                    <div class="yhkBox">
+                        <span class="thisover"><img src="/static/images/payImage/zggsyh.png" alt="ICBC"/></span>
+                        <span><img src="/static/images/payImage/zgnyyh.png" alt="ABC"/></span>
+                        <span><img src="/static/images/payImage/zgjsyh.png" alt="CCB"/></span>
+                        <span><img src="/static/images/payImage/zgyh.png" alt="BOC"/></span>
+                        <span><img src="/static/images/payImage/zsyh.png" alt="CMBCHINA"/></span>
+                        <span><img src="/static/images/payImage/jtyh.png" alt="BOCO"/></span>
+                        <span><img src="/static/images/payImage/zggdyh.png" alt="CEB"/></span>
+                        <span><img src="/static/images/payImage/xyyh.png" alt="CIB"/></span>
+                        <span><img src="/static/images/payImage/zgyzyh.png" alt="POST"/></span>
+                        <span><img src="/static/images/payImage/payh.png" alt="PINGANBANK"/></span>
+                        <span><img src="/static/images/payImage/zxyh.png" alt="ECITIC"/></span>
+                        <span><img src="/static/images/payImage/hxyh.png" alt="HXB"/></span>
+                    </div>
+                </div>
+                <div class="end-money-box">
+
+                    {% if passresponse_data.buybtn_status == '1' %}
+                        {% if passresponse_data.discounted_price == 0 %}
+                        <div id="pay_amount" class="text-right font20 color33">报名金额：{{ passresponse_data.balance_pay }}元</div>
+                        {% else %}
+                        <div id="old_pay_amount" class="text-right font20 color99 marginB16">报名金额：<span>{{ passresponse_data.all_balance_pay }}元</span></div>
+                        <div id="pay_amount" class="text-right font20 color33">报名金额：{{ passresponse_data.balance_pay }}元</div>
+                        <span class="min_300 font16 color5d">已扣减优惠{{ passresponse_data.discounted_price }}元</span>
+                        {% endif %}
+                    {% endif %}
+                    {% if passresponse_data.buybtn_status == '0' %}
+                        {% if old_invit_new_status %}
+                            <div id="old_pay_amount" class="text-right font20 color99 marginB16">报名金额：<span>{{ passresponse_data.old_pay }}元</span></div>
+                            <div id="pay_amount" class="text-right font20 color33">报名金额：{{ passresponse_data.all_pay }}元</div>
+                            <span class="min_300 font16 color5d">已扣减红包200元</span>
+                        {% else %}
+                            <div id="pay_amount" class="text-right font20 color33">报名金额：{{ passresponse_data.all_pay }}元</div>
+                        {% endif %}
+                    {% endif %}
+                    <input id="submit_order" type="button" class="btn font18" value="立即支付"/>
+                </div>
+            {% endif %}
+            <!-- 全款支付方式结束 -->
+
+            <!-- 申请分期支付方式开始 -->
+            {% if loan == '1' %}
+                <div class="price-box marginB29">
+                    <span class="pay-label font18 color8e">学费分期：</span>
+                    {% if passresponse_data.buybtn_status == '1' %}
+                        <em class="i-group all_pay font18 checked" pay_type="final_pay">余款 : &yen;
+                        {{ passresponse_data.balance_pay }}
+                        </em>
+                        {% if passresponse_data.discounted_price != 0 %}
+                        <span class="min_300 font16 color5d">已扣减优惠{{ passresponse_data.discounted_price }}元</span>
+                        {% endif %}
+                    {% endif %}
+                    {% if passresponse_data.buybtn_status == '0' %}
+                        <em class="i-group all_pay font18 checked" pay_type="all_pay">全款 : &yen;
+                        {{ passresponse_data.all_pay }}
+                        </em>
+                        {% if old_invit_new_status %}
+                        <span class="min_300 font16 color5d">已扣减红包200元</span>
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+                <div class="pay-type font18">
+                    <span class="pay-label color8e">支付方式：</span>
+                    <span class="pay-type-list">
+                    <em class="item meme font14 item-active" num="5"><img src="/static/images/meme_icon.png"/>分期</em>
+                    <em class="item font14" num="7"><img src="/static/images/fql_logo.png"/></em>
+                    <em class="item font14" num="9"><img src="/static/images/uubee_pay.png"/></em>
+                    </span>
+{#                        {% if is_memedai_preferential %}#}
+{#                        <span class="min_200"><img src="/static/images/min_200.png" /></span>#}
+{#                        {% endif %}#}
+                </div>
+{#                    <div class="pay-type f-pay-type font18">#}
+{#                        <span class="pay-type-list">#}
+{#                        <em style="display: none" class="item item-active" num="5"></em>#}
+{#                        <!-- <em class="f-item font12 color5e item-active">6期</em> -->#}
+{#                        <!-- <em class="f-item font12 color5e">6期</em> -->#}
+{#                        <!-- <em class="f-item font12 color5e">9期</em> -->#}
+{#                        <!-- <em class="f-item font12 color5e">12期</em> -->#}
+{#                        <span class="font10 color99">本分期产品由么么贷提供</span>#}
+{#                        </span>#}
+{#                    </div>#}
+                <div class="end-money-box">
+                    <input id="submit_order" type="button" class="btn font18" value="申请分期"/>
+                </div>
+            {% endif %}
+            <!-- 申请分期支付方式结束 -->
+        </div>
+        {% else %}
+        <!--新增-->
+        <div class="pay-choice">
+            <p class="textC font16 color33" style="background: #fff9df; width: 100%; padding: 20px 0;">正在为您生成订单信息，请稍后重试！如有疑问请与教务联系。</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<!-- 点击支付成功|失败开始 -->
+<div class="modal fade YaHei" id="third-pay-tips" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog third-pay-innerbox">
+        <div class="modal-content">
+            <div class="third-pay-close">
+                <div class="index-pay-close"><img src="/static/images/third_pay_close.png"/></div>
+                </div>
+            <div class="third-pay-info">
+                <p class="font16 color33 marginB10">请您在新打开的第三方支付页面上完成支付</p>
+                <p class="font14 color66 marginB10">客服电话：<span>400-8628862</span></p>
+                <p class="font12 color99">支付完成前请不要关闭此窗口</p>
+                <input class="btn third-pay-success" type="button" id="pay-success" value="支付成功"/>
+                <input class="btn third-pay-fail" type="button" id="pay-fail" value="支付失败"/>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 点击支付成功|失败结束 -->
+
+<!-- 确定分期开始 -->
+<div class="modal fade" id="module-confirm-stage" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-confirm-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="padding-left: 30px;padding-right: 30px;">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">确定分期</h4>
+            </div>
+            <div class="modal-body">
+                <section class="box-login v5-input-txt">
+                        <div class="form-group">
+                            <p class="form-group">为方便我们及时通知您分期申请状态，请确保填写您经常使用的手机号：</p>
+                            <div class="form-group clearfix"><input type="tel" id="zy_user_mobile_tel" style="width: 160px;" name="user_mobile" class="form-control pull-left"/><input id="continue" type="button" class="btn pull-right" value="下一步" /></div>
+                        </div>
+                        <div id="mobile_code_telephone-tips" class="tips-error bg-danger">错误提示</div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 确定分期结束 -->
+
+<!-- 麦子学院就业服务协议开始 -->
+<div class="modal fade" id="module-agreement" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-agreement-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="padding: 30px 30px 15px 30px;border-bottom: none;">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="agreement-title">麦子学院就业服务协议</h4>
+            </div>
+            <div class="d-xy-panel">
+                <div class="xy-box" style="padding:0;">
+                    <div class="xy-box-in">
+                        <p style="margin:50px 0 20px;position:relative;">
+                            <strong>甲方：麦子学院</strong>
+                            <img src="/static/images/yinzhang.png" style="width:100px;position:absolute;opacity:0.75;left:84px;top:-36px" alt=""/>
+                        </p>
+                        <p>
+                        作为国内IT在线教育创新领导品牌，甲方将向乙方提供技术教学及就业服务。为清晰培训过程、提高培训质量，经双方沟通协商，甲、乙双方签订以下协议。甲方为本项目提供优质的教学、服务和管理，并承诺在完成本项目学习后获得良好的就业结果！
+                        </p><br>
+                        <span style="font-weight: 600">一、甲方责任、权利和义务</span><br /><br />
+                        <p>1、甲方有责任在乙方培训期间，按照《学员学习异动管理条例》及学员相关管理规定对乙方进行严格管理，并根据规定对乙方表现进行评定考核；</p>
+                        <p>2、甲方承诺向乙方提供符合要求的技能培养内容和考核体系，并提供符合企业需求的相关培训课程，课程内容全部来源于国内外一线大师亲自设计制作；</p>
+                        <p>3、甲方承诺配备技术导师、班主任、就业辅导老师为学生提供教学、学习、就业服务管理；</p>
+                        <p>4、甲方承诺对于遵守并通过相关培训项目制作及考核的毕业学员，进入麦子学院雇主人才库，并做好就业安置与推荐服务，就业薪资不限城市（大学专、本科学历）不低于5000 元/月（税前)；</p>
+                        <p>5、如非乙方原因导致面试成功但未能通过1个月试用期（经甲方核实），甲方继续为乙方提供岗位机会；</p>
+                        <p>6、乙方参加培训后加入麦子学院实名交友圈，甲方为乙方提供终身的职业生涯跟踪指导服务，毕业后可在就业、转行、跳槽、升职等向甲方提出咨询，甲方将进行相关服务；</p>
+                        <p>7、甲方将联合全国部分创业孵化基地、国腾园、天府软件园等全国科技园区提供创业孵化咨询与服务；</p>
+                        <br>
+                        <span style="font-weight: 600">二、乙方责任、权利和义务</span><br /><br />
+                        <p>1、乙方参加本项目后，须遵守《学员学习异动管理条例》及学员相关管理规定，同时积极配合各项教学计划，努力学习；</p>
+                        <p>2、乙方应承担实训期间的所有费用，并按照甲方要求进行入学、学习、就业等各项工作。</p><br>
+                        <span style="font-weight: 600">三、就业服务标准</span><br /><br />
+                        <p>学员同时满足以下四个条件方可享受甲方提供的就业服务：</p>
+                        <p>1、完成所有课程（项目制作、模拟面试等）并完成毕业考核；</p>
+                        <p>2、培训费用已缴清；</p>
+                        <p>3、提供《就业问卷调查表》和《个人简历》；</p>
+                        <p>4、观看就业指导课全部课程。</p><br>
+                        <span style="font-weight: 600">四、有以下几种情况，不再提供就业服务</span><br /><br />
+                        <p>1、乙方在获得甲方的面试通知后，不得私自放弃或更换他人，不得无故迟到和缺席，否则甲方有权取消乙方此后的推荐机会，甲方基于本合同的义务终止；</p>
+                        <p>2、乙方因疾病或心理生理障碍等不可抗拒因素而导致无法就业，则甲方不承担就业帮助义务。</p><br />
+                        <span style="font-weight: 600">五、培训后退款</span><br /><br />
+                        <p>1、如乙方遵守《学员学习异动管理条例》及相关学员管理规定并通过考核顺利结业后，6个月内未能在对口岗位工作，可由乙方提出申请，经甲方核实后，甲方将全额退还乙方所有培训费用；</p>
+                        <p>2、就业未达标全额退费周期为：乙方提出退费申请后1个月内。</p><br />
+                        <span style="font-weight: 600">六、不可抗力条款 </span><br /><br />
+                        <p>对不可抗力所造成的影响，双方应及时协商解决办法和补救措施。因不可抗力不能履行协议的一方，应尽力采取合理措施减轻可能给对方造成的损失，否则应对由此而扩大的损失承担赔偿责任。本协议所称不可抗力，是指不能预见、不能避免、并不能克服的客观情况，如重大疾病、自然灾害、瘟疫、战争、骚乱等。</p><br />
+                        <span style="font-weight: 600">七、适用法律及争议解决方法</span><br /><br />
+                        <p>1、甲方拥有对本协议的解释权，协议的履行、解释及争议解决均适用中华人民共和国有关法律；</p>
+                        <p>2、双方在履行本协议中如发生争议，应先由双方协商解决。如协商不成，依法向甲方所在地人民法院提起诉讼。</p><br />
+                        <span style="font-weight: 600">八、协议的补充、 变更、修改</span><br /><br />
+                        <p>对本协议的任何补充、变更、修改应采用书面补充协议形式。补充协议在双方签署后与本协议具有同等法律效力。</p><br />
+                        <span style="font-weight: 600">九、生效及终止条款</span><br /><br />
+                        <p>1、本协议由学员点击“我已经阅读并同意以上协议”即生效。</p>
+                        <p>2、甲乙双方履行本协议的权利和义务后，协议终止。</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="pull-left checkbox">
+                        <label id="check_label"><input type="checkbox" id="check_check" onclick="enable_submit_check()"> 我已经阅读并同意以上协议</label>
+                    </div>
+                    <div class="pull-right">
+                        <button class="btn btn-default" disabled="disabled" id="agree_pay">提交</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 就业协议结束 -->
+
+<!-- 请绑定手机号开始 -->
+    <div class="modal fade" id="bindPhoneNumber" tabindex="-1" role="dialog" aria-labelledby="bindPhoneNumberModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <span class="modal-title">请绑定手机号</span>
+                </div>
+                <div class="modal-body">
+                    <p>系统检测到您注册时未绑定手机号码，手机号码是您申请分期的重要信息，请前往个人中心绑定手机号</p>
+                    <div class="phoneNumber-a">
+                        <a data-dismiss="modal" aria-hidden="true" href="javascript:;">其他支付方式</a>
+                        <a href="/home/base/">立即绑定</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- 请绑定手机号结束 -->
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block custom_script %}
+<script type="text/javascript">
+    $(function(){
+        // 点击支付成功|失败开始
+        //$('#third-pay-tips').modal('show');
+        // 项选择
+        function selectIten(opt){
+            var item = $(opt.dom),
+                itemSibling = opt.items ? $(opt.items) : item.siblings(),
+                actClass = opt.activeClass != null ? opt.activeClass : 'item-active';
+
+            if(item.hasClass(actClass)){
+                item.removeClass( actClass );
+            }else{
+                if(!opt.isMultiple){
+                    itemSibling.removeClass( actClass );
+                }
+                item.addClass( actClass );
+            }
+        };
+
+        //选择学习目的
+         $('.employmentPreference .i-group').click(function(){
+            $(this).addClass('checked').siblings().removeClass('checked');
+            var all_pay = '{{ passresponse_data.all_pay }}';
+            var jobless_price = '{{ passresponse_data.jobless_price }}';
+             if($(this).index() == 1){
+                 $(".pay-choice .all_pay").html("全款 : &yen;"+all_pay);
+                 $(".pay-choice .all_pay").attr("pay_type",'all_pay');
+                 $("#pay_amount").html("报名金额："+all_pay+"元");
+                 $("#old_pay_amount span").html(all_pay+"元");
+             }else{
+                 $(".pay-choice .all_pay").html("全款 : &yen;"+jobless_price);
+                 $(".pay-choice .all_pay").attr("pay_type",'jobless_all_pay');
+                 $("#pay_amount").html("报名金额："+jobless_price+"元");
+                 $("#old_pay_amount span").html(jobless_price+"元");
+             }
+            return false;
+        });
+        $(".employmentPreference .tips i").hover(function(){
+            $(".employmentPreference .tips em").stop().fadeIn(200);
+        },function(){
+            $(".employmentPreference .tips em").stop().fadeOut(200);
+        });
+
+        // 选择金额
+        $('.price-box .i-group').click(function(){
+            $(this).addClass('checked').siblings().removeClass('checked');
+            if($(this).attr('pay_type')=='all_pay') {
+                $('#old_pay_amount,.min_300').show();
+                $('#pay_amount').html('报名金额：' + $(this).html().substr(6,10) + '元');
+            }else if($(this).attr('pay_type')=='first_pay'){
+                $('#old_pay_amount,.min_300').hide();
+                $('#pay_amount').html('报名金额：' + $(this).html().substr(6,9) + '元');
+            }
+            return false;
+        });
+
+        //选择支付方式
+        $(".pay-type-list em").live('click',function(){
+            $(this).addClass("item-active").siblings().removeClass("item-active");
+        });
+
+        $('#submit_order').click(function(){
+            if($(".pay-type-list").children(".item-active").attr("num")==5) {
+                $('#module-confirm-stage').modal('show');
+            }else if($(".pay-type-list").children(".item-active").attr("num")==9){
+                {% if request.user.mobile %}
+                gopay();
+                {% else %}
+                //请绑定手机号模态框显示
+                $("#bindPhoneNumber").modal('show');
+                {% endif %}
+            }else{
+                gopay();
+            }
+
+        });
+
+        //显示/隐藏银行卡支付列表
+        $(".pay-type-list .item.yhk").click(function(){
+            $(".pay-type .yhkBox").slideDown();
+        });
+        $(".pay-type-list .item.yhk").siblings().click(function(){
+            $(".pay-type .yhkBox").slideUp();
+        });
+
+        //选择银行卡
+        $(".pay-type .yhkBox span").click(function(){
+            $(this).addClass("thisover").siblings().removeClass("thisover");
+        });
+    });
+
+$("#agree_pay").click(function(){
+    gopay()
+});
+
+$('#continue').click(function(){
+    var userMobile = $('input[name=user_mobile]').val();
+    var msg = '';
+    var telReg = !userMobile.match(/^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/g);
+    $('#mobile_code_telephone-tips').hide();
+    if( userMobile == null || userMobile == ''){//空
+        msg = '亲！请输入您的手机号码。';
+        $('#mobile_code_telephone-tips').show().html(msg);
+        return false;
+    }else if(telReg){//不匹配
+        msg = '亲！您输入的手机号码不正确。';
+        $('#mobile_code_telephone-tips').show().html(msg);
+        return false;
+    }else{
+        showAgreenment();
+    }
+});
+
+function gopay(){
+    cur_career_id = '{{ career_course.id }}';
+    choose_pay_type = 0;
+    if($('.price-box .checked').attr('pay_type') == 'first_pay'){
+        choose_pay_type = 1;
+    }else if($('.price-box .checked').attr('pay_type') == 'final_pay'){
+            choose_pay_type = 2;
+    }else if($('.price-box .checked').attr('pay_type') == 'jobless_all_pay'){
+        choose_pay_type = 6;
+    }
+    choose_class_coding = '{{ passresponse_data.class.coding }}';
+    var service_provider=$(".pay-type-list").children(".item-active").attr("num");
+    phone = 0;
+    if(cur_career_id == undefined || choose_pay_type == undefined || choose_class_coding == undefined || service_provider ==undefined){
+        alert('支付信息不完整，不能支付');
+        return;
+    }
+    if(service_provider==5){
+        phone = $("#zy_user_mobile_tel").val();
+        window.location.href = "/pay/go/"+cur_career_id+"/"+choose_pay_type+"/"+choose_class_coding+"/"+service_provider+"/"+phone
+    }else if(service_provider==8){
+    phone = $(".thisover img").attr('alt');
+    window.open("/pay/go/"+cur_career_id+"/"+choose_pay_type+"/"+choose_class_coding+"/"+service_provider+"/"+phone, '_blank');
+    $('#third-pay-tips').modal('show');
+
+    }else{
+        window.open("/pay/go/"+cur_career_id+"/"+choose_pay_type+"/"+choose_class_coding+"/"+service_provider+"/"+phone,'_blank');
+        $('#third-pay-tips').modal('show');
+    }
+}
+
+$('#pay-success').click(function(){
+    var lps_version='{{ passresponse_data.lps_version }}';
+    if(lps_version=='3.0'){
+        window.location.href = "/lps3/student/class/{{ passresponse_data.class.id }}"
+    }else{
+        window.location.href = "/lps2/learning/plan/{{ passresponse_data.career_id }}"
+    }
+});
+
+$('#pay-fail').click(function(){
+    window.location.reload();
+});
+
+function showAgreenment(){
+$('#module-confirm-stage').modal('hide');
+$('#module-agreement').modal('show');
+$('#check_check').attr('checked',false);
+$('#agree_pay').attr("disabled", "disabled");
+}
+
+$('.third-pay-close img').on('click',function(){
+    $('#third-pay-tips').modal('hide');
+});
+
+function enable_submit_check(){
+  var check_contract = document.getElementById("check_check");
+  var agree_contract = document.getElementById("agree_pay");
+
+  if (check_contract.checked == true) {
+      agree_contract.removeAttribute("disabled");
+  }else{
+      agree_contract.setAttribute("disabled", "disabled");
+  }
+}
+</script>
+{% endblock %}

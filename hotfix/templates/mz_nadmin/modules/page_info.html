@@ -1,0 +1,23 @@
+
+
+<div class="row">
+    <div class="col-md-10 text-left">
+    {% if items.has_previous %}
+    <a class="btn btn-primary btn-xs" href="?page_num={{ items.previous_page_number }}&q={{q}}">上一页</a>
+    {% else %}
+    <a class="btn btn-primary btn-xs disabled" href="#">上一页</a>
+    {% endif %}
+
+    {% if items.has_next %}
+    <a class="btn btn-primary btn-xs" href="?page_num={{ items.next_page_number }}&q={{q}}">下一页</a>
+    {% else %}
+    <a class="btn btn-primary btn-xs disabled" href="#">下一页</a>
+    {% endif %}
+    </div>
+
+    <div class="col-md-2 text-right">
+    <small>{{ items.number }} / {{ items.paginator.num_pages }}</small>
+    </div>
+</div>
+
+

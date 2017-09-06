@@ -1,0 +1,34 @@
+{% extends 'mz_usercenter/usercenter_base.html' %}
+{% block usercenter_right_panel %}
+    <div class="personalCmainR font14">
+        <p class="personalCmainRtit font22 color33">已毕业班级</p>
+        {% if class_list %}
+            <ul class="teacherCenterING">
+                {% for c in class_list %}
+                    <li>
+                        <p class="color66 font14 pt marginB20"><span
+                                class="font20 color33">{{ c.class_coding }}</span><br>
+                            {{ c.careercourse_name }}
+                        </p>
+                        <ul class="teacherCenterENDbox color66">
+                            <li><i class="i1"></i>毕业时间<br><span class="font18 color33">{{ c.class_end_time }}</span>
+                            </li>
+                            <li><i class="i2"></i>毕业人数<br><span class="font18 color33">{{ c.graduate_students }}</span>
+                            </li>
+                            <a class="greenbtn a" href={% url 'lps3:teacher_class' c.class_id %}>班级历史数据</a>
+                        </ul>
+                        <i class="personalCico graduated pcICO15"></i>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <div class="textC nulldata">
+                <p class="marginB29"><img src="/images/no_graduateclass.png"></p>
+
+                <p class="font22 color33 marginB10">暂无已毕业的班级</p>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}
+

@@ -1,0 +1,42 @@
+{% extends "mz_backend/base.html" %}
+{% block title %}加入班级{% endblock %}
+{% block container %}
+<form  action="{% url 'backend:join_class_2_view' %}" method="post" id="join_class_2">
+    {% csrf_token %}
+    <table width="500px">
+        <tr>
+            <td colspan="2">
+                <h3>学生加入班级，请谨慎操作！</h3>
+            </td>
+        </tr>
+        <tr>
+            <td>用户账号(手机或email)：</td>
+            <td><input type="text" name="account" class="input-text lh25" size="30" /></td>
+        </tr>
+        <tr>
+            <td>班级编号(或班级名称)：</td>
+            <td><input type="text" name="class_no" class="input-text lh25" size="30" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="下一步：选择要解锁的阶段" class="ext_btn ext_btn_submit" id="submit-class-info"></td>
+        </tr>
+    </table>
+</form>
+{#<script>#}
+{#    $('#join_class_2').submit(function(){#}
+{#        var content = $('#content-block');#}
+{##}
+{#        $.ajax({#}
+{#            type:'POST',#}
+{#            url:'{% url 'backend:join_class_2_view' %}',#}
+{#            data:$('#join_class_2').serialize(),#}
+{#            async: true,#}
+{#            success:function(data){#}
+{#                alert(data);#}
+{#                content.html(data);#}
+{#                return false;#}
+{#            }#}
+{#        })#}
+{#    })#}
+{#</script>#}
+{% endblock %}

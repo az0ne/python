@@ -1,0 +1,111 @@
+    <div class="modal-dialog modal-sm modal-content zy_yourHomework3">
+        <a class="zy_newclose"></a>
+
+        <p class="color33 font18 pt">
+            <a class="color5e">&lt;&lt;返回</a>
+            <span>{{ stage.name }} - 任务：{{ task.name }}</span>
+        </p>
+
+        <p id="examination_question" class="ptt font16 color33">9. main()方法的返回值类型必须是以下哪种类型？</p>
+
+        <div class="zy_yourHomework3_div">
+            <ul class="font14">
+                <li><span>A</span>boolean</li>
+            </ul>
+        </div>
+
+        <div class="examinationBottom textC">
+            <div id="prev_ebtn" class="prev ebtn fl">上一题</div>
+            {% for n in quiz_num %}
+                <a num='{{ n }}' class="an"> </a>
+            {% endfor %}
+            <div id="next_ebtn" class="next ebtn fr">下一题</div>
+        </div>
+    </div>
+    <script src="{{ STATIC_URL }}mz_lps3/js/jquery.mousewheel.js"></script>
+    <script src="{{ STATIC_URL }}mz_lps3/js/jquery.jscrollpane.min.js"></script>
+    <script src="{{ STATIC_URL }}mz_lps3/js/global.js"></script>
+    <script src="{{ STATIC_URL }}mz_lps3/js/exam.js"></script>
+
+    <script>
+        $(function () {
+            var quiz = $(".zy_yourHomework3_div li");
+            var current_quiz_num = 0;
+            var completed_paper = {{ completed_paper | safe }};
+            console.log({{ completed_paper | safe }});
+            var on_quiz_end = null;
+
+            function init_finished_quiz_bottom() {
+                for (var i = 0; i < completed_paper.paper.length; i++) {
+                    $(".examinationBottom a[num='" + i + "']").addClass("aH");
+                    if (completed_paper.paper[i][3] != completed_paper.paper[i][2]) {
+                        $(".examinationBottom a[num='" + i + "']").addClass("error");
+                    }
+                }
+            }
+
+            function display_finished_quiz(quiz_num) {
+                $('#examination_question').text(completed_paper.paper[quiz_num][0]);
+
+                $(".zy_yourHomework3_div ul").empty();
+                for (var i = 0; i < completed_paper.paper[quiz_num][1].length; i++) {
+                    console.log(quiz_num);
+                    var q = quiz.clone();
+                    console.log(q);
+                    console.log(quiz);
+                    q.find('span').text(completed_paper.paper[quiz_num][1][i][0]);
+                    q.contents().get(1).nodeValue = completed_paper.paper[quiz_num][1][i][1];
+
+                    if (completed_paper.paper[quiz_num][2] == completed_paper.paper[quiz_num][1][i][0]) {
+                        q.addClass("right");
+                    }
+
+                    if (completed_paper.paper[quiz_num][3] == completed_paper.paper[quiz_num][1][i][0] &&
+                            completed_paper.paper[quiz_num][3] != completed_paper.paper[quiz_num][2]) {
+                        q.addClass("error");
+                    }
+
+                    q.appendTo('.zy_yourHomework3_div ul');
+                }
+
+                $(".examinationBottom a[num='" + quiz_num + "']").addClass('active').siblings().removeClass('active');
+                current_quiz_num = quiz_num;
+                $("#prev_ebtn").show();
+                $("#next_ebtn").show();
+
+                if (quiz_num == 0) {
+                    $("#prev_ebtn").hide();
+                }
+
+                if (quiz_num == completed_paper.paper.length - 1) {
+                    $("#next_ebtn").hide();
+                }
+            }
+
+            init_finished_quiz_bottom();
+            display_finished_quiz(0);
+
+            $(".examinationBottom a").click(function () {
+                var quiz_num = $(this).attr('num');
+                display_finished_quiz(parseInt(quiz_num));
+            });
+
+            $("#next_ebtn").click(function () {
+                var quiz_num = current_quiz_num;
+                if ((current_quiz_num + 1) != completed_paper.paper.length) {
+                    quiz_num++;
+                } else {
+                    on_quiz_end();
+                }
+                display_finished_quiz(quiz_num);
+            });
+
+            $("#prev_ebtn").click(function () {
+                var quiz_num = current_quiz_num;
+                if ((current_quiz_num - 1) >= 0) {
+                    quiz_num--;
+                }
+                display_finished_quiz(quiz_num);
+            });
+        });
+    </script>

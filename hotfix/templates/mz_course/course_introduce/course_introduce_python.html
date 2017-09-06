@@ -1,0 +1,1249 @@
+{% extends "mz_common/global.html" %} {% block title %}python培训 - python开发培训 - python开发培训课程 - 麦子学院{% endblock %}
+{% block keywords %}python开发,python开发培训,python开发培训课程,python学习,python工程师{% endblock %}
+{% block description %}
+    麦子学院,python开发培训,是专业python培训机构,提供史上最靠谱的python开发培训课程,定制化python开发学习路线,名师1对1指导,通过通俗易懂的讲解,丰富有趣的实战,轻松学习python,升级为实力派python工程师。{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/css/mz_ad/py-css/reset.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mz_ad/py-css/style.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mz_ad/common.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mz_ad/py-css/hide.css?v={{ time_stamp }}">
+{% endblock %} {% block csstype %}op{% endblock %}
+{% block container %} {% include 'header/index_header.html' %}
+    <script type="text/javascript" src="/static/js/mz_ad/op-js/jquery-1.7.2.min.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/static/js/mz_ad/op-js/global.js?v={{ time_stamp }}"></script>
+
+    <script type="text/javascript">
+
+        var get_cookie = function (c_name) {
+            if (document.cookie.length > 0) {
+                var c_start = document.cookie.indexOf(c_name + "=");
+                if (c_start != -1) {
+                    c_start = c_start + c_name.length + 1;
+                    c_end = document.cookie.indexOf(";", c_start);
+                    if (c_end == -1) {
+                        c_end = document.cookie.length;
+                    }                    return unescape(document.cookie.substring(c_start, c_end));
+
+                }
+            }
+            return "";
+        }
+
+        var set_cookie = function (c_name, value, exdays) {
+            var exdate = new Date();
+            exdate.setDate(exdate.getDate() + exdays);
+            var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
+            document.cookie = c_name + "=" + c_value + "; path=/";
+        }
+
+
+        /*
+         * set maiziuid
+         */
+
+        var uid_gen = function () {
+            function s4() {
+                return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+            }
+
+            return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4();
+        }
+
+        if (get_cookie("maiziuid") == "") {
+            set_cookie("maiziuid", uid_gen(), 1024);
+        }
+
+        if (window.location.hostname.indexOf("maizitime.com") >= 0) {
+            (function () {
+                var query_string = "url=" + escape(window.location.href) + "&";
+                query_string = query_string + "maiziuid=" + get_cookie("maiziuid") + "&";
+                query_string = query_string + "referrer=" + escape(document.referrer);
+
+                var url = "http://hit.maiziedu.com/?" + query_string + "&callback=" + new Date().getTime();
+                var script = document.createElement("script");
+                script.setAttribute("src", url);
+                document.getElementsByTagName("head")[0].appendChild(script);
+            })();
+        }
+
+        $(document).ready(function () {
+            $(".side ul li").hover(function () {
+                $(this).find(".sidebox").stop().animate({"width": "124px"}, 200).css({
+                    "opacity": "1",
+                    "filter": "Alpha(opacity=100)"
+                });
+            }, function () {
+                $(this).find(".sidebox").stop().animate({"width": "44px"}, 200).css({
+                    "opacity": "0.8",
+                    "filter": "Alpha(opacity=80)"
+                })
+            });
+
+            // 消息滚动
+            var settime;
+            $(".scrollNews").hover(function () {
+                clearInterval(settime);
+            }, function () {
+                settime = setInterval(function () {
+                    var $first = $(".scrollNews ul:first");     //选取div下的第一个ul 而不是li；
+                    var height = $first.find("li:first").height();      //获取第一个li的高度，为ul向上移动做准备；
+                    $first.animate({"marginTop": -height + "px"}, 600, function () {
+                        $first.css({marginTop: 0}).find("li:first").appendTo($first); //设置上边距为零，为了下一次移动做准备
+                    });
+                }, 3000);
+            }).trigger("mouseleave");
+
+
+        });
+
+
+        $(function () {
+            $("img.c").click(function () {
+                $(".gz-emw").hide();
+            })
+            $("span.wxgz").click(function () {
+                $(".gz-emw").show();
+            })
+            $(".nav-tabin a").click(function () {
+                $('html,body').animate({scrollTop: '787' + 'px'}, 0);
+            })
+
+            $(".page3 a.lbtn").click(function () {
+                $("#t_one2").addClass("cur");
+                $("#t_one1").removeClass("cur");
+                $("#t_one_con2").show();
+                $("#t_one_con1").hide();
+                $('html,body').animate({scrollTop: '787' + 'px'}, 0);
+                $('.slide_line').animate({left:'616'});
+            })
+
+        })
+
+
+        $(window).scroll(function () {
+            var sctop = 0;
+
+            if (document.documentElement && document.documentElement.scrollTop)
+                sctop = document.documentElement.scrollTop;
+            else if (document.body)
+                sctop = document.body.scrollTop;
+            if (sctop > 1545) {
+                $(".sidetop").css("display", "block");
+            }
+            else {
+                $(".sidetop").css("display", "none");
+            }
+        })
+
+        var _vds = _vds || [];
+        window._vds = _vds;
+        (function () {
+            _vds.push(['setAccountId', 'e896811fa91b4cd990a44509f88f5d41']);
+            (function () {
+                var vds = document.createElement('script');
+                vds.type = 'text/javascript';
+                vds.async = true;
+                vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(vds, s);
+            })();
+        })();
+        $(function () {
+            //点击弹出客服，添加.more
+            $('.more').unbind().click(function () {
+                $('#KFLOGO .Lelem').eq(0).trigger('click');
+            });
+            //显示客服
+            function showtips() {
+                $(".kftips").fadeIn();
+            }
+
+            setTimeout(function () {
+                showtips();
+            }, 10000);
+        })
+    </script>
+    <!--[if IE 6]>
+<script src="/static/js/mz_ap/py-js/pngfix.js" language="javascript"></script>
+<![endif]-->
+
+    <div class="section">
+        <div class="inner">
+                <div class="col_l">
+                    <span class="m_title">Python Web开发</span>
+                </div>
+                <a href="javascript:void 0" id="tab_1" style="margin-left:160px">课程介绍</a>
+                <a href="javascript:void 0" style="margin-left:80px" id="tab_2">课程大纲</a>
+                <div class="slide_line"></div>
+
+            <div class="col_r">
+                <a href="javascript:" class="more" onclick="_MEIQIA('showPanel')">立即咨询</a>
+            </div>
+        </div>
+    </div>
+    <div class="banner">
+        <div class="bannerin">
+            <a href="https://www.maiziedu.com" target="_blank"><img src="/static/images/mz_ad/py-images/logo1.png"
+                                                                    alt="" class="logo"></a>
+            <img src="/static/images/mz_ad/py-images/banner_py.png" alt="" class="txt1">
+            <div class="btn-zx">
+            {% if is_normal_class %}
+                {% if short_name %}
+                    <a  href="{% url 'lps4_index' short_name %}">继续学习</a>
+                {% else %}
+                    <a  href="{% url 'course:access_to_class' course_id %}">继续学习</a>
+                {% endif %}
+            {% else %}
+                {% if request.user.is_authenticated %}
+                    <a  href="{% url 'pay:pay_view2' %}?career_id={{ career_id }}" target="_blank">立即报名</a>
+                {% else %}
+                    <a  href="javascript:void(0)" data-toggle="modal" data-target="#loginModal">立即报名</a>
+                {% endif %}
+                {% if short_name %}
+                    <a href="{% url 'lps4_index' short_name %}">免费体验</a>
+                {% endif %}
+            {% endif %}
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function setTab(name, num, n) {
+            for (i = 1; i <= n; i++) {
+                var menu = document.getElementById(name + i);
+                var con = document.getElementById(name + "_" + "con" + i);
+                menu.className = i == num ? "cur" : "";
+                con.style.display = i == num ? "block" : "none";
+                if(num==1) {
+                    $('.slide_line').animate({left:'460'});
+                }else{
+                    $('.slide_line').animate({left:'616'});
+                }
+            }
+        }
+    </script>
+    <div class="nav-tab">
+        <div class="nav-tabin"><a id="t_one1" onclick="setTab('t_one',1,2)" class="cur"
+                                  href="javascript:">课程介绍<i></i></a><a id="t_one2" onclick="setTab('t_one',2,2)"
+                                                                       href="javascript:">课程大纲<i></i></a></div>
+    </div>
+    <div id="t_one_con1">
+        <div class="page1 page-js">
+            <div class="question-box">
+                <img src="/static/images/mz_ad/py-images/python.png" height="489" width="975" alt=""/>
+                <a href="javascript:void(0)" class="python_1"></a>
+                <a href="javascript:void(0)" class="python_2"></a>
+                <a href="javascript:void(0)" class="python_3"></a>
+                <a href="javascript:void(0)" class="python_4"></a>
+            </div>
+            <ul class="lists">
+                <li>2016年三大流行语言之一<span>根据TIOBE排名，Python已超越C#，<br/>与Java，C一起成为排名前3大最流行语言</span></li>
+                <li>应用几乎无限制<span>Python被广泛用于后端开发、游戏开发、网站开发、<br/>科学运算、大数据分析、云计算、图形开发等领域</span></li>
+                <li>各方面地位先进<span>Python在软件质量控制、提升开发效率、可移植、<br/>组件集成、丰富库支持等各方面均处于先进地位</span></li>
+                <li>简单易学<span>Python具有简单、易学、免费、开源、可扩展、可嵌入、<br/>面向对象等优点，它的面向对象甚至比java和c#.net更彻底</span></li>
+            </ul>
+        </div>
+        <div class="page14">
+            <h1>「 python可以用来干什么？ 」</h1>
+            <ul>
+                <li>
+                    <img src="/static/images/mz_ad/py-images/yf_06.jpg" alt="">
+                    <h3>WEB前端</h3>
+                    <p>
+                        服务器端编程，具有丰富的Web开发框架，如Django和TurboGears，快速完成一个网站的开发和Web服务。典型如国内的豆瓣、果壳网等；国外的Google、Dropbox等。
+                    </p>
+                </li>
+                <li>
+                    <img src="/static/images/mz_ad/py-images/yf_03.jpg" alt="">
+                    <h3>系统网络运维</h3>
+                    <p>
+                        在运维的工作中，有大量重复性工作的地方，并需要做管理系统、监控系统、发布系统等，将工作自动化起来，提高工作效率，这样的场景Python是一门非常合适的语言。
+                    </p>
+                </li>
+                <li>
+                    <img src="/static/images/mz_ad/py-images/yf_08.jpg" alt="">
+                    <h3>科学与数字计算</h3>
+                    <p>
+                        Python被广泛的运用于科学和数字计算中，例如生物信息学、物理、建筑、地理信息系统、图像可视化分析、生命科学等，常用numpy、SciPy、Biopython、SunPy等。
+                    </p>
+                </li>
+                <li>
+                    <img src="/static/images/mz_ad/py-images/yf_15.jpg" alt="">
+                    <h3>3D游戏开发</h3>
+                    <p>
+                        Python有很好的3D渲染库和游戏开发框架，有很多使用Python开发的游戏，如迪斯尼卡通城、黑暗之刃。常用PyGame、Pykyra等和一个PyWeek的比赛。
+                    </p>
+                </li>
+                <li>
+                    <img src="/static/images/mz_ad/py-images/yf_17.jpg" alt="">
+                    <h3>图形界面开发</h3>
+                    <p>
+                        Python可编写桌面图形用户界面，还可以扩展微软的Windows，常用Tk、GTK+、PyQt、win32等。
+
+                    </p>
+                </li>
+                <li>
+                    <img src="/static/images/mz_ad/py-images/yf_13.jpg" alt="">
+                    <h3>网络编程</h3>
+                    <p>
+                        除了网络和互联网的支持，Python还提供了对底层网络的支持，有易于使用的Socket接口和一个异步的网络编程框架Twisted Python.
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <div class="page15">
+            <h1> 「 python就业前景如何？ 」 </h1>
+            <p>
+                <img src="/static/images/mz_ad/py-images/chart.png" alt=""/>
+                <a class="more" href="">了解更多</a>
+            </p>
+            <!--<div class="commpany">
+                <h2>大势所趋————这些企业都在使用Python</h2>
+                <ul>
+                    <li class="link1"></li>
+                    <li class="link2"></li>
+                    <li class="link3"></li>
+                    <li class="link4"></li>
+                    <li class="link5"></li>
+                    <li class="link6"></li>
+                    <li class="link7"></li>
+                    <li class="link8"></li>
+                    <li class="link9"></li>
+                    <li class="link10"></li>
+                    <li class="link11"></li>
+                    <li class="link12 more"></li>
+                </ul>
+            </div>-->
+
+        </div>
+        <div class="page10">
+            <h3 class="t3">「 麦子学院如何保证学习效果？ 」</h3>
+            <ul class="xg-list">
+                <li>
+                    <h5>700课时+</h5>
+                    <img src="/static/images/mz_ad/py-images/xg-icon01.png" alt="" class="icon">
+                    <h4>线上视频</h4>
+                </li>
+                <li>
+                    <h5>2次/周</h5>
+                    <img src="/static/images/mz_ad/py-images/xg-icon02.png" alt="" class="icon">
+                    <h4>导师直播难点</h4>
+                </li>
+                <li>
+                    <h5>随时答疑</h5>
+                    <img src="/static/images/mz_ad/py-images/xg-icon03.png" alt="" class="icon">
+                    <h4>金牌讲师答疑</h4>
+                </li>
+                <li>
+                    <h5>满意为止</h5>
+                    <img src="/static/images/mz_ad/py-images/xg-icon04.png" alt="" class="icon">
+                    <h4>高薪就业</h4>
+                </li>
+            </ul>
+            <div class="v1">
+                <div class="play01 play-b1">
+                    <img src="/static/images/mz_ad/py-images/video-1.jpg" alt="" class="p">
+                    <img src="/static/images/mz_ad/py-images/play-btn.png" alt="" class="play-btn">
+                    <div class="p-txt">快速认识麦子学院</div>
+                </div>
+                <div class="vinfo">
+                    <h4 class="vtitle">强大的LPS3.0学习过程管理系统 </h4>
+                    <h5 class="sitle">学习过程任务制管理</h5>
+                    <h5 class="sitle">学习效果监测实施调整进度</h5>
+                    <h5 class="sitle">学习数据直接生成简历</h5>
+                    <h5 class="sitle">无缝对接1000+互联网企业</h5>
+                    <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">什么是LPS?</a>
+                </div>
+            </div>
+        </div>
+        <div class="page2">
+            <h1 class="title">「 十年总监级大牛 手把手教你做研发 」</h1>
+            <ul class="dn-list">
+                <li class="teck1">
+                    <img src="/static/images/mz_ad/py-images/yf_1.png" alt="" class="user">
+                    <h3>胡明星</h3>
+                    <h4>前大型教育平台研发经理</h4>
+                    <h5>10年Web开发经验</h5>
+                    <p>曾担任国内某在线教育平台研发经理一职，参与过会员营销、财务管理、游戏管理等三十余个大中型Web项目的设计与研发，项目体验人数超</p>
+                </li>
+                <li class="teck2">
+                    <img src="/static/images/mz_ad/py-images/yf-2.png" alt="" class="user">
+                    <h3>熊 涛</h3>
+                    <h4>前大型电商平台研发主管</h4>
+                    <h5>某大型电商平台研发主管</h5>
+                    <p>精通Python、Java,多年的web编程开发经验,负责项目10余个，擅长大规模的数据处理。</p>
+                </li>
+                <li class="teck3">
+                    <img src="/static/images/mz_ad/py-images/yf-3.png" alt="" class="user">
+                    <h3>彭亮</h3>
+                    <h4>美国国家科学基金年轻学者奖学金获得者</h4>
+                    <h5>美国犹他州立大学 <br> 在读计算机博士</h5>
+                    <p>擅长产品设计与产品战略规划，熟悉产品开发及管理流程，对产品运营有着深刻见解。</p>
+                </li>
+                <li class="teck3 teck4">
+                    <img src="/static/images/mz_ad/py-images/yf-4.png" alt="" class="user">
+                    <h3><span>SOros Wang <br>(王北南)</span></h3>
+                    <h4>国内著名公司技术总监</h4>
+                    <h5>美国Syracuse大学助教 <br> 8年J2EE软件开发经验</h5>
+                    <p>4年大数据应用架构师经验。曾任国内多家公司技术总监、架构师Tech Lead。 </p>
+                </li>
+            </ul>
+            <div class="btn-more">
+                <a href="javascript:" class="lbtn more" onclick="_MEIQIA('showPanel')">跟老师聊聊</a>
+                <a href="javascript:" class="rbtn more" onclick="_MEIQIA('showPanel')">获得老师电话指导</a>
+            </div>
+        </div>
+        <div class="page3">
+            <h2 class="title">「 学习路线规划 」</h2>
+            <div class="jieduan">
+
+            </div>
+            <div class="btn-more">
+                <a href="javascript:" class="lbtn" style="display:block; margin:0 auto; float:none;">查看课程大纲</a>
+            </div>
+        </div>
+        <div class="page4">
+            <div class="fuwuin">
+                <h3 class="title">「 强大的就业服务体系 」</h3>
+                <div class="v2">
+                    <div class="t1">
+                        <img src="/static/images/mz_ad/py-images/fuwu-yq.png" alt="" class="p">
+                        <p>麦子学院携手<em>linkedin、拉勾、智联招聘、猎聘</em>等一线招聘平台，实现实习就业保障！</p></div>
+                    <div class="play">
+                        <div class="play01 play-b2">
+                            <img src="/static/images/mz_ad/py-images/video-2.jpg" alt="" class="p">
+                            <img src="/static/images/mz_ad/py-images/play-btn.png" alt="" class="play-btn">
+                            <div class="p-txt">麦子学院就业合作</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rxxy">
+                    <h3 class="txt" style="font-size: 24px;line-height:38px">入学即签订就业服务协议，毕业内推各大企业。完成学业未就业，全额退款。</h3>
+                    <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">咨询保就业服务</a>
+                </div>
+            </div>
+        </div>
+        <div class="page5" style="display: none;">
+            <div class="mx-show">
+                <h1 class="mtitle">「 他们已经实现了自己的开发梦，你呢？ 」</h1>
+                <div class="scrollNews">
+                    <ol class="title">
+                        <li class="name">姓名</li>
+                        <li class="education">年龄</li>
+                        <li class="education">学历</li>
+                        <li class="employment">就业岗位</li>
+                        <li class="salary">月薪</li>
+                        <li class="address">地点</li>
+                        <li class="employment-date">就业时间</li>
+                        <li class="occupation" style="width:150px"></li>
+                    </ol>
+                    <div class="scrollNews-box">
+                        <ul class="info-lists">
+                            <li>
+                                <span class="name">吴**</span>
+                                <span class="education">26</span>
+                                <span class="education">大专</span>
+                                <span class="employment">自动化运维和爬虫</span>
+                                <span class="salary">11K</span>
+                                <span class="address">深圳</span>
+                                <span class="employment-date">2014.08</span>
+                            </li>
+                            <li>
+                                <span class="name">邓**</span>
+                                <span class="education">26</span>
+                                <span class="education">大专</span>
+                                <span class="employment">爬虫和后端</span>
+                                <span class="salary">10K</span>
+                                <span class="address">深圳</span>
+                                <span class="employment-date">2015.03</span>
+                            </li>
+                            <li>
+                                <span class="name">袁**</span>
+                                <span class="education">27</span>
+                                <span class="education">本科</span>
+                                <span class="employment">Web服务器 Flask框架</span>
+                                <span class="salary">9.5K</span>
+                                <span class="address">广州</span>
+                                <span class="employment-date">2015.06</span>
+                            </li>
+                            <li>
+                                <span class="name">叶**</span>
+                                <span class="education">28</span>
+                                <span class="education">大专</span>
+                                <span class="employment">Web后台</span>
+                                <span class="salary">8K</span>
+                                <span class="address">成都</span>
+                                <span class="employment-date">2014.08</span>
+                            </li>
+                            <li>
+                                <span class="name">王**</span>
+                                <span class="education">27</span>
+                                <span class="education">本科</span>
+                                <span class="employment">Web后台</span>
+                                <span class="salary">13K</span>
+                                <span class="address">北京</span>
+                                <span class="employment-date">2016.03</span>
+                            </li>
+                            <li>
+                                <span class="name">余**</span>
+                                <span class="education">26</span>
+                                <span class="education">大专</span>
+                                <span class="employment">爬虫和后端</span>
+                                <span class="salary">10.5K</span>
+                                <span class="address">上海</span>
+                                <span class="employment-date">2015.06</span>
+                            </li>
+                            <li>
+                                <span class="name">杨**</span>
+                                <span class="education">26</span>
+                                <span class="education">本科</span>
+                                <span class="employment">Web后台</span>
+                                <span class="salary">8K</span>
+                                <span class="address">山东</span>
+                                <span class="employment-date">2015.04</span>
+                            </li>
+                            <li>
+                                <span class="name">朱**</span>
+                                <span class="education">27</span>
+                                <span class="education">本科</span>
+                                <span class="employment">Web后台</span>
+                                <span class="salary">10K</span>
+                                <span class="address">西安</span>
+                                <span class="employment-date">2015.10</span>
+                            </li>
+                            <li>
+                                <span class="name">付**</span>
+                                <span class="education">31</span>
+                                <span class="education">本科</span>
+                                <span class="employment">自动化运维和爬虫</span>
+                                <span class="salary">10K</span>
+                                <span class="address">北京</span>
+                                <span class="employment-date">2014.11</span>
+                            </li>
+                            <li>
+                                <span class="name">李**</span>
+                                <span class="education">28</span>
+                                <span class="education">本科</span>
+                                <span class="employment">自动化运维和爬虫</span>
+                                <span class="salary">8K</span>
+                                <span class="address">成都</span>
+                                <span class="employment-date">2015.11</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">了解定向就业计划</a>
+        </div>
+        <div class="page6">
+            <h2 class="title">「 一千个选择麦子学院的理由，我们帮你想清楚了 」</h2>
+            <ul class="ly-list">
+                <li class="b1">
+                    <h3 class="t1">费 用</h3>
+                    <h5 class="d1">线下培训：2-3W</h5>
+                    <h5 class="d2">麦子学院：不到线下的1/3</h5>
+                </li>
+                <li class="b2">
+                    <h3 class="t1">时 间</h3>
+                    <h5 class="d1">线下培训：时间固定，舟车劳顿</h5>
+                    <h5 class="d2">麦子学院：随时随地，想学就学</h5>
+                </li>
+                <li class="b3">
+                    <h3 class="t1">模 式</h3>
+                    <h5 class="d1">线下培训：大班教学，不能反复学习，无人答疑</h5>
+                    <h5 class="d2">麦子学院：1对1教学，名师答疑辅导，反复学习</h5>
+                </li>
+                <li class="b4">
+                    <h3 class="t1">效 果</h3>
+                    <h5 class="d1">线下培训：传统教学，理论主导，无就业指导</h5>
+                    <h5 class="d2">麦子学院：智能学习，签订协议保就业，不就业全退</h5>
+                </li>
+            </ul>
+            <h3 class="stitle">我们用<b>科技+互联</b>网改变教育的模式，只为让你成为一名真正的Python开发工程师</h3>
+            <div class="v3">
+                <div class="play01 play-b3">
+                    <img src="/static/images/mz_ad/py-images/video-3.jpg" alt="" class="p">
+                    <img src="/static/images/mz_ad/py-images/play-btn.png" alt="" class="play-btn">
+                    <div class="p-txt">麦子学院金牌讲师访谈</div>
+                </div>
+            </div>
+        </div>
+        <div style="display: none;">
+        <div class="page11">
+            <h3>媒体报道</h3>
+            <div class="mt-list">
+                <!--<a href="http://36kr.com/p/5039661.html" target="_blank">--><img
+                    src="/static/images/mz_ad/py-images/mt01.png" alt=""><!--</a>-->
+                <!--<a href="http://science.china.com.cn/2016-03/17/content_8645350.htm" target="_blank">--><img
+                    src="/static/images/mz_ad/py-images/mt02.png" alt=""><!--</a>-->
+                <!-- <a href="http://tech.sina.com.cn/i/2015-11-13/doc-ifxkszhk0231260.shtml" target="_blank">--><img
+                    src="/static/images/mz_ad/py-images/mt03.png" alt=""><!--</a>-->
+                <!-- <a href="http://edu.qq.com/a/20151201/056651.htm" target="_blank">--><img
+                    src="/static/images/mz_ad/py-images/mt04.png" alt=""><!--</a>-->
+                <!-- <a href="http://e.gmw.cn/2015-12/31/content_18319177.htm" target="_blank">--><img
+                    src="/static/images/mz_ad/py-images/mt05.png" alt=""><!--</a>-->
+                <!-- <a href="http://news.ifeng.com/a/20151126/46403469_0.shtml" target="_blank">--><img
+                    src="/static/images/mz_ad/py-images/mt06.png" alt=""><!--</a>-->
+            </div>
+        </div>
+        <div class="page12">
+            <div class="page12in">
+                <div class="mt-list mt-list5">
+                    <h3 class="title">合作企业</h3>
+                    <!--<a href="http://study.163.com/u/microoh" target="_blank">--><img
+                        src="/static/images/mz_ad/py-images/hz01.png" alt=""><!--</a>-->
+                    <!--<a href="http://www.chuanke.com/s1266915.html" target="_blank">--><img
+                        src="/static/images/mz_ad/py-images/hz02.png" alt=""><!--</a>-->
+                    <!--<a href="http://www.iqiyi.com/u/2255633949" target="_blank">--><img
+                        src="/static/images/mz_ad/py-images/hz03.png" alt=""><!--</a>-->
+                    <!--<a href="https://www.aliyun.com/" target="_blank">--><img
+                        src="/static/images/mz_ad/py-images/hz04.png" alt=""><!--</a>-->
+                    <!-- <a href="http://maiziedu.ke.qq.com/" target="_blank">--><img
+                        src="/static/images/mz_ad/py-images/hz05.png" alt=""><!--</a>-->
+                    <!-- <a href="http://www.miguxue.com/p/search_list.jsp?keyWord=%E9%BA%A6%E5%AD%90%E5%AD%A6%E9%99%A2" target="_blank">--><img
+                        src="/static/images/mz_ad/py-images/hz06.png" alt=""><!--</a>-->
+                </div>
+                <div class="mt-list mt-list5">
+                    <h3 class="title">合作院校</h3>
+                    <a href="http://www.suse.edu.cn/" target="_blank"><img src="/static/images/mz_ad/op-images/yx01.png"
+                                                                           alt=""></a>
+                    <a href="http://www.scu.edu.cn/" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx02.png" alt=""></a>
+                    <a href="http://www.cdut.edu.cn/default.html" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx03.png" alt=""></a>
+                    <a href="http://www.uestc.edu.cn/" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx04.png" alt=""></a>
+                    <a href="http://www.sicnu.edu.cn/" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx05.png" alt=""></a>
+                    <a href="http://www.swust.edu.cn/" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx06.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+</div>        
+        <!--<div class="page13">
+            <h3>获得奖项</h3>
+            <div class="jx-list">
+                <img src="/static/images/mz_ad/py-images/jx01.jpg" alt="">
+                <img src="/static/images/mz_ad/py-images/jx02.jpg" alt="">
+                <img src="/static/images/mz_ad/py-images/jx03.jpg" alt="">
+                <img src="/static/images/mz_ad/py-images/jx04.jpg" alt="">
+                <img src="/static/images/mz_ad/py-images/jx05.jpg" alt="">
+                <img src="/static/images/mz_ad/py-images/jx06.jpg" alt="">
+            </div>
+        </div>-->
+        <!--<div class="page7">
+            <h2 class="title">「 他们跟我们一起见证！ 」</h2>
+            <div class="tx-info">
+                <div class="tinfo">
+                    <img src="/static/images/mz_ad/py-images/aliyun-icon.png" alt="" class="icon1">
+                    <p><em>“</em>麦子学院是IT在线教育的创领者，我们希望有更多像麦子一样的教育培训机构，将学习和就业效果做到极致。<em>”</em></p>
+                    <h3 class="s1">——王晓裴</h3>
+                    <h3 class="s2">阿里云教育创业部总监 </h3>
+                </div>
+                <div class="tinfo">
+                    <img src="/static/images/mz_ad/py-images/baidu-icon.png" alt="" class="icon2">
+                    <p><em>“</em>大数据显示，麦子学院在国内IT在线教育行业内有极高的就业率，我们希望在未来麦子学院的定制化就业学习模式更加深入，比如某学员想入职百度做Python，那么百度可以和麦子学院合作推出一套认证机制：学员在麦子学院的学习数据达到某个标准，就可以直接入职百度的对应岗位实习。<em>”</em>
+                    </p>
+                    <h3 class="s1">—— 陈月</h3>
+                    <h3 class="s2">百度总监</h3>
+                </div>
+                <div class="tinfo">
+                    <img src="/static/images/mz_ad/py-images/360-icon.png" alt="" class="icon3">
+                    <p><em>“</em>智能化、数据化的学习过程监控，领先创新的LPS在线教育模式，高效可靠的商业项目训练，为社会培养1万+的高技能IT人才，我们会同与麦子学院一道，以IT技术服务为核心服务更多的企业和个人。<em>”</em>
+                    </p>
+                    <h3 class="s1">—— 徐旭升</h3>
+                    <h3 class="s2">360教育总监 </h3>
+                </div>
+            </div>
+        </div>-->
+        <div class="page8">
+            <h2 class="title">「 你准备好成为一名真正的Python开发工程师了吗？ 」</h2>
+            <div class="zx-info">
+                <div class="pay-zx pay-zx1">
+                    <h2 class="t1"><b>全款优惠</b><br/>分期付款</h2>
+                    <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">立即报名 &gt;</a>
+                </div>
+                <div class="pay-or"><img src="/static/images/mz_ad/py-images/pay-zxor.png" alt=""></div>
+                <div class="pay-zx pay-zx2">
+                    <h2 class="t1"><b>名师指导</b><br/>保障就业</h2>
+                    <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">咨询课程 &gt;</a>
+                </div>
+            </div>
+        </div>
+        <div class="page9">
+            <h2 class="title">「 我想再更加深入的了解一下学习模式、费用、周期等细节问题 」</h2>
+            <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">咨询专业顾问</a>
+        </div>
+
+    </div>
+
+    <div class="page1 page-kc" id="t_one_con2" style="display:none">
+    	<h3 style="color: #e02222;font-size: 38px; text-align:center;padding-top: 110px;padding-bottom: 50px;">优秀的老师，当然有最详细的课程体系！</h3>
+        <ul class="page-js-list">
+            <li>
+                <div class="sitle">阶段一：基础阶段</div>
+                <p>万丈高楼平地起，再牛逼的大神也需要打好基础，本阶段重点学习Python语言基础、面向对象编程、开发工具及前端基础等知识点。</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info kc1">
+                <i class="link ltips"></i><i class="link rtips"></i>
+                <div class="kinfo">
+                    <div class="klist">
+                        <h6>Python语言基础</h6>
+                        <ol class="list-item">
+                            <li>· 环境搭建与配置</li>
+                            <li>· 变量和数据类型</li>
+                            <li>· 编程基础</li>
+                            <li>· 装饰器</li>
+                            <li>· gui介绍</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>简易爬虫实战</h6>
+                        <ol class="list-item">
+                            <li>· http和urllib2</li>
+                            <li>· 正则表达式和re</li>
+                            <li>· 编写爬虫代码</li>
+                            <li>· 多线程</li>
+                            <!--<li style="width:97%; border-bottom:none;">· 思维导图在产品经理工作中的应用</li>-->
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>工具阶段</h6>
+                        <ol class="list-item">
+                            <li title="Pip安装方法以及环境变量配置" style="cursor:pointer">· Pip安装方法以及环境</li>
+                            <li>· Pip基础使用和指定源</li>
+                            <li>· Virtualenv安装</li>
+                            <li>· Pycharm&pdb调试技巧</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>Python面向对象</h6>
+                        <ol class="list-item">
+                            <li>· 面向对象入门及特征</li>
+                            <li>· 类方法使用及特征</li>
+                            <li style="width:52%;">· 访问限制</li>
+                            <li style="width:42%;">· super和self对象</li>
+                            <li style="width:97%; border-bottom:none;">· 嵌套类和嵌套函数</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>web前端基础</h6>
+                        <ol class="list-item">
+                            <li>· HTML+CSS</li>
+                            <li>· Javascript</li>
+                            <li>· Jquery</li>
+
+                        </ol>
+                    </div>
+
+                    <!--<div class="klist">
+                      <h6>流程设计深入讲解</h6>
+                      <ol class="list-item">
+                        <li style="width:97%;">· PM的利器—流程图基础、绘制</li>
+                        <li style="width:52%;">· 任务流程图及页面流程图 </li>
+                        <li style="width:42%;">· visio绘制泳道图 </li>
+                        <li style="width:97%; border-bottom:none;">· 绘制流程图的思路和工具</li>
+                      </ol>
+                    </div>-->
+
+                </div>
+
+                <a href="javascript:" class="more-btn more" onclick="_MEIQIA('showPanel')">咨询老师</a>
+            </div>
+        </ul>
+
+
+        <ul class="page-js-list">
+            <li>
+                <div class="sitle sitle2">阶段二：爬虫阶段</div>
+                <p>从爬虫基础，到各大爬虫框架的应用，结合到12306商业爬虫课程的学习，学员能掌握常用的爬虫技巧并能独立开发商业爬虫。</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info kc1">
+                <i class="link ltips"></i><i class="link rtips"></i>
+                <div class="kinfo">
+                    <div class="klist">
+                        <h6>爬虫基础</h6>
+                        <ol class="list-item">
+                            <li>· 简单爬虫实例</li>
+                            <li>· 方法抓取</li>
+                            <li>· 正则表达式的基本使用</li>
+                            <li>· 模拟登陆</li>
+                            <li>· cookie操作</li>
+                            <li>· requsts</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>Git基本使用</h6>
+                        <ol class="list-item">
+                            <li>· 基于github文档配置</li>
+                            <li>· pull requst</li>
+                            <li>· 常用命令</li>
+                            <li>· remote和clone</li>
+                            <li>· big分支</li>
+                            <li>· feature分支</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>Scrapy框架</h6>
+                        <ol class="list-item">
+                            <li>· Scrapy初步简介</li>
+                            <li>· Scrapy常用命令</li>
+                            <li>· 爬虫核心</li>
+                            <li>· 图片抓取</li>
+                            <li>· cookie处理</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>MYSQL数据库</h6>
+                        <ol class="list-item">
+                            <li>· sql规范和创建</li>
+                            <li>· 主外键约束</li>
+                            <li>· 数据关联处理</li>
+                            <li>· 运算符</li>
+                            <li>· 常用函数</li>
+                        </ol>
+                    </div>
+
+                </div>
+
+                <a href="javascript:" class="more-btn more" onclick="_MEIQIA('showPanel')">咨询老师</a>
+            </div>
+        </ul>
+
+
+        <ul class="page-js-list">
+            <li>
+                <div class="sitle sitle3">阶段三：Web阶段</div>
+                <p>本阶段将重点学习flask，django等常用的python web开发框架，以及ajax等交互技术，通过学习可以将爬取的数据以网页或者接口的形式来呈现给用户。</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info kc1">
+                <i class="link ltips"></i><i class="link rtips"></i>
+                <div class="kinfo">
+                    <div class="klist">
+                        <h6>flask入门</h6>
+                        <ol class="list-item">
+                            <li>· flask上下文响应</li>
+                            <li>· flask路由</li>
+                            <li>· flask模板</li>
+                            <li>· flask入门数据库操作</li>
+                            <li>· Jinja2基本语法</li>
+                            <li>· flask入门部署</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>Django基础</h6>
+                        <ol class="list-item">
+                            <li>· 创建网站</li>
+                            <li>· sqlite3数据库简介</li>
+                            <li>· 数据库基本操作</li>
+                            <li>· admin使用</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>Ajax初步</h6>
+                        <ol class="list-item">
+                            <li style="width:97%;">· Ajax简介/运行环境</li>
+                            <li>· eval&dom</li>
+                            <li>· 数据封装</li>
+                            <li>· ajax注册用户</li>
+                        </ol>
+                    </div>
+
+
+                    <div class="klist">
+                        <h6>Django进阶</h6>
+                        <ol class="list-item">
+                            <li>· jinjia2替换模板引擎</li>
+                            <li>· admin高级定制</li>
+                            <li>· admin actions</li>
+                            <li>· 集成已有的数据库</li>
+                            <li>· 通用视图</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>实战：个人博客系统</h6>
+                        <ol class="list-item">
+                            <li>· 项目分析</li>
+                            <li>· Web开发流程介绍</li>
+                            <li>· 数据库设计</li>
+                            <li title="自定义Manger管理器" style="cursor:pointer">· 自定义Manger管理</li>
+                            <li>· 项目部署上线</li>
+                        </ol>
+                    </div>
+
+                    <!--<div class="klist">
+                      <h6>互联网思维方式及竞品分析</h6>
+                      <ol class="list-item">
+                        <li>· 基本概念</li>
+                        <li>· 为什么要做竞品分析</li>
+                        <li>· 竞品分析的时间点</li>
+                        <li>· 竞品分析的维度</li>
+                        <li>· 竞品分析难点突破</li>
+                        <li>· 项目竞品分析</li>
+
+                      </ol>
+                    </div>
+
+                    <div class="klist">
+                      <h6>高级实战演练</h6>
+                      <ol class="list-item">
+                        <li style="width:97%;">· 项目第一部分设计难点剖析</li>
+                        <li style="width:97%;">· 五层级原则设计关键点映射</li>
+                        <li style="width:97%; border-bottom:none;">·  需求文档描述深入讲解</li>
+                      </ol>
+                    </div>
+
+
+                    <div class="klist">
+                      <h6>深度结构互联网产品的数据分析</h6>
+                      <ol class="list-item">
+                        <li style="width:97%;">· 数据分析用途及术语</li>
+                        <li style="width:97%;">· 数据分析的思路及方法</li>
+                        <li style="width:97%; border-bottom:none;">·  实战项目二：第六阶段演练</li>
+                      </ol>
+                    </div>-->
+
+
+                </div>
+
+                <a href="javascript:" class="more-btn more" onclick="_MEIQIA('showPanel')">咨询老师</a>
+            </div>
+        </ul>
+
+
+        <ul class="page-js-list">
+            <li>
+                <div class="sitle sitle4">阶段四：项目阶段</div>
+                <p>丰富的项目经验是找工作的必要条件，通过该阶段学习blog，cms，电商网站以及微信开发等各种类型项目的开发。</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info kc1">
+                <i class="link ltips"></i><i class="link rtips"></i>
+                <div class="kinfo">
+                    <div class="klist">
+                        <h6>项目前导</h6>
+                        <ol class="list-item">
+                            <li>· 介绍和考核说明</li>
+                            <li>· 开发前准备</li>
+                            <li>· 需求和功能讲解</li>
+                            <li>· 代码结构</li>
+                            <li style="width:97%; border-bottom:none;">· 注意事项</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>版本控制管理软件</h6>
+                        <ol class="list-item">
+                            <li>· 常用版本控制和原理</li>
+                            <li>· Svn常用实操</li>
+                            <li>· Svn高级</li>
+                            <li>· 四大开源站点</li>
+                            <li>· Git详解</li>
+                            <li>· Git对比Svn</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>Diango缓存优化</h6>
+                        <ol class="list-item">
+                            <li>· Filesystem缓存解析</li>
+                            <li>· Database缓存解析</li>
+                            <li>· 缓存配置与使用</li>
+                            <li>· 自定义缓存</li>
+                            <li>· Redis缓存</li>
+                            <li>· Django缓存优化性能评估</li>
+                        </ol>
+                    </div>
+
+
+                    <div class="klist">
+                        <h6>网站发布</h6>
+                        <ol class="list-item">
+                            <li title="介绍Diango和它的基础依赖项" style="cursor:pointer">· 介绍Diango和它的基</li>
+                            <li>· 部署前准备</li>
+                            <li>· 主流部署方式介绍</li>
+                            <li>· Diango多服务器分离</li>
+                            <li>· 脚本自动化</li>
+                            <li>· Diango的服务器安全</li>
+                        </ol>
+                    </div>
+
+                </div>
+
+                <a href="javascript:" class="more-btn more" onclick="_MEIQIA('showPanel')">咨询老师</a>
+            </div>
+        </ul>
+
+
+        <ul class="page-js-list">
+            <li>
+                <div class="sitle sitle5">阶段五：选修阶段</div>
+                <p>路漫漫其修远兮，技术的学习道路没有终点，该阶段帮助学员提升开发技能，涵盖桌面软件开发，数据分析，自动化运维，自动化测试等技术方向。</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info kc1">
+                <i class="link ltips"></i><i class="link rtips"></i>
+                <div class="kinfo">
+                    <div class="klist">
+                        <h6>boottle入门</h6>
+                        <ol class="list-item">
+                            <li>· boottle入门</li>
+                            <li>· Python数据库编程</li>
+                            <li>· Linux基础</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>Redis入门</h6>
+                        <ol class="list-item">
+                            <li>· Redis入门</li>
+                            <li>· Mongdb最佳实战</li>
+                            <li>· Tkinter桌面编程</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>pyqt程序开发gui程序以及打包</h6>
+                        <ol class="list-item">
+                            <li style="width:97%;">· pyqt程序开发gui程序以及打包</li>
+                            <li style="width:97%;">· pyqt项目小麦听书</li>
+                            <li style="width:97%; border-bottom:none;">· mysql进阶</li>
+                        </ol>
+                    </div>
+
+
+                    <div class="klist">
+                        <h6>paramiko基础</h6>
+                        <ol class="list-item">
+                            <li>· paramiko基础</li>
+                            <li>· fabric教程</li>
+                            <li>· 自动化测试-selenium</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>bootstrap入门</h6>
+                        <ol class="list-item">
+                            <li>· bootstrap入门</li>
+                            <li>· Gevent</li>
+                            <li>· web应用安全</li>
+                        </ol>
+                    </div>
+
+
+                    <div class="klist">
+                        <h6>django项目实战之购物系统</h6>
+                        <ol class="list-item">
+                            <li style="width:97%;">· django项目实战之购物系统</li>
+                            <li style="width:97%;">· Tornado异步任务处理</li>
+                            <li style="width:97%;">· html5+css3</li>
+                        </ol>
+                    </div>
+
+
+                </div>
+
+                <a href="javascript:" class="more-btn more" onclick="_MEIQIA('showPanel')">咨询老师</a>
+            </div>
+        </ul>
+
+
+        <div class="question-list">
+            <div class="title">常见问题</div>
+            <dl class="qlist">
+                <dt><em><i></i>什么是“企业直通班“？</em></dt>
+                <dd>
+                    <p>
+                        “企业直通班”是麦子学院的核心产品，通过在线教学提升学生技能，保障就业效果。目前覆盖有Android、iOS、Python、产品经理、嵌入式等十余个专业方向。选定专业方向并付费后，即可进入班级。每个班级学生不超过30人，有专业教师和班主任进行教学辅导与监督。全程贯穿项目制作来保障学员实践效果。每周会有直播班会进行答疑解惑、项目讨论、模拟面试等内容。最终由就业老师安排就业面试，顺利入职。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>什么是LPS呢？</em></dt>
+                <dd>
+                    <p>“LPS（Learning Process
+                        System的缩写）是麦子学院自主研发的教学过程系统。LPS系统通过整合录播、直播、测试等环节的数据，结合人工智能和数据挖掘技术，提升了老师辅导和同学在线学习的效率和针对性，让学习及就业效果更有保障。LPS目前仍然在不断地进行升级与迭代，只为实现“有教无类，因材施教”的梦想。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>麦子学院的视频是免费的吗？</em></dt>
+                <dd>
+                    <p>“企业直通班”有什么不同吗？
+                        麦子学院官网的课程目前绝大多数是免费开放的。企业直通班的直播视频和各专业的最新视频是仅对企业直通班学员开放的。此外，企业直通班的同学还能够得到专业老师的一对一辅导和讲解、就业老师的就业推荐、班级同学的线上线下活动……</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>在职人员为什么更适合在线学习？</em></dt>
+                <dd>
+                    <p>在职人士学习最关注学习时间和学习效果。如果脱产学习，时间成本和生活压力都很大。在麦子学院企业直通班，即可以使用移动设备随时随地学习，还可以在学业完成、面试通过后再离职。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>自律性差，怎么保证完成学习呢？</em></dt>
+                <dd>
+                    <p>
+                        我们通过改变学习过程，商业项目实战与知识点学习相结合的方式，让学习更有乐趣更有成就感。让同学一旦开始，就想学下去。另一方面，学习是一种习惯，需要自己和老师共同努力进行培养。同学遇到困难或者不适应时，我们会有专业老师和班主任对你进行解惑和监督。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>相比线下培训机构，在线学习有什么好处呢？</em></dt>
+                <dd>
+                    <p>最直接的好处：记录你的学习进度，通过网络，老师可以更有针对性地解决你的问题；比线下机构给予学生的辅导时间更加宽裕，更能保证你的学习效果。</p>
+                    <p>更自由：我们可以使用电脑、手机等移动设备，随时随地进行学习。</p>
+                    <p>更优质：你可以直接跟随国内一线企业工程师进行学习，经验更丰富，人脉更扎实。</p>
+                    <p>更实惠：我们的性价比更高。因为我们省去了房租成本，提升了老师辅导的效率，所以同样的学习与就业效果，我们的价格更低。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>麦子学院怎么保障就业的？</em></dt>
+                <dd>
+                    <p>我们通过3种方式解决就业问题：</p>
+                    <p>1.我们和智联招聘、拉勾网、猎聘网直接对接接口，进行岗位推荐和简历推送，让待就业学员最快匹配地点和岗位需求。</p>
+                    <p>2.我们和近千家企业直接签约，保证长期提供指定岗位的人员推荐和培训。</p>
+                    <p>3.每天都会有全国各地的创业型企业、软件园区、投后管理公司主动联系我们，提供招聘需求。</p>
+                    <p>此外，我们还在不断提升自身的教学水平和学习效果，来满足更多企业更高岗位的技能需求，提升学员的就业质量。</p>
+                </dd>
+            </dl>
+            <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">还有其他问题，咨询在线老师</a>
+        </div>
+
+    </div>
+
+
+
+{#    <div class="zy_srean">#}
+{#        <div class="zy_srean_div"><img src="/static/images/mz_ad/py-images/python-testpic01.png" alt="产品经理">#}
+{#            <a class="zy_srean_close"></a>#}
+{#            <a href="javascript:;" class="zy_srean_btn more">了解详情></a>#}
+{#        </div>#}
+{#    </div>#}
+
+
+    <div class="footer">
+        <div class="footerin">
+            <div class="flogo"><img src="/static/images/mz_ad/py-images/flogo.png" alt=""></div>
+            <div class="fnum">400 862 8862</div>
+            <div class="fewm">
+                <div class="mpic">
+                    <img src="/static/images/mz_ad/py-images/weibo-emw0.png" alt=""><h5>手机浏览页面</h5>
+                </div>
+                <div class="mpic">
+                    <img src="/static/images/mz_ad/py-images/wx-emw0.png" alt=""><h5>手机浏览页面</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="video-fifter video-f1">
+        <div class="video-fifterin">
+            <div class="close-btn c1-btn"></div>
+            <div id="video-f1"></div>
+        </div>
+    </div>
+
+    <div class="video-fifter video-f2">
+        <div class="video-fifterin">
+            <div class="close-btn c2-btn"></div>
+            <div id="video-f2"></div>
+        </div>
+    </div>
+
+    <div class="video-fifter video-f3">
+        <div class="video-fifterin">
+            <div class="close-btn c3-btn"></div>
+            <div id="video-f3"></div>
+        </div>
+    </div>
+
+    <!--此段代码从离线宝后台获取开始-->
+    <script>
+        document.write('<script type="text/javascript"  data-lxb-uid="10986738" data-lxb-gid="198532" src="http://lxbjs.baidu.com/api/asset/api.js?t=' + new Date().getTime() + '" charset="utf-8"></scr' + 'ipt>');
+    </script>
+    <div class="lxb"><img src="/static/images/mz_ad/py-images/kuang.png"></div>
+{% endblock %}
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/lib/superSlider/jquery.SuperSlide.2.1.1.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/index.js?v={{ time_stamp }}"></script>
+     <script>
+            window.onload=function(){
+                $(window).scroll(function(){
+                    if($(document).scrollTop()>=787){
+                        $('.section').slideDown();
+                     }else{
+                        $('.section').slideUp();
+                    }
+                });
+                $("#tab_1").click(function(){
+                    $("#t_one1").addClass("cur");
+                    $("#t_one2").removeClass("cur");
+                    $("#t_one_con1").show();
+                    $("#t_one_con2").hide();
+                    $('html,body').animate({scrollTop: '787' + 'px'}, 0);
+                    $(".slide_line").animate({left:'460'});
+
+                });
+                $("#tab_2").click(function(){
+                    $("#t_one2").addClass("cur");
+                    $("#t_one1").removeClass("cur");
+                    $("#t_one_con2").show();
+                    $("#t_one_con1").hide();
+                    $('html,body').animate({scrollTop: '787' + 'px'}, 0);
+                    $(".slide_line").animate({left:'616'});
+                });
+
+            }
+    </script>
+    <!--弹窗-->
+{#    <script type="text/javascript">#}
+{#        $(document).ready(function () {#}
+{##}
+{#            var secondm = 1;#}
+{#            var count = 1;#}
+{#            $(".zy_srean_close").unbind().click(function () {#}
+{#                $(".zy_srean").hide();#}
+{#                count = count++#}
+{#                //if(secondm>60) return;#}
+{#                if (count > 2) {#}
+{#                    setTimeout(function () {#}
+{#                        $(".zy_srean").show()#}
+{#                    }, secondm * 50000);#}
+{#                } else {#}
+{#                    setTimeout(function () {#}
+{#                        $(".zy_srean").show()#}
+{#                    }, secondm * 25000);#}
+{#                }#}
+{#                //setTimeout(function(){$(".zy_srean").show()},secondm*30000);#}
+{#            });#}
+{#            setTimeout(function () {#}
+{#                $(".zy_srean").show();#}
+{#            }, 20000);#}
+{#            var bbb = true;#}
+{#            $(".zy_srean").unbind().click(function () {#}
+{#                (bbb) && $(".zy_srean_close").trigger("click");#}
+{#            });#}
+{#            $(".zy_srean_div").hover(function () {#}
+{#                bbb = false;#}
+{#            }, function () {#}
+{#                bbb = true;#}
+{#            })#}
+{##}
+{#        })#}
+{##}
+{#    </script>#}
+{% endblock %}

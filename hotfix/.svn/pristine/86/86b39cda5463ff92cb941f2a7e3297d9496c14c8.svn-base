@@ -1,0 +1,3 @@
+<div class="sManage_tit marginB20">
+    <a href="{% url 'lps3:eduadmin:students:index' %}" {% if nav == 'students' %}class="aH"{% endif %}>学生管理</a><a href="{% url 'lps3:eduadmin:classes:index' %}" {% if nav == 'classes' %}class="aH"{% endif %}>班级管理</a><a href="{% url 'lps3:eduadmin:living:index' %}" {% if nav == 'living' %}class="aH"{% endif %}>直播排期</a><a href="{% url 'lps3:eduadmin:stats:index' %}" {% if nav == 'stats' %}class="aH"{% endif %}>统计</a>
+</div>

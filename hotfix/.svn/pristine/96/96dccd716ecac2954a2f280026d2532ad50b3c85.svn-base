@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=0.5,maximum-scale=0.5,user-scalable=0" />
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<title>功能说明</title>
+	<style type=text/css>
+		*{margin: 0;padding: 0;}
+		html {font-size: 40px;}
+		body {color: #455950;font-family: "\5FAE\8F6F\96C5\9ED1";min-width:320px;-webkit-text-size-adjust:none;}
+		.explain { padding: 0.75rem; }
+		.explain h1 { font-size: 0.9rem; text-align: center; margin: 0.65rem 0rem 0.75rem 0rem; }
+		.explain p { font-size: 0.7rem; line-height: 1.35rem; }
+		.explain h2 { font-size: 0.8rem; line-height: 1.5rem; margin: 1.25rem 0rem 0.25rem 0rem; }
+		.explain h2:before { content: ''; display: inline-block; vertical-align: middle; border-left: 0.15rem solid #00d4ab; height: 0.7rem; margin-right: 0.25rem; }
+		.explain h3 { font-size: 0.7rem; margin: 0.5rem 0rem 0.25rem; }
+		.explain ul li { font-size: 0.7rem; color: #9aa5a3; line-height: 1.35rem; list-style-type: none; }
+	</style>
+</head>
+<body class="explain">
+<h1>麦子导师V1.1.0功能说明</h1>
+<p style="text-indent: 1.5rem;">非常感谢您加入麦子学院为众多求学者传道、授业、解惑。麦子导师APP是您在麦子学院教学过程中予学生教学的链接器。</p>
+<p style="text-indent: 1.5rem;">为了能让您对学生的教学服务更及时，不遗漏任何来自学生的服务请求。每天的9：00及16：00，我们及时通知您待办任务情况，同时我们将在以下等情况内及时提醒您处理待办事务：</p>
+<div>
+	<h2>入学沟通：</h2>
+	<p style="text-indent: 1.5rem;">新学员完成入学信息时，系统以学生的名义主动向老师发起的学习辅导请求：</h3>
+	<ul>
+		<li>i. 当您超过1.5小时没有处理，该待办任务卡变为黄色；</li>
+		<li>ii. 当您超过2.5小时没有处理，该待办任务卡变为橙色；</li>
+		<li>iii. 当您超过4小时没有处理，该待办任务卡变为红色；</li>
+	</ul>
+	<h2>辅导信息：</h2>
+	<p style="text-indent: 1.5rem;">学生解锁任务球，请求辅导或老师主动发送辅导信息给学生：</h3>
+	<ul>
+		<li>i. 当您超过3小时没有处理，该待办任务卡变为黄色；</li>
+		<li>ii. 当您超过5小时没有处理，该待办任务卡变为橙色；</li>
+		<li>iii. 当您超过8小时没有处理，该待办任务卡变为红色；</li>
+	</ul>
+	<h2>学员提问：</h2>
+	<p style="text-indent: 1.5rem;">学习在学习视频等课件或LPS过程中，有疑问需要解答：</h3>
+	<ul>
+		<li>i. 当您超过3小时没有处理，该待办任务卡变为黄色；</li>
+		<li>ii. 当您超过5小时没有处理，该待办任务卡变为橙色；</li>
+		<li>iii. 当您超过8小时没有处理，该待办任务卡变为红色；</li>
+	</ul>
+	<h2>项目辅导：</h2>
+	<p style="text-indent: 1.5rem;">学生提交或回复了新的项目制作作业，需要您的批阅：</h3>
+	<ul>
+		<li>i. 当您超过3小时没有处理，该待办任务卡变为黄色；</li>
+		<li>ii. 当您超过5小时没有处理，该待办任务卡变为橙色；</li>
+		<li>iii. 当您超过8小时没有处理，该待办任务卡变为红色；</li>
+	</ul>
+	<h2>约课：</h2>
+	<p style="text-indent: 1.5rem;">学生在学习过程中遇到了棘手的问题，需要与您直播解答：</h3>
+	<ul>
+		<li>i. 当直播前5分钟，该待办任务卡变为橙色；</li>
+		<li>ii. 当直播已开始，您仍未进入直播该待办任务卡变为红色；</li>
+	</ul>
+</div>
+
+<div>
+	<h2>卡片的颜色有什么意义？</h2>
+	<ul>
+		<li>I.	绿色：表示该待办任务为正常状态；</li>
+		<li>II.	黄色：表示该待办任务处于预警状态；</li>
+		<li>III.	橙色：表示该待办任务处于严重预警状态；</li>
+		<li>IV.	红色：表示该待办任务已成为教学事故；</li>
+	</ul>
+</div>
+<div>
+	<h2>卡片上的红点是什么意思？</h2>
+	<p>表示该任务您还未阅读过。</p>
+</div>
+<div>
+	<h2>预警时段计算范围：</h2>
+	<p>当日21:00至次日9:00期间不计入预警时效。</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,763 @@
+{% extends "mz_common/base.html" %}
+{% block title %} {{ tclass.display_name }}-老师端- 麦子学院{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}mz_lps3/css/style.css"/>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}mz_lps3/css/jquery.datetimepicker.css">
+<style type="text/css">
+    html,body {height: 100%;}
+    body {background: #f5f5f5;position: relative;}
+    .hHide > * {opacity: 0;}
+    #demo {opacity: 1;position: absolute;top: 100px;left: 36%;z-index: 1000;margin-left: -100px;}
+</style>
+{% endblock %}
+{% block container %}
+    <div class="container">
+        <div class="new_nav color99 font14">我的班级 > <span class="color5e">{{ tclass.display_name }}</span>
+            {% if not tclass.meeting_enabled %}
+                <div class="fr zy_onoff color33">
+                    开启教学<span class="color99">（开启后需要开始进行统一班会辅导）</span><span class="zy_onoffBtn t5o"><i
+                        class="t5o"></i></span>
+                </div>
+            {% endif %}
+        </div>
+        <div class="zyMainLeft" style="padding:20px; padding-bottom: 100px;">
+            <div class="teacherSreen_top marginB20">
+                <div class="teacherSreen_topL">
+                    <p class="font16 color66 bold" style="padding-bottom:5px;">排序</p>
+
+                    <p><select class="personal_select">
+                        <option value="pay"
+                                {% if s_order != 'join' and s_order != 'rank' %}selected="selected"{% endif %}>
+                            缴费情况
+                        </option>
+                        <option value="join" {% if s_order == 'join' %}selected="selected"{% endif %}>
+                            入学时间
+                        </option>
+                        <option value="rank" {% if s_order == 'rank' %}selected="selected"{% endif %}>
+                            班级排名
+                        </option>
+                    </select></p>
+                </div>
+                <div class="teacherSreen_topR font14 bold textC">
+                    {% for stage in stages %}
+                        <p class="colorff">{{ stage.1 }}<br></p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="teacherSreen_Con">
+                <div class="teacherSreen_topL">
+                    <ul class="teacherStulist">
+                        {% for sinfo in data %}
+{#                            20160331老师端优化丰富状态#}
+{#                            <li class="marginB20 {% if sinfo.show_info.is_pause %}greytou{% else %}greentou{% endif %}">#}
+                            {% if not sinfo.status_is_quit %}
+                            <li {% if sinfo.status_is_behind %}class="marginB20"
+                            {% elif sinfo.show_status_gray %}class="marginB20 greytou"
+                            {% else %}class="marginB20 greentou"
+                            {% endif %}>
+                                <div class="img">
+                                    <a href="/u/{{ sinfo.model.id }}/" target="_blank">
+                                        <img src="{{ MEDIA_URL }}{{ sinfo.model.avatar_small_thumbnall }}">
+                                        <span>
+                                        {% if sinfo.status_is_paused %}休学中
+                                        {% endif %}
+                                        </span>
+                                    </a>
+                                    {% if not sinfo.is_full_payment %}<i class="zyshi"></i>{% endif %}
+                                </div>
+                                <div class="font font12 color99">
+                                    <p class="font16 color33">
+                                        {% if sinfo.show_info.real_name %}
+                                            {{ sinfo.show_info.real_name }}
+                                        {% else %}
+                                            {{ sinfo.model.nick_name }}
+                                        {% endif %}
+                                    </p>
+
+                                    <p>
+                                        {% if sinfo.study_goal %}
+                                            {{ sinfo.study_goal }}
+                                        {% elif sinfo.show_info.study_goal_opt_name %}
+                                            {{ sinfo.show_info.study_goal_opt_name }}
+                                        {% else %}暂无{% endif %}
+                                    </p>
+                                </div>
+                                <div class="s_details t5o">
+                                    <i></i>
+
+                                    <p class="font12 color99 pt">
+                                        <span class="color5e font20">
+                                            {% if sinfo.show_info.real_name %}
+                                                {{ sinfo.show_info.real_name }}
+                                            {% else %}
+                                                {{ sinfo.model.nick_name }}
+                                            {% endif %}
+                                        </span>
+                                        {% if not sinfo.is_full_payment %}试学学员{% endif %}
+                                        <a href="/lps3/teacher/class/{{ class_id }}/student_info/{{ sinfo.model.id }}/" target="_blank" style="float: right; margin-top: 8px;">完整学籍信息></a>
+                                    </p>
+
+                                    <div class="color33 font12 dd marginB10">
+                                        <p>城市：
+                                            {% if sinfo.show_info.province and sinfo.show_info.city %}
+                                                {{ sinfo.show_info.province }}-{{ sinfo.show_info.city }}
+                                            {% else %}暂未登记{% endif %}
+                                        </p>
+
+                                        <p>入班时间：{{ sinfo.join_in_class_date }}</p>
+
+                                        <p>TEL：
+                                            {% if sinfo.show_info.real_mobile %}
+                                                {{ sinfo.show_info.real_mobile }}{% else %}暂无
+                                            {% endif %}
+                                        </p>
+
+                                        <p>QQ：
+                                            {% if sinfo.model.qq %}{{ sinfo.model.qq }}{% else %}暂无{% endif %}
+                                        </p>
+                                    </div>
+                                </div>
+
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="teacherSreen_topR">
+                    <ul class="teacherTasklist">
+                        {% for sinfo in data %}
+                            <li class="marginB20" {% if sinfo.status_is_quit %}style="display: none"{% endif %}>
+                                {% for stage in sinfo.stages %}
+                                    {% if stage.is_finished %}
+                                        <span class="color66 textC font20 tSturight"
+                                              pop_href="{% url 'lps3:t_student_stage_div' class_id sinfo.model.id stage.id %}"
+                                                >
+                                        {% if stage.count_task_done %}
+                                            <i>{{ stage.count_task_done }}</i>
+                                        {% endif %}
+                                        </span>
+                                    {% elif stage.is_undo %}
+                                        <span class="color66 textC font20"></span>
+                                    {% else %}
+                                        <span class="color66 textC font20 sH"
+                                              pop_href="{% url 'lps3:t_student_stage_div' class_id sinfo.model.id stage.id %}"
+                                                >
+                                        {{ stage.count_task_finished }}/{{ stage.count_tasks }}
+                                            {% if stage.count_task_done %}
+                                                <i>{{ stage.count_task_done }}</i>
+                                            {% endif %}
+                                        </span>
+                                    {% endif %}
+                                {% endfor %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="zyMainRight">
+            <div class="teacherSreenR marginB20">
+                <p class="color33 font16 marginB20">班级数据</p>
+
+                <div class="teacherSreenR_div marginB20">
+                    <div class="color33 font12">
+                        <p>班级总人数</p>
+
+                        <p class="font20 color5e">{{ students_count }}<span class="font14">人</span></p>
+                    </div>
+                    <div class="color33 font12">
+                        <p>班级完成度</p>
+
+                        <p class="font20 color5e">{{ total_progress }}<span class="font14">%</span></p>
+                    </div>
+                </div>
+                <p class="font14 pimg"><img src="{{ STATIC_URL }}mz_lps3/images/ico_clock.png">
+                    {% if not class_meeting_enabled %}
+                        班级待开启
+                    {% elif class_time_left > 0 %}
+                        班级结束倒计时<span class="color5e font20">{{ class_time_left }}</span>
+                        <span class="color5e">天</span>
+                    {% else %}
+                        班级已结束
+                    {% endif %}
+                </p>
+            </div>
+
+            {{ html_class_meeting }}
+
+            <a class="syllabus font14" href="{% url 'lps3:teacher_course_syllabus' class_id %}" target="_blank">课程大纲</a>
+
+            
+            
+            
+
+        </div>
+    </div>
+
+    <!--提交生成-->
+    <div class="modal fade" id="myClassmeeting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        {% include "mz_lps3/teacher/div_form_create_meeting.html" %}
+    </div>
+
+    <div class="modal fade" id="alterClassmeeting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true"></div>
+    <!--作业批改,stage-->
+    <div class="modal fade" id="yourHomework" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+    </div>
+    <!--作业批改详情,给task打分页,project_item详情页-->
+    <div class="modal fade" id="yourHomework2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+    </div>
+    <!--查看限时答题-->
+    <div class="modal fade" id="yourHomework3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-content zy_yourHomework3">
+            <a class="zy_newclose"></a>
+
+            <p class="color33 font18 pt"><a class="color5e">&lt;&lt;返回</a><span></span></p>
+
+            <p class="ptt font16 color33"></p>
+
+            <div class="zy_yourHomework3_div">
+                <ul class="font14">
+                </ul>
+            </div>
+            <div class="examinationBottom textC">
+                <div class="prev ebtn fl">上一题</div>
+                <div class="znum"></div>
+                <div class="next ebtn fr">下一题</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block custom_script %}
+<script type="text/javascript" src="{{ STATIC_URL }}mz_lps3/js/select.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}mz_lps3/layer/layer.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}mz_lps3/js/jquery.datetimepicker.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}mz_lps3/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}mz_lps3/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript">
+//-------------------FUNCTION------------------------
+    var quizs = [], quizsSum = 0;
+    var abc = ["A", "B", "C", "D", "E", "F", "G", "H", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    function opHomework(obj) {
+        var pop_href = $(obj).attr("pop_href");
+        if (pop_href == undefined) {
+            return;
+        }
+        $.ajax({
+            type: 'GET',
+            url: pop_href,
+            dataType: "json",
+            success: function (data) {
+                console.log(data)
+                $(".zy_yourHomework3 .pt>span").html(data.papertitle);
+                quizs = data.quizs;
+                bindst();
+                $('#yourHomework').modal('hide');
+                $('#yourHomework3').modal('show');
+            },
+            error: function (data) {
+                alert("service data error");
+            }
+        });
+    }
+    //处理答题
+    function bindanswer(n) {
+        var data = quizs[n - 1];
+        $(".zy_yourHomework3 .ptt").html(n + ".&nbsp;" + data.question);
+        var html = '';
+        var an = data.answer;
+        var i = 0;
+        for (var aa in an) {
+            var classt = '';
+            if (data.user_choose == abc[i] && data.user_choose != data.correct) {
+                classt = "error"
+            }
+            if (data.correct == abc[i]) {
+                classt = "right"
+            }
+            html += '<li class="' + classt + '"><span>' + abc[i] + '</span>' + an[abc[i]] + '</li>';
+            i++;
+        }
+        $(".zy_yourHomework3_div ul").html(html);
+    }
+    function bindst() {
+        quizsSum = quizs.length;
+        var html = '';
+        for (var i = 0; i < quizsSum; i++) {
+            var data = quizs[i];
+            var classt = "aH";
+            if (data.user_choose != data.correct) classt = "error";
+            html += '<a class="an ' + classt + '" num="' + (i + 1) + '"></a>';
+        }
+        $(".zy_yourHomework3 .examinationBottom>.znum").html(html);
+        $(".zy_yourHomework3 .examinationBottom a").unbind().click(function () {
+            bindanswer($(this).attr("num"));
+            $(this).addClass("active").siblings().removeClass("active");
+        }).eq(0).trigger("click");
+    }
+    //-------------处理答题END-------------
+    function opItemProject(obj) {
+        var pop_href = $(obj).attr("pop_href");
+        if (pop_href == undefined) {
+            return;
+        }
+        $.ajax({
+            type: 'GET',
+            url: pop_href,
+            dataType: "html",
+            success: function (data) {
+                $('#yourHomework').modal('hide');
+                $('#yourHomework2').html(data);
+                $('#yourHomework2').modal('show');
+            },
+            error: function (data) {
+                alert("service data error");
+            }
+        });
+    }
+    function opedit(id, ztype) {
+        //ztype 2为修改
+        $.ajax({
+            type: "GET",
+            url: '/lps3/teacher/class/classmeeting/' + id + '/',
+            dataType: "html",
+            success: function (data) {
+                $("#alterClassmeeting").html(data);
+                $('#alterClassmeeting').modal('show');
+                //关闭
+                $("#alterClassmeeting .zy_newclose").click(function () {
+                    $('#alterClassmeeting').modal('hide');
+                });
+                openTime();
+            }
+        });
+    }
+
+    function openTime() {
+        //弹框时间
+        $('.datetimepicker1').datetimepicker({
+            datepicker: false,
+            format: 'H:i',
+            step: 5,
+            onChangeDateTime: function (currentDateTime, $input) {
+                var dd2 = new Date();
+                var day = $input.parent().parent().prev().find("input").val();
+                if (day != "") {
+                    currentDateTime = new Date(day + " " + currentDateTime.getHours() + ":" + currentDateTime.getMinutes() + ":" + currentDateTime.getSeconds());
+                }
+                var dd = Date.parse(currentDateTime);
+                if (dd2 > dd) {
+                    $input.val("");
+                    layer.tips("不能选择过去的时间", $input, {tips: [2, '#68c8b6']});
+                }
+            }
+        });
+        $('.datetimepicker2').datetimepicker({
+            lang: 'ch',
+            timepicker: false,
+            format: 'Y/m/d',
+            formatDate: 'Y/m/d',
+            onChangeDateTime: function (currentDateTime, $input) {
+                currentDateTime.setHours(23);
+                currentDateTime.setMinutes(59);
+                currentDateTime.setSeconds(59);
+                var dd = Date.parse(currentDateTime);
+                var dd2 = new Date();
+                if (dd2 > dd) {
+                    $input.val("");
+                    layer.tips("不能选择过去的日期", $input, {tips: [2, '#68c8b6']});
+                }
+            }
+        });
+    }
+    function startClass() {
+        window.location.href = "{% url 'lps3:teacher_class_start' class_id %}";
+    }
+
+    var getLength = function(str){
+       return String(str).replace(/[^\x00-\xff]/g,'aa').length;
+    };
+
+    var imgPopup = function(img_src){
+        var html = '';
+
+        html += '<div id="imgzoom"><i class="imgzoom-close"></i><div id="imgzoom-image-ctn">';
+        html += '<img class="img" src="'+ img_src +'" alt="">';
+        html += '</div></div>';
+
+        $('body').append(html);
+
+        var oImg = $('#imgzoom-image-ctn');
+
+        oImg.find('.img').load(function(){
+            oImg.css({'left': '50%','top': '50%','marginLeft': -oImg.outerWidth()/2,'marginTop':-oImg.outerHeight()/2});
+        });
+
+        $('#imgzoom').fadeIn('fast','linear').css({'z-index':'1100','top':'0px'});
+
+        $('.imgzoom-close').on('click',function(event){$('#imgzoom').remove();});
+    };
+    var golbal_href='',golbal_tSturight;
+    //请求任务列表
+    function requestTask(url) {
+        $.ajax({
+            type: 'GET',
+            url: url,
+            dataType: "html",
+            success: function (data) {
+                $("#yourHomework").html(data);
+                $('#yourHomework').modal({show:true, keyboard:false,backdrop: 'static'});
+
+            }
+        });
+    }
+//-------------------FUNCTION_END------------------------
+    $(function () {
+        //-------------show事件-------
+        $('#yourHomework2').on('show.bs.modal', function () {
+            //评分
+            $(".yourHomeworkD a").unbind().hover(function () {
+                layer.tips($(this).attr("v"), $(this), {tips: [1, '#68c8b6'], time: 2000});
+            }, function () {
+
+            }).click(function () {
+                $(this).addClass("aH").siblings().removeClass("aH");
+            });
+        })
+
+        //添加班会
+        //$('#myClassmeeting').modal('show');
+        //$('#yourHomework4').modal('show');
+
+        $(".personal_select").iSimulateSelect({
+            width: 132,
+            height: 0,
+            selectBoxCls: "personal_info_selectD",
+            optionCls: "personal_info_selectD_Op"
+        });
+        $(".personal_select").change(function () {
+            _order = $(this).val();
+            _url = window.location.pathname + "?s_order=" + _order;
+            window.location.href = _url;
+        });
+
+        openTime();
+        $(".teacherStulist li").unbind().hover(function () {
+            $(this).children(".s_details").addClass("HH");
+        }, function () {
+            $(this).children(".s_details").removeClass("HH");
+        });
+
+
+        //顶部开关
+        $(".zy_onoffBtn").unbind().click(function () {
+            $(this).toggleClass("on");
+            setTimeout("startClass()", 600);
+            //点击刷新
+        });
+        //是否已选择班级
+        function isClassCV(val) {
+            var bb = true;
+            $(".joinClass_div a").each(function (index, element) {
+                if ($(this).text() == val) {
+                    bb = false;
+                    return;
+                }
+            });
+            return bb;
+        }
+
+        var classL = {{ classcodings|safe }}
+        $(".sreachClassTxt").unbind().live("keyup", function () {
+            var clhtml = '';
+            for (var i in classL) {
+                if (classL[i].toLowerCase().indexOf($(this).val().toLowerCase()) > -1) {
+                    clhtml += '<a>' + classL[i] + '</a>';
+                }
+            }
+            $(".sreachClass_div").html(clhtml);
+            $(".sreachClass_div a").unbind().click(function () {
+                if (isClassCV($(this).text())) {
+                    $(".joinClass_div").append('<a title="'+$(this).text()+'"><span>' + $(this).text() + '</span><i></i></a>');
+                    $("#joinClass").val($("#joinClass").val() + ',' + $(this).text());
+                }
+            });
+        });
+        //选择班级
+        $(".joinClassBtn").unbind().live("click", function () {
+            $(".sreachClass").show();
+            $(this).addClass("jH");
+        });
+        var bojH = true;
+        $("body,html").click(function () {
+            if (bojH) {
+                $(".sreachClass").hide();
+                $(".joinClassBtn").removeClass("jH")
+            }
+        })
+        $(".sreachClass,.joinClassBtn").hover(function () {
+            bojH = false;
+        }, function () {
+            bojH = true;
+        });
+        //删除班级
+        $(".joinClass_div a>i").unbind().live("click", function () {
+            var joinClass_lst = $("#joinClass").val().split(",")
+            var str_joinClass = ''
+            for (var i in joinClass_lst) {
+                if (joinClass_lst[i] != $(this).parent().text()) {
+                    str_joinClass += joinClass_lst[i] + ','
+                }
+            }
+            $("#joinClass").val(str_joinClass.substr(0, str_joinClass.length - 1))
+            $(this).parent().remove();
+        });
+        //展开任务
+        $(".zy_yourHomework_divUL li>.a .s1").live('click', function () {
+            $(this).parent().parent().toggleClass("liH");
+            SPwork.jScrollPane({
+                mouseWheelSpeed:10
+            });
+        });
+
+        //总体关闭
+        $(".zy_newclose").live('click', function () {
+            $('#myClassmeeting').modal('hide');
+            $('#yourHomework').modal('hide');
+            $('#yourHomework2').modal('hide');
+            $('#yourHomework3').modal('hide');
+        })
+
+
+
+        //添加班会
+        $(".zy_Rlive_tit .jj").unbind().click(function () {
+            $('#myClassmeeting').modal('show');
+        })
+        //阶段点击
+        $(".teacherTasklist li span").live("click", function () {
+            var pop_href = $(this).attr("pop_href");
+            if (pop_href == undefined) {
+                return;
+            }
+            golbal_href=pop_href;
+            golbal_tSturight=$(this);
+            requestTask(pop_href);
+        });
+        var SPwork;
+        $('#yourHomework').on('shown.bs.modal', function () {
+            SPwork=$('.zy_yourHomework').jScrollPane({
+                mouseWheelSpeed:80
+            });
+        })
+        //查看
+        $(".zy_yourHomework_divUL li > .a > .s2").live('click', function () {
+            var pop_href = $(this).attr("pop_href");
+            if (pop_href == undefined) {
+                return;
+            }
+            $.ajax({
+                type: 'GET',
+                url: pop_href,
+                dataType: "html",
+                success: function (data) {
+                    $('#yourHomework').modal('hide');
+                    $('#yourHomework2').html(data);
+                    $('#yourHomework2').modal('show');
+                },
+                error: function (data) {
+                    alert("service data error");
+                }
+            });
+        });
+        //批改按钮
+        $(".zy_yourHomework_divUL li > .a > .yhbtn").live('click', function () {
+            var pop_href = $(this).attr("pop_href");
+            if (pop_href == undefined) {
+                return;
+            }
+            $.ajax({
+                type: 'GET',
+                url: pop_href,
+                dataType: "html",
+                success: function (data) {
+                    $('#yourHomework').modal('hide');
+                    $('#yourHomework2').html(data);
+                    $('#yourHomework2').modal('show');
+
+                },
+                error: function (data) {
+                    alert("service data error");
+                }
+            });
+        })
+        //返回
+        $(".zy_yourHomework2 .pt a,.zy_yourHomework3 .pt a").live("click",function () {
+            $('#yourHomework2').modal('hide');
+            $('#yourHomework3').modal('hide');
+            $('#yourHomework').modal('show');
+        });
+
+        //答题翻页
+        $(".zy_yourHomework3 .examinationBottom .ebtn.prev").unbind().click(function () {
+            $(".zy_yourHomework3 .examinationBottom a.active").prev().trigger("click");
+        })
+        $(".zy_yourHomework3 .examinationBottom .ebtn.next").unbind().click(function () {
+            $(".zy_yourHomework3 .examinationBottom a.active").next().trigger("click");
+        });
+
+        //点击图片放大
+        $('.zy_yourHomework2_divImg > a').live('click',function(event){
+            event.stopPropagation();
+            event.preventDefault();
+            imgPopup($(this).find('img').attr('src'));
+        });
+        //事件
+        $('#yourHomework2').on('shown.bs.modal', function () {
+            $('.zy_yourHomework2').jScrollPane({
+                mouseWheelSpeed:100
+            });
+        })
+        //-----------------批改----------------
+        var score = $('.yourHomeworkD a');
+        var oImgList = $('.zy_yourHomework2_divImg a');
+        score.each(function(){
+            $(this).on('click',function(){
+                $(this).addClass('aH').siblings().removeClass('aH');
+            });
+        });
+        $('#remark-submit').live('click',function(){
+            var desc = $('#desc-remark').val();
+            var num = Math.ceil(getLength(desc)/2);
+            if($('.yourHomeworkD a.aH').length == 0 || desc == ''){
+                layer.msg('请评分，写评语！');
+            }else if(num >200){
+                layer.msg('已超出200字！');
+            }else{
+                $.ajax({
+                    type:'POST',
+                    url:$("#project_marking").val(),
+                    data:{'score':$('.aH').text(),'desc':desc},
+                    dataType: 'json',
+                    success: function(data){
+                        if (data.status == 'success' || data.message == "'LocMemCache' object has no attribute 'client'") {
+                            $('#yourHomework2').modal('hide');
+                            layer.msg('评分成功！');
+                            //golbal_tSturight
+                            if(data.number==0){
+                                golbal_tSturight.children("i").remove();
+                            }
+                            else{
+                                golbal_tSturight.children("i").html(data.number);
+                            }
+                            requestTask(golbal_href);
+                        }else{
+                            layer.msg(data.message);
+                        }
+
+
+                    }
+                });
+            }
+        });
+        oImgList.live('click',function(event){
+            event.stopPropagation();
+            event.preventDefault();
+            imgPopup($(this).find('img').attr('src'));
+        });
+        //--------------批改END-------------
+    })
+    function classmeeting_form_submit() {
+        var bosub = true;
+        $('#classmeeting_info').find("input").each(function (i, ele) {
+            if ($.trim($(this).val()) == '' && i < 3) {
+                var zname = "#classmeeting_info .zy_mypersonal_txt" + i;
+                layer.tips("不能为空", zname, {tips: [2, '#68c8b6']});
+                bosub = false;
+                return false;
+            }
+        });
+        if ($('#classmeeting_info').find("input[name=subject]").val().length > 20) {
+            layer.tips("二十字以内", "#classmeeting_info .zy_mypersonal_txt0", {tips: [2, '#68c8b6']});
+            bosub = false;
+        }
+        if (bosub)
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: $('#classmeeting_info').attr('action'),
+                data: $('#classmeeting_info').serializeArray(),
+                async: true,
+                beforeSend: function (XMLHttpRequest) {
+                    $("#classmeeting_info_submit").html("创建中...");
+                    $("#classmeeting_info_submit").removeAttr("onclick");
+                },
+                success: function (data) {
+                    if (data.status == "success") {
+                        $('#myClassmeeting').modal('hide');
+                        layer.msg('创建成功！', function () {
+                            window.location.reload();
+                        });
+
+                    } else if (data.status == "failure") {
+                        layer.msg(data.msg);
+                    }
+                    $("#classmeeting_info_submit").html("创建");
+                }
+            });
+    }
+    //修改提交
+    function classmeeting_form_alter() {
+        var bosub = true;
+        $('#alter_classmeeting_info').find("input").each(function (i, ele) {
+            if ($(this).val() == '' && i < 3) {
+                var zname = "#alter_classmeeting_info .zy_mypersonal_txt" + i;
+                layer.tips("不能为空", zname, {tips: [2, '#68c8b6']});
+                bosub = false;
+                return false;
+            }
+        });
+        if ($('#alter_classmeeting_info').find("input[name=subject]").val().length > 20) {
+            layer.tips("二十字以内", "#alter_classmeeting_info .zy_mypersonal_txt0", {tips: [2, '#68c8b6']});
+            bosub = false;
+        }
+        if (bosub)
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: $('#alter_classmeeting_info').attr('action'),
+                data: $('#alter_classmeeting_info').serializeArray(),
+                async: true,
+                beforeSend: function (XMLHttpRequest) {
+                    $("#alter_classmeeting_info_submit").html("修改中...");
+                    $("#alter_classmeeting_info_submit").removeAttr("onclick");
+                },
+                success: function (data) {
+                    if (data.status == "success") {
+                        $('#alterClassmeeting').modal('hide');
+                        layer.msg('修改成功！', function () {
+                            window.location.reload();
+                        });
+
+                    } else if (data.status == "failure") {
+                        layer.msg(data.msg);
+                    }
+                },
+                complete: function (XMLHttpRequest) {
+                    $("#alter_classmeeting_info_submit").html("确定");
+                    $("#alter_classmeeting_info_submit").attr("onclick","classmeeting_form_alter()");
+                }
+            });
+    }
+
+</script>
+{% endblock %}

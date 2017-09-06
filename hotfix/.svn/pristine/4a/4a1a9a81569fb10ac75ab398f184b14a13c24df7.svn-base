@@ -1,0 +1,10 @@
+{% for details in coupon_details %}
+
+{{details.code_sno}}
+{% if details.is_lock %}已被{{details.user.nick_name}}与{{details.use_time}}绑定{% else %}
+	{% if details.is_use %}(已被{{details.user.nick_name}}与{{details.use_time}}使用){% endif %}
+{% endif %} 
+
+<br>
+
+{% endfor %}

@@ -1,0 +1,126 @@
+{% extends "mz_common/global.html" %}
+{% block title %}PHP开发金牌讲师-PHP培训-麦子学院{% endblock %}
+{% block keywords%}PHP，PHP开发，PHP培训，PHP学习{% endblock %}
+{% block description%}麦子学院PHP开发金牌讲师—李景山，6年php开发及教学经验，翠花网络创始人、主要负责学员实训、授课经验丰富，讲课内容层次由浅入深，通俗易懂，善于活跃课堂气氛，学生在欢乐的气氛中学到知识，因材施教，注重对学生自我思考与解决问题能力的培养。融资千万级别邦印信息技术有限联合技术创始人，负责百万级网站流量的架构、开发、管理。{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/teacherIntroduce.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block indexhead %}{% endblock %}
+
+{% block container %}
+{% include 'header/header.html' %}
+<div class="addTeacher_container">
+    <div class="addTeacher_banner">
+        <div class="teacher">
+            <span class="image"><a href="/u/48129/" target="_blank"><img src="http://www.maiziedu.com/uploads/homepage/2016/04/李景山-104.jpg" alt="Android应用开发金牌讲师"/></a></span>
+            <strong>李景山</strong>
+            <span>PHP开发金牌讲师</span>
+            <p>6年php开发及教学经验，翠花网络创始人、主要负责学员实训、授课经验丰富，讲课内容层次由浅入深，通俗易懂，善于活跃课堂气氛，学生在欢乐的气氛中学到知识，因材施教，注重对学生自我思考与解决问题能力的培养。融资千万级别邦印信息技术有限联合技术创始人，负责百万级网站流量的架构、开发、管理。</p>
+            <a href="{% url 'course:course_detail' 'php' %}" target="_blank">报名TA的课程</a>
+        </div>
+    </div>
+	<div class="info">
+        <ul>
+            <li>带班数<strong>14</strong></li>
+            <li>累积毕业人数<strong>540</strong></li>
+            <li>就业率<strong>98<span>%</span></strong></li>
+        </ul>
+    </div>
+    <div class="works">
+        <h3>讲师作品</h3>
+        <div class="works_bxslider">
+            <div class="teach_bxslider">
+                <ul>
+                    <li>
+                        <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroducePhpTea1.png"/></p>
+                        <div class="text"><strong>四川农民合作组织名录系统</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                    </li>
+                    <li>
+                        <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroducePhpTea2.png"/></p>
+                        <div class="text"><strong>咸宁房产网</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                    </li>
+                    <li>
+                        <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroducePhpTea3.png"/></p>
+                        <div class="text"><strong>68design</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                    </li>
+                </ul>
+            </div>
+            <a href="javascript:;" class="prev"></a>
+            <a href="javascript:;" class="next"></a>
+            <span class="pageState"></span>
+        </div>
+    </div>
+    <div class="experience">
+        <h3>讲师经历</h3>
+        <ul>
+                <li>
+                    <span>2015</span>
+                    <div class="infos">
+                        <strong>麦子学院</strong>
+                        <p>麦子学院php开发金牌讲师：凭借多年开发教学经验、对高并发、高可用后端应用的前瞻性理解和丰富的教学经验，对课程体系中的每个知识要点都了如指掌。专业功底深厚，讲解精辟透彻，善于启迪思路，剖析背景，从源头上讲解php开发语言。</p>
+                    </div>
+                </li>
+                <li>
+                    <span>2014</span>
+                    <div class="infos">
+                        <strong>邦印信息技术有限公司</strong>
+                        <p>担任整个网络的技术架构负责人、负责后端、前端、移动端、微信端口等综合开发的技术支持、管理等工作。</p>
+                        <em>参与项目</em>
+                        <p>《邦印网》</p>
+                    </div>
+                </li>
+                <li>
+                    <span>2012</span>
+                    <div class="infos">
+                        <strong>翠花网络</strong>
+                        <p>负责学员实训，授课经验丰富，讲课内容层次由浅入深，通俗易懂，善于活跃课堂气氛，学生在欢乐的气氛中学到知识，因材施教，注重对学生自我思考与解决问题能力的培养，培养出数百名高薪就业的学员，目前大部分就职于一线互联网企业主程岗位。</p>
+                        <em>参与项目</em>
+                        <p>《翠花网络学员实训项目》</p>
+                    </div>
+                </li>
+        </ul>
+    </div>
+    <dl class="sendWord">
+        <dt><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroducePhpTea.jpg" alt="讲师寄语"/></dt>
+        <dd>
+            <h3>讲师寄语</h3>
+            <p>回顾PHP近10年来的发展过程，PHP的发展势头不可阻挡，必将成为未来web开发领域的主流技术体系，在麦子学院，你的IT职业生涯将从这里启航。老师以多年行业经验和知识积累带你进入这扇大门。骐骥一跃，不能十步；驽马十驾，功在不舍。选择一个对的方向并坚定不移的走下去，你就会收获自己想要的。</p>
+            <a href="{% url 'course:course_detail' 'php' %}" target="_blank">报名TA的课程</a>
+        </dd>
+    </dl>
+    <div class="stu_works">
+        <h3>学生作品</h3>
+        <div class="student_bxslider">
+            <div class="stu_bxslider">
+                <ul>
+                    <li>
+                        <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroducePhpStu1.png"/>
+                    </li>
+                    <li>
+                        <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroducePhpStu2.png"/>
+                    </li>
+                    <li>
+                        <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroducePhpStu3.png"/>
+                    </li>
+                    <li>
+                        <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroducePhpStu4.png"/>
+                    </li>
+                </ul>
+            </div>
+            <a href="javascript:;" class="prev"></a>
+            <a href="javascript:;" class="next"></a>
+            <span class="pageState"></span>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/lib/superSlider/jquery.SuperSlide.2.1.1.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/teacherIntroduce.js?v={{ time_stamp }}"></script>
+{% endblock %}

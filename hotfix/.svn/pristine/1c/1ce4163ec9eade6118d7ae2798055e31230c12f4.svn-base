@@ -1,0 +1,61 @@
+{% extends 'mz_usercenter/usercenter_base.html' %}
+
+{% block usercenter_right_panel %}
+
+    <div class="personalCmainR font14">
+    	<p class="personalCmainRtit font22 color33">学习信息</p>
+        <ul class="personalCenterSinfoList font14 color99">
+            {% for study_info in study_info_list %}
+        	<li>
+                {% for class_info in study_info.class_info_list %}
+                <p class="pt"><span class="font20 bold color33">{{ class_info.career_course_name }}</span>已报名</p>
+                <table class="tableI marginB20">
+                	<tr>
+                    	<td style="width:80px;">入学时间：</td><td class="color33" style="width:200px;">{{ class_info.join_time }}</td>
+                        <td style="width:44px;">老师：</td><td class="color33" style="width:200px;">{{ class_info.teacher_name }}</td>
+                        <td style="width:44px;">教务：</td><td class="color33">{{ class_info.edu_admin_name }}</td>
+                    </tr>
+                </table>
+                {% endfor %}
+                <p class="font18 color33 bold marginB20">学习基础</p>
+                <table class="tableU marginB20">
+                    {% for study_base  in study_info.study_base_list %}
+                    {% if forloop.first %}<tr>{% endif %}
+                        <td style="width:158px;">{{ study_base.name }}：</td><td class="color33" style="width:110px;">{{ study_base.level }}</td>
+                    {% if forloop.counter|divisibleby:3  and not forloop.last%}</tr><tr>{% endif %}
+                    {% if forloop.last %}</tr>{% endif %}
+                    {% endfor %}
+                </table>
+                {% if study_info.study_goal %}
+                <p class="font18 color33 bold marginB20">学习目标</p>
+                <p class="font14 color00 marginB20">{{ study_info.study_goal.goal.name }}</p>
+                {% endif %}
+                {% if not study_info.is_complete_studybase %}
+                <p><a class="greenbtn showpcSBasis" pid="{{ study_info.domain_name }}" cid="{{ class_info.career_course_id }}" {% if class_id %}href="{% url 'lps4_index' career_id %}" pt="{{ class_id }}"{% endif %} >填写学习基础信息</a></p>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}
+
+{% block usercenter_extend_div %}
+<!--学习基础POP-->
+<div class="modal fade" id="pcSBasis" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm pcSmodal" style="width:600px;">
+        <div class="modal-content">
+        	<a class="zy_close"></a>
+        	<p class="pt color99 font14"><span class="font18">学习信息</span>你的导师将根据你填写的信息，针对性的为你提供学习帮助</p>
+            <div class="pcSmodalDiv color33 font14"></div>
+        </div>
+    </div>
+</div>
+{% include "mz_usercenter/student/div_finish_info.html" %}
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/lib/layer/layer.js"></script>
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/Validform/Validform_v5.3.2_min.js"></script>
+<script type="text/javascript" src="/2016/src/personalCenterSinfo.js?v={{ time_stamp }}"></script>
+{% endblock %}

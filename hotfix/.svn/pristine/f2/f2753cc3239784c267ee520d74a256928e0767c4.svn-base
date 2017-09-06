@@ -1,0 +1,1323 @@
+{% extends "mz_common/base.html" %}
+{% block title %}学习计划{% endblock %}
+{% block breadcrumb %}
+    <div class="container visible-md visible-lg">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'user:user_center' %}">{% if user_role == 'student' %}我的课程{% else %}我的班级{% endif %}</a></li>
+            <li class="active">{% if user_role == 'teacher' %}<a href="{% url 'lps2:lps2_teach_plan' class_id %}">{{ class_coding }}</a> > {{ student.nick_name }}({{ student.username }}) {% else %}{{ class_coding }}{% endif %}</li>
+        </ol>
+    </div>
+    {% if cur_careercourse.is_unlock and user_role == 'teacher' %}
+    <div class="breadcrumb-right-box">
+		<div class="container">
+            <div class="box-in" id="study_state_box">
+				<div class="study-state state-1">
+					<span class="group"><img src="/static/lps2/images/ico-3.png"/><span class="text">学习状态：<em>正常</em></span><input type="button" class="btn btn-w100" value="暂停" /></span>
+				</div>
+				<div class="stop-why form-group">
+					<div class="stop-why-in">
+						<input id="input_reason" placeholder="输入暂停原因" type="text" class="form-control"/>
+                        <input type="button" class="btn btn-danger" value="提交"
+                               data-user_id="{{ student.id }}"
+                               data-career_id="{{ cur_careercourse.id }}"/>
+					</div>
+				</div>
+				<div class="study-state state-2">
+					<span><img src="/static/lps2/images/ico-3.png" /><span class="text">学习状态：<em>暂停中</em></span></span>
+                    <input type="button" class="btn btn-w100" value="恢复"
+                               data-user_id="{{ student.id }}"
+                               data-career_id="{{ cur_careercourse.id }}"/>
+				</div>
+			</div>
+        </div>
+	</div>
+    {% endif %}
+{% endblock %}
+
+{% block container %}
+    {% if user_role == 'student' %}
+	<div class="p-nav box">
+		<div class="container webfont">
+			<a href="{% url 'lps2:lps2_learning_plan' cur_careercourse.id %}">我的数据</a>
+			<a class="active" href="{% url 'lps2:lps2_learning_detail' cur_careercourse.id %}">评测详情</a>
+			<a href="{% url 'lps2:lps2_learning_plan_class' cur_careercourse.id %}">班级数据</a>
+		</div>
+	</div>
+    {% endif %}
+	<div class="p-main">
+		<div class="container">
+            {% if user_role == 'teacher' %}
+            <div class="row">
+				<div class="main-b-b">
+					<div class="col-2">
+						<div class="box" id="tab_box_2">
+							<div class="box-head clearfix webfont">
+								<h2 class="pull-left"><span>学习数据</span></h2>
+								<div class="pull-right" tab-role="btn-group"><span class="active" tab-role="btn" tab-target="1">完成计划</span><span tab-role="btn" tab-target="2">评测分数</span><span tab-role="btn" tab-target="3">学历增长</span></div>
+							</div>
+							<div class="box-body" tab-role="cnt-group">
+								<div class="tab-cnt" tab-role="cnt" tab-mark="1">
+									<div id="chart_2">
+										<canvas id="canvas_2" style="width:100%;height:300px"></canvas>
+									</div>
+								</div>
+								<div class="tab-cnt" tab-role="cnt" tab-mark="2">
+									<div id="chart_3">
+										<canvas id="canvas_3" style="width:100%;height:330px"></canvas>
+									</div>
+								</div>
+								<div class="tab-cnt" tab-role="cnt" tab-mark="3">
+									<div id="chart_4">
+										<canvas id="canvas_4" style="width:100%;height:300px"></canvas>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-2">
+						<div class="box" id="tab_box_3">
+							<div class="box-head clearfix webfont">
+								<h2 class="pull-left"><span>个人素质</span></h2>
+								<div class="pull-right" tab-role="btn-group"><span class="active" tab-role="btn" tab-target="1">素质雷达图</span><span tab-role="btn" tab-target="2">素质变化曲线</span></div>
+							</div>
+							<div class="box-body" tab-role="cnt-group">
+								<div class="tab-cnt" tab-role="cnt" tab-mark="1">
+									<div id="chart_5">
+										<canvas id="canvas_5" style="width:100%;height:300px"></canvas>
+									</div>
+								</div>
+								<div class="tab-cnt" tab-role="cnt" tab-mark="2">
+									<div id="chart_6">
+										<canvas id="canvas_6" style="width:100%;height:300px"></canvas>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+            {% endif %}
+            <div class="row">
+			<div class="box">
+				<div class="box-head clearfix webfont">
+					<h2 class="pull-left">
+						<span>学员课程学习管理</span>
+					</h2>
+				</div>
+				<div class="box-body">
+					<div id="desc_box" class="desc-box clearfix">
+                        {% if cur_stage.prev_stage %}
+						<a href="?stage_id={{ cur_stage.prev_stage }}" class="to-left"></a>
+                        {% endif %}
+                        {% if cur_stage.next_stage %}
+						<a href="?stage_id={{ cur_stage.next_stage }}" class="to-right"></a>
+                        {% endif %}
+						<div class="desc-main">
+							<h2><i></i><span class="text">{{ cur_stage.name }}</span><i></i></h2>
+							<p>{{ cur_stage.description }}</p>
+						</div>
+					</div>
+					<div class="course-gourp">
+                        {% for course in cur_stage_course_list %}
+                        {% if course.lesson_count > 0 %}
+						<div class="course-box">
+							<div class="title clearfix">
+                                {% if course.is_complete %}
+                                <div class="pull-right">评测分数：
+                                    {% if course.score >= 60 %}
+                                        {{ course.score }}分
+                                    {% else %}
+                                        <span class="red">{{ course.score }}</span>
+                                        {% if user_role == 'student' %}
+                                        <input course_id="{{ course.id }}" type="button" class="btn course_rebuild" value="重修"/>
+                                        {% endif %}
+                                    {% endif %}
+                                </div>
+								{% endif %}
+                                <h3 class="text">{{ course.name }}</h3>
+                                {% if not course.is_required %}
+{#                                <img src="/static/lps2/images/obligatory.png" />#}
+{#                                {% else %}#}
+                                    <img src="/static/lps2/images/unobligatory.png" />
+                                {% endif %}
+                                {% if course.is_complete %}
+                                    {% if course.score >= 60 %}
+                                        <img src="/static/lps2/images/word-4.png" />
+                                    {% else %}
+                                        <img src="/static/lps2/images/word-5.png" />
+                                    {% endif %}
+                                {% endif %}
+                            {% if course.is_underway %}
+                                <img src="/static/lps2/images/word-2b.png" />
+                            {% endif %}
+							</div>
+							<div class="inner-group">
+								<table>
+									<tr>
+                                        {% if course.lesson_count > 0 %}
+										<td><a id="ktxx_{{ course.id }}" href="##" onclick="open_popup(this)"><i></i><span class="text">课堂学习<br>{{ course.lesson_complete_count }}/{{ course.lesson_count }}</span></a></td>
+										{% endif %}
+                                        {% if course.lesson_has_exam_count != 0 %}
+                                        <td><a id="stcy_{{ course.id }}" href="##" onclick="open_popup(this)"><i></i><span class="text">随堂测验<br><span id="completed_lesson_exam_{{ course.id }}">{{ course.lesson_exam_complete_count }}</span>/{{ course.lesson_has_exam_count }}</span></a></td>
+                                        {% endif %}
+                                        {% if course.lesson_has_homework_count > 0 %}
+                                        <td><a id="stzy_{{ course.id }}" href="##" onclick="open_popup(this)"><i></i><span class="text">随堂作业<br><span id="completed_lesson_homework_{{ course.id }}">{{ course.homework_complete_count }}</span>/{{ course.lesson_has_homework_count }}</span></a></td>
+										{% endif %}
+                                        {% if course.has_paper %}
+                                        {% if user_role == 'student' %}
+                                        <td><a id="ktzcy_{{ course.id }}" href="##" onclick="onlinetest_popup({{ course.id }}, {{ course.is_complete_paper | lower }})"><i></i><span class="text">课堂总测验<br><span id="completed_course_exam_{{ course.id }}">{% if course.is_complete_paper %}1{% else %}0{% endif %}</span>/1</span></a></td>
+										{% elif user_role == 'teacher' %}
+                                        <td><a id="ktzcy_{{ course.id }}" href="##"><i></i><span class="text">课堂总测验<br><span id="completed_course_exam_{{ course.id }}">{% if course.is_complete_paper %}{{ course.paper_accuracy }}{% else %}未完成{% endif %}</span></span></a></td>
+										{% endif %}
+                                        {% endif %}
+                                        {% if course.project.description != "" %}
+                                        <td><a id="xmzz_{{ course.id }}" {% if cur_careercourse.is_unlock %} href="##" onclick="open_popup(this)"{% else %} href="{% url 'pay:pay_view' %}?career_ids={{ cur_careercourse.id }}" target="_blank" {% endif %}><i></i><span class="text">项目制作<br>
+                                        {% if cur_careercourse.is_unlock %}
+                                            {% if course.project.upload_file == "" %}
+                                            <small>未上传</small>
+                                            {% else %}
+                                                {% if course.project.score %}
+                                                    <small class="p-green">已打分:{{course.project.score}}</small>
+                                                {% else %}
+                                                    <small class="p-green">已上传</small>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% else %}
+                                            <img src="/static/lps2/images/ico-14.png" width="20px" />
+                                        {% endif %}
+                                        </span></a></td>
+                                        {% endif %}
+									</tr>
+								</table>
+							</div>
+						</div>
+                        {% endif %}
+                        {% empty %}
+                        <p>暂无阶段内容</p>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+            </div>
+		</div>
+	</div>
+
+    <!-- 课堂学习 -->
+    {% for course in cur_stage_course_list %}
+    {% if course.lesson_count > 0 %}
+    <div id="ktxx_{{ course.id }}_popup" class="box d-zy-box" style="display:none">
+		<div class="box-head">
+			<span class="text">课堂学习</span>
+		</div>
+		<div class="box-body">
+            {% for lesson in course.lesson %}
+			<div class="item clearfix">
+                {% if lesson.is_complete %}
+				    <span class="pull-right state state-ok"></span>
+                {% else %}
+                    {% if user_role == 'student' %}
+                    <span class="pull-right"><img src="/static/lps2/images/arrow-3.png" alt=""/></span>
+                    {% elif user_role == 'teacher' %}
+                    <span class="pull-right">未完成</span>
+                    {% endif %}
+                {% endif %}
+				<span class="text" title="{{ lesson.name }}"><a href="{% url 'lesson:lesson_view' lesson.id %}?stageid={{ cur_stage.id }}" target="_blank">{{ lesson.name | slice:"30" }}</a></span>
+			</div>
+            {% endfor %}
+		</div>
+	</div>
+    {% endif %}
+
+	<!-- 随堂测验 -->
+    {% if course.lesson_has_exam_count != 0 %}
+	<div id="stcy_{{ course.id }}_popup" class="box d-zy-box" style="display:none">
+		<div class="box-head">
+			<span class="text">随堂测验</span>
+		</div>
+		<div class="box-body">
+            {% for lesson in course.lesson %}
+            {% if lesson.has_exam %}
+			<div course_id="{{ course.id }}" class="item clearfix lesson-item-{{ lesson.id }}">
+				<span class="pull-right">
+                    {% if lesson.is_complete_paper and lesson.exam_accuracy != None %}
+                        <span class="em">准确率{{ lesson.exam_accuracy }}</span>
+                    {% else %}
+                        {% if user_role == 'student' %}
+                        <span class="em"><img src="/static/lps2/images/arrow-3.png" /></span>
+                        {% elif user_role == 'teacher' %}
+                        <span class="value">未完成</span>
+                        {% endif %}
+                    {% endif %}
+                </span>
+				<span class="text" title="{{ lesson.name }}">
+                    {% if user_role == 'student' %}
+                    <a href="##" lesson_id="{{ lesson.id }}" onclick="get_lesson_onlinetest(this)">{{ lesson.name | slice:"30" }}</a>
+                    {% elif user_role == 'teacher' %}
+                        {{ lesson.name | slice:"30" }}
+                    {% endif %}
+                </span>
+			</div>
+            {% endif %}
+            {% endfor %}
+		</div>
+	</div>
+    {% endif %}
+
+    <!-- 随堂作业 -->
+    {% if course.lesson_has_homework_count > 0 %}
+    <div id="stzy_{{ course.id }}_popup" class="box d-zy-box" style="display:none">
+		<div class="box-head">
+			<span class="text">随堂作业</span>
+		</div>
+		<div class="box-body">
+            {% for lesson in course.lesson %}
+            {% if lesson.has_homework %}
+			<div class="item clearfix relative">
+                {% if lesson.homework == "" %}
+                    {% if user_role == 'student' %}
+                    <span class="pull-right btn btn-default"><span class="upload-hw-{{ lesson.id }}">上传</span>
+                    <input type="file" class="upload-input" course_id="{{ course.id }}" id="upload-homework-{{ lesson.id }}" name="Filedata"></span>
+                    {% elif user_role == 'teacher' %}
+                    <span class="pull-right value">未完成</span>
+                    {% endif %}
+                    <span class="state state-{{ lesson.id }}"></span>
+                {% else %}
+                    {% if user_role == 'student' %}
+                    <span class="pull-right btn btn-default"><span class="upload-hw-{{ lesson.id }}">重新上传</span>
+                    <input type="file" class="upload-input" course_id="{{ course.id }}" id="upload-homework-{{ lesson.id }}" name="Filedata"></span>
+                    {% elif user_role == 'teacher' %}
+                    <a href="/uploads/{{ lesson.homework }}" class="btn pull-right">下载</a>
+                    {% endif %}
+                    <span class="state state-ok state-{{ lesson.id }}"></span>
+                {% endif %}
+                <span class="text" title="{{ lesson.name }}">{{ lesson.name | slice:"20" }}</span>
+                <div class="progress popup-progress" id="progress-{{ lesson.id }}">
+                    <div class="progress-bar progress-bar-success"></div>
+                </div>
+			</div>
+            <div class="item clearfix item-errow error-overlay-{{lesson.id}}" style="display: none">
+				<span class="text">错误提示！</span>
+			</div>
+            {% endif %}
+            {% endfor %}
+		</div>
+	</div>
+    {% endif %}
+
+    <!-- 课堂总测验 -->
+    {% if course.has_paper %}
+    <div class="modal fade testModal-div" id="course_{{ course.id }}_testModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button data-dismiss="modal" class="close" type="button">
+                        <span aria-hidden="true"></span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 id="quizjobModalLabel-{{ course.id }}" class="modal-title">课程总测验</h4>
+                    <span class="lr_span">
+                        <a class="left_c lr_c">
+                            <</a>
+                                <span class="lr-num">0/0</span>
+                                <a class="right_c lr_c">></a>
+                            </span>
+                        </div>
+                        <div class="modal-body">
+                            <div class="box-onlinetest">
+
+                                <article>
+                                    <div class="onlinetest-wp cf">
+                                        {% for quiz in course.uncomplete_quiz %}
+                                        <section quiz_id={{ quiz.id }} course_id={{ course.id }}>
+                                            <div class="onlinetest-quiz">
+                                                <p style="word-wrap: break-word;">{{ forloop.counter }}、{{ quiz.question | safe }}</p>
+                                                {{ quiz.item_list | safe }}
+                                                <span>{{ forloop.counter }}/{{ course.uncomplete_quiz | length }}</span>
+                                            </div>
+                                        </section>
+                                        {% endfor %}
+                                        <section course_id={{ course.id }} class="last_section">
+                                            <div class="test_result_div test_result_div_{{course.id}} paper_result_div">
+                                                <div class="test_result test_result1">
+                                                    <span>答对题数</span>
+                                                    <div class="re_score">0</div>
+                                                </div>
+                                                <div class="test_result test_result2">
+                                                    <span>答错题数</span>
+                                                    <div class="re_score">0</div>
+                                                </div>
+                                                <div class="test_result test_result3">
+                                                    <span>正确率</span>
+                                                    <div class="re_score">0%</div>
+                                                </div>
+                                                <div class="test_result test_result4">
+                                                    <span>获得学力</span>
+                                                    <div class="re_score">0</div>
+                                                </div>
+                                                <div style="clear:both;"></div>
+                                                <div class="result_text_button result_text_button1 course_result_text_button1">查看错题</div>
+                                                <div class="result_text_button result_text_button2 course_result_text_button2">结束测试</div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    {% endif %}
+
+    <!-- 项目制作 -->
+    {% if cur_careercourse.is_unlock and course.project.description != "" %}
+        <div id="xmzz_{{ course.id }}_popup" class="box d-zz-box" style="display:none">
+            <div class="box-head">
+                <span class="text">项目制作</span>
+            </div>
+            <div class="box-body">
+                <div class="item">
+                    <label for="">需求：</label>
+                    <div class="fix-height">
+                        <p>{{ course.project.description | safe }}</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="item-inner clearfix">
+                        {% if user_role == 'student' %}
+                        <span class="pull-right btn btn-default">
+                        {% if course.project.upload_file == "" %}
+                            <span>上传</span>
+                        {% else %}
+                            <span>重新上传</span>
+                        {% endif %}
+                        <input id="file_upload_{{ course.id }}" type="file" name="Filedata_{{ course.id }}" onclick="project_upload({{ course.id }})"/>
+                        </span>
+                        <span class="pull-right percentage" style="display: none">0%</span>
+                        {% elif user_role == 'teacher' %}
+                        {% if course.project.upload_file != "" %}
+                            <a href="/uploads/{{ course.project.upload_file }}" class="btn pull-right">下载</a>
+                        {% endif %}
+                        {% endif %}
+                        <label>项目制作：</label>
+                        {% if course.project.upload_file == "" %}
+                            <span class="value update-pro-msg-{{ course.id }}">未上传</span>
+                        {% else %}
+                            <span class="value update-pro-msg-{{ course.id }}"><em><a class="yes-update" href="/uploads/{{course.project.upload_file}}">项目文件</a></em>已上传</span>
+                        {% endif %}
+                    </div>
+                    <div class="item-inner">
+                        <label for="">老师打分：</label>
+                        {% if course.project.score != None and course.project.score != 0 %}
+       <span id="span_project_score_{{ course.id }}" class="value">{{course.project.score}}分</span>
+                        {% else %}
+                   <span id="span_project_score_{{ course.id }}" class="value">未打分</span>
+                        {% if user_role == 'teacher' %}
+                            <div class="pull-right score-box"><input id="input_project_score_{{ course.id }}" type="text" class="form-control" onclick="$(this).focus()"/> / 100
+                                <span class="hand send_score_btn"
+                                data-course_project_record_id="{{ course.project.record_id }}"
+                                data-course_id="{{ course.id }}"
+                                data-user_id="{{ student.id }}"><img src="/static/lps2/images/ico-11b.png" /></span></div>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="item">
+                    <label for="">老师评语：</label>
+                        {% if not course.project.remark %}
+                        {% if user_role == 'student' %}
+                            <div class="fix-height">
+                            <p class="no-comment">尚未填写</p>
+                            </div>
+                        {% elif user_role == 'teacher' %}
+                            <div class="form-group teacher-comment-box">
+                                <textarea name="text_project_pingyu" id="text_project_pingyu_{{ course.id }}" cols="30" class="form-control" style="height: 50px;" placeholder="尚未填写" onclick="$(this).focus()"></textarea>
+                            </div>
+                            <div class="form-group text-right">
+                                <input class="btn btn-default btn-pingyu" type="button" value="评语"
+                                data-course_project_record_id="{{ course.project.record_id }}"
+                                data-course_id="{{ course.id }}"
+                                data-user_id="{{ student.id }}" />
+                            </div>
+                        {% endif %}
+                        {% else %}
+                            <div class="fix-height">
+                            <p style="word-wrap: break-word;">{{course.project.remark}}</p>
+                            </div>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    {% endfor %}
+
+    <!-- 随堂测验试题容器 -->
+    <div class="modal fade testModal-div" id="lesson_testModal" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button">
+                    <span aria-hidden="true"></span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 id="lesson_quizjobModalLabel" class="modal-title">随堂测验</h4>
+                <span class="lr_span">
+                    <a class="left_c lr_c">
+                        <</a>
+                            <span class="lr-num">0/0</span>
+                            <a class="right_c lr_c">></a>
+                        </span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="box-onlinetest">
+                            <article>
+                                <div class="onlinetest-wp cf">
+                                </div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block custom_css %}
+    <link href="/static/lps2/css/jquery.jscrollpane.css" rel="stylesheet" />
+    <link href="/static/lps2/css/panel.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block custom_script %}
+<script type="text/javascript" src="/static/lps2/js/mwheelIntent.js"></script>
+<script type="text/javascript" src="/static/lps2/js/layer/layer.js"></script>
+<script type="text/javascript" src="/static/lps2/js/jquery.SuperSlide.js"></script>
+<script type="text/javascript" src="/static/lps2/js/common-tool.js"></script>
+<script type="text/javascript" src="/static/lps2/js/Chart.js"></script>
+<script type="text/javascript" src="/static/lps2/js/Chart-extend.js"></script>
+<script type="text/javascript" src="/static/js/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="/static/js/jquery.iframe-transport.js"></script>
+<script type="text/javascript" src="/static/js/jquery.fileupload.js"></script>
+<script type="text/javascript" src="/static/js/jquery.fileupload-process.js"></script>
+<script type="text/javascript" src="/static/js/jquery.fileupload-validate.js"></script>
+<script type="text/javascript">
+$(function(){
+
+    {% if is_look_screen %}
+        $.commonTool.addLock('.main-b-b');
+    {% endif %}
+
+   {% if cur_careercourse.is_unlock %}
+       //重修
+       $('.course_rebuild').click(function(event){
+           event.preventDefault();
+           if(confirm("确定要开始重修?")){
+               $.get("/lps/course/rebuild/"+$(this).attr("course_id"), function(data){
+                   if(data.status=="success"){
+                       location.reload()
+                   }else if(data.status=="failure"){
+                       alert(data.message)
+                   }
+               });
+           }
+       });
+   {% endif %}
+
+   //随堂作业
+   $('.upload-input').click(function(event) {
+    THIS_ID = $(this).attr('id');
+    LESSID = THIS_ID.split("-")[2];
+    COURSE_ID = $(this).attr('course_id');
+    homework_upload(LESSID, COURSE_ID);
+   });
+});
+</script>
+
+<!-- 共用弹出框 -->
+<script type="text/javascript">
+function open_popup(obj){
+    var box = $('#'+obj.id+'_popup');
+    layer.open({
+        type: 1,
+        title : 0,
+        skin : 'd-common-tool',
+        area: ['456px','500px'], //宽高
+        content: box
+    });
+    box.find('.box-body').height(434).jScrollPane();
+    var bar = box.find('.jspVerticalBar,.jspHorizontalBar');
+    bar.hide();
+    box.hover(function(){
+        bar.fadeIn();
+        return false;
+    },function(){
+        bar.fadeOut();
+        return false;
+    }).mousedown(function(e){
+        e.stopPropagation();
+    });
+}
+
+function onlinetest_popup(course_id, is_complete){
+    // 判断试题是否做完，做完则只显示结果统计页
+    if(is_complete) {
+        //隐藏翻页
+        $('#course_'+course_id+'_testModal .lr_span').hide();
+        //删除多余的题目项
+        $('#course_'+course_id+'_testModal .last_section').siblings().remove();
+        $('#course_'+course_id+'_testModal .last_section').parent().css("marginLeft", "0px");
+        //获取测验的结果
+        get_paper_result("course", "#course_"+course_id+"_testModal", course_id);
+    }else{
+       //未做完则弹出试题框
+       onlinetst('#course_'+course_id+'_testModal');
+    }
+    $('#course_' + course_id + '_testModal').modal('show');
+}
+</script>
+
+<!-- 随堂测验 -->
+<script>
+function get_lesson_onlinetest(obj){
+    obj=$(obj);
+    lesson_id = obj.attr("lesson_id");
+    lesson_name = obj.html();
+    //根据lesson_id获取该lesson未做的试题列表
+    $.ajax({
+        type:'GET',
+        url:"/lps2/uncomplete/quiz/by/lesson/"+lesson_id+"/",
+        cache:false,
+        success:function(result){
+            $("#lesson_quizjobModalLabel").html("随堂测验");
+            quiz_list_html = ""
+            $.each(result.data.list, function(index){
+                quiz_list_html += '<section quiz_id='+this.id+' lesson_id='+lesson_id+'>'+
+                                 '<div class="onlinetest-quiz">'+
+                                 '<p style="word-wrap: break-word;">'+(index+1)+'、'+this.question+'</p>'+this.item_list+
+                                 '<span>'+(index+1)+'/'+result.data.list.length+'</span></div></section>';
+            });
+
+            quiz_list_html += '<section lesson_id="" class="last_section">'+
+                                        '<div class="test_result_div test_result_div_3332 paper_result_div">'+
+                                            '<div class="test_result test_result1">'+
+                                                '<span>答对题数</span>'+
+                                                '<div class="re_score">0</div>'+
+                                            '</div>'+
+                                            '<div class="test_result test_result2">'+
+                                                '<span>答错题数</span>'+
+                                                '<div class="re_score">0</div>'+
+                                            '</div>'+
+                                            '<div class="test_result test_result3">'+
+                                                '<span>正确率</span>'+
+                                                '<div class="re_score">0%</div>'+
+                                            '</div>'+
+                                            '<div class="test_result test_result4">'+
+                                                '<span>获得学力</span>'+
+                                                '<div class="re_score">0</div>'+
+                                            '</div>'+
+                                            '<div style="clear:both;"></div>'+
+                                            '<div class="result_text_button result_text_button1">查看错题</div>'+
+                                            '<div class="result_text_button result_text_button2">结束测试</div>'+
+                                        '</div>'+
+                                    '</section>';
+            $("#lesson_testModal .onlinetest-wp").html(quiz_list_html);
+
+            $("#lesson_testModal .onlinetest-wp").css("margin-left", "0px");
+            $("#lesson_testModal .last_section").attr("lesson_id", lesson_id);
+            $("#lesson_testModal .last_section .paper_result_div").attr("class",
+                    "test_result_div test_result_div_"+lesson_id+" paper_result_div");
+
+            onlinetst('#lesson_testModal');
+
+            if(result.data.list.length == 0){
+                $('#lesson_testModal .lr_span').hide();
+                $('#lesson_testModal .last_section').siblings().remove();
+                $('#lesson_testModal .last_section').parent().css("marginLeft", "0px");
+                get_paper_result("lesson", "#lesson_testModal", lesson_id);
+            }
+
+            $('#lesson_testModal .result_text_button2').unbind('click').click(function(){
+                close_onlinetest('#lesson_testModal');
+            })
+
+             $('#lesson_testModal .result_text_button1').each(function(index, button){
+                 check_error(this, index, button);
+             });
+
+            // 隐藏随堂测验试题框
+            layer.closeAll('page');
+            // 设置模态框隐藏时重新打开随堂测验layer框
+            $('#lesson_testModal').on('hidden.bs.modal', function(){
+                obj=new Object();
+                obj.id = "stcy_"+result.data.course_id;
+                layer.closeAll('page');
+                open_popup(obj);
+            });
+            $('#lesson_testModal').modal('show');
+        }
+    });
+}
+</script>
+
+<!-- 随堂作业 -->
+<script>
+function homework_upload(lessid, course_id){
+    var real_progress = 0;
+    var show_progress = 0;
+    var step = 2;
+
+    function startProgress() {
+      var timer = setInterval(function(){
+        if(show_progress + step <= real_progress || real_progress == 100) {
+          show_progress += step;
+        }
+
+        $('#progress-'+lessid+' .progress-bar').css(
+                'width',
+                show_progress + '%'
+            );
+            $('#progress-'+lessid+' .progress-bar').html(show_progress+'%');
+        if(show_progress >= 100) {
+          clearInterval(timer);
+          $('#progress-'+lessid).show().delay(1000).fadeOut(1500);
+          $('.upload-hw-'+lessid).html('重新上传');
+          $('.state-'+lessid).addClass('state-ok');
+        }
+    }, 50);
+    }
+
+    $('#upload-homework-'+lessid).fileupload({
+        dropZone: null,
+        url: '/lesson/student/job/upload/',
+        formData:{'lesson_id':lessid},
+        add:function(e,data){
+          var uploadErrors = [];
+          var acceptFileTypes = /^(zip|rar)$/i;
+          var filesize = data.originalFiles[0]['size']/(1024)/(1024);
+          Ntype = data.originalFiles[0]['name'];
+          Ntype = Ntype.substring(Ntype.length-3,Ntype.length);
+          if(!acceptFileTypes.test(Ntype)){
+              $(".error-overlay-"+lessid).html("文件格式不正确（zip，rar）").show().delay(3000).fadeOut();
+              uploadErrors.push('Not an accepted file type');
+          }
+          if(parseInt(filesize)>10) {
+             $(".error-overlay-"+lessid).html("文件超过10M大小").show().delay(3000).fadeOut();
+              uploadErrors.push('Filesize is too big');
+          }
+          if(uploadErrors.length==0){
+            uploading = true;
+            data.submit();
+            startProgress();
+          }
+        },
+        dataType: 'json',
+        autoUpload: true,
+        done: function (e, data) {
+            real_progress = 100;
+            uploading = false;
+            $("#completed_lesson_homework_"+course_id).html(parseInt($("#completed_lesson_homework_"+course_id).html())+1);
+        },
+        progressall: function (e, data) {
+          $('#progress-'+lessid).show();
+          var progress = parseInt(data.loaded / data.total * 100, 10);
+          real_progress = progress;
+        }
+    }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
+}
+
+</script>
+
+<!--课程总测验-->
+<script>
+    //在线测试
+    function onlinetst(parent_id){
+        var _section = $(parent_id+' .onlinetest-wp').find('section');
+        var _button = $(parent_id+' .onlinetest-wp').find('button');
+        var _this_section_length = _section.length;
+        var _this_section_width = _section.outerWidth();
+        $(parent_id+' .onlinetest-wp').width(_this_section_width*_this_section_length);
+        _button.bind('click',function(){
+            var _select = $(this).attr("value");
+            var _quiz_id = $(this).parent().parent().attr("quiz_id");
+            var _course_id = $(this).parent().parent().attr("course_id");
+            var _lesson_id = $(this).parent().parent().attr("lesson_id");
+            var _cur_obj = $(this)
+            $.ajax({
+                type:'GET',
+                url:"/lps/quiz/answer/"+_quiz_id+"/"+_select+"/",
+                cache:false,
+                dataType:'json',
+                success:function(data){
+                    if(data.status=="success"){
+                        if(data.result != _select){
+                            $(parent_id+' .onlinetest-wp section[quiz_id = '+_quiz_id+'] button[value='+data.result+']').addClass('q_right');
+                            _cur_obj.addClass('q_error');
+                            $(parent_id+' section[quiz_id = '+_quiz_id+'] button').unbind();
+                            setTimeout(function(){
+                                _cur_obj.parents(parent_id+' .onlinetest-wp').animate({marginLeft:'-='+_this_section_width},500);
+                            },1000)
+
+                        }else{
+                            _cur_obj.addClass('q_right');
+                            $(parent_id+' section[quiz_id = '+_quiz_id+'] button').unbind();
+                            _cur_obj.parents(parent_id+' .onlinetest-wp').animate({marginLeft:'-='+_this_section_width},500);
+                        }
+                        var _counter = _cur_obj.nextAll("span").text().split("/")
+                        if(_counter[0] == _counter[1]){
+                            if(_course_id != undefined) {
+                                get_paper_result("course", "#course_"+_course_id+"_testModal", _course_id);
+                            }else if(_lesson_id != undefined){
+                                get_paper_result("lesson", "#lesson_testModal", _lesson_id);
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    //获取试卷得分信息
+    function get_paper_result(type, modal_id, obj_id){
+        $.get("/lps/paper/result/"+type+"/"+obj_id+"/", function(data){
+            if(data.status=="success"){
+                $(modal_id+" .test_result_div_"+obj_id+" .test_result1 .re_score").html(data.quiz_right_count);
+                $(modal_id+" .test_result_div_"+obj_id+" .test_result2 .re_score").html(data.quiz_wrong_count);
+                $(modal_id+" .test_result_div_"+obj_id+" .test_result3 .re_score").html(data.paper_accuracy);
+                $(modal_id+" .test_result_div_"+obj_id+" .test_result4 .re_score").html(data.study_point);
+
+                //如果是随堂测验再及时修改对应随堂测验的准确率和统计计数
+                if(type=='lesson'){
+                    $('.lesson-item-'+obj_id+' .pull-right .em').html('准确率'+data.paper_accuracy);
+                    course_id = $('.lesson-item-'+obj_id).attr('course_id');
+                    $('#completed_lesson_exam_'+course_id).html(parseInt($('#completed_lesson_exam_'+course_id).html())+1);
+                }else if(type=='course'){
+                    $('#completed_course_exam_'+obj_id).html(1);
+                }
+            }
+        });
+    }
+
+    // 关闭测验框
+    function close_onlinetest(modal_id){
+        $(modal_id).modal('hide');
+    }
+
+    // 查看错题
+    function check_error(obj, index, button) {
+        var reviewing = false;
+        var index = 0;
+        var url = "";
+        var modal_id = "";
+        $(obj).unbind("click").click(function(){
+            var _course_id = $(obj).parent().parent().attr("course_id");
+            var _lesson_id = $(obj).parent().parent().attr("lesson_id");
+            if(_course_id!=undefined){
+                url="/lps/user/review/answers/?course_id="+_course_id;
+                modal_id = '#course_'+_course_id+'_testModal';
+            }else if(_lesson_id!=undefined){
+                url="/lps/user/review/answers/?lesson_id="+_lesson_id;
+                modal_id = '#lesson_testModal';
+            }
+
+            $.ajax({
+                type:'GET',
+                url:url,
+                dataType:'json',
+                success:function(data){
+                    if(data.success){
+                        if(data.quizs.length==0){
+                            return false;
+                        }
+                        str_html = "";
+                        for(var i = 0;i < data.quizs.length;i++){
+                            str_html+= "<section class='section-"+i+"'>";
+                            str_html+= '<div class="onlinetest-quiz"><p style="word-wrap: break-word;">'+data.quizs[i].question+'</p>';
+                            str_html+= data.quizs[i].item_list
+                            str_html+="</div></section>";
+                        }
+                        $(modal_id+' .last_section').siblings().remove();
+                        $(modal_id+' .last_section').before(str_html);
+                        $(modal_id+' .onlinetest-wp').animate({marginLeft:'0'},0);
+                        for(var j = 0;j < data.quizs.length;j++){
+                            wrong = data.quizs[j].wrong;
+                            se_right = data.quizs[j].right;
+                            obj = $(modal_id+' .last_section').siblings();
+                            obj.each(function(){
+                                objclass= $(this).attr('class');
+                                s_id =objclass.split('-')[1];
+                                if(j ==s_id){
+                                    $(modal_id+' .section-'+j+' button[value='+se_right+']').addClass('q_right');
+                                    $(modal_id+' .section-'+j+' button[value='+wrong+']').addClass('q_error');
+                                }
+                            });
+                        }
+                        se_obj = $(modal_id+' .onlinetest-wp section');
+                        if(se_obj.length > 1){
+                            se_num = se_obj.length-1;
+                            var _this_section_width = se_obj.outerWidth();
+                            $(modal_id+' .lr-num').html('1/'+se_num);
+                            $(modal_id+' .lr_span').show();
+                            $(modal_id+' .onlinetest-wp').width(_this_section_width*se_obj.length);
+                            index = 1;
+                            if(reviewing) {
+                                return;
+                            }
+                            $(modal_id+' .left_c').unbind('click').click(function(event) {
+                                if(index == 1){
+                                    return;
+                                }
+                                $(modal_id+' .onlinetest-wp').animate({marginLeft:'+='+_this_section_width},500);
+                                index -= 1;
+                                if(index <= se_num){
+                                    $(modal_id+' .lr-num').html(index+'/'+se_num);
+                                }
+                            });
+                            $(modal_id+' .right_c').unbind('click').click(function(event) {
+                                if(index == se_obj.length) {
+                                    return;
+                                }
+                                $(modal_id+' .onlinetest-wp').animate({marginLeft:'-='+_this_section_width},500);
+                                index += 1;
+                                if(index <= se_num){
+                                    $(modal_id+' .lr-num').html(index+'/'+se_num);
+                                }
+                            });
+                            reviewing = true;
+                        }
+                    }
+                }
+            });
+        });
+    }
+
+    $('.course_result_text_button2').unbind('click').click(function(){
+        var _course_id = $(this).parent().parent().attr("course_id");
+        close_onlinetest('#course_'+_course_id+'_testModal');
+    })
+
+     $('.course_result_text_button1').each(function(index, button){
+         check_error(this, index, button);
+     });
+</script>
+
+<!-- 项目制作 -->
+<script type="text/javascript">
+function project_upload(course_id){
+    $('#file_upload_'+course_id).fileupload({
+        dropZone:null,
+        url: '/lps/project/upload/',
+        formData:{'course_id':course_id},
+        add:function(e,data){
+          var uploadErrors = [];
+          var acceptFileTypes = /^(zip|rar)$/i;
+          var filesize = data.originalFiles[0]['size']/(1024)/(1024);
+          Ntype = data.originalFiles[0]['name'];
+          Ntype = Ntype.substring(Ntype.length-3,Ntype.length);
+          if(!acceptFileTypes.test(Ntype)){
+              alert('文件格式不正确（zip，rar）');
+              uploadErrors.push('Not an accepted file type');
+          }
+          else if(parseInt(filesize)>10) {
+              alert('文件超过10M大小');
+              uploadErrors.push('Filesize is too big');
+          }
+          if(uploadErrors.length==0){
+            data.submit();
+          }
+        },
+        dataType: 'json',
+        autoUpload: true,
+        done: function (e, data) {
+            $('#xmzz_'+course_id+'_popup .sub-work >span').html('重新上传');
+
+            pro_url = data.result.pro_url;
+            pro = '<em><a href="'+pro_url+'" class="yes-update">项目文件</a></em>已上传';
+            $('#xmzz_'+course_id+'_popup .update-pro-msg-'+course_id).html(pro);
+
+            $('#xmzz_'+course_id+'_popup .btn-default').delay(2000).queue(function(){
+                $(this).show();
+            });
+            $('#xmzz_'+course_id+'_popup .percentage').delay(2000).queue(function(){
+                $(this).hide();
+            });
+            $('#xmzz_'+course_id+' small').html('已上传');
+        },
+        progressall: function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#xmzz_'+course_id+'_popup .btn-default').hide();
+            $('#xmzz_'+course_id+'_popup .percentage').html(progress+'%').show();
+        }
+    }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
+}
+</script>
+
+{% if user_role == 'teacher' %}
+<script type="text/javascript">
+$(function(){
+
+    $(".send_score_btn").click(function(event) {
+            var obj = $(this);
+            var $currentTarget = $(event.currentTarget),
+                courseProjectRecordId = $currentTarget.data("course_project_record_id"),
+                courseId = $currentTarget.data("course_id"),
+                userId = $currentTarget.data("user_id"),
+                score = $("#input_project_score_"+courseId).val();
+
+            if(courseProjectRecordId==''){
+                alert("学生还未上传项目，还不能评分");
+                return;
+            }
+
+            if (score != "" && !isNaN(score) && score >=0 && score <= 100) {
+                $.post(
+                    "{% url 'lps:set_course_project_score' %}",
+                    {
+                        course_project_record_id: courseProjectRecordId,
+                        course_id: courseId,
+                        user_id: userId,
+                        score: score
+                    }
+                )
+                .done( function(res) {
+                    console.log(res);
+                    if (res === "ok") {
+                        $('#span_project_score_'+courseId).html(score+'分');
+                        $('#xmzz_'+courseId+' .p-green').html('已打分:'+score+'分');
+                        $('.score-box').hide();
+                    } else {
+                        alert("操作失败, 请稍后再试一次吧");
+                    }
+                })
+                .error( function(xhr) {
+                    alert("操作失败，请稍后再试一试吧");
+                });
+            } else {
+                alert("请填入格式正确的数字");
+            }
+        });
+
+        $('.btn-pingyu').click(function(event) {
+            /* Act on the event */
+            var obj = $(this)
+            var courseProjectRecordId = $(this).data("course_project_record_id");
+            var courseId = $(this).data("course_id");
+            var userId = $(this).data("user_id");
+            var remark = $('#text_project_pingyu_'+courseId).val();
+
+            if(courseProjectRecordId==''){
+                alert("学生还未上传项目，还不能给评语");
+                return;
+            }
+
+            if (remark) {
+                $.post(
+                    "{% url 'lps:teacher_save_remark' %}",
+                    {
+                        course_project_record_id: courseProjectRecordId,
+                        course_id: courseId,
+                        user_id: userId,
+                        remark:remark
+                    }
+                )
+                .done( function(res) {
+                    if (res === "ok") {
+                        obj.parent().parent().html('<label for="">老师评语：</label>'+
+                        '<div class="fix-height"><p style="word-wrap: break-word;">'+remark+'</p></div>');
+                    }else{
+                        alert("未知错误！");
+                    }
+                })
+                .error( function(xhr) {
+                    alert("操作失败，请稍后再试一试吧");
+                });
+            } else {
+                alert("评语不能为空");
+            }
+
+        });
+
+        // 学习状态
+		(function(){
+			var box = $('#study_state_box'),
+				state1 = $('.state-1', box),
+				state2 = $('.state-2', box),
+				stopWhy = $('.stop-why', box),
+				stopBtn = $('.group .btn', state1),
+				subBtn = $('.btn', stopWhy),
+				recoverBtn = $('.btn', state2);
+			var mask;
+
+            stopWhy.hide();
+            {% if not cur_careercourse.is_pause %}
+            state1.show();
+			state2.hide();
+            {% else %}
+            state1.hide();
+            state2.show();
+            {% endif %}
+
+			stopBtn.click(function(){
+				var zIndex = 99999, interval = 200;
+				mask = $('<div id="pause_remark" style="position:fixed;width:100%;height:100%;top:0;left:0;z-index:'+ zIndex +'">').css('opacity',0);
+				mask.mousedown(function(){
+					stopWhy.slideUp(interval);
+					mask.remove();
+				});
+				stopWhy.slideDown(interval).css('zIndex',zIndex).before(mask);
+			});
+
+            function pause_restore_handle(type, obj){
+                var $currTarget = $(event.currentTarget),
+                    reason = $('#input_reason').val(),
+                    student_id = $(obj).data("user_id"),
+                    career_id = $(obj).data("career_id");
+
+                // 是否需要判断原因是否为空？
+                $.post(
+                    "/lps2/user/teacher/pause_restore_planning/"+type,
+                    {
+                        reason: reason,
+                        student_id: student_id,
+                        career_id: career_id
+                    }
+                )
+                .done(function(res) {
+                    if (res === "ok") {
+                        if(type=='pause') {
+                            mask && mask.mousedown();
+                            state1.hide();
+                            state2.show();
+                        }else if(type=='restore'){
+                            state1.show();
+				            state2.hide();
+                        }
+                    }
+                })
+                .error(function(xhr) {
+                    alert("操作失败，请稍后再试一试吧");
+                })
+            }
+
+			subBtn.click(function(){
+                pause_restore_handle('pause', this);
+            });
+
+			recoverBtn.click(function(){
+                pause_restore_handle('restore', this);
+            });
+
+		}());
+
+        // 是否弹出项目框
+        {% if request.GET.course_id %}
+        var obj = new Object();
+        obj.id = 'xmzz_{{ request.GET.course_id }}';
+        open_popup(obj);
+        {% endif %}
+});
+</script>
+
+<script type="text/javascript">
+	$(function(){
+
+		// 图表
+
+		// tab内图表 : #tab_box_2
+		(function(){
+
+			var tab = $('#tab_box_2 [tab-role=btn]');
+
+			// 完成计划
+			tab[0]._initChart = function(){
+
+				var canvas = $('#canvas_2');
+				var chartBox = $('#chart_2');
+				var div = $('<div/>');
+				div.css({ 'width' : chartBox.width(), 'overflow' : 'hidden' });
+				div.append(canvas.css({'paddingBottom' : 10}));
+				chartBox.html('').append(div);
+
+				// json数据
+				var chartData = {{ accomplish_percenet_list | safe }};
+                var stepInterval = 25;
+				(function(){
+					var max = 0, col;
+					$.each(chartData, function(i,o){
+						max = Math.max(max, o.plan_study_time, o.real_study_time);
+					});
+					col = Math.ceil(max / 5);
+{#					stepInterval = (Math.ceil(col / 25) || 1) * 25;#}
+                    stepInterval = col +(5-col%5);
+				})();
+
+				// 图表实例
+				$.chartExtend.Line({
+					'canvas' : '#canvas_2',
+					'data' : chartData,
+					'legend' : [{
+							'dataKey' : 'real_study_time',
+							'label' : '实际完成',
+							'lineColor' : '#FF9900'
+						},{
+							'dataKey' : 'plan_study_time',
+							'label' : '计划',
+							'lineColor' : '#A5DC53'
+						}],
+                    'yStepWidth' : stepInterval,
+					'defaultStep': 5,
+					'suf' : '%' //后缀
+				});
+
+			};
+
+
+			// 评测分数
+			tab[1]._initChart = function(){
+				var canvas = $('#canvas_3');
+				var chartBox = $('#chart_3');
+				var div = $('<div/>');
+				div.css({ 'width' : chartBox.width(), 'overflow' : 'hidden' });
+				div.append(canvas.css({'marginBottom' : 10}));
+				chartBox.html('').append(div);
+
+				// json数据
+				var chartData = {{ course_score_list |safe }};
+				// 图表实例
+				$.chartExtend.Bar({
+					'canvas' : '#canvas_3',
+					'data' : chartData,
+					'legend' : [{
+						'fillColor' : '#5ecfba',
+						'strokeColor' : '#5ecfba'
+					}]
+				});
+			};
+
+
+			// 学力增长
+			tab[2]._initChart = function(){
+
+				var canvas = $('#canvas_4');
+				var chartBox = $('#chart_4');
+				var div = $('<div/>');
+				div.css({ 'width' : chartBox.width(), 'overflow' : 'hidden' });
+				div.append(canvas.css({'marginBottom' : 10}));
+				chartBox.html('').append(div);
+
+				// json数据
+				var chartData = {{ study_point_list | safe }};
+				// 图表实例
+				$.chartExtend.Line({
+					'canvas' : '#canvas_4',
+					'data' : chartData,
+					'legend' : [{
+						'dataKey' : 'study_point',
+						'label' : '学力增长',
+						'lineColor' : '#FF8D83'
+					}]
+				});
+			};
+		}());
+
+		// tab内图表 : #tab_box_3
+		(function(){
+
+			var tab = $('#tab_box_3 [tab-role=btn]');
+
+			// 素质雷达图
+			tab[0]._initChart = function(){
+
+				var canvas = $('#canvas_5');
+				var chartBox = $('#chart_5');
+				var div = $('<div/>');
+				div.css({ 'width' : chartBox.width(), 'overflow' : 'hidden' });
+				div.append(canvas.css({'marginBottom' : 10}));
+				chartBox.html('').append(div);
+
+				// json数据
+				var chartData = {{ cobweb_json | safe}};
+				// 图表实例
+				$.chartExtend.Radar({
+					'canvas' : '#canvas_5',
+					'data' : chartData,
+					// 字段描述
+					'labels' : [{
+						'dataKey' : 'chart_capacity_alto',
+						'label' : '沟通能力'
+					},{
+						'dataKey' : 'exe_capacity_alto',
+						'label' : '执行能力'
+					},{
+						'dataKey' : 'initiative_alto',
+						'label' : '主动性'
+					}],
+					// 图例说明
+					'legend' : [{
+						'label' : '能力参考',
+						'lineColor' : 'rgba(255, 230, 140,1)',
+						'fillColor' : 'rgba(255, 230, 140,.5)'
+					},{
+						'label' : '实际能力',
+						'lineColor' : 'rgba(94, 207, 186,1)',
+						'fillColor' : 'rgba(94, 207, 186,0.5)'
+					}]
+				});
+			};
+
+
+			// 素质变化曲线
+			tab[1]._initChart = function(){
+
+				var canvas = $('#canvas_6');
+				var chartBox = $('#chart_6');
+				var div = $('<div/>');
+				div.css({ 'width' : chartBox.width(), 'overflow' : 'hidden' });
+				div.append(canvas.css({'paddingBottom' : 10}));
+				chartBox.html('').append(div);
+
+				// json数据
+				var chartData = {{ different_list |safe }};
+				// 图表实例
+				$.chartExtend.Line({
+					'canvas' : '#canvas_6',
+					'data' : chartData,
+					'legend' : [{
+							'dataKey' : 'exe_capacity',
+							'label' : '执行力',
+							'lineColor' : '#5ecfba'
+						},{
+							'dataKey' : 'initiative',
+							'label' : '主动性',
+							'lineColor' : '#FF8D83'
+						},{
+							'dataKey' : 'chart_capacity',
+							'label' : '沟通力',
+							'lineColor' : '#FFE77E'
+						}],
+					'suf' : '%' //后缀
+				});
+			};
+		}());
+
+		// 学习数据tab
+		$.commonTool.tab({
+			'tabBox' : '#tab_box_2',
+			'transitionCallback' : function(btn,cnt){
+				// 每次切换都新创建图表
+				this._initChart && this._initChart();
+			}
+		});
+
+		// 个人素质tab
+		$.commonTool.tab({
+			'tabBox' : '#tab_box_3',
+			'transitionCallback' : function(btn,cnt){
+				// 每次切换都新创建图表
+				this._initChart && this._initChart();
+			}
+		});
+
+	});
+</script>
+{% endif %}
+{% endblock %}
+</body>
+</html>

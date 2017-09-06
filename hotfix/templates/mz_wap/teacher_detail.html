@@ -1,0 +1,40 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}他的主页-老师个人主页{% endblock %}
+{% block keywords %}麦子学院，IT职业培训，IT技能培训，IT在线教育，IT在线学习，编程学习，android,ios,php,java,python,html5,cocos2dx{% endblock %}
+{% block description %}麦子学院IT技术文章专 注Android、python、iOS、物联网、产品经理、php、嵌入式、ui等IT技术分享，专门为互联网人才提供海量、优质的资源服务和信息分享，同时建立一个自由交流、学习探讨和共同提高的绝佳生态圈，让各类互联网爱好者和从业人员零距离交流。{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/css/mz_wap/course_style.css"/>
+{% endblock %}
+
+{% block container %}
+	<section class="personal-page-top">
+		<p><img class="ui-imglazyload" data-url="{{ MEDIA_URL }}{{ teacher.avatar_url }}" alt="{{ teacher.nick_name }}老师"/></p>
+		<strong>{{ teacher.nick_name }}老师</strong>
+	</section>
+	<article class="personal-page-abstract">
+		<h3>个人简介</h3>
+		<p>{{ teacher.description }}</p>
+	</article>
+	<article class="course_list">
+		<h3>课程</h3>
+		<ul>
+            {% for course in courses %}
+            <li><a href="{{ course.callback_url }}">
+				<p><img class="ui-imglazyload" data-url="{{ MEDIA_URL }}{{ course.image}}" alt="{{ course.name}}"/></p>
+				<div class="list_info">
+					<strong>{{ course.name}}</strong>
+					<em>讲师：{{ teacher.nick_name }} </em>
+					<span><mark>{{ course.click_count}}</mark>人正在学习</span>
+				</div>
+			</a></li>
+            {% endfor %}
+		</ul>
+	</article>
+{% endblock %}
+
+{% block custom_script %}
+    <script src="/static/js/mz_wap/zepto.js"></script>
+    <script src="/static/js/mz_wap/main.js"></script>
+    <script src="/static/js/mz_wap/imglazyload.js"></script>
+
+{% endblock %}

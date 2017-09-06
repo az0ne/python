@@ -1,0 +1,166 @@
+{% extends "mz_common/base.html" %}
+{% block title %}学习计划{% endblock %}
+{% block breadcrumb %}
+    <div class="container visible-md visible-lg">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'user:user_center' %}">我的课程</a></li>
+            <li class="active">{{ cur_careercourse.name }}</li>
+        </ol>
+    </div>
+{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/css/jquery.fileupload.css">
+    {% if not cur_careercourse.is_pause %}
+    <link type="text/css" href="/static/css/chart/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+    <link href="/static/css/chart/style.css" rel='stylesheet' />
+    {% endif %}
+{% endblock %}
+{% block container %}
+{% if live_room != None %}
+<div class="container">
+    <div class="online-player"><div class="all-new"></div>
+        <div class="row chart-legend chart-legend-online">
+            <span class="legend"><span class="video-recorder"></span><span class="online-font">直播课堂</span></span>
+            {% if live_room.live_is_open == 1 %}
+            <span class="legend" style="font-size:18px;color:#1ABC9C;"><i style="background-color: #1ABC9C;margin-top:6px;"></i><span class="online-status">状态:</span>开启</span>
+            <a class="btn btn-micv5" href="{% url 'lps:live_play' %}?live_id={{ live_room.live_id }}" target="_blank" style="float:right;">进入直播教室</a>
+            {% else %}
+            <span class="legend" style="font-size:18px;color:#E78964;"><i style="background-color: #E78964;margin-top:6px;"></i><span class="online-status">状态:</span>关闭</span>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endif %}
+<div class="container">
+  <div class="study-plan">
+    {% include 'mz_lps/learning_plan_top.html' %}
+    <div class="row-stage">
+        {% include 'mz_lps/learning_plan_left.html' %}
+        {% include 'mz_lps/learning_plan_right.html' %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block popup %}
+    {% include 'mz_lps/learning_plan_study_popup.html' %}
+    {% include 'mz_lps/learning_plan_homework_popup.html' %}
+    {% include 'mz_lps/learning_plan_lesson_exam_popup.html' %}
+    {% include 'mz_lps/learning_plan_project_popup.html' %}
+    {% include 'mz_lps/learning_plan_mission_popup.html' %}
+    {% include 'mz_lps/learning_plan_exam_popup.html' %}
+    {% include 'mz_lps/learning_plan_planset_popup.html' %}
+    {% include 'mz_course/lesson_view_pay_popup.html' %}
+{% endblock %}
+{% block custom_script %}
+    <script src="/static/js/icheck.min.js"></script>
+    <script src="/static/js/highcharts.js"></script>
+    <script src="/static/js/jquery.ui.widget.js"></script>
+    <script src="/static/js/jquery.iframe-transport.js"></script>
+    <script src="/static/js/jquery.fileupload.js"></script>
+    <script src="/static/js/jquery.fileupload-process.js"></script>
+    <script src="/static/js/jquery.fileupload-validate.js"></script>
+    {% if cur_careercourse.is_unlockstage and cur_careercourse.is_set_plan and not cur_careercourse.is_pause %}
+    <script type="text/javascript" src="/static/js/chart/esl.js"></script>
+    <script type="text/javascript" src="/static/js/chart/main.js"></script>
+    {% endif %}
+    <script>
+        $(function(){
+            function bar_df(){
+              var _this_child_len = $('.bar-df > div').length;
+              var _this_barcm_len = $('.bar-df > div.bar-cm').length;
+              if(_this_child_len == _this_barcm_len){
+                $('.bar-df').css('background-color','#1BBC9B');
+              }
+              if(_this_child_len < 5){
+                $('.bar-df > div').removeClass('col-sm-2').addClass('col-v5-' + (_this_child_len+1));      
+              }
+            }
+            bar_df();
+            {% if not cur_stage.is_unlockstage %}
+                $('#paymentModal').modal('show');
+            {% else %}
+                $('.course_rebuild').click(function(event){
+                    event.preventDefault();
+                    if(confirm("确定要开始重修?")){
+                        $.get("/lps/course/rebuild/"+$(this).attr("course_id"), function(data){
+                            if(data.status=="success"){
+                                location.reload()
+                            }else if(data.status=="failure"){
+                                alert(data.message)
+                            }
+                        });
+                    }
+                });
+            {% endif %}
+
+            {% if cur_careercourse.is_unlockstage %}
+                study_point_page();
+            {% endif %}
+
+            $('.scroll-pane').jScrollPane({
+                autoReinitialise: true
+            });
+
+        });
+
+        //计划设置
+        function planset(){
+            $('#plansetModal').modal('show');
+        }
+        //学力分页
+        function study_point_page(){
+                    if($('#rank_ul ul').length<=1){
+                        $('.next_page').hide();
+                    }
+                    $('#rank_ul').children('ul:not(:first)').hide();
+                    $('.pre_page').hide();
+                    $('.next_page').click(function(){
+                        if($('#rank_ul ul:visible').next().length > 0){
+                            $('#rank_ul ul:visible').hide().next().show();
+                            if($('#rank_ul ul:visible').next().length ==0){
+                                $('.next_page').hide();
+                            }
+                            $('.pre_page').show();
+                        }
+                    });
+
+                    $('.pre_page').click(function(){
+                        if($('#rank_ul ul:visible').prev().length > 0){
+                            $('#rank_ul ul:visible').hide().prev().show();
+                            if($('#rank_ul ul:visible').prev().length ==0){
+                                 $('.pre_page').hide();
+                            }
+                               $('.next_page').show();
+                        }
+                    });
+        }
+    </script>
+{% endblock %}
+{% block custom_script_chart %}
+    {% if cur_careercourse.is_unlockstage and cur_careercourse.is_set_plan and not cur_careercourse.is_pause %}
+    <script>
+            /*
+             * @note
+             * process : 课程阶段
+             * class   : 第几堂
+             * state   : 0 -> 正常上课 1 -> 重修
+             * classDate : 开始时间
+             * interval : 相隔天数
+             */
+            var chart = new chart();
+            chart.init({
+                classList :
+                        [
+                            {% for chart in chart_data %}
+                            { process: "{{ chart.process }}", iclass: "{{ chart.iclass }}", state  : "{{ chart.state }}" , rank: {{ chart.rank }}, msg: {{ chart.msg | safe }},interval:"{{ chart.need_days }}"}{% if not forloop.last %},{% endif %}
+                            {% endfor %}
+                        ],
+                classDate : { startDay : "{{ planning.date_publish | date:"Y-m-d" }}"}
+            });
+
+            $(function(){
+                $('.chart-box').jScrollPane();
+            });
+    </script>
+    {% endif %}
+{% endblock %}

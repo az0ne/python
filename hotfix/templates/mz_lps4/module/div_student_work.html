@@ -1,0 +1,18 @@
+<div class="student-work">
+    <div class="slide-box">
+        <ul>
+            {% for studentwork in student_works %}
+            <li>
+                <a href="{% url 'article_detail_view' studentwork.id %}" target="_blank"><img src="{{ MEDIA_URL }}{{ studentwork.title_image }}" alt="{{ studentwork.title }}" /></a>
+                <div class="work-info">
+                    <a class="student-icon" href="{% url 'article_detail_view' studentwork.id %}" target="_blank"><img src="{{ MEDIA_URL }}{{ studentwork.user_head }}" alt="" /></a>
+                    <h3>优秀学员作品：</h3>
+                    <p class="work-h1"><a href="{% url 'article_detail_view' studentwork.id %}" target="_blank">{{ studentwork.title }}</a></p>
+                    <a class="more" href="{% url 'article_list_view' article_type='student'%}" target="_blank">更多→</a>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <ol class="slide-tab textR"></ol>
+    </div>
+</div>

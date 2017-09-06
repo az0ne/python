@@ -1,0 +1,197 @@
+{% extends "mz_common/global.html" %}
+{% block title %}麦子学院 - 1v1直播{% endblock %}
+{% block keywords %}麦子学院，1v1直播{% endblock %}
+{% block description %}1v1直播{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="/js/lib/layer/skin/layer.css">
+    <link rel="stylesheet" type="text/css" href="/css/personalCenter.css?v={{ time_stamp }}"/>
+    <link rel="stylesheet" type="text/css" href="/css/teaOneVOneLine.css?v={{ time_stamp }}"/>
+    <script type="text/javascript">
+    var start_time = '{{ start_time }}';
+    var end_time = '{{ end_time }}';
+    </script>
+{% endblock %}
+{% block csstype %}oneVoneLine{% endblock %}
+{% block container %}
+    {% include 'header/index_header.html' %}
+    {% include 'mz_usercenter/div_user_header.html' %}
+    <div class="center personalCmain">
+        {% block usercenter_left_panel %}
+            {% include 'mz_usercenter/div_left_menu.html' %}
+        {% endblock %}
+        <div class="personalCmainR font14">
+            <div class="lineTit">
+                <a href="{% url 'home:teacher:onevone_meeting' %}"><返回</a>
+                <h3>创建1V1直播</h3>
+            </div>
+            <div class="onlineBox">
+                <div class="calenDar">
+                    <a href="javascript:;" class="arrL"><</a>
+                    <ul>
+                        <li><strong>日</strong><span></span></li>
+                        <li><strong>一</strong><span></span></li>
+                        <li><strong>二</strong><span></span></li>
+                        <li><strong>三</strong><span></span></li>
+                        <li><strong>四</strong><span></span></li>
+                        <li><strong>五</strong><span></span></li>
+                        <li><strong>六</strong><span></span></li>
+                    </ul>
+                    <a href="javascript:;" class="arrR">></a>
+                </div>
+                <ul class="onLineInfo lineCreate">
+                    <li>
+                        <div class="time">
+                            <span class="start">14:00</span>-<span class="end">14:30</span>
+                        </div>
+                        <div class="state">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="time">
+                            <span class="start">14:30</span>-<span class="end">15:00</span>
+                        </div>
+                        <div class="state">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="time">
+                            <span class="start">15:00</span>-<span class="end">15:30</span>
+                        </div>
+                        <div class="state">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="time">
+                            <span class="start">15:30</span>-<span class="end">16:00</span>
+                        </div>
+                        <div class="state">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="time">
+                            <span class="start">16:00</span>-<span class="end">16:30</span>
+                        </div>
+                        <div class="state">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="time">
+                            <span class="start">16:30</span>-<span class="end">17:00</span>
+                        </div>
+                        <div class="state">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="time">
+                            <span class="start">17:00</span>-<span class="end">17:30</span>
+                        </div>
+                        <div class="state">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </li>
+                    <li class="night">
+                        <div class="time">
+                            <span class="start">20:00</span>-<span class="end">20:30</span>
+                        </div>
+                        <div class="state">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="time">
+                            <span class="start">20:30</span>-<span class="end">21:00</span>
+                        </div>
+                        <div class="state">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="time">
+                            <span class="start">21:00</span>-<span class="end">21:30</span>
+                        </div>
+                        <div class="state">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </li>
+                </ul>
+                <div class="refer">
+                    <a href="javascript:;" class="empty">清空选择</a>
+                    <a href="javascript:;" class="confirm created">确认创建</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}{% endblock %}
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/js/lib/layer/layer.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/lib/calendar/scrollCalendar.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/teaOneVOneLine.js?v={{ time_stamp }}"></script>
+{% endblock %}

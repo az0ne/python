@@ -1,0 +1,254 @@
+@import 'core/reset';
+@import 'core/common';
+@import 'core/var';
+@import 'core/function';
+
+@import 'header';
+@import 'toolbar';
+
+/***教师招募页***/
+/*教师招募页公共样式*/
+$c01c26f: #01c26f;
+.teacherRecruit{width:100%;min-width:1200px;color: #666;font-family: "microsoft yahei";}
+.teacherRecruit strong,.teacherRecruit span{display: block;}
+.teacherRecruit strong{font-weight: normal;}
+.teacherRecruit em{font-style: normal;}
+.teacherRecruit h2{font-size: 30px;line-height: 52px;text-align: center;font-weight: bold;}
+
+.teacherRecruitInfo,.teacherRecruitFlow .detail{width: 1160px;margin: 0 auto;}
+.teacherRecruitInfo>i,.teacherRecruitInfo .share-ibox span,#feedbakBoxSuccess em{background-image: url(../static/images/teacherRecruiticon.png);background-repeat: no-repeat;}
+/*teacherRecruitBanner*/
+.teacherRecruitBanner{overflow: hidden;position: relative;border-top: 1px solid #ededed;}
+.teacherRecruitBanner img{width: 100%;height: auto;}
+.teacherRecruitBanner .txt{height:105px;position: absolute;top:0;bottom:0;left: 0;right:0;margin:auto;text-align: center;color: #fff;}
+.teacherRecruitBanner .txt strong{font-size: 40px;}
+.teacherRecruitBanner .txt span{font-size: 20px;margin-top: 20px;}
+
+/*teacherRecruitInfo*/
+.teacherRecruitInfo{border-bottom: 2px solid #eaeaea;}
+.teacherRecruitInfo>i{width:50px;height:25px;text-indent:-9999px;display: block;background-position: -1px -86px;margin: 0 auto;margin-bottom: -25px;position: relative;}
+.teacherRecruitInfo ul{overflow: hidden;margin:70px 0 32px -25px;}
+.teacherRecruitInfo li{width: 290px;float: left;margin-left: 25px;padding:0 40px 36px;text-align: center;@include box-sizing(content-box);}
+.teacherRecruitInfo li img{margin-left: 50px;}
+.teacherRecruitInfo .lastLi img{margin: 30px 0 0;}
+.teacherRecruitInfo li .infos{text-align: center;border-bottom: 1px dashed #ddd;}
+.teacherRecruitInfo .lastLi .infos{border: 0;}
+.teacherRecruitInfo .infos strong{font-size: 24px;color: #333;padding: 24px 0 12px;}
+.teacherRecruitInfo .infos span{font-size: 16px;}
+.teacherRecruitInfo .infos p{line-height: 1.6;font-size: 14px;color: #999;margin: 22px 0 16px;}
+.teacherRecruitInfo .lastLi p{margin: 0;}
+.teacherRecruitInfo li>span{font-size: 16px;margin-top: 18px;}
+.teacherRecruitInfo li>span em{font-weight: bold;}
+.teacherRecruitInfo .share-ibox{overflow: hidden;height:40px;margin: 22px 26px 16px;}
+.teacherRecruitInfo .share-ibox span{width: 40px;height: 40px!important;padding:0!important;margin-left: 15px;}
+.teacherRecruitInfo .share-ibox .jtico_cqq{background-position: 0 0;}
+.teacherRecruitInfo .share-ibox a:hover .jtico_cqq{background-position: 0 -41px;}
+.teacherRecruitInfo .share-ibox .jtico_qzone{background-position: -55px 0;}
+.teacherRecruitInfo .share-ibox a:hover .jtico_qzone{background-position: -55px -41px;}
+.teacherRecruitInfo .share-ibox .jtico_weixin{background-position: -110px 0;}
+.teacherRecruitInfo .share-ibox a:hover .jtico_weixin{background-position: -110px -41px;}
+.teacherRecruitInfo .share-ibox .jtico_tsina{background-position: -165px 0;}
+.teacherRecruitInfo .share-ibox a:hover .jtico_tsina{background-position: -165px -41px;}
+
+/*teacherRecruitApply*/
+.teacherRecruitApply{text-align: center;padding: 70px 0;}
+.teacherRecruitApply h3{color: #333;font-size: 20px;font-weight: normal;}
+.teacherRecruitApply a,.teacherRecruitJoin a{width:210px;height:54px;line-height:54px;display:block;font-size: 16px;color: #fefefe;background: #5ecfba;margin: 22px auto 0;border-radius: 3px;}
+
+/*teacherRecruitFlow*/
+.teacherRecruitFlow{padding:70px 0;filter: progid:DXImageTransform.Microsoft.gradient(startcolorstr='#00d499',endcolorstr='#00c9e0',gradientType=1); background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#00d499), to(#00c9e0)); background:-webkit-linear-gradient(left, #00d499, #00c9e0);background:-moz-linear-gradient(left, #00d499, #00c9e0);background:-o-linear-gradient(left, #00d499, #00c9e0);background:-ms-linear-gradient(left, #00d499, #00c9e0);overflow: hidden;color: #fff;}
+.teacherRecruitFlow ul{padding: 42px 0;height:130px;overflow: hidden;position: relative;@include box-sizing(content-box);}
+.teacherRecruitFlow li{width: 180px;height: 90px;border:6px solid #fff;border-radius: 20px;font-size: 16px;font-weight: bold;line-height: 1.3;padding:28px 0 0 40px;position: absolute;left:-255px;@include box-sizing(content-box);}
+.teacherRecruitFlow li strong{color: #00d3a2;font-size: 30px;font-family: arial;font-style: italic;font-weight: bold;width: 50px;height: 50px;background: #fff;border-radius: 50%;text-align: center;line-height: 50px;margin: 6px 0 0 -70px;position: absolute;}
+.teacherRecruitFlow li em{display: block;font-weight: normal;}
+.teacherRecruitFlow .major{text-align: center;font-size: 18px;padding: 20px 0 25px;color: #fefefe;}
+.teacherRecruitFlow .major p{width:760px;line-height: 1.7;margin: 20px auto 0;}
+.teacherRecruitFlow .major h4{font-weight:bold;}
+
+/*teacherRecruitTeacher*/
+.teacherRecruitTeacher{background: #f5f5f5;height:auto;overflow: hidden;}
+.teacherRecruitTeacher h2{color: #333;margin: 50px 0 32px;}
+.teacherRecruit{
+  .gold-teacher {
+        padding-bottom: 40px;
+        .gold-slide {
+            border-bottom: 1px solid #ececec;
+            padding-bottom: 30px;
+            overflow-x: hidden;
+            width: 1036px;
+            margin: 0 auto 30px;
+            ul {
+                width: 4288px;
+                &:before, &:after {
+                    @extend .CLEARFIX;
+                }
+            }
+
+            li {
+                @extend .fl;
+                width: 230px;
+                margin-right: 38px;
+            }
+
+            h5 {
+                color: $c01c26f;
+                line-height: 26px;
+            }
+
+            .inner-box {
+                width: 230px;
+                height: 290px;
+                margin-bottom: 27px;
+                position: relative;
+                cursor: pointer;
+            }
+
+            .hover-card, .hover-mask {
+                display: none;
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 6px;
+            }
+            .hover-mask {
+                background: rgb( 0, 0, 0);
+                background: rgba( 0, 0, 0, 0.85);
+                filter:alpha(opacity=85);
+                opacity:0.85;
+            }
+            .hover-card {
+                padding: 30px 18px 46px;
+                small {
+                    display: block;
+                    padding-bottom: 10px;
+                    border-bottom: 1px solid #fff;
+                    border-bottom: 1px solid rgba(255,255,255,0.5);
+                }
+                p {
+                    line-height: 21px;
+                    height: 66px;
+                    overflow: hidden;
+                }
+                a {
+                    display: block;
+                    width: 170px;
+                    height: 40px;
+                    line-height: 36px;
+                    margin: 0 auto;
+                    border-radius: 100px;
+                    border: 2px solid $c01c26f;
+                    color: $c01c26f;
+                    font-size: 14px;
+                    text-align: center;
+                }
+            }
+            .teach-icon {
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 60px;
+                margin: 0 auto;
+                width: 74px;
+                height: 74px;
+                opacity: 0;
+                img {
+                    border-radius: 50%;
+                    box-shadow: 3px 0 6px rgba(0, 0, 0, 0.09);
+                }
+            }
+        }
+        .gold-tab {
+            font-size: 0;
+            padding-right: 2px;
+            height: 6px;
+            width:1036px;
+            margin: 0 auto;
+            li {
+                @extend .vam;
+                margin-left: 8px;
+                width: 32px;
+                height: 6px;
+                background-color: #e3e3e3;
+                cursor: pointer;
+            }
+            .on {
+                background-color: $c01c26f;
+            }
+        }
+    }
+}
+/*teacherRecruitJoin*/
+.teacherRecruitJoin{margin-top: 60px;overflow: hidden;padding: 78px 0;text-align: center;}
+.teacherRecruitJoin strong{font-size: 40px;color: #666;}
+.teacherRecruitJoin em{font-size: 20px;color: #666;display: block;margin-top: 18px;}
+.teacherRecruitJoin a{margin-top: 32px;}
+
+/*讲师招募页表单*/
+.teacherRecruitFormBox{background: #f5f5f5;}
+.teacherRecruitFrom{width: 775px;margin: 0 auto;overflow: hidden;padding: 40px 22px 50px;font-size: 16px;color: #666;font-family: "microsoft yahei";}
+.teacherRecruitFormFlow{text-align: center;line-height: 30px;margin-left: -20px;}
+.teacherRecruitFormFlow strong{width: 128px;display:inline-block;color: #999;font-weight: normal;text-align: left;margin-left: 20px;}
+.teacherRecruitFormFlow em{display: block;width: 30px;height: 30px;background: #e3e3e3;font-size: 20px;font-weight: bold;color: #fff;border-radius: 50%;font-family: arial;float: left;text-align: center;margin-right: 10px;}
+.teacherRecruitFormFlow strong{color: #666;}
+.teacherRecruitFormFlow strong.active em{background: #5ecfba;}
+
+/*teacherRecruitFormContent*/
+.teacherRecruitFormContent{margin-top: 38px;}
+.teacherRecruitFormContent .formtips{padding: 30px 0;display: block;}
+.teacherRecruitFormContent>div{display: none;}
+.teacherRecruitFormContent>div.active{display: block;}
+/*teacherRecruitForms*/
+.teacherRecruitFormWrite{position: relative;padding:0 50px 50px;background:#fff;}
+.teacherRecruitFormWrite:before{display: block;width:0;content: "";border-left: 22px solid transparent;border-right:22px solid transparent;border-bottom: 24px solid #fff;margin:-24px 0 0 230px;position: absolute;}
+.teacherRecruitForms{border-top: 1px solid #eaeaea;padding-top: 18px;}
+.teacherRecruitForms li{margin-top: 8px;}
+.teacherRecruitForms strong{color: #000;font-weight: normal;display: block;padding: 11px 0;}
+.teacherRecruitForms strong span{color: #999;font-size: 14px;}
+.teacherRecruitForms .radioBtn,.teacherRecruitForms .text,.teacherRecruitForms .textareaBox{height: 48px;border: 1px solid #ccc;border-radius: 3px;}
+.teacherRecruitForms input[type="text"]:focus{border-color: #00b38a;}
+.teacherRecruitForms .radioBtn{width: 128px;height: 48px;position: relative;display: inline-block;margin: 0 3px;cursor: pointer;}
+.teacherRecruitForms .radioBtn.active{border-color: #5ecfba;box-shadow: 0 0 0 1px #5ecfba;background:url(../static/images/teacherRecruiticon.png) no-repeat 99px -120px;color: #00b38a;}
+.teacherRecruitForms .radioBtn.disable{border-color: #ccc;box-shadow: none;background: none;color: #999;}
+.teacherRecruitForms input[type='radio']{width: 128px;height: 48px;position: absolute;z-index: 99;left: 0;top: 0;visibility: hidden;}
+.teacherRecruitForms .radioBtn span{width: 128px;height: 48px;position: absolute;left: 0;top:0;text-align: center;line-height: 48px;font-weight:normal;}
+.teacherRecruitForms em,.teacherRecruitForms span.error{color: #f84858;font-size: 12px;display: none;}
+.teacherRecruitForms em{font-style: normal;}
+.teacherRecruitForms .text{width: 528px;padding:0 10px}
+.teacherRecruitForms .text.error{border-color: #f84858;}
+.teacherRecruitForms .textareaBox{width: 518px;height: 108px;padding: 20px 15px;}
+.teacherRecruitForms .textareaBox textarea{width: 100%;height: 100%;font-family: "microsoft yahei";color: #999;font-size: 14px;border:0;}
+.teacherRecruitForms .warrant{font-size: 12px;color: #999;padding-top: 10px;display: block;}
+.teacherRecruitForms .captcha{margin: 10px 0;}
+.teacherRecruitForms .submitBtn{width: 160px;height: 54px;text-align: center;background: #5ecfba;color: #fefefe;border-radius: 3px;margin: 30px 0 0 196px;cursor: pointer;}
+.teacherRecruitForms .textTips{color:#999;display:block;}
+
+/*teacherRecruitFormSuccess*/
+.teacherRecruitFormSubmit{width: 650px;padding-bottom:40px;background: #fff;}
+.teacherRecruitFormSubmitBox{display: none;}
+.teacherRecruitFormSubmitBox .submittips{width: 530px;padding: 40px 60px;position: relative;@include box-sizing(content-box);}
+.teacherRecruitFormSuccess .submittips{background: #eafaf1;}
+.teacherRecruitFormSubmitBox .submittips:before,.teacherRecruitFormSubmitBox .submittips em{background: url(../static/images/teacherRecruiticon.png) no-repeat;}
+.teacherRecruitFormSubmitBox .submittips:before{width:44px;height: 24px;content:"";display: block;position: absolute;top: -24px;left: 430px;}
+.teacherRecruitFormSuccess .submittips:before{background-position: -2px -182px;}
+.teacherRecruitFormSubmitBox .submittips h3{color: #333;font-size: 30px;font-weight: normal;line-height: 60px;}
+.teacherRecruitFormSuccess .submittips p{font-size: 14px;line-height: 1.6;margin-left: 90px;}
+.teacherRecruitFormSubmitBox .submittips em,#feedbakBoxSuccess em{width: 60px;height: 60px;display: block;float: left;margin-right: 30px;}
+.teacherRecruitFormSuccess .submittips em,#feedbakBoxSuccess em{background-position: -68px -94px;}
+.teacherRecruitFormSubmitBox>p{font-size: 14px;margin:0 62px 0 150px;line-height: 1.6;margin-top: 28px;}
+.teacherRecruitFormSubmitBox>span{font-size: 16px;margin-left: 150px;}
+.teacherRecruitFormSubmitBox a.back{width:138px;height:38px;line-height:38px;border:1px solid #5ecfba;display: block;margin-left: 150px;text-align: center;font-size: 14px;color: #00b38a;margin-top: 18px;border-radius: 3px;}
+
+.teacherRecruitFormError .submittips{background: #ffecec;padding-bottom: 80px;}
+.teacherRecruitFormError .submittips:before{background-position: -52px -182px;}
+.teacherRecruitFormError .submittips em{background-position: -145px -94px;}
+.teacherRecruitFormError .reason{margin-left: 90px;padding-bottom: 20px;}
+.teacherRecruitFormError ol{margin-left: 110px;}
+.teacherRecruitFormError .submittips strong{display: block;font-size: 14px;font-weight: normal;float: left;}
+.teacherRecruitFormError .submittips li{font-size: 14px;line-height: 1.6;}
+.teacherRecruitFormError .submittips .back{margin: 0;margin-left: 10px;}
+.teacherRecruitFormError .submittips>a{display: block;float: left;@include box-sizing(content-box);}
+.teacherRecruitFormError .submittips .tj{width: 100px;height: 40px;line-height: 40px;text-align: center;color: #fff;background: #5ecfba;border-radius: 3px;font-size: 14px;margin-left: 90px;}
+
+@import 'footer';

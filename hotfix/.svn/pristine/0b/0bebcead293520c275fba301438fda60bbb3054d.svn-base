@@ -1,0 +1,190 @@
+{% extends "mz_common/global.html" %}
+{% block title %}麦子学院 - 1v1服务{% endblock %}
+{% block keywords %}麦子学院，1v1服务{% endblock %}
+{% block description %}1v1服务{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="/css/personalCenter.css?v={{ time_stamp }}"/>
+    <link rel="stylesheet" type="text/css" href="/css/teaOneVOneService.css?v={{ time_stamp }}"/>
+    <link rel="stylesheet" type="text/css" href="/js/lib/layer/skin/layer.css">
+{% endblock %}
+{% block csstype %}oneVoneService{% endblock %}
+{% block container %}
+    {% include 'header/index_header.html' %}
+    {% include 'mz_usercenter/div_user_header.html' %}
+    <div class="center personalCmain">
+        {% block usercenter_left_panel %}
+            {% include 'mz_usercenter/div_left_menu.html' %}
+        {% endblock %}
+        <div class="personalCmainR font14">
+            <div class="zyMainLeft">
+                <div class="tabTitle">{% for career in careers %}<span {% if forloop.counter == 1 %}class="cur"{% endif %}>{{ career.name }}</span>{% endfor %}</div>
+                <div class="tabCon">
+                {% for career in careers %}
+                    <div {% if forloop.counter == 1 %}class="cur"{% endif %}>
+{#                    {% if career.data %}#}
+                        <div class="teacherSreen_top marginB20">
+                            <div class="teacherSreen_topL">
+                                <p class="font16 color66 bold" style="padding-bottom:5px;">排序</p>
+                                <p><select class="personal_select">
+                                    <option value="guarantee" {% if career.s_order == 'guarantee' %}selected="selected"{% endif %}>保就业</option>
+                                    <option value="no_guarantee" {% if career.s_order == 'no_guarantee' %}selected="selected"{% endif %}>免就业</option>
+                                </select></p>
+                            </div>
+                            <div class="teacherSreen_topR font14 bold textC">
+                                <p class="colorff">1v1服务<br></p>
+                                {% for stage in career.stages %}
+                                    <p class="colorff">{{ stage.1 }}<br></p>
+                                {% endfor %}
+                            </div>
+                        </div>
+{#                    {% endif %}#}
+                        <div class="teacherSreen_Con">
+                            <div class="teacherSreen_topL">
+                                <ul class="teacherStulist">
+                                    {% for sinfo in career.data %}
+                                    <li {% if sinfo.status_is_behind %}class="marginB20"
+                                        {% elif sinfo.show_status_gray %}class="marginB20 greytou"
+                                        {% else %}class="marginB20 greentou"
+                                        {% endif %}>
+                                        <div class="img">
+                                            <a href="/u/{{ sinfo.show_info.id }}/" target="_blank">
+                                                <img style="height: 54px;" src="{{ MEDIA_URL }}{{ sinfo.show_info.avatar_small_thumbnall }}">
+                                                <span>
+                                                    {% if sinfo.status_is_paused %}休学中{% endif %}
+                                                </span>
+                                            </a>
+                                            {% if not sinfo.is_full_payment %}<i class="zyshi"></i>{% endif %}
+                                        </div>
+                                        <div class="font font12 color99">
+                                            <p class="font16 color33">
+                                                {% if sinfo.show_info.real_name %}
+                                                    {{ sinfo.show_info.real_name }}
+                                                {% else %}
+                                                    {{ sinfo.show_info.nick_name }}
+                                                {% endif %}
+                                            </p>
+                                            <p>
+                                                {% if sinfo.study_goal %}
+                                                    {{ sinfo.study_goal }}
+                                                {% elif sinfo.show_info.study_goal_opt_name %}
+                                                    {{ sinfo.show_info.study_goal_opt_name }}
+                                                {% else %}暂无{% endif %}
+                                            </p>
+                                        </div>
+                                        <div class="s_details t5o">
+                                            <i></i>
+                                            <p class="font12 color99 pt">
+                                                <span class="color5e font20">
+                                                    {% if sinfo.show_info.real_name %}
+                                                        {{ sinfo.show_info.real_name }}
+                                                    {% else %}
+                                                        {{ sinfo.show_info.nick_name }}
+                                                    {% endif %}
+                                                </span>
+                                                {% if not sinfo.is_full_payment %}试学学员{% endif %}
+                                                <a href="/lps3/teacher/class/{{ sinfo.class_id }}/student_info/{{ sinfo.show_info.id }}/" target="_blank" style="float: right; margin-top: 8px;">完整学籍信息></a>
+                                            </p>
+                                            <div class="color33 font12 dd marginB10">
+                                                <p>城市：
+                                                    {% if sinfo.show_info.province and sinfo.show_info.city %}
+                                                        {{ sinfo.show_info.province }}-{{ sinfo.show_info.city }}
+                                                    {% else %}暂未登记{% endif %}
+                                                </p>
+                                                <p>入学时间：{{ sinfo.model.start_time|date:"Y-m-d" }}</p>
+                                                <p>TEL：
+                                                    {% if sinfo.show_info.real_mobile %}
+                                                        {{ sinfo.show_info.real_mobile }}{% else %}暂无
+                                                    {% endif %}
+                                                </p>
+                                                <p>QQ：{% if sinfo.show_info.qq %}{{ sinfo.show_info.qq }}{% else %}暂无{% endif %}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="teacherSreen_topR">
+                                <ul class="teacherTasklist color66 textC font20">
+                                    {% for sinfo in career.data %}
+                                        <li class="marginB20" {% if sinfo.status_is_quit %}style="display: none"{% endif %}>
+                                            <span class="sH onevone">
+                                            <a target="_blank" href="{% url 'lps4:teacher_coach_list' sinfo.career_id sinfo.model.id %}">
+                                                <span class="num">{{ sinfo.onevone_count.total_count }}</span>
+                                                <span class="newinfo">
+                                                    {% if sinfo.onevone_count.new_coach_count %}<em>+<i>{{ sinfo.onevone_count.new_coach_count }}</i>申请</em>{% endif %}
+                                                    {% if sinfo.onevone_count.new_comment_count %}<em>+<i>{{ sinfo.onevone_count.new_comment_count }}</i>回复</em>{% endif %}
+                                                </span>
+                                            </a>
+                                            </span>
+                                            {% for stage in sinfo.stages %}
+                                                {% if stage.is_finished %}
+                                                    <span class="color66 textC font20 tSturight"
+                                                          pop_href="{% url 'lps3:t_student_stage_div' sinfo.class_id sinfo.model.id stage.id %}"
+                                                            >
+                                                    {% if stage.count_task_done %}
+                                                        <i>{{ stage.count_task_done }}</i>
+                                                    {% endif %}
+                                                    </span>
+                                                {% elif stage.is_undo %}
+                                                    <span class="color66 textC font20"></span>
+                                                {% else %}
+                                                    <span class="color66 textC font20 sH"
+                                                          pop_href="{% url 'lps3:t_student_stage_div' sinfo.class_id sinfo.model.id stage.id %}"
+                                                            >
+                                                    {{ stage.count_task_finished }}/{{ stage.count_tasks }}
+                                                        {% if stage.count_task_done %}
+                                                            <i>{{ stage.count_task_done }}</i>
+                                                        {% endif %}
+                                                    </span>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!--作业批改,stage-->
+        <div class="modal fade" id="yourHomework" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+        </div>
+        <!--作业批改详情,给task打分页,project_item详情页-->
+        <div class="modal fade" id="yourHomework2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+        </div>
+        <!--查看限时答题-->
+        <div class="modal fade" id="yourHomework3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-content zy_yourHomework3">
+                <a class="zy_newclose"></a>
+
+                <p class="color33 font18 pt"><a class="color5e">&lt;&lt;返回</a><span></span></p>
+
+                <p class="ptt font16 color33"></p>
+
+                <div class="zy_yourHomework3_div">
+                    <ul class="font14">
+                    </ul>
+                </div>
+                <div class="examinationBottom textC">
+                    <div class="prev ebtn fl">上一题</div>
+                    <div class="znum"></div>
+                    <div class="next ebtn fr">下一题</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}{% endblock %}
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/js/lib/layer/layer.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}mz_lps3/js/select.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}mz_lps3/js/jquery.mousewheel.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}mz_lps3/js/jquery.jscrollpane.min.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/teaOneVOne.js?v={{ time_stamp }}"></script>
+{% endblock %}

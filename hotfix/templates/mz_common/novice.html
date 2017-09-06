@@ -1,0 +1,34 @@
+{% extends "mz_common/base.html" %}
+{% block title %}IT技术在线学习问题库 - 麦子学院{% endblock %}
+{% block keywords%}IT技术，IT在线学习，IT在线教育{% endblock %}
+{% block description%}麦子学院IT技术在线学习问题库，为你解答最全面的IT技术在线学习前、中、后期的所有疑惑，助你轻松学习软件开发技术、互联网技术。{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+
+{% endblock %}
+{% block container %}
+
+
+<div class="zy_main YaHei" style="background:#F5F5F5;  padding-bottom:60px;">
+	<div class="zy_Novice_tit">
+    	<div class="container font14" style="position:relative;">
+        	<a href="/">首页</a> > <a href="/course/">企业直通班</a>> 新手问答
+        </div>
+    </div>
+    <div class="zy_Novice_con">
+    	<ul>
+            {% for aq in faq %}
+        	<li>
+            	<p class="color33 font20 p1 zbold"><span class="greenSpen"></span>{{ aq.title }}</p>
+                <p class="color99 font14 p2">{{ aq.content|linebreaks }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
+

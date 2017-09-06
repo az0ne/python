@@ -1,0 +1,37 @@
+{% extends "mz_usercenter/usercenter_base.html" %}
+{% block title %}他的主页-教务面板{% endblock %}
+{% block usercenter_left_panel %}
+    <div class="personalCmainL font14">
+        <ul class="personalCmainLmenu">
+            <li><a>
+                <i class="personalCico pcICO3 i1"></i>
+                <span>教务面板</span>
+                <i class="personalCico pcICOa i2"></i></a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
+{% block usercenter_right_panel %}
+    <div class="personalCmainR font14">
+        <p class="personalCmainRtit font22 color33">教务面板</p>
+
+        <div class="eCother color33 font16 marginB38">
+            <p>同学，你好</p>
+
+            <p>我是麦子学院的教务老师{{ head_user.real_name }}，很开心在麦子学院遇见你！</p>
+
+            <p>成为麦子学员，不仅有<b>名师一对一辅导</b>，还有<b>专业的教务老师进行学习督促、进度落后提醒、班会提醒...</b></p>
+
+            <p style="margin-bottom:30px;">麦子和我，始终期待与你一起进步！</p>
+
+            <p><a href="{% url 'course:career_course_list' %}" class="personalCbtn">去看看麦子职业课程</a></p>
+        </div>
+
+    </div>
+    <script>var otherPage=true;</script>
+{% endblock %}
+
+{% block sea_script %}
+<script>seajs.use("/js/lps4/uc/main", function (main) {main.loading("personalCenterSbasic");});</script>
+{% endblock %}
+

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>麦子学院 - 转向有贝分期</title>
+</head>
+<body>
+请稍后，正在跳转到有贝分期 ...
+
+<form id = "unionform" action="https://m.uubee.com/uubeePay/api/agingPay.htm" method="post">
+    <input type="hidden" name="content" id="content" value="{{ data.content }}"/>
+    <input type="hidden" name="sign" id="sign" value="{{ data.sign }}"/>
+    <input style="display: none" type="submit">
+</form>
+</body>
+</html>
+<script>
+    window.onload = function(){
+        document.forms["unionform"].submit();
+    }
+</script>

@@ -1,0 +1,4 @@
+
+mysql-connector-python-2.1.3.zip
+1. unzip mysql-connector-python-2.1.3.zip
+2. cd the unzip path and execute python setup. (if using virtual environment, then use that in that virtual environment)

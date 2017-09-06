@@ -1,0 +1,1244 @@
+{% extends "mz_common/global.html" %} {% block title %}web前端培训 - web前端开发培训 - web前端开发培训课程 - 麦子学院{% endblock %}
+{% block keywords %}web前端,web前端开发,web前端培训,web前端培训课程,web前端学习,web前端工程师{% endblock %}
+{% block description %}
+    麦子学院,web前端开发培训,是专业web前端培训机构,提供史上最靠谱的web前端开发培训课程,定制化web前端开发学习路线,名师1对1指导,通过通俗易懂的讲解,丰富有趣的实战,轻松学习web前端,升级为实力派web前端工程师。{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/css/mz_new_ad/web-css/reset.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mz_new_ad/web-css/studentSlide.css">
+    <link rel="stylesheet" href="/static/css/mz_new_ad/web-css/style.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mz_new_ad/common.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/yz-css/yz-form.css?v={{ time_stamp }}">
+{% endblock %} {% block csstype %}new_web{% endblock %}
+{% block container %}
+    <div class="section_banner">
+        {% include 'header/new_web_header.html' %}
+        <img src="/static/images/mz_new_ad/web-images/banner-bg2.png" alt="web前端开发保就业课程" class="img_banner1">
+        <img src="/static/images/mz_new_ad/web-images/h5.png" alt="名师面对面授课助你实现年薪15万" class="img_banner2">
+        <div class="banner_tag">
+            <div class="banner_tag_top">
+                <h1>WEB前端开发保就业课程</h1>
+                <span>名师面对面授课助你实现年薪15万</span>
+            </div>
+            <div class="banner_tag_mid">
+            {% if is_normal_class %}
+                {% if short_name %}
+                <a href="{% url 'lps4_index' short_name %}" class="buy">继续学习</a>
+                {% else %}
+                <a href="{% url 'course:access_to_class' course_id %}" class="buy">继续学习</a>
+                {% endif %}
+            {% else %}
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'pay:pay_view2' %}?career_id={{ career_id }}" class=" buy" target="_blank">购买课程</a>
+                {% else %}
+                <a href="javascript:void 0" class="buy" data-toggle="modal" data-target="#loginModal">购买课程</a>
+                {% endif %}
+            {% endif %}
+                <a href="javascript:void 0" class="ask" onclick="_MEIQIA('showPanel')">立即咨询</a>
+
+            </div>
+            <div class="banner_tag_bot">
+                <span>签保就业协议</span><span class="ml40">1对1辅导</span><span class="ml40">硅谷名师课程</span>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+        var get_cookie = function (c_name) {
+            if (document.cookie.length > 0) {
+                var c_start = document.cookie.indexOf(c_name + "=");
+                if (c_start != -1) {
+                    c_start = c_start + c_name.length + 1;
+                    c_end = document.cookie.indexOf(";", c_start);
+                    if (c_end == -1) {
+                        c_end = document.cookie.length;
+                    }
+                    return unescape(document.cookie.substring(c_start, c_end));
+                }
+            }
+            return "";
+        }
+
+        var set_cookie = function (c_name, value, exdays) {
+            var exdate = new Date();
+            exdate.setDate(exdate.getDate() + exdays);
+            var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
+            document.cookie = c_name + "=" + c_value + "; path=/";
+        }
+
+
+        /*
+         * set maiziuid
+         */
+
+        var uid_gen = function () {
+            function s4() {
+                return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+            }
+
+            return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4();
+        }
+
+        if (get_cookie("maiziuid") == "") {
+            set_cookie("maiziuid", uid_gen(), 1024);
+        }
+
+        if (window.location.hostname.indexOf("maizitime.com") >= 0) {
+            (function () {
+                var query_string = "url=" + escape(window.location.href) + "&";
+                query_string = query_string + "maiziuid=" + get_cookie("maiziuid") + "&";
+                query_string = query_string + "referrer=" + escape(document.referrer);
+
+                var url = "http://hit.maiziedu.com/?" + query_string + "&callback=" + new Date().getTime();
+                var script = document.createElement("script");
+                script.setAttribute("src", url);
+                document.getElementsByTagName("head")[0].appendChild(script);
+            })();
+        }
+
+        $(document).ready(function () {
+            $(".side ul li").hover(function () {
+                $(this).find(".sidebox").stop().animate({"width": "124px"}, 200).css({
+                    "opacity": "1",
+                    "filter": "Alpha(opacity=100)"
+                });
+            }, function () {
+                $(this).find(".sidebox").stop().animate({"width": "44px"}, 200).css({
+                    "opacity": "0.8",
+                    "filter": "Alpha(opacity=80)"
+                })
+            });
+        });
+
+        var _vds = _vds || [];
+        window._vds = _vds;
+        (function () {
+            _vds.push(['setAccountId', 'e896811fa91b4cd990a44509f88f5d41']);
+            (function () {
+                var vds = document.createElement('script');
+                vds.type = 'text/javascript';
+                vds.async = true;
+                vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(vds, s);
+            })();
+        })();
+
+    </script>
+
+
+
+    <div class="nav-contanier">
+        <div class="nav-tab">
+            <div class="nav-content">
+                <a href="javascript:" class="nav-web">WEB前端开发课程</a>
+                <a href="javascript:" class="nav-btn ml165 nav-active" id="nav-btn1">课程介绍
+                    <i class="arrow-top"></i></a>
+                <a href="javascript:" class="nav-btn ml165" id="nav-btn2">课程目录 <i
+                        class="arrow-top" style="display: none"></i></a>
+                <a href="javascript:" class="nav-btn ml165" id="nav-btn3" style="display:none;">学员评论 <span
+                        class="nav_tag"><b>( 238 )</b></span><i class="arrow-top" style="display: none"></i></a>
+                <a href="javascript:" class="nav-tea ml165 " onclick="_MEIQIA('showPanel')">和老师聊聊</a>
+            </div>
+        </div>
+
+        <div class="tab1" id="tab1">
+            <div class="tab1-advance">
+
+                <div class="advance-tag">
+                    <h2>麦子让你成为<span>2年</span>以上工作经验的WEB开发工程师</h2>
+                    <p>我们认为合格的WEB前端开发工程师是网站用户体验优化师 ，</p>
+                    <p>必须具有良好的创意、创新能力和独特的审美，在麦子学院你学到的将不只是技术</p>
+                    <a href="javascript: void 0"  onclick="_MEIQIA('showPanel')">我能成为WEB开发工程师吗？</a>
+                    <img src="/static/images/mz_new_ad/web-images/advance.png" alt="web开发工程师进阶之路" class="img_advance">
+                </div>
+            </div>
+            <div class="tab1-planing">
+                <div class="plan-content">
+                    <ul class="plan-list">
+                        <li>
+                            <span>1</span>
+                            <div>
+                                <h3>网页基础入门</h3>
+                                <p class="pActive">
+                                    作为前端工程师必须要有扎实的网页基础功底，培训第一阶段主要包括HTML网页标签，CSS常用属性，通过实际案例练习，实现静态网页布局。在第一阶段进行JavaScript基础语法练习，完成课程内容
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                           <span>2</span>
+                            <div>
+                                <h3>专业JavaScript编程</h3>
+                                <p>
+                                    一位优秀的前端工程师必须掌握的专业技能就是JavaScript编程，如果你具备优秀的JavaScript编程技能，那么你将是众多公司青睐的对象。此阶段主要通过实际案例掌握JavaScript原生编程，掌握jQuery编程，初步了解响应式框架
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                           <span >3</span>
+                            <div>
+                                <h3>专业阶段-综合案例</h3>
+                                <p>
+                                    学到此阶段，从专业技能上，同学应该都具备一定的前端编程能力了，可以实现PC端所有静态页面和常用JS特效的制作，本阶段通过几个综合案例主要让同学们了解掌握兼容处理的相关方法和初步进入HTML5+CSS3的学习。
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                           <span >4</span>
+                            <div>
+                                <h3>移动端开发</h3>
+                                <p>
+                                    掌握了前三个阶段的前端只是初级水平，其实你已经具备了开发一个综合项目的基本能力，为了增加你的项目经验的多样性，适应市场的需求，获取更高的薪资，请继续学习移动端编程吧。
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <span >5</span>
+                            <div>
+                                <h3>选修阶段</h3>
+                                <p>
+                                    经历了前4个阶段的系统学习，你已经具备了PC端和移动端基本的编程技能，在前端领域可以独当一面了，为了适应前端专业各个领域的开发与效率进一步的提升，建议你可以自修AngularJS，Sass等框架与前端技术。
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="planing-tag">
+                        <h2>从0到大牛，定制专属你学习规划</h2>
+                        <p>从入学到结业专属导师实时跟踪学习效果，</p>
+                        <div style="clear: both"></div>
+                        <p>结合学习效果定制专属于你的学习计划。</p>
+                        <a href="javascript:;"  onclick="_MEIQIA('showPanel')">定制我的学习计划</a>
+                    </div>
+                </div>
+                <img src="/static/images/mz_new_ad/web-images/banner3.png" alt="从0到大牛，定制专属你学习路线">
+            </div>
+            <div class="tab1-lps">
+                <div class="lps-content">
+                     <div class="video_introduce1">
+                        <a href="javascript:void(null)"  class="video1" data-href="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/gwsp/ksrsnew.mp4"
+                           onclick="zhuge.track('web页视频介绍', {'名称': '快速认识麦子学院'})"></a>
+
+                     </div>
+                    <a href="javascript:;" onclick="_MEIQIA('showPanel')" class="lps-btn">什么是LPS系统</a>
+                </div>
+            </div>
+
+
+            <!--大牛老师介绍-->
+            <div class="tab1-big">
+
+                <div class="big-content">
+                    <img src="/static/images/mz_new_ad/web-images/big-bg2.png" alt="总监级大牛，手把手帮你成为前端工程师" class="img_big">
+                    <div class="big-tag">
+                        <h2>总监级大牛，手把手帮你成为前端工程师</h2>
+                        <p>我们聘请了来自世界各地与国内一线企业的大牛导师为你打造顶级的职业课程</p>
+                    </div>
+                    <div style="clear: both"></div>
+                    <ul class="big-list clearfix">
+                        <li class="big-list1">
+                            <img src="/static/images/mz_new_ad/web-images/big1.png" alt="范启凤-前雅虎高级工程师">
+                            <h4>范启凤</h4>
+                            <span>前华为大数据研发</span>
+                            <p>曾参与华为大数据研发，网站优化等大型项目，5年WEB前端可开发工作经验，多次在腾讯课堂授课。</p>
+                            <a href="javascript:;" onclick="_MEIQIA('showPanel')">与老师聊聊</a>
+                        </li>
+                        <li class="big-list2">
+                            <img src="/static/images/mz_new_ad/web-images/big2.png" alt="魏畅然-前雅虎高级工程师">
+                            <h4>魏畅然</h4>
+                            <span>前雅虎高级工程师</span>
+                            <p>美国南加州大学计算机硕士，曾负责雅虎邮箱前端开发，专注前端框架搭建。</p>
+                            <a href="javascript:;" onclick="_MEIQIA('showPanel')">与老师聊聊</a>
+                        </li>
+                        <li class="big-list3">
+                            <img src="/static/images/mz_new_ad/web-images/big3.png" alt="何虎-5年实训项目经理">
+                            <h4>何虎</h4>
+                            <span>5年实训项目经理</span>
+                            <p>8年WEB开发经验，擅长互联网应用程序开发，曾研发过价值千万级医药行业ERP项目。</p>
+                            <a href="javascript:;" onclick="_MEIQIA('showPanel')">与老师聊聊</a>
+                        </li>
+                        <li class="big-list4">
+                            <img src="/static/images/mz_new_ad/web-images/big4.png" alt="李景山-前端开发高级工程师">
+                            <h4>李景山</h4>
+                            <span>前端开发高级工程师</span>
+                            <p>曾担任某百万级流量电商网站压法负责人，乐于程序设计，负责过多个大型综合信息网站的研发，精通移动和PC WEB开发技术。</p>
+                            <a href="javascript:;" onclick="_MEIQIA('showPanel')">与老师聊聊</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tab1-school">
+                <!--<img src="/static/images/mz_new_ad/web-images/img-school.png" alt="强大的校企合作就业服务体系" class="img_school">-->
+                <div class="school-content">
+                    <img src="/static/images/mz_new_ad/web-images/invite.png" alt="麦子学院携手一线招聘平台，实现就业权威保障">
+                    <div class="video_introduce1">
+                        <a href="javascript:void(null)" class="video2"
+                            data-href="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/gwsp/jyhznew.mp4" onclick="zhuge.track('web页视频介绍', {'名称': '就业合作'})">
+                        </a>
+                    </div>
+                    <a  href="javascript:;" onclick="_MEIQIA('showPanel')" class="school-btn ">咨询保就业服务</a>
+                </div>
+
+            </div>
+            <div class="tab1-dream">
+
+                <img class="tab1-bg-img" src="/static/images/mz_new_ad/web-images/tab1-bg.png" title="大牛导师为你打造顶级的职业课程">
+                <div class="dream-content">
+                    <div class="dream-tag">
+                        <h2>他们已经实现了自己的高薪职业梦想，你呢？</h2>
+                        <p class="tab-dream-p">我们聘请了来自世界各地与国内一线企业的大牛导师为你打造顶级的职业课程</p>
+                        <a  href="javascript:;" onclick="_MEIQIA('showPanel')">了解定向就业计划</a>
+                    </div>
+                </div>
+                <div class="student-list">
+                    <ul>
+                        <li>
+                            <img src="/static/images/mz_new_ad/web-images/slide-img3.png" alt="陈龙-月薪10k入职赛尔互联" class="student-img">
+                            <div class="student-content">
+                                <h4>陈龙</h4>
+                                <span>月薪10K，赛尔互联</span>
+                                <p>非常喜欢现在的前端的工作，这种成就感让自己感觉已在走向成功的道路上。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="/static/images/mz_new_ad/web-images/slide-img2.png" alt="黄子楷-月薪12k入职麦盛" class="student-img">
+                            <div class="student-content">
+                                <h4>黄子楷</h4>
+                                <span>月薪12k，入职麦盛</span>
+                                <p>4个多月的辛苦没有白费。白天上班，晚上学习虽然辛苦了一些，回头看来很值得。</p>
+                            </div>
+                        </li>
+                        <li class="scale-li">
+                            <img src="/static/images/mz_new_ad/web-images/slide-img9.png" alt="周安伟-月薪12k入职腾讯" class="student-img">
+                            <div class="student-content">
+                                <h4>周安伟</h4>
+                                <span>月薪12k，入职腾讯</span>
+                                <p>团队是一个整体，讲究的是合作，有事没事多沟通，往往自己苦思冥想做出的结果却不合适</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="/static/images/mz_new_ad/web-images/slide-img1.png" alt="薛馨予-月薪10k入职爱客" class="student-img">
+                            <div class="student-content">
+                                <h4>薛馨予</h4>
+                                <span>月薪10K，入职爱客</span>
+                                <p>其实不放弃自己想做的才是更重要的，希望自己能在这条路上坚持下去，越走越远</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="/static/images/mz_new_ad/web-images/slide-img5.png" alt="王欣晨-月薪10k入职环球网" class="student-img">
+                            <div class="student-content">
+                                <h4>王欣晨</h4>
+                                <span>月薪9.3K，环球网</span>
+                                <p>拿到了满意的产品经理岗位Offer，可能我将注定成为未来的CEO吧！</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="/static/images/mz_new_ad/web-images/slide-img6.png" alt="黄青青-月薪8k入职聚簇云网络" class="student-img">
+                            <div class="student-content">
+                                <h4>黄青青</h4>
+                                <span>月薪8K，聚簇云网络</span>
+                                <p>朋友说女程序员是互联网公司里面的国宝，进了互联网公司发现自己颜值确实不差。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="/static/images/mz_new_ad/web-images/slide-img7.png" alt="王子强-月薪12k入职明与简科技" class="student-img">
+                            <div class="student-content">
+                                <h4>王子强</h4>
+                                <span>月薪12k，明与简科技</span>
+                                <p>线下的学习像是在工作中历练一样，累并轻松着，痛并快乐着。最后我赢了！</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="/static/images/mz_new_ad/web-images/slide-img8.png" alt="赵田生-月薪9.5k入职知名互联网公司" class="student-img">
+                            <div class="student-content">
+                                <h4>赵田生</h4>
+                                <span>月薪9.5K，入职知名医药互联网</span>
+                                <p>在传统软件公司工作，离互联网很遥远。很幸运的是通过提升我敢上了互联网这趟车。</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="/static/images/mz_new_ad/web-images/slide-img4.png" alt="周文语-月薪10k入职上海知名互联网公司" class="student-img">
+                            <div class="student-content">
+                                <h4>周文语</h4>
+                                <span>月薪10k，入职上海知名互联网公司</span>
+                                <p>出于自己是一个极度没有自律的人选择了麦子线下培训，最大的收获是培养了自律习惯吧。</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tab1-choose">
+                <div class="video_introduce1">
+                    <a  class="choose-content" href="javascript:void(null)" data-href="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/gwsp/jpjsftnew.mp4" onclick="zhuge.track('web页视频介绍', {'名称': '就业合作'})">
+                        <img src="/static/images/mz_new_ad/web-images/banner8.png" alt="一千个选择麦子的理由" class="img-choose">
+                    </a>
+                </div>
+            </div>
+            <div class="tab1-media">
+                <div class="media-content">
+                    <h4>媒体报道</h4>
+                    <ul>
+                        <li>
+                            <a href="http://tech.sina.com.cn/i/2015-11-13/doc-ifxkszhk0231260.shtml" rel="nofollow"
+                               target="_blank">
+                                <img src="/static/images/mz_new_ad/web-images/link1.png" alt="新浪"
+                                     onclick="zhuge.track('新浪', {'来源': 'px页媒体报道'})">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://science.china.com.cn/2016-03/17/content_8645350.htm" rel="nofollow"
+                               target="_blank">
+                                <img src="/static/images/mz_new_ad/web-images/link2.png" alt="21CN财经"
+                                     onclick="zhuge.track('21CN财经', {'来源': 'px页媒体报道'})">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://36kr.com/p/5039661.html" rel="nofollow" target="_blank">
+                                <img src="/static/images/mz_new_ad/web-images/link3.png" alt="36kr"
+                                     onclick="zhuge.track('36Kr', {'来源': 'px页媒体报道'})">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://news.ifeng.com/a/20151126/46403469_0.shtml" rel="nofollow" target="_blank">
+                                <img src="/static/images/mz_new_ad/web-images/link4.png" alt="凤凰"
+                                     onclick="zhuge.track('凤凰', {'来源': 'px页媒体报道'})">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://edu.qq.com/a/20151201/056651.htm" rel="nofollow" target="_blank">
+                                <img src="/static/images/mz_new_ad/web-images/link5.png" alt="腾讯网"
+                                     onclick="zhuge.track('腾讯网', {'来源': 'px页媒体报道'})">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://learning.sohu.com/20160513/n449228783.shtml" rel="nofollow" target="_blank">
+                                <img src="/static/images/mz_new_ad/web-images/link6.png" alt="搜狐网"
+                                     onclick="zhuge.track('搜狐网', {'来源': 'px页媒体报道'})">
+                            </a>
+                        </li>
+                    </ul>
+                    <h4>合作企业</h4>
+                    <ul>
+                        <li>
+                            <a href="http://study.163.com/" rel="nofollow" target="_blank">
+                                <img src="/static/images/mz_new_ad/web-images/link7.png" alt="合作企业"
+                                     onclick="zhuge.track('网易云课堂', {'来源': 'px页合作企业'})">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://maiziedu.ke.qq.com/" rel="nofollow" target="_blank">
+                                <img src="/static/images/mz_new_ad/web-images/link8.png" alt="合作企业"
+                                     onclick="zhuge.track('腾讯课堂', {'来源': 'px页合作企业'})">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.miguxue.com/" rel="nofollow" target="_blank">
+                                <img src="/static/images/mz_new_ad/web-images/link9.png" alt="合作企业"
+                                     onclick="zhuge.track('咪咕学堂', {'来源': 'px页合作企业'})">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.aliyun.com/" rel="nofollow" target="_blank">
+                                <img src="/static/images/mz_new_ad/web-images/link10.png" alt="合作企业"
+                                     onclick="zhuge.track('阿里云', {'来源': 'px合作企业'})">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.iqiyi.com/" rel="nofollow" target="_blank">
+                                <img src="/static/images/mz_new_ad/web-images/link11.png" alt="合作企业"
+                                     onclick="zhuge.track('爱奇艺', {'来源': 'px合作企业'})">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.chuanke.com/" rel="nofollow" target="_blank">
+                                <img src="/static/images/mz_new_ad/web-images/link12.png" alt="合作企业"
+                                     onclick="zhuge.track('爱奇艺', {'来源': 'px合作企业'})">
+                            </a>
+                        </li>
+                    </ul>
+                    <h4>合作院校</h4>
+                    <ul>
+                        <li>
+                            <a href="http://www.suse.edu.cn/" rel="nofollow" target="_blank">
+                                <img src="/static/images/mz_new_ad/web-images/link13.png" alt="合作院校"
+                                     onclick="zhuge.track('四川理工大学', {'来源': 'px页合作院校'})">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.scu.edu.cn/" rel="nofollow" target="_blank">
+                                <img src="/static/images/mz_new_ad/web-images/link14.png" alt="合作院校"
+                                     onclick="zhuge.track('四川大学', {'来源': 'px页合作院校'})">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.cdut.edu.cn/default.html" rel="nofollow" target="_blank">
+                                <img src="/static/images/mz_new_ad/web-images/link15.png" alt="合作院校"
+                                     onclick="zhuge.track('成都理工大学', {'来源': 'px页合作院校'})">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://www.uestc.edu.cn/" rel="nofollow" target="_blank">
+                                <img src="/static/images/mz_new_ad/web-images/link16.png" alt="合作院校"
+                                     onclick="zhuge.track('电子科技大学', {'来源': 'px页合作院校'})">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" rel="nofollow" target="_blank">
+                                <img src="/static/images/mz_new_ad/web-images/link17.png" alt="合作院校">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" rel="nofollow" target="_blank">
+                                <img src="/static/images/mz_new_ad/web-images/link18.png" alt="合作院校">
+                            </a>
+                        </li>
+                    </ul>
+                    <h4>荣誉奖项</h4>
+                    <ul>
+                        <li>
+                            <img src="/static/images/mz_new_ad/web-images/honor1.png" alt="获得奖项">
+                        </li>
+                        <li>
+                            <img src="/static/images/mz_new_ad/web-images/honor2.png" alt="获得奖项">
+                        </li>
+                        <li>
+                            <img src="/static/images/mz_new_ad/web-images/honor3.png" alt="获得奖项">
+                        </li>
+                        <li>
+                            <img src="/static/images/mz_new_ad/web-images/honor4.png" alt="获得奖项">
+                        </li>
+                        <li>
+                            <img src="/static/images/mz_new_ad/web-images/honor5.png" alt="获得奖项">
+                        </li>
+                        <li>
+                            <img src="/static/images/mz_new_ad/web-images/honor6.png" alt="获得奖项">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tab1-footer">
+                <img src="/static/images/mz_new_ad/web-images/footer-bg.png" alt="成为一名真正的WEB开发工程师"
+                     class="img_footer">
+                <div class="footer-content">
+
+                    <div class="assess-box">
+                        <div class="innerbox">
+                            <div class="itembox">
+                                <img src="/static/images/mz_new_ad/web-images/ali.png" alt="麦子学院是IT在线教育的创领者">
+                                <p class="line"><span>“</span>麦子学院是IT在线教育的创领者，我们希望有更多像麦子一样的教育培训</p>
+                                <p class="line">机构，将学习和就业效果做到极致<span>”</span></p>
+                                <p class="line2">王晓雯</p>
+                                <p class="line3">阿里云教育创业部总监</p>
+                            </div>
+                            <div class="itembox">
+                                <img src="/static/images/mz_new_ad/web-images/baidu.png" alt="麦子学院是IT在线教育的创领者">
+                                <p class="line"><span>“</span>大数据显示，麦子学院在国内IT在线教育行业内有极高的就业率</p>
+                                <p class="line">我们希望在未来与麦子学院的定制化就业学习模式进行更加深入的合作<span>”</span></p>
+                                <p class="line2">陈月</p>
+                                <p class="line3">百度总监</p>
+                            </div>
+                            <div class="itembox">
+                                <img src="/static/images/mz_new_ad/web-images/360.png" alt="麦子学院是IT在线教育的创领者">
+                                <p class="line"><span>“</span>智能化、数据化的学习过程监控，领先创新的LPS在线教育模式，高效可靠的商业项目训练，为社会培养1万+的高技能IT人才，我们会同与麦子学院一道，以IT技术服务为核心服务更多的企业和个人<span>”</span></p>
+                                <p class="line"></p>
+                                <p class="line2">徐旭升</p>
+                                <p class="line3">360教育总监</p>
+                            </div>
+                        </div>
+                        <div class="list-btn">
+                            <ul>
+                                <li class="active"></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="ask-box">
+                        <h4>你准备好成为一名真正的WEB开发工程师了吗？</h4>
+                        <div class="class-box">
+                            <div class="left">
+                                <a  href="javascript:;"onclick="_MEIQIA('showPanel')">立即报名</a>
+                            </div>
+                            <div class="right">
+                                <a  href="javascript:;" onclick="_MEIQIA('showPanel')">立即报名</a>
+                            </div>
+                        </div>
+                        <p>我想再更加的了解一下学习模式、费用、周期等细节问题</p>
+                        <a  href="javascript:;" onclick="_MEIQIA('showPanel')"class=" consult">咨询专业顾问</a>
+                        <p>还有疑问您也可以体验一下我们的课程</p>
+                        {% if short_name %}
+                        <a href="{% url 'lps4_index' short_name %}" class="experience">体验学习</a>
+                        {% else %}
+                        <a href="javascript:void 0" onclick="_MEIQIA('showPanel')" class="experience">体验学习</a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="yz-form-container">
+                    <div class="yz-form-box">
+                        <h3 class="yz-form-tit">体验试学</h3>
+                        <span class="yz-form-tag">* 请放心填写，我们会对您的信息严格保密</span>
+                        <form id="yz-form">
+                            <div class="yz-input-box yz-name">
+                                <i></i>
+                                <b></b>
+                                <input type="text" placeholder="您的姓名" name="name">
+                                <div class="yz-errortip">姓名不能为空</div>
+                            </div>
+                            <div class="yz-input-box yz-phone">
+                                <i></i>
+                                <b></b>
+                                <input type="text" placeholder="您的电话" name="phone">
+                                <div class="yz-errortip">请填写正确的电话号码</div>
+                            </div>
+                            <button class="yz-submit" type="button">提交</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="copyright">
+                    <div class="copyright-box">
+                        <img src="/static/images/mz_new_ad/web-images/footer-logo.png" class="ps-left" alt="logo">
+                        <div class="ps-right">
+                            © 2012-2016 www.maiziedu.com<br>蜀ICP备13014270号-4 Version 5.0.0 release20160127
+                        </div>
+                        <a href="https://www.anquan.org/authenticate/cert/?site=www.maiziedu.com&amp;at=business"
+                           target="_blank" class="industry-validate" rel="nofollow"><img
+                                src="/images/index/hangye_validate.png"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab2" id="tab2" style="display: none">
+            <div class="tab2-content">
+                <div class="course-list">
+                    <div class="stage-title">
+                        <span>1</span>
+                        <h3>第一阶段：网页基础入门</h3>
+                        <p>作为前端工程师必须要有扎实的网页基础功底，培训第一阶段主要HTML网页标签，CSS常用属性，通过实际案例练习，实现静态网页布局。在第一阶段进行JavaScript基础语法学习，完成课程内容。</p>
+                    </div>
+                    <ul class="course-content">
+                        <li>
+                            <div class="course-title">
+                                <span>01</span>
+                                <h4>HTML基础入门</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>什么是网页前端，开发工具介绍，Html常见的标签，相关的命名规则，ul/ol/li列表元素，dl/dt/dd列表元素。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>02</span>
+                                <h4>CSS基础入门</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>CSS选择器，CSS样式的使用，CSS背景属性，CSS文本属性，表格实例。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>03</span>
+                                <h4>Div+Css盒子模型</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>认识默认的文档流模式，float浮动效果，div+span及盒子模型，网页布局模式，实例：网页布局。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>04</span>
+                                <h4>Css导航栏自适应</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>Csss边框样式，Css外间距样式，Css内间距样式，Css之Hover伪类元素，实例：背景自适应列表案例。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>05</span>
+                                <h4>Css定位</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>网页定位原理，相对定位，绝对定位，Css实现三角形效果，实例：带说明的导航。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>06</span>
+                                <h4>JavaScript初识</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>javascript变量，数据类型，js隐式转换，事件的绑定和移出，js强制类型转换，JavaScript初识。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="course-list">
+                    <div class="stage-title">
+                        <span>2</span>
+                        <h3>第二阶段：专业JS编程</h3>
+                        <p>一位优秀的前端工程师必掌握的专业技能就是JavaScript编程，如果你具备优秀的JavaScript编程技能，那么你将是众多公司青睐的对象。此阶段主要通过实际案例掌握JavaScript原生态编程，掌握Jquery编程，初步了解响应式框架。</p>
+                    </div>
+                    <ul class="course-content">
+                        <li>
+                            <div class="course-title">
+                                <span>01</span>
+                                <h4>JavaScript基础语法</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>流程控制：if语句，流程控制：switch语句，自定义函数。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>02</span>
+                                <h4>JavaScript基础语法</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>for循环，while和do...while循环，js参数及变量作用域，对元素的输出。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>03</span>
+                                <h4>运算符</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>算数运算符，逻辑运算符，三元运算符。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>04</span>
+                                <h4>定时器</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>定时器创建，定时器清除，实例：实现图片轮播。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>05</span>
+                                <h4>实现dom操作</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>对元素的获取，对元素的属性设置，对元素注册事件，创建元素或删除元素，实例：仿淘宝购物车。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>06</span>
+                                <h4>Jquery框架使用</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>掌握Jq选择器，Jquery对dom操作，jq事件，jq自定义动画，Bootstrap框架使用。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="course-list">
+                    <div class="stage-title">
+                        <span>3</span>
+                        <h3>第三阶段：专业阶段-综合案例</h3>
+                        <p>学到此阶段，从专业技能上，同学应该都具备一定的前端编程能力了，可以实现pc端所有静态页面和常用js特效的制作，本阶段通过几个综合案例主要让同学们了解掌握兼容性处理的相关办法和初步进入h5+css3的学习。</p>
+                    </div>
+                    <ul class="course-content">
+                        <li>
+                            <div class="course-title">
+                                <span>01</span>
+                                <h4>网页兼容</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>掌握网页兼容工具的使用及常见的css兼容问题。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>02</span>
+                                <h4>jquery-UI</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>掌握JqueryUI基本框架， JqueryUI模态窗体， Jquery日历插件。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>03</span>
+                                <h4>Ajax技术</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>掌握XmlHttpRequset对象介绍，onreadystatechange，readySate属性，jquery ajax，实际案例。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>04</span>
+                                <h4>正则表达式</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>掌握正则表达式基本语法，第js实现正则表达式，jquery验证框架。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>05</span>
+                                <h4>html5媒体标签</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>掌握embed，video及相关属性，audio标签和相关属性。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>06</span>
+                                <h4>js无缝滚动效果</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>无缝滚动的基本原理，offsetWidth属性，scrollLeft属性，结合定时器实现。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>07</span>
+                                <h4>js实现放大镜特效</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>放大镜设计的实现原理和设计思路， event对象及event对象ie和ff兼容处理，掌握position实现定位。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>08</span>
+                                <h4>HTML5+CSS3</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p> H5+css3实现网页框架，input新增标签，Canvas编程，HTML5绘图基础，案例：canvas实现小游戏。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="course-list">
+                    <div class="stage-title">
+                        <span>4</span>
+                        <h3>第四阶段：移动端开发</h3>
+                        <p>掌握了前3个阶段的前端知识，其实你已经具备了开发一个综合项目的基本能力，为了增加你的项目经验的多样性，适应市场的需求，获取更高的薪资，请继续学习移动端编程吧。</p>
+                    </div>
+                    <ul class="course-content">
+                        <li>
+                            <div class="course-title">
+                                <span>01</span>
+                                <h4>Bootstrap栅格系统</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>Bootstrap栅格原理，Bootstrap栅格用法，Bootstrap排版基础。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>02</span>
+                                <h4>Bootstrap响应式组件</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>Bootstrap表格样式，Bootstrap表单样式，Bootstrap按钮组。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>03</span>
+                                <h4>Bootstrap图片与辅助样式</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>焦点轮播图；折叠效果，Js选项卡，进度条和媒体对象，标签、徽章、大屏展播，页面标题，Boostrap导航条。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>04</span>
+                                <h4>Bootstrap响应式网页</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p> 创建新的项目，响应式导航，第一屏home区域制作，footer底部区域制作，效果插件。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>05</span>
+                                <h4>zepto入门</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>zepto和jquery的联系，zepto和jquery的区别，Zepto.js 入门，Zepto 工具方法，用 Zepto 快速选择元素，Zepto.js 自定义。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>06</span>
+                                <h4>zepto实战</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>Zepto 的应用开发框架，App.js Zepto 脚手架，App.js Zepto 列表页·App.js Zepto 详情页，App.js Zepto 评论页。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="course-list">
+                    <div class="stage-title">
+                        <span>5</span>
+                        <h3>第五阶段：选修阶段</h3>
+                        <p>经历了前4个阶段的系统学习，你已经具备了pc端和移动端编程的基本技能，在前端领域可以独当一面了，为了适应前端专业各个领域的开发和效率的经一步提升，建议你可以自修AngularJS，Less等框架。</p>
+                    </div>
+                    <ul class="course-content">
+                        <li>
+                            <div class="course-title">
+                                <span>01</span>
+                                <h4>AngularJS入门</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>AngularJS的语法介绍，AngularJS中的简单数据绑定，AngularJS中的事件绑定。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>02</span>
+                                <h4>AngularJS编程</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>AngularJS中的控制器，AngularJS表单开发，AngularJS表单开发。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>03</span>
+                                <h4>AngularJS模块化编程</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p> AngularJS模块化应用（上），AngularJS模块化应用（下）。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="course-title">
+                                <span>04</span>
+                                <h4>HTMLLESS编程基础入门</h4>
+                            </div>
+                            <div class="course-detail">
+                                <p>初见less，变量(variables)，函数(functions)，f函数库 - 其他函数。</p>
+                                <a href="javascript:void 0" onclick="_MEIQIA('showPanel')">获取课程重点</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="tab2-footer">
+                {% if hot_course_datas %}
+                <div class="footer-box">
+                    <h2>推荐基础课程</h2>
+
+                    <ul>
+                        {% for hot_course_data in hot_course_datas %}
+                         <li>
+                            <a href="{% url 'course:course_detail_view' hot_course_data.id %}" target="_blank">
+                                <div class="item-tag">
+                                    <p class="item-tag1">{{ hot_course_data.name }}</p>
+                                    <p class="item-tag2">{{ hot_course_data.student_count }}人学习</p>
+                                </div>
+                                <img src="{{ MEDIA_URL }}{{ hot_course_data.image }}" alt="{{ hot_course_data.name }}" class="ur-img">
+                            </a>
+                        </li>
+
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                <div class="copyright">
+                    <div class="copyright-box">
+                        <img src="/static/images/mz_new_ad/web-images/footer-logo.png" class="ps-left" alt="logo">
+                        <div class="ps-right">
+                            © 2012-2016 www.maiziedu.com<br>蜀ICP备13014270号-4 Version 5.0.0 release20160127
+                        </div>
+                        <a href="https://www.anquan.org/authenticate/cert/?site=www.maiziedu.com&amp;at=business"
+                           target="_blank" class="industry-validate" rel="nofollow"><img
+                                src="/images/index/hangye_validate.png"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab3" id="tab3" style="display: none">
+            <div class="tab3-top">
+                <div class="top-content">
+                    <div class="top-left">
+                        <p class="top-text">综合评价</p>
+                        <span class="left-num">10.00</span>
+                        <span class="left-star"><img src="/static/images/mz_new_ad/web-images/tab3-top-star.png" alt=""></span>
+                    </div>
+                    <div class="top-right">
+                        <ul>
+                            <li>
+                                <span class="right-text">课程质量</span>
+                                <span class="right-num">10.00</span>
+                            </li>
+                            <li>
+                                <span class="right-text">老师满意度</span>
+                                <span class="right-num">10.00</span>
+                            </li>
+                            <li>
+                                <span class="right-text">简洁易懂</span>
+                                <span class="right-num">10.00</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tab3-evaluation">
+                <div class="all-title">
+                    全部评价
+                </div>
+                <ul>
+                    <li>
+                        <div class="eval-title">
+                            <h4>周安伟 <img src="/static/images/mz_new_ad/web-images/evaluation-star.png" alt="学生全员好评"></h4>
+                            <span>45分钟前</span>
+                        </div>
+                        <div class="eval-content">
+                            作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很 nice。1 天半看了 1/3
+                            了，毫无难度，通俗易懂。唯一的一点不足就是这不是Vue2.0的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                        </div>
+                        <img src="/static/images/mz_new_ad/web-images/big-img.png" alt="学生全员好评">
+                    </li>
+                    <li>
+                        <div class="eval-title">
+                            <h4>周安伟 <img src="/static/images/mz_new_ad/web-images/evaluation-star.png" alt="学生全员好评"></h4>
+                            <span>45分钟前</span>
+                        </div>
+                        <div class="eval-content">
+                            作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很 nice。1 天半看了 1/3了，毫无难度，通俗易懂。
+                        </div>
+                        <img src="/static/images/mz_new_ad/web-images/big-img.png" alt="学生全员好评">
+                    </li>
+                    <li>
+                        <div class="eval-title">
+                            <h4>周安伟 <img src="/static/images/mz_new_ad/web-images/evaluation-star.png" alt="学生全员好评"></h4>
+                            <span>45分钟前</span>
+                        </div>
+                        <div class="eval-content">
+                            作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很 nice。1 天半看了 1/3
+                            了，毫无难度，通俗易懂。唯一的一点不足就是这不是Vue2.0的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                        </div>
+                        <img src="/static/images/mz_new_ad/web-images/big-img.png" alt="学生全员好评">
+                    </li>
+                    <li>
+                        <div class="eval-title">
+                            <h4>周安伟 <img src="/static/images/mz_new_ad/web-images/evaluation-star.png" alt="学生全员好评"></h4>
+                            <span>45分钟前</span>
+                        </div>
+                        <div class="eval-content">
+                            作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很 nice。1 天半看了 1/3
+                            了，毫无难度，通俗易懂。唯一的一点不足就是这不是Vue2.0的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                        </div>
+                        <img src="/static/images/mz_new_ad/web-images/big-img.png" alt="学生全员好评">
+                    </li>
+                    <li>
+                        <div class="eval-title">
+                            <h4>周安伟 <img src="/static/images/mz_new_ad/web-images/evaluation-star.png" alt="学生全员好评"></h4>
+                            <span>45分钟前</span>
+                        </div>
+                        <div class="eval-content">
+                            作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很 nice。1 天半看了 1/3
+                            了，毫无难度，通俗易懂。唯一的一点不足就是这不是Vue2.0的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                        </div>
+                        <img src="/static/images/mz_new_ad/web-images/big-img.png" alt="学生全员好评">
+                    </li>
+                    <li>
+                        <div class="eval-title">
+                            <h4>周安伟 <img src="/static/images/mz_new_ad/web-images/evaluation-star.png" alt="学生全员好评"></h4>
+                            <span>45分钟前</span>
+                        </div>
+                        <div class="eval-content">
+                            作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很 nice。1 天半看了 1/3
+                            了，毫无难度，通俗易懂。唯一的一点不足就是这不是Vue2.0的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                        </div>
+                        <img src="/static/images/mz_new_ad/web-images/big-img.png" alt="学生全员好评">
+                    </li>
+                    <li>
+                        <div class="eval-title">
+                            <h4>周安伟 <img src="/static/images/mz_new_ad/web-images/evaluation-star.png" alt="学生全员好评"></h4>
+                            <span>45分钟前</span>
+                        </div>
+                        <div class="eval-content">
+                            作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很 nice。1 天半看了 1/3
+                            了，毫无难度，通俗易懂。唯一的一点不足就是这不是Vue2.0的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                        </div>
+                        <img src="/static/images/mz_new_ad/web-images/big-img.png" alt="学生全员好评">
+                    </li>
+                    <li>
+                        <div class="eval-title">
+                            <h4>周安伟 <img src="/static/images/mz_new_ad/web-images/evaluation-star.png" alt="学生全员好评"></h4>
+                            <span>45分钟前</span>
+                        </div>
+                        <div class="eval-content">
+                            作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很 nice。1 天半看了 1/3
+                            了，毫无难度，通俗易懂。唯一的一点不足就是这不是Vue2.0的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                        </div>
+                        <img src="/static/images/mz_new_ad/web-images/big-img.png" alt="学生全员好评">
+                    </li>
+                    <li>
+                        <div class="eval-title">
+                            <h4>周安伟 <img src="/static/images/mz_new_ad/web-images/evaluation-star.png" alt="学生全员好评"></h4>
+                            <span>45分钟前</span>
+                        </div>
+                        <div class="eval-content">
+                            作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很 nice。1 天半看了 1/3
+                            了，毫无难度，通俗易懂。唯一的一点不足就是这不是Vue2.0的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                        </div>
+                        <img src="/static/images/mz_new_ad/web-images/big-img.png" alt="学生全员好评">
+                    </li>
+                    <li>
+                        <div class="eval-title">
+                            <h4>周安伟 <img src="/static/images/mz_new_ad/web-images/evaluation-star.png" alt="学生全员好评"></h4>
+                            <span>45分钟前</span>
+                        </div>
+                        <div class="eval-content">
+                            作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很 nice。1 天半看了 1/3
+                            了，毫无难度，通俗易懂。唯一的一点不足就是这不是Vue2.0的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                            <div class="eval-reply">
+                                <p><span>老师回复：</span>感谢支持~能学会使用Vue开发实战项目就是本门课的宗旨~由于课程录制时间比较早选择的是1.0的。</p>
+                            </div>
+                        </div>
+                        <img src="/static/images/mz_new_ad/web-images/big-img.png" alt="学生全员好评">
+                    </li>
+                    <li class="show-eval">
+                        <div>
+                            <img src="/static/images/mz_new_ad/web-images/addIcon.png" alt="加载更多好评">
+                            <span>加载更多评论</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+             <div class="copyright">
+                    <div class="copyright-box">
+                        <img src="/static/images/mz_new_ad/web-images/footer-logo.png" class="ps-left" alt="logo">
+                        <div class="ps-right">
+                            © 2012-2016 www.maiziedu.com<br>蜀ICP备13014270号-4 Version 5.0.0 release20160127
+                        </div>
+                        <a href="https://www.anquan.org/authenticate/cert/?site=www.maiziedu.com&amp;at=business"
+                           target="_blank" class="industry-validate" rel="nofollow"><img
+                                src="/images/index/hangye_validate.png"></a>
+                    </div>
+                </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block custom_script %}
+
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+
+    <script type="text/javascript" src="/static/js/mz_new_ad/web-js/web.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/index.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/static/js/yz-js/yz-form.js?v={{ time_stamp }}"></script>
+    <script>
+       $(window).scroll(function () {
+                if ($(document).scrollTop() >= 717) {
+                    $('.nav-tab').css({'position':'fixed','top':0,'z-index':999});
+                    $('.nav-web').css('visibility','visible');
+                    $('.nav-tea').css('visibility','visible');
+                }else{
+                    $('.nav-tab').css({'position':'','top':'','z-index':999});
+                    $('.nav-web').css('visibility','hidden');
+                    $('.nav-tea').css('visibility','hidden');
+                }
+
+                $("#nav-btn1").click(function () {
+                $(" .arrow-top").css("display", "none");
+                $("#nav-btn1").addClass("nav-active");
+                $("#nav-btn2").removeClass("nav-active");
+                $("#nav-btn3").removeClass("nav-active");
+                $("#tab1").show();
+                $("#tab2").hide();
+                $("#tab3").hide();
+                $('html,body').animate({scrollTop: '757' + 'px'}, 0);
+                $("#nav-btn1 .arrow-top").css("display", "block");
+
+            })
+            $("#nav-btn2").click(function () {
+                $(" .arrow-top").css("display", "none");
+                $("#nav-btn2").addClass("nav-active");
+                $("#nav-btn1").removeClass("nav-active");
+                $("#nav-btn3").removeClass("nav-active");
+                $("#tab2").show();
+                $("#tab1").hide();
+                $("#tab3").hide();
+                $('html,body').animate({scrollTop: '757' + 'px'}, 0);
+                $("#nav-btn2 .arrow-top").css("display", "block");
+
+            })
+            $("#nav-btn3").click(function () {
+                $(" .arrow-top").css("display", "none");
+                $("#nav-btn3").addClass("nav-active");
+                $("#nav-btn1").removeClass("nav-active");
+                $("#nav-btn2").removeClass("nav-active");
+                $("#tab3").show();
+                $("#tab1").hide();
+                $("#tab2").hide();
+                $('html,body').animate({scrollTop: '757' + 'px'}, 0);
+                $("#nav-btn3 .arrow-top").css("display", "block");
+
+            })
+            });
+    </script>
+
+    <script>
+        (function(m, ei, q, i, a, j, s) {
+            m[i] = m[i] || function() {
+                    (m[i].a = m[i].a || []).push(arguments)
+                };
+            j = ei.createElement(q),
+                s = ei.getElementsByTagName(q)[0];
+            j.async = true;
+            j.charset = 'UTF-8';
+            j.src = '//static.meiqia.com/dist/meiqia.js';
+            s.parentNode.insertBefore(j, s);
+        })(window, document, 'script', '_MEIQIA');
+        _MEIQIA('entId', 54180);
+        _MEIQIA('withoutBtn');
+
+    </script>
+
+
+{% endblock %}

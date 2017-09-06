@@ -1,0 +1,54 @@
+{% extends "mz_common/base.html" %}
+{% block title %}{{ sclass.career_course.name }}-体验班 - 麦子学院{% endblock %}
+{% block custom_css %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}mz_lps3/css/style.css"/>
+<style type="text/css">
+body {background: #f5f5f5;}
+{% if student_class_studing_paused %}
+html {overflow: hidden;}
+{% endif %}
+</style>
+{% endblock %}
+{% load my_filter %}
+{% block container %}
+    <div class="fps-header"></div>
+
+    <div class="zyTopMenu3">
+        <a href="{% url 'lps3:student_class' sclass.id %}">{{ sclass.career_course.name }}-体验班</a>
+        <a class="aH" href="{% url 'lps3:student_class_dynmsg' sclass.id %}">班级动态</a>
+    </div>
+    <div class="container" style="margin-bottom: 65px;position: relative;">
+        <img src="{{ STATIC_URL }}mz_lps3/images/sx_dynsmg.png">
+        <div class="sx_dynsmg_mask">
+            <div class="sx_dynsmg YaHei">
+                <p class="font14 color66 marginB20">成为付费学员能查看更多详细学习数据,更能参与班级讨论,交流学习心得</p>
+
+{#                <a class="colorff font14 zxbtn textC" target="_blank" onclick="hz6d_is_exist('setIsinvited()%3Bwindow.open(#liyc#http%3A%2F%2Fwww1.53kf.com%2FwebCompany.php%3Farg%3D10111642%26style%3D3%26kflist%3Doff%26kf%3Djenny%40maiziedu.com%2Cvicky.li%40maiziedu.com%2Cyiyahui%40maiziedu.com%2Cyangjuan%40maiziedu.com%2Ccrystal%40maiziedu.com%2Csharon%40maiziedu.com%2Cxvjian%40maiziedu.com%2Cjanly%40maiziedu.com%26zdkf_type%3D1%26language%3Dzh-cn%26charset%3Dgbk%26lytype%3D0%26referer%3D%7Bhz6d_referer%7D%26keyword%3D%26tfrom%3D1%26tpl%3Dcrystal_blue#liyc#%2C#liyc#_blank#liyc#%2C#liyc#height%3D473%2Cwidth%3D703%2Ctop%3D200%2Cleft%3D200%2Cstatus%3Dyes%2Ctoolbar%3Dno%2Cmenubar%3Dno%2Cresizable%3Dyes%2Cscrollbars%3Dno%2Clocation%3Dno%2Ctitlebar%3Dno#liyc#)');">咨询小麦</a>#}
+                <a class="colorff font14 zxbtn textC" target="_blank" onclick="_MEIQIA('showPanel')">咨询小麦</a>
+                <a class="colorff font14 wybtn textC" href="{{ url_pay }}">立即付费</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+{% block custom_script %}
+{#    <script type='text/javascript' src='http://tb.53kf.com/kf.php?arg=10111642&style=3'></script>#}
+    <script type='text/javascript'>
+        // get header user info of fps
+        $(function(){
+            $.ajax({
+                url: '/lps3/student/ajax/head_user_info/' + {{request.user.id}} + '/',
+                type: 'GET',
+                dataType: 'Json',
+                success: function(data){
+                    if(data.status){
+                        $(".fps-header").html(data.data);
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

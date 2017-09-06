@@ -1,0 +1,26 @@
+<div class="modal-dialog modal-sm modal-content zy_mytask">
+    <a class="zy_newclose"></a>
+
+    <p class="color5e font18 pt">课程任务</p>
+
+    <div class="zy_mytask_div">
+        <p class="color33 font24 marginB10">{{ task.name }}
+            {% if task.video_guide %}
+                <a onclick="openVideo('{{ task.video_guide }}')" target="_blank">
+                    <img src="{{ STATIC_URL }}images/gogo2.png" class="img">
+                </a>
+            {% endif %}
+        </p>
+
+        <p class="color99 marginB20">{{ task.desc }}</p>
+
+        <p class="zy_mytask_divItem font14">
+            <img src="{{ STATIC_URL }}mz_lps3/images/mytaskitem.png">
+            <span class="font12 colorff as">项目制作</span>{{ task.project.title }}
+        </p>
+    </div>
+    <div class="zy_mytask_foot textC">
+        <a class="bold font14 colorff a3" href="{% url 'lps3:student_rebuild_task' class_id stagetask_id %}">
+            开始重修</a><a class="bold font14 colorff a3 er div_hidden" href="javascript:;">以后再说</a>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+{% extends "mz_common/base.html" %}
+{% block title %}我的收藏{% endblock %}
+{% block keywords%}{% endblock %}
+{% block description%}{% endblock %}
+{% block second_header %}
+{% include "mz_user/student_header.html" %}
+{% endblock %}
+{% block container %}
+    <div class="container uc-boxb">
+        <div class="uc-h1">我的收藏</div>
+        {% if course_list %}
+        <div class="row other-course">
+            {% for course in course_list %}
+            <article class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <div class="lead-img"><a href="{% url 'course:course_recent_play' course.id %}"><img src="{{ MEDIA_URL }}{{ course.image }}"></a><a href="{% url 'course:course_recent_play' course.id %}" class="opt">继续学习</a></div>
+                <div class="artc-bt">
+                    <h3><a href="{% url 'course:course_recent_play' course.id %}" title="{{ course.name }}">{{ course.name }}</a></h3>
+                    <p>{{ course.recent_learned_lesson }}</p>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+            <div class="defult_myfavorite"><span>您还没有收藏的课程</span></div>
+
+        {% endif %}
+
+        <div class="page-bg-w">
+        {% include 'mz_common/pager.html' %}
+        </div>
+    </div>
+
+{% endblock %}

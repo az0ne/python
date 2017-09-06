@@ -1,0 +1,195 @@
+@import 'core/reset';
+@import 'core/common';
+@import 'core/var';
+@import 'core/function';
+@import 'header';
+@import 'toolbar';
+.about-page {
+	.microoh-main {
+		background-color: #f5f5f5;
+	}
+	.container {
+		padding-left: 0;
+		padding-right: 0;
+		width: 1160px;
+	}
+	.head-container {
+		border-bottom: 1px solid #ddd;
+		box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+	}
+    .breadcrumb {
+		margin-bottom: 0;
+		padding: 20px 0;
+		border-radius: 2px;
+		list-style: outside none none;
+		font-size: 14px;
+		color: #81918e;
+		a {
+			text-decoration: none;
+			color: #81918e;
+		}
+		& > li {
+			display: inline-block;
+		}
+		& > li + li:before {
+			color: #ccc;
+			content: ">";
+			padding: 0 5px;
+		}
+    }
+    #left-bar {
+        width: 260px;
+        outline: 1px #e2e2e2 solid;
+        float: left;
+		li {
+			cursor: pointer;
+			height: 49px;
+			list-style-type: none;
+			padding-left: 40px;
+			color: #81918e;
+			font-size: 16px;
+			font-weight: bold;
+			a {
+				color: #81918e;
+			}
+			span {
+				display: block;
+			}
+		}
+		.cur a {
+			color: #5ecfba;
+		}
+    }
+
+	.buttom-border {
+		border-bottom: 1px #e2e2e2 solid;
+	}
+
+	.en {
+		font-size: 12px;
+	}
+	.cn {
+		margin-top: 15px;
+	}
+
+	#p1, #p2, #p3 {
+		font-size: 14px;
+		color: #323232;
+	}
+
+	#tab .tabCon {
+		float: left;
+        position: relative;
+		padding-left: 30px;
+		div.cur {
+			display: block;
+			filter: alpha(opacity=100);
+		}
+		div {
+			h2 {
+				padding-top: 20px;
+				color: #5ecfba;
+				font-size: 30px;
+			}
+			h3 {
+				color: #323232;
+				padding-bottom: 10px;
+				font-size: 24px;
+			}
+		}
+	}
+	.line {
+		margin-top: 50px;
+		display: block;
+		p {
+			line-height: 20px;
+		}
+	}
+	.ico {
+		display: block;
+		margin-top: 50px;
+		position: relative;
+		li {
+			list-style-type: none;
+			width: 58px;
+			height: 58px;
+			margin-right: 20px;
+			float: left;
+			cursor: pointer;
+		}
+	}
+
+    #qq {
+        background: url(../images/about/qq.png);
+    }
+    #qq:hover {
+        background: url(../images/about/qq-hover.png);
+    }
+    #sina {
+        background: url(../images/about/sina.png);
+    }
+    #sina:hover {
+        background: url(../images/about/sina-hover.png);
+    }
+    #wx {
+        background: url(../images/about/wx.png);
+    }
+    #wx:hover {
+        background: url(../images/about/wx-hover.png);
+    }
+    #qun, #ewm {
+        display: block;
+    }
+	#qun {
+		width: 140px;
+		height: 48px;
+		background: url(../images/about/qq-alert.png);
+		position: absolute;
+		top: -45px;
+		text-align: center;
+		line-height: 40px;
+		display: none;
+	}
+	#ewm {
+		width: 143px;
+		height: 147px;
+		background: url(../images/about/wx-alert.png);
+		position: absolute;
+		display: block;
+		left: 150px;
+		top: -140px;
+		display: none;
+	}
+	.map {
+		height: 300px;
+		width: 700px;
+		margin-top: 30px;
+		display: block;
+	}
+	.ad {
+		width: 840px;
+		height: 77px;
+		display: block;
+	}
+	.buttons {
+		padding-top: 60px;
+		padding-bottom: 50px;
+		li {
+			float: left;
+			width: 110px;
+			height: 40px;
+			border: 1px solid #5ecfba;
+			list-style-type: none;
+			text-align: center;
+			line-height: 40px;
+			margin-right: 10px;
+			color: #5ecfba;
+			&::hover {
+				color: #ffffff;
+				background: #5ecfba;
+			}
+		}
+	}
+}
+
+@import 'footer';

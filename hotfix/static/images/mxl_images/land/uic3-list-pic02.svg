@@ -1,0 +1,19 @@
+<svg id="uic3-list-pic02" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="174" height="174" viewBox="0 0 174 174">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #14ddab;
+        filter: url(#filter);
+      }
+    </style>
+    <filter id="filter" x="0" y="0" width="174" height="174" filterUnits="userSpaceOnUse">
+      <feOffset result="offset" dy="5" in="SourceAlpha"/>
+      <feGaussianBlur result="blur" stdDeviation="6.782"/>
+      <feFlood result="flood" flood-color="#14ddab" flood-opacity="0.18"/>
+      <feComposite result="composite" operator="in" in2="blur"/>
+      <feBlend result="blend" in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <circle id="椭圆_6_拷贝_3" data-name="椭圆 6 拷贝 3" class="cls-1" cx="86.5" cy="81.5" r="41.5"/>
+  <image id="教学直播" x="61" y="62" width="51" height="39" xlink:href="data:img/png;base64,iVBORw0KGgoAAAANSUhEUgAAADMAAAAnCAMAAACVOICVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABQVBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8AAABuOdDmAAAAaXRSTlMAVMD003trsyD4YHStRBcwib6Akkx835+6mIpOjVmCEVGOOu1saMhcoh7c8fZ3kxiy1Emu2V6soOevCXXVnpVaqQe8qGKdG1fCPA2xzWNQjEfDb35Ku/4v0selp7fzFM8rWGFSoaYB2k1t3zkxAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAAWJQAAFiUBSVIk8AAAAUxJREFUOMvV1FdbwjAUBuAjggOsqCCoiHsC4qwyXXXg3hP3Pv//D5i0Fwl9tMnxzu+mz2nP26RJWwA7db56ZfwBkNOAWmmUSJNzqtkjTkdQmBCvW4xWj4TbeE+7MB2sjIAiUdbkE2UnYkxFAOKIXaIKIHarTdRtetQm4Ta90sVkX/9PZsBtBkU1hDg8QjSjfFXHDJIZd/ZvYpJmUmmGMlMkk52e4UPNzhHMPHvTF7gy9c0iPy4xk9M3eYBCscRMWd8sw0qMT211Td+sW1z4E9T9SYcI+7Nhk80tIJhtJio7ABSzu7d/AKBhNL6fQ7c5UptjtzlRm9Mac8ae+lxFCjnEC1Hyf9Vl0ptcXbOmG1Eb9o6U8rfWL6lWK3ZLVrrJnd7/+v5BHtnSIY9PtdMNP7+YngmaBvyHvMbfypS8Fz9Ab5XlRP5gUvBJJZmvb6TQ9UM/YjxtAAAAAElFTkSuQmCC"/>
+</svg>

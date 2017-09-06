@@ -1,0 +1,138 @@
+{% extends 'mz_usercenter/usercenter_base.html' %}
+{% block usercenter_right_panel %}
+
+    <div class="personalCmainR font14">
+        <p class="personalCmainRtit font22 color33">账号设置</p>
+        <table class="personalCenterSsetting_table marginB40">
+            <tr>
+                <td style="width:86px;">麦子账号</td>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <td>密码</td>
+                <td><a data-toggle="modal" data-target="#newPassword">修改密码</a></td>
+            </tr>
+            <tr>
+                <td>邮箱</td>
+                <td class="t">
+                    {% if user.email %}
+                        {{ user.email }}
+                        {% if user.valid_email == 0 %}
+                            <span class="color99">(未验证)</span><a class="vEmail">验证邮箱</a>
+                        {% endif %}
+                        <a>修改邮箱</a>
+                    {% else %}
+                        <a class="addEmail" style="margin:0;">新增邮箱</a>
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td style="vertical-align:top;">账号绑定</td>
+                <td>
+                    <p class="bind marginB10">
+                        {% if third.qq %}
+                            <i class="iH"></i>
+                            <span>已绑定</span>{{ third.qq.nick_name }}&nbsp;&nbsp;
+                            <a href="{% url 'home:settings:cancel_third_bind' %}?site=qq">取消绑定</a></p>
+                        {% else %}
+                            <i></i><span>未绑定</span><a href="/user/connect/?partner=qq">立刻绑定</a></p>
+                        {% endif %}
+                    <p class="bind2">
+                        {% if third.wechat %}
+                            <i class="iH"></i>
+                            <span>已绑定</span>{{ third.wechat.nick_name }}&nbsp;&nbsp;
+                            <a href="{% url 'home:settings:cancel_third_bind' %}?site=wechat">取消绑定</a></p>
+                        {% else %}
+                            <i></i><span>未绑定</span><a href="/user/connect/?partner=wechat">立刻绑定</a></p>
+                        {% endif %}
+                </td>
+            </tr>
+        </table>
+    </div>
+
+{% endblock %}
+{% block usercenter_extend_div %}
+    <!--邮箱-->
+    <div class="modal fade" id="newEmail" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-sm pcSmodal" style="width:400px;">
+            <div class="modal-content">
+                <a class="zy_close"></a>
+
+                <p class="pt color99"><span class="font18">新增邮箱</span></p>
+
+                <div class="newPhoneBox">
+                    <p class="marginB10"><input type="text" class="pcsBasicTableTxt" placeholder="输入邮箱"></p>
+
+                    <p class="marginB10">滑动完成验证</p>
+
+                    <div class="marginB10 captchaMy"></div>
+                    <p><a class="personalCbtn">确定</a></p>
+
+                    <p class="megError"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--修改密码-->
+    <div class="modal fade" id="newPassword" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-sm pcSmodal" style="width:400px;">
+            <div class="modal-content">
+                <a class="zy_close"></a>
+
+                <p class="pt color99"><span class="font18">修改密码</span></p>
+
+                <div class="newPhoneBox">
+                    <form action="/home/settings/modpwd/" id="newPasswordForm">
+                        <p class="marginB10"><input type="password" name="old_password" datatype="pw"
+                                                    class="pcsBasicTableTxt" placeholder="输入原密码"></p>
+
+                        <p class="marginB10"><input type="password" name="new_password1" datatype="pw"
+                                                    class="pcsBasicTableTxt" placeholder="输入新密码"></p>
+
+                        <p class="marginB10"><input type="password" name="new_password2" datatype="pw"
+                                                    recheck="new_password1" class="pcsBasicTableTxt"
+                                                    placeholder="确认新密码"></p>
+
+                        <p><a class="personalCbtn">提交</a></p>
+
+                        <p class="megError"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="newMeg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-sm pcSmodal" style="width:400px;">
+            <div class="modal-content textC">
+                <p class="font22 color33 p1">验证邮件已发送</p>
+
+                <p class="font14 color66 p2 marginB20">请查收邮件完成后续操作</p>
+
+                <p><a class="personalCbtn cl">关闭</a></p>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="newMegPassword" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-sm pcSmodal" style="width:400px;">
+            <div class="modal-content textC">
+                <p class="font22 color33 p1 marginB10">修改密码成功，请重新登录</p>
+
+                <p class="font14 color66 p2 marginB20"><span class="color5e">10s</span>后自动跳转至首页</p>
+
+                <p><a href="/" class="personalCbtn cl">手动跳转</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block custom_script %}
+<script type="text/javascript" src="/2016/lib/layer/layer.js"></script>
+<script type="text/javascript" src="/2016/lib/Validform/Validform_v5.3.2_min.js"></script>
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/personalCenterSsetting.js?v={{ time_stamp }}"></script>
+{% endblock %}

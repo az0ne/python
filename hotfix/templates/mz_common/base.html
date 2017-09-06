@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}{% endblock %}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="baidu-site-verification" content="TlN38QiORE"/>
+<script type="text/javascript">
+    function is_int(x) {
+        var y = parseInt(x, 10);
+        return !isNaN(y) && x == y && x.toString() == y.toString();
+    }
+
+    function snap_callback_for_project_upload(data) {
+        if (data.result == null) {
+            console.log(data.msg);
+        } else {
+            var result = JSON.parse(data.result);
+            if (is_int(result.coach_id) == true) {
+                window.location.href = "/lps4/teacher_coach_project/" + result.coach_id + "/";
+                return;
+            }
+            if (is_int(result.class_id) == true && is_int(result.stage_task_id) == true && is_int(result.item_id) == true && is_int(result.lps_version) == true) {
+                if (result.lps_version == 4) {
+                    window.location.href = "/lps4/student_coach_project/" + result.class_id + "_" + result.stage_task_id + "_" + result.item_id + "/";
+                } else {
+                    if (result.item_id == 0){
+                        window.location.href = "/lps3/student/task_project/" + result.class_id + "_" + result.stage_task_id + "/";
+                    } else {
+                        window.location.href = "/lps3/student/item_project/" + result.class_id + "_" + result.stage_task_id + "_" + result.item_id + "/";
+                    }
+                }
+                return;
+            }
+        }
+    }
+
+    (function () {
+        var reg = RegExp(/.*?\/lps4\/teacher_coach_project\/\d+?/);
+        if (reg.test(window.location.href) == true) {
+            return;
+        }
+        reg = RegExp(/.*?\/lps4\/student_coach_project\/\d+?_\d+?_\d+?/);
+        if (reg.test(window.location.href) == true) {
+            return;
+        }
+        reg = RegExp(/.*?\/lps3\/student\/task_project\/\d+?_\d+?/);
+        if (reg.test(window.location.href) == true) {
+            return;
+        }
+        reg = RegExp(/.*?\/lps3\/student\/item_project\/\d+?_\d+?_\d+?/);
+        if (reg.test(window.location.href) == true) {
+            return;
+        }
+
+        var url_prefix = "";
+        reg = RegExp(/maiziedu.com/);
+        if (reg.test(window.location.hostname) == true) {
+            url_prefix = "https://snap.maiziedu.com/get/?snap_key=project_upload_";
+        } else {
+            url_prefix = "http://121.41.96.44:34000/get/?snap_key=project_upload_";
+        }
+
+        var url = "";
+
+        if ("{{request.user.is_student}}" == "True") {
+            url = url_prefix + encodeURIComponent("student_{{request.user.id}}") + "&callback=snap_callback_for_project_upload";
+        }
+        if ("{{request.user.is_teacher}}" == "True") {
+            url = url_prefix + encodeURIComponent("teacher_{{request.user.id}}") + "&callback=snap_callback_for_project_upload";
+        }
+
+        if (url == "") {
+            return;
+        }
+
+        var script = document.createElement("script");
+        script.setAttribute("src", url);
+        document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+</script>
+
+    <script type="text/javascript">
+
+        var get_cookie = function (c_name) {
+            if (document.cookie.length > 0) {
+                var c_start = document.cookie.indexOf(c_name + "=");
+                if (c_start != -1) {
+                    c_start = c_start + c_name.length + 1;
+                    c_end = document.cookie.indexOf(";", c_start);
+                    if (c_end == -1) {
+                        c_end = document.cookie.length;
+                    }
+                    return unescape(document.cookie.substring(c_start, c_end));
+                }
+            }
+            return "";
+        }
+
+        var set_cookie = function (c_name, value, exdays) {
+            var exdate = new Date();
+            exdate.setDate(exdate.getDate() + exdays);
+            var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
+            document.cookie = c_name + "=" + c_value + "; path=/";
+        }
+
+
+        /*
+         * set maiziuid
+         */
+
+        var uid_gen = function () {
+            function s4() {
+                return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+            }
+
+            return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4();
+        }
+
+        if (get_cookie("maiziuid") == "") {
+            set_cookie("maiziuid", uid_gen(), 1024);
+        }
+
+        if (window.location.hostname.indexOf("maiziedu.com") >= 0) {
+            (function () {
+                var query_string = "url=" + escape(window.location.href) + "&";
+                query_string = query_string + "maiziuid=" + get_cookie("maiziuid") + "&";
+                query_string = query_string + "referrer=" + escape(document.referrer);
+
+                var url = "http://hit.maiziedu.com/?" + query_string + "&callback=" + new Date().getTime();
+                var script = document.createElement("script");
+                script.setAttribute("src", url);
+                document.getElementsByTagName("head")[0].appendChild(script);
+            })();
+        }
+    </script>
+    <script type="text/javascript">
+        // 手机跳转
+        if (/AppleWebKit.*Mobile/i.test(navigator.userAgent) ||
+                (/MIDP|android|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))) {
+            if (window.location.href.indexOf("{{mobile_site}}") < 0) {
+                window.location.href = "{{mobile_site}}" + window.location.pathname;
+            }
+        }
+    </script>
+    <link type="text/css" rel="stylesheet" href="/static/css/base.css?v={{ time_stamp }}">
+    <link type="text/css" rel="stylesheet" href="/static/css/microoh-v5.css?v={{ time_stamp }}">
+    <link type="text/css" rel="stylesheet" href="/static/css/flat-ui.css?v={{ time_stamp }}">
+    <link type="text/css" rel="stylesheet" href="/static/css/animate.css?v={{ time_stamp }}">
+    <link type="text/css" rel="stylesheet" href="/static/css/develop.css?v={{ time_stamp }}">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/favicon.ico"/>
+
+    <style type="text/css">
+        /*输入搜索下拉单样式*/
+        .dd_listbox {
+            padding-top: 18px;
+            background-color: #FFFFFF;
+            width: 480px;
+            height: auto;
+            margin: 12px auto 0 auto;
+            z-index: 999;
+            position: absolute;
+            border: silver 1px solid;
+            -moz-box-shadow: 0 0 4px #e3e2e2;
+            -webkit-box-shadow: 0 0 4px #e3e2e2;
+            box-shadow: 0 0 4px #e3e2e2;
+            font-size: 12px;
+        }
+
+        .chcourse {
+            height: 76px;
+        }
+
+        .chcourse:hover {
+            background-color: #eeecec;
+        }
+
+        .dd_courseitem {
+            height: 30px;
+            color: #939393;
+            line-height: 30px;
+            overflow: hidden;
+            padding-left: 20px;
+            -moz-border-radius: 8px 8px 0 0;
+            -webkit-border-radius: 8px 8px 0 0;
+            border-radius: 8px 8px 0px 0px;
+            position: relative;
+        }
+
+        .dd_courseitem i {
+            display: block;
+            width: 390px;
+            border-bottom: 1px solid #ededed;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+        }
+
+        .dd_courseimg {
+            margin: 13px 13px 9px 20px;
+            display: inline-block;
+            float: left;
+            width: 40px;
+            height: 40px;
+        }
+
+        .dd_coursedescri {
+            padding-top: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #6b6b6b;
+            width: 390px;
+        }
+
+        .f_radius {
+            -moz-border-radius: 9px;
+            -webkit-border-radius: 9px;
+            border-radius: 9px;
+            background-color: #cccccc;
+            color: #ffffff;
+            font-size: 12px;
+            height: 18px;
+            width: 125px;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .radius {
+            padding-left: 135px;
+            padding-top: 13px;
+        }
+
+        .dd_coursedescriname {
+            font-size: 16px;
+            padding-top: 11px;
+            color: #3c3c3c;
+            float: left;
+            margin-right: 13px;
+        }
+
+        .dd_tutor {
+            padding-left: 20px;
+            color: #939393;
+            margin-top: 6px;
+        }
+
+        .careerteacher {
+            margin-bottom: 10px;
+            height: 81px;
+        }
+
+        .careerteacher:hover {
+            background-color: #eeecec;
+        }
+
+        .courseteacher {
+            font-weight: 900;
+            font-size: 16px;
+            padding-top: 13px;
+            float: left;
+            padding-right: 10px;
+            color: #3b3b3b;
+        }
+
+        .ls {
+            padding-right: 10px;
+            padding-top: 16px;
+            float: left;
+            color: silver;
+        }
+
+        .teachertt {
+            padding-top: 18px;
+            color: silver;
+        }
+
+        .teacherdes {
+            clear: both;
+            position: relative;
+            top: -24px;
+            left: 74px;
+            width: 390px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #6b6b6b;
+        }
+
+        .dd_craft {
+            margin-top: -4px;
+            padding-left: 20px;
+            color: #939393;
+        }
+
+        .study_count {
+            color: #b1b1b1;
+            padding-top: 8px;
+        }
+
+        .course_info {
+            color: #6b6b6b;
+            padding-top: 8px;
+        }
+
+        .careercraft {
+            width: 446px;
+            padding-left: 20px;
+            height: 32px;
+        }
+
+        .careercraft a {
+            display: block;
+            overflow: hidden;
+        }
+
+        .careercraft:hover {
+            background-color: #eeecec;
+        }
+
+        .dd_moreinfo {
+            padding-left: 200px;
+            height: 27px;
+            color: #d3d3d3;
+        }
+
+        .more_result {
+            color: #d3d3d3;
+        }
+
+        .dd_listbox:before {
+            content: '';
+            display: inline-block;
+            padding: 7px;
+            background: #ffffff;
+            position: absolute;
+            top: -8px;
+            left: 20px;
+            box-shadow: -2px 0 0 rgba(255, 255, 255, 1), 0 -2px 5px rgba(0, 0, 0, .1), 0 2px 0 rgba(255, 255, 255, 1), 2px 0 5px rgba(0, 0, 0, .1);
+            transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -webkit-transform: rotate(-45deg);
+            -o-transform: rotate(-45deg);
+        }
+
+        #fLayerdl dd a {
+            display: block;
+            color: black;
+        }
+    </style>
+
+    {% block custom_css %}
+    {% endblock %}
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/2016/dev/maizi_trace.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript">
+        <!-- 百度统计代码 -->
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e3879546912fd4b2d6e909e064d49262";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <script type="text/javascript">var _fps_site_url = '{{ FPS_HOST }}';</script>
+    <!--[if lt IE 9]>
+<script src="/static/js/html5shiv.min.js"></script>
+<script src="/static/js/respond.min.js"></script>
+<![endif]-->
+    <script type="text/javascript">
+        window.zhuge = window.zhuge || [];
+        window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");
+        window.zhuge.factory = function (b) {
+            return function () {
+                var a = Array.prototype.slice.call(arguments);
+                a.unshift(b);
+                window.zhuge.push(a);
+                return window.zhuge;
+            }
+        };
+        for (var i = 0; i < window.zhuge.methods.length; i++) {
+            var key = window.zhuge.methods[i];
+            window.zhuge[key] = window.zhuge.factory(key);
+        }
+        window.zhuge.load = function (b, x) {
+            if (!document.getElementById("zhuge-js")) {
+                var a = document.createElement("script");
+                var verDate = new Date();
+                var verStr = verDate.getFullYear().toString()
+                        + verDate.getMonth().toString() + verDate.getDate().toString();
+
+                a.type = "text/javascript";
+                a.id = "zhuge-js";
+                a.async = !0;
+                a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;
+                var c = document.getElementsByTagName("script")[0];
+                c.parentNode.insertBefore(a, c);
+                window.zhuge._init(b, x)
+            }
+        };
+        window.zhuge.load('7bdc65f630344e4fa3b5d23e5c096d35');
+        //window.zhuge.load('7bdc65f630344e4fa3b5d23e5c096d35', {debug: true});
+    </script>
+</head>
+
+<body clss="{% block csstyle %}{% endblock %}">
+<div id="maizi_trace_common_data" style="display: none;">
+  <p id="trace_pay_type_common_data" style="display: none;" value={{trace_pay_type}}></p>
+  <p id="trace_user_type_common_data" style="display: none;" value={{trace_user_type}}></p>
+  <p id="trace_career_name_common_data" style="display: none;" value={{trace_career_name}}></p>
+  <p id="trace_taskball_name_common_data" style="display: none;" value={{trace_taskball_name}}></p>
+  <p id="trace_project_name_common_data" style="display: none;" value={{trace_project_name}}></p>
+  <p id="trace_video_name_common_data" style="display: none;" value={{trace_video_name}}></p>
+</div>
+<div class="microoh-main" style="padding-top: 0;">
+    <div style="display: none;">
+        {% block header %}
+            <header class="navbar navbar-default navbar-fixed-top affix" data-offset-top="64">
+        {% endblock %}
+        </header>
+    </div>
+
+    <div class="head-container">
+        <div class="header">
+            <div class="wrap">
+                <a class="logo fl" href="/">
+                    <h2>
+                        <img src="/images/logo2.png" alt="logo">
+                    </h2>
+                </a>
+                <a class="vip_class fl font14" href="/course/" target="_blank">企业直通班</a>
+                <div class="header-search fl">
+                    <input type="text" name="datasearch" autocomplete="off" class="data-search font16 color66"
+                           id="data-search" placeholder="搜索你感兴趣的课程" aria-haspopup="false" role="combobox"
+                           aria-owns="dd_box" aria-autocomplete="list" value="{{ ori_keyword }}">
+                    <dl class="fLayerdl" id="fLayerdl" style="max-height: 180px; overflow-y: auto; display: none;">
+                        <dd val="Python" v2="undefined">
+                            <a href="/search/course/Python-1/" target="_blank">Python</a>
+                        </dd>
+                        <dd val="运营" v2="undefined">
+                            <a href="/search/course/运营-1/" target="_blank">运营</a>
+                        </dd>
+                        <dd val="PHP" v2="undefined">
+                            <a href="/search/course/PHP-1/" target="_blank">PHP</a>
+                        </dd>
+                        <dd val="IOS" v2="undefined">
+                            <a href="/search/course/IOS-1/" target="_blank">IOS</a>
+                        </dd>
+                        <dd val="Android" v2="undefined">
+                            <a href="/search/course/Android-1/" target="_blank">Android</a>
+                        </dd>
+                    </dl>
+
+                    <!-- 输入搜索下拉单 -->
+                    <div class="dd_listbox" id="dd_listbox" role="listbox"
+                         aria-expanded="true" id="dd_box" style="display: none;">
+                        <div class="dd_courseitem dd_csitem" id="dd_csitem">职业课程<i></i></div>
+                        <div class="incld_careers" id="incld_careers"></div>
+                        <div class="dd_courseitem dd_tutor" id="dd_tutor">职业导师<i></i></div>
+                        <div class="incld_teachers" id="incld_teachers"></div>
+                        <div class="dd_courseitem dd_craft" id="dd_craft">职业技能<i></i></div>
+                        <div class="course_name_ledg" id="course_name_ledg"></div>
+                    </div>
+
+                    <button class="search-btn"></button>
+                    <div class="hot-words font14 color99">
+                        <a href="/search/course/产品经理-1/" target="_blank">产品经理</a>
+                        <a href="/search/course/web前端-1/" target="_blank">web前端</a>
+                        <a href="/search/course/ui-1/" target="_blank">ui</a>
+                    </div>
+                </div>
+                <a class="mobile_app font16 color66 fl" href="/common/apppage/" target="_blank">移动APP</a>
+                <div class="topRight" login="{{ user.is_authenticated }}">
+                    {% if not user.is_authenticated %}
+                        <a class="a" href="/user/signup/" target="_blank">注册</a>
+                        <a class="a" onclick="login_popup()">登录</a>
+                    {% else %}
+                        <div class="top_user">
+                            <a class="top_meg top_megH" href="{% url 'home:base:get_my_message' %}" target="_blank">
+                                {% if not new_message_count == 0 %}
+                                    <i class="Arial">{{ new_message_count }}</i>{% endif %}</a>
+                            <a class="ai" href="/home/" target="_blank"><img src="{{ MEDIA_URL }}{{ user.avatar_url }}"></a>
+                    <span class="nick_name">
+                        <a href="/home/" target="_blank" data-name="{{ user.nick_name }}"></a>
+                        <a class="sign_out" href="/user/logout/">[退出]</a>
+                    </span>
+                        </div>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    {% block second_header %}{% endblock %}
+    {% block breadcrumb %}{% endblock %}
+    {% block container %}{% endblock %}
+    {% block footer %}
+        <div class="v5-footer">
+            <div class="container">
+                <div class="v5-footer-container">
+                    <div class="v5-footer-bottom">
+                        <p>© 2012-{% now "Y" %} <a href="http://www.maiziedu.com">www.maiziedu.com</a></p>
+                        <p>蜀ICP备13014270号-4 Version 5.0.0 release20160127</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+</div>
+
+<div class="toolbar">
+    <a href="javascript:;" class="toolbar-item toolbar-item-weixin" onclick="_MEIQIA('showPanel')"></a>
+    <a href="javascript:;" class="toolbar-item toolbar-item-weibo"
+       {% if user.is_unlockstage or user.is_teacher %}style="display: none;"{% endif %}>
+        <div class="lixianB">
+            <p><input type="text" class="intxt" id="telInput" placeholder="请输入您的电话号码"></p>
+            <p><input type="button" class="inbtn" id="callBtn" value="免费通话咨询"></p>
+        </div>
+    </a>
+    <!--<a href="{{ FPS_HOST }}common/feedback/publish/" target="_blank" class="toolbar-item toolbar-item-fankui"><span>意见反馈</span></a>-->
+    <a class="toolbar-item toolbar-item-gotop"><span>返回顶部</span></a>
+</div>
+
+{% if not user.is_authenticated %}
+    <!--弹出层区块-->
+    <!--登录-->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="loginModalLabel" style="font-size: 18px;">
+                        {% if request.GET.partner and request.GET.openid %}绑定已有账号{% else %}登录{% endif %}</h4>
+                </div>
+                <div class="modal-body">
+                    <section class="box-login v5-input-txt" id="box-login">
+                        <form id="login_form" action="{% url 'user:login' %}" method="post" autocomplete="off">
+                            {% csrf_token %}
+                            <ul>
+                                <li class="form-group">{{ login_form.account_l }}</li>
+                                <li class="form-group">{{ login_form.password_l }}</li>
+                                {% if request.GET.partner and request.GET.openid %}
+                                    <input type="hidden" name="partner" value="{{ request.GET.partner }}">
+                                    <input type="hidden" name="openid" value="{{ request.GET.openid }}">
+                                {% endif %}
+                            </ul>
+                        </form>
+                        <p class="good-tips"><a href="#" id="btnForgetpsw" class="fr">忘记密码？</a>还没有账号？
+                            {% if request.GET.partner and request.GET.openid %}
+                                <a href="/user/signup/?reg_partner={{ request.GET.partner }}&amp;reg_openid={{ request.GET.openid }}"
+                                   target="_blank" id="btnRegister">立即绑定新账号</a>{% else %}
+                                <a href="/user/signup/" target="_blank" id="btnRegister">立即注册</a>{% endif %}</p>
+                        <div>
+                            <button id="login_btn" type="button" class="btn btn-micv5 btn-block"
+                                    onclick="login_form_submit('login-form-tips')">
+                                {% if request.GET.partner and request.GET.openid %}立即绑定{% else %}登录{% endif %}</button>
+                        </div>
+                        <div id="login-form-tips" class="tips-error bg-danger">错误提示</div>
+                        {% if request.GET.partner and request.GET.openid %}
+
+                        {% else %}
+                            <div class="threeLogin"><span>其他方式登录</span><a class="nqq"
+                                                                          href="{% url 'user:connect' %}?partner=qq"></a><a
+                                    class="nwx" href="{% url 'user:connect' %}?partner=wechat"></a>
+                                <!--<a class="nwb"></a>--></div>
+                        {% endif %}
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--找回密码-->
+    <div class="modal fade" id="forgetpswModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" data-toggle="modal"
+                            data-target="#loginModal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="forgetpswModalLabel" style="font-size: 18px;">找回密码</h4>
+                </div>
+                <div class="modal-body">
+                    <section class="box-forgetpsw v5-input-txt" id="box-forgetpsw">
+                        <form id="find_password_form" action="{% url 'user:find_password' %}" method="post"
+                              autocomplete="off">
+                            {% csrf_token %}
+                            <ul>
+                                <li class="form-group">{{ find_password_form.account }}</li>
+                                <li class="form-group font14 color99">滑动完成验证</li>
+                                <li class="form-group">
+                                    <div class="newcaptcha"></div>
+                                </li>
+                            </ul>
+                            <div>
+                                <button id="findpassword_btn" type="button" class="btn btn-micv5 btn-block"
+                                        onclick="find_password_form_submit()">提交
+                                </button>
+                            </div>
+                            <div id="findpassword-tips" class="tips-error bg-danger">错误提示</div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 忘记密码，手机验证码输入界面 -->
+    <div class="modal fade" id="forgetpswMobileModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span
+                            aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="forgetpswMobileModalLabel" style="font-size: 18px;">手机验证</h4>
+                </div>
+                <div class="modal-body">
+                    <section class="box-forgetpsw v5-input-txt" id="box-forgetpsw-mobile-code">
+                        <form id="mobile_code_password_form" action="{% url 'user:find_password_mobile_code' %}"
+                              method="post" autocomplete="off">
+                            {% csrf_token %}
+                            <ul>
+                                <li class="form-group">{{ find_password_mobile_form.mobile_code_f }}
+                                    <button id="send-verify" type="button" class="send-verify font14"
+                                            onclick="send_sms_code('verify_form','verify-tips')">重发验证码
+                                    </button>
+                                </li>
+                                <li class="form-group" id="mobile_code_password_form_message">手机短信验证码已发送，请查收！</li>
+                                {{ find_password_mobile_form.mobile_f }}
+                            </ul>
+                            <div>
+                                <button id="mobile_code_password_btn" type="button" class="btn btn-micv5 btn-block"
+                                        onclick="mobile_code_password_form_submit()">下一步
+                                </button>
+                            </div>
+                            <div id="mobile_code_password-tips" class="tips-error bg-danger">错误提示</div>
+                        </form>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--邮件验证-->
+    <div class="modal fade" id="emailValidate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-content zy_email">
+            <a class="close"></a>
+            <p class="i"><img src="/static/images/zy_send.png"></p>
+            <p id="emailValidateEE">我们向您的邮箱<span>548748451@qq.com</span>发送了一封验证邮件</p>
+            <p>为保证您账号的安全和方便您参加我们的活动，邮箱完成验证才能继续学习哦</p>
+            <p class="a"><a target="_blank">去邮箱验证</a></p>
+            <p class="sendE2" style="display: none;">没收到，您可以查看您的垃圾邮件和被过滤邮件，也可以再次发送验证邮件（<span class="c5c">60s</span>）</p>
+            <p class="sendE">没收到，您可以查看您的垃圾邮件和被过滤邮件，也可以<a class="c5c">再次发送验证邮件</a></p>
+            <p class="zy_success t5o upmove"><img src="/static/images/zy_right.png"><span>验证邮件发送成功</span></p>
+        </div>
+    </div>
+
+{% endif %}
+
+<!-- 移动端使用 -->
+<ul class="zy_foot_div">
+    <li><a href="/course/" class="a1 {% if is_display %}aH{% endif %}"><p class="p"></p>
+        <p>课程中心</p></a></li>
+    <li><a href="{{ FPS_HOST }}ask/" class="a2"><p class="p"></p>
+        <p>麦子圈</p></a></li>
+    <li><a href="/common/apppage/" class="a3 {% if apppage_display %}aH{% endif %}"><p class="p"></p>
+        <p>APP</p></a></li>
+</ul>
+<div style="width: 100%; height: 64px;" class="zy_foot_divDD"></div>
+
+<!--红包-->
+<div class="redPackets" onclick="share_invitation()"><span class="red-top"></span></div>
+
+<script type="text/javascript" src="/static/js/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.featureCarousel.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.carouFredSel.js"></script>
+<script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/js/jquery.placeholder.js"></script>
+<script type="text/javascript" src="/static/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="/static/js/abc.min.js?201607251458"></script>
+<script type="text/javascript" src="/static/js/mz-jPages.min.js"></script>
+<script type="text/javascript" src="/static/js/Swiper.js"></script>
+<script type="text/javascript" src="http://static.geetest.com/static/tools/gt.js"></script>
+<script type="text/javascript" src="/static/js/microoh-v5.js"></script>
+<script type="text/javascript" src="/static/js/ie10-viewport-bug-workaround.js"></script>
+<script type="text/javascript" src="/static/js/flat-ui.min.js"></script>
+<script type="text/javascript" src="/static/js/application.js"></script>
+<script type="text/javascript" src="/static/lps2/js/textFiltered.js"></script>
+<script type="text/javascript" src="/static/js/mz-common.js?201607282005"></script>
+
+{% block custom_script %}{% endblock %}
+{% block popup %}{% endblock %}
+{% if request.session.ucsynlogin %}
+    {{ request.session.ucsynlogin | safe }}
+    <script type="text/javascript">$.get("/user/ucsynlogin/destory/");</script>
+{% endif %}
+
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-61416428-1', 'auto');
+    ga('send', 'pageview');
+
+    $(function () {
+        {% if request.GET.partner and request.GET.openid %}
+            login_popup();
+        {% endif %}
+
+        {% if request.GET.verify_email %}
+            zyUname = '{{request.GET.verify_email}}';
+            $('#emailValidate').modal('show');
+            $("#emailValidateEE span").html(zyUname);
+
+            $("#emailValidate .close").unbind().click(function () {
+                $('#emailValidate').modal('hide');
+                location.href = location.href.split("?")[0];
+            });
+        {% endif %}
+
+        {% if user.is_authenticated %}
+            notice_message();
+        {% endif %}
+    })
+</script>
+{% block 53kf %}
+    {% if not user.is_unlockstage and not user.is_teacher %}
+
+        <script type="text/javascript">
+{#        (function () {#}
+{#            var _53code = document.createElement("script");#}
+{#            _53code.src = "//tb.53kf.com/code/code/10111642/3";#}
+{#            var s = document.getElementsByTagName("script")[0];#}
+{#            s.parentNode.insertBefore(_53code, s);#}
+{#        })();#}
+         (function(m, ei, q, i, a, j, s) {
+        m[i] = m[i] || function() {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        j = ei.createElement(q),
+            s = ei.getElementsByTagName(q)[0];
+        j.async = true;
+        j.charset = 'UTF-8';
+        j.src = '//static.meiqia.com/dist/meiqia.js';
+        s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '_MEIQIA');
+    _MEIQIA('entId', 54180);
+     _MEIQIA('withoutBtn');
+    {% endif %}
+</script>
+{% endblock %}
+
+<script type="text/javascript">
+    // 离线宝
+    document.write('<script type="text/javascript"  data-lxb-uid="10986738" data-lxb-gid="198532" src="http://lxbjs.baidu.com/api/asset/api.js?t=' + new Date().getTime() + '" charset="utf-8"></scr' + 'ipt>' );
+    if (document.getElementById("callBtn"))
+        document.getElementById("callBtn").onclick = function () {
+            lxb.call(document.getElementById("telInput"));
+        }
+</script>
+<script type="text/javascript">
+    function share_invitation() {
+        {% if user.is_authenticated %}
+            window.open('/user/invitation/link/');
+        {% else %}
+            login_popup();
+        {% endif %}
+    }
+</script>
+<script type="text/javascript">
+
+    function flayer_show() {
+        $("#fLayerdl").show();
+        $("#dd_listbox").hide();
+    }
+
+    function flayer_hide(delay) {
+        if (delay) {
+            setTimeout("$('#fLayerdl').hide();", delay);
+        } else {
+            $('#fLayerdl').hide();
+        }
+
+    }
+
+    function listbox_show() {
+        $("#dd_listbox").show();
+        $("#fLayerdl").hide();
+    }
+
+    function listbox_hide(delay) {
+        if (delay) {
+            setTimeout("$('#dd_listbox').hide();", delay);
+        } else {
+            $("#dd_listbox").hide();
+        }
+    }
+
+
+    function searchajax(keyword) {
+        $.ajax({
+            url: "http://suggest.maiziedu.com/suggest/?keyword=" + keyword,
+            type: "GET",
+            dataType: "jsonp",
+            jsonp: "callback",
+            success: function (data) {
+                var courses = new Array();
+                var careers = new Array();
+                var teachers = new Array();
+
+                var teachers_repeat = new Array();
+                var careers_repeat = new Array();
+
+                $.each(data, function (idx, obj) {
+                    $.each(obj["courses"], function (idx, course) {
+                        courses.push({
+                            id: course["id"],
+                            name: obj["name"],
+                            student_count: course["student_count"]
+                        })
+
+                        $.each(course["careers"], function (idx, career) {
+                            if (!career["student_count"]) {
+                                return;
+                            }
+                            if (careers_repeat.indexOf(career["name"]) == -1) {
+                                careers.push({
+                                    name: career["name"],
+                                    short_name: career["short_name"],
+                                    image: career["image"],
+                                    description: career["description"],
+                                    student_count: career["student_count"]
+                                })
+                                careers_repeat.push(career["name"]);
+                            }
+
+                            $.each(career["teachers"], function (idx, teacher) {
+                                if (teachers_repeat.indexOf(teacher["name"]) == -1) {
+                                    teachers.push({
+                                        "teacher_id": teacher["teacher_id"],
+                                        name: teacher["name"],
+                                        title: teacher["title"],
+                                        image: teacher["image"],
+                                        info: teacher["info"]
+
+                                    })
+                                    teachers_repeat.push(teacher["name"]);
+                                }
+                            })
+                        })
+                    })
+                })
+
+                if (courses.length == 0) {
+                    $('.dd_listbox').hide();
+                    return;
+                }
+
+                // coding
+                var tmp = "";
+                $(".careercraft").remove();
+                $.each(courses, function (idx, course) {
+                    tmp = '<div class="careercraft"><a target="_blank" href="/course/' + course["id"] + '/"><p class="pull-left course_info">' + course["name"] + '</p><p class="pull-right study_count">' + course["student_count"] + '人正在学习</p></a></div>';
+                    $("#course_name_ledg").append(tmp);
+                })
+
+                $(".chcourse").remove();
+                $.each(careers, function (idx, career) {
+                    tmp = '<div class="chcourse"><img src="/uploads/' + career["image"] + '" class="dd_courseimg img-circle"><a target="_blank" href="/course/' + career["short_name"] + '-px/" style="outline:none;"><p class="dd_coursedescriname">' + career["name"] + '</p><p class="radius"><span class="f_radius">毕业学员： <span class="finished_count">' + career["student_count"] + '</span>人</span></p><p class="dd_coursedescri">' + career["description"] + '</p>';
+                    $("#incld_careers").append(tmp);
+                })
+
+                $(".careerteacher").remove();
+                $.each(teachers, function (idx, teacher) {
+                    tmp = '<div class="careerteacher"><a target="_blank" href="' + "/u/" + teacher["teacher_id"] + '/" style="outline:none;"><img src="/uploads/' + teacher["image"] + '" class="dd_courseimg img-circle"><p class="courseteacher">' + teacher["name"] + '</p><p class="ls">|</p><p class="teachertt">' + teacher["title"] + '</p><p class="teacherdes">' + teacher["info"] + '</p></a></div>'
+                    $("#incld_teachers").append(tmp);
+                })
+                if ($("#data-search").val()) {
+                    if (careers.length == 0) {
+                        $("#dd_csitem").hide();
+                        $("#incld_careers").hide();
+                    } else {
+                        $("#dd_csitem").show();
+                        $("#incld_careers").show();
+                    }
+                    if (teachers.length == 0) {
+                        $("#dd_tutor").hide();
+                        $("#incld_teachers").hide();
+                    } else {
+                        $("#dd_tutor").show();
+                        $("#incld_teachers").show();
+                    }
+                    if (courses.length == 0) {
+                        $("#dd_craft").hide();
+                        $("#course_nme_ledg").hide();
+                    } else {
+                        $("#dd_craft").show();
+                        $("#course_nme_ledg").show();
+                    }
+
+                    listbox_show();
+                }
+            }
+
+        })
+    }
+
+    $(document).ready(function () {
+        $("#data-search").focus(function () {
+            keywd = $("#data-search").val();
+            if (keywd == "") {
+                flayer_show();
+            } else {
+                searchajax(keywd);
+            }
+        }).blur(function () {
+            flayer_hide(500);
+        })
+
+        $("#data-search").keyup(function () {
+            keywd = $("#data-search").val();
+            if (keywd == "") {
+                listbox_hide();
+                flayer_show();
+                return;
+            }
+            searchajax(keywd);
+        }).blur(function () {
+            keywd = $("#data-search").val();
+            if (keywd == "") {
+                listbox_hide();
+                return;
+            }
+
+            listbox_hide(500);
+        })
+    })
+</script>
+</body>
+</html>
+{% block custom_script_chart %}{% endblock %}

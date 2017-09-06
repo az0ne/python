@@ -1,0 +1,195 @@
+@font-face {
+  font-family: 'mzicon';
+  src:  url('fonts/mzicon.eot?y8m2xx');
+  src:  url('fonts/mzicon.eot?y8m2xx#iefix') format('embedded-opentype'),
+    url('fonts/mzicon.ttf?y8m2xx') format('truetype'),
+    url('fonts/mzicon.woff?y8m2xx') format('woff'),
+    url('fonts/mzicon.svg?y8m2xx#mzicon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="mz-"], [class*=" mz-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'mzicon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.mz-call:before {
+  content: "\e900";
+}
+.mz-colose:before {
+  content: "\e901";
+}
+.mz-course:before {
+  content: "\e902";
+}
+.mz-full-screen:before {
+  content: "\e903";
+}
+.mz-learn:before {
+  content: "\e904";
+}
+.mz-money:before {
+  content: "\e905";
+}
+.mz-msg:before {
+  content: "\e906";
+}
+.mz-nar:before {
+  content: "\e907";
+}
+.mz-next:before {
+  content: "\e908";
+}
+.mz-pay:before {
+  content: "\e909";
+}
+.mz-phone:before {
+  content: "\e90a";
+}
+.mz-play:before {
+  content: "\e90b";
+}
+.mz-prev:before {
+  content: "\e90c";
+}
+.mz-qq:before {
+  content: "\e90d";
+}
+.mz-qzone:before {
+  content: "\e90e";
+}
+.mz-search:before {
+  content: "\e90f";
+}
+.mz-service:before {
+  content: "\e910";
+}
+.mz-shape:before {
+  content: "\e911";
+}
+.mz-sina:before {
+  content: "\e912";
+}
+.mz-stop:before {
+  content: "\e913";
+}
+.mz-user:before {
+  content: "\e914";
+}
+.mz-video:before {
+  content: "\e915";
+}
+.mz-vip:before {
+  content: "\e916";
+}
+.mz-wiki:before {
+  content: "\e917";
+}
+.mz-right-a:before {
+  content: "\e918";
+}
+.mz-star-a:before {
+  content: "\e919";
+}
+.mz-yueke:before {
+  content: "\e91a";
+}
+.mz-down:before {
+  content: "\e91b";
+}
+.mz-edit:before {
+  content: "\e91c";
+}
+.mz-project:before {
+  content: "\e91d";
+}
+.mz-write:before {
+  content: "\e91e";
+}
+.mz-video-a:before {
+  content: "\e91f";
+}
+.mz-off:before {
+  content: "\e920";
+}
+.mz-yunwei:before {
+  content: "\e921";
+}
+.mz-xinmeiti:before {
+  content: "\e922";
+}
+.mz-pm:before {
+  content: "\e923";
+}
+.mz-ios:before {
+  content: "\e924";
+}
+.mz-android:before {
+  content: "\e925";
+}
+.mz-python:before {
+  content: "\e926";
+}
+.mz-php:before {
+  content: "\e927";
+}
+.mz-linux:before {
+  content: "\e928";
+}
+.mz-wulianwang:before {
+  content: "\e929";
+}
+.mz-design:before {
+  content: "\e92a";
+}
+.mz-ui:before {
+  content: "\e92b";
+}
+.mz-test:before {
+  content: "\e92c";
+}
+.mz-html5:before {
+  content: "\e92d";
+}
+.mz-lps:before {
+  content: "\e92e";
+}
+.mz-fudao:before {
+  content: "\e92f";
+}
+.mz-reader:before {
+  content: "\e930";
+}
+.mz-star-b:before {
+  content: "\e931";
+}
+.mz-right-b:before {
+  content: "\e932";
+}
+.mz-light:before {
+  content: "\e933";
+}
+.mz-coin:before {
+  content: "\e934";
+}
+.mz-gift:before {
+  content: "\e935";
+}
+.mz-road:before {
+  content: "\e936";
+}
+.mz-Vip:before {
+  content: "\e937";
+}
+

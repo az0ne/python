@@ -1,0 +1,108 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}嵌入式Linux开发金牌讲师-Linux培训-麦子学院{% endblock %}
+{% block keywords%}Linux，Linux开发，Linux培训，Linux学习{% endblock %}
+{% block description%}嵌入式Linux开发金牌讲师—王海宁，9年物联网嵌入式Linux开发经验，曾任长虹集团高级嵌入式工程师，中国电信，中国移动三网融合智慧家庭某项目负责人，某大型嵌入式IT教育集团金牌讲师，精通ARM体系结构与接口开发，Linux应用编程及驱动开发，所讲授课程获得学生的一致好评。{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet"  href="/static/css/mz_wap/stylev1.2.css"/>
+{% endblock %}
+{% block container %}
+		<div class="wapv12 teacherDetail">
+			<div class="banner">
+				<p class="img"><img class="ui-imglazyload" data-url="http://www.maiziedu.com/pages/ad04/images4/whn.png" alt="王海宁"/></p>
+				<strong>王海宁</strong>
+				<span>嵌入式Linux开发金牌讲师</span>
+				<p>9年物联网嵌入式Linux开发经验，曾任长虹集团高级嵌入式工程师，中国电信，中国移动三网融合智慧家庭某项目负责人，某大型嵌入式IT教育集团金牌讲师，精通ARM体系结构与接口开发，Linux应用编程及驱动开发，所讲授课程获得学生的一致好评。</p>
+				<a href="{% url 'course:course_detail' 'qrs' %}">报名TA的课程</a>
+			</div>
+			<ul class="infos">
+				<li><a>带班数<span><mark>9</mark>个</span></a></li>
+				<li><a>累积毕业<span><mark>270</mark>人</span></a></li>
+				<li><a>就业率<span><mark>95</mark>%</span></a></li>
+			</ul>
+			<div class="teacherWork">
+				<h3>讲师作品</h3>
+				<div class="slider" id="slider1">
+					<div class="bd">
+						<ul>
+							<li>
+								<p><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroduceLinuxTea1.png" alt="机顶盒"/></p>
+								<strong>机顶盒</strong>
+							</li>
+							<li>
+								<p><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroduceLinuxTea2.png" alt="远程下载路由器"/></p>
+								<strong>远程下载路由器</strong>
+							</li>
+						</ul>
+					</div>
+	                <a class="prev" href="javascript:void(0)"></a>
+	                <a class="next" href="javascript:void(0)"></a>
+				</div>
+			</div>
+			<div class="live">
+				<h3>讲师经历</h3>
+				<ul>
+					<li>
+						<strong>2014</strong>
+						<strong>麦子学院</strong>
+						<p>麦子学院嵌入式Linux专业负责人，麦子学院教学部经理；凭借多年开发经验和教育培训经验，对嵌入式物联网领域具有前瞻性理解，设计的课程体系紧密结合目前企业需求和社会热点。授课实战性强，深入浅出，晦涩难懂的知识点能够被老师讲解的清晰明了。并能够将企业团队开发模式带入课堂，深受广大学员的喜爱</p>
+					</li>
+					<li>
+						<strong>2010</strong>
+						<strong>华清远见</strong>
+						<p>负责嵌入式Linux下的网络高级编程，基础语言及数据结构教学，担任ARM体系结构及接口编程，Linux系统移植及Linux驱动开发课程教学，承担android系统移植及驱动开发课程授课，所受课程深受广大的学生的喜爱，培养了百余名嵌入式相关人才。</p>
+						<em>参与项目</em>
+						<p>《家庭智能安防系统》、《智能仓库管理系统》</p>
+					</li>
+					<li>
+						<strong>2007</strong>
+						<strong>四川长虹北京电信研究院</strong>
+						<p>负责智能电视、远程下载路由器及高清播放器的项目研发及管理工作，负责北京电信研究院的三网合一家庭网关项目，有着丰富的嵌入式物联网开发经验，有严格的编码及大型项目管理经验。</p>
+						<em>参与项目</em>
+						<p>《智能互联网电视》、《远程下载路由器》、《高清播放器》、《智能家庭网关A200》</p>
+					</li>
+				</ul>
+			</div>
+			<div class="word">
+				<p class="img"><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroduceLinuxTea.jpg" alt="王海宁"/></p>
+				<h3>讲师寄语</h3>
+				<p class="txt">师者，传道受业解惑也。IT行业是个日星月异的行业，经验丰富的讲师不仅会教会学生技术，还会带你全面认识这个行业。我们会根据学生的特点制定更加符合他们自身的学习计划。我们可以更加多元化的和学生沟通，把我们的经验和知识分享给他们。在未来因材施教是完全可以被实现的。而我们就是实现这个想法的人。</p>
+				<a href="{% url 'course:course_detail' 'qrs' %}">报名TA的课程</a>
+			</div>
+			<div class="studentWork">
+				<h3>学生作品</h3>
+				<div class="slider slider2" id="slider2">
+					<div class="bd">
+						<ul>
+							<li><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroduceLinuxStu.png" alt="学生作品"/></li>
+						</ul>
+					</div>
+					<span class="pageState"></span>
+				</div>
+			</div>
+		</div>
+{% endblock %}
+{% block custom_script %}
+		<script src="/static/js/mz_wap/zepto.1.2.0.js"></script>
+		<script src="/static/js/mz_wap/slider.js"></script>
+	    <script src="/static/js/mz_wap/imglazyload.js"></script>
+	    <script type="text/javascript">
+	    	TouchSlide({
+	    		slideCell: "#slider1",
+				mainCell: ".bd ul",
+				effect: "left",
+				autoPlay: true,
+				prevCell: ".prev",
+				nextCell: ".next"				
+	    	});
+	    	TouchSlide({
+	    		slideCell: "#slider2",
+				mainCell: ".bd ul",
+				effect: "left",
+				autoPlay: true,
+	    	});
+	    
+	    	$(function(){
+	    		$(".ui-imglazyload").picLazyLoad();//图片延迟加载
+	    	});
+	    </script>
+{% endblock %}

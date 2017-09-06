@@ -1,0 +1,38 @@
+// 分页样式
+#pagination {
+	padding: pxToRem(40) 0;
+	font-size: 0;
+	text-align: center;
+	a, span {
+		@extend %mid;
+	}
+	.prev, .next {
+		width: pxToRem(20);
+		height: pxToRem(37);
+		&:before {
+			color: #455950;
+		}
+	}
+	.prev, .first {
+		margin-right: pxToRem(102);
+		&:before {
+			@include mzicon("\e90c", 36);
+		}
+	}
+	.next, .last {
+		margin-left: pxToRem(102);
+		&:before {
+			@include mzicon("\e908", 36);
+		}
+	}
+	
+	.first, .last {
+		&:before {
+			color: #bcc8c6;
+		}
+	}
+	span {
+		font-size: pxToRem(28);
+		color: #3b3b3b;
+	}
+}

@@ -1,0 +1,82 @@
+<div class="search_result_right">
+    <div class="course">
+        <h2>职业课程</h2>
+        <ul>
+            <li class="active"><a href="http://www.maiziedu.com/course/ui-px/" target="_blank">
+                <strong>UI设计</strong>
+                <p><img src="/images/career_course/20160804105055.jpg" alt="UI设计"></p>
+            </a>
+            </li>
+            <li><a href="http://www.maiziedu.com/course/web-px/" target="_blank">
+                <strong>web前端开发</strong>
+                <p><img src="/images/career_course/20160804105100.jpg" alt="Web前端开发">
+                </p>
+            </a>
+            </li>
+            <li><a href="http://www.maiziedu.com/course/python-px/" target="_blank">
+                <strong>python Web开发</strong>
+                <p><img src="/images/career_course/20160804105052.jpg"
+                        alt="Python Web开发"></p>
+            </a>
+            </li>
+            <li><a href="http://www.maiziedu.com/course/php-px/" target="_blank">
+                <strong>php Web开发</strong>
+                <p><img src="/images/career_course/20160804105046.jpg"
+                        alt="PHP Web开发">
+                </p>
+            </a>
+            </li>
+            <li><a href="http://www.maiziedu.com/course/android-px/" target="_blank">
+                <strong>Android应用开发</strong>
+                <p><img src="/images/career_course/20160804105037.jpg"
+                        alt="Android应用开发"></p>
+            </a>
+            </li>
+            <li><a href="http://www.maiziedu.com/course/ios-px/" target="_blank">
+                <strong>iOS应用开发</strong>
+                <p><img src="/images/career_course/20160804105042.jpg" alt="iOS应用开发"></p>
+            </a>
+            </li>
+            <li><a href="http://www.maiziedu.com/course/iot-px/" target="_blank">
+                <strong>物联网开发</strong>
+                <p><img src="/images/career_course/20160804105032.jpg" alt="物联网开发"></p>
+            </a>
+            </li>
+            <li><a href="http://www.maiziedu.com/course/qrs-px/" target="_blank">
+                <strong>嵌入式系统开发</strong>
+                <p><img src="/images/career_course/20160804105023.jpg" alt="嵌入式系统开发">
+                </p>
+            </a>
+            </li>
+            <li><a href="http://www.maiziedu.com/course/npm-px/" target="_blank">
+                <strong>产品经理</strong>
+                <p><img src="/images/career_course/20160804104942.jpg" alt="产品经理"></p>
+            </a>
+            </li>
+            <li><a href="http://www.maiziedu.com/course/gd-px/" target="_blank">
+                <strong>平面设计</strong>
+                <p><img src="/images/career_course/20160804105019.jpg" alt="平面设计"></p>
+            </a>
+            </li>
+        </ul>
+    </div>
+    <div class="skill">
+        <h2>热门技能</h2>
+        <div class="menu">
+            <a href="/course/ios/" target="_blank">iOS开发入门</a>
+            <a href="/course/android/" target="_blank">Android开发</a>
+            <a href="/course/ui/" target="_blank">UI设计</a>
+            <a href="/course/pm/" target="_blank">产品经理</a>
+            <a href="/course/qrsqd/" target="_blank">嵌入式开发</a>
+            <a href="/course/iot/" target="_blank">物联网</a>
+            <a href="/course/gd/" target="_blank">平面设计</a>
+            <a href="/course/python/" target="_blank">Python</a>
+            <a href="/course/te/" target="_blank">软件测试</a>
+            <a href="/course/php/" target="_blank">PHP网站开发</a>
+            <a href="/course/web/" target="_blank">Web前端</a>
+            <a href="/course/op/" target="_blank">网络运营</a>
+            <a href="/course/oam/" target="_blank">云计算</a>
+            <a href="/course/oam/" target="_blank">自动化运维</a>
+        </div>
+    </div>
+</div>

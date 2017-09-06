@@ -1,0 +1,60 @@
+<div class="left">
+    <div class="notice-content"><p class="notice-msg font14 color66">为了保证学习效果，直播课开始后再开始学习吧</p></div>
+    <ul class="lesson-list">
+        {% for knowledge in user_task_detail %}
+            {% for item in knowledge.items %}
+                {% if item.obj_type == 'LESSON' %}
+                    <li class="{% if item.status == 'DONE' %}finish{% else %}ali{% endif %}">
+                        {% if free488_class.is_not_started %}
+                            <a class="not" href="javascript:void(0);">
+                        {% else %}
+                            <a href="{% url 'lps3:student_knowledgeitem' class_id stagetask_id item.item_id %}">
+                        {% endif %}
+                        {{ item.lesson_name }}
+                        <span class="col-r">{{ item.lesson_video_length }}</span>
+                        </a>
+                    </li>
+                {% elif item.obj_type == 'TEST' %}
+                    <li class="test {% if item.status == 'DONE' %}over{% else %}ali{% endif %}">
+                        {% if free488_class.is_not_started %}
+                            <a class="not" href="javascript:void(0);">
+                        {% else %}
+                            <a href="{% url 'lps3:student_knowledgeitem' class_id stagetask_id item.item_id %}">
+                        {% endif %}
+                        {{ item.exam_title }}
+                        <span class="col-r">{{ item.quiz_count }}项测试</span>
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        <li class="last">
+            {% if free488_class.is_not_started %}
+                <a class="not" href="javascript:void(0);">
+                    <i>项目制作</i>{{ user_task_info.project_name }}
+                </a>
+            {% else %}
+                <a href="{% url 'lps3:student_project_task' class_id stagetask_id %}">
+                    <i>项目制作</i>{{ user_task_info.project_name }}
+                </a>
+            {% endif %}
+        </li>
+    </ul>
+</div>
+<div class="right">
+    {% include 'mz_lps3_free/student/learning_index_teacher_banner.html' %}
+    <div class="study-data">
+        <h2 class="font22 color33">学习资料<span class="hover-tips">上传作业后，免费解锁学习资料</span></h2>
+        <ul class="study-list">
+            {% for article in articles_advanced %}
+                <li>
+                    {% if user_task_info.status == 'DONE' or user_task_info.status == 'PASS' %}
+                        <a href="{{ article.article_url }}">{{ article.article_title }}</a>
+                    {% else %}
+                        <a class="not" href="javascript:void(0);">{{ article.article_title }}</a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

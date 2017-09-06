@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <title></title>
+    <script type="text/javascript" src="/static/js/jquery-2.1.1.js"></script>
+    <style type="text/css">
+        #div_title{
+            background: #898989;
+            height: 30px;
+        }
+        #div_title_1{
+            background: #898989;
+            height: 30px;
+        }
+        #title{
+            margin-left: 10px;
+        }
+        #title_1{
+            margin-left: 10px;
+        }
+
+        #close{
+            margin-left: 420px;
+        }
+        #close_1{
+            margin-left: 420px;
+        }
+
+
+        #show_stu_data{
+            width: 516px;
+            height: 480px;
+            overflow: scroll;
+            background: green;
+        }
+        #show_stu_data_1{
+            width: 516px;
+            height: 480px;
+            overflow: scroll;
+            background: green;
+        }
+        #liveroomDiv{
+            width: 600px;
+            height: 800px;
+            border:#0000ff solid 1px;
+        }
+        #liveroomDiv h3{
+            height: 40px;
+            border: #0000ff solid 1px;
+        }
+        .common_color{
+            width: 50px;
+            height: 30px;
+        }
+        li{
+            list-style-type: none;
+            margin-top: 10px;
+        }
+        img{
+            width: 70px;
+            height: 70px;
+        }
+        .stuScore{
+            width:30px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function(){
+            $("#end_live").click(function(){
+                var ele = $("#end_live").parent().siblings("input[name='class_meeting_id']");
+                $.ajax({
+                    url:'http://localhost:8000/jianchao/end_live_telecast/',
+                    type:'POST',
+                    data:'class_meeting_id='+ele.val(),
+                    dataType:'json',
+                    success:function(data){
+                       if(data['status'] == 1){
+                           var spanEle = $("#end_live").siblings("span[class='common_color']");
+                           console.info(spanEle);
+                           spanEle.css({
+                               background:'#FF9933'
+                           });
+                           spanEle.html("已结束");
+                           $("#end_live").remove();
+                       }
+                    }
+                });
+            });
+
+            $("#close_1").click(function(){
+                $("#stuAddScoreDiv_1").hide();
+            });
+            $("#close").click(function(){
+                var ele = $("#show_stu_data").children("input[type='hidden']");
+                $("#stuAddScoreDiv").hide();
+{#                $("#stuAddScoreDiv").hide();#}
+
+            });
+            //年  1990-2015
+            addYear();
+            addMonth();
+            addDay();
+            addHour();
+            addMinute();
+            $("#year,#month").change(function(){
+                addDay();
+            });
+            $("#year,#month").change(function(){
+                var yearVal = $("#year").val();
+                var monthVal = $("#month").val();
+                console.info("sssssssss"+yearVal);
+                console.info("sssssssss"+monthVal);
+            });
+        });
+
+
+        //添加时
+		function addHour(){
+			for(var i = 1; i<=24; i++){
+				$("#hour").append("<option>"+ i + "</option>");
+			}
+		}
+        //添加分
+		function addMinute(){
+			for(var i = 1; i<60; i++){
+				$("#minute").append("<option>"+ i + "</option>");
+			}
+		}
+
+        //添加年
+		function addYear(){
+			for(var i = 1990; i<=2015; i++){
+				$("#year").append("<option>"+ i + "</option>");
+			}
+		}
+		//添加月
+		function addMonth(){
+			for(var i = 1; i<=12; i++){
+				$("#month").append("<option>"+ i + "</option>");
+			}
+		}
+		//添加日
+		function addDay() {
+            var year = parseInt($("#year option:selected").val());
+            var month = parseInt($("#month option:selected").val());
+            var day = 0;
+            switch (month) {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                case 12:
+                    day = 31;
+                    break;
+                case 2:
+                    if (year % 400 == 0 || year % 4 == 0 && year % 100 != 0) {
+                        day = 29;
+                    } else {
+                        day = 28;
+                    }
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    day = 30;
+                    break;
+            }
+            $("#day").empty();
+            for (var i = 1; i <= day; i++) {
+                $("#day").append("<option>" + i + "</option>");
+            }
+        }
+
+        function student_score_chat(ele){
+            var inEle = $(ele).prev();
+            var inHidden = $(ele).siblings("input[type='hidden']");
+            var inHiddenPar = $(ele).parent().siblings("input[type='hidden']");
+            if(inEle.val() == undefined && inHidden.val() == undefined){
+                alert('请输入一个数字再打分');
+            }
+            $.ajax({
+                url:'http://localhost:8000/jianchao/student_score_chat/',
+                type:'POST',
+                data:'chat_capacity='+inEle.val()+"&student_id="+inHidden.val()+"&class_meeting_id="+inHiddenPar.val(),
+                dataType:'json',
+                success:function(data){
+                    console.info(data);
+                    inEle.prev().html(data.score);
+                    inEle.remove();
+                    $(ele).remove();
+                }
+            });
+
+
+        }
+{#        function student_score_execute(ele){#}
+{#            var inEle = $(ele).prev();#}
+{#            var inHidden = $(ele).siblings("input[type='hidden']");#}
+{#            var inHiddenPar = $(ele).parent().siblings("input[type='hidden']");#}
+{#            if(inEle.val() == undefined && inHidden.val() == undefined){#}
+{#                alert('请输入一个数字再打分');#}
+{#            }#}
+{#            $.ajax({#}
+{#                url:'http://localhost:8000/jianchao/student_score_execute/',#}
+{#                type:'POST',#}
+{#                data:'execute_capacity='+inEle.val()+"&student_id="+inHidden.val()+"&class_meeting_id="+inHiddenPar.val(),#}
+{#                dataType:'json',#}
+{#                success:function(data){#}
+{#                    console.info(data);#}
+{#                    inEle.prev().html(data.score);#}
+{#                    inEle.remove();#}
+{#                    $(ele).remove();#}
+{#                }#}
+{#            });#}
+{#        }#}
+        //点击学员打分时
+        function student_score(ele){
+            console.info($(ele));
+            console.info($(ele).html);
+            var ele = $(ele).parent().siblings("input[name='class_meeting_id']");
+             $.ajax({
+                url:'http://localhost:8000/jianchao/student_socre_required_data/',
+                type:'POST',
+                data:"class_meeting_id="+ele.val(),
+                dataType:'json',
+                success:function(data){
+                    console.info("ssssssssssssssss");
+                    $("#stuAddScoreDiv").css("display","block");
+                    console.info(data);
+                    var eleS = $("#show_stu_data");
+                    eleS.empty();
+                    eleS.append("<input type='hidden' value='"+data.class_meeting_id+"'></input>");
+                    for(stu in data.student_list){
+                        str = "<li><input type='hidden' value='"+data.student_list[stu].id+"'></input><span>"+data.student_list[stu].name+"</span><br/><img src='"+data.student_list[stu].icon+"'>"+
+                        "<br/>" +
+                        "沟<span></span>";
+                        if(data.student_list[stu].chat_capacity == 0){   //如果这个学生沟通力是0,应该显示input,如果不是0应该显示分数
+                            str += "<input type='text' class='stuScore'></input>";
+                        }else{
+                            str += data.student_list[stu].chat_capacity;
+                        }
+                        str += "/100<input type='button' value='打分' name='scoreButton' onclick='student_score_chat(this)'></input><hr/></li>";
+                        console.info(str);
+                       eleS.append(str);
+                    }
+                }
+            });
+
+        }
+        //显示数据
+        function student_score1(ele){  //被点击时,从服务器获取数据并显示数据面板
+            var ele = $(ele).parent().siblings("input[name='class_meeting_id']");
+             $.ajax({
+                url:'http://localhost:8000/jianchao/query_student_data/',
+                type:'POST',
+                data:"class_meeting_id="+ele.val(),
+                dataType:'json',
+                success:function(data){
+                    console.info("ssssssssssssssss");
+                    $("#stuAddScoreDiv_1").css("display","block");
+                    console.info(data);
+                    var eleS = $("#show_stu_data_1");
+                    eleS.empty();
+                    for(stu in data.student_list){
+                        eleS.append("<li><span>"+data.student_list[stu].name+"</span><br/><img src='"+data.student_list[stu].icon+"'>"+
+                        "<br/>" +
+                        "沟"+data.student_list[stu].chart_capacity+"/100" +
+                        "<br/>" +
+                        "执"+data.student_list[stu].execute_capacity+"/100" +
+                        "<hr/></li>");
+                    }
+                }
+            });
+        }
+        var global = undefined;
+        function pop_div(ele){
+            global = ele;
+            $("#modifyTime").show();
+            $("#modifyTime").css({
+                background:'#FF9933'
+            });
+            var meeting_id = $(ele).parent().siblings("input[name='class_meeting_id']");
+            $("#hide_class_id").val(meeting_id.val());
+        }
+        //修改时间
+        function modifier_class_meeting_time(ele){
+
+            var year_value = $("#year option:selected").val();
+            var month_value = $("#month option:selected").val();
+            var day_value = $("#day option:selected").val();
+            var hour_value = $("#hour option:selected").val();
+            var minute_value = $("#minute option:selected").val();
+            str = year_value+"-"+month_value+"-"+day_value+" "+hour_value+":"+minute_value+":01";
+            console.info(str);
+            var content = $("#contentinput").val();
+            $.ajax({
+                url:'http://localhost:8000/jianchao/modifier_class_meeting_time/',
+                type:'POST',
+                data:'class_meeting_id='+$("#hide_class_id").val()+'&modify_class_meeting_time='+str+"&content="+content,
+                dataType:'json',
+                success:function(data){
+                    //返回修改后的时间  和content
+                    console.info(data);
+                    var spanStartLine = $(global).prev().prev();
+                    var spanContent = $(global).prev().prev().prev();
+                    spanStartLine.html(data.class_meeting_time);
+                    spanContent.html(data.content)
+                }
+            });
+        }
+
+
+
+    </script>
+</head>
+<body>
+<div id="liveroomDiv">
+    <h3>我的直播班会管理</h3>
+    {% for class_meeting in class_meeting_list %}
+        <div>
+            <form>
+
+                {#班会Id为隐藏域#}
+                <input type="hidden" name="class_meeting_id" value="{{class_meeting.id}}">
+                <div>
+                    <span>{{ class_meeting.content }}</span>
+                    <span>{{class_meeting.startline}}</span>
+                    {% if class_meeting.status == 0 %}
+                        <span class="common_color" style="background: #ffff00">
+                            尚未开始
+                        </span>
+                        <a href="#" onclick="pop_div(this)">修改时间</a>
+                    {% else %}
+                        {% if class_meeting.status == 1 %}
+                            <span class="common_color" style="background: orange">
+                                已结束
+                            </span>
+                            {% if class_meeting.is_grade == 1 %}
+                                <a href="#" onclick="student_score1(this)">显示数据</a>
+                            {% else %}
+                                <a href="#" onclick="student_score(this)">学员打分</a>
+                            {% endif %}
+                        {% else %}
+                            {% if class_meeting.status == 2 %}
+                                <span class="common_color" style="background: green">
+                                    进行中
+                                </span>
+                                <a id="end_live" href="#">结束直播</a>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <div>
+                    <span></span>
+                    <span></span>
+                </div>
+                <hr>
+            </form>
+        </div>
+    {% endfor %}
+</div>
+<div id="stuAddScoreDiv" style="width: 516px;height: 520px;display: none; border: green solid 1px;z-index: 2;position: absolute;left: 300px;top: 150px;">
+    <div id="div_title"><span id="title">学员打分</span><a id="close" href="#">X</a></div>
+    <hr style="width: 3px">
+    <div id="show_stu_data">
+
+    </div>
+</div>
+
+<div id="stuAddScoreDiv_1" style="width: 516px;height: 520px;display: none; border: green solid 1px;z-index: 2;position: absolute;left: 300px;top: 150px;">
+    <div id="div_title_1"><span id="title_1">学员数据</span><a id="close_1" href="#">X</a></div>
+    <hr style="width: 3px">
+    <div id="show_stu_data_1">
+
+    </div>
+</div>
+
+<div id="modifyTime" style="display: none; border: green solid 1px;z-index: 2;position: absolute;left: 300px;top: 150px;">
+    <a href="#" id="modifyTimeCloseDiv">X</a>
+    <select id="year">
+
+    </select>年
+    <select id="month">
+
+    </select>月
+    <select id="day">
+
+    </select>日
+    <select id="hour">
+
+    </select>时
+    <select id="minute">
+
+    </select>分
+    内容<input id="contentinput" type="text" value="例行班会">
+    <input type="hidden" id="hide_class_id">
+    <input type="button" id="modify_time_button" onclick="modifier_class_meeting_time(this)" value="修改">
+</div>
+
+</body>
+</html>

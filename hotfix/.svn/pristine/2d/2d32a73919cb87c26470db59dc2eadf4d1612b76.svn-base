@@ -1,0 +1,84 @@
+# ucenter client api definination
+-
+  module: user
+  action: register
+  args:
+    username: ""
+    password: ""
+    email: ""
+    questionid: ""
+    answer: ""
+  return: number
+
+-
+  module: user
+  action: login
+  args:
+    username: ""
+    password: ""
+    isuid: 0
+    checkques: 0
+    questionid: ""
+    answer: ""
+  return: array
+
+-
+  module: user
+  action: get_user
+  args:
+    username: ""
+    isuid: 0
+  return: array
+
+- 
+  module: user
+  action: synlogin
+  args:
+    uid: 0
+  return: string
+
+-
+  module: user
+  action: synlogout
+  args: !!null
+  return: string
+
+-
+  module: user
+  action: checkemail
+  args:
+    email: ""
+  return: number
+
+-
+  module: user
+  action: checkname
+  args:
+    username: ""
+  return: number
+
+-
+  module: pm
+  action: ls
+  args:
+    uid: 0
+    page: 1
+    pagesize: 10
+    folder: 'inbox'
+    filter: 'newpm'
+    msglen: 0
+  return: array
+
+-
+  module: user
+  action: edit
+  args:
+    uid: ""
+    username: ""
+    oldpw: ""
+    newpw: ""
+    email: ""
+    ignoreoldpw: 0
+    questionid: ""
+    answer: ""
+  return: number

@@ -1,0 +1,63 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/student_breadcrumb.html" %}
+
+<div class="tabbable">
+
+    {% include "mz_nadmin/parts/student_tabs.html" %}
+
+    <div class="tab-content">
+        <div class="tab-pane active">
+
+            {% include "mz_nadmin/modules/msgs.html" %}
+
+            {% if recive_messages %}
+            <div class="table-responsive">
+                <table class="table table-bordered table-condensed table-striped table-hover">
+                    <thead>
+                        <th class="col-md-8">消息内容</th>
+                        <th class="col-md-3">发送时间</th>
+                        <th class="col-md-1">操作</th>
+                    </thead>
+                    <tbody>
+                        {% for message in recive_messages %}
+                        <tr data-message_id="{{ message.id }}">
+                            <td>
+                                {% autoescape off %}
+                                {{ message.action_content }}
+                                {% endautoescape %}
+                            </td>
+                            <td>
+                                {{ message.date_action|date:"Y/m/d h:m:s" }}
+                            </td>
+                            <td class="action_list">
+                                <span class="btn btn-xs btn-danger" data-action="delete">删除</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% include "mz_nadmin/modules/page_info.html" with items=recive_messages %}
+
+            {% else %}
+            <p class="text-muted">
+                <small>没有任何消息</small>
+            </p>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+window.page.name = "student_messages";
+</script>
+{% endblock %}
+
+

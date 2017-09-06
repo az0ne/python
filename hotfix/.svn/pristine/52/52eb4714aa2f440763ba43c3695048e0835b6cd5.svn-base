@@ -1,0 +1,51 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/courses_breadcrumb.html" %}
+
+<div class="tabbable">
+{% include "mz_nadmin/parts/stage_tabs.html" %}
+
+<div class="tab-content">
+<div class="tab-pane active">
+
+    <p>
+        <a href="{% url 'nadmin:courses_create' %}?stage_id={{ stage.id }}" class="btn btn-primary btn-xs">
+            + 添加新课程
+        </a>
+    </p>
+
+    {% if courses.end_index >= 1 %}
+    <div class="table-responsive">
+        <table class="table table-bordered table-condensed table-hover">
+            <thead>
+                <th class="col-md-3">课程名</th>
+                <th class="col-md-7">课程简介</th>
+                <th class="col-md-2">点击次数</th>
+            </thead>
+            <tbody>
+                {% for course in courses %}
+                <tr>
+                    <td>
+                        <a href="{% url 'nadmin:courses_edit' course.id %}">
+                            {{ course.name|escape }}
+                        </a>
+                    </td>
+                    <td>{{ course.description|truncatechars:64|escape|default:"" }}</td>
+                    <td>{{ course.click_count|default:0 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p class="text-muted"><small>还没有任何课程</small></p>
+    {% endif %}
+</div>
+</div>
+</div>
+
+{% endblock %}
+
+

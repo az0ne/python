@@ -1,0 +1,86 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/student_breadcrumb.html" %}
+
+
+{% include "mz_nadmin/modules/msgs.html" %}
+<div class="row">
+<div class="col-md-6">
+<table class="table table-bordered table-condensed table-hover">
+    <tr>
+        <th class="col-md-4">阶段名称</th>
+        <td class="col-md-8">{{ stage.name|escape }}</td>
+    </tr>
+    <tr>
+        <th class="col-md-4">加锁状态</th>
+        <td class="col-md-8">
+            {% if stage.islock %}
+            已加锁
+            {% else %}
+            已解锁
+            {% endif %}
+        </td>
+    </tr>
+</table>
+</div>
+</div>
+
+{% if courses.object_list.count > 0 %}
+<div class="table-responsive">
+<table class="table table-bordered table-condensed table-striped table-hover">
+    <thead>
+        <th class="col-md-6">课程名称</th>
+        <th class="col-md-2">课程完成状态</th>
+        <th class="col-md-2">通过状态</th>
+        <th class="col-md-2">评测分数</th>
+    </thead>
+    <tbody>
+        {% for course in courses %}
+        <tr>
+            <td>
+                <a href="{% url 'nadmin:students_courses_info' student.id course.id %}">
+                    {{ course.name }}
+                </a>
+            </td>
+            <td>
+                {% if course.is_complete %}
+                已完成
+                {% else %}
+                未完成
+                {% endif %}
+            </td>
+            <td>
+                {% if course.course_score %}
+                    {% if course.course_score.is_pass %}
+                    已通过
+                    {% else %}
+                    未通过
+                    {% endif %}
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+            <td>
+                {{ course.course_score.score|default:"-" }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% include "mz_nadmin/modules/page_info.html" with items=courses %}
+
+{% else %}
+<p class="text-muted">
+    <small>没有任何课程</small>
+</p>
+{% endif %}
+
+{% endblock %}
+
+
+
+

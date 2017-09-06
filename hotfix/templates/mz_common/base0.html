@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<title>{% block title %}{% endblock %}</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="{% block keywords%}{% endblock %}">
+<meta name="description" content="{% block description%}{% endblock %}">
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="baidu-site-verification" content="TlN38QiORE" />
+<link href="/static/css/base.css?84545744114" rel="stylesheet">
+<link href="/static/css/microoh-v5.css" rel="stylesheet">
+<link href="/static/css/flat-ui.css" rel="stylesheet">
+<link href="/static/css/animate.css" rel="stylesheet">
+<link href="/static/css/develop.css" rel="stylesheet">
+<link href="/static/css/toolbar.css" rel="stylesheet">
+<link rel="shortcut icon" type="image/x-icon" href="/static/images/favicon.ico" />
+{% block custom_css %}{% endblock %}
+<script src="/static/js/jquery-1.11.1.min.js"></script>
+<script>
+<!-- 百度统计代码 -->
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?e3879546912fd4b2d6e909e064d49262";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!-- PHPStat Start -->
+<script language="JavaScript" id="phpstat_js_id_10001292">
+var _trackData = _trackData || [];
+(function() {
+var phpstat_js = document.createElement('script'); phpstat_js.type = 'text/javascript';
+phpstat_js.charset = 'utf-8'; phpstat_js.id = 'phpstat_async_js_id_10001292'; phpstat_js.async = true;
+phpstat_js.src = '//y1.yeefx.cn/count/10001292/10001292.js';
+var phpstat_cjs = document.getElementsByTagName('script')[0]; phpstat_cjs.parentNode.insertBefore(phpstat_js, phpstat_cjs);
+})();
+</script>
+<!--/PHPStat End -->
+<!--[if lt IE 9]>
+<script src="/static/js/html5shiv.min.js"></script>
+<script src="/static/js/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+<div id="maizi_trace_common_data" style="display: none;">
+  <p id="trace_pay_type_common_data" style="display: none;" value={{trace_pay_type}}></p>
+  <p id="trace_user_type_common_data" style="display: none;" value={{trace_user_type}}></p>
+  <p id="trace_career_name_common_data" style="display: none;" value={{trace_career_name}}></p>
+  <p id="trace_taskball_name_common_data" style="display: none;" value={{trace_taskball_name}}></p>
+  <p id="trace_project_name_common_data" style="display: none;" value={{trace_project_name}}></p>
+  <p id="trace_video_name_common_data" style="display: none;" value={{trace_video_name}}></p>
+</div>
+<div class="microoh-main">
+  {% block header %}
+      <header class="navbar navbar-default navbar-fixed-top affix" data-offset-top="64">
+  {% endblock %}
+          <div class="container">
+              <div class="navbar-header">
+                  <a class="navbar-brand" href="{% url 'index_front' %}" title="麦子学院"><img src="/static/images/logo.png" alt="麦子学院logo"><img src="/static/images/logo-font.png" alt="麦子学院"></a>
+              </div>
+              <div class="collapse navbar-collapse" id="microoh-navbar-collapse">
+                  <ul class="nav navbar-nav navbar-left">
+                      <li class="zy_menu_D {% if is_display %}liH{% endif %}"><a href="{% url 'course:career_course_list' %}">企业直通班</a>
+                          <i class="zy_menu_div2_arr"></i>
+                          <div class="zy_menu_div2">
+
+                          </div>
+
+                      </li>
+
+                      <li><a href="{{ FPS_HOST }}">麦子圈</a></li>
+                      <li><a href="/common/apppage/"><img src="/static/images/zy_phone1.png" style="vertical-align: middle; height: 22px; margin-top: -4px; margin-right: 5px;">移动APP</a></li>
+
+                  </ul>
+              <textarea id="zy_menu_div2_txt">
+                  {% for career_course in all_career_courses %}
+                      <a href="{% url 'course:course_detail' career_course.short_name|lower %}"><img src="{{MEDIA_URL}}{{ career_course.app_image }}">{{ career_course.name }}</a>
+                  {% endfor %}
+              </textarea>
+                  <form class="navbar-form navbar-left" role="search" onsubmit="return false">
+                      <div class="form-group" >
+                          <i class="v5-icon v5-icon-search"></i>
+                          <input type="text" class="form-control" style=" width: 362px;" id="search" placeholder="搜索你感兴趣的课程">
+                      </div>
+                      <div class="search-dp" id="hotkeyword">
+                          <!--推荐关键词-->
+                          <div class="hotkeyword">
+                              <h4>推荐搜索关键词</h4>
+                              <ul class="cf">
+                                  <li>加载中……</li>
+                              </ul>
+                          </div>
+                      </div>
+                  </form>
+              <ul class="nav navbar-nav navbar-left zy_bav" style="margin-left: 4px;">
+                  {% if apppage_display %}
+                      <li class="liH"><a href="/common/apppage/"><img src="/static/images/zy_phone1.png" style="vertical-align: middle; height: 22px; margin-top: -4px; margin-right: 5px;">移动APP</a></li>
+                  {% else %}
+                      <li><a href="/common/apppage/"><img src="/static/images/zy_phone1.png" style="vertical-align: middle; height: 22px; margin-top: -4px; margin-right: 5px;">移动APP</a></li>
+                  {% endif %}
+              </ul>
+                  <div class="v5-topbar-login">
+                      {% if not user.is_authenticated %}
+                      <div class="v5-topbar-login-off">
+                          <a onclick="login_popup()" class="visible-md visible-lg">登录</a>
+                          <a href="{% url 'user:mobile_login_view' %}" class="visible-xs visible-sm">登录</a>
+                      </div>
+                      {% else %}
+                            <script>
+                                var _trackData = _trackData || [];
+                                _trackData.push(['userset', 'userid', '{{ user.id }}']);
+                                _trackData.push(['userset', 'username', '{{ user.username }}']);
+                                _trackData.push(['userset', 'email', '{{ user.email }}']);
+                            </script>
+                      <div class="v5-topbar-login-on cf visible-md visible-lg">
+
+                          <div class="d_bubble">
+                            {% if new_message_count > 0 %}
+                            <a href="javascript:;" class="dt-usermsg"><i class="v5-icon v5-icon-havemsg"></i><em>{{ new_message_count }}</em></a>
+                            <ul class="bubble"></ul>
+                            {% else %}
+                              <a href="javascript:;" class="dt-usermsg"><i class="v5-icon v5-icon-nomsg"></i></a>
+                              <ul class="bubble"></ul>
+                            {% endif %}
+                            </div>
+
+                            <!-- {% if new_message_count > 0 %}
+                                                      <a href="{{ FPS_HOST }}chat/" class="dt-usermsg"><i class="v5-icon v5-icon-havemsg"></i><em>{{ new_message_count }}</em></a>
+                                                      {% else %}
+                                                      <a href="{{ FPS_HOST }}chat/" class="dt-usermsg"><i class="v5-icon v5-icon-nomsg"></i></a>
+                                                      {% endif %} -->
+                          <dl>
+                              <dt>
+                                  <a href="{{ FPS_HOST }}common/dynmsg/{{ request.user.id }}/" target="_blank" style="vertical-align:center; margin-top: 0px; margin-right: 90px; width:25px; height:25px; border-radius: 50%; overflow: hidden;"><img style="width:100%;" src="{{ MEDIA_URL }}{{ user.avatar_url }}"></a>
+                                  <a class="dt-username"><span>{{ user.nick_name }}</span><i class="v5-icon v5-icon-rd"></i></a>
+                              </dt>
+                          </dl>
+
+                      </div>
+                      <div class="v5-topbar-login-on cf visible-xs visible-sm">
+                        <a href="{% if user.is_student %}{% url 'user:student_center' %}{% else %}{% if user.is_teacher %}{% url 'user:teacher_center' %}{% endif %}{% endif %}" class="user-t"><img src="{{ MEDIA_URL }}{{ user.avatar_url }}"></a>
+                      </div>
+                      {% endif %}
+                  </div>
+                  <div class="navbar-search-btn visible-xs visible-sm">
+                    <a href="{% url 'common:mobile_search' %}" class="sch"></a>
+                  </div>
+              </div>
+              <div class="search-dp" id="keyword-group">
+                <!--搜索结果-->
+                <div class="keyword-group scroll-pane">
+                    <dl class="">
+                        <dt>职业课程</dt>
+                        <dd class="careercourses cf"></dd>
+                    </dl>
+                    <dl class="">
+                        <dt>课程</dt>
+                        <dd class="courses cf"></dd>
+                    </dl>
+                </div>
+            </div>
+          </div>
+      </header>
+  <div class="wap_top textC">
+    <a href="/" class="colorff" style="color: #ffffff;">麦子学院</a>
+      <div class="wap_top_tou">
+          {% if not user.is_authenticated %}
+          <a href="{% url 'user:mobile_login_view' %}" style="font-size: 16px;border-radius: inherit; overflow: inherit; width: 100px; text-align: left; color: #ffffff; margin-top: 7px;">登录</a>
+          {% else %}
+        <a><img src="{{ MEDIA_URL }}{{user.avatar_url}}"></a>
+          <div class="wap_top_tou_menu">
+            <i></i>
+            <ul>
+                <li><a href="{{ FPS_HOST }}chat/?type=system">我的消息{% if new_message_count > 0 %}<span class="color5e">{{ new_message_count }}</span>{% endif %}</a></li>
+                  <li><a href="{{ FPS_HOST }}common/dynmsg/{{ user.id }}/">个人中心</a></li>
+                  <li><a href="/user/logout/" class="color5e">退出</a></li>
+              </ul>
+          </div>
+          {% endif %}
+      </div>
+      <a href="/common/mobile/search/" class="wap_top_a"><img style="width: 18px;" src="{{ FPS_HOST }}static/iphone/images/wap_u8.png"></a>
+  </div>
+  {% block second_header %}{% endblock %}
+   {% block breadcrumb %}{% endblock %}
+   {% block container %}{% endblock %}
+   {% block footer%}
+       <div class="v5-footer">
+           <div class="container">
+               <div class="v5-footer-container">
+                   <div class="v5-footer-bottom">
+                       <p>© 2012-{% now "Y" %} <a href="http://www.maiziedu.com">www.maiziedu.com</a></p>
+                       <p>蜀ICP备13014270号-4 Version 4.0.6 release20150115.1</p>
+                   </div>
+               </div>
+           </div>
+       </div>
+
+   {% endblock %}
+
+</div>
+
+<div class="toolbar">
+    <a href="javascript:;" class="toolbar-item toolbar-item-weixin" onclick="_MEIQIA('showPanel')"><span class="toolbar-layer"></span></a>
+    <a href="javascript:;" class="toolbar-item toolbar-item-weibo"><span class="toolbar-layer"></span></a>
+    <!--<a href="{{ FPS_HOST }}common/feedback/publish/" class="toolbar-item toolbar-item-fankui"><span>意见反馈</span></a>-->
+    <a class="toolbar-item toolbar-item-gotop"><span>返回顶部</span></a>
+</div>
+<div class="lixianB" {% if user.is_unlockstage or user.is_teacher%}style="display: none;"{% endif %}>
+    <p><input type="text" placeholder="请输入您的电话号码" id="telInput" class="intxt"></p>
+    <p><input type="button" value="免费通话咨询" id="callBtn" class="inbtn"></p>
+    <div><img src="/static/images/kuang.png"></div>
+</div>
+
+
+
+{% if not user.is_authenticated %}
+<!--弹出层区块-->
+<!--登录-->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="loginModalLabel" style="font-size: 18px;">{% if request.GET.partner and request.GET.openid %}绑定已有账号{% else %}登录{% endif %}</h4>
+            </div>
+            <div class="modal-body">
+                <section class="box-login v5-input-txt" id="box-login">
+                    <form id="login_form" action="{% url 'user:login' %}" method="post" autocomplete="off">
+                        {% csrf_token %}
+                        <ul>
+                            <li class="form-group">{{ login_form.account_l }}</li>
+                            <li class="form-group">{{ login_form.password_l }}</li>
+                            {% if request.GET.partner and request.GET.openid %}
+                            <input type="hidden" name="partner" value="{{request.GET.partner}}">
+                            <input type="hidden" name="openid" value="{{request.GET.openid}}">
+                            {% endif %}
+                        </ul>
+                    </form>
+                    <p class="good-tips"><a href="#" data-toggle="modal" data-target="#forgetpswModal" id="btnForgetpsw" class="fr">忘记密码？</a>还没有账号？<a  phptag="phptag_register" href="" data-toggle="modal" data-target="#registerModal" id="btnRegister">{% if request.GET.partner and request.GET.openid %}立即绑定新账号{% else %}立即注册{% endif %}</a></p>
+                    <div>
+                        <button id="login_btn" type="button" class="btn btn-micv5 btn-block" onclick="login_form_submit('login-form-tips')">{% if request.GET.partner and request.GET.openid %}立即绑定{% else %}登录{% endif %}</button>
+                    </div>
+                    <div id="login-form-tips" class="tips-error bg-danger">错误提示</div>
+                    {% if request.GET.partner and request.GET.openid %}
+
+                    {% else %}
+                    <div class="threeLogin"><span>其他方式登录</span><a class="nqq" href="{% url 'user:connect' %}?partner=qq"></a><a class="nwx" href="{% url 'user:connect' %}?partner=wechat"></a><!--<a class="nwb"></a>--></div>
+                    {% endif %}
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!--找回密码-->
+<div class="modal fade" id="forgetpswModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" data-toggle="modal" data-target="#loginModal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="forgetpswModalLabel" style="font-size: 18px;">找回密码</h4>
+            </div>
+            <div class="modal-body">
+                <section class="box-forgetpsw v5-input-txt" id="box-forgetpsw">
+                    <form id="find_password_form" action="{% url 'user:find_password' %}" method="post" autocomplete="off">
+                        {% csrf_token %}
+                        <ul>
+                            <li class="form-group">{{ find_password_form.account }}</li>
+                            <li class="form-group">{{ find_password_form.captcha_f }}<span class="v5-yzm fr"><a id='findpassword-captcha-refresh' class="captcha-refresh" href="#">换一张</a></span></li>
+                            <li class="form-group">&nbsp;</li>
+                        </ul>
+                        <div>
+                            <button id="findpassword_btn" type="button" class="btn btn-micv5 btn-block" onclick="find_password_form_submit()">提交</button>
+                        </div>
+                        <div id="findpassword-tips" class="tips-error bg-danger">错误提示</div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 忘记密码，手机验证码输入界面 -->
+<div class="modal fade" id="forgetpswMobileModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="forgetpswMobileModalLabel" style="font-size: 18px;">手机验证</h4>
+            </div>
+            <div class="modal-body">
+                <section class="box-forgetpsw v5-input-txt" id="box-forgetpsw-mobile-code">
+                    <form id="mobile_code_password_form" action="{% url 'user:find_password_mobile_code' %}" method="post" autocomplete="off">
+                        {% csrf_token %}
+                        <ul>
+                            <li class="form-group" id="mobile_code_password_form_message">手机短信验证码已发送，请查收！</li>
+                            <li class="form-group">{{ find_password_mobile_form.mobile_f }}</li>
+                            <li class="form-group">{{ find_password_mobile_form.mobile_code_f }}</li>
+                        </ul>
+                        <div>
+                            <button id="mobile_code_password_btn" type="button" class="btn btn-micv5 btn-block" onclick="mobile_code_password_form_submit()">下一步</button>
+                        </div>
+                        <div id="mobile_code_password-tips" class="tips-error bg-danger">错误提示</div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--注册-->
+<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="registerModalLabel" style="font-size: 18px;">{% if request.GET.partner and request.GET.openid %}绑定新账号{% else %}注册{% endif %}</h4>
+            </div>
+            <div class="modal-body">
+                <section class="box-register v5-input-txt" id="box-register">
+                    <ul class="register-tabs" role="tablist">
+                        <li class="active"><a href="#register-email" role="tab" data-toggle="tab" onclick="change_form('email_register_form')">邮箱注册</a></li>
+                        <li><a href="#register-mobile" role="tab" data-toggle="tab" onclick="change_form('mobile_register_form')">手机注册</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="register-email">
+                            <form id="email_register_form" action="{% url 'user:email_register' %}" method="post" autocomplete="off">
+                                {% csrf_token %}
+                                <div class="form-group cf_g">{{email_register_form.email}}</div>
+                                <div class="form-group cf_g">{{email_register_form.password}}</div>
+                                <div class="form-group cf cf_g">{{email_register_form.captcha}}<span class="v5-yzm fr"><a id='email-captcha-refresh' class="captcha-refresh" href="#">换一张</a></span></div>
+                                {% if request.GET.partner and request.GET.openid %}
+                                <input type="hidden" name="partner" value="{{request.GET.partner}}">
+                                <input type="hidden" name="openid" value="{{request.GET.openid}}">
+                                {% endif %}
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="register-mobile">
+                            <form id="mobile_register_form" action="{% url 'user:mobile_register' %}" method="post" autocomplete="off">
+                                {% csrf_token %}
+                                <div class="form-group cf">{{mobile_register_form.captcha_m}}<span class="v5-yzm fr"><a id='mobile-captcha-refresh' class="captcha-refresh" href="#">换一张</a></span></div>
+                                <div class="form-group cf">{{ mobile_register_form.mobile }}<span class="send-code fr"><button id="send_sms_btn" type="button" class="btn btn-micv5 btn-send" onclick="send_sms_code('mobile_register_form','register-tips')">发送验证码</button></span></div>
+                                <div class="form-group">{{ mobile_register_form.mobile_code }}</div>
+                                <div class="form-group">{{ mobile_register_form.password_m }}</div>
+                                {% if request.GET.partner and request.GET.openid %}
+                                <input type="hidden" name="partner" value="{{request.GET.partner}}">
+                                <input type="hidden" name="openid" value="{{request.GET.openid}}">
+                                {% endif %}
+                            </form>
+                        </div>
+                    </div>
+                    <p class="good-tips">已经有账号？<a href="#" data-toggle="modal" data-target="#loginModal" id="btnLogin">{% if request.GET.partner and request.GET.openid %}立即绑定已有账号{% else %}立即登录{% endif %}</a></p>
+                    <div>
+                        <button id="register_btn"  phptag="phptag_register_login" type="button" class="btn btn-micv5 btn-block" onclick="register_form_submit()">{% if request.GET.partner and request.GET.openid %}立即绑定{% else %}注册并登录{% endif %}</button>
+                    </div>
+                    <div id="register-tips" class="tips-error bg-danger">错误提示</div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!--zhouyi:7-30-->
+<!--邮件验证-->
+<div class="modal fade" id="emailValidate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-content zy_email">
+        <a class="close"></a>
+        <p class="i"><img src="/static/images/zy_send.png"></p>
+        <p id="emailValidateEE">我们向您的邮箱<span>548748451@qq.com</span>发送了一封验证邮件</p>
+        <p>为保证您账号的安全和方便您参加我们的活动，邮箱完成验证才能继续学习哦</p>
+        <p class="a"><a target="_blank">去邮箱验证</a></p>
+        <p class="sendE2" style="display: none;">没收到，您可以查看您的垃圾邮件和被过滤邮件，也可以再次发送验证邮件（<span class="c5c">60s</span>）</p>
+        <p class="sendE">没收到，您可以查看您的垃圾邮件和被过滤邮件，也可以<a class="c5c">再次发送验证邮件</a></p>
+        <p class="zy_success t5o upmove"><img src="/static/images/zy_right.png"><span>验证邮件发送成功</span></p>
+    </div>
+</div>
+
+{% endif %}
+
+{% if user.is_authenticated %}
+<div class="show-card-wrap fade">
+  <div class="show-card">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+              <td class="td-userhd"><span class="user-pic"><img src="{{ MEDIA_URL }}{{ user.avatar_url }}"></span></td>
+              <td align="right" class="text-align-r">
+                  <a href="{% if user.is_student %}{% url 'user:student_center' %}{% else %}{% if user.is_teacher %}{% url 'user:teacher_center' %}{% endif %}{% endif %}" class="link-default">{{ user.nick_name }}</a>
+                  <div class="user-email">
+                  {% if user.email|length %}
+                    {% if user.email|length > 20 %}
+                      {{ user.email|slice:"18" }}...
+                    {% elif  user.email|length > 0 %}
+                      {{  user.email }}
+                    {% endif%}
+                  {% else %}
+                  尚未注册邮箱
+                  {% endif %}
+                  </div>
+              </td>
+          </tr>
+          <tr>
+              <td colspan="2"><a href="{% if user.is_student %}{% url 'user:student_center' %}{% else %}{% if user.is_teacher %}{% url 'user:teacher_center' %}{% endif %}{% endif %}" class="btn btn-micv5 btn-md btn-block">进入个人中心</a></td>
+          </tr>
+          <tr>
+              <td colspan="2"><a href="{% url 'user:logout' %}" class="link-cancel">注销</a></td>
+          </tr>
+      </table>
+  </div>
+</div>
+{% endif %}
+
+<ul class="zy_foot_div">
+    <li><a href="/course/" class="a1 {% if is_display %}aH{% endif %}"><p class="p"></p><p>课程中心</p></a></li>
+    <li><a href="{{ FPS_HOST }}ask/" class="a2"><p class="p"></p><p>麦子圈</p></a></li>
+    <li><a href="/common/apppage/" class="a3 {% if apppage_display %}aH{% endif %}"><p class="p"></p><p>APP</p></a></li>
+</ul>
+<div style="width: 100%; height: 64px;" class="zy_foot_divDD"></div>
+
+<script src="/static/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/static/js/jquery.featureCarousel.min.js"></script>
+<script src="/static/js/jquery.carouFredSel.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/jquery.placeholder.js"></script>
+<script src="/static/js/jquery.mousewheel.js"></script>
+<script src="/static/js/jquery.jscrollpane.min.js"></script>
+<script src="/static/js/mz-jPages.min.js"></script>
+<script src="/static/js/Swiper.js"></script>
+<script src="/static/js/microoh-v5.js"></script>
+<script src="/static/js/ie10-viewport-bug-workaround.js"></script>
+<script src="/static/js/flat-ui.min.js"></script>
+<script src="/static/js/application.js"></script>
+<script src="/static/js/mz-common.js"></script>
+<script type="text/javascript" src="/2016/dev/maizi_trace.js?v={{ time_stamp }}"></script>
+
+<!-- GoogleAnalytics代码 -->
+
+{% block custom_script %}{% endblock %}
+{% block popup %}{% endblock %}
+{% if request.session.ucsynlogin %}
+{{ request.session.ucsynlogin | safe }}
+<script>$.get("/user/ucsynlogin/destory/");</script>
+{% endif %}
+{% if request.GET.popreg == "true" %}
+<script> $('#registerModal').modal('show'); </script>
+{% endif %}
+{% if request.GET.poppwd == "true" %}
+<script> $('#forgetpswModal').modal('show'); </script>
+{% endif %}
+{% if request.GET.popemail == "true" %}
+<script> $('#addemailModal').modal('show'); </script>
+{% endif %}
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-61416428-1', 'auto');
+  ga('send', 'pageview');
+
+$(function(){
+    {% if request.GET.partner and request.GET.openid %}
+      login_popup();
+    {% endif %}
+
+    {% if request.GET.verify_email %}
+        zyUname = '{{request.GET.verify_email}}';
+        $('#emailValidate').modal('show');
+        $("#emailValidateEE span").html(zyUname);
+
+        $("#emailValidate .close").unbind().click(function(){
+            $('#emailValidate').modal('hide');
+            location.href = location.href.split("?")[0];
+        });
+    {% endif %}
+
+    {% if user.is_authenticated %}
+      notice_message();
+    {% endif %}
+
+})
+</script>
+{% if not user.is_unlockstage and not user.is_teacher%}
+<div style="position: fixed;top: 300px;right: 0px;">
+{# <script type='text/javascript' src='http://tb.53kf.com/kf.php?arg=10114760&style=1'></script>#}
+    <script>
+         (function(m, ei, q, i, a, j, s) {
+        m[i] = m[i] || function() {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        j = ei.createElement(q),
+            s = ei.getElementsByTagName(q)[0];
+        j.async = true;
+        j.charset = 'UTF-8';
+        j.src = '//static.meiqia.com/dist/meiqia.js';
+        s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '_MEIQIA');
+    _MEIQIA('entId', 54180);
+     _MEIQIA('withoutBtn');
+    </script>
+</div>
+{% endif %}
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-51873363-14']);
+ _gaq.push(['_trackPageview']);
+(function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+ })();
+
+</script>  <!-- END SITE FOOTER -->
+</body>
+</html>
+{% block custom_script_chart %}{% endblock %}

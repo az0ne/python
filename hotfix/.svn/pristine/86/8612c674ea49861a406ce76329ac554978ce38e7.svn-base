@@ -1,0 +1,14 @@
+{% if user.is_authenticated %}
+<div class="modal fade YaHei" id="yueke-over" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm" style="width: 472px;">
+        <div class="modal-content">
+			<a class="close"></a>
+			<div class="yueke-box">
+				<h4>你已经预约过1对1专属导师服务，不能再次预约哟~</h4>
+			</div>
+			<a class="know">知道了</a>
+        </div>
+    </div>
+</div>
+{% endif %}

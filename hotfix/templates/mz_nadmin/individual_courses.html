@@ -1,0 +1,20 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/courses_breadcrumb.html" %}
+
+<p>
+    <a href="{% url 'nadmin:courses_create' %}"
+        class="btn btn-primary btn-xs">
+        + 添加零散课程
+    </a>
+</p>
+
+{# @XXX 相同样式的 table 也完全可以进行复用 #}
+{% include "mz_nadmin/parts/courses_table.html" with edit_url_name='nadmin:courses_edit' %}
+
+{% endblock %}
+
+
+

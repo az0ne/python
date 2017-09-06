@@ -1,0 +1,284 @@
+{% extends "mz_common/global.html" %}
+{% load date_convert_tag %}
+{% block title %}{{ lesson.name }}-{{ course.name }}-麦子学院{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/lessonVideo.css?v={{ time_stamp }}"/>
+<link rel="stylesheet" type="text/css" href="/2016/lib/layer/skin/layer.css?v={{ time_stamp }}"/>
+<link rel="stylesheet" type="text/css" href="/2016/lib/video/video.css?v={{ time_stamp }}"/>
+<style type="text/css">html,body {overflow: hidden !important;}body {background:#333333;position: relative;}</style>
+<script type="text/javascript">
+function clickIE4(){if(event.button==2){return false}}function clickNS4(e){if(document.layers||document.getElementById&&!document.all){if(e.which==2||e.which==3){return false}}}function OnDeny(){if(event.ctrlKey||event.keyCode==78&&event.ctrlKey||event.altKey||event.altKey&&event.keyCode==115){return false}}if(document.layers){document.captureEvents(Event.MOUSEDOWN);document.onmousedown=clickNS4;document.onkeydown=OnDeny()}else if(document.all&&!document.getElementById){document.onmousedown=clickIE4;document.onkeydown=OnDeny()}document.oncontextmenu=new Function("return false");
+</script>
+<script type="text/javascript">
+var $ad = "{% if ad_career_course.ad %}True{% endif %}",
+    $groupName = "{{ group_name }}",
+    $classId = "{{ class_id }}",
+    $courseId = "{{ course.id }}",
+    $lessonId = "{{ lesson.id }}",
+    $thisUser = "{{ user.is_authenticated }}",
+    $needPay = "{% if course.need_pay %}True{% endif %}",
+    $isPaid = "{% if is_paid or class_id %}True{% endif %}",
+    $videoLength = {{ lesson.video_length }},
+    $videoExamComplete = "{{ VIDEO_EXAM_COMPLETE }}",
+    $userItem = "{{ useritem }}",
+    $userId = "{{ user.id }}",
+    $MEDIAURL = "{{ MEDIA_URL }}",
+    $ifHaveCareerCourse = "{{ career_course.short_name }}",
+    $studentClass = "{{ student_class }}",
+    $vipUrl = "{{ video_url }}",
+    $lessonUrl = "{{ lesson.video_url }}",
+    $career_id = "{{ career.id }}",
+    $CoachUserType_STUDENT_VIDEO = "{{ CoachUserType.STUDENT_VIDEO }}",
+    $lesson_name = "{{ lesson.name }}"
+</script>
+{% if class_id %}
+<script type="text/javascript">
+var $questionnaireUrl = "{% url 'lps3f:student:q' class_id questionnaire_id %}",
+    $submitUrl = "{% url 'lps3f:student:sq' class_id questionnaire_id %}",
+    $nextUrl = "{% url 'lps3f:student:class_index' class_id %}#2";
+</script>
+{% endif %}
+{% endblock %}
+{% block container %}
+    <!-- 顶部 -->
+    <div class="zyNewVideo_top">
+        {% if student_class %}
+            {% if student_class.is_free488_class %}
+                <a href="javascript:void(0);" class="show-remark back textC colorCC font14"></a><span class="font20 colorff s"></span>
+            {% else %}
+                {% if not is_lps4 %}
+                    <a href="{% url 'lps3:student_stagetask' class_id stage_task_id %}" class="back textC colorCC font14"></a>
+                {% else %}
+                    <a href="{% url 'lps4_index' is_lps4 %}?stagetask_id={{ stage_task_id }}" class="back textC colorCC font14"></a>
+                {% endif %}
+                <span class="font20 colorff s"></span>
+            {% endif %}
+        {% else %}
+            <a href="{% url 'course:course_detail_view' course.id %}" class="back textC colorCC font14"></a><span class="font20 colorff s"></span>
+        {% endif %}
+        <div class="zynewLogin colorff">
+            {% if user.is_authenticated %}
+            <div class="zynewLogin_div">
+                <div class="ldFeedback">
+                     <a id="feedbackfade" >意见反馈</a>
+                    <div class="feedboxTip">
+                        <span class="closed">关闭</span>
+                        <p class="font14 color66">学习过程中的任何问题<br/>都可以在这里反馈哟</p>
+                    </div>
+                </div>
+                <a href="{% url 'home:index' %}" target="_blank" class="img"><img src="{{ MEDIA_URL }}{{ user.avatar_middle_thumbnall }}"></a>
+                <span class="colorff font16 zynewLogin_div_name">
+                    <a href="{% url 'home:index' %}" target="_blank" class="userName colorff">{{ user.nick_name }}</a><a class="sign_out colorff" href="{% url 'user:logout' %}">[退出]</a>
+                </span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <!-- 视频播放 -->
+    <div class="zyNewVideo_main">
+        <div class="zvideo_index t5o">
+            <div class="zvideo">
+                <video id="myVideo" width="100%" height="100%">
+                    <source src="" type='video/mp4'/>
+                    <p class="vjs-no-js">无法运行，请执行js权限</p>
+                </video>
+                <div class="loading-video"><a href="javascript:void(0)"></a></div>
+                <div class="vip big-play-button"><a href="javascript:void(0)"></a></div>
+                <div class="ordinary big-play-button">
+                    <div class="ad">
+                        <span class="off"></span>
+                        <a href="{% url 'course:course_detail' ad_career_course.short_name %}" target="_blank">
+                            <img src="{{ MEDIA_URL }}{{ ad_career_course.ad }}"/>
+                        </a>
+                    </div>
+                    <a href="javascript:void(0)"></a>
+                </div>
+                <div class="videoStopMeg textC">
+                    {% if ad_career_course.ad and not is_paid %}
+                    <div style="height: 352px;margin-top: -176px;">
+                        <div class="ad">
+                            <a href="{% url 'course:course_detail' ad_career_course.short_name %}" target="_blank">
+                                <img src="{{ MEDIA_URL }}{{ ad_career_course.ad }}"/>
+                            </a>
+                        </div>
+                        <p class="font14 VSMbtn"><a class="VSMbtn1"><i></i>重新观看</a><a class="VSMbtn2">下一节</a></p>
+                    </div>
+                    {% else %}
+                    <div style="height: 110px;margin-top: -55px;">
+                        <p class="font14 VSMbtn"><a class="VSMbtn1"><i></i>重新观看</a><a class="VSMbtn2">下一节</a></p>
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="video-header" style="display: none">
+                    <h1 class="video-name"></h1>
+
+                    <div class="view-port">
+                        <a class="Small" href="javascript:void(0)">50%</a>
+                        <a class="Normal" href="javascript:void(0)">75%</a>
+                        <a class="Big" href="javascript:void(0)">100%</a>
+                    {#                        <a class="Full" href="javascript:void(0)">满屏</a>#}
+                    </div>
+                    <div class="out-full">
+                        <a href="javascript:void(0)">退出全屏</a>
+                    </div>
+                </div>
+                <div class="control-bar">
+                    <div class="progressBar">
+                        <span class="slider"></span>
+
+                        <div class="timeBar"><span></span></div>
+                        <div class="bufferBar"></div>
+                    </div>
+                    <div class="play-control"><span class="control-text playing" title="播放">Play</span></div>
+                    <div class="play-next-control"><span class="control-text play-next">Next</span></div>
+                    <div class="progressTime">
+                        <span class="current">00:00</span>
+                        <i>/</i>
+                    {#<span class="duration">{% date_convert lesson.video_length %}</span>#}
+                        <span class="duration">00:00</span>
+                    </div>
+                    <div class="full-screen"><span></span></div>
+                    <div class="volume">
+                        <span></span>
+                        <div class="volume-control">
+                            <div class="volume-bar">
+                                <div class="volume-level">
+                                    <div class=""></div>
+                                </div>
+                                <div class="volume-handle"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="play-rate"><span>1x</span>
+
+                        <div class="play-rate-menu">
+                            <ul>
+                                <li>2x</li>
+                                <li>1.5x</li>
+                                <li>1.25x</li>
+                                <li class="on">1x</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            {% include 'mz_course/video_bottom/video_bottom.html'%}
+
+        </div>
+        <div class="zvright t5o">
+            <a num="1"><p><img src="/images/rightico001.png"></p><p>目录</p></a>
+            <a num="2" id="target"><p><img src="/images/rightico002.png"></p><p>提问</p></a>
+            <a num="3"><p><img src="/images/rightico003.png"></p><p>课件</p></a>
+        </div>
+    </div>
+    <!--右侧边栏 -->
+    <div class="zvrightSreen t5o">
+        <div class="zvrightSreen1">
+            {% if student_class %}
+                {{ task_index }}
+            {% else %}
+                {% include 'mz_course/video_right_side/lesson_catalog.html'%}
+            {% endif %}
+        </div>
+        <div class="zvrightSreen2" style="display:block;">
+            {% include 'mz_course/video_right_side/lesson_questions.html'%}
+        </div>
+        <div class="zvrightSreen3">
+            {% if student_class %}
+                {% include 'mz_lps3/student/div_lesson_view_download.html' %}
+            {% else %}
+                {% include 'mz_course/video_right_side/lesson_courseware.html'%}
+            {% endif %}
+        </div>
+    </div>
+    {% if class_id %}
+        <div class="modal fade YaHei" id="satisfy-examen" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"></div>
+    {% endif %}
+    <!--用户反馈弹出层-->
+    {% include 'mz_lps3/feedback_box.html' %}
+    <!-- 查看职业课程大纲弹窗 -->
+    <div class="modal fade YaHei" id="check_lesson_lists" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-content" style="width: 470px;">
+            <i class="close"></i>
+            <div class="modal-body">
+                <h4 class="font24 color66 marginB29">亲爱的学员</h4>
+                <p class="font14 color66 marginB20">该课程还有更完整的<span class="color5e font20">职业课程大纲</span>哦~</p>
+                <p class="font14 color66 marginB29">体系化学习，会有更好的学习效果！</p>
+                <a target="_blank" href="{% if career_course %}{% url 'course:course_detail' career_course.short_name %}{% else %}{% url 'course:career_course_list' %}{% endif %}" class="check_lists font14 colorff">查看职业课程大纲</a>
+                <p class="font14 color66"><i class="check_box"></i>不再提醒</p>
+            </div>
+        </div>
+    </div>
+    <!-- 立即付费弹窗 -->
+    <div class="modal fade YaHei" id="just_pay" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-content" style="width: 400px;">
+            <i class="close"></i>
+            <h4 class="font18 color5e">直通班课程</h4>
+            <div class="modal-body">
+                <p class="color66 font14 marginB16">抱歉，该课程视频仅限该直通班学员观看哦~</p>
+                <div class="div_1">
+                    <p>立即报名，您可享有</p>
+                    <ul>
+                        <li><span>•</span>  免费观看所有课程视频</li>
+                        <li><span>•</span>  智能在线学习系统</li>
+                        <li><span>•</span>  名师小班指导</li>
+                        <li><span>•</span>  全国就业服务</li>
+                    </ul>
+                </div>
+                <div class="div_2">
+                    <!-- <p>现在开通试学班，只需要<span>488元</span></p> -->
+                    <p><a class="zdiv2_btn class53" target="_blank">立即咨询</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% include 'mz_lps4/popup/div_popup_1.html'%}
+{% include 'mz_course/video_bottom/insert_img_popup.html'%}
+{% endblock %}
+{% block toolbarDiv %}{% endblock %}
+{% block google %}{% endblock %}
+{% block footer%}{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/jscrollbar/jquery.mousewheel.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/jscrollbar/jquery.jscrollbar.min.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/jquery/uiwidget.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/jquery/fileupload.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/jquery/jquery.cookie.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/jquery/global.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/layer/layer.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/dev/feedbackBox.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/video/video.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1680508" charset="utf-8"></script>
+<script type="text/javascript" src="/2016/lib/ueditor/ueditor.config.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/ueditor/ueditor.all.min.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/dev/lessonVideo.js?v={{ time_stamp }}"></script>
+<script type="text/javascript">
+var jiathis_config = {
+        data_track_clickback: true,
+        shortUrl: false,
+        hideMore: false,
+        url: window.location.href,
+        title: "{{ lesson.name }}-{{ course.name }}-麦子学院",
+        summary: "我正在麦子学院学习{{ lesson.name }}-{{ course.name }},赶快和我一起来感受神奇的在线学习方式吧！——麦子学院，在线学习好工作。"
+    }
+</script>
+<script>
+    /*
+     * maizi trace
+     */
+    maizi_trace.trace({
+       "suid": maizi_trace.suid(),
+       "action_id": "trace_watch_video",
+       "trace_pay_type": maizi_trace.pay_type(),
+       "trace_user_type": maizi_trace.user_type(),
+       "trace_video_name": maizi_trace.video_name(),
+       "trace_career_name": maizi_trace.career_name(),
+       "trace_taskball_name": maizi_trace.taskball_name()
+    });
+</script>
+
+{% endblock %}

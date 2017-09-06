@@ -1,0 +1,12 @@
+<a class="close"></a>
+<h3>恭喜你已成功预约1V1直播服务</h3>
+<div class="time">
+    <p>时间：{{ onevone_meeting.create_date_time|date:"Y年m月d日" }}{{ onevone_meeting.start_time|date:"H:i" }}-{{ onevone_meeting.end_time|date:"H:i" }}</p>
+    <p>你可以在左侧 “1V1” 中查看记录</p>
+</div>
+<p class="time-tips"><span>为了方便你快速进入1V1直播，建议你提前做好直播准备</span><span>我们在直播前30分钟将会以短信方式提醒你</span></p>
+{% if flags %}
+<a class="know" id="join">立即进入</a>
+{% else %}
+<a class="know" id="know">知道了</a>
+{% endif %}

@@ -1,0 +1,129 @@
+<!--随堂作业-->
+{% for course in cur_stage_course_list %}
+<div class="modal plan-modal fade" id="homework_{{ course.id }}_Modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"></span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="quizjobModalLabel">随堂作业</h4>
+            </div>
+            <div class="modal-body">
+                <section class="box-quizjob" id="box-quizjob">
+                    <ul class="modal-max-height scroll-pane">
+                        {% for lesson in course.lesson %}
+                        {% if lesson.has_homework %}
+                        <li class="row row-li">
+                            <div class="col-sm-9">
+                              {% if lesson.homework == "" %}
+                                <i class="v5-icon v5-icon-rthb complate-icon complate-icon-{{lesson.id}}" style="visibility:hidden"></i>
+                              {% else %}
+                                <i class="v5-icon v5-icon-rthb complate-icon"></i>
+                              {% endif %}
+                              <a href="{% url 'lesson:lesson_view' lesson.id %}?stageid={{ cur_stage.id }}" target="_blank">{{ lesson.name }}</a></div>
+                            <div class="col-sm-3 text-center">
+                                {% if lesson.homework == "" %}
+                                 <span class="fileinput-button btn btn-micv5 fileinput-button-span">
+                                      <span class="upload-homeword upload-hw-{{ lesson.id }}">上传</span>
+                                      <input class="upload-input" id="upload-homework-{{ lesson.id }}" type="file" name="Filedata">
+                                 </span>
+                                {% else %}
+                                    <span class="fileinput-button btn btn-micv5 fileinput-button-span">
+                                        <span class="upload-homeword upload-hw-{{ lesson.id }}">重新上传</span>
+                                        <input class="upload-input" id="upload-homework-{{ lesson.id }}" type="file" name="Filedata">
+                                    </span>
+                                {% endif %}
+                            </div>
+                            <div class="progress popup-progress" id="progress-{{ lesson.id }}">
+                                  <div class="progress-bar progress-bar-success"></div>
+                            </div>
+                            <div class="error-overlay-{{lesson.id}} error-overlay">错误提示</div>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+<script>
+
+$(function(){
+  $('.upload-input').click(function(event) {
+    THIS_ID = $(this).attr('id');
+    LESSID = THIS_ID.split("-")[2];
+    homework_upload(LESSID);
+
+  });
+
+})
+function homework_upload(lessid){
+    var real_progress = 0;
+    var show_progress = 0;
+    var step = 2;
+
+    function startProgress() {
+      var timer = setInterval(function(){
+        // console.log(real_progress, show_progress);
+        if(show_progress + step <= real_progress || real_progress == 100) {
+          show_progress += step;
+        }
+
+        $('#progress-'+lessid+' .progress-bar').css(
+                'width',
+                show_progress + '%'
+            );
+            $('#progress-'+lessid+' .progress-bar').html(show_progress+'%');
+        if(show_progress >= 100) {
+          clearInterval(timer);
+          $('#progress-'+lessid).show().delay(1000).fadeOut(1500);
+          setTimeout(function(){
+            $('.upload-hw-'+lessid).html('重新上传');
+            $('.complate-icon-'+lessid).css('visibility','visible');
+          }, 1000);
+        }
+    }, 50);
+    }  
+
+    $('#upload-homework-'+lessid).fileupload({
+        dropZone: null,
+        url: '/lesson/student/job/upload/',
+        formData:{'lesson_id':lessid},
+        add:function(e,data){
+          var uploadErrors = [];
+          var acceptFileTypes = /^(zip|rar)$/i;
+          var filesize = data.originalFiles[0]['size']/(1024)/(1024);
+          Ntype = data.originalFiles[0]['name'];
+          Ntype = Ntype.substring(Ntype.length-3,Ntype.length);
+          // console.log(filesize);
+          // console.log(Ntype);
+          if(!acceptFileTypes.test(Ntype)){
+              $(".error-overlay-"+lessid).html("文件格式不正确（zip，rar）").show().delay(3000).fadeOut();
+              uploadErrors.push('Not an accepted file type');
+          }
+          if(parseInt(filesize)>10) {
+             $(".error-overlay-"+lessid).html("文件超过10M大小").show().delay(3000).fadeOut();
+              uploadErrors.push('Filesize is too big');
+          }
+          if(uploadErrors.length==0){
+            uploading = true;
+            data.submit();
+            startProgress();
+          } 
+        },
+        dataType: 'json',
+        autoUpload: true,
+        done: function (e, data) {
+            real_progress = 100;
+            uploading = false;
+        },
+        progressall: function (e, data) {
+          $('#progress-'+lessid).show();
+          var progress = parseInt(data.loaded / data.total * 100, 10);
+          real_progress = progress;
+        }
+    }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
+}
+
+</script>

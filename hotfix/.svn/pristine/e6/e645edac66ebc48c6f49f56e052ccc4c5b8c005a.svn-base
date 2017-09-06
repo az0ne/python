@@ -1,0 +1,21 @@
+
+
+<ul class="nav nav-tabs nav-append-content">
+    <li {% if tabs_active == "info" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:students_info' student.id %}">基本信息</a>
+    </li>
+    <li {% if tabs_active == "career_courses" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:students_career_courses' student.id %}">课程</a>
+    </li>
+    <li {% if tabs_active == "favor_courses" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:students_favor_courses' student.id %}">收藏</a>
+    </li>
+    <li {% if tabs_active == "messages" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:students_messages' student.id %}">消息</a>
+    </li>
+    <li {% if tabs_active == "certificates" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:students_certificates' student.id %}">证书</a>
+    </li>
+</ul>
+
+

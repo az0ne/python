@@ -1,0 +1,152 @@
+{% extends "mz_backend/base.html" %}
+{% block title %}录入订单{% endblock %}
+{% block cssstyle %}
+    <style>
+    .order_add_txt{ border: 1px solid #333333; border-radius: 3px; padding: 4px;}
+    #orderaddForm .t1>label{ margin-right: 20px;}
+    #orderaddForm .t1>input{ vertical-align: middle;}
+    #orderaddForm table td{ padding: 6px 0;}
+    #orderaddForm .foot span{ margin-right: 30px; }
+    #orderaddForm .foot{margin-bottom: 60px;}
+    </style>
+{% endblock %}
+{% block container %}
+<form action="{% url 'backend:create_order' %}" method="POST" id="orderaddForm">
+    {% csrf_token %}
+    <H2>录入线下转账订单</H2>
+    <table width="600px">
+        <tr>
+            <td>支付类型：</td>
+            <td colspan="4" class="t1">
+                <label><input type="radio" name="pay_type" value="1">试学</label>
+                <label><input type="radio" name="pay_type" value="0">全款</label>
+                <label><input type="radio" name="pay_type" value="2">余额</label>
+                <label><input type="radio" name="pay_type" value="6">无就业全款</label>
+            </td>
+        </tr>
+        <tr>
+            <td>麦子账号：</td>
+            <td><input type="text" name="student" class="order_add_txt txt1" ></td>
+            <td>班级编号或名称：</td>
+            <td><input type="text" name="cls" class="order_add_txt txt1" ></td>
+        </tr>
+        <tr>
+            <td>支付平台：</td>
+            <td>
+                <select class="order_add_txt" name="pay_way">
+                    <option value="">---------------</option>
+                {% for k, v in pay_ways %}
+                    <option value="{{ k }}">{{ v }}</option>
+                {% endfor %}
+                </select>
+            </td>
+            <td>付款账号：</td>
+            <td><input type="text" name="payment_account" class="order_add_txt" ></td>
+        </tr>
+        <tr>
+            <td>交易流水号：</td>
+            <td><input type="text" name="trade_no" class="order_add_txt" ></td>
+            <td>支付时间：</td>
+            <td><input type="text" name="date_pay" class="order_add_txt" id="date_pay" placeholder="YYYY-MM-DD hh:mm"></td>
+        </tr>
+    </table>
+    <p class="foot">全款：<span class="fullPayment">0元</span>   优惠金额：<span class="discountPay">0元</span>    合同价：<span class="contractPrice">0元</span>     <br><br>支付金额：<span class="fullPayment">0元</span></p>
+    <p><input type="button" value="提交订单" class="ext_btn ext_btn_submit"></p>
+</form>
+{% endblock %}
+{% block custom_script %}
+    <script type="text/javascript" src="/static/backend/layer/layer.js"></script>
+    <script type="text/javascript" src="/static/backend/laydate/laydate.js"></script>
+    <script>
+    laydate({
+        elem: '#date_pay',
+        format: 'YYYY-MM-DD hh:mm', // 分隔符可以任意定义，该例子表示只显示年月
+        istime: true
+    });
+    </script>
+
+    <script>
+    $(function(){
+        //提交
+        $(".ext_btn_submit").click(function(){
+            var bo=true;
+            $(".order_add_txt").each(function(){
+                if($(this).val()==""){
+                   bo=false;return ;
+                }
+            });
+            if(bo) {
+                layer.confirm('请仔细核对，确认后，付款信息不能修改!', {
+                  btn: ['取消','确定'] //按钮
+                  ,skin: 'layui-layer-lan'
+                    ,closeBtn: 0
+                    ,shift: 4 //动画类型
+                }, function(index){
+                    layer.close(index);
+                }, function(){
+                    var params = $('form').serialize(); //$("#orderaddForm").submit();
+{#                    params['pay_way'] = $('option:selected').val();#}
+                    $.ajax({
+                        url:'{% url 'backend:create_order' %}',
+                        type:'post',
+                        dataType:'json',
+                        data:params,
+                        success: function (data) {
+                            if (data['success']) {
+                                location.href = data['url'];//跳转地址
+                            } else {
+                                layer.msg(data['error'], {
+                                    time: 20000, //20s后自动关闭
+                                    btn: ['知道了']
+                                });
+                            }
+                        }
+                     });
+                });
+            }
+            else
+                layer.msg('不能为空,请填写完整');
+        });
+        $(".txt1").blur(function(){
+            var bo=true;
+            $(".txt1").each(function(){
+                if($(this).val()==""){
+                    bo=false;
+                }
+            });
+            if(bo)
+            $.ajax({
+                type: "GET",
+                url: "{% url 'backend:get_course_price' %}",
+                data: {
+                    "student": $(".txt1").eq(0).val(),
+                    "cls": $(".txt1").eq(1).val(),
+                    "pay_type": $('input[name="pay_type"]:checked').val()
+                },
+                dataType: "json",
+                success: function(data){
+                    if(data.success) {
+                        var span=$("#orderaddForm .foot span");
+                        span.eq(0).text(data['net_price']+"元");  //全款
+                        span.eq(1).text(data['discounted_price']+"元");  // 优惠金额
+                        span.eq(2).text(data['contract_price']+"元");  // 合同价
+                        span.eq(3).text(data['final_payment_price']+"元");  // 支付金额
+                        layer.msg('查询成功');
+                    } else {
+                        layer.msg(data.error, {btn: ['知道了']});
+                    }
+                },
+                error:function(jqXHR, textStatus, errorThrown){
+                    layer.msg('系统错误，请联系管理员', {btn: ['知道了']})
+                },
+                beforeSend:function(XMLHttpRequest){
+                    layer.msg('查询价格中...');
+                },
+{#                complete: function(XMLHttpRequest){#}
+{#                    layer.msg('查询价格完成');#}
+{#                }#}
+            });
+        });
+    })
+    </script>
+{% endblock %}

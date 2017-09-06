@@ -1,0 +1,32 @@
+<div class="zy_Rlive">
+    <p class="font16 bold color33 zy_Rlive_tit">直播课程<span class="fr jj color5e"><img
+            src="{{ STATIC_URL }}mz_lps3/images/znewjia.png">新建班会</span></p>
+    {% if classmeeting_lst %}
+        <ul class="zy_RliveList marginB20">
+            {% for classmeeting in classmeeting_lst %}
+                {% if classmeeting.status == 2 %}
+                    <li class="active">
+                        <p class="color5e font20 marginB10">
+                            <a href="{{ classmeeting.join_url }}" target="_blank">{{ classmeeting.content }}</a></p>
+
+                        <p class="color33 font14 marginB10"><a href="{{ classmeeting.join_url }}" target="_blank">{{ classmeeting.d_week }}&nbsp;&nbsp;&nbsp;&nbsp;{{ classmeeting.d_date }}&nbsp;&nbsp;&nbsp;&nbsp;{{ classmeeting.d_time }}</a></p>
+                        <a class="colorff font14 zlbtn bold textC" target="_blank"
+                           href="{{ classmeeting.join_url }}">进入直播课</a>
+                    </li>
+                {% else %}
+                    <li>
+                        <p class="color66"><a href="{{ classmeeting.join_url }}" target="_blank">{{ classmeeting.content }}</a></p>
+                        <p class="color33"><a href="{{ classmeeting.join_url }}" target="_blank">{{ classmeeting.d_week }}&nbsp;&nbsp;&nbsp;{{ classmeeting.d_date }}&nbsp;&nbsp;&nbsp;{{ classmeeting.d_time }}</a></p>
+                        <a class="font14 colorff textC a aa" onclick="opedit({{ classmeeting.id }},2)"><span class="s1">未开始</span><span class="s2" >修改</span>
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if is_classmeeting_video %}
+        <a class="color66 font14 textC seeMore" target="_blank"
+           href="{% url 'lps3:teacher_classmeeting' class_id %}">过往班会记录</a>
+    {% endif %}
+
+</div>

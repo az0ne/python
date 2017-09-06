@@ -1,0 +1,147 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/courses_breadcrumb.html" %}
+
+<div class="tabbable">
+{% include "mz_nadmin/parts/course_tabs.html" %}
+
+<div class="tab-content">
+    <div class="tab-pane active">
+
+    <p class="text-right">
+        <a href="#" class="btn btn-xs btn-warning">返回</a>
+    </p>
+
+    <p>
+        {% include "mz_nadmin/modules/form_alert.html" %}
+    </p>
+
+    {% if quiz %}
+    <form class="form-horizontal" role="form"
+        action="{% url 'nadmin:courses_edit_paper_quiz' course.id course_paper.id quiz.id %}" method="post">
+    {% else %}
+    <form class="form-horizontal" role="form"
+        action="{% url 'nadmin:courses_edit_paper_quiz_create' course.id course_paper.id %}" method="post">
+    {% endif %}
+
+        {% csrf_token %}
+
+        <div class="form-group {% if form.index.errors %}has-error{% endif %}">
+            <label class="col-md-2 control-label" for="search_keywords">
+                {{ form.index.label }}
+            </label>
+            <div class="col-md-2">
+                {{ form.index }}
+                <span class="help-block">
+                {% for error in form.index.errors %}
+                    {{ error }}
+                {% endfor %}
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group {% if form.question.errors %}has-error{% endif %}">
+            <label class="col-md-2 control-label" for="search_keywords">
+                {{ form.question.label }}
+            </label>
+            <div class="col-md-5">
+                {{ form.question }}
+                <span class="help-block">
+                {% for error in form.question.errors %}
+                    {{ error }}
+                {% endfor %}
+                </span>
+            </div>
+        </div>
+
+        <!--4 个选项-->
+        <div class="form-group {% if form.item_1.errors %}has-error{% endif %}">
+            <label class="col-md-2 control-label" for="search_keywords">
+                {{ form.item_1.label }}
+            </label>
+            <div class="col-md-5">
+                {{ form.item_1 }}
+                <span class="help-block">
+                {% for error in form.item_1.errors %}
+                    {{ error }}
+                {% endfor %}
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group {% if form.item_2.errors %}has-error{% endif %}">
+            <label class="col-md-2 control-label" for="search_keywords">
+                {{ form.item_2.label }}
+            </label>
+            <div class="col-md-5">
+                {{ form.item_2 }}
+                <span class="help-block">
+                {% for error in form.item_2.errors %}
+                    {{ error }}
+                {% endfor %}
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group {% if form.item_3.errors %}has-error{% endif %}">
+            <label class="col-md-2 control-label" for="search_keywords">
+                {{ form.item_3.label }}
+            </label>
+            <div class="col-md-5">
+                {{ form.item_3 }}
+                <span class="help-block">
+                {% for error in form.item_3.errors %}
+                    {{ error }}
+                {% endfor %}
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group {% if form.item_4.errors %}has-error{% endif %}">
+            <label class="col-md-2 control-label" for="search_keywords">
+                {{ form.item_4.label }}
+            </label>
+            <div class="col-md-5">
+                {{ form.item_4 }}
+                <span class="help-block">
+                {% for error in form.item_4.errors %}
+                    {{ error }}
+                {% endfor %}
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group {% if form.result.errors %}has-error{% endif %}">
+            <label class="col-md-2 control-label" for="search_keywords">
+                {{ form.result.label }}
+            </label>
+            <div class="col-md-2">
+                {{ form.result }}
+                <span class="help-block">
+                {% for error in form.result.errors %}
+                    {{ error }}
+                {% endfor %}
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+            <hr>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-sm btn-primary">保存</button>
+            </div>
+        </div>
+
+    </form>
+
+    </div>
+</div>
+</div>
+{% endblock %}
+
+

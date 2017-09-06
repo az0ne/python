@@ -1,0 +1,4 @@
+.index .main { width: 100%; position: absolute; top: 65px; bottom: 0; z-index: 10; }
+.index .side-bar { background: #ccc; width: 168px; height: 100%; box-shadow: 3px 0 6px rgba(0, 0, 0, 0.1); position: fixed; top: 65px; bottom: 0; }
+.index .main-container { position: absolute; top: 0; left: 168px; bottom: 0; right: 0; }
+.index .slider { width: 100%; height: 404px; background: lightblue; }

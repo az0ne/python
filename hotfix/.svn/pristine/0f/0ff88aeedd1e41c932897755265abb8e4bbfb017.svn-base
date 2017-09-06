@@ -1,0 +1,47 @@
+
+    <div class="modal-dialog modal-sm modal-content zy_attendance">
+    	<a class="zy_newclose"></a>
+    	<p class="color5e font18 pt">{{ class_meeting.d_date }}<span class="font14 s">{{ class_meeting.d_week }} {{ class_meeting.d_time }}</span></p>
+        <div class="zy_attendance_con font14">
+        	<p class="ptt marginB20">
+            	<span>班会主题：<font class="color99">{{ class_meeting.content }}</font></span>
+                <span>班级：<font class="color99">{{ class_obj.coding }}</font></span>
+                <span>教务：<font class="color99">{{ edu_admin_name }}</font></span>
+                <span>老师：<font class="color99">{{ teacher_name }}</font><font class="color5e">(按时进班)</font></span>
+            </p>
+            <p class="font16 color5e marginB10">学员出勤率：{{ attendance }}% <a class="reload fr color99 font12" href="javascript:void(0);">重新获取</a></p>
+            {% if punctual_user_count != 0 %}
+            <p class="font14 color66 marginB10">参加人数：<span class="color99">{{ punctual_user_count }}人</span></p>
+            <ul class="zy_attendance_ul">
+                {% for punctual_user in punctual_user_lst %}
+                <li>
+                    <a title="{% if punctual_user.real_name %}{{ punctual_user.real_name }}{% else %}{{ punctual_user.nick_name }}{% endif %}"><img src="{{ MEDIA_URL }}{{ punctual_user.avatar_small_thumbnall }}"></a>
+                    <p title="{% if punctual_user.real_name %}{{ punctual_user.real_name }}{% else %}{{ punctual_user.nick_name }}{% endif %}">{% if punctual_user.real_name %}{{ punctual_user.real_name }}{% else %}{{ punctual_user.nick_name }}{% endif %} </p>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% if late_user_count != 0 %}
+            <p class="font14 color66 marginB10">迟到人数：<span class="color99">{{ late_user_count }}人</span></p>
+            <ul class="zy_attendance_ul">
+                {% for late_user in late_user_lst %}
+                <li>
+                    <a title="{% if late_user.real_name %}{{ late_user.real_name }}{% else %}{{ late_user.nick_name }}{% endif %}"><img src="{{ MEDIA_URL }}{{ late_user.avatar_small_thumbnall }}"></a>
+                    <p title="{% if late_user.real_name %}{{ late_user.real_name }}{% else %}{{ late_user.nick_name }}{% endif %}">{% if late_user.real_name %}{{ late_user.real_name }}{% else %}{{ late_user.nick_name }}{% endif %} </p>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% if absent_user_count != 0 %}
+            <p class="font14 color66 marginB10">缺勤人数：<span class="color99">{{ absent_user_count }}人</span></p>
+            <ul class="zy_attendance_ul">
+                {% for absent_user in absent_user_lst %}
+                <li>
+                    <a title="{% if absent_user.real_name %}{{ absent_user.real_name }}{% else %}{{ absent_user.nick_name }}{% endif %}"><img src="{{ MEDIA_URL }}{{ absent_user.avatar_small_thumbnall }}"></a>
+                    <p title="{% if absent_user.real_name %}{{ absent_user.real_name }}{% else %}{{ absent_user.nick_name }}{% endif %}">{% if absent_user.real_name %}{{ absent_user.real_name }}{% else %}{{ absent_user.nick_name }}{% endif %}</p>
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>

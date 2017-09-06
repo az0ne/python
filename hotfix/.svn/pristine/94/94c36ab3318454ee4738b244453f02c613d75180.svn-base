@@ -1,0 +1,72 @@
+{% extends "mz_common/global.html" %}
+{% block title %}{{ seo.seo_title }}{% endblock %}
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+{% block csstype %}problem-lists-page{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/lps4_stu_ques_ans.css?v={{ time_stamp }}"/>
+<script type="text/javascript">
+var careerId = '{{ career_id }}';
+</script>
+{% endblock %}
+{% load article_filter %}
+{% block container %}
+    <div class="left-side">
+        {% include 'mz_lps4/module/div_left_side.html' %}
+    </div>
+    <div class="main-container">
+        {% include 'mz_lps4/module/div_header.html' %}
+        <div class="main-center">
+            <!-- 编辑器 -->
+            {% include 'mz_lps4/module/div_ueditor.html' %}
+            <!-- 问题列表 -->
+            {% if data %}
+            <div class="problem-container" id="problem-container">
+                {% for coach in data %}
+                <div class="item">
+                    <div class="fl">
+                        <img src="{{ MEDIA_URL }}{{ coach.head }}" alt="{{ coach.nick_name }}"/>
+                        <p class="font14 textC bold">{{ coach.nick_name }}</p>
+                    </div>
+                    <a href="{% url 'lps4:coach_detail' coach.id %}" target="_blank" class="right">
+                        <p class="problem-desc font14">{{ coach.abstract|safe|content_brief:'130' }}</p>
+                    </a>
+                    <p class="problem-time font14">{{ coach.create_date|date:'Y年m月d日 H:i' }} {% if coach.source %}提问于{% if coach.source_type == 11 %} <a href="{{ coach.url }}" target="_blank">{{ coach.source }}</a>{% else %} {{ coach.source }} {% endif %}{% endif %}</p>
+                    {% if coach.student_replay_count > 0 %}
+                    <i class="unread"></i>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                <div style="" class="zypage yahei marginB38">
+                <div class="zypage_div" style="-moz-user-select: none;">
+                    {% for p in page_count_list %}
+                        {% if p.isdigit %}
+                            <a {% if p == page_index %}class="jp-current"{% endif %}
+                               href="{% url 'lps4:student_coach_list' career_id %}?page={{ p }}">{{ p }}</a>
+                        {% else %}
+                            <a><span>...</span></a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                </div>
+            </div>
+            {% else %}
+                <div class="empty">
+                    <span>你还没有提问哦~快去提问吧！</span>
+                </div>
+            {% endif %}
+        </div>
+        {% include 'mz_lps4/module/footer.html' %}
+    </div>
+
+{% endblock %}
+{% block footer %}{% endblock %}
+{% block google %}{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/lib/ueditor/ueditor.config.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/layer/layer.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/ueditor/fudao.ueditor.all.min.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/lps4StuQuesAns.js?v={{ time_stamp }}"></script>
+{% endblock %}

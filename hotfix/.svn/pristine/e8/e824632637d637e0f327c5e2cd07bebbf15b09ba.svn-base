@@ -1,0 +1,224 @@
+<!--课程总测验-->
+<script>
+    //在线测试
+    function onlinetst(){
+        var _section = $('.onlinetest-wp').find('section');
+        var _button = $('.onlinetest-wp').find('button');
+        var _this_section_length = _section.length;
+        var _this_section_width = _section.outerWidth();
+        $('.onlinetest-wp').width(_this_section_width*_this_section_length);
+        _button.bind('click',function(){
+            // $(this).addClass('active').siblings().removeClass('active');
+            
+            var _select = $(this).attr("value");
+            var _quiz_id = $(this).parent().parent().attr("quiz_id");
+            var _course_id = $(this).parent().parent().attr("course_id");
+            var _cur_obj = $(this)
+            $.ajax({
+                type:'GET',
+                url:"/lps/quiz/answer/"+_quiz_id+"/"+_select+"/",
+                dataType:'json',
+                success:function(data){
+                    if(data.status=="success"){
+                        if(data.result != _select){
+                            $('.onlinetest-wp section[quiz_id = '+_quiz_id+'] button[value='+data.result+']').addClass('q_right');
+                            _cur_obj.addClass('q_error');
+                            $('section[quiz_id = '+_quiz_id+'] button').unbind();
+                            setTimeout(function(){
+                                _cur_obj.parents('.onlinetest-wp').animate({marginLeft:'-='+_this_section_width},500);
+                            },1000)
+                            
+                        }else{
+                            _cur_obj.addClass('q_right');
+                            $('section[quiz_id = '+_quiz_id+'] button').unbind();
+                            _cur_obj.parents('.onlinetest-wp').animate({marginLeft:'-='+_this_section_width},500);
+                        }
+                        var _counter = _cur_obj.nextAll("span").text().split("/")
+                        if(_counter[0] == _counter[1]){ 
+                            get_paper_result(_course_id);
+                        }
+                    
+
+                    }
+                }
+            });
+        });
+    }
+
+    //获取试卷得分信息
+    function get_paper_result(course_id){
+        $.get("/lps/paper/result/course/"+course_id+"/", function(data){
+            if(data.status=="success"){
+                $(".test_result_div_"+course_id+" .test_result1 .re_score").html(data.quiz_right_count);
+                $(".test_result_div_"+course_id+" .test_result2 .re_score").html(data.quiz_wrong_count);
+                $(".test_result_div_"+course_id+" .test_result3 .re_score").html(data.paper_accuracy);
+                $(".test_result_div_"+course_id+" .test_result4 .re_score").html(data.study_point)
+                
+            }
+        });
+    }
+</script>
+{% for course in cur_stage_course_list %}
+{% if course.has_paper %}
+<div class="modal fade testModal-div" id="course_{{ course.id }}_testModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button">
+                    <span aria-hidden="true"></span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 id="quizjobModalLabel" class="modal-title">课程总测验</h4>
+                <span class="lr_span">
+                    <a class="left_c lr_c">
+                        <</a>
+                            <span class="lr-num">0/0</span>
+                            <a class="right_c lr_c">></a>
+                        </span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="box-onlinetest">
+
+                            <article>
+                                <div class="onlinetest-wp cf">
+                                    {% for quiz in course.uncomplete_quiz %}
+                                    <section quiz_id={{ quiz.id }} course_id={{ course.id }}>
+                                        <div class="onlinetest-quiz">
+                                            <p style="word-wrap: break-word;">{{ forloop.counter }}、{{ quiz.question | safe }}</p>
+                                            {{ quiz.item_list | safe }}
+                                            <span>{{ forloop.counter }}/{{ course.uncomplete_quiz | length }}</span>
+                                        </div>
+                                    </section>
+                                    {% endfor %}
+                                    <section course_id={{ course.id }} class="last_section">
+                                        <div class="test_result_div test_result_div_{{course.id}}">
+                                            <div class="test_result test_result1">
+                                                <span>答对题数</span>
+                                                <div class="re_score">0</div>
+                                            </div>
+                                            <div class="test_result test_result2">
+                                                <span>答错题数</span>
+                                                <div class="re_score">0</div>
+                                            </div>
+                                            <div class="test_result test_result3">
+                                                <span>正确率</span>
+                                                <div class="re_score">0%</div>
+                                            </div>
+                                            <div class="test_result test_result4">
+                                                <span>获得学力</span>
+                                                <div class="re_score">0</div>
+                                            </div>
+                                            <div style="clear:both;"></div>
+                                            <div class="result_text_button result_text_button1">查看错题</div>
+                                            <div class="result_text_button result_text_button2">结束测试</div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </article>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<script>
+function onlinetest_{{ course.id }}(){
+   $('#course_{{ course.id }}_testModal').modal('show');
+   onlinetst();
+}
+
+    {% if course.is_complete_paper %}
+    get_paper_result({{ course.id }});
+    {% endif %}
+</script>
+        {% endif %}
+{% endfor %}
+<script type="text/javascript">
+
+$('.result_text_button2').click(function(){
+    var _course_id = $(this).parent().parent().attr("course_id");
+    $('#course_'+_course_id+'_testModal').modal('hide');
+})
+
+ $('.result_text_button1').each(function(index, button) {
+    var reviewing = false;
+    var index = 0;
+    $(this).click(function(event) {
+    var _course_id = $(this).parent().parent().attr("course_id");
+        $.ajax({
+                type:'GET',
+                url:"/lps/user/review/answers/?course_id="+_course_id,
+                dataType:'json',
+                success:function(data){
+                    if(data.success){
+                        str_html = "";
+                        for(var i = 0;i < data.quizs.length;i++){
+                            str_html+= "<section class='section-"+i+"'>"; 
+                            str_html+= '<div class="onlinetest-quiz"><p style="word-wrap: break-word;">'+data.quizs[i].question+'</p>';
+                            str_html+= data.quizs[i].item_list
+                            str_html+="</div></section>";
+                        }
+                        $('#course_'+_course_id+'_testModal .last_section').siblings().remove();
+                        $('#course_'+_course_id+'_testModal .last_section').before(str_html);
+                        $('#course_'+_course_id+'_testModal .onlinetest-wp').animate({marginLeft:'0'},0);
+                        for(var j = 0;j < data.quizs.length;j++){
+                            wrong = data.quizs[j].wrong;
+                            se_right = data.quizs[j].right;
+                            obj = $('#course_'+_course_id+'_testModal .last_section').siblings();
+                            obj.each(function(){
+                               objclass= $(this).attr('class');
+                               s_id =objclass.split('-')[1];
+                               if(j ==s_id){
+                                $('#course_'+_course_id+'_testModal .section-'+j+' button[value='+se_right+']').addClass('q_right');
+                                $('#course_'+_course_id+'_testModal .section-'+j+' button[value='+wrong+']').addClass('q_error');
+                               }
+                            });
+                        }
+                        se_obj = $('#course_'+_course_id+'_testModal .onlinetest-wp section');
+                        if(se_obj.length > 1){
+                            se_num = se_obj.length-1;
+
+                            var _this_section_width = se_obj.outerWidth();
+                            $('#course_'+_course_id+'_testModal .lr-num').html('1/'+se_num);
+                            $('#course_'+_course_id+'_testModal .lr_span').show();
+                            $('#course_'+_course_id+'_testModal .onlinetest-wp').width(_this_section_width*se_obj.length);
+
+                            index = 1;
+                            if(reviewing) {
+                                return;
+                            }
+                            $('.left_c').click(function(event) {
+                                if(index == 1){
+                                    return;
+                                }
+                                $('#course_'+_course_id+'_testModal .onlinetest-wp').animate({marginLeft:'+='+_this_section_width},500);
+                                index -= 1;
+                                if(index <= se_num){
+                                    $('#course_'+_course_id+'_testModal .lr-num').html(index+'/'+se_num);
+                                }
+                            });
+                            $('.right_c').click(function(event) {
+                                if(index == se_obj.length) {
+                                    return;
+                                }
+
+                                $('#course_'+_course_id+'_testModal .onlinetest-wp').animate({marginLeft:'-='+_this_section_width},500);
+                                index += 1;
+                                if(index <= se_num){
+                                    $('#course_'+_course_id+'_testModal .lr-num').html(index+'/'+se_num);
+                                }
+                             });
+
+                            reviewing = true;
+
+                        }
+
+                    }
+                }
+            });
+
+    });
+ }
+ );
+
+</script>

@@ -1,0 +1,144 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}IT职业在线教育讲师招募 - 麦子学院{% endblock %}
+{% block keywords %}麦子学院，IT职业培训，IT技能培训，IT在线教育，IT在线学习，编程学习，android,ios,php,java,python,html5,cocos2dx{% endblock %}
+{% block description %}麦子学院专注IT职业在线教育，现正在招募android开发、ios开发、平面设计、ui设计、物联网、产品经理、嵌入式、php开发、web前端、python开发等一系列IT技术讲师，让我们一起培养更多改变世界的人。{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet"  href="/static/css/mz_wap/stylev1.2.css"/>
+{% endblock %}
+{% block container %}
+		<div class="wapv12 teacherRecruit">
+			<div class="teacherRecruitBanner">
+				<p class="img"><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherRecruitBanner.jpg" alt="讲师招募页Banner"/></p>
+				<div class="txt">
+					<strong>师者，所以传道受业解惑也</strong>
+					<span>麦子学院讲师招募中</span>
+				</div>
+			</div>
+			<div class="teacherRecruitInfo">
+				<ul>
+					<li>
+						<p class="img"><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherRecruitImg01.jpg" alt="带班讲师"/></p>
+						<div class="infos">
+							<strong>带班讲师</strong>
+							<span>足不出户，桃李天下</span>
+							<p>带班老师可以灵活安排自己的时间，使用麦子学院提供的课程大纲开班教学，在线辅导学生学习，批改学生项目。</p>
+						</div>					
+						<span><em>197</em>人已申请</span>
+					</li>
+					<li>
+						<p class="img"><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherRecruitImg02.jpg" alt="录课讲师"/></p>
+						<div class="infos">
+							<strong>录课讲师</strong>
+							<span>与世界分享你的技术和经验</span>
+							<p>录课老师根据麦子学院开设的专业录制自己的视频课程，将自己的多年技术经验总结成为麦子学院开班教学的视频教材。</p>
+						</div>					
+						<span><em>219</em>人已申请</span>
+					</li>
+				</ul>
+			</div>
+			<div class="teacherRecruitRequire">
+				<strong>如何成为麦子讲师</strong>
+				<ul>
+					<li><em>1</em>热衷分享<span>+</span>3年以上大型项目经验</li>
+					<li><em>2</em>提交在线申请<span>or</span>直接电话咨询 </li>
+					<li><em>3</em>审核通过<span></span>成为麦子讲师</li>
+					<li><em>4</em>获得高额回报<span>+</span>业内知名度  </li>
+				</ul>
+				<em>我们正在招募的专业</em>
+				<p>产品经理、iOS应用开发、Android应用开发、python Web开发、Web前段开发、UI设计、游戏原画设计、软件测试、PHP Web开发、嵌入式开发、物联网开发</p>
+			</div>
+			<div class="teacherRecruitTea">
+				<strong>他们都在麦子</strong>
+				<div class="index-teacher" id="focus">
+					<div class="bd">
+                        <ul>
+                            <li><a href="{% url 'teacher_intro' teacher_id=4 %}">
+                                <p><img class="ui-imglazyload" data-url="/static/images/mz_wap/gold_teacher06.png" alt="王海宁"/></p>
+                                <strong>王海宁</strong>
+                                <span>嵌入式Linux开发金牌讲师</span>
+                            </a></li>
+                            <li><a href="{% url 'teacher_intro' teacher_id=3287 %}">
+                                <p><img class="ui-imglazyload" data-url="/static/images/mz_wap/indexTeacherImg02.jpg" alt="马青"/>
+                                </p>
+                                <strong>马青</strong>
+                                <span>游戏原画金牌讲师</span>
+                            </a></li>
+                            <li><a href="{% url 'teacher_intro' teacher_id=3472 %}">
+                                <p><img class="ui-imglazyload" data-url="/static/images/mz_wap/gold_teacher04.png" alt="胡明星"/></p>
+                                <strong>胡明星</strong>
+                                <span>Python Web老师</span>
+                            </a></li>
+                            <li><a href="{% url 'teacher_intro' teacher_id=20365 %}">
+                                <p><img class="ui-imglazyload" data-url="/static/images/mz_wap/indexTeacherImg04.jpg" alt="葛蓉"/>
+                                </p>
+                                <strong>葛蓉</strong>
+                                <span>Android应用开发金牌讲师</span>
+                            </a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="{% url 'teacher_intro' teacher_id=36413 %}">
+                                <p><img class="ui-imglazyload" data-url="/static/images/mz_wap/gold_teacher08.png" alt="胡海亮"/></p>
+                                <strong>胡海亮</strong>
+                                <span>软件测试专业负责人</span>
+                            </a></li>
+                            <li><a href="{% url 'teacher_intro' teacher_id=48129 %}">
+                                <p><img class="ui-imglazyload" data-url="/static/images/mz_wap/gold_teacher05.png" alt="李景山"/></p>
+                                <strong>李景山</strong>
+                                <span>PHP开发金牌讲师</span>
+                            </a></li>
+                            <li><a href="{% url 'teacher_intro' teacher_id=684 %}">
+                                <p><img class="ui-imglazyload" data-url="/static/images/mz_wap/gold_teacher01.png" alt="谭钧"/></p>
+                                <strong>谭钧</strong>
+                                <span>Android应用开发金牌讲师</span>
+                            </a></li>
+                            <li><a href="{% url 'teacher_intro' teacher_id=4130 %}">
+                                <p><img class="ui-imglazyload" data-url="/static/images/mz_wap/gold_teacher03.png" alt="敬文涛"/></p>
+                                <strong>敬文涛</strong>
+                                <span>iOS应用开发金牌讲师</span>
+                            </a></li>
+                        </ul>
+					</div>
+					<div class="dots hd">
+	        		<ol></ol>
+	        	</div>
+				</div>
+			</div>
+			<footer>
+		        <p>© 2012-2016 www.maiziedu.com <br>蜀ICP备13014270号-4 Version 5.0.0 release20160127</p>
+		    </footer>
+		    <div class="foot-bottom" id="foot">
+		        <a href="tel:400-862-8862">电话咨询</a>
+		        <a href="{% url 'teacher_recruit_form'%}">申请成为麦子讲师</a>
+		    </div>
+		</div>
+{% endblock %}
+{% block custom_script %}
+		<script src="/static/js/mz_wap/zepto.js"></script>
+	    <script src="/static/js/mz_wap/imglazyload.js"></script>
+		<script src="/static/js/mz_wap/slider.js"></script>
+	    <script type="text/javascript">
+			TouchSlide({
+				slideCell: '#focus',
+				titCell: ".hd ol",
+				mainCell: ".bd",
+				effect: "left",
+				autoPlay: true,
+				autoPage: true
+			});
+	    	$(function(){
+	    		$(".ui-imglazyload").picLazyLoad();//图片延迟加载
+	    		
+	    		//底部上下滑动时显示隐藏
+				var p=0,t=0;  
+			    $(window).scroll(function(e){  
+			        p = $(this).scrollTop();              
+			        if(t<=p){
+			           $("#foot").animate({height:"0"},100);
+			        }else{               
+			           $("#foot").animate({height:$(this).currentStyle},100)
+			        }  
+			        setTimeout(function(){t = p;},0);
+			    });
+	    	});
+	    </script>
+{% endblock %}

@@ -1,0 +1,63 @@
+@charset "UTF-8";
+/* @function函数定义 */
+/* @mixin混合参数声明 */
+/* %继承 */
+.personalCenter .revise input { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+.personalCenter .headTitle .back:before, .personalCenter .pageTitle .back:before, .personalCenter .infos a:after, .personalCenter .orderInfos a:after, .personalCenter .infos li span.tel:before, .personalCenter .orderInfos li span.tel:before, .personalCenter .order a:before, .personalCenter .orderInfos h4:before { content: ""; display: inline-block; vertical-align: middle; }
+
+/*学生端--个人中心*/
+.personalCenter { background: #f4f4f4; font-size: 0.75rem; color: #3b3b3b; }
+.personalCenter .page { overflow: auto; -webkit-overflow-scrolling: touch; }
+.personalCenter .headTitle, .personalCenter .pageTitle { height: 2.45rem; line-height: 2.45rem; border-bottom: 1px solid #dfe1e0; -webkit-box-shadow: 0 0.05rem 0.125rem 0.05rem rgba(0, 0, 0, 0.1); box-shadow: 0 0.05rem 0.125rem 0.05rem rgba(0, 0, 0, 0.1); padding: 0 0.6rem; }
+.personalCenter .headTitle .back, .personalCenter .pageTitle .back { position: absolute; color: #898989; }
+.personalCenter .headTitle .back:before, .personalCenter .pageTitle .back:before { width: 0.5rem; height: 0.75rem; background: url(/static/images/mz_wap/personalCenterIcon.png) no-repeat; background-position: -4px -188px; margin: -0.1rem 0.25rem 0rem 0rem; }
+.personalCenter .headTitle h3, .personalCenter .pageTitle h3 { text-align: center; font-size: 0.75rem; font-weight: 800; }
+.personalCenter .infos, .personalCenter .orderInfos { margin-top: 0.65rem; }
+.personalCenter .infos ul, .personalCenter .orderInfos ul, .personalCenter .infos .order, .personalCenter .orderInfos .order { background: #fff; padding: 0 0.45rem; -webkit-box-shadow: 0 0.05rem 0.125rem 0.05rem rgba(0, 0, 0, 0.1); box-shadow: 0 0.05rem 0.125rem 0.05rem rgba(0, 0, 0, 0.1); }
+.personalCenter .infos a:after, .personalCenter .orderInfos a:after { width: 0.3rem; height: 0.5rem; background: url(/static/images/mz_wap/personalCenterIcon.png) no-repeat; background-position: -2px -230px; margin: -0.1rem 0rem 0rem 0.25rem; }
+.personalCenter .infos li, .personalCenter .orderInfos li { height: 2.5rem; line-height: 2.5rem; border-bottom: 1px solid #999; padding-right: 0.25rem; }
+.personalCenter .infos li:first-child, .personalCenter .orderInfos li:first-child { height: 3.7rem; line-height: 3.7rem; position: relative; }
+.personalCenter .infos li:last-child, .personalCenter .orderInfos li:last-child { border-bottom: none; }
+.personalCenter .infos li .img, .personalCenter .orderInfos li .img { width: 2.55rem; height: 2.55rem; border-radius: 50%; overflow: hidden; float: right; margin-top: 0.5rem; }
+.personalCenter .infos li .img img, .personalCenter .orderInfos li .img img { border-radius: 50%; }
+.personalCenter .infos li .img i.pays, .personalCenter .orderInfos li .img i.pays { width: 1.05rem; height: 1.05rem; display: block; background: url(/static/images/mz_wap/personalCenterIcon.png) no-repeat; background-position: 0 0; position: absolute; right: 0; bottom: 0.55rem; }
+.personalCenter .infos li strong, .personalCenter .orderInfos li strong { float: left; }
+.personalCenter .infos li span, .personalCenter .orderInfos li span { float: right; color: #c1c1c1; }
+.personalCenter .infos li span.tel:before, .personalCenter .orderInfos li span.tel:before { width: 0.85rem; height: 0.85rem; background: url(/static/images/mz_wap/personalCenterIcon.png) no-repeat; background-position: 0 -144px; margin: -0.125rem 0.25rem 0rem 0rem; }
+.personalCenter .infos li a, .personalCenter .orderInfos li a { float: right; color: #7e7e7e; }
+.personalCenter .infos li a em, .personalCenter .orderInfos li a em { display: inline-block; vertical-align: middle; margin-top: -0.125rem; max-width: 10.75rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.personalCenter .order { height: 2.5rem; line-height: 2.5rem; margin-top: 0.75rem; }
+.personalCenter .order a { color: #3b3b3b; display: block; }
+.personalCenter .order a:before { width: 0.825rem; height: 0.875rem; background: url(/static/images/mz_wap/personalCenterIcon.png) no-repeat; background-position: 0 -47px; margin: -0.075rem 0.25rem 0rem 0rem; }
+.personalCenter .order a:after { float: right; margin: 1rem 0.25rem 0rem 0rem; }
+.personalCenter .quit { margin: 1.625rem 0.45rem; height: 2.5rem; -webkit-box-shadow: 0 0 0.075rem 0.075rem rgba(0, 0, 0, 0.06); box-shadow: 0 0 0.075rem 0.075rem rgba(0, 0, 0, 0.06); }
+.personalCenter .quit input { width: 100%; height: 100%; background: #ffba00; font-size: 0.9rem; color: #fff; font-family: "Microsoft YaHei"; }
+.personalCenter .pageTitle { background: #fff; position: relative; }
+.personalCenter .pageTitle .keep { position: absolute; top: 0; right: 0.6rem; color: #ff9342; }
+.personalCenter .revise { margin: 0.75rem 0.3rem 0rem; height: 1.9rem; background: #fff; }
+.personalCenter .revise input { height: 100%; width: 100%; font-size: 0.75rem; color: #3c3c3c; font-family: "Microsoft YaHei"; padding: 0 0.4rem; }
+.personalCenter .orderInfos h4 { background: #fff; height: 4.375rem; line-height: 4.375rem; padding: 0 0.6rem; font-size: 0.8rem; color: #ff9342; }
+.personalCenter .orderInfos h4:before { width: 0.925rem; height: 1rem; background: url(/static/images/mz_wap/personalCenterIcon.png) no-repeat; background-position: 0 -92px; margin: -0.075rem 0.3rem 0rem 0rem; }
+.personalCenter .orderInfos li { border-top: 1px solid #999; border-bottom: none; }
+.personalCenter .orderInfos li:first-child { height: 2.5rem; line-height: 2.5rem; }
+.personalCenter .orderInfos li span { float: left; padding-left: 0.25rem; max-width: 11.5rem; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+/*老师端--个人中心*/
+.teacherPersonal { background: #f4f4f4; }
+.teacherPersonal .info { display: table; width: 100%; height: 7.9rem; background: url(/static/images/mz_wap/teacherpersonalbg.png) no-repeat left bottom; background-size: cover; }
+.teacherPersonal .info .teach { display: table-cell; vertical-align: middle; text-align: center; }
+.teacherPersonal .info .teach p { width: 2.55rem; height: 2.55rem; border-radius: 50%; margin: 0 auto; }
+.teacherPersonal .info .teach p img { border-radius: 50%; }
+.teacherPersonal .info .teach strong { color: #fff; font-size: 0.8rem; font-weight: 800; padding-top: 0.5rem; }
+.teacherPersonal .abstract { padding: 0.45rem 0.5rem 0.8rem; background: #fff; -webkit-box-shadow: 0 0.05rem 0.125rem 0.05rem rgba(0, 0, 0, 0.1); box-shadow: 0 0.05rem 0.125rem 0.05rem rgba(0, 0, 0, 0.1); color: #3b3b3b; }
+.teacherPersonal .abstract strong { font-size: 0.75rem; font-weight: 800; }
+.teacherPersonal .abstract p { font-size: 0.6rem; line-height: 1.05rem; margin-top: 0.3rem; height: auto; max-height: 3.15rem; overflow: hidden; }
+.teacherPersonal .course { margin: 1rem 0rem 1.5rem; }
+.teacherPersonal .course h4 { color: #3b3b3b; font-size: 0.75rem; font-weight: 800; padding: 0 0.5rem; }
+.teacherPersonal .course ul, .teacherPersonal .course .personalCenter .order, .personalCenter .teacherPersonal .course .order { margin-top: 0.4rem; }
+.teacherPersonal .course li { padding: 0.6rem 0.45rem; border-bottom: 1px solid #e2e2e2; }
+.teacherPersonal .course li .img { width: 5.75rem; height: 3.625rem; overflow: hidden; float: left; }
+.teacherPersonal .course li .txt { height: 3.625rem; margin-left: 6.4rem; }
+.teacherPersonal .course li .txt a { font-size: 0.75rem; color: #666; height: auto; max-height: 2rem; overflow: hidden; }
+.teacherPersonal .course li .txt span { font-size: 0.65rem; color: #999; display: block; margin-top: 0.075rem; }

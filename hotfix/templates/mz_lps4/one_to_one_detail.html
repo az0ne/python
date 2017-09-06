@@ -1,0 +1,90 @@
+{% extends "mz_common/global.html" %}
+{% block title %}麦子学院 - 专业IT职业在线教育平台|ui设计培训|python培训|php培训|web前端培训{% endblock %}
+{% block keywords %}麦子学院，IT职业培训，IT技能培训，IT在线教育，IT在线学习，编程学习，android,ios,php,java,python,html5,cocos2dx{% endblock %}
+{% block description %}
+    麦子学院专注IT职业在线教育，提供android开发、ios开发、coocs2d-x、Unity3D、游戏原画、物联网、产品经理、嵌入式、php等一系列线上IT培训服务，推出在线教育智能化学习系统，保证在线学习效果，每年帮助上万名软件开发学习者成功就业。{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="/css/oneToOne.css?v={{ time_stamp }}"/>
+    <link rel="stylesheet" type="text/css" href="/2016/lib/layer/skin/layer.css?v={{ time_stamp }}"/>
+    <style type="text/css">html, body {
+        width: 100%;
+        height: 100%;
+    }</style>
+{% endblock %}
+{% block csstype %}oto-detail{% endblock %}
+{% block container %}
+    <script type="text/javascript">
+        var service_id = '{{ onevone_meeting.id }}';
+        var serviceScore = '{{ onevone_meeting.star }}';
+    </script>
+    <div class="left-side">
+        {% include 'mz_lps4/module/div_left_side.html' %}
+    </div>
+    <div class="main-container">
+        {% include 'mz_lps4/module/div_header.html' %}
+        <div class="main-center">
+            <div class="main-content">
+                <p class="go-back"><a href="{% url 'lps4:student_service' career_id %}">&lt;返回</a></p>
+                <div class="go-live">
+                    <div class="left">
+                        <a href="{% url 'u:index' onevone_meeting.teacher_id %}" target="_blank">
+                            <img src="{{ MEDIA_URL }}{{ onevone_meeting.teacher_head }}" alt="
+                                    {% if onevone_meeting.teacher_real_name %}{{ onevone_meeting.teacher_real_name }}{% else %}{{ onevone_meeting.teacher_nick_name }}{% endif %}"/>
+                            <span></span>
+                        </a>
+                        <p class="bold">{% if onevone_meeting.teacher_real_name %}
+                            {{ onevone_meeting.teacher_real_name }}{% else %}
+                            {{ onevone_meeting.teacher_nick_name }}{% endif %}</p>
+                    </div>
+                    <div class="right">
+                        <div class="live-time">
+                            <p class="font18">{{ onevone_meeting.start_time | date:"Y年m月d日" }}</p>
+                            <p class="font24">
+                                {{ onevone_meeting.start_time | date:"H:i" }}-{{ onevone_meeting.end_time | date:"H:i" }}</p>
+                            {% if onevone_meeting.status == 'CREATE' or onevone_meeting.status == 'DATED' %}
+                                <a href="{{ onevone_meeting.join_url }}" target="_blank"
+                                   class="live-btn just-begin font12 bold textC"
+                                   id="{{ onevone_meeting.id }}">即将开始</a>
+                            {% elif onevone_meeting.status == 'START' %}
+                                <a href="{{ onevone_meeting.join_url }}" target="_blank" class="live-btn come-in font12 bold textC"
+                                   id="{{ onevone_meeting.id }}">进入直播</a>
+                            {% elif onevone_meeting.status == 'CANCEL' %}
+                                <a class="live-btn cancel font12 bold textC" id="{{ onevone_meeting.id }}">已取消</a>
+                            {% elif onevone_meeting.status == 'ENDED' and onevone_meeting.join_url %}
+                                <a target="_blank" href="{{ onevone_meeting.join_url }}"
+                                   class="live-btn backend font12 bold textC" id="{{ onevone_meeting.id }}">回看录播</a>
+                            {% else %}
+                                <a class="live-btn unlive font12 bold textC" id="{{ onevone_meeting.id }}">暂无录播</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% if onevone_meeting.status == 'CREATE' or onevone_meeting.status == 'START' or onevone_meeting.status == 'DATED' %}
+                <p class="order-time font14"><span class="font14">{% if onevone_meeting.teacher_real_name %}
+                    {{ onevone_meeting.teacher_real_name }}{% else %}
+                    {{ onevone_meeting.teacher_nick_name }}{% endif %}老师</span>与你确定的约课时间为<span
+                        class="font14">{{ onevone_meeting.start_time | date:"H:i"}}</span></p>
+                <!-- 评价 -->
+                {% elif onevone_meeting.status == 'ENDED' %}
+                    {% include 'mz_lps4/module/div_rating.html' %}
+                {% endif %}
+
+                <p class="apply-time font14">你的问题申请于<span
+                        class="font14">{{ onevone_meeting.create_date_time }}</span></p>
+                <div class="desc font14">
+                    {% if onevone_meeting.question %}{{ onevone_meeting.question|safe }}{% else %}
+                        这个用户很懒，没有提交预约内容！{% endif %}</div>
+            </div>
+        </div>
+        {% include 'mz_lps4/module/div_footer.html' %}
+    </div>
+{% endblock %}
+{% block toolbarDiv %}{% endblock %}
+{% block google %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/lib/layer/layer.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/jquery/jquery.raty.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/otoDetail.js?v={{ time_stamp }}"></script>
+{% endblock %}

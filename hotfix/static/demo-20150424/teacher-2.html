@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>学习计划</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<meta name="baidu-site-verification" content="TlN38QiORE"/>
+<link href="http://dev.microoh.com/static/css/base.css" rel="stylesheet"/>
+<link href="http://dev.microoh.com/static/css/microoh-v5.css" rel="stylesheet"/>
+<link href="http://dev.microoh.com/static/css/flat-ui.css" rel="stylesheet"/>
+<link href="http://dev.microoh.com/static/css/develop.css" rel="stylesheet"/>
+<link href="css/jquery.jscrollpane.css" type="text/css" rel="stylesheet" media="all" />
+<link href="css/panel.css" rel="stylesheet"/>
+<link rel="shortcut icon" type="image/x-icon" href="http://dev.microoh.com/static/images/favicon.ico"/>
+<!--[if lt IE 9]>
+<script src="/static/js/html5shiv.min.js"></script>
+<script src="/static/js/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="microoh-main">
+
+	<header class="navbar navbar-default navbar-fixed-top affix" data-offset-top="64">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="" title="麦子学院"><img src="http://dev.microoh.com/static/images/logo.png" alt="麦子学院logo"><img src="http://dev.microoh.com/static/images/logo-font.png" alt="麦子学院"></a>
+			</div>
+			<div class="collapse navbar-collapse" id="microoh-navbar-collapse">
+				<ul class="nav navbar-nav navbar-left">
+					<li class="visible-xs visible-sm"><a href="">首页</a></li>
+					<li><a href="course/">企业直通班</a></li>
+					<li><a href="academic/home/">院校专区</a></li>
+					<li class="visible-md visible-lg"><a href="user/goto/bbs/">论坛</a></li>
+					<li class="hidden-xs hidden-sm"><a href="common/apppage/">移动APP</a></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search" onsubmit="return false">
+					<div class="form-group">
+						<i class="v5-icon v5-icon-search"></i>
+						<input type="text" class="form-control" id="search" placeholder="搜索你感兴趣的课程">
+					</div>
+					<div class="search-dp" id="hotkeyword" style="display: none;">
+						<!--推荐关键词-->
+						<div class="hotkeyword">
+							<h4>推荐搜索关键词</h4>
+							<ul class="cf">
+								<li><a href="javascript:void(0);">iOS</a></li>
+								<li><a href="javascript:void(0);">Android</a></li>
+								<li><a href="javascript:void(0);">嵌入式</a></li>
+							</ul>
+						</div>
+					</div>
+				</form>
+				<div class="v5-topbar-login">
+					<div class="v5-topbar-login-on cf visible-md visible-lg">
+						<dl>
+							<dt><a href="" class="dt-username"><span>cjw11</span><i class="v5-icon v5-icon-rd"></i></a></dt>
+						</dl>
+						<!--a href="user/message/" class="dt-usermsg"><i class="v5-icon v5-icon-havemsg"></i><em>2</em></a-->
+					</div>
+					<div class="v5-topbar-login-on cf visible-xs visible-sm"><a href="user/student/" class="user-t"><img src=""></a></div>
+				</div>
+				<div class="navbar-search-btn visible-xs visible-sm"><a href="common/mobile/search/" class="sch"></a></div>
+			</div>
+			<div class="search-dp" id="keyword-group" style="">
+				<!--搜索结果-->
+				<div class="keyword-group scroll-pane" style="overflow: hidden; padding: 0px; width: 0px;">
+					<div class="jspContainer" style="width: 0px; height: 360px;">
+						<div class="jspPane" style="padding: 0px; top: 0px; left: 0px; width: 0px;">
+							<dl class="">
+								<dt>职业课程</dt>
+								<dd class="careercourses cf"></dd>
+							</dl>
+							<dl class="">
+								<dt>课程</dt>
+								<dd class="courses cf"></dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div class="container visible-md visible-lg">
+		<ol class="breadcrumb">
+			<li><a href="user/center/">我的课程</a></li>
+			<li class="active">iOS应用开发工程师</li>
+		</ol>
+	</div>
+
+
+
+
+	<div class="breadcrumb-right-box">
+		<div class="container">
+			<div class="box-in" id="study_state_box">
+				<div class="study-state state-1">
+					<span class="group"><img src="images/ico-3.png" alt=""/><span class="text">学习状态：<em>正常</em></span><input type="button" class="btn btn-w100" value="暂停" /></span>
+				</div>
+				<div class="stop-why form-group">
+					<div class="stop-why-in">
+						<input placeholder="输入暂停原因" type="text" class="form-control"/><input type="button" class="btn btn-danger" value="提交"/>
+					</div>
+				</div>
+				<div class="study-state state-2">
+					<span><img src="images/ico-3.png" alt=""/><span class="text">学习状态：<em>暂停中</em></span></span><input type="button" class="btn btn-w100" value="恢复" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<div class="p-main">
+		<div class="container">
+
+			<div class="row">
+				<div class="main-b-b">
+					<div class="col-2">
+						<div class="box" id="tab_box_2">
+							<div class="box-head clearfix webfont">
+								<h2 class="pull-left"><span>学习数据</span></h2>
+								<div class="pull-right" tab-role="btn-group"><span class="active" tab-role="btn" tab-target="1">完成计划</span><span tab-role="btn" tab-target="2">评测分数</span><span tab-role="btn" tab-target="3">学历增长</span></div>
+							</div>
+							<div class="box-body" tab-role="cnt-group">
+								<div class="tab-cnt" tab-role="cnt" tab-mark="1">
+									<div id="chart_2">
+										<canvas id="canvas_2" style="width:100%;height:300px"></canvas>
+									</div>
+								</div>
+								<div class="tab-cnt" tab-role="cnt" tab-mark="2">
+									<div id="chart_3">
+										<canvas id="canvas_3" style="width:100%;height:330px"></canvas>
+									</div>
+								</div>
+								<div class="tab-cnt" tab-role="cnt" tab-mark="3">
+									<div id="chart_4">
+										<canvas id="canvas_4" style="width:100%;height:300px"></canvas>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-2">
+						<div class="box" id="tab_box_3">
+							<div class="box-head clearfix webfont">
+								<h2 class="pull-left"><span>个人素质</span></h2>
+								<div class="pull-right" tab-role="btn-group"><span class="active" tab-role="btn" tab-target="1">素质雷达图</span><span tab-role="btn" tab-target="2">素质变化曲线</span></div>
+							</div>
+							<div class="box-body" tab-role="cnt-group">
+								<div class="tab-cnt" tab-role="cnt" tab-mark="1">
+									<div id="chart_5">
+										<canvas id="canvas_5" style="width:100%;height:300px"></canvas>
+									</div>
+								</div>
+								<div class="tab-cnt" tab-role="cnt" tab-mark="2">
+									<div id="chart_6">
+										<canvas id="canvas_6" style="width:100%;height:300px"></canvas>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="box">
+					<div class="box-head clearfix webfont">
+						<h2 class="pull-left">
+							<span>学院课程学习管理</span>
+						</h2>
+					</div>
+					<div class="box-body">
+						<div id="desc_box" class="desc-box clearfix">
+							<a href="##" class="to-left"></a>
+							<a href="##" class="to-right"></a>
+							<div class="desc-main">
+								<h2><i></i><span class="text">第一阶段IOS开发基础</span><i></i></h2>
+								<p>学习了IOS的开发流程之后，我们现在来全面系统深入的学习包括多线程异步任务。学习了IOS的开发流程之后，本阶段类容已经超越了线下培训。我们现在来全面系统深入的学习包括多线程异步任务。</p>
+							</div>
+						</div>
+						<div class="course-gourp">
+							<div class="course-box">
+								<div class="title clearfix">
+									<h3 class="text">第一课-开发基础与实践</h3>
+									<img src="images/word-2.png" alt=""/>
+								</div>
+								<div class="inner-group">
+									<table>
+										<tr>
+											<td><a href="##"><i></i><span class="text">视频观看<br>6/8</span></a></td>
+											<td><a href="##"><i></i><span class="text">视频观看<br>6/8</span></a></td>
+											<td><a href="##"><i></i><span class="text">视频观看<br>6/8</span></a></td>
+											<td><a href="##"><i></i><span class="text">视频观看<br>6/8</span></a></td>
+											<td><a href="##"><i></i><span class="text">视频观看<br>6/8</span></a></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<div class="course-box">
+								<div class="title clearfix">
+									<div class="pull-right">评测分数<span class="blue">80分</span></div>
+									<h3 class="text">第二课-开发基础与实践</h3>
+									<img src="images/word-4.png" alt=""/>
+								</div>
+								<div class="inner-group">
+									<table>
+										<tr>
+											<td><a href="##"><i></i><span class="text">教学视频<br>7/9</span></a></td>
+											<td><a href="##"><i></i><span class="text">教学视频<br>7/9</span></a></td>
+											<td><a href="##"><i></i><span class="text">教学视频<br>7/9</span></a></td>
+											<td><a href="##"><i></i><span class="text">教学视频<br>7/9</span></a></td>
+											<td><a id="test_demo_lock" href="##"><i></i><span class="text">教学视频观看<br>6/8</span></a></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+							<div class="course-box">
+								<div class="title clearfix">
+									<div class="pull-right">评测分数：<span class="red">30分</span> <input type="button" class="btn" value="重修"/></div>
+									<h3 class="text">第三课-开发基础与实践</h3>
+									<img src="images/word-5.png" alt=""/>
+								</div>
+								<div class="inner-group">
+									<table>
+										<tr>
+											<td><a href="##"><i></i><span class="text">教学视频观看<br>3/12</span></a></td>
+											<td><a href="##"><i></i><span class="text">教学视频观看<br>3/12</span></a></td>
+											<td><a href="##"><i></i><span class="text">教学视频观看<br>3/12</span></a></td>
+											<td><a href="##"><i></i><span class="text">教学视频观看<br>3/12</span></a></td>
+											<td><a href="##"><i></i><span class="text">教学视频观看<br>3/12</span></a></td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="v5-footer colleges-foot">
+		<div class="container">
+			<div class="v5-footer-bottom">
+				<p>© 2012-2014 <a href="www.maiziedu.com">maiziedu.com</a> | 服务条款 | 蜀ICP备13014270号-4 Version 4.0.1 release20140721.1</p>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+	<!-- 随堂测验 -->
+	<div id="stcy" class="box d-zy-box" style="display:none">
+		<div class="box-head">
+			<span class="text">随堂测验</span>
+		</div>
+		<div class="box-body">
+			<div class="item clearfix">
+				<span class="pull-right"><span class="em">准确率88%</span></span>
+				<span class="text">PhotoShop软件介绍</span>
+			</div>
+			<div class="item clearfix">
+				<span class="pull-right"><span class="em">准确率80%</span></span>
+				<span class="text">PhotoShop软件介绍</span>
+			</div>
+			<div class="item clearfix">
+				<span class="pull-right">未完成</span>
+				<span class="text">PhotoShop软件介绍</span>
+			</div>
+			<div class="item clearfix">
+				<span class="pull-right">未完成</span>
+				<span class="text">PhotoShop软件介绍</span>
+			</div>
+			<div class="item clearfix">
+				<span class="pull-right"><span class="em">准确率84%</span></span>
+				<span class="text">PhotoShop软件介绍</span>
+			</div>
+			<div class="item clearfix">
+				<span class="pull-right"><span class="em">准确率70%</span></span>
+				<span class="text">PhotoShop软件介绍</span>
+			</div>
+			<div class="item clearfix">
+				<span class="pull-right">未完成</span>
+				</span><span class="text">PhotoShop软件介绍</span>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<!-- 随堂作业 -->
+	<div id="stzy" class="box d-zy-box" style="display:none">
+		<div class="box-head">
+			<span class="text">随堂作业</span>
+		</div>
+		<div class="box-body">
+			<div class="item clearfix">
+				<input type="button" value="下载" class="btn pull-right" />
+				<span class="text">PhotoShop软件介绍</span>
+			</div>
+			<div class="item clearfix">
+				<input type="button" value="下载" class="btn pull-right" />
+				<span class="text">PhotoShop软件介绍</span>
+			</div>
+			<div class="item clearfix">
+				<span class="pull-right">未完成</span>
+				<span class="text">PhotoShop软件介绍</span>
+			</div>
+			<div class="item clearfix">
+				<span class="pull-right">未完成</span>
+				<span class="text">PhotoShop软件介绍</span>
+			</div>
+			<div class="item clearfix">
+				<input type="button" value="下载" class="btn pull-right" />
+				<span class="text">PhotoShop软件介绍</span>
+			</div>
+			<div class="item clearfix">
+				<input type="button" value="下载" class="btn pull-right" />
+				<span class="text">PhotoShop软件介绍</span>
+			</div>
+			<div class="item clearfix">
+				<input type="button" value="下载" class="btn pull-right" />
+				<span class="state"></span><span class="text">PhotoShop软件介绍</span>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<!-- 课堂学习 -->
+	<div id="ktxy" class="box d-zy-box" style="display:none">
+		<div class="box-head">
+			<span class="text">课堂学习</span>
+		</div>
+		<div class="box-body">
+			<div class="item clearfix">
+				<span class="pull-right state state-ok"></span>
+				<span class="text">PhotoShop软件介绍</span>
+			</div>
+			<div class="item clearfix">
+				<span class="pull-right state state-ok"></span>
+				<span class="text">PhotoShop软件介绍</span>
+			</div>
+			<div class="item clearfix">
+				<span class="pull-right state state-ok"></span>
+				<span class="text">PhotoShop软件介绍</span>
+			</div>
+			<div class="item clearfix">
+				<span class="pull-right">未完成</span>
+				<span class="text">PhotoShop软件介绍</span>
+			</div>
+			<div class="item clearfix">
+				<span class="pull-right">未完成</span>
+				<span class="text">PhotoShop软件介绍</span>
+			</div>
+			<div class="item clearfix">
+				<span class="pull-right">未完成</span>
+				</span><span class="text">PhotoShop软件介绍</span>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<!-- 项目制作 -->
+	<div id="xmzz" class="box d-zz-box" style="display:none">
+		<div class="box-head">
+			<span class="text">项目制作</span>
+		</div>
+		<div class="box-body">
+			<div class="item">
+				<label for="">需求：</label>
+				<div class="fix-height">
+					<p>需求：**注意（凡是随堂练习不提交的同学、项目的制作一律做零分处理凡是随堂练习不提交的同学、项目的制作一律做零分处理凡是随堂练习不提交的同学、项目的制作一律做零分处理凡是随堂练习不提交的同学、项目的制作一律做零分处理凡是随堂练习不提交的同学、项目的制作一律做零分处理凡是随堂练习不提交的同学、项目的制作一律做零分处理凡是随堂练习不提交的同学、项目的制作一律做零分处理凡是随堂练习不提交的同学、项目的制作一律做零分处理凡是随堂练习不提交的同学、项目的制作一律做零分处理凡是随堂练习不提交的同学、项目的制作一律做零分处理）请看这里&gt;&gt;</p>
+				</div>
+			</div>
+			<div class="item">
+				<div class="item-inner clearfix">
+					<span class="pull-right btn btn-default">下载</span>
+					<label for="">项目制作：</label><span class="value"><em>项目文件</em>已上传</span>
+				</div>
+				<div class="item-inner">
+					<div class="pull-right score-box"><input type="text" class="form-control"/> / 100 <span class="hand"><img src="images/ico-11b.png" alt=""/></span></div>
+					<label for="">老师打分：</label>
+				</div>
+			</div>
+			<div class="item">
+				<label for="">老师评语：</label>
+				<!-- 默认 -->
+				<div class="form-group teacher-comment-box">
+					<textarea name="" id="" cols="30" rows="10" class="form-control" placeholder="尚未填写"></textarea>
+				</div>
+				<div class="form-group text-right">
+					<input class="btn btn-default" type="button" value="评语" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<!-- 项目制作 状态二 -->
+	<div id="xmzz_2" class="box d-zz-box" style="display:none">
+		<div class="box-head">
+			<span class="text">项目制作：状态二</span>
+		</div>
+		<div class="box-body">
+			<div class="item">
+				<label for="">需求：</label>
+				<div class="fix-height">
+					<p>需求内容过多的时候：Java基础练习题：**注意（凡是随堂练习不提交的同学、项目的制作一律做零分处理）**项目详细描述以及素材请看这里项目的制作一律做零分处理）**项目详细描述以及素材请看这里项目的制作一律做零分处理）**项目详细描述以及素材请看这里项目的制作一律做零分处理）**项目详细描述以及素材请看这里项目的制作一律做零分处理）**项目详细描述以及素材请看这里&gt;&gt;</p>
+				</div>
+			</div>
+			<div class="item">
+				<div class="item-inner clearfix">
+					<span class="pull-right btn btn-default">下载</span>
+					<label for="">项目制作：</label><span class="value"><em>项目文件</em>已经上传</span>
+				</div>
+				<div class="item-inner">
+					<label for="">老师打分：</label><span class="value blue">100分</span>
+				</div>
+			</div>
+			<div class="item">
+				<label for="">老师评语：</label>
+				<!-- 默认 -->
+				<div class="form-group teacher-comment-box">
+					<textarea name="" id="" cols="30" rows="10" class="form-control" placeholder="尚未填写">好多评论，很中听的，很客观的。老师告诉你，你这么学会成为学霸的</textarea>
+				</div>
+				<div class="form-group text-right">
+					<input class="btn btn-default" type="button" value="评语" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<!-- 项目制作 状态三 -->
+	<div id="xmzz_3" class="box d-zz-box" style="display:none">
+		<div class="box-head">
+			<span class="text">项目制作：状态三</span>
+		</div>
+		<div class="box-body">
+			<div class="item">
+				<label for="">需求：</label>
+				<div class="fix-height">
+					<p>需求内容过多的时候：Java基础练习题：**注意（凡是随堂练习不提交的同学、项目的制作一律做零分处理）**项目详细描述以及素材请看这里项目的制作一律做零分处理）**项目详细描述以及素材请看这里项目的制作一律做零分处理）**项目详细描述以及素材请看这里项目的制作一律做零分处理）**项目详细描述以及素材请看这里项目的制作一律做零分处理）**项目详细描述以及素材请看这里&gt;&gt;</p>
+				</div>
+			</div>
+			<div class="item">
+				<div class="item-inner clearfix">
+					<span class="pull-right btn btn-default">下载</span>
+					<label for="">项目制作：</label><span class="value"><em>项目文件</em>已经上传</span>
+				</div>
+				<div class="item-inner">
+					<label for="">老师打分：</label><span class="value blue">100分</span>
+				</div>
+			</div>
+			<div class="item">
+				<label for="">老师评语：</label>
+				<!-- 默认 -->
+				<div class="fix-height">
+					<!--
+					<p class="no-comment">尚未填写</p>
+					-->
+					<p>老师评论内容过多的时候：老师的评语老师的评语，老师的评语老师的评语，老师的评语老师的评语，老师的评语老师的评语，老师的评语老师的评语，老师的评语老师的评语！</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+</div>
+
+<script type="text/javascript" src="http://dev.microoh.com/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="js/mwheelIntent.js"></script>
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="js/layer/layer.js"></script>
+<script type="text/javascript" src="js/Chart.js"></script>
+<script type="text/javascript" src="js/Chart-extend.js"></script>
+<script type="text/javascript" src="js/common-tool.js"></script>
+<script type="text/javascript">
+	$(function(){
+
+
+		// 学习状态
+		(function(){
+			var box = $('#study_state_box'),
+				state1 = $('.state-1', box),
+				state2 = $('.state-2', box),
+				stopWhy = $('.stop-why', box),
+				stopBtn = $('.group .btn', state1),
+				subBtn = $('.btn', stopWhy),
+				recoverBtn = $('.btn', state2);
+			var mask;
+
+			state2.hide();
+			stopWhy.hide();
+			stopBtn.click(function(){
+				var zIndex = 99999, interval = 200;
+				mask = $('<div style="position:fixed;width:100%;height:100%;top:0;left:0;z-index:'+ zIndex +'">').css('opacity',0);
+				mask.mousedown(function(){
+					stopWhy.slideUp(interval);
+					mask.remove();
+				});
+				stopWhy.slideDown(interval).css('zIndex',zIndex).before(mask);
+			});
+
+			subBtn.click(function(){
+				mask && mask.mousedown();
+				state1.hide();
+				state2.show();
+			});
+
+			recoverBtn.click(function(){
+				state1.show();
+				state2.hide();
+			});
+
+		}());
+
+
+
+
+
+
+		// 图表
+
+		// tab内图表 : #tab_box_2
+		(function(){
+
+			var tab = $('#tab_box_2 [tab-role=btn]');
+
+			// 完成计划
+			tab[0]._initChart = function(){
+
+				var canvas = $('#canvas_2');
+				var chartBox = $('#chart_2');
+				var div = $('<div/>');
+				div.css({ 'width' : chartBox.width(), 'overflow' : 'hidden' });
+				div.append(canvas.css({'paddingBottom' : 10}));
+				chartBox.html('').append(div);
+
+				// json数据
+				var chartData = [{
+						'date': '04/01',
+						'plan_study_time': 40,
+						'real_study_time': 80
+					},{
+						'date': '04/02',
+						'plan_study_time': 43,
+						'real_study_time': 75
+					},{
+						'date': '04/03',
+						'plan_study_time': 45,
+						'real_study_time': 80
+					},{
+						'date': '04/04',
+						'plan_study_time': 45,
+						'real_study_time': 80
+					},{
+						'date': '04/05',
+						'plan_study_time': 43,
+						'real_study_time': 80
+					},{
+						'date': '04/06',
+						'plan_study_time': 50,
+						'real_study_time': 80
+					},{
+						'date': '04/07',
+						'plan_study_time': 70,
+						'real_study_time': 90
+					},{
+						'date': '04/08',
+						'plan_study_time': 105,
+						'real_study_time': 100
+					},{
+						'date': '04/05',
+						'plan_study_time': 43,
+						'real_study_time': 80
+					},{
+						'date': '04/06',
+						'plan_study_time': 80,
+						'real_study_time': 80
+					},{
+						'date': '04/07',
+						'plan_study_time': 70,
+						'real_study_time': 90
+					},{
+						'date': '04/08',
+						'plan_study_time': 95,
+						'real_study_time': 100
+					}];
+				// 图表实例
+				$.chartExtend.Line({
+					'canvas' : '#canvas_2',
+					'data' : chartData,
+					'legend' : [{
+							'dataKey' : 'real_study_time',
+							'label' : '实际完成',
+							'lineColor' : '#FF9900'
+						},{
+							'dataKey' : 'plan_study_time',
+							'label' : '计划',
+							'lineColor' : '#A5DC53'
+						}],
+					'yStepWidth' : 25,
+					'suf' : '%' //后缀
+				});
+
+
+			};
+
+
+			// 评测分数
+			tab[1]._initChart = function(){
+				var canvas = $('#canvas_3');
+				var chartBox = $('#chart_3');
+				var div = $('<div/>');
+				div.css({ 'width' : chartBox.width(), 'overflow' : 'hidden' });
+				div.append(canvas.css({'marginBottom' : 10}));
+				chartBox.html('').append(div);
+
+				// json数据
+				var chartData = [{
+						//'stage':1,
+						//'course':2,
+						'course_name': 'IOS基础',
+						'course_score':60
+					},{
+						'course_name': 'Android基础',
+						'course_score':90
+					},{
+						'course_name': 'PHP基础',
+						'course_score':40
+					},{
+						'course_name': 'Javascript',
+						'course_score':65
+					},{
+						'course_name': '艺术设计',
+						'course_score':30
+					},{
+						'course_name': 'PHP基础',
+						'course_score':40
+					},{
+						'course_name': 'Javascript',
+						'course_score':65
+					},{
+						'course_name': '艺术设计',
+						'course_score':30
+					}];
+				// 图表实例
+				$.chartExtend.Bar({
+					'canvas' : '#canvas_3',
+					'data' : chartData,
+					'legend' : [{
+						'fillColor' : '#5ecfba',
+						'strokeColor' : '#5ecfba'
+					}]
+				});
+			};
+
+
+			// 学力增长
+			tab[2]._initChart = function(){
+
+				var canvas = $('#canvas_4');
+				var chartBox = $('#chart_4');
+				var div = $('<div/>');
+				div.css({ 'width' : chartBox.width(), 'overflow' : 'hidden' });
+				div.append(canvas.css({'marginBottom' : 10}));
+				chartBox.html('').append(div);
+
+				// json数据
+				var chartData = [{
+						'date' : '04/01',
+						'study_point' : 35
+					},{
+						'date' : '04/02',
+						'study_point' : 40
+					},{
+						'date' : '04/03',
+						'study_point' : 45
+					},{
+						'date' : '04/04',
+						'study_point' : 50
+					},{
+						'date' : '04/05',
+						'study_point' : 55
+					},{
+						'date' : '04/06',
+						'study_point' : 65
+					},{
+						'date' : '04/07',
+						'study_point' : 85
+					},{
+						'date' : '04/08',
+						'study_point' : 120
+					},{
+						'date' : '04/07',
+						'study_point' : 180
+					},{
+						'date' : '04/08',
+						'study_point' : 260
+					}];
+				// 图表实例
+				$.chartExtend.Line({
+					'canvas' : '#canvas_4',
+					'data' : chartData,
+					'legend' : [{
+						'dataKey' : 'study_point',
+						'label' : '学力增长',
+						'lineColor' : '#FF8D83'
+					}]
+				});
+			};
+		}());
+
+		// tab内图表 : #tab_box_3
+		(function(){
+
+			var tab = $('#tab_box_3 [tab-role=btn]');
+
+			// 素质雷达图
+			tab[0]._initChart = function(){
+
+				var canvas = $('#canvas_5');
+				var chartBox = $('#chart_5');
+				var div = $('<div/>');
+				div.css({ 'width' : chartBox.width(), 'overflow' : 'hidden' });
+				div.append(canvas.css({'marginBottom' : 10}));
+				chartBox.html('').append(div);
+
+				// json数据
+				var chartData = [{
+					'chart_capacity_alto': 60, // 汇总的沟通能力数值
+					'exe_capacity_alto': 80, // 汇总的执行能力数值
+					'initiative_alto': 90 //汇总的主动性数值
+				},{
+					'chart_capacity_alto': 40, // 汇总的沟通能力数值
+					'exe_capacity_alto': 50, // 汇总的执行能力数值
+					'initiative_alto': 58 //汇总的主动性数值
+				}];
+				// 图表实例
+				$.chartExtend.Radar({
+					'canvas' : '#canvas_5',
+					'data' : chartData,
+					// 字段描述
+					'labels' : [{
+						'dataKey' : 'chart_capacity_alto',
+						'label' : '沟通能力'
+					},{
+						'dataKey' : 'exe_capacity_alto',
+						'label' : '执行能力'
+					},{
+						'dataKey' : 'initiative_alto',
+						'label' : '主动性'
+					}],
+					// 图例说明
+					'legend' : [{
+						'label' : '能力参考',
+						'lineColor' : 'rgba(255, 230, 140,1)',
+						'fillColor' : 'rgba(255, 230, 140,.5)'
+					},{
+						'label' : '综合能力',
+						'lineColor' : 'rgba(94, 207, 186,1)',
+						'fillColor' : 'rgba(94, 207, 186,0.5)'
+					}]
+				});
+			};
+
+
+			// 素质变化曲线
+			tab[1]._initChart = function(){
+				
+				var canvas = $('#canvas_6');
+				var chartBox = $('#chart_6');
+				var div = $('<div/>');
+				div.css({ 'width' : chartBox.width(), 'overflow' : 'hidden' });
+				div.append(canvas.css({'paddingBottom' : 10}));
+				chartBox.html('').append(div);
+
+				// json数据
+				var chartData = [{
+						'chart_capacity': 50,
+						'exe_capacity': 80,
+						'initiative': 60,
+						'date':'04/06'
+					},{
+						'chart_capacity': 53,
+						'exe_capacity': 90,
+						'initiative': 58,
+						'date':'04/13'
+					},{
+						'chart_capacity': 50,
+						'exe_capacity': 80,
+						'initiative': 62,
+						'date':'04/13'
+					},{
+						'chart_capacity': 53,
+						'exe_capacity': 80,
+						'initiative': 60,
+						'date':'04/13'
+					},{
+						'chart_capacity': 50,
+						'exe_capacity': 82,
+						'initiative': 70,
+						'date':'04/13'
+					},{
+						'chart_capacity': 55,
+						'exe_capacity': 80,
+						'initiative': 80,
+						'date':'04/13'
+					},{
+						'chart_capacity': 50,
+						'exe_capacity': 80,
+						'initiative': 90,
+						'date':'04/13'
+					},{
+						'chart_capacity': 55,
+						'exe_capacity': 84,
+						'initiative': 100,
+						'date':'04/13'
+					},{
+						'chart_capacity': 50,
+						'exe_capacity': 80,
+						'initiative': 90,
+						'date':'04/13'
+					},{
+						'chart_capacity': 55,
+						'exe_capacity': 84,
+						'initiative': 100,
+						'date':'04/13'
+					},{
+						'chart_capacity': 50,
+						'exe_capacity': 80,
+						'initiative': 90,
+						'date':'04/13'
+					},{
+						'chart_capacity': 55,
+						'exe_capacity': 84,
+						'initiative': 100,
+						'date':'04/13'
+					}];
+				// 图表实例
+				$.chartExtend.Line({
+					'canvas' : '#canvas_6',
+					'data' : chartData,
+					'legend' : [{
+							'dataKey' : 'chart_capacity',
+							'label' : '执行力',
+							'lineColor' : '#5ecfba'
+						},{
+							'dataKey' : 'exe_capacity',
+							'label' : '主动性',
+							'lineColor' : '#FF8D83'
+						},{
+							'dataKey' : 'initiative',
+							'label' : '沟通力',
+							'lineColor' : '#FFE77E'
+						}],
+					'suf' : '%' //后缀
+				});
+			};
+		}());
+
+
+
+
+		// 学习数据tab
+		$.commonTool.tab({
+			'tabBox' : '#tab_box_2',
+			'transitionCallback' : function(btn,cnt){
+				// 每次切换都新创建图表
+				this._initChart && this._initChart();
+			}
+		});
+
+		// 个人素质tab
+		$.commonTool.tab({
+			'tabBox' : '#tab_box_3',
+			'transitionCallback' : function(btn,cnt){
+				// 每次切换都新创建图表
+				this._initChart && this._initChart();
+			}
+		});
+
+
+
+
+		// 学院课程学习管理，内容切换
+		(function(){
+			var box = $('#desc_box');
+			box.find('.to-left,.to-right').click(function(){
+				var cnt = box.next('.course-gourp');
+
+				cnt.fadeOut(function(){
+					// 仅为效果
+					var item = cnt.find('.course-box');
+					item.last().after(item.eq(0));
+					cnt.fadeIn();
+				});
+			});
+		}());
+
+
+
+
+		// 隋唐作业
+		var a = $('.course-box table a');
+		(function(){
+			a.eq(0).click(function(){
+				var box = $('#stzy');
+				layer.open({
+					type: 1,
+					title : 0,
+					skin : 'd-common-tool',
+					area: ['400px','450px'], //宽高
+					content: box
+				});
+				box.find('.box-body').height(380).jScrollPane();
+				var bar = box.find('.jspVerticalBar,.jspHorizontalBar');
+				bar.hide();
+				box.hover(function(){
+					bar.fadeIn();
+				},function(){
+					bar.fadeOut();
+				});
+			});
+
+			// 随堂测验
+			a.eq(1).click(function(){
+				var box = $('#stcy');
+				layer.open({
+					type: 1,
+					title : 0,
+					skin : 'd-common-tool',
+					area: ['400px','450px'], //宽高
+					content: box
+				});
+				box.find('.box-body').height(380).jScrollPane();
+				var bar = box.find('.jspVerticalBar,.jspHorizontalBar');
+				bar.hide();
+				box.hover(function(){
+					bar.fadeIn();
+				},function(){
+					bar.fadeOut();
+				});
+			});
+
+			// 课堂学习
+			a.eq(2).click(function(){
+				var box = $('#ktxy');
+				layer.open({
+					type: 1,
+					title : 0,
+					skin : 'd-common-tool',
+					area: ['400px','450px'], //宽高
+					content: box
+				});
+				box.find('.box-body').height(380).jScrollPane();
+				var bar = box.find('.jspVerticalBar,.jspHorizontalBar');
+				bar.hide();
+				box.hover(function(){
+					bar.fadeIn();
+				},function(){
+					bar.fadeOut();
+				});
+			});
+
+			// 项目制作
+			a.eq(3).click(function(){
+				var box = $('#xmzz');
+				layer.open({
+					type: 1,
+					title : 0,
+					skin : 'd-common-tool',
+					area: ['400px','auto'], //宽高
+					content: box
+				});
+				box.find('.fix-height').jScrollPane();
+				var bar = box.find('.jspVerticalBar,.jspHorizontalBar');
+				bar.hide();
+				box.hover(function(){
+					bar.fadeIn();
+				},function(){
+					bar.fadeOut();
+				});
+			});
+
+			// 项目制作 状态二
+			a.eq(4).click(function(){
+				var box = $('#xmzz_2');
+				layer.open({
+					type: 1,
+					title : 0,
+					skin : 'd-common-tool',
+					area: ['400px','auto'], //宽高
+					content: box
+				});
+				box.find('.fix-height').jScrollPane();
+				var bar = box.find('.jspVerticalBar,.jspHorizontalBar');
+				bar.hide();
+				box.hover(function(){
+					bar.fadeIn();
+				},function(){
+					bar.fadeOut();
+				});
+			});
+
+			// 项目制作 状态三
+			a.eq(5).click(function(){
+				var box = $('#xmzz_3');
+				layer.open({
+					type: 1,
+					title : 0,
+					skin : 'd-common-tool',
+					area: ['400px','auto'], //宽高
+					content: box
+				});
+				box.find('.fix-height').jScrollPane();
+				var bar = box.find('.jspVerticalBar,.jspHorizontalBar');
+				bar.hide();
+				box.hover(function(){
+					bar.fadeIn();
+				},function(){
+					bar.fadeOut();
+				});
+			});
+		}());
+
+
+	});
+</script>
+</body>
+</html>

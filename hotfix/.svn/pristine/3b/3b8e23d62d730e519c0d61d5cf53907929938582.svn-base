@@ -1,0 +1,474 @@
+{% extends "mz_lps3/student/base.html" %}
+{% block title %}任务详情-限时答题{% endblock %}
+{% block css %}
+<style>
+html{ overflow: hidden;}
+</style>
+
+{% endblock %}
+
+{% block current_item_title %}
+    <span class="font20 colorff s">
+        {{ paper.title }}
+        <span class="button font12 colorff project-production-tag">{{ knowledgeitem_type }}</span>
+    </span>
+
+    <div id="top_test_record" class="examinationD_hred colorff textC">
+        <div>
+            <p class="font12">正确题数</p>
+
+            <p class="font20">{{ correct_quizs }}</p>
+        </div>
+        <div>
+            <p class="font12">错误题数</p>
+
+            <p class="font20">{{ false_quizs }}</p>
+        </div>
+        <div>
+            <p class="font12">正确率</p>
+
+            <p class="font20">{{ accuracy_percent }}%</p>
+        </div>
+
+    </div>
+
+    <div id="top_test_timer" class="examinationD_hred colorff textC" datat="{% widthratio knowledgeitem.expect_time 1 60 %}">
+        <p class="font12">剩余时间</p>
+
+        <p class="font20 colorfa0 t">
+            <span id="t_minutes" class="bold">25</span>
+            <span class="font14">分</span>
+            <span id="t_seconds" class="bold">37</span>
+            <span class="font14">秒</span>
+        </p>
+    </div>
+{% endblock %}
+
+{% block container %}
+    <div class="container examinationMain">
+        <div class="examinationL color33 font18"><div class="div"></div></div>
+
+        <div class="examinationR">
+            <div class="div">
+                <a class="examinationRad font18 color66"><span class="font24 Arial">D</span>boolean</a>
+            </div>
+        </div>
+
+        <div class="examinationBottom textC">
+            <div id="prev_ebtn" class="prev ebtn fl">上一题</div>
+            {% for n in quiz_num %}
+                <a num='{{ n }}' class="an"> </a>
+            {% endfor %}
+            <div id="next_ebtn" class="next ebtn fr">下一题</div>
+        </div>
+
+        <div id="examination_tip" class="examinationMainOne textC">
+            <p class="color5e font24">{{ paper.title }}</p>
+
+            <p class="font14 color66 marginB20">{{ paper.description }}</p>
+
+            <div class="examinationMainOne_div color66 font14">
+                <div>
+                    <p>总题数</p>
+                    <p><span class="font30">{{ quizs_num }}</span>题</p>
+                </div>
+                <div>
+                    <p>限时</p>
+                    <p><span class="font30">{{ knowledgeitem.expect_time }}</span>分钟</p>
+                </div>
+            </div>
+
+            <a class="examinationMainOne_btn colorff font18 bold marginB20">开始测试</a>
+
+            <p class="font14 color66">须在限定时间内完成答题，否则需要重新开始答题</p>
+        </div>
+    </div>
+
+
+    <!--侧边-->
+    <div class="zvright t5o" style="right:0;">
+        <a num=1>
+            <p><img src="{{ STATIC_URL }}mz_lps3/images/rightico001.png"></p>
+
+            <p>目录</p>
+        </a>
+    </div>
+
+
+    <!--目录-->
+    <div class="zvrightSreen t5o">
+        <div class="zvrightSreen1" style="display:block;">
+            {{ html_usertask_item_list }}
+        </div>
+    </div>
+
+
+    <!--提交成功-->
+    <div class="modal fade" id="mySubsuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-content zy_mySubsuccess textC">
+            <img src="{{ STATIC_URL }}mz_lps3/images/sub_bg.png" class="zy_mySubsuccess_topI">
+
+            <div class="zy_mySubsuccess_div font12 color66 textC">
+                <div>
+                    <p>正确题数</p>
+
+                    <p id="submit_correct_num" class="color1b font20">15</p>
+                </div>
+
+                <div>
+                    <p>错误题数</p>
+
+                    <p id="submit_error_num" class="colorf10 font20">5</p>
+                </div>
+
+                <div>
+                    <p>正确率</p>
+
+                    <p id="submit_accuracy" class="colorfa0 font20">80%</p>
+                </div>
+            </div>
+
+            <div class="zy_mytask_foot textC">
+                <a class="bold font14 colorff a2" href="">答题记录</a> <a class="bold font14 colorff a2" onclick="nextcourse()">下一节</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!--答题时间到-->
+    <div class="modal fade" id="mySubTime" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-content zy_mySubTime textC">
+            <img src="{{ STATIC_URL }}mz_lps3/images/examclock.png" class="zy_mySubTime_topI">
+
+            <p class="font14 color33">答题时间到！</p>
+
+            <p class="font14 color33 marginB29">请重新开始答题</p>
+
+            <div class="zy_mytask_foot textC">
+                <a class="bold font14 colorff a2" href="">重新答题</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!--确定退出-->
+    <div class="modal fade" id="mySubOut" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-content zy_mySubOut textC">
+            <img src="{{ STATIC_URL }}mz_lps3/images/warning.png" class="zy_zy_mySubOut_topI">
+            <p class="font14 color33">确定退出答题吗？</p>
+            <p class="font14 color33 marginB29">你的答题记录将不会保存</p>
+            <div class="zy_mytask_foot textC">
+                <a class="bold font14 colorff a3">确定</a><a class="bold font14 colorff a3">取消</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block javascript %}
+    <script src="{{ STATIC_URL }}mz_lps3/js/jquery.mousewheel.js"></script>
+    <script src="{{ STATIC_URL }}mz_lps3/js/abc.js?v={{ time_stamp }}"></script>
+    <script src="{{ STATIC_URL }}mz_lps3/js/exam.js"></script>
+    <script src="{{ STATIC_URL }}mz_lps3/layer/layer.js"></script>
+    <script>
+      maizi_trace.trace({
+          "suid": maizi_trace.suid(),
+          "action_id": "trace_access_online_test",
+          "trace_pay_type": maizi_trace.pay_type(),
+          "trace_user_type": maizi_trace.user_type(),
+          "trace_career_name": maizi_trace.career_name(),
+          "trace_taskball_name": maizi_trace.taskball_name()
+      })
+
+        var paper_completed_state = {% if paper_completed_state %}true{% else %}false{% endif %};
+        var is_submit_success = false;
+        $(function () {
+            $(".examinationRad").unbind().click(function () {
+                $(".examinationRad").removeClass("aH");
+                $(this).addClass("aH");
+            });
+
+            {#            $("#top_test_record").hide();#}
+            {#            $("#top_test_timer").hide();#}
+
+            var quiz = $(".examinationR a");
+            var current_quiz_num = 0;
+
+            var completed_paper = null;
+            var new_paper = {{ new_paper | safe }};
+
+            var test_result = new Array();
+
+            function is_paper_completed() {
+                for (var i = 0; i < new_paper.paper.length; i++) {
+                    if (!test_result[i]) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            function display_doing_quiz(quiz_num) {
+
+
+                $('.examinationL .div').html(new_paper.paper[quiz_num][1]);
+                $(".examinationR .div").empty();
+
+                for (var i = 0; i < new_paper.paper[quiz_num][2].length; i++) {
+                    var q = quiz.clone(true);
+                    q.find('span').text(new_paper.paper[quiz_num][2][i][0].toUpperCase());
+                    q.contents().get(1).nodeValue = new_paper.paper[quiz_num][2][i][1];
+
+                    if (test_result[quiz_num] &&
+                            test_result[quiz_num].toUpperCase() == new_paper.paper[quiz_num][2][i][0].toUpperCase()) {
+                        q.addClass("aH");
+                    }
+
+                    q.appendTo('.examinationR .div');
+                }
+
+                $(".examinationBottom a[num='" + current_quiz_num + "']").removeClass('active');
+                $(".examinationBottom a[num='" + quiz_num + "']").addClass('active');
+                current_quiz_num = quiz_num;
+
+                $("#prev_ebtn").hide();
+                $("#next_ebtn").hide();
+
+                if (quiz_num != 0) {
+                    $("#prev_ebtn").show();
+                }
+
+                if (quiz_num != (new_paper.paper.length - 1)) {
+                    $("#next_ebtn").show();
+                    $("#next_ebtn").html("下一题");
+                } else {
+                     if (is_paper_completed()) {
+                         $("#next_ebtn").show();
+                         $("#next_ebtn").html("交卷");
+                     }
+                }
+            }
+
+
+
+            function init_doing_quiz_bottom() {
+                for (var i = 0; i < new_paper.paper.length; i++) {
+                    $(".examinationBottom a[num='" + i + "']").addClass("aHH");
+                }
+            }
+
+            function init_finished_quiz_bottom() {
+                for (var i = 0; i < completed_paper.paper.length; i++) {
+                    $(".examinationBottom a[num='" + i + "']").addClass("aH");
+                    if (completed_paper.paper[i][3] != completed_paper.paper[i][2]) {
+                        $(".examinationBottom a[num='" + i + "']").addClass("error");
+                    }
+                }
+            }
+
+            function display_finished_quiz(quiz_num) {
+
+                $('.examinationL .div').html(completed_paper.paper[quiz_num][0]);
+
+                $(".examinationR .div").empty();
+                for (var i = 0; i < completed_paper.paper[quiz_num][1].length; i++) {
+                    var q = quiz.clone();
+                    q.find('span').text(completed_paper.paper[quiz_num][1][i][0].toUpperCase());
+                    q.contents().get(1).nodeValue = completed_paper.paper[quiz_num][1][i][1];
+
+                    if (completed_paper.paper[quiz_num][2].toUpperCase() ==
+                            completed_paper.paper[quiz_num][1][i][0].toUpperCase()) {
+                        q.addClass("aH");
+                    }
+
+                    if (completed_paper.paper[quiz_num][3].toUpperCase() == completed_paper.paper[quiz_num][1][i][0].toUpperCase() &&
+                            completed_paper.paper[quiz_num][3].toUpperCase() != completed_paper.paper[quiz_num][2].toUpperCase()) {
+                        q.addClass("error");
+                    }
+
+                    q.appendTo('.examinationR .div');
+                }
+
+                $(".examinationBottom a[num='" + quiz_num + "']").addClass('active').siblings().removeClass('active');
+                current_quiz_num = quiz_num;
+                $("#prev_ebtn").show();
+                $("#next_ebtn").html("下一题");
+                if(quiz_num==0){$("#prev_ebtn").hide();}
+                if(quiz_num==completed_paper.paper.length-1){$("#next_ebtn").html("下一节");}
+            }
+
+            function on_doing_quiz_end() {
+                if ($("#next_ebtn").text() == '交卷') {
+                    maizi_trace.trace({
+                        "suid": maizi_trace.suid(),
+                        "action_id": "trace_submit_online_test",
+                        "trace_pay_type": maizi_trace.pay_type(),
+                        "trace_user_type": maizi_trace.user_type(),
+                        "trace_career_name": maizi_trace.career_name(),
+                        "trace_taskball_name": maizi_trace.taskball_name()
+                    })
+
+                    var url = window.location.pathname + 'submit/';
+                    var jsonObj = "{";
+                    for (var i = 0; i < new_paper.paper.length; i++) {
+
+                        jsonObj = jsonObj + '"' + new_paper.paper[i][0] + '":' +
+                                '"' + test_result[i] + '",';
+                    }
+                    jsonObj = jsonObj.substring(0, jsonObj.length - 1);
+                    jsonObj += "}";
+                    jsonObj = JSON.parse(jsonObj);
+
+                    $.ajax({
+                        url: url,
+                        type: "POST",
+                        data: jsonObj,
+                        success: function (data) {
+                            if (data.correct_quizs == null) {
+                                layer.msg('已提交答案，请刷新');
+                                return;
+                            }
+
+                            is_submit_success = true;
+                            $('#submit_correct_num').text(data.correct_quizs);
+                            $('#submit_error_num').text(data.false_quizs);
+                            $('#submit_accuracy').text(data.accuracy_percent);
+
+                            $('#mySubsuccess').modal({backdrop: 'static'});
+                            $('#mySubsuccess').modal('show');
+                            window.onbeforeunload = null;
+                            ts = 0;
+                        }
+                    });
+                }
+            }
+
+            function on_doing_quiz_clicked() {
+                if (test_result[current_quiz_num]) {
+                    $(".examinationR a").removeClass('aH');
+                }
+
+                var option = $(this).find('span');
+                $(this).addClass('aH');
+                test_result[current_quiz_num] = option.text();
+
+                $(".examinationBottom a[num='" + current_quiz_num + "']").removeClass('aHH');
+                $(".examinationBottom a[num='" + current_quiz_num + "']").addClass('aH');
+
+                display_quiz(current_quiz_num);
+            }
+
+            var display_quiz = null;
+            var init_quiz_bottom = null;
+            var on_quiz_end = null;
+            var on_quiz_clicked = function(){};
+
+            $("#top_test_timer").hide();
+
+            if (paper_completed_state) {
+                display_quiz = display_finished_quiz;
+                init_quiz_bottom = init_finished_quiz_bottom;
+                completed_paper = {{ completed_paper | safe }};
+                $("#examination_tip").hide();
+                $("#top_test_record").show();
+
+            } else {
+                $(".examinationMain").children().hide();
+                $("#examination_tip").show();
+                $("#top_test_record").remove();
+
+                display_quiz = display_doing_quiz;
+                init_quiz_bottom = init_doing_quiz_bottom;
+                on_quiz_end = on_doing_quiz_end;
+                on_quiz_clicked = on_doing_quiz_clicked;
+            }
+
+            init_quiz_bottom();
+            display_quiz(0);
+
+            $(".examinationBottom a").click(function () {
+                var quiz_num = $(this).attr('num');
+                display_quiz(parseInt(quiz_num));
+            });
+
+            $("#next_ebtn").unbind().click(function () {
+                if($(this).text() == '下一节') {
+                    maizi_trace.trace({
+                        "suid": maizi_trace.suid(),
+                        "action_id": "trace_submit_online_test",
+                        "trace_pay_type": maizi_trace.pay_type(),
+                        "trace_user_type": maizi_trace.user_type(),
+                        "trace_career_name": maizi_trace.career_name(),
+                        "trace_taskball_name": maizi_trace.taskball_name()
+                    });
+
+                    nextcourse();
+                }
+                var quiz_num = current_quiz_num;
+                if ((current_quiz_num + 1) != new_paper.paper.length) {
+                    quiz_num++;
+                } else {
+                    if (on_quiz_end != null) {
+                        on_quiz_end();
+                    }
+                }
+                display_quiz(quiz_num);
+            });
+
+            $("#prev_ebtn").click(function () {
+                var quiz_num = current_quiz_num;
+                if ((current_quiz_num - 1) >= 0) {
+                    quiz_num--;
+                }
+                display_quiz(quiz_num);
+            });
+
+            $(".examinationR a").live('click', on_quiz_clicked);
+
+            $(".examinationMainOne_btn").click(function () {
+
+                $(".examinationMain").children().show();
+                $("#examination_tip").remove();
+                $("#top_test_timer").show();
+
+                function timecallback() {
+                    if (!is_submit_success) {
+                        $('#mySubTime').modal({show:true, keyboard:false,backdrop: 'static'});
+                    }
+                    window.onbeforeunload = null;
+                }
+
+                //答题倒计时
+                if ($(".examinationD_hred").attr("datat")) {
+                    ts = parseInt($(".examinationD_hred").attr("datat"), 10);
+                    timer(timecallback);
+                }
+                zyscroll();
+            });
+            //-------------zhouyi-----------
+            setTimeout(function(){zyscroll();},1000);
+            zyscroll();
+            $(window).resize(function() {
+                zyscroll();
+            });
+
+            //初始化标题
+            var headTitle=$(".zyleve1 li.liH a").attr("title");
+            $(".zyNewVideo_top .s").html(headTitle+'<span class="button font12 colorff project-production-tag">限时答题</span>');
+
+        })
+    var re,re2;
+    //滚动条
+    function zyscroll(){
+        re=$('.examinationR').jScrollPane({
+            mouseWheelSpeed:10
+        });
+        re2=$('.examinationL').jScrollPane({
+            mouseWheelSpeed:10
+        });
+        $(".examinationR,.examinationL").height($(".examinationMain").height()-80);
+    }
+    </script>
+
+{% endblock %}

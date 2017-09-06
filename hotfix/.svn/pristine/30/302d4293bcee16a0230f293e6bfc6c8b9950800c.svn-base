@@ -1,0 +1,87 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/courses_breadcrumb.html" %}
+
+<div class="tabbable">
+{% include "mz_nadmin/parts/lesson_tabs.html" %}
+
+<div class="tab-content">
+<div class="tab-pane active">
+
+    {% include "mz_nadmin/modules/msgs.html" %}
+    {% include "mz_nadmin/modules/form_alert.html" %}
+
+    {% if resource %}
+    <form class="form-horizontal" role="form" enctype="multipart/form-data"
+        action="{% url 'nadmin:lessons_resources_edit' course.id lesson.id resource.id %}" method="post">
+    {% else %}
+    <form class="form-horizontal" role="form" enctype="multipart/form-data"
+        action="{% url 'nadmin:lessons_resources_create' course.id lesson.id %}" method="post">
+    {% endif %}
+
+    {% csrf_token %}
+
+    <div class="form-group {% if form.name.errors %}has-error{% endif %}">
+        <label class="col-md-2 control-label" for="search_keywords">
+            {{ form.name.label }}
+        </label>
+        <div class="col-md-5">
+            {{ form.name }}
+            <span class="help-block">
+            {% for error in form.name.errors %}
+                {{ error }}
+            {% endfor %}
+            </span>
+        </div>
+    </div>
+
+    {% if resource %}
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="search_keywords">
+            原资源
+        </label>
+        <div class="col-md-5">
+            <p class="form-control-static">
+                <a href="{{ MEDIA_URL }}{{ resource.download_url }}">
+                    {{ resource.download_url }}
+                </a>
+            </p>
+            <span class="help-block">
+            </span>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="form-group {% if form.download_url.errors %}has-error{% endif %}">
+        <label class="col-md-2 control-label" for="search_keywords">
+            {{ form.download_url.label }}
+        </label>
+        <div class="col-md-5">
+            {{ form.download_url }}
+            <span class="help-block">
+            {% for error in form.download_url.errors %}
+                {{ error }}
+            {% endfor %}
+            </span>
+        </div>
+    </div>
+
+    <div class="row">
+        <hr>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+            <button type="submit" class="btn btn-sm btn-primary">保存</button>
+        </div>
+    </div>
+
+</div>
+</div>
+</div>
+
+{% endblock %}
+
+

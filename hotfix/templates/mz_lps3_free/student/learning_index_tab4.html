@@ -1,0 +1,48 @@
+<h2 class="title-outline font22 color33">企业直通班系统知识体系大纲</h2>
+<ul class="outline-list">
+    {% for stage in course_syllabus %}
+        <li>
+            <p class="font16 colorff">第{{ forloop.counter }}阶段</p>
+
+            <p class="font14 colorff">{{ stage.name }}</p>
+
+            <div class="outline-hover">
+                <p class="task-dot font16 color66">任务点：</p>
+                <ul class="task-list">
+                    {% for task in stage.tasks %}
+                        <li>{{ task.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </li>
+    {% endfor %}
+
+</ul>
+<h2 class="title-pro font22 color33">企业直通班更全面的商业级项目</h2>
+<ul class="pro-list">
+    {% for intro in course_intro.students %}
+        <li><img src="{{ MEDIA_URL }}{{ intro.img_url }}" alt=""></li>
+    {% endfor %}
+</ul>
+<a class="zixun-lesson font16 color5e class53" href="javascript:void(0)">咨询更多课程相关内容</a>
+
+<h2 class="title-thinking font22 color33">思维碰撞的班级互动</h2>
+<ul class="thinking-list">
+    <li><img src="{{ STATIC_URL }}img/mz_lps3_free/think_1.png" alt=""></li>
+    <li><img src="{{ STATIC_URL }}img/mz_lps3_free/think_2.png" alt=""></li>
+    <li><img src="{{ STATIC_URL }}img/mz_lps3_free/think_3.png" alt=""></li>
+</ul>
+<div class="zixun">
+    <p class="first font18 color66">加入企业直通班</p>
+
+    <p class="second font30 color66">只需¥{{ cclass.career_course.net_price }}，让我们帮你成为年薪30W的大牛</p>
+    {% if 0 %}
+
+        <p class="three font18 color99">现在报名还可立减¥3000</p>
+
+        <p class="four font18 color99">原价：<span>¥8800</span></p>
+
+        <p class="five font40 color5e">¥5800</p>
+    {% endif %}
+    <a class="now-zixun class53" href="javascript:void(0)">立即咨询</a>
+</div>

@@ -1,0 +1,129 @@
+/******企业直通班列表页*****/
+/*公共样式*/
+.enter-article1,.enter-employ,.enter-hot{margin:2rem 4.1% 0;overflow: hidden;}
+.enter-article1 h2,.enter-employ h2,.enter-hot h2{text-align: center;font-size:1.05rem;}
+.enter-article1 li:before,.enter-course-char li:before,.infos li:before{content:"";display: inline-block;vertical-align: middle;}
+/*头部bannner图*/
+.enter-banner{text-align: center;}
+/*企业直通班*/
+.enter-article1 ul{padding-left:3.75%;margin-top:1.2rem;}
+.enter-article1 li{margin-bottom: .4rem;font-size:.55rem;color: #5ecfba;display: table;}
+.enter-article1 li:before{width:.8rem;height: .8rem;background-position: 100% 34%;background-size:1087.125% 515.625%;margin:-.15rem .6rem 0 0;}
+/*就业明星*/
+.enter-employ ul{margin:1.15rem 2.03%;overflow: hidden;}
+.enter-employ li{width:50%;float: left;text-align: center;margin-top:.65rem;line-height: .8rem;}
+.enter-employ a{border: 2px solid #d4d7d9;display: block;margin: 0 4%;padding: .75rem 0;}
+.enter-employ p,.enter-employ img{border-radius: 100%;}
+.enter-employ p{margin: 0 1.3rem;}
+.enter-employ strong{color: #666;font-size:.8rem;display: block;padding:.3rem 0 .1rem;}
+.enter-employ span,.enter-employ em{font-size:.55rem;display: block;}
+.enter-employ span{color: #999;}
+.enter-employ em,.enter-employ mark{color: #666;}
+/*热门专业*/
+.enter-hot{margin:2rem 0 0;}
+.enter-hot-majors li:nth-child(7) em{background: #9d7cd4;}
+.enter-hot-majors li:nth-child(7) em:before{background-position: 71.62% 0;}
+.enter-hot-majors li:nth-child(8) em{background: #9d7cd4;}
+.enter-hot-majors li:nth-child(8) em:before{background-position: 71.62% 0;}
+.enter-hot-majors li:nth-child(9) em{background: #9d7cd4;}
+.enter-hot-majors li:nth-child(9) em:before{background-position: 71.62% 0;}
+
+/***企业直通班--课程页***/
+/*公共样式*/
+.enter-course-product h2,.enter-course-process h2,.enter-course-works h2,.enter_course_content h2{font-size: .8rem;display: table;width: 100%;}
+.enter-course-product h3,.enter-course-process h3,.enter-course-works h3,.enter_course_content h3{font-size: .6rem;display: table;width: 100%; margin: 0.4rem 0; text-align: center;}
+
+/*头部图*/
+.enter-course-banner{text-align: center;overflow: hidden;position: relative; margin-top: 2.25rem;}
+.enter-course-banner img{display: block;}
+.enter-course-banner .txt{width:100%;height:1px;display: table;position: absolute;top: 0;bottom: 0;margin: auto;}
+.enter-course-banner h1{font-size:1.05rem;color: #fff;margin-top:0;}
+.enter-course-banner .txt p{color: #fff;font-size: .65rem;margin-top:.2rem;max-height:2.6rem;overflow: hidden;padding: 0 3.125%;}
+.enter-course-banner .free_experience{width:6rem;height:1.55rem;line-height:1.55rem;border:.1rem solid #fff;border-radius: .1rem;font-size: .6rem;background: #fff;margin: .6rem auto 0;}
+/*不一样的产品经理教学*/
+.enter-course-product{margin-top: 1.75rem;text-align: center;}
+.enter-course-product p.txt{font-size: .55rem;color: #666;line-height: 1.4;margin: .3rem 5.5% .5rem;display: table;width:89%;}
+/*重塑在线学习过程*/
+.enter-course-process{margin-top: 1.95rem;text-align: center;}
+.enter-course-process p.img{margin-top:1.375rem;}
+.enter-course-char{margin: .1rem .65rem 0; height: 12rem; background-color: #f5f5f5; position: relative;}
+.enter-course-char:before{content: ''; border: .4rem solid transparent; border-bottom: .4rem solid #f5f5f5; position: absolute; left: 50%; margin-left: -.4rem; top: -.8rem;}
+.enter-course-char li{width: 50%;float: left;text-align: center;font-size:.55rem;margin-top:.7rem;}
+.enter-course-char li:before{width:2.65rem;height: 2.65rem;background: url(/static/images/mz_wap/enter_course_char.png) no-repeat;display:block;margin: 0 auto .3rem;background-size:400% 100%;}
+.enter-course-char li:first-child:before{background-position: 0 0;}
+.enter-course-char li:nth-child(2):before{background-position:33.33% 0;}
+.enter-course-char li:nth-child(3):before{background-position:66.66% 0;}
+.enter-course-char li:last-child:before{background-position:100% 0;}
+.enter-course-slider{margin-top:1.75rem;overflow: hidden;}
+.enter-course-slider ul li{float: left;position: relative;}
+.enter-course-slider li a{color: #fff;display: block;}
+.enter-course-slider li a>p{position: relative;}
+.enter-course-slider .details{width:82%;height:auto;max-height:5rem;position: absolute;left: 0;top:0;right: 0;bottom: 0;margin: auto;}
+.enter-course-slider .details strong{display: block;font-size: .85rem;}
+.enter-course-slider .details span{display: block;font-size: .65rem;}
+.enter-course-slider .details p{text-align: justify;font-size: .55rem;line-height: 1.6;margin-top: .2rem;}
+/*学生作品*/
+.enter-course-works{margin-top:1.6rem;text-align: center; background-color: #f5f5f5; padding-top: .5rem;}
+.enter-course-works ul{height:7.5rem;overflow: hidden;margin: 1.4rem 3.125% 0;position: relative;}
+.enter-course-works li{width: 11.75rem;height: 7.5rem;overflow: hidden;position: absolute;}
+.enter-course-works li img{width: auto;height: auto;max-width: 100%;max-height: 100%;}
+.enter-course-works li:first-child{top:.1rem;left: 50%;margin-left:-5.875rem;z-index: 9;}
+.enter-course-works li:nth-child(2){top:1.25rem;left: 0;z-index: 8;text-align: left;}
+.enter-course-works li:last-child{top:1.25rem;right: 0;z-index: 7;text-align: right;}
+/*课程内容*/
+.enter_course_content{margin-top: 2.25rem;}
+.enter_course_content h2,.enter_course_content .image{text-align: center;}
+.enter_course_content figure{margin:2rem 5.5% 0;color: #666;line-height:1.6;font-size: .55rem;}
+figure strong{font-size: .8rem;color: #5ecfba;margin-top:1rem;display: block;}
+figure .info p{display: table;width: 100%;}
+figure span{font-size: .65rem;}
+figure ul{margin-top:.85rem;overflow: hidden;background: #f5f5f5;padding:.5rem 0 .5rem 4%;}
+figure li{width:50%;float: left;}
+.enter-course-video{display: block;margin: 2.625rem auto 0;width:9.2rem;height:2.15rem;line-height:2.15rem;text-align: center;color: #fff;font-size: .65rem;background: #5ecfba;border-radius: .1rem;;}
+/*法律协议*/
+.agreement{margin-top:2.2rem;background: #333;text-align: center;color: #999;font-size: .65rem;padding:1.7rem 0;}
+.agreement h3{font-size: 1.05rem;}
+.agreement strong{color: #fff;display: block;margin-top: .3rem;}
+.agreement span{display: block;}
+.agreement span:nth-child(3){font-size: .5rem;margin-top: .5rem;}
+.agreement span:last-child{color: #fff;font-weight: bold;margin-top: .1rem;}
+.agreement mark{color: #fff;}
+/*咨询*/
+.enter-course-bottom{border-top: 2px solid #dce0e0;}
+/*.enter-course-bottom a:before{width:0;height: 0;}*/
+.enter-course-bottom a{color: #fff;}
+.enter-course-bottom a:first-child{border-color: #f2f2f2;}
+
+/****在线教育过程管理系统*****/
+h1{font-size: 1.05rem;text-align: center;margin-top:2rem;}
+h1 span{display:block;color: #666;font-size: .65rem;margin-top:.2rem;}
+.online-edu{width:14.25rem;padding:1.6rem 0 .5rem;margin: 0 auto;text-align: center;}
+.online-edu ul{height:37.75rem;background: url(/static/images/mz_wap/online-edu.png) no-repeat center top;background-size:contain;}
+.online-edu li{width:50%;margin-top:8.125rem;font-size:.7rem;}
+.online-edu li:nth-child(odd){float: left;}
+.online-edu li:nth-child(even){float: right;}
+.online-edu li:first-child{margin-top: 5.5rem;}
+.online-edu li:nth-child(2){margin-top: 9.9rem;}
+.online-edu>a{width:9rem;line-height:2rem;border:.1rem solid #5ecfba;margin:1.9rem auto 0;display: block;font-size: .65rem;color: #5ecfba;border-radius: .1rem;}
+
+/*免费视频页*/
+.courses-info{padding: 0 4%;overflow: hidden;display:table;width:92%;}
+.courses-info h2{color: #1bbc9b;font-size: 1.05rem;margin-top: 1rem;display:table;}
+.courses-info>p{color: #999;font-size: .55rem;line-height: 1.4;margin-top: .4rem;display:table;height:1px;width: 100%;}
+.infos{padding: .6rem 0;border-top: 2px solid #e3e6e6;border-bottom: 2px solid #e3e6e6;margin-top: .8rem;}
+.infos li{display: table-cell;vertical-align: middle;font-size: .55rem;color: #666;line-height: 1.05rem;}
+.infos .times{padding-left:.6rem;}
+.infos li:first-child{float: right;}
+.infos li:before{width: .95rem;height: 1.05rem;background:url(/static/images/mz_wap/index_icon.png) no-repeat;background-size: 907.9% 392.86%;margin-right: .25rem;}
+.infos .counts:before{background-position: 53.5% 31.03%;}
+.infos .times:before{background-position: 68.2% 31.03%;}
+.infos li:first-child:before{width: 0;height: 0;}
+.courses-info h3{color: #1bbc9b;font-size: .85rem;margin-top:.8rem;display:table;}
+.courses-info .course_list ul{padding:0;}
+
+/* 53客服按钮 */
+.kf-a{color: #ff9a1b; font-size: .7rem; display: block; text-align: center;}
+.kf-btn{background-color: #ff9a1b; color: #fff; font-size: .7rem; width: 50%; height: 1.5rem; line-height: 1.5rem; text-align: center; border-radius: 4px;}
+.marginB1{margin-bottom: 1rem;}
+.marginT1{margin-top: 1rem;}
+header nav a.active{border: 0px solid #000; color:#9AA5A3}

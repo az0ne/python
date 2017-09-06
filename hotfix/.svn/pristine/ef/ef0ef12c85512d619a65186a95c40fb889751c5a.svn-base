@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>职业课程：《{{ cur_careercourse.name }}》购买页面</title>
+    <link href="/static/css/base.css" rel="stylesheet">
+    <link href="/static/css/microoh-v5.css" rel="stylesheet">
+    <link href="/static/css/animate.css" rel="stylesheet">
+    <link href="/static/css/develop.css" rel="stylesheet">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="/static/js/html5shiv.min.js"></script>
+    <script src="/static/js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+<div class="payment-other">
+    {% if user.is_authenticated %}
+    <h4>{{ user.nick_name }} , 你正在购买以下职业课程阶段：</h4>
+    {% endif %}
+    <hr/>
+    <h3 class="text-micv5">{{ cur_careercourse.name }}</h3>
+    <ul>
+        {% for stage in cur_careercourse_stage_list %}
+        <li>
+            <div>{{ stage.name }}</div>
+            <div>价格：￥{{ stage.price }}</div>
+            <div>
+                {% if stage.is_unlock %}
+                    已解锁
+                {% else %}
+                    <a stage_id="{{ stage.id }}" href="#" class="btn btn-micv5" onclick="pay_next(this)">购买</a>
+                {% endif %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <input type="hidden" id="cur_careercourse_id" name="cur_careercourse_id" value="{{ cur_careercourse.id }}">
+    <input type="hidden" id="careercourse_class" name="careercourse_class" value="{{ cur_careercourse.careercourse_class }}">
+</div>
+
+{% if cur_careercourse.careercourse_class == None %}
+<!-- 选择班级 -->
+<div class="modal fade" id="chooseclassModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-v5-xlg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="chooseclassModalLabel">选择班级</h4>
+            </div>
+            <div class="modal-body">
+                <ul class="class-list cf">
+                    {% for class in cur_careercourse_class_list %}
+                        <li class_coding="{{ class.coding }}"><a href="javascript:;">班级：{{ class.display_name }}<br>报名人数：{{ class.current_student_count }}/{{ class.student_limit }}<br>主讲人:{{ class.teacher_name }}</a></li>
+                    {% endfor %}
+                </ul>
+                <div class="chooseclass-btn text-right">
+                    <button class="btn btn-micv5 btn-v5-lg btn-micv5-disabled1" disabled="disabled" id="btn-okpay" onclick="goto_pay()">确定购买</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if request.GET.b == "true" %}
+<!-- 报名成功 -->
+<div class="modal fade" id="enrollsuccessModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-v5-xlg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="enroll-success">
+                    <div class="v5-tips-lg"><i class="v5-icon v5-icon-success-lg"></i><span>报名成功</span></div>
+                    <p>请加入QQ群{{ request.GET.qq }}和同学一起讨论学习</p>
+                    <p><a href="{% if user.is_student %}{% url 'user:student_center' %}{% else %}{% if user.is_teacher %}{% url 'user:teacher_center' %}{% endif %}{% endif %}" class="btn btn-micv5 btn-v5-md">进入个人中心</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+   $('#enrollsuccessModal').modal('show');
+</script>
+{% endif %}
+<script>
+    var choose_class_coding,choose_stage_id
+    $(function(){
+        $('.class-list li').click(function(event){
+            event.preventDefault();
+            choose_class_coding = $(this).attr("class_coding");
+            $(this).toggleClass('active');
+            if($(this).hasClass('active')){
+                $(this).siblings().removeClass('active');
+                $('#btn-okpay').removeClass('btn-micv5-disabled1').removeAttr('disabled');
+            }
+            else{
+                $('#btn-okpay').addClass('btn-micv5-disabled1').attr('disabled','disabled');
+            }
+        });
+    });
+
+    function pay_next(obj){
+        choose_stage_id = $(obj).attr("stage_id")
+        {% if cur_careercourse.careercourse_class == None %}
+            $('#chooseclassModal').modal('show');
+        {% else %}
+            choose_class_coding = $("#careercourse_class").val()
+            goto_pay()
+        {% endif %}
+    }
+
+    //跳转到支付逻辑进行验证
+    function goto_pay(){
+        url = "/pay/go/"+$("#cur_careercourse_id").val()+"/"+choose_stage_id+"/stage/"+$("#cur_careercourse_id").val()+"/3/"+choose_class_coding
+        window.open(url)
+    }
+</script>
+</body>
+</html>

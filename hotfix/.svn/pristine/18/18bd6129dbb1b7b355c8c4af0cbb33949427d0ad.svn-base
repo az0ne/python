@@ -1,0 +1,164 @@
+.banner {
+  background-image: url(/static/images/new_wap_images/op-banner.jpg);
+  height: 26.56rem;
+  padding-top: 1.86667rem !important; }
+  .banner p {
+    opacity: .6; }
+  .banner section {
+    opacity: .5; }
+  .banner .banner-btns a.active {
+    background: #07d49c;
+    border-color: #07d49c;
+    color: #fff; }
+
+.mz-cuose-tab {
+  background: #f7f7f7; }
+  .mz-cuose-tab li.active a,
+  .mz-cuose-tab li.active b {
+    color: #3167f4; }
+
+.mz-m-btn {
+  background: #3167f4;
+  box-shadow: none;
+  -webkit-box-shadow: none; }
+
+.internet-operation-c1-list li {
+  padding: 1.86667rem 0.53333rem 0; }
+.internet-operation-c1-list i {
+  display: block;
+  width: 3.46667rem;
+  height: 3.46667rem;
+  background-repeat: no-repeat;
+  background-size: contain; }
+
+@media screen and (max-width: 330px) {
+  .internet-operation-c1-list li {
+    padding: 1.06667rem 0.53333rem 0; } }
+.internet-operation-c1-pic01 {
+  background-image: url(/static/images/new_wap_images/internet-operation-c1-pic01.svg); }
+
+.internet-operation-c1-pic02 {
+  background-image: url(/static/images/new_wap_images/internet-operation-c1-pic02.svg); }
+
+.internet-operation-c1-pic03 {
+  background-image: url(/static/images/new_wap_images/internet-operation-c1-pic03.svg); }
+
+.internet-operation-c1-txt b {
+  display: block;
+  font-size: 0.69333rem;
+  color: #333333;
+  height: 2.02667rem;
+  line-height: 2.02667rem; }
+.internet-operation-c1-txt p {
+  font-size: 0.53333rem;
+  color: #333333;
+  line-height: 0.96rem; }
+
+.mz-cuose-tab-c1 {
+  padding-bottom: 2.13333rem; }
+
+.ourse-description-cts-des {
+  padding: 1.06667rem 0.53333rem 0; }
+
+.description-cts-des-con {
+  width: 8.90667rem;
+  height: 8rem;
+  padding: 0.8rem 0.8rem 0;
+  background: #fff;
+  box-shadow: 0 0.05333rem 0.26667rem rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0 0.05333rem 0.26667rem rgba(0, 0, 0, 0.1);
+  float: left;
+  margin: 0 0.26667rem 0.53333rem; }
+  .description-cts-des-con .mzicon {
+    font-size: 1.33333rem;
+    color: #3167f4; }
+
+.cts-des-con-txt h6 {
+  line-height: 1.76rem;
+  color: #000000;
+  font-size: 0.58667rem;
+  font-weight: bold;
+  text-align: center; }
+.cts-des-con-txt p {
+  color: #888888;
+  font-size: 0.53333rem;
+  line-height: 0.96rem; }
+
+.mz-cuose-tab-c3 {
+  background: #f7f7f7;
+  padding: 1.6rem 0 1.06667rem; }
+
+.mz-cuose-tab-c4-icon {
+  background: #3167f4; }
+
+.course-des-c4-slider:before {
+  background: #3167f4; }
+
+.course-des-c4-slider-bg {
+  background: rgba(138, 170, 255, 0.2); }
+
+.course-des-c4-slider-bg2 {
+  background: rgba(49, 103, 244, 0.5); }
+
+.course-des-c4-slider-bg2:before {
+  background: rgba(49, 103, 244, 0.8);
+  box-shadow: 0 0 1.33333rem #0238c5; }
+
+.course-des-c4-slider-pagination span.swiper-pagination-bullet-active {
+  border-color: #3368f4; }
+
+.course-des-c4-slid-txt a {
+  color: #3167f4; }
+
+.description-five-list-txt h6,
+.description-five-list-num {
+  color: #3167f4; }
+
+.mz-cuose-tab-c9 {
+  background: #3167f4; }
+
+.mz-cuose-tab-c9:before {
+  background: #5885f9; }
+
+.online-to-offline-con-vs dd {
+  color: #3167f4;
+  box-shadow: 0 0.13333rem 0.24rem #143aec; }
+
+.mz-cuose-tab-c9 .mz-cuose-tab-tit p {
+  color: #ffe9d0; }
+
+.course-description-nine-tit b, .ly-course-item-title, .ly-li1-num, .mzedu-student-review-t, .review-bcontainer-txt-tec b, .review-bcontainer-contxt-add P {
+  color: #3167f4; }
+
+.ly-course-list {
+  background-color: #f5f8ff; }
+
+.ly-course-icon:before {
+  color: #3167f4;
+  text-shadow: 0 0.13333rem 0.56rem rgba(49, 103, 244, 0.39);
+  -webkit-text-shadow: 0 0.13333rem 0.56rem rgba(49, 103, 244, 0.39); }
+
+.mzedu-student-review-score i {
+  color: #3167f4;
+  text-shadow: 0 0 0.58667rem rgba(49, 103, 244, 0.2);
+  -webkit-text-shadow: 0 0 0.58667rem rgba(49, 103, 244, 0.2); }
+
+.review-bcontainer-contxt {
+  background: #F5F8FF; }
+
+.review-bcontainer-txt-tec {
+  background-color: #ecf0f9; }
+
+.review-bcontainer-contxt-add i {
+  color: #3167f4;
+  text-shadow: 0 0.13333rem 0.24rem r rgba(49, 103, 244, 0.8);
+  -webkit-text-shadow: 0 0.13333rem 0.24rem rgba(49, 103, 244, 0.8); }
+
+.ly-course-list-add {
+  color: #3167f4; }
+  .ly-course-list-add i {
+    text-shadow: 0 0.13333rem 0.56rem rgba(49, 103, 244, 0.39);
+    -webkit-text-shadow: 0 0.13333rem 0.56rem rgba(49, 103, 244, 0.39); }
+.mz-cuose-tab li.active a:before{
+  background: #3167F4;
+}

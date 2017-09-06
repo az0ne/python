@@ -1,0 +1,268 @@
+{% extends "mz_common/base4.html" %}
+{% load split_filter %}
+{% block title %}{{ cur_careercourse_values.seo_title_px }}{% endblock %}
+{% block keywords%}{{ cur_careercourse_values.seo_keyword_px }}{% endblock %}
+{% block description%}{{ cur_careercourse_values.seo_description_px }}{% endblock %}
+
+{% block container %}
+<style type="text/css">
+.aboutlessonBox1Btn a.freeD:hover{ color: {{ cur_careercourse_values.course_color_px }} !important;}
+</style>
+{% include 'header/header.html' %}
+<div class="aboutlessonBox1 textC" style="background-color: {{ cur_careercourse_values.course_color_px }}; background-image: url({{ MEDIA_URL }}{{ cur_careercourse_values.image_px }})">
+	<p class="font72 colorff bold p1 marginB20">{{ cur_careercourse_values.name }}</p>
+    <p class="font72 colorff bold p1 marginB20 pp1">{{ cur_careercourse_values.name }}</p>
+    <p class="font18 colorff marginB65">{{ cur_careercourse_values.brief_intro }}</p>
+    <p class="aboutlessonBox1Btn">
+{#        {% if user.is_authenticated %}#}
+{#            {% if button_study_status == 0 %}#}
+{#                <a href="study" style="background:#ffffff; color:{{ cur_careercourse_values.course_color_px }};">#}
+{#                    免费体验学习#}
+{#                </a>#}
+{#            {% else %}#}
+{#                <a href="study" class="freeD">#}
+{#                    继续学习#}
+{#                </a>#}
+{#            {% endif %}#}
+{#        {% else %}#}
+{#            <a href="#" data-toggle="modal" data-target="#loginModal" style="background:#ffffff; color:{{ cur_careercourse_values.course_color_px }};">#}
+{#                免费体验学习#}
+{#            </a>#}
+{#        {% endif %}#}
+{#        {% if user.is_authenticated %}#}
+{#            <a class="freeD" href="{% url 'pay:pay_view2' %}?career_id={{ cur_careercourse.id }}" target="_blank"#}
+{#                {% if button_pay_status == 2 %}#}
+{#                    style="display:none;"#}
+{#                {% endif %}>#}
+{#                {% if button_pay_status == 1 %}#}
+{#                    支付余款#}
+{#                {% else %}#}
+{#                    立即付费#}
+{#                {% endif %}#}
+{#            </a>#}
+{#            <a class="afq" href="{% url 'pay:pay_view2' %}?career_id={{ cur_careercourse.id }}&loan=1" target="_blank"#}
+{#                {% if button_pay_status == 2 %}#}
+{#                    style="display:none;"#}
+{#                {% endif %}>#}
+{#                    分期支付#}
+{#            </a>#}
+{#        {% else %}#}
+{#            <a href="#" data-toggle="modal" data-target="#loginModal" class="freeD">立即报名</a>#}
+{#            <a class="afq" href="#" data-toggle="modal" data-target="#loginModal">分期支付</a>#}
+{#        {% endif %}#}
+    </p>
+</div>
+
+<div class="aboutlessonBox2" id="dd1" style="background-image:url({{ MEDIA_URL }}{{ cur_careercourse_values.image_px_2}})">
+    <div class="center">
+        <div class="div">
+            <p class=" font30 color33 marginB29"><span class="font58">不一样</span>的{{ cur_careercourse_values.name }}教学
+            </p>
+
+            <p class="font18 color99">{{ cur_careercourse_values.description_px }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="aboutlessonBox3">
+	<p class="font36 textC pt marginB70">重塑在线学习过程</p>
+    <div class="aboutlessonBox3_mac">
+    	<div class="font18 color99 d1">由浅入深关卡式提升<i></i></div>
+        <div class="font18 color99 d2">名师绝招无保留传授<i></i></div>
+        <div class="font18 color99 d3"><i></i>实名精英人脉强链接</div>
+        <div class="font18 color99 d4"><i></i>商业级项目全程精炼</div>
+        <div class="mac"></div>
+    </div>
+    <p class="textC">
+        {% if user.is_authenticated %}
+            <a class="aLessonBtn" href="study">
+                {% if button_study_status == 0 %}
+                    我要体验学习
+                {% else %}
+                    继续学习
+                {% endif %}
+            </a>
+        {% else %}
+            <a class="aLessonBtn" href="#" data-toggle="modal" data-target="#loginModal">我要体验学习</a>
+        {% endif %}
+    </p>
+</div>
+
+<div class="section5" id="dd2">
+    <ul class="bxslider2">
+        {% for teacher in show_teachers %}
+            <li pt="{{ teacher.nick_name }}" en="{{ teacher.position }}" pc="{{ teacher.description }}"><i></i>
+                <img src="{{ MEDIA_URL }}{{ teacher.teacher_photo }}"/>
+            </li>
+        {% endfor %}
+    </ul>
+    <div class="colorff textC div">
+    	<p class="font20 marginB10">{{ show_teachers.0.nick_name }}</p>
+		<p class="font36 Arial marginB38">{{ show_teachers.0.position }}</p>
+        <p class="font16 marginB60 line2">{{ show_teachers.0.description }}</p>
+    </div>
+    <div class="section5_bottom textC">
+        {% for teacher in show_teachers %}
+            <a class="t3out {% if not forloop.counter0 %}aH{% endif %}" target="_blank" n={{ forloop.counter0 }}>
+                <img src="{{ MEDIA_URL }}{{ teacher.avatar_middle_thumbnall }}">
+                <i></i>
+            </a>
+        {% endfor %}
+    </div>
+
+</div>
+
+<div class="aboutlessonBox4 {% if cur_careercourse.id == 12 or cur_careercourse.id == 128 %}original{% endif %}" id="dd3">
+	<p class="textC font36 color33 pt marginB29">学生作品</p>
+    {% if cur_careercourse.id == 12 %}
+        <div class="aBox4Div">
+            <img src="{{ STATIC_URL }}mz_lps4/img/image-1.jpg" class="t5o im1">
+            <img src="{{ STATIC_URL }}mz_lps4/img/image-2.jpg" class="t5o im2">
+            <img src="{{ STATIC_URL }}mz_lps4/img/image-3.jpg" class="t5o im3">
+            <img src="{{ STATIC_URL }}mz_lps4/img/image-4.jpg" class="t5o im4">
+            <img src="{{ STATIC_URL }}mz_lps4/img/image-5.jpg" class="t5o im5">
+            <img src="{{ STATIC_URL }}mz_lps4/img/image-6.jpg" class="t5o im6">
+            <img src="{{ STATIC_URL }}mz_lps4/img/image-7.jpg" class="t5o im7">
+            <img src="{{ STATIC_URL }}mz_lps4/img/image-8.jpg" class="t5o im8">
+            <img src="{{ STATIC_URL }}mz_lps4/img/image-9.jpg" class="t5o im9">
+        </div>
+    {% elif cur_careercourse.id == 128 %}
+        <div class="aBox4Div">
+            <img src="{{ STATIC_URL }}mz_lps4/img/imageUI-1.jpg" class="t5o im1">
+            <img src="{{ STATIC_URL }}mz_lps4/img/imageUI-2.jpg" class="t5o im2">
+            <img src="{{ STATIC_URL }}mz_lps4/img/imageUI-3.jpg" class="t5o im3">
+            <img src="{{ STATIC_URL }}mz_lps4/img/imageUI-4.jpg" class="t5o im4">
+            <img src="{{ STATIC_URL }}mz_lps4/img/imageUI-5.jpg" class="t5o im5">
+            <img src="{{ STATIC_URL }}mz_lps4/img/imageUI-6.jpg" class="t5o im6">
+            <img src="{{ STATIC_URL }}mz_lps4/img/imageUI-7.jpg" class="t5o im7">
+            <img src="{{ STATIC_URL }}mz_lps4/img/imageUI-8.jpg" class="t5o im8">
+            <img src="{{ STATIC_URL }}mz_lps4/img/imageUI-9.jpg" class="t5o im9">
+        </div>
+    {% else %}
+        <div class="aboutlessonBox4Div">
+            <ul class="poster-list" {% if 'ios' in cur_careercourse_values.name|lower or "and" in cur_careercourse_values.name|lower %}ppt=1{% endif %}>
+                {% for image in show_studentprojectimage %}
+                    <li class="poster-item t5o"><img src="{{ MEDIA_URL }}{{ image.image_url }}" width="100%"></li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</div>
+
+    <div class="center aboutlessonBox5" id="dd4">
+        <p class="textC font36 color33 pt">课程内容</p>
+        <ul class="aboutlessonBox5UL">
+            {% for stage in show_s_stages %}
+                <li>
+                    <div class="div">
+                        <div>
+                            <p class="font36 color5e">{{ stage.name }}</p>
+                            <p class="color66 font16">{{ stage.description }}</p>
+                        </div>
+                        {% with item=stage.task_knowledge_test|split:',' %}
+                            <p class="textC color99 pp marginB29">
+                                <span>{{ item.0 }}</span>个任务，
+                                <span>{{ item.1 }}</span>个知识点，
+                                <span>{{ item.2 }}</span>项测试
+                            </p>
+                        {% endwith %}
+                        <dl class="color99 font16">
+                            {% for task in stage.task_list|split:',' %}
+                                <dd>• {{ task }}</dd>
+                            {% endfor %}
+                        </dl>
+                    </div>
+                    <img src="{{ MEDIA_URL }}{{ stage.image_url }}" class="img">
+                </li>
+            {% endfor %}
+        </ul>
+        <p class="textC" style="padding-top: 40px;">
+            <a class="aLessonBtn" href="{% url 'course:career_course_detail' cur_careercourse.short_name %}">
+                查看免费教学视频
+            </a>
+        </p>
+    </div>
+
+<div class="aboutlessonBox6" id="dd5">
+	<div class="center textC">
+    	<p class="marginB20 font60 color99 p" style="display: none;">7天不满意全额退款</p>
+        <p class="font46 color99 marginB29 p">入学即签保就业法律协议</p>
+        <p class="font22 colorff marginB50">无法就业，承诺退款</p>
+        <p class="font22 colorff"><s class="color99">市场价格：¥18000</s>&nbsp;&nbsp;&nbsp;&nbsp;麦子价格：¥8800</p>
+        <img src="{{ STATIC_URL }}mz_lps4/images/LessonImg005.png" class="img1">
+        <img src="{{ STATIC_URL }}mz_lps4/images/LessonImg006.png" class="img2">
+    </div>
+</div>
+
+<div class="aboutlessonFoot">
+	<div class="center">
+    	<a href="#dd1" class="font18 colorff">麦子优势</a><a href="#dd2" class="font18 colorff">师资力量</a><a href="#dd3" class="font18 colorff">优秀作品</a><a href="#dd4" class="font18 colorff">课程大纲</a><a href="#dd5" class="font18 colorff">就业服务</a>
+        <div class="fr">
+{#            {% if user.is_authenticated %}#}
+{#                <a href="study" class="aboutlessonFoot_a1">{% if button_study_status == 0 %}免费体验学习{% else %}继续学习{% endif %}</a>#}
+{#            {% else %}#}
+{#                <a href="#" class="aboutlessonFoot_a1" data-toggle="modal" data-target="#loginModal">免费体验学习</a>#}
+{#            {% endif %}#}
+{#            {% if user.is_authenticated %}#}
+{#                {% if button_study_status == 0 %}#}
+{#                    <a class="aboutlessonFoot_a2 class53">咨询小麦</a>#}
+{#                {% else %}#}
+{#                {% endif %}#}
+{#            {% else %}#}
+                <a class="aboutlessonFoot_a2 class53" onclick="_MEIQIA('showPanel')">咨询小麦</a>
+{#            {% endif %}#}
+        </div>
+    </div>
+</div>
+
+{% if is_pop_npm_window %}
+<!-- 产品经理(pm)引导进新产品经理(npm) -->
+<div class="modal fade YaHei in" id="pop_pm2npm_window" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" style="width:400px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="loginModalLabel" style="font-size: 18px;">提示</h4>
+            </div>
+            <div class="modal-body" style="text-align :center">
+                <h3 class="font24 color66 marginB29">此班已报满</h3>
+                <p class="font14 color66 marginB20">请前往下一个班级报名</p>
+                <a href="{% url 'course:course_detail' 'npm' %}" class="btn-micv5" style="background: #5ecfba; display: block; width: 170px;margin: 0 auto 10px; font-size: 14px;">立即报名</a>
+            </div>
+        </div>
+    </div>
+</div>
+<input id="pm" value="{{ is_pop_npm_window }}" type="hidden">
+{% endif %}
+{% endblock %}
+{% block footer%}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block sea_script %}
+<!-- 诸葛io统计 -->
+<script type="text/javascript">
+var is_authenticated={% if user.is_authenticated %}false{% else %}true{% endif %};
+// 登录点击事件
+window.onload=function() {
+{% if user.is_authenticated %}
+zhuge.identify(
+    "{{ user.id }}",
+    {
+        'name' : "{{ user.nick_name }}",
+        'avatar' : "{{ MEDIA_URL }}{{ user.avatar_url }}",
+        'email' :  "{{ user.email }}",
+        'qq' : "{{ user.qq }}",
+        "phone" : "{{ user.mobile }}"
+    }
+);
+zhuge.track("登录", {
+    "事件位置": "课程介绍页"
+});
+{% endif %}
+}
+
+</script>
+<script>seajs.use("/js/lps4/dist/main",function(main){main.loading("newCouseD");});</script>
+{% endblock %}
+
+{#{% block 53kf %}<script type='text/javascript' src='http://tb.53kf.com/kf.php?arg=10111642&style=3'></script>{% endblock %}#}

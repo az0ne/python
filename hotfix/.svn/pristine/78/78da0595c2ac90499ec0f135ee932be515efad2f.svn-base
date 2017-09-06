@@ -1,0 +1,82 @@
+@charset "UTF-8";
+/* 预约试学样式 */
+.vam, .free-learn .breadcrumbs a, .free-learn .free-con .appointment-list li .one .first, .free-learn .free-con .appointment-list li .one .second, .free-learn .free-con .appointment-list li .order, .free-learn .class-teacher .left, .free-learn .class-teacher .right, .free-learn .class-time .first span, .free-learn .class-time .second span, .free-learn .hover-tips, .free-learn .phone-num .change, .free-learn .newPhoneBox .personalCbtn { display: inline-block; vertical-align: middle; }
+
+.CLEARFIX, .free-learn .free-con .appointment-list:before, .free-learn .free-con .appointment-list:after, .free-learn .pro-info .desc-list:before, .free-learn .pro-info .desc-list:after { content: ''; display: table; clear: both; }
+
+.substr { text-overflow: ellipsis; -o-text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+
+.transition { -webkit-transition: all 0.3s ease-out 0s; -moz-transition: all 0.3s ease-out 0s; -o-transition: all 0.3s ease-out 0s; transition: all 0.3s ease-out 0s; }
+
+.W1160, .free-learn .main-container { width: 1160px; margin: 0 auto; }
+
+.personalCTop { background: #4b688b; width: 100%; height: 158px; }
+.personalCTop .center { background: url(../images/personalTopBg.png) right bottom no-repeat; height: 100%; }
+.personalCTop .img { float: left; width: 90px; height: 90px; border: 4px solid rgba(255, 255, 255, 0.4); border-radius: 50%; overflow: hidden; margin-top: 26px; }
+.personalCTop .img img { width: 100%; height: 100%; vertical-align: top; }
+.personalCTop .font { margin: 40px 0 0 30px; width: 900px; }
+.personalCTop .personalCico { margin-left: 10px; }
+.personalCTop .sudentICO { margin-left: 10px; }
+
+.free-learn { background-color: #f5f5f5; }
+.free-learn .main-container { margin-bottom: 114px; }
+.free-learn .breadcrumbs { height: 55px; }
+.free-learn .breadcrumbs a { line-height: 55px; transition: .5s; }
+.free-learn .free-con { background-color: #fff; padding: 40px 50px 80px; box-sizing: border-box; margin-bottom: 136px; }
+.free-learn .free-con h1 { margin-bottom: 20px; }
+.free-learn .free-con .appointment { background-color: #f5f5f5; padding: 20px 40px 40px; box-sizing: border-box; min-height: 235px; }
+.free-learn .free-con .appointment h2 { margin-bottom: 20px; }
+.free-learn .free-con .no-learn { padding: 50px 0; box-sizing: border-box; }
+.free-learn .free-con .no-learn a { text-decoration: underline; transition: .5s; }
+.free-learn .free-con .appointment-list { margin-left: -25px; }
+.free-learn .free-con .appointment-list li { width: 310px; height: 130px; background: #fff; float: left; margin-left: 25px; border: 1px solid #e8e8e8; padding: 10px 20px; box-sizing: border-box; transition: .5s; }
+.free-learn .free-con .appointment-list li .one { padding-bottom: 10px; border-bottom: 1px solid #e8e8e8; margin-bottom: 10px; font-size: 0; }
+.free-learn .free-con .appointment-list li .one .second { margin: 0 10px 0 10px; }
+.free-learn .free-con .appointment-list li .two, .free-learn .free-con .appointment-list li .three { line-height: 24px; }
+.free-learn .free-con .appointment-list li .order { width: 80px; height: 30px; line-height: 30px; border-radius: 2px; color: #5ecfba; border: 1px solid #5ecfba; text-align: center; transition: .5s; }
+.free-learn .free-con .appointment-list li .order:hover { background: #5ecfba; color: #fff; }
+.free-learn .free-con .appointment-list li:hover { border: 1px solid #5ecfba; }
+.free-learn .pro-info .desc { margin-bottom: 20px; }
+.free-learn .pro-info .desc-list { margin-left: -20px; margin-bottom: 30px; }
+.free-learn .pro-info .desc-list li { float: left; width: 266px; height: 140px; margin-left: 20px; }
+.free-learn .pro-info .desc-list img { width: 100%; height: 100%; max-width: 100%; }
+.free-learn .class-teacher { font-size: 0; padding: 30px 0; box-sizing: border-box; border-top: 1px solid #e8e8e8; }
+.free-learn .class-teacher .left { width: 98px; height: 98px; margin-right: 15px; border-radius: 50%; max-width: 100%; }
+.free-learn .class-teacher .right { width: 947px; }
+.free-learn .class-teacher .name { margin-right: 20px; }
+.free-learn .modal-content { border-radius: 0; }
+.free-learn .m-close { display: block; width: 17px; height: 17px; position: absolute; top: 20px; right: 20px; opacity: 1; cursor: pointer; z-index: 10; background: url(../images/free_learn/sprite.png) 0 -173px no-repeat; }
+.free-learn .class-time { display: block; width: 100%; background-color: #fff9df; padding: 20px 30px; box-sizing: border-box; font-size: 0; margin-bottom: 30px; }
+.free-learn .class-time .first span { width: 50%; font-size: 14px; color: #666; }
+.free-learn .class-time .second span { width: 50%; font-size: 16px; color: #666; }
+.free-learn .you-phone, .free-learn .phone-num, .free-learn .class-tips { font-size: 14px; color: #666; text-align: center; line-height: 24px; }
+.free-learn .hover-tips { padding: 0 10px; height: 30px; line-height: 30px; font-size: 12px; box-sizing: border-box; background-color: #333; white-space: nowrap; color: #fff; font-weight: 400; opacity: 0; position: relative; left: 35px; top: -10px; transition: .5s; }
+.free-learn .hover-tips:before { content: ''; width: 0; height: 0; border: 8px solid #333; border-color: transparent #333 transparent transparent; position: absolute; left: -16px; top: 7px; }
+.free-learn .phone-num { font-weight: bold; }
+.free-learn .phone-num .change { margin-left: 10px; content: ''; width: 16px; height: 16px; background: url(../images/free_learn/sprite.png) 0 -200px no-repeat; }
+.free-learn .phone-num .change:hover .hover-tips { left: 30px; opacity: 1; }
+.free-learn .enter-appo, .free-learn .know, .free-learn .retry { display: block; width: 120px; height: 40px; line-height: 40px; text-align: center; font-size: 14px; background-color: #5ecfba; color: #fff; border-radius: 2px; margin: 20px auto 0; }
+.free-learn #appointment-study .modal-body { padding: 20px 30px 30px; box-sizing: border-box; }
+.free-learn #appointment-study h3 { padding: 20px; box-sizing: border-box; font-size: 18px; color: #1bbc9b; border-bottom: 1px solid #e5e5e5; position: relative; }
+.free-learn .pcSmodal .pt { padding: 10px 14px; border-bottom: 1px solid #e5e5e5; }
+.free-learn .pcSmodal .pt .font18 { color: #1bbc9b; margin-right: 10px; }
+.free-learn .newPhoneBox { padding: 50px 30px 30px; }
+.free-learn .newPhoneBox .mobile-label { text-align: center; margin-bottom: 10px; }
+.free-learn .newPhoneBox .pcsBasicTableTxt { width: 100%; box-sizing: border-box; height: 40px; padding: 8px 6px; line-height: 22px; border: 1px solid #ccc; border-radius: 2px; transition: .5s; }
+.free-learn .newPhoneBox .pcsBasicTableTxt:hover, .free-learn .newPhoneBox .pcsBasicTableTxt:focus { border: 1px solid #999; }
+.free-learn .newPhoneBox .captchaMy { margin-bottom: 20px; }
+.free-learn .newPhoneBox .personalCbtn { text-align: center; background: #5ecfba; width: 100%; height: 40px; line-height: 40px; color: #fff; border-radius: 2px; font-size: 14px; }
+.free-learn .newPhoneBox p { position: relative; margin-bottom: 20px; }
+.free-learn .newPhoneBox .validform { position: absolute; left: 4px; top: 40px; color: #f84858; }
+.free-learn .modal .megError { background: #ffecec; color: red; padding: 8px; display: none; width: auto; height: auto; line-height: 1; margin-top: 20px; }
+.free-learn #newMeg .cl { width: 80px; }
+.free-learn #newMeg .modal-content { padding: 60px 0 50px; }
+.free-learn #newPhone2 .pm { background: #f5f5f5; padding: 8px; }
+.free-learn #newPhone2 .fg > a { display: inline-block; width: 142px; height: 38px; border: 1px solid #5ecfba; background: #5ecfba; color: #fff; line-height: 38px; text-align: center; font-size: 14px; vertical-align: middle; margin-left: 10px; }
+.free-learn #newPhone2 .fg > a.smsend { background: #f5f5f5; border: 1px solid #ccc; color: #999; pointer-events: none; }
+.free-learn #newPhone2 .fg > a.dis { border-color: #ccc; background: #f5f5f5; color: #666; }
+.free-learn #newMegPassword .modal-content { padding: 60px 0 50px; }
+.free-learn #appointment-success .modal-content { padding: 40px 30px 30px; box-sizing: border-box; }
+.free-learn #appointment-success .successful { margin-bottom: 20px; text-align: center; }
+.free-learn #appointment-fail .modal-content { padding: 50px 30px; box-sizing: border-box; }
+.free-learn #appointment-fail .fail { margin-bottom: 10px; text-align: center; }

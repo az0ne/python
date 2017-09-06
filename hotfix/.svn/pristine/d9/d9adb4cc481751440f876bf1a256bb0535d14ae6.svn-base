@@ -1,0 +1,32 @@
+
+<ul class="nav nav-tabs nav-append-content">
+    {% if teacher %}
+    <li {% if tabs_active == "info" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:teachers_info' teacher.id %}">基本信息</a>
+    </li>
+    <li {% if tabs_active == "classes" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:teachers_classes' teacher.id %}">进行中班级</a>
+    </li>
+    <li {% if tabs_active == "classes_ended" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:teachers_classes_ended' teacher.id %}">已结束班级</a>
+    </li>
+    <li {% if tabs_active == "msgs" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:teachers_msgs' teacher.id %}">消息</a>
+    </li>
+    {% else %}
+    <li {% if tabs_active == "info" %}class="active"{% endif %}>
+        <a href="#">基本信息</a>
+    </li>
+    <li class="disabled">
+        <a href="#">进行中班级</a>
+    </li>
+    <li class="disabled">
+        <a href="#">已结束班级</a>
+    </li>
+    <li class="disabled">
+        <a href="#">消息</a>
+    </li>
+    {% endif %}
+</ul>
+
+

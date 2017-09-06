@@ -1,0 +1,70 @@
+{% load date_convert_tag %}
+<dd id="{{ ca.id }}">
+    <input class="last_id" type="hidden" value="{{ ca.id }}"/>
+    <input class="problem_id" type="hidden" value="{{ ca.problem_id }}"/>
+    <input class="answer_user_id" type="hidden" value="{{ ca.user_id }}"/>
+    <input class="answer_nick_name" type="hidden" value="{{ ca.nick_name }}"/>
+
+    <div class="avatar colorf3">
+        <a href="{% if ca.user_id == user.id %}
+                     {% url 'home:index' %}
+                 {% else %}
+                     {% url 'u:index' ca.user_id %}
+                 {% endif %}" title="{{ ca.nick_name }}" target="_blank">
+            <img src="{{ MEDIA_URL }}{{ ca.head }}" alt="{{ ca.nick_name }}">
+            {% if student_class %}
+                <em title="直通班学员" class="role vip"></em>
+            {% elif group_name == 'teacher' %}
+                <em title="金牌老师" class="role gold_tea"></em>
+            {% endif %}
+        </a>
+    </div>
+    <div class="children_text _reply">
+        <h3>
+            <a href="{% if ca.user_id == user.id %}
+                         {% url 'home:index' %}
+                     {% else %}
+                         {% url 'u:index' ca.user_id %}
+                     {% endif %}" class="colorf3 font18">{{ ca.nick_name }}</a>
+
+            {% if ca.answer_nick_name %}
+            <span class="reply_font">回复</span>
+            <a href="{% if ca.answer_user_id == user.id %}
+                         {% url 'home:index' %}
+                     {% else %}
+                         {% url 'u:index' ca.answer_user_id %}
+                     {% endif %}" class="colorf3 font18">{{ ca.answer_nick_name }}</a>
+            {% endif %}
+
+            <span class="time colorC0">{% date_convert ca.create_date %}</span>
+        </h3>
+
+        <p class="color33">{{ ca.comment }}</p>
+
+        <div class="children_lower" data-discuss-id="{{ ca.id }}">
+            <em class="reply"></em>
+            <em value='1920' class="like {% if ca.is_praise %}selected{% endif %}" title="点赞"></em>
+            <span class="quiz_time color6f"></span>
+        </div>
+
+        <div class="children_reply">
+            <div class="log_user_avatar">
+                <a href="{% url 'home:index' %}" title="{{ user.nick_name }}">
+                    <img src="{{ MEDIA_URL }}{{ user.avatar_middle_thumbnall }}" alt="{{ user.nick_name }}">
+                    {% if student_class %}
+                        <em title="直通班学员" class="role vip"></em>
+                    {% elif group_name == 'teacher' %}
+                        <em title="金牌老师" class="role gold_tea"></em>
+                    {% endif %}
+                </a>
+            </div>
+            <div class="input_area">
+                <textarea name="reply_content" id="" placeholder="回复 {{ ca.nick_name }}:"></textarea>
+            </div>
+            <div class="button">
+                <button name="cancel" class="cancel">取消</button>
+                <button name='submit' class="submit">回复</button>
+            </div>
+        </div>
+    </div>
+</dd>

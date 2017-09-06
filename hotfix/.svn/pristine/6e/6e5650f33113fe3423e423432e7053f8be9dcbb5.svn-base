@@ -1,0 +1,85 @@
+{% extends "mz_common/base4.html" %}
+{% block title %}{{ sclass.display_name }} LPS3.0 教务端 - 统计 - 满意度 - 麦子学院{% endblock %}
+{% block baiduJS %}{% endblock %}
+{% block custom_css %}
+<style>
+body{ background: #f5f5f5;}
+</style>
+{% endblock %}
+
+{% block container %}
+{% include 'header/header.html' %}
+<section class="sManage center">
+	{% include 'mz_eduadmin/nav.html' %}
+    <div class="sManage_Sel color33 font16 marginB20">
+        <div class="sManage_Sel_ymd color66">
+            <select name="year" id="year_value">
+                {% for i in year_list %}
+                    <option value="{{ i }}" {% if i == year %}selected="selected"{% endif %}>{{ i }}</option>
+                {% endfor %}
+            </select>年
+            <select name="month" id="month_value">
+                {% for i in month_list %}
+                    <option value="{{ i }}" {% if i == month %}selected="selected"{% endif %}>{{ i }}</option>
+                {% endfor %}
+
+            </select>月
+        </div>
+        教务<input id="deanClassTxt" type="text" placeholder="请输入教务姓名" class="sManage_Sel_sreach_txt font14 sManage_Seltxt" value="{{ eu_name }}">
+
+        <input type="button" value="确定" class="sManage_Sel_sreach_btn" id="eduadmin_det"><span class="red t5o font12 marginL10" style="opacity: 0;"></span>
+        <a class="exportxls" href="{% url 'lps3:eduadmin:stats:export_excel_satisfaction' eu_id year month %}">导出Excel表格</a>
+    </div>
+    <div class="textC sManage_nav marginB20">
+    	<a href="/lps3/ea/stats/">班级完成度</a><a class="aH">班级满意度</a>
+    </div>
+    {% if record_dict %}
+        <table class="sManage_table color66" id="record_table">
+            <tr>
+                <th style="width:50px">序号</th>
+                <th style="width:160px">班级</th>
+                <th style="width:160px" class="multiselect2">专业<i class="selArrowW"></i></th>
+                <th style="width:90px;" class="multiselect3">老师<i class="selArrowW"></i></th>
+                <th style="width:90px;">教务</th>
+                {% for topic in record_dict.values.0.topic_scores.values %}
+                    <th style="width:105px;">{{ topic.0 }}</th>
+                {% endfor %}
+                <th style="width:50px;">总分</th>
+                <th>操作</th>
+            </tr>
+            {% for key, value in record_dict.items %}
+                <tr class="people">
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ key.0 }}</td>
+                    <td class-specialty="{{ value.careercourse }}">{{ value.careercourse }}</td>
+                    <td class="teacherName">
+                        <span class-tearcher="{{ value.teacher }}">{{ value.teacher }}</span>
+                    </td>
+                    <td>{{ value.eduadmin }}</td>
+                    {% for topic in value.topic_scores.values %}
+                        <td>{{ topic.1 }}</td>
+                    {% endfor %}
+                    <td>{{ value.total_score }}</td>
+                    <td><a target="_blank"
+                           href="{% url 'lps3:eduadmin:stats:class_stu_satisfy_record' value.class_id value.c_year value.c_month %}">详情</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <div class="nodata">
+            <span>暂未查询到满意度哦~</span>
+        </div>
+    {% endif %}
+
+</section>
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block sea_script %}
+<script>seajs.use("/js/lps4/dist/main",function(main){main.loading("statisticsM",{"newid":'{{ eu_id }}'});});</script>
+{% endblock %}
+{% block baidu %}{% endblock %}{% block 53kf %}{% endblock %}

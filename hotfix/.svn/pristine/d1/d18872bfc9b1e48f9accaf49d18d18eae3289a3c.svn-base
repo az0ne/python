@@ -1,0 +1,89 @@
+{% extends "mz_usercenter/usercenter_base.html" %}
+{% block usercenter_right_panel %}
+        <div class="personalCmainR font14 color33">   
+			<p class="personalCmainRtit font22 color33">学生问答</p>
+			<div class="teacherCenterMenu personalInterlocutionTeaMenu font16">
+                <a class="aH" url="{% url 'home:teacher:ajax_student_discuss' 0 %}">进行中的班级</a>|<a url="{% url 'home:teacher:ajax_student_discuss' 1 %}">免费试学班</a>|<a url="{% url 'home:teacher:ajax_student_discuss' 2 %}">已毕业的班级</a>|<a url="{% url 'home:teacher:ajax_student_discuss' 3 %}">普通用户</a>
+        	</div>
+        	<div class="personalInterlocutionTeaState">
+        		<span class="aH">全部</span><span>未读</span><span>未回复</span><span>已回复</span>
+        	</div>
+			<div class="teacherCenterTabContent personalInterlocutionQues" id="main">				
+				<div class="cur">
+                    {% if class_answer_list %}
+                    <ul>
+                    {% for my_problem in class_answer_list %}
+					{% include 'mz_usercenter/student/div_discuss.html' %}
+                    {% endfor %}
+					</ul>
+                    {% else %}
+                    <div class="textC nulldata">
+                        <p class="marginB29"><img src="/images/no_answer2.png"></p>
+                        <p class="font22 color33 marginB10">记录空空</p>
+                        <p class="font14 color66">暂时还没有问答记录</p>
+                    </div>
+                    {% endif %}
+				</div>
+				<div>
+                    {% if free_class_answer_list %}
+                    <ul>
+                    {% for my_problem in free_class_answer_list %}
+					{% include 'mz_usercenter/student/div_discuss.html' %}
+                    {% endfor %}
+					</ul>
+                    {% else %}
+                    <div class="textC nulldata">
+                        <p class="marginB29"><img src="/images/no_answer2.png"></p>
+                        <p class="font22 color33 marginB10">记录空空</p>
+                        <p class="font14 color66">暂时还没有问答记录</p>
+                    </div>
+                    {% endif %}
+				</div>
+				<div>
+                    {% if over_class_answer_list %}
+                    <ul>
+                    {% for my_problem in over_class_answer_list %}
+					{% include 'mz_usercenter/student/div_discuss.html' %}
+                    {% endfor %}
+					</ul>
+                    {% else %}
+                    <div class="textC nulldata">
+                        <p class="marginB29"><img src="/images/no_answer2.png"></p>
+                        <p class="font22 color33 marginB10">记录空空</p>
+                        <p class="font14 color66">暂时还没有问答记录</p>
+                    </div>
+                    {% endif %}
+				</div>
+				<div>
+                    {% if not_class_answer_list %}
+                    <ul>
+                    {% for my_problem in not_class_answer_list %}
+					{% include 'mz_usercenter/student/div_discuss.html' %}
+                    {% endfor %}
+					</ul>
+                    {% else %}
+                    <div class="textC nulldata">
+                        <p class="marginB29"><img src="/images/no_answer2.png"></p>
+                        <p class="font22 color33 marginB10">记录空空</p>
+                        <p class="font14 color66">暂时还没有问答记录</p>
+                    </div>
+                    {% endif %}
+				</div>
+			</div>
+        	<div class="personalInterlocutionCardTime">
+				<strong class="font14 color33">2016-06-21</strong>
+				<em>21:06</em>
+			</div>
+        </div>
+
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/lib/layer/layer.js"></script>
+<script type="text/javascript" src="/2016/lib/jquery/wookmark.js"></script>
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/studentmyanswer.js?v={{ time_stamp }}"></script>
+{% endblock %}

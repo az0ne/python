@@ -1,0 +1,10 @@
+{% if skill_radar %}
+<div class="skill-atlas">
+    <h2>技能图谱</h2>
+    <div class="skill-atlas-map">
+        {% for r in skill_radar %}
+        <a class="link-{{ forloop.counter }}" href="{{ r.url }}" target="_blank">{{ r.skill_name }}</a>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}

@@ -1,0 +1,162 @@
+<div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+<div class="bar-stage">
+    <div class="row bar-df">
+        {% for stage in cur_careercourse_stage_list %}
+        <div class="col-sm-2 {% if stage.status != 0 %}bar-cm{% endif %} zindex-{{ forloop.revcounter }}">
+            <div class="{% if stage.status != 0 and stage.id != cur_stage.id %}pt-cm{% else %}{% if stage.id == cur_stage.id %}pt-do{% else %}pt-df{% endif %}{% endif %}">
+                <a href="?stage_id={{ stage.id }}">
+                    <i class="v5-icon {% if stage.status == 0 %}v5-icon-lock{% else %}{% if stage.status == 1 %}v5-icon-lock-op{% else %}v5-icon-rt{% endif %}{% endif %}"></i>
+                </a>
+            </div>
+            <span>{% if forloop.counter == 1 %}阶段一{% endif %}{% if forloop.counter == 2 %}阶段二{% endif %}{% if forloop.counter == 3 %}阶段三{% endif %}{% if forloop.counter == 4 %}阶段四{% endif %}{% if forloop.counter == 5 %}阶段五{% endif %}{% if forloop.counter == 6 %}阶段六{% endif %}</span>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="plan-lead">
+    <h1 class="ft20">{{ cur_stage.name }}</h1>
+    <p>{{ cur_stage.description }}</p>
+</div>
+{% for course in cur_stage_course_list %}
+<section class="chapters-list">
+    <div class="title">
+        <h2 class="ft16">
+            第{{ forloop.counter }}课&nbsp;&nbsp;{{ course.name }}<small>共{{ course.lesson | length }}节{% if cur_stage.is_unlockstage and course.is_complete %}，评测分数：{{ course.score }}{% endif %}</small>
+            {% if course.is_complete and course.score < 60 %}
+            <a id="course_rebuild" course_id="{{ course.id }}" href="" class="btn btn-orange course_rebuild">重修</a>
+            {% endif %}
+        </h2>
+    </div>
+    <div class="plan-task">
+        {% if course.is_complete %}
+            {% if course.score >= 60 %}
+            <i class="v5-icon v5-icon-pass"></i>
+            {% else %}
+            <i class="v5-icon v5-icon-fail"></i>
+            {% endif %}
+        {% endif %}
+        <ul class="cf">
+            <li style="vertical-align: top;">
+                <div class="v5-popover top">
+                    <div class="arrow"></div>
+                    <div data-toggle="modal" data-target="#lesson_{{ course.id }}_Modal" class="v5-popover-content">
+                        <p>课程学习</p>
+                        <small>({{ course.lesson_complete_count }}/{{ course.lesson_count }})</small>
+                    </div>
+                </div>
+                <div class="task-p">
+                    <span>{% if course.lesson_complete_count == course.lesson_count %}<i class="v5-icon v5-icon-rth"></i>{% endif %}</span>
+                </div>
+            </li>
+            {% if course.lesson_has_exam_count != 0 %}
+            <li style="vertical-align: bottom;">
+                <div class="task-p">
+                    <span>{% if course.alllesson_is_complete_paper %}<i class="v5-icon v5-icon-rth"></i>{% endif %}</span>
+                </div>
+                <div class="v5-popover bottom">
+                    <div class="arrow"></div>
+                    <div data-toggle="modal" data-target="#lesson_exam_{{ course.id }}_Modal" class="v5-popover-content">
+                        <p>随堂测验</p>
+                        <small>({{ course.lesson_exam_complete_count }}/{{ course.lesson_has_exam_count }})</small>
+                    </div>
+                </div>
+            </li>
+            {% endif %}
+            <li style="vertical-align: top;">
+                <div class="v5-popover top">
+                    <div class="arrow"></div>
+                    <div data-toggle="modal" data-target="#homework_{{ course.id }}_Modal" class="v5-popover-content">
+                        <p>随堂作业</p>
+                        <small>({{ course.homework_complete_count }}/{{ course.lesson_has_homework_count }})</small>
+                    </div>
+                </div>
+                <div class="task-p">
+                    <span>{% if course.homework_complete_count == course.lesson_has_homework_count %}<i class="v5-icon v5-icon-rth"></i>{% endif %}</span>
+                </div>
+            </li>
+            {% if course.has_paper %}
+            <li style="vertical-align: bottom;">
+                <div class="task-p">
+                    <span id="exam_is_complete_2_{{ course.id }}">{% if course.is_complete_paper %}<i class="v5-icon v5-icon-rth"></i>{% endif %}</span>
+                </div>
+                <div class="v5-popover bottom">
+                    <div class="arrow"></div>
+                    <div class="v5-popover-content" onclick="onlinetest_{{ course.id }}()">
+                        <p>课程总测验</p>
+                        <small id="exam_is_complete_{{ course.id }}">({% if course.is_complete_paper %}1{% else %}0{% endif %}/1)</small>
+                    </div>
+                </div>
+            </li>
+            {% endif %}
+            {% if course.project.description != "" %}
+                <li style="vertical-align: top;">
+                    <div class="{% if course.is_unlockstage %}v5-popover top{% else %}v5-popover top v5-popover-lock{% endif %}">
+                        <div class="arrow"></div>
+                        <div class="v5-popover-content" data-toggle="modal" {% if course.is_unlockstage %}data-target="#project_{{ course.id }}_Modal"{% else %}data-target="#paymentModal"{% endif %}>
+                            <p>项目制作</p>
+                            {% if course.is_unlockstage %}
+                                {% if course.project.upload_file == "" %}
+                                <small>未上传</small>  
+                                {% else %}
+                                    {% if course.project.score %}
+                                        <small class="p-green">已打分:{{course.project.score}}</small>
+                                    {% else %}
+                                    <small class="p-green">已上传</small>
+                                    {% endif %}
+                                {% endif %}                            
+                            {% else %}
+                                <small>加锁</small>
+                                <div class="modal-lock"><i></i></div>
+                                <div class="modal-lock-ar"></div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="task-p">
+                        <span>{% if course.project.upload_file != "" %}<i class="v5-icon v5-icon-rth"></i>{% endif %}</span>
+                    </div>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</section>
+{% endfor %}
+{% if mission_list %}
+<section class="chapters-list">
+    <div class="title">
+        <h2 class="ft16">额外任务<small>共{{ mission_list_count }}个{% if cur_stage.is_unlockstage and mission.is_complete %}，评测分数：{{ mission_list_score }}{% endif %}</small></h2>
+    </div>
+    <div class="plan-task">
+        {% if mission_list_count == mission_list_complete_count %}
+            {% if mission_list_score >= 60 %}
+                <i class="v5-icon v5-icon-pass"></i>
+            {% else %}
+                <i class="v5-icon v5-icon-fail"></i>
+            {% endif %}
+        {% endif %}
+        <ul class="cf">
+            {% for mission in mission_list %}
+            <li style="vertical-align: {% if mission.is_odd %}top{% else %}bottom{% endif %};">
+                {% if not mission.is_odd %}
+                    <div class="task-p">
+                        <span>{% if mission.is_complete %}<i class="v5-icon v5-icon-rth"></i>{% endif %}</span>
+                    </div>
+                {% endif %}
+                <div class="v5-popover {% if mission.is_odd %}top{% else %}bottom{% endif %}">
+                    <div class="arrow"></div>
+                    <div class="v5-popover-content" data-toggle="modal" {% if cur_stage.is_unlockstage %}data-target="#mission_{{ mission.id }}_Modal"{% else %}data-target="#paymentModal"{% endif %}>
+                        <p>任务{{ forloop.counter }}</p>
+                        <!-- <small>{% if cur_stage.is_unlockstage %}({% if mission.is_complete %}1{% else %}0{% endif %}/1){% else %}加锁{% endif %}</small> -->
+                    </div>
+                </div>
+                {% if mission.is_odd %}
+                <div class="task-p">
+                    <span>{% if mission.is_complete %}<i class="v5-icon v5-icon-rth"></i>{% endif %}</span>
+                </div>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endif %}
+</div>

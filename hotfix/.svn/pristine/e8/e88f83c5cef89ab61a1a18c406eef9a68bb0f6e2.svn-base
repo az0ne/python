@@ -1,0 +1,30 @@
+<div class="personalCmainL font14">
+    {% for menu_group in MENUS %}
+        <ul class="personalCmainLmenu">
+            {% for menu in menu_group %}
+                <li><a href="{{ menu.link }}" {% if menu.alias == path_alias %}class="aH"{% endif %}>
+                    <i class="personalCico {{ menu.icon }} i1"></i>
+                    <span>{{ menu.title }}
+                    {% if menu.count %}
+                        <em class="personalInterlocutionCount">{{ menu.count }}</em>
+                    {% endif %}
+                    </span>
+                    <i class="personalCico pcICOa i2"></i></a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+    <!--<ul class="personalCmainLmenu personalFeedbackLmenu">
+        <li>
+            <a href="#">
+                <i class="personalCico pcICOfeedback i1"></i>
+                <span>意见反馈</span>
+                <i class="arrowRight"></i>
+            </a>
+            <div class="feedboxTip">
+                <span class="closed">关闭</span>
+                <p class="font14 color66">学习过程中的任何问题<br/>都可以在这里反馈哟</p>
+            </div>
+        </li>
+    </ul>-->
+</div>

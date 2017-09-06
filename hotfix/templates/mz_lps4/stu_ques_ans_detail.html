@@ -1,0 +1,71 @@
+{% extends "mz_common/global.html" %}
+{% block title %}问答详情{% endblock %}
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+{% block csstype %}problem-detailes-page{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/lps4_stu_ques_ans.css?v={{ time_stamp }}"/>
+<script type="text/javascript">
+var qa_is_normal_class='{{ is_normal_class }}';
+var career_id='{{ coach.career_id }}';
+var mobile = '{{ user.mobile }}';
+</script>
+{% endblock %}
+{% block container %}
+    <div class="left-side">
+        {% include 'mz_lps4/module/div_left_side.html' %}
+    </div>
+    <div class="main-container">
+        {% include 'mz_lps4/module/div_header.html' %}
+        <div class="main-center">
+            <div class="detailes-container" data-coach-id="{{ coach.id }}">
+                <a href="{% url 'lps4:student_coach_list' coach.career_id %}" class="back font18 bold">&lt; 返回</a>
+
+                {% for comment in comment_list %}
+                <div class="detailes-item">
+                    <div class="left">
+                        <a href="{% if comment.user_id == user.id %}{% url 'home:index' %}{% else %}{% url 'u:index' comment.user_id %}{% endif %}">
+                            <img src="{{ MEDIA_URL }}{{ comment.head }}" alt=""/>
+                        </a>
+                        <p class="font14 bold">{{ comment.nick_name }}</p>
+                    </div>
+                    <div class="right">
+                        {{ comment.comment|safe }}
+                        <p class="problem-time font14">
+                            {{ comment.create_date|date:"Y年m月d日 H:i" }}
+                            {% if forloop.first and coach.source %}
+                                提问于{% if coach.source_type == CoachUserType.STUDENT_VIDEO %} <a href="{% url 'lps3:student_item_lesson' coach.source_location_lps.0 coach.source_location_lps.1 coach.source_location_lps.2 %}?t={{ coach.t }}">{{ coach.source }}</a>{% else %} {{ coach.source }}{% endif %}
+                            {% endif %}
+                        </p>
+                    </div>                    
+                </div>
+                {% endfor %}
+
+{#                <div class="detailes-item">#}
+{#                    <div class="left">#}
+{#                        <a href="">#}
+{#                            <img src="/img/tryTeacherManageImg01.png" alt=""/>#}
+{#                        </a>#}
+{#                        <p class="font14 bold">Gavin老师</p>#}
+{#                    </div>#}
+{#                    <div class="right">#}
+{#                        <p class="problem-desc font14">2014年麦可网完成千万级A轮融资，并更名为”麦子学院“，同时通过“麦子圈”IT职业实名社交圈——提供包括企业招聘对接，猎头，项目外包，经验分享2014年麦可网完成千万级A轮融资，并更名为”麦子学院“，同时通过“麦子圈”IT职业实名社交圈——提供包括企业招聘对...</p>#}
+{#                        <img src="/img/teacherIntroduce/teacherIntroduceUiStu5.jpg" alt=""/>#}
+{#                    </div>                    #}
+{#                </div>#}
+            </div>
+            <!-- 编辑器 -->
+            {% include 'mz_lps4/module/div_ueditor.html' %}
+        </div>
+        {% include 'mz_lps4/module/footer.html' %}
+    </div>
+{% endblock %}
+{% block footer %}{% endblock %}
+{% block google %}{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/lib/ueditor/ueditor.config.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/ueditor/fudao.ueditor.all.min.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/layer/layer.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/lps4StuQuesAnsdetail.js?v={{ time_stamp }}"></script>
+{% endblock %}

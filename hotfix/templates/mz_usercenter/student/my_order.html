@@ -1,0 +1,45 @@
+{% extends 'mz_usercenter/usercenter_base.html' %}
+
+{% block usercenter_right_panel %}
+    <div class="personalCmainR font14">
+    	<p class="personalCmainRtit font22 color33">订单记录</p>
+        <ul class="personalCenterSinfoList font14 color99">
+            {% for user_pay_info in user_pay_infos %}
+        	<li>
+            	<p class="pt marginB10"><span class="font20 color33">{{ user_pay_info.course_name }}</span>订单号：{{ user_pay_info.order_no }}</p>
+                <table class="tableU">
+                	<tr>
+                    	<td style="width:80px;">入学时间：</td><td class="color33" style="width:180px;">{{ user_pay_info.text_join_class_time }}</td>
+                        <td style="width:100px;">支付金额：</td><td class="color33" style="width:140px;">{{ user_pay_info.pay_money }}</td>
+                        <td style="width:100px;">交易号：</td><td class="color33">{{ user_pay_info.trade_no }}</td>
+                    </tr>
+                    <tr>
+                    	<td>支付方式：</td><td class="color33">{{ user_pay_info.text_pay_way }}</td>
+                        <td>支付类型：</td><td class="color33">{{ user_pay_info.text_pay_type }}</td>
+                        <td></td><td class="color33"></td>
+                    </tr>
+                </table>
+                {% if user_pay_info.need_pay %}
+                <div class="renew">
+                	<div>
+                        {% if just_now < user_pay_info.deadline and user_pay_info.class_meeting_enable %}
+                            截止<span style="color:#ff721d;">{{ user_pay_info.text_deadline }}</span>您的试学将到期。
+                            {% if user_pay_info.discounted_price %}
+                                立刻续费可享受<span style="color:#ff721d;">{{ user_pay_info.discounted_price }}</span>元优惠！
+                            {% endif %}
+                        {% elif just_now < user_pay_info.deadline_pay and user_pay_info.class_meeting_enable%}
+                            您的缴费期限为<span style="color:#ff721d;">{{ user_pay_info.text_deadline_pay }}</span>。若未续费系统将自动将您移除班级。
+                            {% if user_pay_info.discounted_price %}
+                                立刻续费可享受<span style="color:#ff721d;">{{ user_pay_info.discounted_price }}</span>元优惠！
+                            {% endif %}
+                        {% else %}
+                            成为全款用户后可获得更多服务。
+                        {% endif %}
+                    </div><a href="{{ SITE_URL }}/pay/view/?career_id={{ user_pay_info.course_id }}" target="_blank">立刻续费</a>
+                </div>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

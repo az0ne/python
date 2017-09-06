@@ -1,0 +1,21 @@
+<!-- 额外任务 -->
+{% for mission in mission_list %}
+{% if cur_stage.is_unlockstage %}
+<div class="modal fade" id="mission_{{ mission.id }}_Modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="objectmdModalLabel">任务{{ forloop.counter }}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="box-objectmd">
+                    <h4 class="ft20 text-center">{{ mission.name }}</h4>
+                    <p class="text-center">{{ mission.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endfor %}

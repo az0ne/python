@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>404错误 - 麦子学院</title>
+    <link href="/static/css/develop.css" rel="stylesheet">
+</head>
+<body>
+<div id="container-404" class="container">
+    <span class="errorspan">别着急，点击返回麦子学院<a href="/">首页</a></span>
+</div>
+</body>
+</html>

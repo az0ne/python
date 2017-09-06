@@ -1,0 +1,10 @@
+{% if hot_tags %}
+<div class="tag_yun">
+    <h2 class="font16 color33 marginB20">热门标签</h2>
+    <ul class="hot_tag_link marginB29">
+        {% for hot_tag in hot_tags %}
+        <li{% if hot_tag.id == tag_id %} class="active"{% endif %}><a href="{% url 'artilcle_list_tag_view' hot_tag.id %}" target="_blank">{{ hot_tag.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}

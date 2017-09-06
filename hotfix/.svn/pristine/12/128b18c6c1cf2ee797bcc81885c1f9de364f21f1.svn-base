@@ -1,0 +1,74 @@
+{% extends "mz_usercenter/usercenter_base.html" %}
+{% block title %}他的主页-TA的问答{% endblock %}
+{% block usercenter_left_panel %}
+     <div class="personalCmainL font14">
+            <ul class="personalCmainLmenu">
+                <li><a href={% url 'u:index' user_id %}>
+                    <i class="personalCico pcICO2 i1"></i>
+                    <span>已报名课程</span>
+                    <i class="personalCico pcICOa i2"></i></a>
+                </li>
+                <li><a href="{% url 'u:public_expcourse' user_id %}">
+                    <i class="personalCico pcICO3 i1"></i>
+                    <span>体验课程</span>
+                    <i class="personalCico pcICOa i2"></i></a>
+                </li>
+                <li><a class="aH">
+                    <i class="personalCico pcICOanswer i1"></i>
+                    <span>TA的问答</span>
+                    <i class="personalCico pcICOa i2"></i></a>
+                </li>
+            </ul>
+    </div>
+{% endblock %}
+{% block usercenter_right_panel %}
+        <div class="personalCmainR font14 color33">   
+			<p class="personalCmainRtit font22 color33">问答</p>
+			<div class="teacherCenterMenu font16">
+                <a class="aH" url="{% url 'u:ajax_problem' user_id %}">TA的提问</a>|<a url="{% url 'u:ajax_answer' user_id %}">TA的回答</a>
+        	</div>
+			<div class="teacherCenterTabContent personalInterlocutionQues" id="main">				
+                <div class="cur">
+                    {% if my_problem_list %}
+                    <ul>
+                    {% for my_problem in my_problem_list %}
+					{% include 'mz_usercenter/student/div_discuss.html' %}
+                    {% endfor %}
+                    </ul>
+                    {% else %}
+                    <div class="textC nulldata">
+                        <p class="marginB29"><img src="/images/no_answer2.png"></p>
+                        <p class="font22 color33 marginB10">记录空空</p>
+                        <p class="font14 color66">TA暂时还没有提出过疑问</p>
+                    </div>
+                    {% endif %}
+				</div>
+				<div>
+                    {% if my_answer_list %}
+                    <ul>
+					{% for my_problem in my_answer_list %}
+					{% include 'mz_usercenter/student/div_discuss.html' %}
+                    {% endfor %}
+					</ul>
+                    {% else %}
+                     <div class="textC nulldata">
+                        <p class="marginB29"><img src="/images/no_answer2.png"></p>
+                        <p class="font22 color33 marginB10">TA的回答记录空空</p>
+                        <p class="font14 color66">TA暂时还没有回答过问题</p>
+                    </div>
+                    {% endif %}
+				</div>
+			</div>
+        	<div class="personalInterlocutionCardTime">
+				<strong class="font14 color33">2016-06-21</strong>
+				<em>21:06</em>
+			</div>
+        </div>
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/src/studentmyanswer.js?v={{ time_stamp }}"></script>
+{% endblock %}

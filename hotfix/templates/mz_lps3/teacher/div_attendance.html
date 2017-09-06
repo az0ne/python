@@ -1,0 +1,45 @@
+<!--班级考勤-->
+
+<div class="modal-dialog modal-sm modal-content zy_teacherAttendance">
+    <a class="zy_newclose"></a>
+    <p class="color5e font18 pt">班会考勤</p>
+    <div class="zy_teacherAttendance_div">
+        <div class="ta_tit marginB20">
+            <p class="font20 color5e">{{ class_meeting.content }}</p>
+            <p class="font14 color33">{{ class_meeting.d_week }}    {{ class_meeting.d_date }}  {{ class_meeting.d_time }}
+        </div>
+        {% if punctual_user_count != 0 %}
+        <p class="font16 color33 marginB10"><span class="bold">参加人数：</span> {{ punctual_user_count }}人</p>
+        <ul class="zy_teacherAttendance_list marginB10">
+            {% for punctual_user in punctual_user_lst %}
+                <li class="color66 font12">
+                    <a><img src="{{ MEDIA_URL }}{{ punctual_user.avatar_small_thumbnall }}"></a>
+                    <p class="p">{% if punctual_user.real_name %}{{ punctual_user.real_name }}{% else %}{{ punctual_user.nick_name }}{% endif %}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% if late_user_count != 0 %}
+        <p class="font16 color33 marginB10"><span class="bold">迟到人数：</span> {{ late_user_count }}人</p>
+        <ul class="zy_teacherAttendance_list marginB10">
+            {% for late_user in late_user_lst %}
+                <li class="color66 font12">
+                    <a><img src="{{ MEDIA_URL }}{{ late_user.avatar_small_thumbnall }}"></a>
+                    <p class="p">{% if late_user.real_name %}{{ late_user.real_name }}{% else %}{{ late_user.nick_name }}{% endif %}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% if absent_user_count != 0 %}
+        <p class="font16 color33 marginB10"><span class="bold">缺勤人数：</span> {{ absent_user_count }}人</p>
+        <ul class="zy_teacherAttendance_list marginB10">
+             {% for absent_user in absent_user_lst %}
+                <li class="color66 font12">
+                    <a><img src="{{ MEDIA_URL }}{{ absent_user.avatar_small_thumbnall }}"></a>
+                    <p class="p">{% if absent_user.real_name %}{{ absent_user.real_name }}{% else %}{{ absent_user.nick_name }}{% endif %}</p>
+                </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</div>

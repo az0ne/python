@@ -1,0 +1,75 @@
+﻿{% extends "mz_common/global.html" %}
+{% block title %}联系我们-麦子学院_专业的IT在线职业教育平台{% endblock %}
+{% block keywords%}IT自学APP，IT在线学习APP，麦子学院APP{% endblock %}
+{% block description%}麦子学院官方APP是IT在线学习移动端工具，不仅可以免费观看Android开发、iOS开发视频教程，还能离线缓存自定义章节，是您IT在线学习的好帮手！{% endblock %}
+{% block custom_css %}
+<link type="text/css" rel="stylesheet" href="/css/contactUs.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block csstype %}contacts-us{% endblock %}
+{% block container %}
+{% include 'header/index_header.html' %}
+<div class="microoh-main" style="padding-top:0px;">
+	<div class="container">
+		<ol class="breadcrumb">
+            <li><a href="/">首页</a></li>
+            <li class="active">联系我们</li>
+        </ol>
+        <div id="tab">
+	        <div id="left-bar">
+				<ul>
+                    <li class="buttom-border"><a href="/common/about"><span class="cn">关于我们</span><span class="en">About us</span></a></li>
+                    <li class="buttom-border"><a href="/common/join"><span class="cn">加入我们</span><span class="en">Join us</span></a></li>
+                    <li class="buttom-border cur"><a href="/common/contact"><span class="cn">联系我们</span><span class="en">Contacts</span></a></li>
+                    <!--<li><a href="{{ FPS_HOST }}common/feedback/"><span class="cn">意见反馈</span><span class="en">Feedback</span></a></li>-->
+				</ul>
+			</div>
+            <div class="tabCon">
+                <div id='p3' class="cur" >
+                    <h2>联系我们</h2>
+                    <span class="line">
+                        <h3>成都麦子信息技术有限公司</h3>
+                        <p><b>地址:</b> 成都市武侯区世纪城南路天府软件园D5栋11楼</p>
+                        <p><b>招生热线:</b> 400-862-8862 （仅接受课程咨询）</p>
+                        <p><b>人才服务:</b> 李先生 22536973（QQ）</p><br/>
+                        <p><b>广告合作:</b> 张女士 463577787（QQ） &nbsp;&nbsp;叶女士 2789593579（QQ）</p>
+                        <p><b>商务BD合作:</b> 张女士 463577787（QQ）</p>
+                        <p><b>友情链接:</b> 叶女士 2789593579（QQ）</p><br/>
+                        <p><b>招聘:</b> 杨女士 929852270（QQ）&nbsp;&nbsp;028-69860627（电话） </p>
+                        <p><b>邮箱:</b> hr@maiziedu.com  &nbsp;&nbsp; kristy@maiziedu.com </p>
+                        <p><b>邮编:</b> 610041</p><br/>
+                        <p>重庆校区</p>
+                        <p><b>地址：</b>重庆市两江新区华山南路互联网学院</p>
+                        <p><b>联系电话：</b>吴老师 18583995378</p><br>
+                        <p>北京校区</p>
+                        <p><b>地址：</b>北京市海淀区中关村南大街数码大厦B座1501</p>
+                        <p><b>联系电话：</b>张老师 13070190183</p><br>
+                        <p>南京校区</p>
+                        <p><b>地址：</b>南京市中山北路219号宏图大厦5楼</p>
+                        <p><b>联系电话：</b>冉老师 18628109086</p><br>
+                        <p>上海校区</p>
+                        <p><b>地址：</b>上海浦东新区东昌路地铁世界广场B2</p>
+                        <p><b>联系电话：</b>李老师 13028171966</p><br>
+                        <p>上海校区</p>
+                        <p><b>地址：</b>上海市莘松路380号智慧园5楼</p>
+                        <p><b>联系电话：</b>李老师 13028171966</p><br>
+                    </span>
+
+                    <span class="map">
+                    <a href='/static/aboutus/map.html'><img src="/static/aboutus/Images/map1.png" width="700px" height="300px"></a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+        <div class="footers" style="margin-bottom:50px;"></div>
+    </div>
+</div>
+{% endblock %}
+{% block footer%}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+{% endblock %}

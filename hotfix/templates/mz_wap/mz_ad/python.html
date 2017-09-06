@@ -1,0 +1,341 @@
+{% extends "mz_wap/mz_ad/base.html" %}
+{% block title %}python培训 - python开发培训 - python开发培训课程 - 麦子学院{% endblock %}
+{% block keywords %}python开发,python开发培训,python开发培训课程,python学习,python工程师{% endblock %}
+{% block description %}
+    麦子学院,python开发培训,是专业python培训机构,提供史上最靠谱的python开发培训课程,定制化python开发学习路线,名师1对1指导,通过通俗易懂的讲解,丰富有趣的实战,轻松学习python,升级为实力派python工程师。{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{{ WAP_AD_URL }}pm-css/global.css">
+    <link rel="stylesheet" href="/static/css/mz_wap/header-tab1.css">
+    <link rel="stylesheet" href="/static/css/mz_wap/search_style1.css">
+    <link rel="stylesheet" href="{{ WAP_AD_URL }}pm-css/style.css">
+{% endblock %}
+{% block csstype %}python{% endblock %}
+{% block container %}
+    {#<div class="topwrap">#}
+    {#    {% include 'mz_wap/module/div_download_app.html' %}#}
+    {% include 'mz_wap/module/wiki_header1.html' %}
+    {#</div>#}
+
+    {% include 'mz_wap/module/div_top_banner.html' %}
+    <nav class="tab" id="tab">
+        <ul>
+            <li><a href="/land/web/">Web前端</a></li>
+            <li><a href="/land/pm/">产品经理</a></li>
+            <li><a href="/land/ui/">UI设计</a></li>
+            <li><a href="/land/python/" class="on">Python工程师</a></li>
+            <li><a href="/land/op/">新媒体运营</a></li>
+        </ul>
+    </nav>
+    <img style="margin-top: .68rem;"src="{{ WAP_AD_URL }}python-images/head-p1.jpg" alt="" class="head-pic">
+	<img src="{{ WAP_AD_URL }}python-images/head-p2.jpg" alt="" class="head-pic">
+	<div class="head-title">
+		<a onclick="_MEIQIA('showPanel')"  class="bm more">立即报名</a>
+		<img src="{{ WAP_AD_URL }}pm-images/down-tips.png" alt="" class="down-tips moveIconUp">
+	</div>
+	<div class="kt-title">课程大纲</div>
+	<dl class="kc-list">
+		<dt><img src="{{ WAP_AD_URL }}pm-images/kc-icon01.png" alt="" class="icon">第一阶段: Web前端开发技术必知必会</dt>
+		<dd>· html5+css3</dd>
+		<dd>· javascript初步</dd>
+		<dd>· jquery入门</dd>
+		<dd>· bootstrap入门</dd>
+		<dd>· Ajax入门</dd>
+	</dl>
+	<dl class="kc-list">
+		<dt><img src="{{ WAP_AD_URL }}pm-images/kc-icon02.png" alt="" class="icon">第二阶段</dt>
+		<dd>· python语言基础</dd>
+		<dd>· mysql基础</dd>
+		<dd>· django基础</dd>
+	</dl>
+	<dl class="kc-list kc-listmore">
+		<dt><img src="{{ WAP_AD_URL }}pm-images/kc-icon03.png" alt="" class="icon">第三阶段</dt>
+		<dd style="width:49%;">· django进阶</dd>
+		<dd style="width:45%;">· 项目实战</dd>
+		<dd style="width:50%;">· 项目部署</dd>
+		<dd style="width:44%;">· django缓存优化</dd>
+	</dl>
+	<dl class="kc-list kc-listmore">
+		<dt><img src="{{ WAP_AD_URL }}pm-images/kc-icon04.png" alt="" class="icon">第四阶段</dt>
+		<dd>· linux基础</dd>
+		<dd>· flask入门</dd>
+		<dd>· tornado入门</dd>
+		<dd>· redis入门</dd>
+	</dl>
+	<a onclick="_MEIQIA('showPanel')"  class="more-btn">查看课程详情</a>
+	<div class="teck-info">
+		<div class="kt-title">优秀老师</div>
+		<ul class="teck-list">
+			<li>
+				<div class="lpic">
+					<img src="{{ WAP_AD_URL }}python-images/teck-p01.png" alt="" class="head">
+					<div class="txt">彭  亮</div>
+				</div>
+				<div class="tabel-box">
+					<h3>美国国家科学基金年轻学者奖学金获得者</h3>
+					<p>美国犹他州立大学在读计算机博士，从事机器学习，深度学习，以及计算机视觉方向的研究。</p>
+					<a onclick="_MEIQIA('showPanel')"  class="yy-btn more">预约名师课程</a>
+				</div>
+			</li>
+			<li>
+				<div class="lpic">
+					<img src="{{ WAP_AD_URL }}python-images/teck-p02.png" alt="" class="head">
+					<div class="txt">胡明星</div>
+				</div>
+				<div class="tabel-box">
+					<h3>前大型教育平台研发经理</h3>
+					<p>10余年Web开发经验，曾参与会员营销、财务管理、游戏管理等三十余个大中型Web项目的设计与研发。</p>
+					<a onclick="_MEIQIA('showPanel')"  class="yy-btn more">预约名师课程</a>
+				</div>
+			</li>
+			<li>
+				<div class="lpic">
+					<img src="{{ WAP_AD_URL }}python-images/teck-p03.png" alt="" class="head">
+					<div class="txt">熊 涛</div>
+				</div>
+				<div class="tabel-box">
+					<h3>前大型电商平台研发主管</h3>
+					<p>精通Python、Java,多年的web编程开发经验,负责项目10余个，擅长大规模的数据处理。</p>
+					<a onclick="_MEIQIA('showPanel')"  class="yy-btn more">预约名师课程</a>
+				</div>
+			</li>
+			<li>
+				<div class="lpic">
+					<img src="{{ WAP_AD_URL }}python-images/teck-p04.png" alt="" class="head">
+					<div class="txt">SOros Wang</div>
+				</div>
+				<div class="tabel-box">
+					<h3>国内著名公司技术总监</h3>
+					<p>美国Syracuse大学助教 8年J2EE软件开发经验 4年大数据应用架构师经验。</p>
+					<a onclick="_MEIQIA('showPanel')"  class="yy-btn more">预约名师课程</a>
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="kt-title">教学模式</div>
+	<div class="jx-title">全国首创智能<b>LPS学习过程管理系统</b></div>
+	<img src="{{ WAP_AD_URL }}pm-images/jx-list-pic.png" alt="" class="jx-list-pic">
+	<img src="{{ WAP_AD_URL }}pm-images/cl-pic.png" alt="" class="cl-pic">
+	<h3 class="fw-title"><b>三对一</b>保就业服务</h3>
+	<ul class="fw-list">
+		<li>
+			<img src="{{ WAP_AD_URL }}pm-images/jy-pic01.png" alt="" class="p" />
+			<span>专业讲师</span>
+		</li>
+		<img src="{{ WAP_AD_URL }}pm-images/jp-tips.png" alt="" class="jy-tips">
+		<li>
+			<img src="{{ WAP_AD_URL }}pm-images/jy-pic02.png" alt="" class="p" />
+			<span>教务班主任</span>
+		</li>
+		<img src="{{ WAP_AD_URL }}pm-images/jp-tips2.png" alt="" class="jy-tips">
+		<li>
+			<img src="{{ WAP_AD_URL }}pm-images/jy-pic03.png" alt="" class="p" />
+			<span>就业顾问</span>
+		</li>
+	</ul>
+	<div class="yd-info">
+		<h3 class="title">入学即签订<b>100%保就业服务协议</b></h3>
+		<h5 class="info">三对一指导就业，不就业全额退款！</h5>
+		<img src="{{ WAP_AD_URL }}pm-images/xy-pic.jpg" alt="" class="head-pic">
+	</div>
+	<div class="kt-title">我们是谁</div>
+	<div class="who-info">
+		麦子学院是国内课程体系最全、技术最领先、模式最成熟、就业率最高的IT类在线教育机构。作为行业标准的制定者，麦子学院通过创新研发LPS（Learning Process System）智能在线学习系统、首创O2W（Online To Work）新型职业教育模式，致力以最先进的技术手段重塑教育本身。
+	</div>
+	<img src="{{ WAP_AD_URL }}pm-images/who-pic.png" alt="" class="who-pic">
+	<div class="ty-info">
+		<div class="kt-title">体验试学</div>
+		<section class="sx">
+            <p>适合自己的才是最好的</p>
+            <p>剩余名额：<b>13</b></p>
+            <a onclick="_MEIQIA('showPanel')"  class="btn">立即申请</a>
+        </section>
+	</div>
+	<div class="foot-bottom" id="foot">
+        <a href="tel:400-862-8862" class="phone">立即致电</a>
+        <a onclick="_MEIQIA('showPanel')"  class="consulte">在线咨询</a>
+    </div>
+{% endblock %}
+{% block custom_script %}
+    <script src="{{ STATIC_URL }}js/mz_wap/zepto.js"></script>
+    {#    <script src="{{STATIC_URL}}js/mz_wap/search_suggest1.js"></script>#}
+    <script type="text/javascript">
+        $(function () {
+            //首页搜索模块
+            $(".search-icon").click(function () {
+                $('.searchwrap').animate({
+                    'opacity': 1,
+                    'z-index': 10,
+                    'transform': 'translate(0,.9rem) scale(1,1)'
+                }, 500);
+                setTimeout($(".search-icon").animate({'opacity': 0}, 10), 500);
+            });
+            $(".cancel").click(function () {
+                $('.searchwrap').animate({
+                    'opacity': 0,
+                    'z-index': -1,
+                    'transform': 'translate(35%,-12%) scale(0.01,0.2)'
+                }, 500);
+                setTimeout($(".search-icon").animate({'opacity': 1}, 10), 600);
+            });
+            // 清空搜索框文本值
+            $('.empty').off('touchend').on('touchend', function () {
+                $('.search_txt').val('');
+                $('.searchwrap .suggest').hide();
+            });
+
+            // 搜索关键字改变时，重新请求suggest
+            $('.search_txt').off('input propertychange').on('input propertychange', function () {
+                var text_value = $('.search_txt').val();
+
+                if (text_value == '') {
+                    $('.suggest').css({opacity: "0"});
+                    $('.suggest').hide();
+                } else {
+                    searchajax(text_value);
+                }
+            });
+
+            // 输入搜索关键字，点击return事件
+            $('.search_txt').off('keydown').on('keydown', function (event) {
+                var keywords = $('.search_txt').val();
+                keywords = keywords ? keywords : 'Android';
+                if (event.which === 13) {
+                    window.location.href = '/search/course/' + keywords + '-1/';
+                }
+                ;
+            });
+            // 单击搜索建议中的小课程
+            $('.course_course').off('tap').on({
+                'tap': function () {
+                    $(this).css({'background': '#ffa800'});
+                    $(this).children().css({'color': '#fff'});
+                }
+            }, 'li a');
+
+            // // 点击搜索取消按钮，隐藏suggest
+            // $('.cancel').off('touchend').on('touchend',function(){
+            //     $("#searchwrap").animate({top:"-100%"},600);
+            //     $("body").css("position","relative").animate({top:0},300);
+            //     $(".searchwrap .suggest").css({opacity: "0"}).hide();
+            // });
+            //搜索按钮
+            $(".btn-search").click(function () {
+                $("#page-id").html(0);
+                //sreachBtn();
+                searchBtn2();
+            });
+            //
+            $('.hot_skill li').off('tap').on('tap', function () {
+                $(this).addClass('selected');
+            });
+            $(".search-text input").keydown(function (event) {
+                if (event.keyCode == 13) {
+                    $("#page-id").html(0);
+                    //sreachBtn();
+                    searchBtn2();
+                }
+            });
+
+        });
+
+        // 搜索框响应函数
+        function searchBtn2() {
+            window.location = '/course/list/?search=' + $(".search-text input").val();
+        }
+        ;
+
+        function searchajax(keyword) {
+            ret_val = false;
+            return $.ajax({
+                url: "http://suggest.maiziedu.com/suggest/?keyword=" + keyword,
+                type: "GET",
+                dataType: "jsonp",
+                jsonp: "callback",
+                success: function (data) {
+                    var courses = new Array(), careers = new Array(), teachers = new Array(), teachers_repeat = new Array(), careers_repeat = new Array();
+
+                    $.each(data, function (idx, obj) {
+                        $.each(obj["courses"], function (idx, course) {
+                            courses.push({
+                                id: course["id"],
+                                name: obj["name"],
+                                student_count: course["student_count"]
+                            });
+
+                            $.each(course["careers"], function (idx, career) {
+                                if (!career["student_count"]) {
+                                    return;
+                                }
+                                if (careers_repeat.indexOf(career["name"]) == -1) {
+                                    careers.push({
+                                        name: career["name"],
+                                        short_name: career["short_name"],
+                                        image: career["image"],
+                                        description: career["description"],
+                                        student_count: career["student_count"]
+                                    });
+                                    careers_repeat.push(career["name"]);
+                                }
+
+                                $.each(career["teachers"], function (idx, teacher) {
+                                    if (teachers_repeat.indexOf(teacher["name"]) == -1) {
+                                        teachers.push({
+                                            "teacher_id": teacher["teacher_id"],
+                                            name: teacher["name"],
+                                            title: teacher["title"],
+                                            image: teacher["image"],
+                                            info: teacher["info"]
+
+                                        })
+                                        teachers_repeat.push(teacher["name"]);
+                                    }
+                                })
+                            })
+                        })
+                    })
+                    if (courses.length == 0) {
+                        $('.suggest').hide();
+                        return;
+                    }
+
+                    // coding
+                    var tmp = "";
+                    $(".course_course ul li").remove();
+                    $.each(courses, function (idx, course) {
+                        tmp = '<li><a href="/course/' + course["id"] + '/"><span>' + course["name"] + '</span><em>' + course["student_count"] + '人正在学习</em></a></li>';
+                        $(".course_course ul").append(tmp);
+                    });
+
+                    $(".career_course ul li").remove();
+                    $.each(careers, function (idx, career) {
+                        tmp = '<li><a href="/course/' + career["short_name"] + '-px/"><p class="img"><img src="/uploads/' + career["image"] + '" alt="' + career["name"] + '" data-src=""></p> <div class="txt"> <h3>' + career["name"] + '</h3><em>毕业学员' + career["student_count"] + '人</em> <p>' + career["description"] + '</p> </div> </a> </li>';
+
+                        $(".career_course ul").append(tmp);
+                    });
+
+                    $(".search_teacher ul li").remove();
+                    $.each(teachers, function (idx, teacher) {
+                        tmp = '<li><a href="' + "/u/" + teacher["teacher_id"] + '/"> <p class="img"><img src="/uploads/' + teacher["image"] + '" alt="' + teacher["name"] + '" data-src=""></p> <div class="txt"> <h3>' + teacher["name"] + '</h3><em>' + teacher["title"] + '</em> <p>' + teacher["info"] + '</p> </div> </a> </li>';
+                        $(".search_teacher ul").append(tmp);
+                    });
+
+                    $('.suggest').show();
+                    $('.suggest').css({opacity: "1"});
+                    $('.div').show();
+                }
+            });
+        }
+
+        var p=0,t=0;
+        $(window).scroll(function(e){
+            p = $(this).scrollTop();
+            if(t<=p){
+               $("#foot").animate({height:"0"},100);
+            }else{
+               $("#foot").animate({height:$(this).currentStyle},100)
+            }
+            t = p;
+        });
+    </script>
+{% endblock %}
+

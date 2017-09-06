@@ -1,0 +1,191 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}麦子学院 - 专业IT职业教育平台|ui培训|python培训|web前端培训|产品经理培训{% endblock %}
+{% block keywords %}麦子学院,IT职业培训,IT技能培训,IT在线教育,IT在线学习,编程学习,产品经理,python,ui设计,web前端,新媒体运营{% endblock %}
+{% block description %}
+    麦子学院专注IT职业在线教育，提供产品经理、python开发、UI设计、web前端、网络运营、嵌入式、物联网、android开发、ios开发、php开发等一系列线上IT培训服务，推出在线教育智能化学习系统，保证在线学习效果，每年帮助上万名软件开发学习者成功就业。{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/css/mz_wap/index.css"/>
+{% endblock %}
+{% block csstype %}index{% endblock %}
+{% block container %}
+    {#<div class="topwrap">#}
+    {#    {% include 'mz_wap/module/div_download_app.html' %}#}
+    {% include 'mz_wap/module/wiki_header1.html' %}
+    {#</div>#}
+
+    {% include 'mz_wap/module/div_top_banner.html' %}
+    <div class="index-navMenu" id="focus5">
+        <div class="menu">
+            <ul>
+                <li class="python"><a href="{% url 'career_course_detail' 'python' %}">Python开发</a></li>
+                <li class="web"><a href="{% url 'career_course_detail' 'web' %}">Web前端开发</a></li>
+                <li class="iot"><a href="{% url 'career_course_detail' 'iot' %}">物联网开发</a></li>
+                <li class="yy"><a href="{% url 'career_course_detail' 'op' %}">网络运营</a></li>
+                <li class="npm"><a href="{% url 'career_course_detail' 'pm' %}">产品经理</a></li>
+                <li class="ui"><a href="{% url 'career_course_detail' 'ui' %}">UI界面设计</a></li>
+                <li class="android"><a href="{% url 'career_course_detail' 'android' %}">Android开发</a></li>
+                <li class="qrs"><a href="{% url 'career_course_detail' 'qrs' %}">嵌入式开发</a></li>
+            </ul>
+            <ul>
+                <li class="php"><a href="{% url 'career_course_detail' 'php' %}">PHP开发</a></li>
+                <li class="linux"><a href="{% url 'career_course_video_list' 'oam' %}">Linux运维</a></li>
+                <li class="safe"><a href="{% url 'career_course_video_list' 'sec' %}">网络安全</a></li>
+                <li class="business"><a href="{% url 'career_course_detail' 'business' %}">互联网商学院</a></li>
+                <li class="ios"><a href="{% url 'career_course_detail' 'ios' %}">iOS开发</a></li>
+                <li class="test"><a href="{% url 'career_course_detail' 'te' %}">软件测试</a></li>
+                <li class="gd"><a href="{% url 'career_course_detail' 'gd' %}">平面设计</a></li>
+                <li class="all"><a href="{% url 'course_list_all' %}">全部课程</a></li>
+            </ul>
+        </div>
+        <div class="dots hd">
+            <ol></ol>
+        </div>
+    </div>
+    <div class="section">
+        <h2 class="king-course">王牌课程</h2>
+        <ul class="course-list">
+            <li class="web">
+                <a href="/land/web/">
+                    <h4>Web前端工程师</h4>
+                    <p>实现网站页面或客户端界面的专业人才</p>
+                    <div class="right">
+                        <mark>月薪8k-50k</mark>
+                    </div>
+                </a>
+            </li>
+            <li class="pm">
+                <a href="/land/pm/">
+                    <h4>产品经理</h4>
+                    <p>SEO的学前班</p>
+                    <div class="right">
+                        <mark>月薪7k-20k</mark>
+                    </div>
+                </a>
+            </li>
+            <li class="ui">
+                <a href="/land/ui/">
+                    <h4>UI设计师</h4>
+                    <p>互联网视觉构造者</p>
+                    <div class="right">
+                        <mark>月薪6k-35k</mark>
+                    </div>
+                </a>
+            </li>
+            <li class="python">
+                <a href="/land/python/">
+                    <h4>Python工程师</h4>
+                    <p>最有钱景的后端</p>
+                    <div class="right">
+                        <mark>月薪8k-25k</mark>
+                    </div>
+                </a>
+            </li>
+            <li class="op">
+                <a href="/land/op/">
+                    <h4>新媒体运营</h4>
+                    <p>带领用户玩转产品</p>
+                    <div class="right">
+                        <mark>月薪5k-25k</mark>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="careers" id="careers">
+        <h2 class="road">职业路线<a href="/course/">更多</a></h2>
+        <div class="menu">
+            <ul>
+                <li class="python"><a href="{% url 'career_course_video_list' 'python' %}">Python工程师</a></li>
+                <li class="web"><a href="{% url 'career_course_video_list' 'web' %}">前端工程师</a></li>
+                <li class="iot"><a href="{% url 'career_course_video_list' 'iot' %}">物联网工程师</a></li>
+                <li class="yy"><a href="{% url 'career_course_video_list' 'op' %}">新媒体运营</a></li>
+                <li class="npm"><a href="{% url 'career_course_video_list' 'npm' %}">产品经理</a></li>
+                <li class="ui"><a href="{% url 'career_course_video_list' 'ui' %}">UI设计师</a></li>
+                <li class="android"><a href="{% url 'career_course_video_list' 'android' %}">Android开发</a></li>
+                <li class="qrs"><a href="{% url 'career_course_video_list' 'qrs' %}">嵌入式工程师</a></li>
+            </ul>
+            <ul>
+                <li class="php"><a href="{% url 'career_course_video_list' 'php' %}">PHP工程师</a></li>
+                <li class="yw"><a href="{% url 'career_course_video_list' 'oam' %}">运维工程师</a></li>
+                <li class="safe"><a href="{% url 'career_course_video_list' 'sec' %}">网络安全</a></li>
+                <li class="business"><a href="{% url 'career_course_video_list' 'business' %}">互联网运营</a></li>
+                <li class="ios"><a href="{% url 'career_course_video_list' 'ios' %}">iOS工程师</a></li>
+                <li class="test"><a href="{% url 'career_course_video_list' 'te' %}">软件测试</a></li>
+                <li class="gd"><a href="{% url 'career_course_video_list' 'gd' %}">平面设计师</a></li>
+                <li class="all"><a href="/course/">全部路线</a></li>
+            </ul>
+        </div>
+        <div class="dots hd">
+            <ol></ol>
+        </div>
+    </div>
+    <div class="section">
+        <h2 class="gift">免费好课<a href="/course/all/">更多</a></h2>
+        <nav class="tab">
+            <dl>
+                <dd class="active">UI设计</dd>
+                <dd>Web前端</dd>
+                <dd>PythonWeb</dd>
+                <dd>产品经理</dd>
+            </dl>
+        </nav>
+        <div id="good-course">
+            {% for hot_course_data in hot_course_data_list %}
+                <ul {% if forloop.counter != 1 %} class="" style="display: none"{% endif %}>
+                    {% for course in hot_course_data.1 %}
+                        <li>
+                            <a href="{% url 'course:course_detail_view' course.id %}">
+                                <div class="img-con">
+                                    <img src="{{ MEDIA_URL }}{{ course.image }}" alt="{{ course.name }}">
+                                    {% if 0 %}<b>&yen;9999</b>{% endif %}
+                                </div>
+                                <p>{{ course.name }}</p>
+                                <span>{{ course.student_count }}人学习</span>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="section section-icon article">
+        <h2>干货分享<a href="/wiki/">更多</a></h2>
+        <ul>
+            {% for wiki in wikis %}
+                {% if forloop.counter == 1 %}
+                    <li>
+                        <a href="{{ wiki.wiki_url }}">
+                            <img src="{{ MEDIA_URL }}{{ wiki.title_image }}" alt="{{ wiki.name }}">
+                            <div class="content">
+                                <h4>{{ wiki.title }}</h4>
+                                <p>{% if wiki.abstract %}{{ wiki.abstract }} {% else %}{{ wiki.title }}{% endif %}</p>
+                            </div>
+
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{ wiki.wiki_url }}">
+                            <div class="title">{{ wiki.title }}</div>
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% include 'mz_wap/login.html' %}
+    {% include 'mz_wap/footer.html' %}
+    {% include 'mz_wap/module/div_toolbar.html' %}
+{% endblock %}
+
+{% block custom_script %}
+    <script src="{{ STATIC_URL }}js/mz_wap/zepto.js"></script>
+    <script src="{{ STATIC_URL }}js/mz_wap/slider.js"></script>
+    <script src="{{ STATIC_URL }}js/mz_wap/imglazyload.js"></script>
+    <script src="{{ STATIC_URL }}js/mz_wap/index.js"></script>
+    <script src="{{ STATIC_URL }}js/mz_wap/main.js"></script>
+    <script src="{{ STATIC_URL }}js/mz_wap/login.js"></script>
+    <script src="{{ STATIC_URL }}js/mz_wap/search_suggest1.js"></script>
+{% endblock %}

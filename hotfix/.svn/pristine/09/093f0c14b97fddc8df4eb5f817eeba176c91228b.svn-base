@@ -1,0 +1,58 @@
+<div class="head-container">
+    <div class="header">
+        <div class="wrap">
+            <a class="logo fl" href="/" onclick="zhuge.track('点击header-logo')">
+                <h2>
+                    <img src="/images/logo2.png" alt="logo">
+                </h2>
+            </a>
+            <a class="vip_class fl font14" href="/course/" target="_blank">企业直通班</a>
+            <div class="header-search fl">
+                <input type="text" name="datasearch" autocomplete="off" class="data-search font16 color66" id="data-search" placeholder="搜索你感兴趣的课程" aria-haspopup="false" role="combobox" aria-owns="dd_box" aria-autocomplete="list" value="{{ori_keyword}}">
+                <dl class="fLayerdl" id="fLayerdl" style="max-height: 180px; overflow-y: auto; display: none;">
+                    <dd val="Python" v2="undefined"><a href="/search/course/Python-1/" target="_blank">Python</a></dd>
+                    <dd val="平面设计" v2="undefined"><a href="/search/course/平面设计-1/" target="_blank">平面设计</a></dd>
+                    <dd val="PHP" v2="undefined"><a href="/search/course/PHP-1/" target="_blank">PHP</a></dd>
+                    <dd val="IOS" v2="undefined"><a href="/search/course/IOS-1/" target="_blank">IOS</a></dd>
+                    <dd val="Android" v2="undefined"><a href="/search/course/Android-1/" target="_blank">Android</a></dd>
+                </dl>
+                <!-- 输入搜索下拉单 -->
+                <div class="dd_listbox" id="dd_listbox" role="listbox"
+                     aria-expanded="true" id="dd_box" style="display: none;">
+                    <div class="dd_courseitem dd_csitem" id="dd_csitem">职业课程<i></i></div>
+                    <div class="incld_careers" id="incld_careers"></div>
+                    <div class="dd_courseitem dd_tutor" id="dd_tutor">职业导师<i></i></div>
+                    <div class="incld_teachers" id="incld_teachers"></div>
+                    <div class="dd_courseitem dd_craft" id="dd_craft">职业技能<i></i></div>
+                    <div class="course_name_ledg" id="course_name_ledg"></div>
+                </div>
+                <button class="search-btn"></button>
+                <div class="hot-words font14 color99">
+                    <a href="/search/course/产品经理-1/" target="_blank">产品经理</a>
+                    <a href="/search/course/web前端-1/" target="_blank">web前端</a>
+                    <a href="/search/course/ui-1/" target="_blank">ui</a>
+                </div>
+            </div>
+            <a class="mobile_app font16 color66 fl" href="/common/apppage/" target="_blank">移动APP</a>
+            <!--{% if show_wiki_enter %}
+            <a class="show_wiki font16 color66 fl" href="http://wiki.maiziedu.com/" target="_blank">Wiki</a>
+            {% else %}
+            <a class="mobile_app font16 color66 fl" href="/common/apppage/" target="_blank">移动APP</a>
+            {% endif %}-->
+            <div class="topRight" login="{{ user.is_authenticated }}">
+                {% if not user.is_authenticated %}
+                <a class="a" href="/user/signup/" target="_blank">注册</a><a class="a globalLoginBtn">登录</a>
+                {% else %}
+                <div class="top_user">
+                    <a class="top_meg top_megH" href="{% url 'home:base:get_my_message' %}" target="_blank">{% if not new_message_count == 0 %}<i class="Arial">{{ new_message_count }}</i>{% endif %}</a>
+                    <a class="ai" href="/home/" target="_blank"><img src="{{ MEDIA_URL }}{{ user.avatar_url }}"></a>
+                    <span class="nick_name">
+                        <a href="/home/" target="_blank" data-name="{{ user.nick_name }}"></a>
+                        <a class="sign_out" href="/user/logout/">[退出]</a>
+                    </span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

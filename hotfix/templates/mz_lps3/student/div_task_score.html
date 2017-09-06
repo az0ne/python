@@ -1,0 +1,37 @@
+<!--<div class="modal fade" id="mysuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">-->
+{% load my_filter %}
+    <div class="modal-dialog modal-sm modal-content zy_mysuccess textC">
+        <a class="zy_newclose"></a>
+        <img src="{{ STATIC_URL }}mz_lps3/images/zy_mysuccess.png" class="zy_mysuccess_topI">
+        {% if passed %}
+            <p class="font22 color33">恭喜你！</p>
+            <p class="font16 color66">你提交的作业 <span class="color1b">{{ task_name | cutStrNN:30}}</span></p>
+            <p class="font16 color66 marginB20">已通过！</p>
+        {% else %}
+            <p class="font22 color33">很遗憾</p>
+		    <p class="font16 color66">你提交的作业 <span class="color1b">{{ task_name | cutStrNN:30}}</span></p>
+		    <p class="font16 color66 marginB20">未通过</p>
+        {% endif %}
+        <div class="zy_mysuccess_scorers textC">
+        	<div>
+        	<p class="font14 color66" style="padding-top:10px;">获得成绩</p>
+			<p class="font30 color5e">{{ task_score }}</p>
+            </div>
+            {% if passed and time_excellent and gift %}
+                <div>
+        	    <p class="font14 color66" style="padding-top:10px; margin-bottom:8px;">获得额外礼物</p>
+			    <!--<p><img src="{{ STATIC_URL }}mz_lps3/img/img87843214.png" style="width:30px; height:30px;"></p>-->
+                <p><img src="{{ MEDIA_URL }}{{ gift.image }}" style="width:30px; height:30px;"></p>
+                </div>
+            {% endif %}
+        </div>
+        <!--<p class="color66 fen"><label><input type="checkbox">同时分享到麦子圈</label></p>-->
+        <div class="zy_mytask_foot textC">
+            {% if passed %}
+        	    <a class="bold font14 colorff a2 scf_newclose">继续学习</a>
+            {% else %}
+                <a class="bold font14 colorff a2 scf_newclose" href="{% url 'lps3:student_stagetask' class_id stage_task_id %}" target="_blank">重新学习</a>
+            {% endif %}
+        </div>
+    </div>
+<!--</div>-->

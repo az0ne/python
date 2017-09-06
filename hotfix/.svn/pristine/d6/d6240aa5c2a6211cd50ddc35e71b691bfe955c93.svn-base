@@ -1,0 +1,1 @@
+django-xadmin==0.5.0 （必须django1.7分支才支持：https://github.com/sshwsfc/django-xadmin/tree/django1.7）

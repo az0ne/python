@@ -1,0 +1,111 @@
+{% extends "mz_wap/base.html" %}
+{% load date_convert_tag %}
+{% block title %}{% if tag %}{{ tag.name }}-{{ tag.name }}学习-麦子学院{% else %}{{ article_type_s_name.name }}-麦子学院{% endif %}{% endblock %}
+
+{% block keywords%}{% if tag %}{{ tag.name }}，{{ tag.name }}学习，{{ tag.name }}教程{% else %}麦子学院,IT学习,IT技术,IT在线学习,编程学习,android,ios,php,java,python,html5,cocos2dx{% endif %}{% endblock %}
+
+{% block description%}{% if tag %}{{ tag.name }}学习技巧、{{ tag.name }}最新资讯、{{ tag.name }}相关工具及标签就业情况分享，一手掌握！{% else %}麦子学院IT技术文章专注Android、python、iOS、物联网、产品经理、php、嵌入式、ui等IT技术分享，专门为互联网人才提供海量、优质的资源服务和信息分享，同时建立一个自由交流、学习探讨和共同提高的绝佳生态圈，让各类互联网爱好者和从业人员零距离交流。{% endif %}{% endblock %}
+
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="/static/css/mz_wap/article_list.css">
+{% endblock %}
+{% block csstype %}search_result{% endblock %}
+{% block container %}
+    <div class="container">
+        <div class="content">
+            <div class="article">
+                <div class="ads"><a href="http://www.maiziedu.com/pages/ad04/pm.html?seo=search"><img
+                    alt="广告" src="{{ MEDIA_URL }}ad/787-136.png"></a></div>
+                <div class="sear_result_article_list">
+                    <ul>
+                        {% for article in article_data.article_list %}
+                            <li><a href="{% url 'article_detail_view' article.id %}"><p class="img"><img
+                                    class="ui-imglazyload" alt="{{ article.title }}"
+                                    src="/static/images/mz_wap/imgloading.gif" data-url="{{ MEDIA_URL }}{{ article.title_image }}"></p>
+                                <div class="txt">
+                                    <h3>{{ article.title }}</h3>
+                                    <p>{{ article.abstract | safe }}</p>
+                                    <dl>
+                                        <dd class="time">{% date_convert article.publish_date %}</dd>
+                                        {% for id, name in article.tag.items %}
+                                            {% if forloop.counter > 2 %}
+                                            {% else %}
+                                                <dd class="tag">{{ name }}</dd>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </dl>
+                                </div>
+                            </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+
+
+            {% if page_count > 1 %}
+                <div class="load_more"><a href="javascript:;">加载更多</a></div>
+            {% endif %}
+            <div class="hot_tag">
+                <h3><span>热门标签</span></h3>
+                <ul>
+                    {% for hot_tag in hot_tags %}
+                    <li><a href="{% url 'artilcle_list_tag_view' hot_tag.id %}">{{ hot_tag.name }}</a></li>
+                    {% endfor %}
+
+                </ul>
+            </div>
+            {% if career_courses %}
+            <div class="relate_course">
+                <h3><span>相关课程</span></h3>
+                <ul>
+                {% for career_course in career_courses %}
+                    <li>
+                        <a href="{% url 'course:course_detail' career_course.short_name %}">
+                            <div class="img"><img class="ui-imglazyload" alt="{{ career_course.name }}" data-url="{{ MEDIA_URL }}{{ career_course.image }}" src="/static/images/mz_wap/imgloading.gif"></div>
+                            <div class="txt">
+                                <strong>{{ career_course.name }}</strong>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <input type="hidden" value="1" id="pageIndex">
+{% endblock %}
+{% block custom_script %}
+    <script src="/static/js/mz_wap/zepto.js"></script>
+    <script src="/static/js/mz_wap/slider.js"></script>
+    <script src="/static/js/mz_wap/imglazyload.js"></script>
+    <script src="/static/js/mz_wap/main.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.hot_tag li').off('tap').on('tap',function(){
+            $(this).addClass('selected');
+        });
+            // 加载更多
+            $(".load_more a").bind("touchend", function () {
+                var pagenum = parseInt($("#pageIndex").val()) + 1;
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'wap_article_tag_page' %}",
+                    dataType: "json",
+                    data: {
+                        page_index: pagenum,
+                        tag_id: '{{ tag_id }}'
+                    },
+                    success: function (data) {
+                        $(".sear_result_article_list ul").append(data.data);
+                        $("#pageIndex").val(data.page_index);
+                        if (!data.is_next) {
+                            $(".load_more").remove();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

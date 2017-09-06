@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="118" height="218" viewBox="0 0 118 218">
+  <defs>
+    <style>
+      .cls-1 {
+        filter: url(#filter);
+      }
+
+      .cls-2 {
+        fill: #aeaeae;
+        fill-rule: evenodd;
+      }
+
+      .cls-3 {
+        font-size: 31.859px;
+        opacity: 0.05;
+        text-anchor: middle;
+        font-family: "PingFang SC";
+        font-weight: 600;
+      }
+    </style>
+    <filter id="filter" filterUnits="userSpaceOnUse">
+      <feFlood result="flood" flood-color="#22a0f6"/>
+      <feComposite result="composite" operator="in" in2="SourceGraphic"/>
+      <feBlend result="blend" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="python-c1-pic01" class="cls-1">
+    <path id="形状_520" data-name="形状 520" class="cls-2" d="M309,1651.39A10.441,10.441,0,0,1,319.494,1641h91.012A10.441,10.441,0,0,1,421,1651.39v60.08a10.439,10.439,0,0,1-10.494,10.38H397.121L383.6,1733h0l-11.06-11.15H319.494A10.439,10.439,0,0,1,309,1711.47m5.325-.36s1.44,5.16,4.889,5.25H376.6l8.551,9.34,9.745-8.49h16.43c3.448-.63,4.347-5.78,4.347-5.78v-61.05s-0.671-4.67-4.119-4.83l-92.115.85h0c-3.449-1-5.117,3.66-5.117,3.66m25.855,55.96,19.727-50.85h7.324l21.023,50.85h-7.273l-6.162-15.84h-22.09l-5.8,15.84H340.18Zm14.806-20.84H372.43l-5.37-14.11q-2.457-6.42-3.65-10.56a64.341,64.341,0,0,1-2.773,9.73l-5.651,14.94h0ZM314.079,8740.94m0-13655.59" transform="translate(-306 -1523)"/>
+    <g id="组_61" data-name="组 61">
+      <text id="_1" data-name="1" class="cls-3" transform="translate(59.883 135.447) scale(5.901)">1</text>
+    </g>
+  </g>
+</svg>

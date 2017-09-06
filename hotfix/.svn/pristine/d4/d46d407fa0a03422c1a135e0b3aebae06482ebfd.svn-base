@@ -1,0 +1,7 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% endblock %}
+
+

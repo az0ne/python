@@ -1,0 +1,76 @@
+{% extends "mz_common/base.html" %}
+{% block title %}{{ has.nick_name }}课程{% endblock %}
+{% block keywords%}{% endblock %}
+{% block description%}{% endblock %}
+{% block container %}
+
+
+
+
+<div class="container-fluid container-banner container-banner-a">
+    <div class="container container-uinfo">
+      <div class="header-uinfo">
+        <div class="uinfo-head"><img src="{{ MEDIA_URL }}{{ has.avatar_url }}"></div>
+        <div class="uinfo-con">
+          <p>{{ has.nick_name }}</p>
+          <p>职位：{{ has.position }}</p>
+          <p>简介：{{ has.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="container uc-boxb">
+    <div class="uc-h1">他的课程</div>
+   <!-- <ul class="row my-course">
+      {% for course in courses %}
+      <li class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+      <section style="background-color:#333333;">
+
+{#      {% if course.stages.career_course.course_color%}#}
+{#        <section style="background-color:{{course.stages.career_course.course_color}};">#}
+{#      {% else%}#}
+{#        <section style="background-color:#333333;">#}
+{#      {% endif %}#}
+
+          <a href="">
+            <img src="{{ MEDIA_URL }}{{ course.image_logo}}">
+            <article>
+              <h3>{{ course.name}}</h3>
+            </article>
+          </a>
+          <a class="opt" href="/course/{{course.id}}/recent/play/">查看</a>
+        </section>
+      </li>
+      {% endfor %}
+    </ul>-->
+
+
+    <ul class="row course-list-index">
+    {% for course in courses %}
+        <li class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+          <a href="/course/{{course.id}}/recent/play/">
+            <dl>
+              <dt>
+                <div style="width:275px;height:174px;">
+                <img width="275px" height="174px" src="{{ MEDIA_URL }}{{ course.image}}"></div>
+              </dt>
+              <dd>
+                <span>{{ course.name}}</span>
+                <p>{{ course.student_count}}正在学习</p>
+              </dd>
+            </dl>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+
+      <div class="page-bg-w">
+        {% include 'mz_common/pager.html' %}
+     </div>
+  </div>
+
+
+
+{% endblock %}

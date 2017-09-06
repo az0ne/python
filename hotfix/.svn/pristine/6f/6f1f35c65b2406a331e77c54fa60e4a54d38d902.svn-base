@@ -1,0 +1,33 @@
+<!--随堂测验-->
+{% for course in cur_stage_course_list %}
+<div class="modal plan-modal fade" id="lesson_exam_{{ course.id }}_Modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true"></span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="quiztestModalLabel">随堂测验</h4>
+            </div>
+            <div class="modal-body">
+                <section class="box-quiztest" id="box-quiztest">
+                    <ul class="modal-max-height scroll-pane">
+                        {% for lesson in course.lesson %}
+                        {% if lesson.has_exam %}
+                        <li class="row">
+                            <div class="col-sm-9"><a href="{% url 'lesson:lesson_view' lesson.id %}?stageid={{ cur_stage.id }}&t=true" target="_blank">{{ lesson.name }}</a></div>
+                            <div class="col-sm-3 text-center">
+                                {% if lesson.is_complete_paper and lesson.exam_accuracy != None %}
+                                <span>准确率:{{ lesson.exam_accuracy }}</span>
+                                {% else %}
+                                <a href="{% url 'lesson:lesson_view' lesson.id %}?stageid={{ cur_stage.id }}&t=true" target="_blank" class="btn btn-micv5">去测试</a>
+                                {% endif %}
+                            </div>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}

@@ -1,0 +1,531 @@
+{% extends "mz_common/base.html" %}
+{% block title %}学习计划{% endblock %}
+{% block breadcrumb %}
+    <div class="container visible-md visible-lg" xmlns="http://www.w3.org/1999/html">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'user:user_center' %}">我的课程</a></li>
+            <li class="active">{{ cur_class }}</li>
+        </ol>
+    </div>
+    <!-- 临时布局start -->
+    <div class="text-right container">
+        <div style="position:absolute;z-index:9;right:0;margin-top:-46px;">
+            {#			<input type="button" class="btn btn-primary" value="查看学习协议" onclick="$.commonTool.ruleShow();" />#}
+            {#			<input type="button" class="btn btn-primary" value="完善个人资料" onclick="$.commonTool.editUserInfo();" />#}
+            {#			<input type="button" class="btn btn-primary" value="加锁" onclick="$.commonTool.addLock('.box-body');" />#}
+            {#			<input type="button" class="btn btn-primary" value="解锁" onclick="window.location.reload();" />#}
+        </div>
+    </div>
+{% endblock %}
+
+{% block container %}
+
+	<div class="p-nav box">
+		<div class="container webfont">
+			<a href="/lps2/learning/plan/{{ cur_careercourse.id }}">我的数据</a>
+			<a href="/lps2/learning/detail/{{ cur_careercourse.id }}">评测详情</a>
+			<a class="active" href="/lps2/learning/plan_class/{{ cur_careercourse.id }}">班级数据</a>
+		</div>
+	</div>
+
+	<div class="p-main">
+		<div class="container">
+			<div class="row">
+                <div class="box" id="tab_box_1">
+                    <div class="box-head clearfix webfont">
+                        <h2 class="pull-left"><span>班级数据</span></h2>
+                        <div class="pull-right" tab-role="btn-group"><span tab-role="btn" tab-target="1" class="active">本周KPI</span><span tab-role="btn" tab-target="2">综合排名</span></div>
+                    </div>
+                    <div class="box-body grades-box-body" tab-role="cnt-group">
+                        <div class="tab-cnt" tab-role="cnt" tab-mark="1">
+                        <div class="class-meeting-kpi-lock">
+                            <div class="tab-cnt-in">
+                                <div class="turn-box clearfix">
+
+                                    {% if is_step.0 %}
+                                        <span id="pull_left_btn" class="pull-left active" onclick="another_weeek_data_post(1)"></span>
+                                    {% else %}
+                                        <span id="pull_left_btn" onclick="another_weeek_data_post(1)"></span>
+                                    {% endif %}
+                                    {% if is_step.1 %}
+                                        <span id="pull_right_btn" class="pull-right active" onclick="another_weeek_data_post(-1)"></span>
+                                    {% else %}
+                                        <span id="pull_right_btn" onclick="another_weeek_data_post(-1)"></span>
+                                    {% endif %}
+
+                                    {% if class_start_date %}
+                                        <div class="text-center"><i></i><span  id="classdatadate" class="text">{{ class_start_date }}——{{ class_end_date }}</span><i></i></div>
+                                    {% else %}
+                                        <div class="text-center"><i></i><span  id="classdatadate" class="text"></span><i></i></div>
+                                    {% endif %}
+                                </div>
+                                <div id="chart_1">
+                                    <canvas id="canvas_1" style="width:100%;height:355px;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="tab-cnt" tab-role="cnt" tab-mark="2">
+                            <div class="tab-cnt-in"id="chart_2">
+                                <canvas id="canvas_2" style="width:100%;height:465px;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+            {% if last_class_videos %}
+			<div class="row">
+				<div class="box">
+					<div class="box-head clearfix webfont">
+                        <h2 class="pull-left"><span>往期直播班会</span></h2>
+                        <span class="cdf fontS16" style="margin-left: 20px;">错过班会别担心，你在这里可以看到最近2周的班会录制视频</span>
+                    </div>
+                    <div class="box-body grades-box-body" tab-role="cnt-group">
+                        {% for month,video_list in last_class_videos.iteritems %}
+                            <p class="zy_yue"><img src="/static/lps2/images/ico-6.png">{{ month }}月</p>
+                            <ul class="zy_yue_box">
+                            {% for video in video_list %}
+                                <li><a href="{% url "lps2:class_plan_player" video.play_id %}" class="yahei" target="_blank">直播班会：{{ video.create_time }}</a></li>
+                            {% endfor %}
+                            </ul>
+                        {% endfor %}
+                    </div>
+				</div>
+			</div>
+            {% endif %}
+		</div>
+	</div>
+
+	<!-- 查看教师须知 -->
+	<div id="xy_panel" class="d-xy-panel" style="display:none">
+		<h2>麦子学院用户协议</h2>
+		<div class="xy-box">
+			<div class="xy-box-in">
+				<p>
+						X轴：⽇日期（会调⽤用后台的Json数组）
+					Y轴：分别有25%、50%、75%、100%四个刻度，每个刻度都有⽔水平参考线
+					执⾏行⼒力、主动性及沟通⼒力有各⾃自的变化曲线，⿏鼠标移动到某⼀一点时，显⽰示对应的数值。
+						动画效果：同”我的学习数据 - 完成计划图表“
+					颜⾊色⽰示例：同”我的学习数据 - 完成计划图表“X轴：⽇日期（会调⽤用后台的Json数组）
+					Y轴：分别有25%、50%、75%、100%四个刻度，每个刻度都有⽔水平参考线
+					执⾏行⼒力、主动性及沟通⼒力有各⾃自的变化曲线，⿏鼠标移动到某⼀一点时，显⽰示对应的数值。
+						动画效果：同”我的学习数据 - 完成计划图表“
+					颜⾊色⽰示例：同”我的学习数据 - 完成计划图表“X轴：⽇日期（会调⽤用后台的Json数组）
+					Y轴：分别有25%、50%、75%、100%四个刻度，每个刻度都有⽔水平参考线
+					执⾏行⼒力、主动性及沟通⼒力有各⾃自的变化曲线，⿏鼠标移动到某⼀一点时，显⽰示对应的数值。
+						动画效果：同”我的学习数据 - 完成计划图表“
+					颜⾊色⽰示例：同”我的学习数据 - 完成计划图表“X轴：⽇日期（会调⽤用后台的Json数组）
+					Y轴：分别有25%、50%、75%、100%四个刻度，每个刻度都有⽔水平参考线
+					执⾏行⼒力、主动性及沟通⼒力有各⾃自的变化曲线，⿏鼠标移动到某⼀一点时，显⽰示对应的数值。
+					动画效果：同”我的学习数据 - 完成计划图表“
+					颜⾊色⽰示例：同”我的学习数据 - 完成计划图表“
+				</p>
+				<p>
+						X轴：⽇日期（会调⽤用后台的Json数组）
+					Y轴：分别有25%、50%、75%、100%四个刻度，每个刻度都有⽔水平参考线
+					执⾏行⼒力、主动性及沟通⼒力有各⾃自的变化曲线，⿏鼠标移动到某⼀一点时，显⽰示对应的数值。
+						动画效果：同”我的学习数据 - 完成计划图表“
+					颜⾊色⽰示例：同”我的学习数据 - 完成计划图表“X轴：⽇日期（会调⽤用后台的Json数组）
+					Y轴：分别有25%、50%、75%、100%四个刻度，每个刻度都有⽔水平参考线
+					执⾏行⼒力、主动性及沟通⼒力有各⾃自的变化曲线，⿏鼠标移动到某⼀一点时，显⽰示对应的数值。
+						动画效果：同”我的学习数据 - 完成计划图表“
+					颜⾊色⽰示例：同”我的学习数据 - 完成计划图表“X轴：⽇日期（会调⽤用后台的Json数组）
+					Y轴：分别有25%、50%、75%、100%四个刻度，每个刻度都有⽔水平参考线
+					执⾏行⼒力、主动性及沟通⼒力有各⾃自的变化曲线，⿏鼠标移动到某⼀一点时，显⽰示对应的数值。
+						动画效果：同”我的学习数据 - 完成计划图表“
+					颜⾊色⽰示例：同”我的学习数据 - 完成计划图表“X轴：⽇日期（会调⽤用后台的Json数组）
+					Y轴：分别有25%、50%、75%、100%四个刻度，每个刻度都有⽔水平参考线
+					执⾏行⼒力、主动性及沟通⼒力有各⾃自的变化曲线，⿏鼠标移动到某⼀一点时，显⽰示对应的数值。
+					动画效果：同”我的学习数据 - 完成计划图表“
+					颜⾊色⽰示例：同”我的学习数据 - 完成计划图表“
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<form action="">
+				<div class="pull-left checkbox">
+					<label><input type="checkbox" checked="checked" /> 我已经阅读并同意以上协议</label>
+				</div>
+				<div class="pull-right">
+					<button type="submit" class="btn btn-default">提交</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+{% endblock %}
+
+{% block footer%}
+    <div class="v5-footer colleges-foot">
+        <div class="container">
+            <div class="v5-footer-bottom">
+                <p>© 2012-2014 <a href="www.maiziedu.com">maiziedu.com</a> | 服务条款 | 蜀ICP备13014270号-4 Version 4.0.1 release20140721.1</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block custom_css %}
+    <link href="/static/lps2/css/jquery.jscrollpane.css" type="text/css" rel="stylesheet" media="all" />
+    <link href="/static/lps2/css/panel.css" rel="stylesheet"/>
+    <link rel="shortcut icon" type="/static/lps2/image/x-icon" href="http://dev.microoh.com/static/images/favicon.ico"/>
+{% endblock %}
+
+{% block custom_script %}
+<script type="text/javascript" src="/static/lps2/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="/static/lps2/js/mwheelIntent.js"></script>
+<script type="text/javascript" src="/static/lps2/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="/static/lps2/js/layer/layer.js"></script>
+<script type="text/javascript" src="/static/lps2/js/Chart.js"></script>
+<script type="text/javascript" src="/static/lps2/js/Chart-extend.js"></script>
+<script type="text/javascript" src="/static/lps2/js/common-tool.js"></script>
+<script type="text/javascript">
+    var x = 0
+    function clazz_data(chartData){
+        $("#chart_1").children("div").children("canvas").remove();
+        var str = '<canvas id="canvas_1" style="width: 1080px; height: 355px; margin-bottom: 10px;" width="967" height="317"></canvas>';
+        $("#chart_1").children("div").prepend(str);
+
+
+				var canvas = $('#canvas_1');
+				var chartBox = $('#chart_1');
+				var div = $('<div/>');
+				div.css({ 'width' : chartBox.width(), 'overflow' : 'hidden' });
+				div.append(canvas.css({'marginBottom' : 10}));
+				chartBox.html('').append(div);
+
+                var defaultStep;
+                (function(){
+                    var max=0;
+                    $.each(chartData, function(i,o){
+                        max = Math.max(o.kpi, max);
+                    });
+                    defaultStep = Math.ceil(max/25);
+                    if(defaultStep < 4){
+                        defaultStep = 4;
+                    }
+                })();
+
+
+				// 图表实例
+				$.chartExtend.BarE2({
+					'canvas' : '#canvas_1',
+					'data' : chartData,
+					'suf' : '%',
+                    'defaultStep': defaultStep,
+					'colorGroup' : {
+                        '100' : ['#5ECFBA', '#5ECFBA'],
+						'75' : ['#5ECFBA', '#5ECFBA'],
+						'50' : ['#62D43A', '#62D43A'],
+						'25' : ['#FFC80A', '#FFC80A'],
+						'0' : ['#FF7150', '#FF7150']
+					}
+				});
+    }
+
+
+
+	$(function(){
+
+        var this_week_id = {{ this_week.id }}
+        if ( this_week_id=="-1" ){
+            $.commonTool.addLock('.class-meeting-kpi-lock');
+        }
+
+        {% if is_look_screen %}
+            $.commonTool.addLock('.p-main');
+        {% endif %}
+		// 图表
+		(function(){
+            var chartData = {{ this_week_kpi_list | safe }}
+            clazz_data(chartData);
+			var tab = $('#tab_box_1 [tab-role=btn]');
+{##}
+{#			// 本周KPI#}
+{#			tab[0]._initChart = function(){#}
+{##}
+{#				var canvas = $('#canvas_1');#}
+{#				var chartBox = $('#chart_1');#}
+{#				var div = $('<div/>');#}
+{#				div.css({ 'width' : chartBox.width(), 'overflow' : 'hidden' });#}
+{#				div.append(canvas.css({'marginBottom' : 10}));#}
+{#				chartBox.html('').append(div);#}
+{##}
+{#				// json数据#}
+{#				var chartData = {{ this_week_kpi_list | safe }}#}
+{#				// 图表实例#}
+{#				$.chartExtend.BarE2({#}
+{#					'canvas' : '#canvas_1',#}
+{#					'data' : chartData,#}
+{#					'suf' : '%',#}
+{#					'colorGroup' : {#}
+{#						'100' : ['rgba(0,150,0,1)', 'rgba(0,150,0,1)'], // fillColor, strokeColor#}
+{#						'75' : ['rgba(80,250,50,1)', 'rgba(80,250,50,1)'],#}
+{#						'50' : ['rgba(250,250,100,1)', 'rgba(250,250,100,1)'],#}
+{#						'25' : ['rgba(200,130,30,1)', 'rgba(200,130,30,1)'],#}
+{#						'0' : ['rgba(240,0,0,1)', 'rgba(240,0,0,1)']#}
+{#					}#}
+{#				});#}
+{#			};#}
+
+			// 综合排名
+			tab[1]._initChart = function(){
+				
+				var canvas = $('#canvas_2');
+				var chartBox = $('#chart_2');
+				var div = $('<div/>');
+				div.css({ 'height' : chartBox.height()-30, 'overflow' : 'hidden' });
+				div.append(canvas.css({'marginBottom' : 10}));
+				chartBox.html('').append(div);
+
+				// json数据
+				var chartData = {{ rank_in_class | safe}}
+				// 图表实例
+				$.chartExtend.BarE1({
+					'canvas' : '#canvas_2',
+					'data' : chartData,
+					'maxValue' : {{ chart_maxvalue | safe}},
+					'labels' : [{
+						'dataKey' : 'study_point',
+						'label' : '学力值',
+						'color' : ['rgba(95,200,180,1)','rgba(95,200,180,1)']
+					},{
+						'dataKey' : 'ava_score',
+						'label' : '评测分数',
+						'color' : ['rgba(250,230,140,1)','rgba(250,230,140,1)']
+					}]
+				});
+			};
+		}());
+			
+
+
+
+		// 提问 or 回复
+		var replyBtnEventBind = (function(){
+
+			// 创建回复输入框
+			function createWriteBox(isQuestion) {
+				var html;
+				if(isQuestion){
+					// 提问
+					html = '<div class="q-item"><div class="q-left">';
+					html += '<a href="##"><img class="img-circle" src="images/photo.jpg" alt=""/></a>';
+					html += '</div><div class="q-body">';
+					html += '<form action="" class="q-body-in"><div class="q-title clearfix">';
+					html += '<div class="pull-left">Robert：</div>';
+					html += '</div><div class="q-content">';
+					html += '<textarea placeholder="提点什么问题吧" name="" id="" cols="" rows=""></textarea>';
+					html += '</div><div class="q-fun">';
+					html += '<input class="btn cancel-btn" type="reset" value="取消"/><input class="btn ok-btn" type="button" value="提问"/>';
+					html += '</div></form></div></div>';
+				}else{
+					// 评论
+					html = '<div class="q-reply-write"><div class="q-left">';
+					html += '<a href="##"><img class="img-circle" src="images/photo.jpg" alt=""/></a>';
+					html += '</div><div class="q-body">'
+					html += '<form action="" class="q-body-in">';
+					html += '<div class="q-title clearfix"><div class="pull-left">Robert：</div></div>';
+					html += '<div class="q-content">';
+					html += '<textarea placeholder="回复：" name="" id="" cols="" rows=""></textarea>';
+					html += '</div><div class="q-fun">';
+					html += '<input class="btn cancel-btn" type="reset" value="取消"/><input class="btn ok-btn" type="button" value="回复"/>';
+					html += '</div></form></div></div>';
+				}
+
+				var reply = $(html);
+
+				/* code */
+
+				return reply;
+			}
+			function replyShowOrNoBtnFun(o){
+				var $o = $(o), role = $o.attr('role') == 'question-button';
+				if(o.cntIsShow !== true){
+					!role && $o.html('收起回复').addClass('reply-open');
+					o.cntIsShow = true;
+				}else{
+					!role && $o.html('回复').removeClass('reply-open');
+					o.cntIsShow = false;
+				}
+				return o.cntIsShow;
+			}
+				
+			var oReplyMark = { 'writeBox' : null, 'handle' : null};
+			return function(elm, isQuestion){
+				$(elm).click(function(){
+					var self = this, $self = $(self);
+					var qItemM, domPosition, oCurWriteBox;
+
+					if( replyShowOrNoBtnFun(self) ){// 显示or隐藏按钮
+						// 如果已经有一个"回复or评论输入布局"存在，则隐藏
+						oReplyMark.writeBox && oReplyMark.writeBox.slideUp();
+						oReplyMark.handle && replyShowOrNoBtnFun(oReplyMark.handle);
+						// 创建一个新的"回复or评论输入布局"
+						oCurWriteBox = createWriteBox(isQuestion);
+						// 为"回复输入布局"中按钮"取消""回复"绑定事件
+						oCurWriteBox.find('.btn').click(function(){
+							$self.click();
+						});
+						// 新"回复or评论输入布局"在dom中的位置
+						if(isQuestion){
+							$('.q-list').prepend( oCurWriteBox );
+						}else if($self.closest('.q-body').parent().hasClass('q-reply')){
+							$self.closest('.q-reply').after( oCurWriteBox );
+						}else{
+							qItemM = $self.closest('.q-item-m');
+							domPosition = qItemM.next('.q-reply-group');
+							if( !domPosition.length ){
+								oCurWriteBox = $('<div class="q-reply-group"/>').append(oCurWriteBox);
+								qItemM.after( oCurWriteBox );
+							}else{
+								domPosition.prepend( oCurWriteBox );
+							}
+						}
+						// 新"回复输入布局"动画展现
+						oCurWriteBox.hide().slideDown(function(){
+							oReplyMark.writeBox && oReplyMark.writeBox.remove();
+
+							oReplyMark.handle = self;
+							oReplyMark.writeBox = oCurWriteBox;
+						});
+
+					}else{
+						oReplyMark.writeBox && oReplyMark.writeBox.slideUp(function(){
+							oReplyMark.writeBox.remove();
+							oReplyMark.writeBox = null;
+							oReplyMark.handle = null;
+							oReplyMark.isQ = false;
+						});
+					}
+
+					//event.stopPropagation();
+					return false;
+				});
+			};
+
+		}());
+
+		// "提问"按钮绑定点击事件
+		replyBtnEventBind('#show_q_box', true);
+		// 为已经存在页面上的 “回复” 按钮绑定点击事件
+		replyBtnEventBind('.q-item .reply');
+
+		// 评论显示or隐藏
+		(function(){
+			//
+			$('.q-item .comment').click(function(){
+				var self = this, $self = $(self);
+				var replyGroup, replyList;
+
+				if(self._text==null){
+					self._text = $self.text();
+				}
+
+				replyGroup = $self.closest('.q-item-m').next('.q-reply-group');
+				if( replyGroup.length ){
+					replyList = replyGroup.find('.q-reply');
+					if( replyList.length ){
+						replyShowOrNoBtnFun(self);
+						replyList.slideToggle();
+					}
+				}
+
+				return false;
+
+				function replyShowOrNoBtnFun(o){
+					var $o = $(o);
+					if(o.cntIsShow !== true){
+						$o.html('收起评论').addClass('reply-open');
+						o.cntIsShow = true;
+					}else{
+						$o.html(o._text).removeClass('reply-open');
+						o.cntIsShow = false;
+					}
+					return o.cntIsShow;
+				}
+			});
+		}());
+
+		// 更多评论
+		(function(){
+			$('#more_comment').click(function(){
+				var $self = $(this);
+
+				// 新加载的评论
+				var oNewComment = $('<div class="q-item"><div class="q-item-m"><div class="q-left"><a href="##"><img class="img-circle" src="images/photo.jpg" alt=""/></a></div><div class="q-body"><div class="q-body-in"><div class="q-title clearfix"><div class="pull-left">Robert在<a href="##">Android开发基础</a>中提问：</div><div class="pull-right"><span class="date-time"><span>03-12</span><pan>16:00</span></span></div></div><div class="q-content"><p>我就是来听老师讲课的！讲的凑合。没学到太多知识，也算巩固了下。</></div><div class="q-fun"><a href="javascript:;" class="comment">0条评论</a><a href="javascript:;" class="reply">回复</a></div></div></div></div></div>');
+
+				// 为新 “回复” 按钮绑定点击事件
+				replyBtnEventBind( $('.reply', oNewComment) );
+
+				// 新评论添加到页面
+				oNewComment.hide();
+				$self.parent().before( oNewComment );
+				oNewComment.slideDown();
+			});
+		}());
+
+		// tab
+		$.commonTool.tab({
+			'tabBox' : '#tab_box_1',
+			'transitionCallback' : function(btn,cnt){
+				var canvas;
+				if(this._initChart){
+					canvas = cnt.find('canvas');
+					if(canvas){
+						canvas.parent().html('').append(canvas.clone());
+						this._initChart();
+					}
+				}
+			}
+		});
+
+	});
+
+    var step = 0;
+
+    //alert(str)
+    //add by yuxin
+    function another_weeek_data_post(ifpre){
+        step = step + ifpre;
+        if (step > {{ classmeeting_count }}-1)
+            step = step - 1;
+        if (step < 0)
+            step = 0;
+        $.ajax({
+            cache: false,
+            type: "get",
+            url: "/lps2/learning/plan_class/weekkpi/{{ cur_class.id }}?weekid={{ this_week.id }}&step="+ifpre+"&n_step="+step,
+            data:'',
+            async: true,
+            beforeSend:function(XMLHttpRequest){
+{#                $("#pull_left_btn").attr("disabled","disabled");#}
+{#                $("#pull_left_btn").attr("disabled","disabled");#}
+            },
+
+            success: function(data) {
+                if(data.status == "success"){
+                    // json数据
+				    var chartData = data.message;
+                    clazz_data(chartData);
+                }else if(data.status == "failure"){
+
+
+                }
+                if(data.is_step[0] == 0){
+                    $("#pull_left_btn").removeAttr("class","pull-left active");
+                }else{
+                    $("#pull_left_btn").attr("class","pull-left active");
+                }
+                if(data.is_step[1] == 0){
+                    $("#pull_right_btn").removeAttr("class","pull-right active");
+                }else{
+                    $("#pull_right_btn").attr("class","pull-right active");
+                }
+                $("#classdatadate").text(data.class_start_date + "——" + data.class_end_date)
+            }
+        });
+    }
+
+</script>
+{% endblock %}

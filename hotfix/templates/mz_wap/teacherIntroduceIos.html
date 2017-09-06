@@ -1,0 +1,121 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}iOS应用开发金牌讲师-iOS培训-麦子学院{% endblock %}
+{% block keywords%}iOS，iOS开发，iOS培训，iOS学习，iOS应用开发{% endblock %}
+{% block description%}麦子学院iOS应用开发金牌讲师—敬文涛老师，索尼明星机型系统研发工程师之一，某千万级用户社交App核心成员之一，贵州省电子政务云平台顶层架构师之一，是国内早期的明星IOS工程师。{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet"  href="/static/css/mz_wap/stylev1.2.css"/>
+{% endblock %}
+{% block container %}
+		<div class="wapv12 teacherDetail">
+			<div class="banner">
+				<p class="img"><img class="ui-imglazyload" data-url="/static/images/mz_wap/alt104.jpg" alt="敬文涛"/></p>
+				<strong>敬文涛</strong>
+				<span>iOS应用开发金牌讲师</span>
+				<p>索尼明星机型系统研发工程师之一，某千万级用户社交App核心成员之一，贵州省电子政务云平台顶层架构师之一，是国内早期的明星IOS工程师。</p>
+				<a href="{% url 'course:course_detail' 'ios' %}">报名TA的课程</a>
+			</div>
+			<ul class="infos">
+				<li><a>带班数<span><mark>14</mark>个</span></a></li>
+				<li><a>累积毕业<span><mark>532</mark>人</span></a></li>
+				<li><a>就业率<span><mark>98</mark>%</span></a></li>
+			</ul>
+			<div class="teacherWork">
+				<h3>讲师作品</h3>
+				<div class="slider" id="slider1">
+					<div class="bd">
+						<ul>
+							<li>
+								<p><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroduceIosTea1.png" alt="作品1"/></p>
+								<strong>作品1</strong>
+							</li>
+							<li>
+								<p><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroduceIosTea2.png" alt="作品2"/></p>
+								<strong>作品2</strong>
+							</li>
+							<li>
+								<p><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroduceIosTea3.png" alt="作品3"/></p>
+								<strong>作品3</strong>
+							</li>
+						</ul>
+					</div>
+	                <a class="prev" href="javascript:void(0)"></a>
+	                <a class="next" href="javascript:void(0)"></a>
+				</div>
+			</div>
+			<div class="live">
+				<h3>讲师经历</h3>
+				<ul>
+					<li>
+						<strong>2015</strong>
+						<strong>麦子学院</strong>
+						<p>iOS金牌讲师，凭借多年开发经验、对移动领域的前瞻性理解和丰富的教学经验，对课程体系中的每个知识要点都了如指掌。授课实战性强，讲解入木三分、意寓隽永，并能够将企业团队开发模式带入课堂，深受广大学员的喜爱。</p>
+					</li>
+					<li>
+						<strong>2014</strong>
+						<strong>拓尔思</strong>
+						<p>参与过多个政府项目的咨询规划，包括贵州七朵云的电子政务云顶层平台架构、中纪委监察部APP等。有着丰富的项目开发经验，多款产品在APP Store成功上线。</p>
+						<em>参与项目</em>
+						<p>《汉中市政府门户》、《贵州省电子政务云平台》、《中纪委监察部APP》、《西藏之声APP》、《遵义市政府门户》</p>
+					</li>
+					<li>
+						<strong>2012</strong>
+						<strong>中科创达</strong>
+						<p>参与Sony多款手机系统开发工作。有着丰富的系统开发经验。</p>
+						<em>参与项目</em>
+						<p>《Sony Z系列手机》</p>
+					</li>
+                    <li>
+                        <strong>2011</strong>
+                        <strong>Myriad </strong>
+                        <p>与来自日本、澳大利亚的全球三个团队协作，参与日本Softbank手机的Pivot应用开发。</p>
+                        <em>参与项目</em>
+                        <p>《Pivot应用》</p>
+                    </li>
+				</ul>
+			</div>
+			<div class="word">
+				<p class="img"><img class="ui-imglazyload" data-url="/static/images/mz_wap/alt104.jpg" alt="敬文涛"/></p>
+				<h3>讲师寄语</h3>
+				<p class="txt">麦子iOS课程以方便初学者最高效率掌握iOS开发的核心知识并从零基迅速化身为高大上的iOS工程师而建设。教学过程中注重基本语法的学习、编程思维的训练，编程技能锻炼。给到你打开璀璨的软件世界之潘多拉魔盒的钥匙。互联网是个无法用言语形容、无法用世俗价值衡量的奇幻世界，编程是个大脑和键盘碰撞出来的艺术；在麦子学习iOS，让十亿个iPhone用户触摸到你APP只差一步之遥，这一步麦子为你助力，加油吧！骚年们！</p>
+				<a href="{% url 'course:course_detail' 'ios' %}">报名TA的课程</a>
+			</div>
+			<div class="studentWork">
+				<h3>学生作品</h3>
+				<div class="slider slider2" id="slider2">
+					<div class="bd">
+						<ul>
+							<li><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroduceIosStu1.jpg" alt="学生作品"/></li>
+							<li><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroduceIosStu2.jpg" alt="学生作品"/></li>
+							<li><img class="ui-imglazyload" data-url="/static/images/mz_wap/teacherIntroduceIosStu3.jpg" alt="学生作品"/></li>
+						</ul>
+					</div>
+					<span class="pageState"></span>
+				</div>
+			</div>
+		</div>
+{% endblock %}
+{% block custom_script %}
+		<script src="/static/js/mz_wap/zepto.1.2.0.js"></script>
+		<script src="/static/js/mz_wap/slider.js"></script>
+	    <script src="/static/js/mz_wap/imglazyload.js"></script>
+	    <script type="text/javascript">
+	    	TouchSlide({
+	    		slideCell: "#slider1",
+				mainCell: ".bd ul",
+				effect: "left",
+				autoPlay: true,
+				prevCell: ".prev",
+				nextCell: ".next"				
+	    	});
+	    	TouchSlide({
+	    		slideCell: "#slider2",
+				mainCell: ".bd ul",
+				effect: "left",
+				autoPlay: true,
+	    	});
+	    
+	    	$(function(){
+	    		$(".ui-imglazyload").picLazyLoad();//图片延迟加载
+	    	});
+	    </script>
+{% endblock %}

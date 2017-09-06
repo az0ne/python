@@ -1,0 +1,11 @@
+@media screen and (max-width: 1520px) {
+	.jobs_list li>div .p1{ padding-top:66%;}
+	.bxslider > li > div{ right: 10%; font-size: 18px; width: 432px;}
+}
+@media screen and (max-width: 1440px) {
+	.section5 .div .font16{ margin-bottom: 30px;}
+	.jobs_list li>div .p3{ top:78%;}
+}
+@media screen and (max-width: 1290px) {
+	.jobs_list li>div .p1{ padding-top:56%;}
+}

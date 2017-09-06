@@ -1,0 +1,48 @@
+{% load date_convert_tag %}
+{% load my_filter %}
+    <li discuss_id={{ my_problem.id }} >
+        <div class="studentInfo">
+            <a href="{% url 'u:index' my_problem.user_id %}" class="toUserCenter" target="_blank">
+                <div class="img"><img src="{{ MEDIA_URL }}{{ my_problem.head }}" alt="{{ my_problem.nick_name }}"/></div>
+                <strong class="txt">{{ my_problem.nick_name }}</strong>
+            </a>
+            <p class="times font12"><span>{{ my_problem.problem_date }}</span><em>{{ my_problem.problem_time}}</em></p>
+            {% if my_problem.status == 1 %}
+            <em class="new"></em>
+            {% endif %}
+        </div>
+        <div class="ques">
+            <p class="font14">{{ my_problem.comment|cutStrNN:210 }}</p>
+            {% if my_problem.materials%}
+             <ul>
+                {% for real_m, material in my_problem.materials %}
+                <li><img src="{{ MEDIA_URL }}{{ material }}"/></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <div class="quesInfos">
+                <span>提问于<a class="objectHref" {% if my_problem.object_href %}href="{{ my_problem.object_href }}"{% endif %} target="_blank">{% if my_problem.object_name %}{{ my_problem.object_content }}&nbsp;&nbsp;{{ my_problem.object_name }}{% else %}没有找到位置{% endif %}</a></span>
+                <div class="interact">
+                    <span class="like{% if my_problem.is_praise %} parised{% endif %}" data-discuss-id="{{ my_problem.id }}">{{ my_problem.user_praise_count }}</span>
+                    <a href="?p_id={{ my_problem.id }}#comment" class="reply" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+        {% if my_problem.child_id %}
+        <div class="answer">
+            <a href="{% url 'u:index' my_problem.child_user_id %}" class="img" target="_blank"><img src="{{ MEDIA_URL }}{{ my_problem.child_head }}"/></a>
+            <div class="txt">
+                <div class="teacherInfos font12">
+                    <a class="answerToUserCenter" href="{% url 'u:index' my_problem.child_user_id %}" target="_blank">
+                        <span>{{ my_problem.child_nick_name }}</span>
+                        {% if my_problem.child_group_name == 'teacher'%}
+                            <em>老师</em>
+                        {% endif %}
+                    </a>
+                    <p class="times">{% date_convert my_problem.child_create_date %}<!--<span>2016-06-22</span><em>21:31</em>--></p>
+                </div>
+                <p class="font14">{{ my_problem.child_comment|cutStrNN:210 }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </li>

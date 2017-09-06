@@ -1,0 +1,75 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/student_breadcrumb.html" %}
+
+{% include "mz_nadmin/modules/msgs.html" %}
+
+<div class="row">
+<div class="col-md-6">
+<table class="table table-bordered table-condensed table-hover">
+    <tr>
+        <th class="col-md-4">课程名称</th>
+        <td class="col-md-8">{{ career_course.name }}</td>
+    </tr>
+    <tr>
+        <th class="col-md-4">班级编号</th>
+        <td class="col-md-8">{{ career_course.study_point.classobj.student_class.id }}</td>
+    </tr>
+    <tr>
+        <th class="col-md-4">课程进行情况</th>
+        <td class="col-md-8">{{ career_course.study_point.classobj.student_class.status }}</td>
+    </tr>
+    <tr>
+        <th class="col-md-4">学力值</th>
+        <td class="col-md-8">{{ career_course.study_point.mypoint }}</td>
+    </tr>
+    <tr>
+        <th class="col-md-4">班级排名</th>
+        <td class="col-md-8">{{ career_course.cur_ranking }}</td>
+    </tr>
+</table>
+</div>
+</div>
+
+{% if stages %}
+<div class="table-responsive">
+<table class="table table-bordered table-condensed table-striped table-hover">
+    <thead>
+        <th class="col-md-6">阶段名称</th>
+        <th class="col-md-6">加锁</th>
+    </thead>
+    <tbody>
+        {% for stage in stages %}
+        <tr>
+            <td>
+                <a href="{% url 'nadmin:students_stages_info' student.id career_course.id stage.id %}">
+                    {{ stage.name|escape }}
+                </a>
+            </td>
+            <td>
+                <label class="checkbox" for="{{ stage.id }}_islock">
+                    <input type="checkbox" data-toggle="checkbox" 
+                        class="custom-checkbox" id="{{ stage.id }}_islock"
+                        name="{{ stage.id }}_islock" {% if stage.islock %}checked{% endif %}>
+                </label>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% include "mz_nadmin/modules/page_info.html" with items=stages %}
+
+{% else %}
+<p class="text-muted">
+    <small>没有任何阶段</small>
+</p>
+{% endif %}
+
+{% endblock %}
+
+
+

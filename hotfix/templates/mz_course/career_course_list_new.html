@@ -1,0 +1,431 @@
+{% extends "mz_common/base4.html" %}
+{% block title %}{{ seo.seo_title }}{% endblock %}
+{% block custom_css %}
+<style>
+.footNewBox2{ background: #333333;}
+</style>
+{% endblock %}
+{% block keywords%}{{ seo.seo_keyword }}{% endblock %}
+{% block description%}{{ seo.seo_description }}{% endblock %}
+{% block indexhead %}{% endblock %}
+{% block container %}
+{% include 'header/header.html' %}
+<div class="newCouseVideo" id="section1">
+	<video autoplay loop height="1070px" width="100%" id="videobg" poster="{{ STATIC_URL }}mz_lps4/images/bannerbg.jpg">
+        <source src="http://ocsource.maiziedu.com/cfspsysp.mp4" type='video/mp4'/>
+    </video>
+    <div class="font textC colorff">
+    	<p class="font60 marginB29">在线学习保就业</p>
+        <p class="font26">麦子学院与拉勾、猎聘、智联招聘已达成战略合作</p>
+    </div>
+</div>
+<div class="newCousebox2 ">
+	<div class="center">
+    	<div class="newCousebox2_menuDIV marginB50">
+    	<ul class="newCousebox2_menu">
+        	<li class="t5o">
+            	<div class="colorff textC div1 couseBG t8o">
+                	<p class="couseBG ico"></p>
+                    <div>
+                        <p class="font20 bold marginB10">软件开发</p>
+{#                        <p class="people coloree">{{ software_development.online_count }} 人学习</p>#}
+                        <p class="people coloree">81101 人学习</p>
+                    </div>
+                </div>
+                <div class="div2 textC couseBG font13 t8o">
+                    <div class="fl">
+{#                    {% for career_course in software_development.career_course_lst %}#}
+{#                        <p><a href="{% url 'course:course_detail' career_course.short_name|lower %}" target="_blank">{{ career_course.name }}</a></p>#}
+{#                        {% if forloop.counter == 4 %}</div><div class="fl">{% endif %}#}
+{#                    {% endfor %}#}
+                        <p><a href="/course/android-px/" target="_blank">Android应用开发</a></p>
+
+
+                        <p><a href="/course/ios-px/" target="_blank">iOS应用开发</a></p>
+
+
+                        <p><a href="/course/web-px/" target="_blank">Web前端开发</a></p>
+
+
+                        <p><a href="/course/python-px/" target="_blank">Python Web开发</a></p>
+                        </div><div class="fl">
+
+                        <p><a href="/course/php-px/" target="_blank">PHP Web开发</a></p>
+
+
+                        <p><a href="/course/te-px/" target="_blank">软件测试</a></p>
+
+                    </div>
+                </div>
+            </li>
+            <li class="t5o">
+            	<div class="colorff textC div1 couseBG t8o">
+                	<p class="couseBG ico"></p>
+                    <div>
+                	<p class="font20 bold marginB10">智能硬件</p>
+{#                    <p class="people coloree">{{ intelligent_hardware.online_count }} 人学习</p>#}
+                        <p class="people coloree">9514 人学习</p>
+                    </div>
+                </div>
+                <div class="div2 textC couseBG font13 t8o">
+                     <div class="fl">
+{#                     {% for career_course in intelligent_hardware.career_course_lst %}#}
+{#                         <p><a href="{% url 'course:course_detail' career_course.short_name|lower %}" target="_blank">{{ career_course.name }}</a></p>#}
+{#                         {% if forloop.counter == 4 %}</div><div class="fl">{% endif %}#}
+{##}
+{#                     {% endfor %}#}
+                         <p><a href="/course/qrs-px/" target="_blank">嵌入式系统开发</a></p>
+                         <p><a href="/course/iot-px/" target="_blank">物联网开发</a></p>
+
+                     </div>
+                </div>
+            </li>
+            <li class="t5o">
+            	<div class="colorff textC div1 couseBG t8o">
+                	<p class="couseBG ico"></p>
+                    <div>
+                	<p class="font20 bold marginB10">产品运营</p>
+{#                    <p class="people coloree">{{ product_operation.online_count }} 人学习</p>#}
+                        <p class="people coloree">8754 人学习</p>
+                    </div>
+                </div>
+                <div class="div2 textC couseBG font13 t8o">
+                    <div class="fl">
+{#                    {% for career_course in product_operation.career_course_lst %}#}
+{#                        <p><a href="{% url 'course:course_detail' career_course.short_name|lower %}" target="_blank">{{ career_course.name }}</a></p>#}
+{#                        <div class="fl">#}
+{#                    {% endfor %}#}
+                        <p><a href="/course/npm-px/" target="_blank">产品经理</a></p>
+                        <p><a href="/course/op-px/" target="_blank">新媒体网络运营</a></p>
+                        <p><a href="/course/business-px/" target="_blank">互联网商学院</a></p>
+                    </div>
+                </div>
+            </li>
+            <li class="t5o">
+            	<div class="colorff textC div1 couseBG t8o">
+                	<p class="couseBG ico"></p>
+                    <div>
+                	<p class="font20 bold marginB10">设计</p>
+{#                    <p class="people coloree">{{ design.online_count }} 人学习</p>#}
+                        <p class="people coloree">3288 人学习</p>
+                    </div>
+                </div>
+                <div class="div2 textC couseBG font13 t8o">
+                    <div class="fl">
+{#                    {% for career_course in design.career_course_lst %}#}
+{#                        <p><a href="{% url 'course:course_detail' career_course.short_name|lower %}" target="_blank">{{ career_course.name }}</a></p>#}
+{#                    {% endfor %}#}
+                        <p><a href="/course/ui-px/" target="_blank">UI设计</a></p>
+                        <p><a href="/course/gd-px/" target="_blank">平面设计</a></p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        </div>
+        <div class="newCousebox2_con">
+        	<img src="{{ STATIC_URL }}mz_lps4/images/couseimg.jpg">
+            <div class="newCousebox2_conSrean textC">
+            	<p class="font40 marginB20">老师一对一带班辅导，实战项目演练</p>
+				<p class="font16 marginB29">您将快速成长为一名适合企业需要的人才！</p>
+                <p><a class="font16 t3out">了解详细</a></p>
+            </div>
+        </div>
+        <div class="newCousebox2_conTwo">
+        	<img src="{{ STATIC_URL }}mz_lps4/img/g1.png" class="g1 t8o downGO"><img src="{{ STATIC_URL }}mz_lps4/img/g2.png" class="g2 t8o downGO">
+            <svg width="790px" height="402px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" id="svg1">
+				<g>
+					<circle class="t2" fill="none" stroke-dashoffset="1219" transform="rotate(-180 200 198)" stroke="#5ecfba" stroke-width="1" r="194" cy="198" cx="200" stroke-dasharray="0 5"/>
+					<circle class="t2" fill="none" transform="rotate(-180 200 198)" stroke-dasharray="0 1099" stroke="rgba(94,207,186,.1)" stroke-width="36" r="175" cy="198" cx="200"/>
+					<circle class="t3" fill="none" transform="rotate(-180 200 198)" stroke-dasharray="0 917" stroke="rgba(94,207,186,.2)" stroke-width="22" r="146" cy="198" cx="200"/>
+				</g>
+				<g class="g">
+					<circle fill="#5ecfba" r="0" cy="140" cx="385" />
+					<circle fill="#5ecfba" r="0" cy="200" cx="394" />
+					<circle fill="#5ecfba" r="0" cy="260" cx="385" />
+					<text class="text" height="30" width="200" y="143" x="420" style=" opacity:0">小班授课，每周班会直播，更高效为你答疑解惑</text>
+					<text class="text" height="30" width="200" y="204" x="426" style=" opacity:0">阶段性商业项目实战，拥有详细源码和VIP视频</text>
+					<text class="text" height="30" width="200" y="264" x="420" style=" opacity:0">班级同学在麦子圈实名互动，扩展你的职业人脉</text>
+				</g>
+            </svg>
+            <svg width="270px" height="270px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" id="svg2">
+				<circle class="t8o" stroke-dasharray="0 848" transform="rotate(-180 135 135)" fill="none" stroke="rgba(94,207,186,.3)" stroke-width="270" r="135" cy="135" cx="135"/>
+            </svg>
+        </div>
+
+    </div>
+
+</div>
+<div class="section5">
+	<ul class="bxslider2">
+        <li pt="Chris" en="Linkedin Data Tech" pc="“We partner with organizations such as maizi education – and invest in their missions – to help these youth access new opportunities and direct paths to employment.”" hp="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/cfsp/cfspChris.mp4">
+            <img src="{{ STATIC_URL }}mz_lps4/img/z011.jpg" /><i></i>
+        </li>
+        <li pt="王海宁" en="嵌入式应用开发金牌讲师" pc="“现在我们上课相对传统模式的教育来说，我们可以更加直观的看到每个学生真实的学习状态和一个学习进度，每个学生都有一套自己的清晰明了的学习路线，通过多元化的学习方式，完成每周的学习任务。”" hp="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/cfsp/cfspwhn.mp4"><img src="{{ STATIC_URL }}mz_lps4/img/z004.jpg" /><i></i></li>
+        <li pt="马青" en="游戏原画设计金牌讲师" pc="“在设计麦子学院游戏原画课程时，考虑更多的是美术基础和设计思路的贯穿性，不仅关注学员的基础能力，也关注学员基础能力的培养，目的在于为数字娱乐行业培养更多优秀合格的设计师。”" hp="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/cfsp/cfspmq.mp4"><img src="{{ STATIC_URL }}mz_lps4/img/z007.jpg" /><i></i></li>
+    </ul>
+    <div class="teacherVideo">
+        <video id="microohvideo2" class="video-js vjs-default-skin vjs-big-play-centered" autoplay controls preload="none" width="100%" height="100%" poster="">
+            <source src="" type='video/mp4'/>
+        </video>
+        <div class="teacherVideoD"><a class="teacherVideoClose" n="0"></a></div>
+    </div>
+	<div class="colorff textC div">
+    	<p class="font20">Chris</p>
+		<p class="font40 Arial marginB29">Linkedin Data Tech</p>
+        <p class="font16 marginB60 line2">“We partner with organizations such as maizi education – and invest in their missions – to help these youth access new opportunities and direct paths to employment.”</p>
+        <p hp="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/cfsp/cfspChris.mp4"><a class="videoArrow"></a></p>
+    </div>
+    <div class="section5_bottom textC t5o">
+    	<a class="t3out aH" target="_blank" n=0><img src="{{ STATIC_URL }}mz_lps4/img/z010.jpg"><i></i></a><a class="t3out" target="_blank" n=1><img src="{{ STATIC_URL }}mz_lps4/img/z003.jpg"><i></i></a><a class="t3out" target="_blank" n=2><img src="{{ STATIC_URL }}mz_lps4/img/z006.jpg"><i></i></a>
+    </div>
+
+</div>
+
+<div class="section6">
+	<p class="textC font40 color33 marginB20">合作企业</p>
+	<p class="textC font16 color33 marginB70">大量雇主信赖麦子学院</p>
+
+    <ul class="bxslider">
+        <li><img src="{{ STATIC_URL }}mz_lps4/img/z008.jpg" />
+        	<div class="colorff font30 t3out moveLeft">
+            	<p class="marginB29">“稳扎稳打的知识结构，海量前沿的实战练习，踏实高效的工作习惯，让每一名学员到岗后都能快速进入状态。麦子学院就是我们的人才培养库，我们信赖麦子学院。”</p>
+                <p class="font20">猎聘网创始人兼CEO</p>
+				<p>戴科彬</p>
+            </div>
+        </li>
+        <li><img src="{{ STATIC_URL }}mz_lps4/img/lagou.jpg" />
+        	<div class="colorff font30 t3out moveLeft">
+            	<p class="marginB29">“麦子学院是拉勾网的重要合作伙伴，我们都致力于帮助互联网人才成长。希望更多的互联网爱好者，通过自身的努力和麦子学院的专业服务，学有所成，走进心仪的岗位。也祝福麦子学院能培养出更多优秀的人才”</p>
+                <p class="font20">拉勾网CEO兼创始人</p>
+				<p>马德龙</p>
+            </div>
+        </li>
+    </ul>
+
+</div>
+
+<div class="section6">
+	<p class="textC font40 color33 marginB20">就业学员</p>
+	<p class="textC font16 color33 marginB70">从这里走出了大批受企业青睐的学员</p>
+
+    <ul class="jobs_list">
+    	<li><img src="{{ STATIC_URL }}mz_lps4/img/z001.jpg" class="t3out">
+        	<div>
+            	<p class="colorff font26 p1"><span class="font16">周安伟</span><br>Cocos2d-x开发学员<br><b class="font16">月薪12K，签约腾讯</b></p>
+                <p class="p2"><a pt="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/cfsp/cfspzaw.mp4"><img src="{{ STATIC_URL }}mz_lps4/images/videoArrowBig.png"></a></p>
+                <p class="colore3 p3">团队是一个整体，讲究的是合作，有事没事多沟通，往往自己苦思冥想做出的结果却不适合。</p>
+            </div>
+        </li>
+        <li><img src="{{ STATIC_URL }}mz_lps4/img/z009.jpg">
+        	<div>
+            	<p class="colorff font26 p1"><span class="font16">蒋欣晨</span><br>Android应用开发学员<br><b class="font16">月薪18K，签约阿里巴巴</b></p>
+                <p class="p2"><a pt="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/cfsp/cfspjxc.mp4"><img src="{{ STATIC_URL }}mz_lps4/images/videoArrowBig.png"></a></p>
+                <p class="colore3 p3">“麦子学院为我制定了学习计划，提供了很好的学习环境，每一次付出都能看到相应的成绩。”</p>
+            </div>
+        </li>
+        <li><img src="{{ STATIC_URL }}mz_lps4/img/z002.jpg">
+        	<div>
+            	<p class="colorff font26 p1"><span class="font16">张云瑞</span><br>Python应用开发学员<br><b class="font16">月薪20K，签约华为</b></p>
+                <p class="p2"><a pt="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/cfsp/cfspzyr.mp4"><img src="{{ STATIC_URL }}mz_lps4/images/videoArrowBig.png"></a></p>
+                <p class="colore3 p3">“麦子学院清晰严谨的课程体系, 细心周到的课程顾问,认真负责的专业老师和班主任陪伴我走过了入门学习时的痛苦和迷茫。”</p>
+            </div>
+        </li>
+        <li><img src="{{ STATIC_URL }}mz_lps4/img/z005.jpg">
+        	<div>
+            	<p class="colorff font26 p1"><span class="font16">秦浩能</span><br>Android应用开发学员<br><b class="font16">月薪25K，签约腾讯</b></p>
+                <p class="p2"><a pt="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/cfsp/cfspqhn.mp4"><img src="{{ STATIC_URL }}mz_lps4/images/videoArrowBig.png"></a></p>
+                <p class="colore3 p3">“在麦子老师和班主任的帮助下，我不仅完成了Android开发的课程，给自己的大学生涯画上圆满句号，而且还找到了一份自己满意的工作。”</p>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div class="zy_course_Nbox4" style="display: none;">
+    <p class="font26 color66 p">2000余名直通班学员正在火热学习中</p>
+    <div class="zy_course_Nbox4_div">
+        <div id="raffle_boxR_gun" class="zy_course_Nbox4_gun">
+            <ul id="ul1"></ul>
+            <ul id="ul2"></ul>
+        </div>
+
+    </div>
+</div>
+
+<div class="sectionHots">
+	<p class="textC font40">大家都在学</p>
+    <ul class="sectionHotsList">
+{#        {% for career_course in career_course_list %}#}
+{#            {% ifequal career_course.total_courses 0 %}#}
+{#            {% else %}#}
+{#            <li><a title="{{ career_course.name }}" href="{% url 'course:course_detail' career_course.short_name|lower %}">#}
+{#                <div class="img"><img alt="{{ career_course.name }}" src="{{ career_course.image.url }}"></div>#}
+{#                <div class="font color66">#}
+{#                    <p class="color33 font16 p1">{{ career_course.name }}</p>#}
+{#                    <p>{{ career_course.total_courses }}课程</p>#}
+{#                    <p>{{ career_course.total_days }}天学习时长</p>#}
+{#                    <p class="color99">{{ career_course.student_count }}人正在学习</p>#}
+{#                </div>#}
+{#                </a>#}
+{#            </li>#}
+{#            {% endifequal %}#}
+{#        {% endfor %}#}
+
+            <li><a title="Python Web开发" href="/course/python-px/">
+                <div class="img"><img alt="Python Web开发" src="{{ MEDIA_URL }}course/2015/09/Python-Web%E5%BC%80%E5%8F%91_large.png"></div>
+                <div class="font color66">
+                    <p class="color33 font16 p1">Python Web开发</p>
+                    <p>49课程</p>
+                    <p>364天学习时长</p>
+                    <p class="color99">24108人正在学习</p>
+                </div>
+                </a>
+            </li>
+            <li><a title="Android应用开发" href="/course/android-px/">
+                <div class="img"><img alt="Android应用开发" src="{{ MEDIA_URL }}course/2015/09/Android%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91_large.png"></div>
+                <div class="font color66">
+                    <p class="color33 font16 p1">Android应用开发</p>
+                    <p>44课程</p>
+                    <p>348天学习时长</p>
+                    <p class="color99">29632人正在学习</p>
+                </div>
+                </a>
+            </li>
+            <li><a title="PHP Web开发" href="/course/php-px/">
+                <div class="img"><img alt="PHP Web开发" src="{{ MEDIA_URL }}course/2015/09/PHP-Web%E5%BC%80%E5%8F%91_large.png"></div>
+                <div class="font color66">
+                    <p class="color33 font16 p1">PHP Web开发</p>
+                    <p>57课程</p>
+                    <p>399天学习时长</p>
+                    <p class="color99">16021人正在学习</p>
+                </div>
+                </a>
+            </li>
+            <li><a title="Web前端开发" href="/course/web-px/">
+                <div class="img"><img alt="Web前端开发" src="{{ MEDIA_URL }}course/2015/09/Web%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91_large.png"></div>
+                <div class="font color66">
+                    <p class="color33 font16 p1">Web前端开发</p>
+                    <p>35课程</p>
+                    <p>242天学习时长</p>
+                    <p class="color99">22692人正在学习</p>
+                </div>
+                </a>
+            </li>
+            <li><a title="iOS应用开发" href="/course/ios-px/">
+                <div class="img"><img alt="iOS应用开发" src="{{ MEDIA_URL }}course/2015/09/iOS.png"></div>
+                <div class="font color66">
+                    <p class="color33 font16 p1">iOS应用开发</p>
+                    <p>34课程</p>
+                    <p>308天学习时长</p>
+                    <p class="color99">18797人正在学习</p>
+                </div>
+                </a>
+            </li>
+            <li><a title="UI设计" href="/course/ui-px/">
+                <div class="img"><img alt="UI设计" src="{{ MEDIA_URL }}course/2015/11/ui.jpg"></div>
+                <div class="font color66">
+                    <p class="color33 font16 p1">UI设计</p>
+                    <p>37课程</p>
+                    <p>308天学习时长</p>
+                    <p class="color99">6436人正在学习</p>
+                </div>
+                </a>
+            </li>
+            <li><a title="产品经理" href="/course/npm-px/">
+                <div class="img"><img alt="（新）产品经理" src="{{ MEDIA_URL }}course/2016/05/_large.png"></div>
+                <div class="font color66">
+                    <p class="color33 font16 p1">（新）产品经理</p>
+                    <p>26课程</p>
+                    <p>210天学习时长</p>
+                    <p class="color99">19人正在学习</p>
+                </div>
+                </a>
+            </li>
+            <li><a title="物联网开发" href="/course/iot-px/">
+                <div class="img"><img alt="物联网开发" src="{{ MEDIA_URL }}course/2015/09/%E7%89%A9%E8%81%94%E7%BD%91%E5%BC%80%E5%8F%91_large.png"></div>
+                <div class="font color66">
+                    <p class="color33 font16 p1">物联网开发</p>
+                    <p>28课程</p>
+                    <p>186天学习时长</p>
+                    <p class="color99">4918人正在学习</p>
+                </div>
+                </a>
+            </li>
+            <li><a title="嵌入式系统开发" href="/course/qrs-px/">
+                <div class="img"><img alt="嵌入式系统开发" src="{{ MEDIA_URL }}course/2015/09/%E5%B5%8C%E5%85%A5%E5%BC%8F%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91_large.png"></div>
+                <div class="font color66">
+                    <p class="color33 font16 p1">嵌入式系统开发</p>
+                    <p>37课程</p>
+                    <p>258天学习时长</p>
+                    <p class="color99">7274人正在学习</p>
+                </div>
+                </a>
+            </li>
+            <li><a title="软件测试" href="/course/te-px/">
+                <div class="img"><img alt="软件测试" src="{{ MEDIA_URL }}course/2015/09/test_large.png"></div>
+                <div class="font color66">
+                    <p class="color33 font16 p1">软件测试</p>
+                    <p>31课程</p>
+                    <p>224天学习时长</p>
+                    <p class="color99">5682人正在学习</p>
+                </div>
+                </a>
+            </li>
+            <li><a title="新媒体网络运营" href="/course/op-px/">
+                <div class="img"><img alt="新媒体网络运营" src="{{ MEDIA_URL }}course/2016/09/icon_160_1.png"></div>
+                <div class="font color66">
+                    <p class="color33 font16 p1">新媒体网络运营</p>
+                    <p>9课程</p>
+                    <p>70天学习时长</p>
+                    <p class="color99">5人正在学习</p>
+                </div>
+                </a>
+            </li>
+            <li><a title="平面设计" href="/course/gd-px/">
+                <div class="img"><img alt="平面设计" src="{{ MEDIA_URL }}course/2016/07/pingmian1.png"></div>
+                <div class="font color66">
+                    <p class="color33 font16 p1">平面设计</p>
+                    <p>16课程</p>
+                    <p>112天学习时长</p>
+                    <p class="color99">8人正在学习</p>
+                </div>
+                </a>
+            </li>
+            <li><a title="自动化运维+云计算" href="/course/oam-px/">
+                <div class="img"><img alt="自动化运维+云计算" src="{{ MEDIA_URL }}course/2016/09/icon_160_2.png"></div>
+                <div class="font color66">
+                    <p class="color33 font16 p1">自动化运维+云计算</p>
+                    <p>20课程</p>
+                    <p>154天学习时长</p>
+                    <p class="color99">10人正在学习</p>
+                </div>
+                </a>
+            </li>
+
+    </ul>
+    <p class="textC" style="display: none;"><a class="class53 sectionHotsbtn">如何学习</a></p>
+</div>
+
+<!--分层-->
+<div class="modal fade" id="VideoDemo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-content zy_VideoDemo" style="width: 800px;">
+        <a class="close"></a>
+        <div style="height: 400px;">
+            <video id="microohvideo" class="video-js vjs-default-skin vjs-big-play-centered" autoplay controls preload="none" width="100%" height="100%" poster="">
+                <source src="" type='video/mp4'/>
+            </video>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block sea_script %}
+<script type="text/javascript">
+    zhuge.track('进入企业直通班');
+    seajs.use("/js/lps4/dist/main",function(main){main.loading("newCouse");});
+</script>
+{% endblock %}

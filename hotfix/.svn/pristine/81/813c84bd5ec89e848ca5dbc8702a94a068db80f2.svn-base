@@ -1,0 +1,10 @@
+<div class="modal fade YaHei" id="popup-4" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm" style="width: 540px;">
+        <div class="modal-content">
+            <a class="close"></a>
+            <p>你不能解锁当前任务球,你有任务球尚未完成,请完成后再领取其他任务球</p>
+            <a class="know">知道了</a>
+        </div>
+    </div>
+</div>

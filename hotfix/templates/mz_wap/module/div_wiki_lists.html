@@ -1,0 +1,13 @@
+<ul id="wiki_lists">
+    {% for wiki_item in wiki_item_list %}
+	<li>
+		<a href="{% url 'wiki_item_detail' wiki_item.course_short_name wiki_item.item_short_name %}">
+			<img src="{{ MEDIA_URL }}{{ wiki_item.img_url }}" alt="{{ wiki_item.img_title }}">
+			<div>
+				<h2><span>{{ wiki_item.name }}</span></h2>
+				<p>{{ wiki_item.tidy_content|slice:'150' }}</p>
+			</div>
+		</a>
+	</li>
+    {% endfor %}
+</ul>

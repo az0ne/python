@@ -1,0 +1,27 @@
+{% extends "mz_common/base.html" %}
+{% block title %}我的证书{% endblock %}
+{% block keywords%}{% endblock %}
+{% block description%}{% endblock %}
+{% block second_header %}
+{% include "mz_user/student_header.html" %}
+{% endblock %}
+{% block container %}
+    <div class="container uc-boxb">
+        <div class="uc-h1">证书列表</div>
+        {% if pl %}
+        <div class="row certificate">
+        {% for certificate in pl %}
+              <article class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <div class="certificate-img"><img id="{{ certificate.id }}" src="{{ MEDIA_URL }}{{ certificate.image_url }}"><a href="{% url 'user:student_mycertificate_download' certificate.id %}" class="big-download"><span>{{ certificate.name }}</span><img src="/static/images/big-dn.png"></a></div>
+              </article>
+        {% endfor %}
+        </div>
+        {% else %}
+        <div class="defult_certificate">
+        <span>您还没有获得任何证书</span>
+        </div>
+        {% endif %}
+
+    </div>
+ {% include 'mz_common/pager.html' %}
+{% endblock %}

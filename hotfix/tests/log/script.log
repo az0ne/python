@@ -1,0 +1,1907 @@
+2015-01-20 09:46:02,940 [Thread-2:47472] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:12,660 [Thread-86:42812] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:12,808 [Thread-87:41476] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:13,319 [Thread-90:39892] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:13,483 [Thread-91:44120] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:14,269 [Thread-94:38660] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:14,463 [Thread-95:39440] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:14,608 [Thread-97:48672] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:15,278 [Thread-100:29148] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:15,608 [Thread-102:54004] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:15,780 [Thread-103:44964] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:15,937 [Thread-105:27436] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:16,016 [Thread-106:44220] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:16,155 [Thread-108:47072] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:18,164 [Thread-122:47424] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:30,709 [Thread-125:42896] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:37,552 [Thread-130:45808] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:37,802 [Thread-132:44004] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:37,957 [Thread-133:45500] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:38,177 [Thread-135:42056] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:38,364 [Thread-137:43432] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:38,520 [Thread-139:42660] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:42,036 [Thread-156:48880] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:46:52,213 [Thread-159:28572] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:47:09,931 [Thread-163:55464] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:47:11,548 [Thread-167:44492] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:47:23,114 [Thread-169:41824] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:47:48,348 [Thread-174:46860] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:48:15,071 [Thread-199:41424] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:48:20,502 [Thread-202:43708] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:48:26,463 [Thread-206:46068] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:48:26,602 [Thread-207:44440] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:48:26,713 [Thread-209:33364] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:48:26,868 [Thread-211:23672] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:48:27,165 [Thread-214:44368] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 09:48:29,092 [Thread-233:43596] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 10:17:28,974 [Thread-49:53692] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 10:17:47,680 [Thread-52:23356] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 10:17:57,767 [Thread-54:27336] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 10:18:03,924 [Thread-56:8720] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 10:18:32,255 [Thread-59:3460] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 10:18:55,779 [Thread-62:7188] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 10:19:02,523 [Thread-64:27200] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 10:19:09,611 [Thread-66:56276] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 10:19:20,358 [Thread-68:55844] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 10:19:24,650 [Thread-70:18148] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 10:19:26,108 [Thread-72:22864] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 10:53:04,624 [Thread-3:40384] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 10:53:09,006 [Thread-5:44092] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 10:53:11,947 [Thread-7:44176] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 12:53:18,187 [Thread-9:45708] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 12:53:43,684 [Thread-11:13688] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 12:53:43,690 [Thread-12:41528] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 12:53:43,691 [Thread-13:47464] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 12:53:43,733 [Thread-14:20300] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 12:53:43,744 [Thread-15:49852] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 12:53:43,746 [Thread-16:39716] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 12:53:57,588 [Thread-69:13924] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /backend/index/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_common\decorators.py", line 26, in is_superuser
+    return func(request, **kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_backend\views.py", line 32, in admin_index_view
+    return render(request, 'mz_backend/index.html',locals())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\shortcuts.py", line 50, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\defaulttags.py", line 458, in render
+    six.reraise(*exc_info)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\defaulttags.py", line 444, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=context.current_app)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\urlresolvers.py", line 551, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\urlresolvers.py", line 468, in _reverse_with_prefix
+    (lookup_view_s, args, kwargs, len(patterns), patterns))
+NoReverseMatch: Reverse for 'msg_send_list' with arguments '()' and keyword arguments '{}' not found. 0 pattern(s) tried: []
+2015-01-20 12:53:59,345 [Thread-76:36988] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 12:58:41,757 [Thread-30:43352] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 12:58:45,426 [Thread-31:21636] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /backend/msgbox/list/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_common\decorators.py", line 26, in is_superuser
+    return func(request, **kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_backend\views.py", line 814, in msg_send_list
+    msg_list = paginator.page(current_page)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\paginator.py", line 50, in page
+    number = self.validate_number(number)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\paginator.py", line 39, in validate_number
+    if number > self.num_pages:
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\paginator.py", line 86, in _get_num_pages
+    if self.count == 0 and not self.allow_empty_first_page:
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\paginator.py", line 72, in _get_count
+    self._count = self.object_list.count()
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 338, in count
+    return self.query.get_count(using=self.db)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\query.py", line 436, in get_count
+    number = obj.get_aggregation(using=using)[None]
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\query.py", line 402, in get_aggregation
+    result = query.get_compiler(using).execute_sql(SINGLE)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 786, in execute_sql
+    cursor.execute(sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 174, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 104, in _record
+    return method(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 81, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\mysql\base.py", line 129, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Python27\lib\site-packages\MySQLdb\cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "D:\Python27\lib\site-packages\MySQLdb\connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+ProgrammingError: (1146, "Table 'maiziedu_website.mz_lps_msgbox' doesn't exist")
+2015-01-20 12:59:39,380 [Thread-33:35244] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 12:59:48,704 [Thread-35:50080] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:00:15,599 [Thread-3:33648] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:25,986 [Thread-8:18472] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:25,996 [Thread-9:39112] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:25,999 [Thread-10:46396] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:26,048 [Thread-11:33396] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:33,151 [Thread-28:17860] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:33,236 [Thread-29:35312] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:33,835 [Thread-32:36172] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:34,219 [Thread-34:4252] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:34,305 [Thread-35:35616] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:34,607 [Thread-38:25312] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:34,710 [Thread-39:24736] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:34,881 [Thread-41:11836] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:35,599 [Thread-44:36036] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:35,905 [Thread-46:36208] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:36,055 [Thread-47:42284] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:36,180 [Thread-49:44472] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:36,382 [Thread-51:38504] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:36,457 [Thread-27:31536] [django.request:143] [base:get_response] [WARNING]- Not Found: /backend/inex
+2015-01-20 13:01:40,142 [Thread-54:39436] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:40,653 [Thread-56:36380] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:40,766 [Thread-57:36040] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:40,828 [Thread-58:36064] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:01:43,273 [Thread-83:5968] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:38:05,184 [Thread-2:39132] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:38:05,187 [Thread-3:44872] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:38:05,188 [Thread-4:34188] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:38:05,230 [Thread-5:55052] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:38:09,611 [Thread-10:48540] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:38:09,614 [Thread-11:45448] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:38:15,854 [Thread-29:45472] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:38:30,174 [Thread-53:43636] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:40:32,822 [Thread-3:4908] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:40:32,822 [Thread-2:52416] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:40:32,825 [Thread-4:51320] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:40:32,855 [Thread-5:53720] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:40:41,970 [Thread-24:38300] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:40:55,055 [Thread-48:56060] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:41:24,305 [Thread-65:8200] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 13:41:24,315 [Thread-66:25252] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 14:12:42,157 [Thread-4:13832] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/logout/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 96, in user_logout
+    uc_user_synlogout(request)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 940, in uc_user_synlogout
+    ucsynlogin = client.uc_user_synlogout()
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-01-20 14:12:42,250 [Thread-2:14528] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/logout/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 96, in user_logout
+    uc_user_synlogout(request)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 940, in uc_user_synlogout
+    ucsynlogin = client.uc_user_synlogout()
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-01-20 14:12:43,065 [Thread-3:3352] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/logout/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 96, in user_logout
+    uc_user_synlogout(request)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 940, in uc_user_synlogout
+    ucsynlogin = client.uc_user_synlogout()
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-01-20 14:12:43,180 [Thread-6:4244] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/logout/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 96, in user_logout
+    uc_user_synlogout(request)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 940, in uc_user_synlogout
+    ucsynlogin = client.uc_user_synlogout()
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-01-20 14:12:45,707 [Thread-5:45720] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/logout/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 96, in user_logout
+    uc_user_synlogout(request)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 940, in uc_user_synlogout
+    ucsynlogin = client.uc_user_synlogout()
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-01-20 14:12:46,302 [Thread-8:13688] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/logout/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 96, in user_logout
+    uc_user_synlogout(request)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 940, in uc_user_synlogout
+    ucsynlogin = client.uc_user_synlogout()
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-01-20 14:12:46,573 [Thread-7:40512] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/logout/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 96, in user_logout
+    uc_user_synlogout(request)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 940, in uc_user_synlogout
+    ucsynlogin = client.uc_user_synlogout()
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-01-20 14:12:49,525 [Thread-10:31304] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/logout/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 96, in user_logout
+    uc_user_synlogout(request)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 940, in uc_user_synlogout
+    ucsynlogin = client.uc_user_synlogout()
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-01-20 14:12:49,838 [Thread-9:53920] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/logout/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 96, in user_logout
+    uc_user_synlogout(request)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 940, in uc_user_synlogout
+    ucsynlogin = client.uc_user_synlogout()
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-01-20 14:12:53,505 [Thread-11:42320] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 14:13:15,463 [Thread-12:44092] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-20 14:13:51,265 [Thread-28:54848] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/register/email/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 120, in email_register
+    common_register(request, email, password, "新网站")
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 161, in common_register
+    uc_reg_result = uc_user_register(request, user.nick_name, password, account)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 919, in uc_user_register
+    return client.uc_user_register(username=username, password=password, email=email)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-01-20 14:14:15,586 [Thread-32:12260] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/register/email/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 120, in email_register
+    common_register(request, email, password, "新网站")
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 161, in common_register
+    uc_reg_result = uc_user_register(request, user.nick_name, password, account)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 919, in uc_user_register
+    return client.uc_user_register(username=username, password=password, email=email)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-01-21 11:34:42,394 [Thread-72:42768] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 13:12:02,858 [Thread-2:8276] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 13:12:02,859 [Thread-3:8280] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 13:12:02,861 [Thread-4:8284] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 13:12:02,994 [Thread-8:8300] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 13:12:34,730 [Thread-63:8840] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 13:12:34,739 [Thread-64:8844] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 13:12:37,871 [Thread-91:8960] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:03:48,076 [Thread-2:1640] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /backend/msgbox/list/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_common\decorators.py", line 26, in is_superuser
+    return func(request, **kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_backend\views.py", line 821, in msg_send_list
+    return render(request, 'mz_backend/msg_send_list.html', locals())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\shortcuts.py", line 50, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\defaulttags.py", line 162, in render
+    len_values = len(values)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\paginator.py", line 117, in __len__
+    return len(self.object_list)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 122, in __len__
+    self._fetch_all()
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 966, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 265, in iterator
+    for row in compiler.results_iter():
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 700, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 786, in execute_sql
+    cursor.execute(sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 174, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 104, in _record
+    return method(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 81, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\mysql\base.py", line 129, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Python27\lib\site-packages\MySQLdb\cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "D:\Python27\lib\site-packages\MySQLdb\connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (1054, "Unknown column 'mz_lps_msgbox.is_sendmsg' in 'field list'")
+2015-01-21 14:05:05,388 [Thread-3:192] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /backend/msgbox/list/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_common\decorators.py", line 26, in is_superuser
+    return func(request, **kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_backend\views.py", line 821, in msg_send_list
+    return render(request, 'mz_backend/msg_send_list.html', locals())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\shortcuts.py", line 50, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\defaulttags.py", line 162, in render
+    len_values = len(values)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\paginator.py", line 117, in __len__
+    return len(self.object_list)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 122, in __len__
+    self._fetch_all()
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 966, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 265, in iterator
+    for row in compiler.results_iter():
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 700, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 786, in execute_sql
+    cursor.execute(sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 174, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 104, in _record
+    return method(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 81, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\mysql\base.py", line 129, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Python27\lib\site-packages\MySQLdb\cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "D:\Python27\lib\site-packages\MySQLdb\connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (1054, "Unknown column 'mz_lps_msgbox.is_sendmsg' in 'field list'")
+2015-01-21 14:05:10,322 [Thread-4:1248] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /backend/msgbox/list/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_common\decorators.py", line 26, in is_superuser
+    return func(request, **kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_backend\views.py", line 821, in msg_send_list
+    return render(request, 'mz_backend/msg_send_list.html', locals())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\shortcuts.py", line 50, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\defaulttags.py", line 162, in render
+    len_values = len(values)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\paginator.py", line 117, in __len__
+    return len(self.object_list)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 122, in __len__
+    self._fetch_all()
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 966, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 265, in iterator
+    for row in compiler.results_iter():
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 700, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 786, in execute_sql
+    cursor.execute(sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 174, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 104, in _record
+    return method(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 81, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\mysql\base.py", line 129, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Python27\lib\site-packages\MySQLdb\cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "D:\Python27\lib\site-packages\MySQLdb\connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (1054, "Unknown column 'mz_lps_msgbox.is_sendmsg' in 'field list'")
+2015-01-21 14:05:14,792 [Thread-5:8884] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /backend/msgbox/list/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_common\decorators.py", line 26, in is_superuser
+    return func(request, **kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_backend\views.py", line 821, in msg_send_list
+    return render(request, 'mz_backend/msg_send_list.html', locals())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\shortcuts.py", line 50, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\defaulttags.py", line 162, in render
+    len_values = len(values)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\paginator.py", line 117, in __len__
+    return len(self.object_list)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 122, in __len__
+    self._fetch_all()
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 966, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 265, in iterator
+    for row in compiler.results_iter():
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 700, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 786, in execute_sql
+    cursor.execute(sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 174, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 104, in _record
+    return method(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 81, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\mysql\base.py", line 129, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Python27\lib\site-packages\MySQLdb\cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "D:\Python27\lib\site-packages\MySQLdb\connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (1054, "Unknown column 'mz_lps_msgbox.is_sendmsg' in 'field list'")
+2015-01-21 14:05:16,088 [Thread-6:1248] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:05:19,811 [Thread-14:8508] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:06:12,168 [Thread-16:8708] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:06:26,851 [Thread-21:8360] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:06:26,857 [Thread-22:2320] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:06:26,858 [Thread-23:7696] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:06:26,970 [Thread-24:1132] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:06:27,276 [Thread-29:5616] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:06:27,278 [Thread-30:4484] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:06:32,315 [Thread-40:3796] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /captcha/image/7f4019d29f85445ac43256ae302226a99cce9966/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\captcha\views.py", line 59, in captcha_image
+    image = Image.new('RGB', size, settings.CAPTCHA_BACKGROUND_COLOR)
+  File "D:\Python27\lib\site-packages\PIL\Image.py", line 1996, in new
+    color = ImageColor.getcolor(color, mode)
+  File "D:\Python27\lib\site-packages\PIL\ImageColor.py", line 115, in getcolor
+    if Image.getmodebase(mode) == "L":
+  File "D:\Python27\lib\site-packages\PIL\Image.py", line 290, in getmodebase
+    return ImageMode.getmode(mode).basemode
+  File "D:\Python27\lib\site-packages\PIL\ImageMode.py", line 50, in getmode
+    return _modes[mode]
+KeyError: 'RGB'
+2015-01-21 14:06:55,381 [Thread-120:4484] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:06:55,592 [Thread-121:6840] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /backend/msgbox/list/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_common\decorators.py", line 26, in is_superuser
+    return func(request, **kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_backend\views.py", line 821, in msg_send_list
+    return render(request, 'mz_backend/msg_send_list.html', locals())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\shortcuts.py", line 50, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\defaulttags.py", line 162, in render
+    len_values = len(values)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\paginator.py", line 117, in __len__
+    return len(self.object_list)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 122, in __len__
+    self._fetch_all()
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 966, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 265, in iterator
+    for row in compiler.results_iter():
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 700, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 786, in execute_sql
+    cursor.execute(sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 174, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 104, in _record
+    return method(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 81, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\mysql\base.py", line 129, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Python27\lib\site-packages\MySQLdb\cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "D:\Python27\lib\site-packages\MySQLdb\connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (1054, "Unknown column 'mz_lps_msgbox.is_sendmsg' in 'field list'")
+2015-01-21 14:13:25,813 [Thread-2:200] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /backend/msgbox/list/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_common\decorators.py", line 26, in is_superuser
+    return func(request, **kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_backend\views.py", line 821, in msg_send_list
+    return render(request, 'mz_backend/msg_send_list.html', locals())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\shortcuts.py", line 50, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\defaulttags.py", line 162, in render
+    len_values = len(values)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\paginator.py", line 117, in __len__
+    return len(self.object_list)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 122, in __len__
+    self._fetch_all()
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 966, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 265, in iterator
+    for row in compiler.results_iter():
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 700, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 786, in execute_sql
+    cursor.execute(sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 174, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 104, in _record
+    return method(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 81, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\mysql\base.py", line 129, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Python27\lib\site-packages\MySQLdb\cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "D:\Python27\lib\site-packages\MySQLdb\connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (1054, "Unknown column 'mz_lps_msgbox.is_sendmsg' in 'field list'")
+2015-01-21 14:13:48,528 [Thread-3:7704] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /backend/msgbox/list/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_common\decorators.py", line 26, in is_superuser
+    return func(request, **kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_backend\views.py", line 821, in msg_send_list
+    return render(request, 'mz_backend/msg_send_list.html', locals())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\shortcuts.py", line 50, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\defaulttags.py", line 162, in render
+    len_values = len(values)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\paginator.py", line 117, in __len__
+    return len(self.object_list)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 122, in __len__
+    self._fetch_all()
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 966, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 265, in iterator
+    for row in compiler.results_iter():
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 700, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 786, in execute_sql
+    cursor.execute(sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 174, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 104, in _record
+    return method(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 81, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\mysql\base.py", line 129, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Python27\lib\site-packages\MySQLdb\cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "D:\Python27\lib\site-packages\MySQLdb\connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (1054, "Unknown column 'mz_lps_msgbox.is_sendmsg' in 'field list'")
+2015-01-21 14:13:49,361 [Thread-4:5716] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:13:52,015 [Thread-5:8876] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /backend/msgbox/list/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_common\decorators.py", line 26, in is_superuser
+    return func(request, **kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_backend\views.py", line 821, in msg_send_list
+    return render(request, 'mz_backend/msg_send_list.html', locals())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\shortcuts.py", line 50, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\defaulttags.py", line 162, in render
+    len_values = len(values)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\paginator.py", line 117, in __len__
+    return len(self.object_list)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 122, in __len__
+    self._fetch_all()
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 966, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 265, in iterator
+    for row in compiler.results_iter():
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 700, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 786, in execute_sql
+    cursor.execute(sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 174, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 104, in _record
+    return method(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 81, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\mysql\base.py", line 129, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Python27\lib\site-packages\MySQLdb\cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "D:\Python27\lib\site-packages\MySQLdb\connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (1054, "Unknown column 'mz_lps_msgbox.is_sendmsg' in 'field list'")
+2015-01-21 14:13:52,862 [Thread-6:8976] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:13:59,667 [Thread-11:5192] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:13:59,674 [Thread-12:8204] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:13:59,676 [Thread-13:7036] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:13:59,914 [Thread-14:5588] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:14:31,400 [Thread-77:9552] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:14:32,831 [Thread-79:9560] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:14:32,832 [Thread-80:9564] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:14:36,730 [Thread-112:9696] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:14:36,880 [Thread-113:9700] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /backend/msgbox/list/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_common\decorators.py", line 26, in is_superuser
+    return func(request, **kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_backend\views.py", line 821, in msg_send_list
+    return render(request, 'mz_backend/msg_send_list.html', locals())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\shortcuts.py", line 50, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\defaulttags.py", line 162, in render
+    len_values = len(values)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\paginator.py", line 117, in __len__
+    return len(self.object_list)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 122, in __len__
+    self._fetch_all()
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 966, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 265, in iterator
+    for row in compiler.results_iter():
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 700, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 786, in execute_sql
+    cursor.execute(sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 174, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 104, in _record
+    return method(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 81, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\mysql\base.py", line 129, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Python27\lib\site-packages\MySQLdb\cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "D:\Python27\lib\site-packages\MySQLdb\connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (1054, "Unknown column 'mz_lps_msgbox.is_sendmsg' in 'field list'")
+2015-01-21 14:27:06,502 [Thread-2:10608] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /backend/msgbox/list/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_common\decorators.py", line 26, in is_superuser
+    return func(request, **kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_backend\views.py", line 821, in msg_send_list
+    return render(request, 'mz_backend/msg_send_list.html', locals())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\shortcuts.py", line 50, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\defaulttags.py", line 162, in render
+    len_values = len(values)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\paginator.py", line 117, in __len__
+    return len(self.object_list)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 122, in __len__
+    self._fetch_all()
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 966, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 265, in iterator
+    for row in compiler.results_iter():
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 700, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 786, in execute_sql
+    cursor.execute(sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 174, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 104, in _record
+    return method(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 81, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\mysql\base.py", line 129, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Python27\lib\site-packages\MySQLdb\cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "D:\Python27\lib\site-packages\MySQLdb\connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (1054, "Unknown column 'mz_lps_msgbox.is_sendmsg' in 'field list'")
+2015-01-21 14:27:18,453 [Thread-3:10980] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:27:18,480 [Thread-4:10984] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:27:18,484 [Thread-5:10988] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:27:18,917 [Thread-9:11008] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:27:18,921 [Thread-10:11012] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:27:18,924 [Thread-11:11016] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:27:50,171 [Thread-60:2668] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 14:27:50,177 [Thread-59:9380] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /backend/msgbox/list/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_common\decorators.py", line 26, in is_superuser
+    return func(request, **kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_backend\views.py", line 821, in msg_send_list
+    return render(request, 'mz_backend/msg_send_list.html', locals())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\shortcuts.py", line 50, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\defaulttags.py", line 162, in render
+    len_values = len(values)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\paginator.py", line 117, in __len__
+    return len(self.object_list)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 122, in __len__
+    self._fetch_all()
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 966, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 265, in iterator
+    for row in compiler.results_iter():
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 700, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 786, in execute_sql
+    cursor.execute(sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 174, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 104, in _record
+    return method(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 81, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\mysql\base.py", line 129, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Python27\lib\site-packages\MySQLdb\cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "D:\Python27\lib\site-packages\MySQLdb\connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (1054, "Unknown column 'mz_lps_msgbox.is_sendmsg' in 'field list'")
+2015-01-21 14:46:49,503 [Thread-18:6500] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 15:34:13,967 [Thread-26:9992] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 15:34:15,775 [Thread-27:6672] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /backend/msgbox/list/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_common\decorators.py", line 26, in is_superuser
+    return func(request, **kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_backend\views.py", line 828, in msg_send_list
+    return render(request, 'mz_backend/msg_send_list.html', locals())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\shortcuts.py", line 50, in render
+    return HttpResponse(loader.render_to_string(*args, **kwargs),
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader.py", line 178, in render_to_string
+    return t.render(context_instance)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 148, in render
+    return self._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 126, in render
+    return compiled_parent._render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\test\utils.py", line 88, in instrumented_test_render
+    return self.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\loader_tags.py", line 65, in render
+    result = block.nodelist.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\base.py", line 844, in render
+    bit = self.render_node(node, context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\debug.py", line 80, in render_node
+    return node.render(context)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\template\defaulttags.py", line 162, in render
+    len_values = len(values)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\paginator.py", line 117, in __len__
+    return len(self.object_list)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 122, in __len__
+    self._fetch_all()
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 966, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\query.py", line 265, in iterator
+    for row in compiler.results_iter():
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 700, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\models\sql\compiler.py", line 786, in execute_sql
+    cursor.execute(sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 174, in execute
+    return self._record(self.cursor.execute, sql, params)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\debug_toolbar\panels\sql\tracking.py", line 104, in _record
+    return method(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 81, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\utils.py", line 94, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\utils.py", line 65, in execute
+    return self.cursor.execute(sql, params)
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\db\backends\mysql\base.py", line 129, in execute
+    return self.cursor.execute(query, args)
+  File "D:\Python27\lib\site-packages\MySQLdb\cursors.py", line 201, in execute
+    self.errorhandler(self, exc, value)
+  File "D:\Python27\lib\site-packages\MySQLdb\connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+OperationalError: (1054, "Unknown column 'mz_lps_msgbox.is_sendmsg' in 'field list'")
+2015-01-21 16:36:15,509 [Thread-50:9908] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:36:15,540 [Thread-51:8636] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:36:15,549 [Thread-52:6516] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:36:15,559 [Thread-53:9812] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:36:22,339 [Thread-63:10848] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:36:22,342 [Thread-64:6428] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:36:22,716 [Thread-67:1652] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:36:22,835 [Thread-68:9672] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:36:23,059 [Thread-70:9284] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:36:23,134 [Thread-72:9348] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:36:25,174 [Thread-75:7656] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:36:25,278 [Thread-76:9340] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:36:25,480 [Thread-78:9748] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:36:25,704 [Thread-80:9368] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:36:30,000 [Thread-106:3904] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:40:08,095 [Thread-8:10448] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:40:08,095 [Thread-9:9020] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:40:08,095 [Thread-7:10212] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:40:08,095 [Thread-10:9556] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:40:11,694 [Thread-15:8136] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:40:11,697 [Thread-16:2348] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:40:29,200 [Thread-50:11136] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 16:51:44,871 [Thread-30:11044] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/logout/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 96, in user_logout
+    uc_user_synlogout(request)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 932, in uc_user_synlogout
+    ucsynlogin = client.uc_user_synlogout()
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-01-21 16:51:47,055 [Thread-29:8912] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/logout/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 96, in user_logout
+    uc_user_synlogout(request)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 932, in uc_user_synlogout
+    ucsynlogin = client.uc_user_synlogout()
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-01-21 16:51:48,154 [Thread-31:7680] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/logout/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 96, in user_logout
+    uc_user_synlogout(request)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 932, in uc_user_synlogout
+    ucsynlogin = client.uc_user_synlogout()
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-01-21 16:52:49,990 [Thread-57:668] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/register/email/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 120, in email_register
+    common_register(request, email, password, "新网站")
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 161, in common_register
+    uc_reg_result = uc_user_register(request, user.nick_name, password, account)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 911, in uc_user_register
+    return client.uc_user_register(username=username, password=password, email=email)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-01-21 16:53:19,191 [Thread-59:1404] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/register/email/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 120, in email_register
+    common_register(request, email, password, "新网站")
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 161, in common_register
+    uc_reg_result = uc_user_register(request, user.nick_name, password, account)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 911, in uc_user_register
+    return client.uc_user_register(username=username, password=password, email=email)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-01-21 17:00:08,598 [Thread-11:8844] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /captcha/image/49bb0f4b116c0f5967379d8b552c1e64be90925a/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\libs\captcha\views.py", line 59, in captcha_image
+    image = Image.new('RGB', size, settings.CAPTCHA_BACKGROUND_COLOR)
+  File "D:\Python27\lib\site-packages\PIL\Image.py", line 1996, in new
+    color = ImageColor.getcolor(color, mode)
+  File "D:\Python27\lib\site-packages\PIL\ImageColor.py", line 115, in getcolor
+    if Image.getmodebase(mode) == "L":
+  File "D:\Python27\lib\site-packages\PIL\Image.py", line 290, in getmodebase
+    return ImageMode.getmode(mode).basemode
+  File "D:\Python27\lib\site-packages\PIL\ImageMode.py", line 50, in getmode
+    return _modes[mode]
+KeyError: 'RGB'
+2015-01-21 17:00:25,326 [Thread-54:8212] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 17:00:25,428 [Thread-55:2752] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 17:00:25,717 [Thread-58:9996] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 17:00:26,861 [Thread-60:7344] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 17:00:27,551 [Thread-62:6828] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 17:00:27,628 [Thread-63:6276] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 17:00:27,910 [Thread-66:6844] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 17:00:28,046 [Thread-67:6236] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 17:00:28,200 [Thread-69:3384] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 17:00:28,388 [Thread-71:9300] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-21 17:00:55,530 [Thread-107:9320] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-26 14:12:00,822 [Thread-91:6316] [django.request:143] [base:get_response] [WARNING]- Not Found: /backend/xadmin
+2015-01-26 14:12:16,467 [Thread-113:4252] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-01-26 14:12:21,772 [Thread-122:1528] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-02-05 13:08:27,196 [Thread-34:12668] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/flower.jpg
+2015-02-05 13:08:47,799 [Thread-80:9556] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/flower.jpg
+2015-02-05 13:08:52,055 [Thread-96:12972] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/flower.jpg
+2015-02-05 13:09:17,946 [Thread-130:7612] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/flower.jpg
+2015-02-05 13:27:18,250 [Thread-330:8700] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/flower.jpg
+2015-02-05 13:28:17,036 [Thread-333:1896] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/flower.jpg
+2015-02-05 13:28:53,312 [Thread-364:4300] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/flower.jpg
+2015-02-05 14:09:23,529 [Thread-391:9764] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/flower.jpg
+2015-02-05 14:10:12,407 [Thread-422:11664] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/flower.jpg
+2015-02-05 14:11:14,546 [Thread-478:7232] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/flower.jpg
+2015-02-05 14:11:50,052 [Thread-4:12048] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/flower.jpg
+2015-02-05 14:13:00,520 [Thread-37:5956] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/flower.jpg
+2015-02-05 14:13:23,006 [Thread-51:13276] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/logout/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 96, in user_logout
+    uc_user_synlogout(request)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 932, in uc_user_synlogout
+    ucsynlogin = client.uc_user_synlogout()
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-02-05 14:13:43,384 [Thread-56:9948] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/flower.jpg
+2015-02-05 14:17:10,576 [Thread-31:13760] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/flower.jpg
+2015-02-05 15:06:24,207 [Thread-5:13992] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/重塑教育.png
+2015-02-05 15:06:24,209 [Thread-6:5044] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/企业直通班.jpg
+2015-02-05 15:06:24,209 [Thread-7:524] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/获奖.jpg
+2015-02-05 15:06:24,246 [Thread-8:13880] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/网盟参考图片.jpg
+2015-02-05 15:06:24,250 [Thread-9:9264] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/ad0-banner.jpg
+2015-02-05 15:06:24,298 [Thread-13:6876] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/王老师_HjugzF9.jpg
+2015-02-05 15:06:26,881 [Thread-26:12336] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/Sundy.jpg
+2015-02-05 15:06:26,885 [Thread-27:8364] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/陈老师220.jpg
+2015-02-05 15:06:26,910 [Thread-28:12404] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/杨丰盛-1.jpg
+2015-02-05 15:06:27,413 [Thread-29:9684] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/杨丰盛.jpg
+2015-02-05 15:06:27,414 [Thread-30:11472] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/石220.jpg
+2015-02-05 15:06:27,914 [Thread-31:13784] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/林政220.jpg
+2015-02-05 15:06:28,424 [Thread-33:2092] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/项目实战之快递助手.jpg
+2015-02-05 15:06:28,427 [Thread-34:10788] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/项目实战.jpg
+2015-02-05 15:06:28,915 [Thread-35:4184] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/项目实战之随手涂鸦记事.jpg
+2015-02-05 15:06:28,917 [Thread-36:5944] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/项目实战之多功能时钟.jpg
+2015-02-05 15:06:37,259 [Thread-43:9444] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/wp8应用开发总结.jpg
+2015-02-05 15:06:37,765 [Thread-44:9000] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/多任务并行编程.jpg
+2015-02-05 15:06:37,766 [Thread-45:7444] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/wp8应用优化及提交市场.jpg
+2015-02-05 15:06:38,260 [Thread-46:11288] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/MVVM模式及程序架构.jpg
+2015-02-05 15:06:38,263 [Thread-47:4476] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/1秒学Swift语言-坐标系学习法.jpg
+2015-02-05 15:06:38,759 [Thread-48:14132] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/Java-语言基础.jpg
+2015-02-05 15:06:38,762 [Thread-49:5076] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/9.-Android-的基础UI控件_7DTHjU3.jpg
+2015-02-05 15:06:39,263 [Thread-50:11952] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/2嵌入式C语言高级_语法概述_BcCq8gS.jpg
+2015-02-05 15:06:39,757 [Thread-51:5696] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/3iOS开发玩转界面-UIKit.jpg
+2015-02-05 15:06:39,763 [Thread-52:6680] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/5嵌入式linux操作系统基础.jpg
+2015-02-05 15:06:49,765 [Thread-54:6652] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/2iOS开发快速入门.jpg
+2015-02-05 15:06:50,256 [Thread-55:11516] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/16.-Android-网络编程.jpg
+2015-02-05 15:06:50,259 [Thread-56:12044] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/1嵌入式开发环境搭建初级_Ng0dtVn.jpg
+2015-02-05 15:06:50,753 [Thread-57:12484] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/Eclipse-IDE-使用技巧.jpg
+2015-02-05 15:06:50,756 [Thread-58:13896] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/part1-互联网发展和基础.jpg
+2015-02-05 15:06:51,283 [Thread-59:8204] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/SVN--Git-版本控制.jpg
+2015-02-05 15:06:51,290 [Thread-60:12184] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/2嵌入式C语言高级_语法概述_SrZQvor.jpg
+2015-02-05 15:06:51,759 [Thread-61:7968] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/part2-互联网产品及产品经理.jpg
+2015-02-05 15:06:58,648 [Thread-92:8928] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/707b8430-8c01-11e4-b2ae-525400f5e194_big.jpg
+2015-02-05 15:06:58,650 [Thread-93:980] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/物联网.png
+2015-02-05 15:06:58,651 [Thread-94:9180] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/ios开发工程师_tQEO92m.png
+2015-02-05 15:06:58,654 [Thread-95:5428] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/安卓工程师开发_d3aALpK.png
+2015-02-05 15:06:58,658 [Thread-96:13620] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/嵌入式应用.png
+2015-02-05 15:07:10,483 [Thread-109:12060] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/707b8430-8c01-11e4-b2ae-525400f5e194_big.jpg
+2015-02-05 15:07:10,483 [Thread-110:10320] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/manage.png
+2015-02-05 15:07:10,484 [Thread-111:11588] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/ios开发工程师_tQEO92m.png
+2015-02-05 15:07:10,486 [Thread-112:5140] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/安卓工程师开发_d3aALpK.png
+2015-02-05 15:07:10,489 [Thread-113:4944] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/嵌入式底层驱动.png
+2015-02-05 15:07:10,490 [Thread-114:5800] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/物联网.png
+2015-02-05 15:07:10,993 [Thread-115:12952] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/嵌入式应用.png
+2015-02-05 15:07:16,526 [Thread-116:5388] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/707b8430-8c01-11e4-b2ae-525400f5e194_big.jpg
+2015-02-05 15:07:16,555 [Thread-118:4168] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/Java-语言基础.jpg
+2015-02-05 15:07:16,558 [Thread-119:11716] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/Java-for-android.jpg
+2015-02-05 15:07:16,559 [Thread-120:13152] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/Eclipse-IDE-使用技巧.jpg
+2015-02-05 15:07:16,562 [Thread-121:216] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/4.-Android-编码规范及代码风格.jpg
+2015-02-05 15:07:16,565 [Thread-122:4328] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/SVN--Git-版本控制.jpg
+2015-02-05 15:07:19,108 [Thread-129:1484] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/Android-App-开发环境搭建和配置.jpg
+2015-02-05 15:07:19,604 [Thread-131:11856] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/7.-Android-App-开发起手式-HelloWorld二三事.jpg
+2015-02-05 15:07:19,605 [Thread-132:7764] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/8.-Android-的面孔-Activity.jpg
+2015-02-05 15:07:20,115 [Thread-133:13360] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/9.-Android-的基础UI控件_7DTHjU3.jpg
+2015-02-05 15:07:20,117 [Thread-134:10348] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/10.-实战项目一.jpg
+2015-02-05 15:07:20,611 [Thread-135:14100] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/13.-Android-Service--Broadcast.jpg
+2015-02-05 15:07:25,552 [Thread-136:13900] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/12.Android-存储及数据操作.jpg
+2015-02-05 15:07:26,062 [Thread-137:4480] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/15.-Android-多线程及异步任务.jpg
+2015-02-05 15:07:26,063 [Thread-138:4920] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/14.-Android-ContentProvider_uHHLXLU.jpg
+2015-02-05 15:07:26,562 [Thread-139:5416] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/16.-Android-网络编程.jpg
+2015-02-05 15:07:26,565 [Thread-140:13872] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/11.-Android-高级UI.jpg
+2015-02-05 15:07:27,069 [Thread-141:14124] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/17.-实战项目2.jpg
+2015-02-05 15:07:27,072 [Thread-142:13564] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/27.-Android-应用部署与发布.jpg
+2015-02-05 15:07:35,973 [Thread-147:7572] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/707b8430-8c01-11e4-b2ae-525400f5e194_big.jpg
+2015-02-05 15:07:36,072 [Thread-161:12020] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/707b8430-8c01-11e4-b2ae-525400f5e194_small.jpg
+2015-02-05 15:07:36,073 [Thread-162:10044] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/陈老师104.jpg
+2015-02-05 15:07:42,724 [Thread-177:3240] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/707b8430-8c01-11e4-b2ae-525400f5e194_big.jpg
+2015-02-05 15:07:42,730 [Thread-178:13372] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/物联网.png
+2015-02-05 15:07:42,732 [Thread-179:10312] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/ios开发工程师_tQEO92m.png
+2015-02-05 15:07:42,733 [Thread-180:13248] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/安卓工程师开发_d3aALpK.png
+2015-02-05 15:07:42,736 [Thread-181:6868] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/嵌入式应用.png
+2015-02-05 15:07:46,747 [Thread-184:8768] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/11/f013ff70-72dd-11e4-9829-525400f5e194_small.jpg
+2015-02-05 15:07:46,747 [Thread-185:13276] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/982259a0-7eb4-11e4-b6b0-525400f5e194_small.jpg
+2015-02-05 15:07:46,747 [Thread-186:11748] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/707b8430-8c01-11e4-b2ae-525400f5e194_big.jpg
+2015-02-05 15:08:00,760 [Thread-189:3084] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/707b8430-8c01-11e4-b2ae-525400f5e194_big.jpg
+2015-02-05 17:01:20,148 [Thread-13:7076] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/logout/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 96, in user_logout
+    uc_user_synlogout(request)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 937, in uc_user_synlogout
+    ucsynlogin = client.uc_user_synlogout()
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-02-05 17:01:36,401 [Thread-14:13664] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/logout/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 96, in user_logout
+    uc_user_synlogout(request)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 937, in uc_user_synlogout
+    ucsynlogin = client.uc_user_synlogout()
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-02-05 17:01:56,220 [Thread-20:5360] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/企业直通班.jpg
+2015-02-05 17:01:56,220 [Thread-22:6792] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/重塑教育.png
+2015-02-05 17:01:56,220 [Thread-21:9232] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/获奖.jpg
+2015-02-05 17:01:56,221 [Thread-18:8924] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/ad0-banner.jpg
+2015-02-05 17:01:56,221 [Thread-19:6048] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/网盟参考图片.jpg
+2015-02-05 17:01:56,226 [Thread-24:8900] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/王老师_HjugzF9.jpg
+2015-02-05 17:01:56,812 [Thread-25:5856] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/Sundy.jpg
+2015-02-05 17:01:56,816 [Thread-26:6556] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/陈老师220.jpg
+2015-02-05 17:01:57,426 [Thread-27:1512] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/杨丰盛-1.jpg
+2015-02-05 17:01:57,430 [Thread-28:14148] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/杨丰盛.jpg
+2015-02-05 17:01:57,868 [Thread-29:856] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/林政220.jpg
+2015-02-05 17:01:57,872 [Thread-30:13344] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/石220.jpg
+2015-02-05 17:02:38,571 [Thread-39:6624] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/项目实战.jpg
+2015-02-05 17:02:39,131 [Thread-40:2952] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/项目实战之快递助手.jpg
+2015-02-05 17:02:39,138 [Thread-41:7532] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/项目实战之随手涂鸦记事.jpg
+2015-02-05 17:03:08,865 [Thread-72:8920] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/982259a0-7eb4-11e4-b6b0-525400f5e194_big.jpg
+2015-02-05 17:03:08,867 [Thread-73:6736] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/重塑教育.png
+2015-02-05 17:03:08,868 [Thread-74:10832] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/企业直通班.jpg
+2015-02-05 17:03:08,885 [Thread-75:13688] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/获奖.jpg
+2015-02-05 17:03:08,966 [Thread-80:5168] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/网盟参考图片.jpg
+2015-02-05 17:03:08,970 [Thread-81:14004] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/ad0-banner.jpg
+2015-02-05 17:03:13,415 [Thread-96:10312] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/Sundy.jpg
+2015-02-05 17:03:13,420 [Thread-97:3256] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/王老师_HjugzF9.jpg
+2015-02-05 17:03:13,963 [Thread-98:14240] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/杨丰盛-1.jpg
+2015-02-05 17:03:13,966 [Thread-99:10088] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/陈老师220.jpg
+2015-02-05 17:03:14,470 [Thread-100:6964] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/杨丰盛.jpg
+2015-02-05 17:03:14,474 [Thread-101:12284] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/石220.jpg
+2015-02-05 17:03:57,530 [Thread-114:4548] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/982259a0-7eb4-11e4-b6b0-525400f5e194_big.jpg
+2015-02-05 17:03:57,532 [Thread-115:11360] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/wp开发.png
+2015-02-05 17:03:57,532 [Thread-113:3596] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/嵌入式应用.png
+2015-02-05 17:03:57,533 [Thread-116:12916] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/安卓工程师开发_d3aALpK.png
+2015-02-05 17:03:57,533 [Thread-117:6852] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/ios开发工程师_tQEO92m.png
+2015-02-05 17:03:57,535 [Thread-118:6212] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/cocos2dx工程师.png
+2015-02-05 17:03:58,257 [Thread-120:9352] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/manage.png
+2015-02-05 17:04:35,461 [Thread-124:10192] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/982259a0-7eb4-11e4-b6b0-525400f5e194_big.jpg
+2015-02-05 17:04:49,164 [Thread-128:10472] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/982259a0-7eb4-11e4-b6b0-525400f5e194_big.jpg
+2015-02-05 17:04:49,164 [Thread-130:9500] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/manage.png
+2015-02-05 17:04:49,165 [Thread-129:3060] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/嵌入式应用.png
+2015-02-05 17:04:49,165 [Thread-132:1980] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/安卓工程师开发_d3aALpK.png
+2015-02-05 17:04:49,165 [Thread-131:8692] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/wp开发.png
+2015-02-05 17:04:49,171 [Thread-133:13980] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/ios开发工程师_tQEO92m.png
+2015-02-05 17:04:49,720 [Thread-134:10748] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/cocos2dx工程师.png
+2015-02-05 17:06:07,591 [Thread-138:12464] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/982259a0-7eb4-11e4-b6b0-525400f5e194_big.jpg
+2015-02-05 17:06:43,094 [Thread-141:3292] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/logout/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 96, in user_logout
+    uc_user_synlogout(request)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 937, in uc_user_synlogout
+    ucsynlogin = client.uc_user_synlogout()
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-02-05 17:07:06,204 [Thread-143:12760] [django.request:143] [base:get_response] [WARNING]- Not Found: /favicon.ico
+2015-02-05 17:08:19,206 [Thread-150:8864] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/企业直通班.jpg
+2015-02-05 17:08:19,206 [Thread-149:2692] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/重塑教育.png
+2015-02-05 17:08:19,206 [Thread-151:5564] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/获奖.jpg
+2015-02-05 17:08:19,210 [Thread-152:10288] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/网盟参考图片.jpg
+2015-02-05 17:08:19,213 [Thread-153:5996] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/ad0-banner.jpg
+2015-02-05 17:08:19,214 [Thread-154:7724] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/王老师_HjugzF9.jpg
+2015-02-05 17:08:19,918 [Thread-155:6924] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/Sundy.jpg
+2015-02-05 17:08:19,921 [Thread-156:6844] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/陈老师220.jpg
+2015-02-05 17:08:20,394 [Thread-157:13196] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/杨丰盛.jpg
+2015-02-05 17:08:20,397 [Thread-158:9180] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/杨丰盛-1.jpg
+2015-02-05 17:08:20,868 [Thread-159:6788] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/林政220.jpg
+2015-02-05 17:08:20,874 [Thread-160:14100] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/石220.jpg
+2015-02-05 17:09:00,226 [Thread-162:10688] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/项目实战.jpg
+2015-02-05 17:09:00,750 [Thread-163:8004] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/项目实战之快递助手.jpg
+2015-02-05 17:09:00,757 [Thread-164:1448] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/项目实战之随手涂鸦记事.jpg
+2015-02-05 17:09:01,280 [Thread-165:11668] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/项目实战之多功能时钟.jpg
+2015-02-05 17:09:01,283 [Thread-166:9384] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/wp8应用开发总结.jpg
+2015-02-05 17:09:01,842 [Thread-167:11400] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/wp8应用优化及提交市场.jpg
+2015-02-05 17:09:01,848 [Thread-168:3360] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/多任务并行编程.jpg
+2015-02-05 17:09:34,400 [Thread-175:14132] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/MVVM模式及程序架构.jpg
+2015-02-05 17:09:34,404 [Thread-176:11752] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/1秒学Swift语言-坐标系学习法.jpg
+2015-02-05 17:09:35,107 [Thread-178:11616] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/Java-语言基础.jpg
+2015-02-05 17:09:35,716 [Thread-179:8920] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/2嵌入式C语言高级_语法概述_BcCq8gS.jpg
+2015-02-05 17:09:35,721 [Thread-180:10832] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/9.-Android-的基础UI控件_7DTHjU3.jpg
+2015-02-05 17:09:36,210 [Thread-181:13688] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/5嵌入式linux操作系统基础.jpg
+2015-02-05 17:09:36,216 [Thread-182:5168] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/3iOS开发玩转界面-UIKit.jpg
+2015-02-05 17:10:15,763 [Thread-214:10184] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2015/01/2e00d184-9636-11e4-8db3-525400f5e194_big.jpg
+2015-02-05 17:10:15,765 [Thread-215:9708] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/重塑教育.png
+2015-02-05 17:10:15,769 [Thread-216:10192] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/企业直通班.jpg
+2015-02-05 17:10:15,772 [Thread-217:7996] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/获奖.jpg
+2015-02-05 17:10:15,855 [Thread-222:8384] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/网盟参考图片.jpg
+2015-02-05 17:10:15,861 [Thread-223:1420] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/ad0-banner.jpg
+2015-02-05 17:10:20,163 [Thread-238:13332] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/Sundy.jpg
+2015-02-05 17:10:20,167 [Thread-239:12308] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/王老师_HjugzF9.jpg
+2015-02-05 17:10:20,730 [Thread-240:13720] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/陈老师220.jpg
+2015-02-05 17:10:20,734 [Thread-241:13168] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/杨丰盛-1.jpg
+2015-02-05 17:10:21,276 [Thread-242:8892] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/石220.jpg
+2015-02-05 17:10:21,282 [Thread-243:12276] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/杨丰盛.jpg
+2015-02-05 17:10:57,164 [Thread-245:10796] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2015/01/2e00d184-9636-11e4-8db3-525400f5e194_big.jpg
+2015-02-05 17:10:57,171 [Thread-246:13744] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/manage.png
+2015-02-05 17:10:57,174 [Thread-247:1332] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/安卓工程师开发_d3aALpK.png
+2015-02-05 17:10:57,180 [Thread-248:11708] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/ios开发工程师_tQEO92m.png
+2015-02-05 17:10:57,184 [Thread-249:5032] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/嵌入式底层驱动.png
+2015-02-05 17:10:57,188 [Thread-250:204] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/物联网.png
+2015-02-05 17:10:57,707 [Thread-251:14196] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/嵌入式应用.png
+2015-02-05 17:11:48,884 [Thread-254:12136] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2015/01/2e00d184-9636-11e4-8db3-525400f5e194_big.jpg
+2015-02-05 17:11:48,888 [Thread-255:4460] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/Java-语言基础.jpg
+2015-02-05 17:11:48,890 [Thread-256:12632] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/Java-for-android.jpg
+2015-02-05 17:11:48,894 [Thread-257:9440] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/Eclipse-IDE-使用技巧.jpg
+2015-02-05 17:11:48,900 [Thread-258:10888] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/4.-Android-编码规范及代码风格.jpg
+2015-02-05 17:11:48,903 [Thread-259:984] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/SVN--Git-版本控制.jpg
+2015-02-05 17:11:49,430 [Thread-260:5380] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/7.-Android-App-开发起手式-HelloWorld二三事.jpg
+2015-02-05 17:11:49,434 [Thread-261:992] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/Android-App-开发环境搭建和配置.jpg
+2015-02-05 17:11:49,967 [Thread-262:13004] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/8.-Android-的面孔-Activity.jpg
+2015-02-05 17:11:49,973 [Thread-263:9020] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/9.-Android-的基础UI控件_7DTHjU3.jpg
+2015-02-05 17:11:50,474 [Thread-264:6396] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/10.-实战项目一.jpg
+2015-02-05 17:11:50,479 [Thread-265:7320] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/13.-Android-Service--Broadcast.jpg
+2015-02-05 17:12:28,993 [Thread-266:2544] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/12.Android-存储及数据操作.jpg
+2015-02-05 17:12:28,993 [Thread-267:6780] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/14.-Android-ContentProvider_uHHLXLU.jpg
+2015-02-05 17:12:49,773 [Thread-271:10660] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2015/01/2e00d184-9636-11e4-8db3-525400f5e194_big.jpg
+2015-02-05 17:12:49,775 [Thread-272:9200] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/cocos2dx工程师.png
+2015-02-05 17:12:49,779 [Thread-273:5212] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/嵌入式底层驱动.png
+2015-02-05 17:12:49,780 [Thread-274:2216] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/manage.png
+2015-02-05 17:12:49,783 [Thread-275:4592] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/wp开发.png
+2015-02-05 17:12:49,786 [Thread-276:996] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/嵌入式应用.png
+2015-02-05 17:12:50,342 [Thread-277:3668] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/ios开发工程师_tQEO92m.png
+2015-02-05 17:12:50,345 [Thread-278:6444] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/安卓工程师开发_d3aALpK.png
+2015-02-05 17:12:50,872 [Thread-279:7616] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/manage.png
+2015-02-05 17:14:36,510 [Thread-283:13964] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2015/01/2e00d184-9636-11e4-8db3-525400f5e194_small.jpg
+2015-02-05 17:14:36,510 [Thread-282:11460] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2015/01/2e00d184-9636-11e4-8db3-525400f5e194_big.jpg
+2015-02-05 17:14:36,510 [Thread-284:12624] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2015/01/b486b2d4-93fa-11e4-a0f1-525400f5e194_small.jpg
+2015-02-05 17:26:11,266 [Thread-296:936] [django.request:231] [base:handle_uncaught_exception] [ERROR]- Internal Server Error: /user/logout/
+Traceback (most recent call last):
+  File "D:\Python27\lib\site-packages\django-1.7.3-py2.7.egg\django\core\handlers\base.py", line 111, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 96, in user_logout
+    uc_user_synlogout(request)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\apps\mz_user\views.py", line 937, in uc_user_synlogout
+    ucsynlogin = client.uc_user_synlogout()
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 97, in _ucwrapper
+    return fn(self.uc_api_post(**kw))
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 29, in uc_api_post
+    return self._uc_remote(Configs.UC_API+'/index.php', postdata)
+  File "D:/Micrcoh/Projects/Source/maiziedu_website/..\extra_apps\ucenter\client.py", line 53, in _uc_remote
+    response = urllib2.urlopen(req, data)
+  File "D:\Python27\lib\urllib2.py", line 154, in urlopen
+    return opener.open(url, data, timeout)
+  File "D:\Python27\lib\urllib2.py", line 431, in open
+    response = self._open(req, data)
+  File "D:\Python27\lib\urllib2.py", line 449, in _open
+    '_open', req)
+  File "D:\Python27\lib\urllib2.py", line 409, in _call_chain
+    result = func(*args)
+  File "D:\Python27\lib\urllib2.py", line 1227, in http_open
+    return self.do_open(httplib.HTTPConnection, req)
+  File "D:\Python27\lib\urllib2.py", line 1197, in do_open
+    raise URLError(err)
+URLError: <urlopen error [Errno 10061] >
+2015-02-05 17:40:24,970 [Thread-307:11772] [django.request:143] [base:get_response] [WARNING]- Not Found: /service/getTotalTestResult
+2015-02-09 10:53:17,398 [Thread-12:13808] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/重塑教育.png
+2015-02-09 10:53:17,401 [Thread-13:10984] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/企业直通班.jpg
+2015-02-09 10:53:17,403 [Thread-14:11560] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/获奖.jpg
+2015-02-09 10:53:17,404 [Thread-15:6268] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/网盟参考图片.jpg
+2015-02-09 10:53:17,404 [Thread-16:7548] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/ad/2014/12/ad0-banner.jpg
+2015-02-09 10:53:17,533 [Thread-35:4720] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/王老师_HjugzF9.jpg
+2015-02-09 10:53:21,282 [Thread-46:9988] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/Sundy.jpg
+2015-02-09 10:53:21,285 [Thread-47:4568] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/陈老师220.jpg
+2015-02-09 10:53:22,236 [Thread-60:10700] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/杨丰盛-1.jpg
+2015-02-09 10:53:22,239 [Thread-61:5180] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/杨丰盛.jpg
+2015-02-09 10:53:22,283 [Thread-62:8144] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/石220.jpg
+2015-02-09 10:53:22,431 [Thread-63:1232] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/林政220.jpg
+2015-02-09 10:53:22,993 [Thread-65:12096] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/项目实战.jpg
+2015-02-09 10:53:23,467 [Thread-66:13396] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/项目实战之快递助手.jpg
+2015-02-09 10:53:23,470 [Thread-67:196] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/项目实战之随手涂鸦记事.jpg
+2015-02-09 10:53:23,947 [Thread-68:9564] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/项目实战之多功能时钟.jpg
+2015-02-09 10:53:23,948 [Thread-69:9796] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/wp8应用开发总结.jpg
+2015-02-09 10:53:29,851 [Thread-70:3724] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/wp8应用优化及提交市场.jpg
+2015-02-09 10:53:30,358 [Thread-71:13168] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/MVVM模式及程序架构.jpg
+2015-02-09 10:53:30,361 [Thread-72:2844] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/多任务并行编程.jpg
+2015-02-09 10:53:30,895 [Thread-73:8676] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/1秒学Swift语言-坐标系学习法.jpg
+2015-02-09 10:53:30,901 [Thread-74:13536] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/Java-语言基础.jpg
+2015-02-09 10:53:38,578 [Thread-82:5144] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/9.-Android-的基础UI控件_7DTHjU3.jpg
+2015-02-09 10:53:38,578 [Thread-83:3204] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/2嵌入式C语言高级_语法概述_BcCq8gS.jpg
+2015-02-09 10:53:39,078 [Thread-84:9336] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/3iOS开发玩转界面-UIKit.jpg
+2015-02-09 10:53:39,081 [Thread-85:2228] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/5嵌入式linux操作系统基础.jpg
+2015-02-09 10:53:39,594 [Thread-86:11000] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/2iOS开发快速入门.jpg
+2015-02-09 10:53:39,595 [Thread-87:13712] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/16.-Android-网络编程.jpg
+2015-02-09 10:53:40,108 [Thread-88:13980] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/1嵌入式开发环境搭建初级_Ng0dtVn.jpg
+2015-02-09 10:53:40,111 [Thread-89:12480] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/part1-互联网发展和基础.jpg
+2015-02-09 10:53:47,118 [Thread-90:10124] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/Eclipse-IDE-使用技巧.jpg
+2015-02-09 10:53:47,148 [Thread-91:12508] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/SVN--Git-版本控制.jpg
+2015-02-09 10:53:47,651 [Thread-92:8892] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/part2-互联网产品及产品经理.jpg
+2015-02-09 10:53:47,653 [Thread-93:11952] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/2嵌入式C语言高级_语法概述_SrZQvor.jpg
+2015-02-09 10:55:49,940 [Thread-129:7880] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/3f8abe6a-8c27-11e4-804b-525400f5e194_big.jpg
+2015-02-09 10:55:49,940 [Thread-130:9148] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/12/manage.png
+2015-02-09 10:55:49,941 [Thread-132:824] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2014/11/嵌入式底层驱动.png
+2015-02-09 10:55:49,941 [Thread-131:13444] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/course/2015/01/manage.png
+2015-02-09 10:56:10,354 [Thread-145:6400] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/3f8abe6a-8c27-11e4-804b-525400f5e194_big.jpg
+2015-02-09 10:56:10,395 [Thread-146:11056] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2015/01/b486b2d4-93fa-11e4-a0f1-525400f5e194_small.jpg
+2015-02-09 10:56:10,398 [Thread-147:6004] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/d51ba35c-8f3f-11e4-bba4-525400f5e194_small.jpg
+2015-02-09 10:56:10,403 [Thread-148:5056] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2014/12/3f8abe6a-8c27-11e4-804b-525400f5e194_small.jpg
+2015-02-09 10:56:10,404 [Thread-149:6060] [django.request:143] [base:get_response] [WARNING]- Not Found: /uploads/avatar/2015/01/2e00d184-9636-11e4-8db3-525400f5e194_small.jpg

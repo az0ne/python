@@ -1,0 +1,24 @@
+@font-face {font-family: 'webfont';}
+
+@import url(panel.css);
+
+.d-user-panel{width: 850px;height: 542px;margin:auto;padding:40px;background: #fff;}
+.d-user-panel h2{text-align: center;}
+.d-user-panel form{margin-top: 30px;color:rgb(130,140,140);}
+.d-user-panel form .col-sm-10{padding: 0 15px;}
+.d-user-panel form .form-group{margin-bottom: 25px}
+.d-user-panel form .form-control{box-shadow:none;padding: 20px;border-color:#CBCBCB}
+.d-user-panel form .form-control:focus{box-shadow:none;border-color:#5ecfba}
+.d-user-panel form textarea{resize: none;height: 100px}
+.d-user-panel .img-label{margin-top: 44px}
+.d-user-panel .img-box{display:inline-block;border:1px solid #CBCBCB;width: 120px;height: 120px;margin-right:5px;background: url(../images/add-1b.png) no-repeat 50% 50%;overflow: hidden;vertical-align: middle;}
+.d-user-panel .tips{display:inline-block;vertical-align: middle;color:#ccc;}
+.d-user-panel .img-box:hover{border:1px solid #5ecfba;background: url(../images/add-1.png) no-repeat 50% 50%;}
+.d-user-panel .btn{background: #5ecfba;border:none;color:#fff;height: 40px;min-width: 100px;}
+
+.d-xy-panel{width: 850px;height: 542px;margin:auto;padding:40px;background: #fff;}
+.d-xy-panel h2{text-align: center;}
+.d-xy-panel .xy-box{margin-top: 30px;color:rgb(130,140,140);border:1px solid #CBCBCB;padding: 20px;line-height: 1.8;height: 350px;overflow: auto;}
+.d-xy-panel .xy-box pre{background: none}
+.d-xy-panel .btn{background: #5ecfba;border:none;color:#fff;height: 40px;min-width: 100px;}
+.d-xy-panel .row{margin-top:20px;}

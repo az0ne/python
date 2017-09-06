@@ -1,0 +1,49 @@
+<!--修改头像-->
+<div class="modal fade" id="cutimgModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xmd modal-zmd">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="registerModalLabel">图片裁剪</h4>
+            </div>
+            <div class="modal-body">
+        <div id="upload-pane">
+
+                    <div class="tx-div">
+                            <div class="frame-photo">
+                                <img id="photo" src="/static/images/avata-bg.png">
+                            </div>
+                            <span class="solid-d"></span>
+                            <div id="preview">
+                                <img id="cut-photo" src="/uploads/avatar/default_big.png">
+                                <form method="post">
+                                        <input type="hidden" id="startX" name="startX" readonly="readonly"/>
+                                        <input type="hidden" id="startY" name="startY" readonly="readonly"/><br/>
+                                        <input type="hidden" id="width" name="width" readonly="readonly"/>
+                                        <input type="hidden" id="height" name="height" readonly="readonly"/>
+                                </form>
+                            </div>
+                        </div>
+                <div class="btn-box-cutimg">
+
+                        <span class="btn select-ph fileinput-button">
+                            <span>选择头像</span>
+                            <input id="file_upload" type="file" name="Filedata">
+                        </span>
+
+                    <button type="button" class="btn btn-xxlg btn-micv5 btn-block" onclick="avatar_crop()">保存</button>
+                    <div id="tips-avatar-upload" class="tips-error bg-danger">错误提示</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+    $(function(){
+        $('#cutimgModal').modal({  
+          keyboard: false ,
+          show:false, 
+        }); 
+    })
+</script>

@@ -1,0 +1,28 @@
+<div class="container-fluid container-banner">
+    <div class="container container-uinfo">
+        <div class="header-uinfo">
+            <div class="uinfo-head"><img id="avatar" src="{{ MEDIA_URL }}{{ user.avatar_url }}"></div>
+            <div class="uinfo-con">
+                <div class="user-name cf">
+                    <span>{{ user.nick_name }}</span>
+                    {% for badge in user.badge.all %}
+                    <em class="course-tips" style="background-color:#1ABC9C;">{{ badge.name }}</em>
+                    {% endfor %}
+                </div>
+                <div class="course-info">
+                    <span>学习：{{ common_val.mylesson_time }}</span>
+                    <span>上课：{{ common_val.mycourse_count }}门</span>
+                </div>
+            </div>
+        </div>
+        <div class="uc-nav">
+            <ul>
+                <li {% if request.path == "/user/student/" %}class="active"{% endif %}><a href="{% url 'user:student_center' %}" class="visible-md visible-lg">我的课程</a><a href="{% url 'user:student_center' %}" class="visible-xs visible-sm">课程</a></li>
+                <li {% if request.path == "/user/student/favorite/" %}class="active"{% endif %}><a href="{% url 'user:student_myfavorite' %}" class="visible-md visible-lg">我的收藏</a><a href="{% url 'user:student_myfavorite' %}" class="visible-xs visible-sm">收藏</a></li>
+                <li {% if request.path == "/user/student/certificate/" %}class="active"{% endif %}><a href="{% url 'user:student_mycertificate' %}" class="visible-md visible-lg">我的证书</a></li>
+                <li {% if request.path == "/user/message/" %}class="active"{% endif %}><a href="{% url 'user:user_mymessage' %}" class="visible-md visible-lg">我的消息</a><a href="{% url 'user:user_mymessage' %}" class="visible-xs visible-sm">消息</a>{% if new_message_count != 0 %}<span class="msg-tips">{{ new_message_count }}</span>{% endif %}</li>
+                <li {% if request.path == "/user/info/" %}class="active"{% endif %}><a href="{% url 'user:user_myinfo' %}" class="visible-md visible-lg">个人资料</a><a href="{% url 'user:user_myinfo' %}" class="visible-xs visible-sm">资料</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

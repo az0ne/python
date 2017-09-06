@@ -1,0 +1,12 @@
+<div class="top-banner" id="top-banner">
+    <div class="bd">
+        <ul>
+            {% for banner in wap_banners %}
+            <li><a href="{{ banner.url }}"><img src="{{ MEDIA_URL }}{{ banner.image_url }}" alt="{{ banner.image_title }}"></a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="hd">
+        <ol></ol>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+{% extends "mz_common/base.html" %}
+{% block title %}我的班级{% endblock %}
+{% block keywords%}{% endblock %}
+{% block description%}{% endblock %}
+{% block second_header %}
+{% include "mz_user/teacher_header.html" %}
+{% endblock %}
+{% block container %}
+
+
+
+
+  <div class="container uc-boxb">
+    <div class="uc-h1">正在进行的专业</div>
+    <ul class="row uc-class">
+    {% for ing in classing %}
+      <li class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        <section style="background-color:{{ing.career_course.course_color}};">
+          <a href="{% url 'lps:class_manage' ing.id %}">
+          	<img src="{{ MEDIA_URL }}{{ ing.career_course.image }}">
+            <article>
+              <h3>{{ing.career_course.name}}</h3>
+              <p>{{ing.num_students}}位学员正在学习</p>
+            </article>
+          </a>
+          <a href="{% url 'lps:class_manage' ing.id %}" class="opt">管理班级</a>
+        </section>
+      </li>
+      {% endfor %}
+
+
+    </ul>
+
+
+
+
+
+</div>
+{% endblock %}
+
+{% block custom_script %}
+<script src="/static/js/jquery.dateSelector.js"></script>
+<script type="text/javascript">
+$(function(){
+      $("#selectdate").dateSelector();
+    get_careercourse();
+    class_number();
+    create_class_save();
+});
+</script>
+{% endblock %}

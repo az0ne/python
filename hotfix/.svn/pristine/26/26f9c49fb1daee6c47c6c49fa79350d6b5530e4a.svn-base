@@ -1,0 +1,1883 @@
+{% extends "mz_common/global.html" %} {% block title %}python培训 - python开发培训 - python开发培训课程 - 麦子学院{% endblock %}
+{% block keywords %}python开发,python开发培训,python开发培训课程,python学习,python工程师{% endblock %}
+{% block description %}
+    麦子学院,python开发培训,是专业python培训机构,提供史上最靠谱的python开发培训课程,定制化python开发学习路线,名师1对1指导,通过通俗易懂的讲解,丰富有趣的实战,轻松学习python,升级为实力派python工程师。{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/css/mz_new_ad/web-css/style.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mz_new_ad/common.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mxl_style/land/common.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mxl_style/land/python_index.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mxl_style/land/mxl-footer.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mxl_style/land/new-footer.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/yz-css/yz-form.css?v={{ time_stamp }}">
+    <style>
+        .mz-pythonpage-btn:hover {
+            background: #22a0f6 !important;
+        }
+    </style>
+{% endblock %} {% block csstype %}new_web{% endblock %}
+
+{% block container %}
+    {% include 'header/new_python_header.html' %}
+    <!--头部大图部分-->
+    <div class="top">
+        <div class="wrap">
+            <div class="top_words">
+                <p class="first">掌握Python就是掌握了未来</p>
+                <p class="second">1对1授课助你年薪15万</p>
+                <ul class="third">
+                    <li><img src="/static/images/mxl_images/land/python_img/check.jpg"
+                             alt="gouxuan"/><span>1对1个性化学习</span>
+                    </li>
+                    <li><img src="/static/images/mxl_images/land/python_img/check.jpg" alt="gouxuan"/><span>硅谷名师</span>
+                    </li>
+                    <li><img src="/static/images/mxl_images/land/python_img/check.jpg"
+                             alt="gouxuan"/><span>保就业保底薪</span>
+                    </li>
+                </ul>
+                <p>
+                    {% if is_normal_class %}
+                        {% if short_name %}
+                            <a href="{% url 'lps4_index' short_name %}">继续学习</a>
+                        {% else %}
+                            <a href="{% url 'course:access_to_class' course_id %}">继续学习</a>
+                        {% endif %}
+                    {% else %}
+                        {% if request.user.is_authenticated %}
+                            <a href="{% url 'pay:pay_view2' %}?career_id={{ career_id }}" target="_blank">购买课程</a>
+                        {% else %}
+                            <a href="javascript:;" data-toggle="modal" data-target="#loginModal">购买课程</a>
+                        {% endif %}
+                    {% endif %}
+                    <a class="a_2 mzconsultation" href="javacript:;">立即咨询</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+    <!--头部样式end-->
+    <div class="mzedu-tab">
+        <div class="mz-wrap">
+            <ul>
+                <li class="active">课程介绍</li>
+                <li>课程目录</li>
+                <!--<li>学员评论<b>（238）</b></li>-->
+            </ul>
+        </div>
+    </div>
+    <!--课程介绍-->
+    <div class="big-wrap">
+        <div class="container01 cur">
+            <!--python是什么-->
+            <div class="whatpython">
+                <div class="wrap">
+                    <p class="title">Python是什么</p>
+                    <ul>
+                        <li>
+                            <div class="pic">
+                                <i class="pic-icon pic-icon01"></i>
+                                <!--<img src="/static/images/mxl_images/land/python_img/pic_1.png" /><img src="/static/images/mxl_images/land/python_img/pic_11.png" class="pic_2">-->
+                                <p>前3大流行语言
+                                <p>
+                            </div>
+                            <p>
+                                根据TIOBE最新排名，Python已超越C#，与Java、C一起成为全球前3大最流行语言
+                            </p>
+                        </li>
+                        <li>
+                            <div class="pic">
+                                <i class="pic-icon pic-icon02"></i>
+                                <!--<img src="/static/images/mxl_images/land/python_img/pic_2.png" /><img src="/static/images/mxl_images/land/python_img/pic_22.png" class="pic_2">-->
+                                <p>应用几乎无限制
+                                <p>
+                            </div>
+                            <p>
+                                广泛用于后端开发、游戏开发、网站开发、科学运算、大数据分析、云计算、图形开发等领域
+                            </p>
+                        </li>
+                        <li>
+                            <div class="pic">
+                                <i class="pic-icon pic-icon03"></i>
+                                <!--<img src="/static/images/mxl_images/land/python_img/pic_3.png" /><img src="/static/images/mxl_images/land/python_img/pic_33.png" class="pic_2">-->
+                                <p>各方面地位超然
+                                <p>
+                            </div>
+                            <p>
+                                在软件质量控制、提升效率、可移植、组件集成、丰富库支持等各方面均处于先进地位
+                            </p>
+                        </li>
+                        <li>
+                            <div class="pic">
+                                <!--<img src="/static/images/mxl_images/land/python_img/pic_4.png" /><img src="/static/images/mxl_images/land/python_img/pic_44.png" class="pic_2">-->
+                                <i class="pic-icon pic-icon04"></i>
+                                <p>简单易学
+                                <p>
+                            </div>
+                            <p>
+                                具有简单、易学、免费、开源、可扩展、可嵌入等优点，它的面向对象甚至比Java和C#.NET更彻底
+                            </p>
+                        </li>
+                    </ul>
+                    <a href="javascript:;" class="mzconsultation">立即报名</a>
+                </div>
+            </div>
+            <!--python是什么end-->
+            <!--python就业前景如何-->
+            <div class="wrap">
+                <div class="python_prospect">
+                    <p class="title">Python就业前景如何</p>
+                    <div class="pic">
+                        <ul>
+                            <li class="li_1">
+                                <p>月薪：5-8K</p>
+                            </li>
+                            <li class="li_2">
+                                <p>月薪：8-12K</p>
+                            </li>
+                            <li class="li_3">
+                                <p>月薪：12-18K</p>
+                            </li>
+                            <li class="li_4">
+                                <p>月薪：18K以上</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--python就业前景如何end-->
+            <!--python学完能做什么-->
+            <div class="what_do">
+                <p class="title">Python学完后能做什么</p>
+                <p>应用几乎无限制Python被广泛用于后端开发、游戏开发、网站开发、科学运算、大数据分析、云计算、图形开发等领域</p>
+                <div class="wrap">
+                    <div class="bottom">
+                        <ul class="ul_1">
+                            <li>
+                                <div class="pic dx-pic01">
+                                </div>
+                                <h3>WEB开发</h3>
+                                <p>
+                                    服务器端编程，具有丰富的Web开发框架，如Django和TurboGears，快速完成一个网站的开发和Web服务。典型如国内的豆瓣、果壳网等；国外的Google、Dropbox等。</p>
+                            </li>
+                            <li>
+                                <div class="pic dx-pic02">
+
+                                </div>
+                                <h3>系统网络运维</h3>
+                                <p>在运维的工作中，有大量重复性工作的地方，并需要做管理系统、监控系统、发布系统等，将工作自动化起来，提高工作效率，这样的场景Python是一门非常合适的语言。</p>
+                            </li>
+                            <li>
+                                <div class="pic dx-pic03">
+
+                                </div>
+                                <h3>科学与数学计算</h3>
+                                <p>
+                                    Python被广泛的运用于科学和数字计算中，例如生物信息学、物理、建筑、地理信息系统、图像可视化分析、生命科学等，常用numpy、SciPy、Biopython、SunPy等。</p>
+
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <div class="pic dx-pic04">
+
+                                </div>
+                                <h3>3D游戏开发</h3>
+                                <p>
+                                    Python有很好的3D渲染库和游戏开发框架，有很多使用Python开发的游戏，如迪斯尼卡通城、黑暗之刃。常用PyGame、PyKyra等和一个PyWeek的比赛。</p>
+                            </li>
+                            <li>
+                                <div class="pic dx-pic05">
+                                </div>
+                                <h3>图形界面开发</h3>
+                                <p>Python可编写桌面图形用户界面，还可以扩展微软的Windows，常用TK、GTK+、PyQt、Win32等。</p>
+                            </li>
+                            <li>
+                                <div class="pic dx-pic06">
+
+                                </div>
+                                <h3>网络编程</h3>
+                                <p>除了网络和互联网的支持，Python还提供了对底层网络的支持，有易于使用的Socket接口和一个异步的网络编程框架Twisted Python.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!--python学完能做什么end-->
+            <!--哪些产品是由python做的-->
+            <div class="whatmaking_bypython">
+                <p class="title">哪些产品是Python做的</p>
+                <div class="wrap">
+                    <div class="main">
+                        <div class="left" id="left_btn">
+                            <img src="/static/images/mxl_images/land/python_img/leftbtn.jpg" id="right-btn"/>
+                        </div>
+                        <div class="middle">
+                            <div class="pic_box" id="pic_box">
+                                <ul class="ul_1" id="ul_1">
+                                    <li>
+                                        <img src="/static/images/mxl_images/land/python_img/maizi2.jpg"/>
+                                    </li>
+                                    <li>
+                                        <img src="/static/images/mxl_images/land/python_img/zhihu2.jpg"/>
+                                    </li>
+                                    <li>
+                                        <img src="/static/images/mxl_images/land/python_img/douban2.jpg"/>
+                                    </li>
+                                    <li>
+                                        <img src="/static/images/mxl_images/land/python_img/taobao2.jpg"/>
+                                    </li>
+                                    <li>
+                                        <img src="/static/images/mxl_images/land/python_img/elm2.jpg"/>
+                                    </li>
+                                    <li>
+                                        <img src="/static/images/mxl_images/land/python_img/gogle2.png"/>
+                                    </li>
+                                    <li>
+                                        <img src="/static/images/mxl_images/land/python_img/tengxun2.jpg"/>
+                                    </li>
+                                    <li>
+                                        <img src="/static/images/mxl_images/land/python_img/wangyi2.jpg"/>
+                                    </li>
+                                    <li>
+                                        <img src="/static/images/mxl_images/land/python_img/facebook2.jpg"/>
+                                    </li>
+                                </ul>
+                                <ul class="ul_2" id="ul_2">
+                                    <li>
+                                        <img src="/static/images/mxl_images/land/python_img/maizi2.jpg"/>
+                                    </li>
+                                    <li>
+                                        <img src="/static/images/mxl_images/land/python_img/zhihu2.jpg"/>
+                                    </li>
+                                    <li>
+                                        <img src="/static/images/mxl_images/land/python_img/douban2.jpg"/>
+                                    </li>
+                                    <li>
+                                        <img src="/static/images/mxl_images/land/python_img/taobao2.jpg"/>
+                                    </li>
+                                    <li>
+                                        <img src="/static/images/mxl_images/land/python_img/elm2.jpg"/>
+                                    </li>
+                                    <li>
+                                        <img src="/static/images/mxl_images/land/python_img/gogle2.png"/>
+                                    </li>
+                                    <li>
+                                        <img src="/static/images/mxl_images/land/python_img/tengxun2.jpg"/>
+                                    </li>
+                                    <li>
+                                        <img src="/static/images/mxl_images/land/python_img/wangyi2.jpg"/>
+                                    </li>
+                                    <li>
+                                        <img src="/static/images/mxl_images/land/python_img/facebook2.jpg"/>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="right" id="right_btn">
+                            <img src="/static/images/mxl_images/land/python_img/rightbtn.jpg"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--哪些产品是由python做的end-->
+            <!--麦子如何让你成为两年以上工作经验的Python工程师-->
+            <div class="engineer">
+                <div class="wrap">
+                    <p class="title">麦子如何让你成为两年以上工作经验的Python工程师</p>
+                    <ul class="clear">
+                        <li class="clear">
+                            <div class="left">
+                                <img src="/static/images/mxl_images/land/python_img/enner1.png" alt="教学"/>
+                            </div>
+                            <div class="right bor_ri">
+                                <h3>1对1教学</h3>
+                                <p>采用师徒制，1位专属导师全面负责你的教学工作，手把手带你制定目标，考核，批改作业，学习答疑 。</p>
+                            </div>
+                        </li>
+                        <li class="clear">
+                            <div class="left">
+                                <img src="/static/images/mxl_images/land/python_img/enner2.png" alt="教学"/>
+                            </div>
+                            <div class="right bor_ri">
+                                <h3>1对1直播</h3>
+                                <p>学生可以随时在PC和APP发起约课，跟自己的导师约直播课程，1对1直播，私人订制，专属讲解。</p>
+                            </div>
+                        </li>
+                        <li class="clear">
+                            <div class="left">
+                                <img src="/static/images/mxl_images/land/python_img/enner3.png" alt="教学"/>
+                            </div>
+                            <div class="right2 ">
+                                <h3>名师指导</h3>
+                                <p>麦子的导师多为国内外知名互联网公司8年以上的企业经验大牛，也许你的老师就是美国的Facebook，Google，国内的BAT的大牛老师。</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="bottom clear">
+                        <div class="fl video_introduce1">
+                            <a href="javascript:;" class="db"
+                               data-href="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/gwsp/ksrsnew.mp4"
+                               onclick="zhuge.track('Python Web 开发', {'名称': '快速认识麦子学院'})">
+                                <img src="/static/images/mxl_images/land/python_img/media.png" alt="视频"/>
+                            </a>
+                        </div>
+                        <div class="right">
+                            <h2>独创LPS（学习过程系统），</h2>
+                            <p>重塑学习过程，学习足迹完全数字化</p>
+                            <a href="javascript:;" class="mzconsultation">什么是LPS?</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--麦子如何让你成为两年以上工作经验的Python工程师end-->
+            <!--看看麦子的老师们，选择他们拜师吧，1对1指导-->
+            <div class="teachers">
+                <p class="title">看看麦子的老师们，选择他们拜师吧，1对1指导</p>
+                <div class='sliderPlay' id='sliderPlay'>
+                    <ul class="slider">
+                        <li class="images">
+                            <div class="teach-pic">
+                                <img src="/static/images/mxl_images/land/teacher-lixi.jpg">
+                            </div>
+                            <div class="teach-words">
+                                <img src="/static/images/mxl_images/land/python_img/teachbj2.jpg"/>
+                                <p class="first">李希</p>
+                                <p class="second">
+                                    成都莫比乌斯科技创始人
+                                </p>
+                                <p class="third">精通Windows及Linux系统平台的运维、大型分布式架构网站的部署和管理，具有15年资深IT从业经验。</p>
+                                <p>
+                                    <a href="javascript:;" class="mzconsultation">跟老师聊聊</a>
+                                </p>
+                            </div>
+                        </li>
+                        <li class="images">
+                            <div class="teach-pic">
+                                <img src="/static/images/mxl_images/land/teacher-wangbeinan.jpg">
+                            </div>
+                            <div class="teach-words">
+                                <img src="/static/images/mxl_images/land/python_img/teachbj2.jpg"/>
+                                <p class="first">SOros Wang </p>
+                                <p class="second">
+                                    Twitter高级大数据工程师
+                                </p>
+                                <p class="third">8年J2EE软件开发经验,4年大数据应用架构师经验。曾任国内多家公司技术总监、架构师Tech Lead。</p>
+                                <p>
+                                    <a href="javascript:;" class="mzconsultation">跟老师聊聊</a>
+                                </p>
+                            </div>
+                        </li>
+                        <li class="images">
+                            <div class="teach-pic">
+                                <img src="/static/images/mxl_images/land/teacher-pengliang.jpg">
+                            </div>
+                            <div class="teach-words">
+                                <img src="/static/images/mxl_images/land/python_img/teachbj2.jpg"/>
+                                <p class="first">彭亮 </p>
+                                <p class="second">
+                                    雅虎高级大数据工程师
+                                </p>
+                                <p class="third">擅长产品设计与产品战略规划，熟悉产品开发及管理流程，对产品运营有着深刻见解。</p>
+                                <p>
+                                    <a href="javascript:;" class="mzconsultation">跟老师聊聊</a>
+                                </p>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+                <div id='btnBox' class='btnBox'>
+                    <span class='cur lq-btn'></span>
+                    <span class='lq-btn'></span>
+                    <span class='lq-btn'></span>
+                </div>
+            </div>
+            <!--看看麦子的老师们，选择他们拜师吧，1对1指导end-->
+            <!--最全面的涵盖web，爬虫，大数据，自动化测试-->
+            <div class="course">
+                <p class="title">最全面的涵盖web，爬虫，大数据，自动化测试</p>
+                <ul>
+                    <li>
+                        <div class="wrap">
+                            <div class="left">01</div>
+                            <div class="right">
+                                <p class="first">基础阶段</p>
+                                <p class="second">带你快速进入Python语言的大门，掌握Pycharm开发工具，Python语言基础，面向对象，HTML5的基本知识。</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="wrap">
+                            <div class="left">02</div>
+                            <div class="right">
+                                <p class="first">爬虫阶段</p>
+                                <p class="second">学习Python的数据抓取和数据分析技术 ，尤其是学习爬虫的数据知识。学习Python
+                                    urllib2等网络框架，Scrapy爬虫框架，同时学习MySql等数据，完成12306火车票抓取项目。这个阶段学完后，能够做数据抓取和分析工程师</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="wrap">
+                            <div class="left">03</div>
+                            <div class="right">
+                                <p class="first">Web开发阶段</p>
+                                <p class="second">
+                                    豆瓣和麦子学院网站都是Python做的，我们通过学习Javascript，Flask，Django框架完成麦子和豆瓣的网站开发。同时学习Tnordo，Redis等高级技术让项目符合商业水准。这个阶段学完后可以独立开发出麦子学院这样的商业网站</p>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="wrap">
+                            <div class="left">04</div>
+                            <div class="right">
+                                <p class="first">自动化测试及运维阶段</p>
+                                <p class="second">
+                                    学习Zabb，Selenium，Matplotlib等知识，掌握自动化测试，数据可视化分析，自动化运维等高级内容，为将来往大数据工程师上更进一步打下良好基础。</p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="wrap">
+                    <a href="javascirpt:;" class="see-kcdg">查看课程大纲</a>
+                </div>
+            </div>
+            <!--最全面的涵盖web，爬虫，大数据，自动化测试end-->
+            <!--线下学习-->
+            <div class="outline">
+                <div class="wrap">
+                    <a href="javascript:;" class="mzconsultation">咨询线下课程</a>
+                </div>
+            </div>
+            <!--线下学习end-->
+            <!--强大的校企合作-->
+            <div class="join_school">
+                <div class="wrap">
+                    <p class="title">强大的校企合作服务体系</p>
+                    <p>麦子学院携手Linkedin、拉勾、智联照片、猎聘等一线招聘平台，实现就业权威保障！</p>
+                    <div class="left">
+                        <ul>
+                            <li>
+                                <img src="/static/images/mxl_images/land/python_img/liepin.jpg"><img
+                                    src="/static/images/mxl_images/land/python_img/zhilian.jpg"><img
+                                    src="/static/images/mxl_images/land/python_img/linked.jpg"><img
+                                    src="/static/images/mxl_images/land/python_img/lagou.jpg">
+                            </li>
+                            <li>
+                                <a href="javascript:;" class="mzconsultation">咨询保就业服务</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="right video_introduce1">
+                        <a href="javascript:;"
+                           data-href="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/gwsp/jyhznew.mp4"
+                           onclick="zhuge.track('Python Web 开发', {'名称': '就业合作'})">
+                            <img src="/static/images/mxl_images/land/python_img/media2.png"/>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--强大的校企合作end-->
+            <!--我们的学生-->
+            <div class="students">
+                <p class="title">在中国，你叫的上名字的互联网公司几乎都有我们学生</p>
+                <p>与拉勾，猎聘，智联招聘接口打通 ，并且与超过1000家A轮融资后互联网公司建立输送关系</p>
+                <div class="wrap">
+                    <div class="stu_top" id="top">
+                        <div class="left" id="left-slip">
+                            <img src="/static/images/mxl_images/land/python_img/leftjiantou.jpg"/>
+                        </div>
+                        <div class="middle" id="middle">
+
+                            <div class="pic-box" id="stu-show">
+                                <ul class="fl-left conbox">
+
+                                    <li>
+                                        <div class="stu-pic">
+                                            <img src="/static/images/mxl_images/land/dx-st-chenlong.png"
+                                                 alt="陈龙-月薪10k入职赛尔互联"/>
+                                        </div>
+                                        <div class="stu-words">
+                                            <h3>陈龙</h3>
+                                            <p>月薪10K，赛尔互联</p>
+                                        </div>
+                                        <div class="bar"></div>
+                                    </li>
+                                    <li>
+                                        <div class="stu-pic">
+                                            <img src="/static/images/mxl_images/land/dx-st-huagnqingqing.png"
+                                                 alt="黄青青-月薪8k入职聚簇云网络"/>
+                                        </div>
+                                        <div class="stu-words">
+                                            <h3>黄青青</h3>
+                                            <p>月薪8K，聚簇云网络</p>
+                                        </div>
+                                        <div class="bar"></div>
+                                    </li>
+                                    <li>
+                                        <div class="stu-pic">
+                                            <img src="/static/images/mxl_images/land/dx-st-huangzikai.png"
+                                                 alt="黄子楷-月薪12k入职麦盛"/>
+                                        </div>
+                                        <div class="stu-words">
+                                            <h3>黄子楷</h3>
+                                            <p>月薪12k，入职麦盛</p>
+                                        </div>
+                                        <div class="bar"></div>
+                                    </li>
+                                    <li>
+                                        <div class="stu-pic">
+                                            <img src="/static/images/mxl_images/land/dx-st-wangxincheng.png"
+                                                 alt="王欣晨-月薪10k入职环球网"/>
+                                        </div>
+                                        <div class="stu-words">
+                                            <h3>王欣晨</h3>
+                                            <p>月薪9.3K，环球网</p>
+                                        </div>
+                                        <div class="bar"></div>
+                                    </li>
+                                    <li>
+                                        <div class="stu-pic">
+                                            <img src="/static/images/mxl_images/land/dx-wangziqiang.png"
+                                                 alt="王子强-月薪12k入职明与简科技"/>
+                                        </div>
+                                        <div class="stu-words">
+                                            <h3>王子强</h3>
+                                            <p>月薪12k，明与简科技</p>
+                                        </div>
+                                        <div class="bar"></div>
+                                    </li>
+                                    <li>
+                                        <div class="stu-pic">
+                                            <img src="/static/images/mxl_images/land/dx-st-xuexinyu.png"
+                                                 alt="薛馨予-月薪10k入职爱客"/>
+                                        </div>
+                                        <div class="stu-words">
+                                            <h3>薛馨予</h3>
+                                            <p>月薪10K，入职爱客</p>
+                                        </div>
+                                        <div class="bar"></div>
+                                    </li>
+                                    <li>
+                                        <div class="stu-pic">
+                                            <img src="/static/images/mxl_images/land/dx-st-zhaotiansheng.png"
+                                                 alt="赵田生-月薪9.5k入职知名互联网公司"/>
+                                        </div>
+                                        <div class="stu-words">
+                                            <h3>赵田生</h3>
+                                            <p>月薪9.5K，入职知名医药互联网</p>
+                                        </div>
+                                        <div class="bar"></div>
+                                    </li>
+                                    <li>
+                                        <div class="stu-pic">
+                                            <img src="/static/images/mxl_images/land/dx-st-zhouwenyu.png"
+                                                 alt="周文语-月薪10k入职上海知名互联网公司"/>
+                                        </div>
+                                        <div class="stu-words">
+                                            <h3>周文语</h3>
+                                            <p>月薪10k，入职上海知名互联网公司</p>
+                                        </div>
+                                        <div class="bar"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="right " id="right-slip">
+                            <img src="/static/images/mxl_images/land/python_img/rightjiantou.jpg"/>
+                        </div>
+                    </div>
+                    <div class="bottom video_introduce1">
+                        <a href="javascript:;"
+                           data-href="http://maizi-video.oss-cn-hangzhou.aliyuncs.com/gwsp/xyft1new.mp4"
+                           onclick="zhuge.track('首页视频介绍', {'名称': '麦子学员访谈（一）'})">
+                            <img src="/static/images/mxl_images/land/python_img/vedio3.jpg"/>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <!--我们的学生end-->
+            <!--三保-->
+            <div class="wrap">
+                <div class="promise">
+                    <p class="title"><span style="color:#22a0f6;">保</span>就业，<span
+                            style="color:#22a0f6;">保</span>底薪，<span
+                            style="color:#22a0f6;">0</span>元入学，<span style="color:#22a0f6;">0</span>风险</p>
+                    <div class="left">
+                        <img src="/static/images/mxl_images/land/python_img/xieyi.jpg"/>
+                    </div>
+                    <div class="right">
+                        <p class="first">
+                            签订保就业，保底薪协议。
+                        </p>
+                        <p>为未达到协议底薪就业全额退款</p>
+                        <p>
+                            <a href="javascript:;" class="mzconsultation">了解详情</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--三保end-->
+
+
+            <div class="tab1">
+                <div class="tab1-media">
+						<div class="media-content">
+							<h4>媒体报道</h4>
+							<ul>
+								<li>
+									<a href="http://tech.sina.com.cn/i/2015-11-13/doc-ifxkszhk0231260.shtml" rel="nofollow" target="_blank">
+										<img src="/static/images/mxl_images/land/footerlink/link1.png" alt="新浪" onclick="zhuge.track('新浪', {'来源': 'px页媒体报道'})">
+									</a>
+								</li>
+								<li>
+									<a href="http://science.china.com.cn/2016-03/17/content_8645350.htm" rel="nofollow" target="_blank">
+										<img src="/static/images/mxl_images/land/footerlink/link2.png" alt="21CN财经" onclick="zhuge.track('21CN财经', {'来源': 'px页媒体报道'})">
+									</a>
+								</li>
+								<li>
+									<a href="http://36kr.com/p/5039661.html" rel="nofollow" target="_blank">
+										<img src="/static/images/mxl_images/land/footerlink/link3.png" alt="36kr" onclick="zhuge.track('36Kr', {'来源': 'px页媒体报道'})">
+									</a>
+								</li>
+								<li>
+									<a href="http://news.ifeng.com/a/20151126/46403469_0.shtml" rel="nofollow" target="_blank">
+										<img src="/static/images/mxl_images/land/footerlink/link4.png" alt="凤凰" onclick="zhuge.track('凤凰', {'来源': 'px页媒体报道'})">
+									</a>
+								</li>
+								<li>
+									<a href="http://edu.qq.com/a/20151201/056651.htm" rel="nofollow" target="_blank">
+										<img src="/static/images/mxl_images/land/footerlink/link5.png" alt="腾讯网" onclick="zhuge.track('腾讯网', {'来源': 'px页媒体报道'})">
+									</a>
+								</li>
+								<li>
+									<a href="http://learning.sohu.com/20160513/n449228783.shtml" rel="nofollow" target="_blank">
+										<img src="/static/images/mxl_images/land/footerlink/link6.png" alt="搜狐网" onclick="zhuge.track('搜狐网', {'来源': 'px页媒体报道'})">
+									</a>
+								</li>
+							</ul>
+							<h4>合作企业</h4>
+							<ul>
+								<li>
+									<a href="http://study.163.com/" rel="nofollow" target="_blank">
+										<img src="/static/images/mxl_images/land/footerlink/link7.png" alt="网易云课堂" onclick="zhuge.track('网易云课堂', {'来源': 'px页合作企业'})">
+									</a>
+								</li>
+								<li>
+									<a href="http://maiziedu.ke.qq.com/" rel="nofollow" target="_blank">
+										<img src="/static/images/mxl_images/land/footerlink/link8.png" alt="腾讯云课堂" onclick="zhuge.track('腾讯课堂', {'来源': 'px页合作企业'})">
+									</a>
+								</li>
+								<li>
+									<a href="http://www.miguxue.com/" rel="nofollow" target="_blank">
+										<img src="/static/images/mxl_images/land/footerlink/link9.png" alt="咪咕学堂" onclick="zhuge.track('咪咕学堂', {'来源': 'px页合作企业'})">
+									</a>
+								</li>
+								<li>
+									<a href="https://www.aliyun.com/" rel="nofollow" target="_blank">
+										<img src="/static/images/mxl_images/land/footerlink/link10.png" alt="阿里云" onclick="zhuge.track('阿里云', {'来源': 'px合作企业'})">
+									</a>
+								</li>
+								<li>
+									<a href="http://www.iqiyi.com/" rel="nofollow" target="_blank">
+										<img src="/static/images/mxl_images/land/footerlink/link11.png" alt="爱奇艺" onclick="zhuge.track('爱奇艺', {'来源': 'px合作企业'})">
+									</a>
+								</li>
+								<li>
+									<a href="http://www.chuanke.com/" rel="nofollow" target="_blank">
+										<img src="/static/images/mxl_images/land/footerlink/link12.png" alt="百度传课" onclick="zhuge.track('爱奇艺', {'来源': 'px合作企业'})">
+									</a>
+								</li>
+							</ul>
+							<h4>合作院校</h4>
+							<ul>
+								<li>
+									<a href="http://www.suse.edu.cn/" rel="nofollow" target="_blank">
+										<img src="/static/images/mxl_images/land/footerlink/link13.png" alt="四川理科学院" onclick="zhuge.track('四川理工大学', {'来源': 'px页合作院校'})">
+									</a>
+								</li>
+								<li>
+									<a href="http://www.scu.edu.cn/" rel="nofollow" target="_blank">
+										<img src="/static/images/mxl_images/land/footerlink/link14.png" alt="四川大学" onclick="zhuge.track('四川大学', {'来源': 'px页合作院校'})">
+									</a>
+								</li>
+								<li>
+									<a href="http://www.cdut.edu.cn/default.html" rel="nofollow" target="_blank">
+										<img src="/static/images/mxl_images/land/footerlink/link15.png" alt="成都理工大学" onclick="zhuge.track('成都理工大学', {'来源': 'px页合作院校'})">
+									</a>
+								</li>
+								<li>
+									<a href="http://www.uestc.edu.cn/" rel="nofollow" target="_blank">
+										<img src="/static/images/mxl_images/land/footerlink/link16.png" alt="电子科技大学" onclick="zhuge.track('电子科技大学', {'来源': 'px页合作院校'})">
+									</a>
+								</li>
+								<li>
+									<a href="" rel="nofollow" target="_blank">
+										<img src="/static/images/mxl_images/land/footerlink/link17.png" alt="四川师范大学">
+									</a>
+								</li>
+								<li>
+									<a href="" rel="nofollow" target="_blank">
+										<img src="/static/images/mxl_images/land/footerlink/link18.png" alt="西南科技大学">
+									</a>
+								</li>
+							</ul>
+                        </div>
+                        <!-- 荣誉奖项 begin-->
+						<div class="mz-wrap">
+							<div class="new-mz-prize">
+								<h4>荣誉奖项</h4>
+								<div class="new-mz-prize-list">
+									<ul class="clear">
+										<li>
+											<img src="/static/images/mxl_images/land//new-mz-prize-list-pic01.png" alt="麦子学院-最具口碑影响力在线教育机构" />
+										</li>
+										<li>
+											<img src="/static/images/mxl_images/land//new-mz-prize-list-pic02.png" alt="麦子学院-领军企业" />
+										</li>
+										<li>
+											<img src="/static/images/mxl_images/land//new-mz-prize-list-pic03.png" alt="麦子学院-中国最具创新力在线教育品牌" />
+										</li>
+										<li>
+											<img src="/static/images/mxl_images/land//new-mz-prize-list-pic04.png" alt="麦子学院-2015年度影响力在线教育品牌" />
+										</li>
+										<li>
+											<img src="/static/images/mxl_images/land//new-mz-prize-list-pic05.png" alt="麦子学院-中国品牌价值在线教育机构" />
+										</li>
+										<li>
+											<img src="/static/images/mxl_images/land//new-mz-prize-list-pic06.png" alt="麦子学院-2015年度最具影响力在线教育品牌" />
+										</li>
+										<li>
+											<img src="/static/images/mxl_images/land//new-mz-prize-list-pic07.png" alt="麦子学院-2013年度金牌合作机构" />
+										</li>
+										<li>
+											<img src="/static/images/mxl_images/land//new-mz-prize-list-pic08.png" alt="麦子学院-特色职业教育品牌" />
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<!--荣誉奖项 end-->
+					</div>
+
+                <!--底部轮播和版权 begin-->
+                <div class="footer-banner"
+                     style="background: url(/static/images/mxl_images/land/footer-banner-bg04.jpg) no-repeat center top #119efa;">
+                    <div class="footer-banner-c mz-wrap">
+                        <div class="footer-banner-c-bd">
+                            <ul class="clear">
+                                <li>
+                                    <div class="footer-banner-c-pic">
+                                        <img src="/static/images/mxl_images/land/footer-banner-c-pic01.png"
+                                             alt="麦子学院是IT在线教育的创领者"/>
+                                    </div>
+                                    <p>麦子学院是IT在线教育的创领者，我们希望有更多像麦子一样的教育培训机构，将学习和就业效果做到极致。</p>
+                                    <div class="footer-banner-c-name-info">
+                                        <b>王晓斐</b>
+                                        <span>阿里云教育创业部总监</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="footer-banner-c-pic">
+                                        <img src="/static/images/mxl_images/land/footerlink/baidu.png"
+                                             alt="麦子学院是IT在线教育的创领者">
+
+                                    </div>
+                                    <p>“大数据显示，麦子学院在国内IT在线教育行业内有极高的就业率我们希望在未来与麦子学院的定制化就业学习模式进行更加深入的合作”</p>
+                                    <div class="footer-banner-c-name-info">
+                                        <b>陈月</b>
+                                        <span>百度总监</span>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="footer-banner-c-pic">
+                                        <img src="/static/images/mxl_images/land/footerlink/360.png"
+                                             alt="麦子学院是IT在线教育的创领者">
+
+                                    </div>
+                                    <p>
+                                        “智能化、数据化的学习过程监控，领先创新的LPS在线教育模式，高效可靠的商业项目训练，为社会培养1万+的高技能IT人才，我们会同与麦子学院一道，以IT技术服务为核心服务更多的企业和个人”</p>
+                                    <div class="footer-banner-c-name-info">
+                                        <b>徐旭升</b>
+                                        <span>360教育总监</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="footer-banner-c-hd">
+                            <ul>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="mz-scholarship-program" style="background: #002551">
+                    <div class="mz-wrap">
+                        <h6>现在行动，参加麦子学院五周年助学红包疯抢计划！</h6>
+                        <a href="javascript:;" class="mz-pythonpage-btn mz-transition mzconsultation">立即报名</a>
+
+                    </div>
+                </div>
+                <div class="yz-form-container">
+                    <div class="yz-form-box">
+                        <h3 class="yz-form-tit">体验试学</h3>
+                        <span class="yz-form-tag">* 请放心填写，我们会对您的信息严格保密</span>
+                        <form id="yz-form">
+                            <div class="yz-input-box yz-name">
+                                <i></i>
+                                <b></b>
+                                <input type="text" placeholder="您的姓名" name="name">
+                                <div class="yz-errortip">姓名不能为空</div>
+                            </div>
+                            <div class="yz-input-box yz-phone">
+                                <i></i>
+                                <b></b>
+                                <input type="text" placeholder="您的电话" name="phone">
+                                <div class="yz-errortip">请填写正确的电话号码</div>
+                            </div>
+                            <button class="yz-submit" type="button">提交</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="mz-new-copyright" style="background: #002551">
+                    <div class="mz-wrap clear">
+                        <a href="http://www.maiziedu.com/" class="mz-copyright-logo db fl" target="_blank">
+                            <img src="/static/images/mxl_images/land/copyright-logo.png" alt=""/>
+                        </a>
+                        <div class="mz-new-copyright-r fr">
+                            <div class="mz-new-copyright-r-txt fl tx-r">
+                                © 2012-2017 www.maiziedu.com<br/> 蜀ICP备13014270号-4 Version 5.0.0 release20160127
+                            </div>
+                            <a href="https://www.anquan.org/authenticate/cert/?site=www.maiziedu.com&amp;at=business"
+                               target="_blank" class="mz-cp-industry-validate db fl" rel="nofollow">
+                                <img src="/static/images/mxl_images/land/mz-cp-industry-validate.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!--底部轮播和版权 end-->
+            </div>
+
+        </div>
+        <!--课程介绍end-->
+        <!--课程目录-->
+
+        <div class="container01">
+            <!--课程内容-->
+            <div class="wrap">
+                <div class="course3">
+                    <div class="box">
+                        <div class="box-top">
+                            <div class="left fl-left">
+                                <p>1</p>
+                            </div>
+                            <div class="right fl-left">
+                                <h3>基础阶段</h3>
+                                <p>万丈高楼平地起，再牛逼的大神也需要打好基础，本阶段重点学习Python语言基础、面向对象编程、开发工具及前端基础等知识点。</p>
+                            </div>
+                        </div>
+                        <div class="box-main">
+                            <ul>
+                                <li class="mr-ri">
+                                    <div class="left fl-left">
+                                        01
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>Python语言基础</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· 环境搭建与配置</td>
+                                                <td>· 变量和数据类型</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· 编程基础</td>
+                                                <td>· 装饰器</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li class="mr-ri">
+                                    <div class="left fl-left">
+                                        02
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>简易爬虫实战</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· http和urllib2</td>
+                                                <td>· 正则表达式和re</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· 编写爬虫代码</td>
+                                                <td>· 多线程</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left fl-left">
+                                        03
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>工具阶段</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· Pip安装方法以及环境</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· Pip基础使用和指定源</td>
+                                            </tr>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">· Pycharm&pdb调试技巧</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· Virtualenv安装</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li class="mr-ri">
+                                    <div class="left fl-left">
+                                        04
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>Python面向对象</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· 类方法使用及特征</td>
+                                                <td>· 嵌套类和嵌套函数</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">· 面向对象入门及特征</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">· super和self对象</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">· 访问限制</td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left fl-left">
+                                        05
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>web前端基础</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· HTML+CSS</td>
+                                                <td>· Javascript</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· Jquery</td>
+                                                <td></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="box-top">
+                            <div class="left fl-left">
+                                <p>2</p>
+                            </div>
+                            <div class="right fl-left">
+                                <h3>爬虫阶段</h3>
+                                <p>从爬虫基础，到各大爬虫框架的应用，结合到12306商业爬虫课程的学习，学员能掌握常用的爬虫技巧并能独立开发商业爬虫。</p>
+                            </div>
+                        </div>
+                        <div class="box-main">
+                            <ul>
+                                <li class="mr-ri">
+                                    <div class="left fl-left">
+                                        01
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>爬虫基础</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· 简单爬虫实例</td>
+                                                <td>· 方法抓取</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· cookie操作</td>
+                                                <td>· requsts</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· 模拟登陆</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">· 正则表达式的基本使用</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li class="mr-ri">
+                                    <div class="left fl-left">
+                                        02
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>Git基本使用</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· big分支</td>
+                                                <td>· pull requst</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· feature分支</td>
+                                                <td>· 常用命令</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>· remote和clone</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">· 基于github文档配置</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left fl-left">
+                                        03
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>Scrapy框架</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· 爬虫核心</td>
+                                                <td>· 图片抓取</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· Scrapy初步简介</td>
+                                                <td>· Scrapy常用命令</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· cookie处理</td>
+                                                <td></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left fl-left">
+                                        04
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>MYSQL数据库</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· sql规范和创建</td>
+                                                <td>· 主外键约束</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· 数据关联处理</td>
+                                                <td>· 运算符</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· 常用函数</td>
+                                                <td></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="box-top">
+                            <div class="left fl-left">
+                                <p>3</p>
+                            </div>
+                            <div class="right fl-left">
+                                <h3>web阶段</h3>
+                                <p>本阶段将重点学习flask，django等常用的python web开发框架，以及ajax等交互技术，通过学习可以将爬取的数据以网页或者接口的形式来呈现给用户。</p>
+                            </div>
+                        </div>
+                        <div class="box-main">
+                            <ul>
+                                <li class="mr-ri">
+                                    <div class="left fl-left">
+                                        01
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>flask入门</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· flask模板</td>
+                                                <td>· flask路由</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· flask入门部署</td>
+                                                <td>· Jinja2基本语法</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">· flask上下文响应</td>
+                                            </tr>
+                                            </tr>
+                                            <td colspan="2">· flask入门数据库操作</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li class="mr-ri">
+                                    <div class="left fl-left">
+                                        02
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>Django基础</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· 创建网站</td>
+                                                <td>· sqlite3数据库简介</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· 数据库基本操作</td>
+                                                <td>· admin使用</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left fl-left">
+                                        03
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>Ajax初步</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· 数据封装</td>
+                                                <td>· eval&dom</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">· Ajax简介/运行环境</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· ajax注册用户</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li class="mr-ri">
+                                    <div class="left fl-left">
+                                        04
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>Django进阶</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· 通用视图</td>
+                                                <td>· admin高级定制</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· admin actions</td>
+                                                <td>· 集成已有的数据库</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">· jinjia2替换模板引擎</td>
+
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left fl-left">
+                                        05
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>实战：个人博客系统</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· 项目分析</td>
+                                                <td>· 数据库设计</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· 项目部署上线</td>
+                                                <td>· Web开发流程介绍</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">· 自定义Manger管理</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="box-top">
+                            <div class="left fl-left">
+                                <p>4</p>
+                            </div>
+                            <div class="right fl-left">
+                                <h3>项目阶段</h3>
+                                <p>丰富的项目经验是找工作的必要条件，通过该阶段学习blog，cms，电商网站以及微信开发等各种类型项目的开发。</p>
+                            </div>
+                        </div>
+                        <div class="box-main">
+                            <ul>
+                                <li class="mr-ri">
+                                    <div class="left fl-left">
+                                        01
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>项目前导</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· 介绍和考核说明</td>
+                                                <td>· 开发前准备</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· 需求和功能讲解</td>
+                                                <td>· 代码结构</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· 注意事项</td>
+                                                <td></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li class="mr-ri">
+                                    <div class="left fl-left">
+                                        02
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>版本控制管理软件</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· Svn高级</td>
+                                                <td>· Git详解</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· 四大开源站点</td>
+                                                <td>· Svn常用实操</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· Git对比Svn</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">· 常用版本控制和原理</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left fl-left">
+                                        03
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>Diango缓存优化</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· Redis缓存</td>
+                                                <td>· 自定义缓存</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· Filesystem缓存解析</td>
+                                                <td>· Database缓存解析</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">· Django缓存优化性能评估</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· 缓存配置与使用</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left fl-left">
+                                        04
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>网站发布</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· 脚本自动化</td>
+                                                <td>· 部署前准备</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· Diango多服务器分离</td>
+                                                <td>· Diango的服务器安全</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="2">· 介绍Diango和它的基</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· 主流部署方式介绍</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="box-top">
+                            <div class="left fl-left">
+                                <p>5</p>
+                            </div>
+                            <div class="right fl-left">
+                                <h3>选修阶段</h3>
+                                <p>路漫漫其修远兮，技术的学习道路没有终点，该阶段帮助学员提升开发技能，涵盖桌面软件开发，数据分析，自动化运维，自动化测试等技术方向。</p>
+                            </div>
+                        </div>
+                        <div class="box-main">
+                            <ul>
+                                <li class="mr-ri">
+                                    <div class="left fl-left">
+                                        01
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>boottle入门</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· boottle入门</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· Python数据库编程</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· Linux基础</td>
+
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                </li>
+                                <li class="mr-ri">
+                                    <div class="left fl-left">
+                                        02
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>Redis入门</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· Redis入门</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· Mongdb最佳实战</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· Tkinter桌面编程</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left fl-left">
+                                        03
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>pyqt程序开发gui程序以及打包</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· pyqt程序开发gui程序以及打包</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· pyqt项目小麦听书</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· mysql进阶</td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                </li>
+                                <li class="mr-ri">
+                                    <div class="left fl-left">
+                                        04
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>paramiko基础</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· paramiko基础</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· fabric教程</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· 自动化测试</td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                </li>
+                                <li class="mr-ri">
+                                    <div class="left fl-left">
+                                        05
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>bootstrap入门</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· bootstrap入门</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· Gevent</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· web应用安全</td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="left fl-left">
+                                        06
+                                    </div>
+                                    <div class="right fl-left">
+                                        <h3>django项目实战之购物系统</h3>
+                                        <table cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>· django项目实战之购物系统</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· Tornado异步任务处理</td>
+                                            </tr>
+                                            <tr>
+                                                <td>· html5+css3</td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="tab2">
+                <div class="tab2-footer">
+                    <div class="footer-box">
+                        <h2>推荐基础课程</h2>
+
+                        <ul>
+
+                            <li>
+                                <a href="/course/424/" target="_blank">
+                                    <div class="item-tag">
+                                        <p class="item-tag1">快速提升UI设计能力</p>
+                                        <p class="item-tag2">29409人学习</p>
+                                    </div>
+                                    <img src="/static/images/mxl_images/land/footerlink/01914D373734CF4337F4978C02691CA3.png"
+                                         alt="快速提升UI设计能力"
+                                         class="ur-img">
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/course/374/" target="_blank">
+                                    <div class="item-tag">
+                                        <p class="item-tag1">学习UX第一季-轻松入门</p>
+                                        <p class="item-tag2">54635人学习</p>
+                                    </div>
+                                    <img src="/static/images/mxl_images/land/footerlink/mxlqsrm.png" alt="学习UX第一季-轻松入门"
+                                         class="ur-img">
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/course/615/" target="_blank">
+                                    <div class="item-tag">
+                                        <p class="item-tag1">Motion5动画基础 </p>
+                                        <p class="item-tag2">24616人学习</p>
+                                    </div>
+                                    <img src="/static/images/mxl_images/land/footerlink/Motion5.png" alt="Motion5动画基础 "
+                                         class="ur-img">
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/course/729/" target="_blank">
+                                    <div class="item-tag">
+                                        <p class="item-tag1">图形图像基础</p>
+                                        <p class="item-tag2">20411人学习</p>
+                                    </div>
+                                    <img src="/static/images/mxl_images/land/footerlink/imagebase.png" alt="图形图像基础"
+                                         class="ur-img">
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/course/727/" target="_blank">
+                                    <div class="item-tag">
+                                        <p class="item-tag1">移动UI设计规范</p>
+                                        <p class="item-tag2">20021人学习</p>
+                                    </div>
+                                    <img src="/static/images/mxl_images/land/footerlink/UIshejiguifan.png"
+                                         alt="移动UI设计规范"
+                                         class="ur-img">
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/course/701/" target="_blank">
+                                    <div class="item-tag">
+                                        <p class="item-tag1">MUI项目实训-社交APP的设计</p>
+                                        <p class="item-tag2">11317人学习</p>
+                                    </div>
+                                    <img src="/static/images/mxl_images/land/footerlink/APPsheji.png"
+                                         alt="MUI项目实训-社交APP的设计"
+                                         class="ur-img">
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/course/703/" target="_blank">
+                                    <div class="item-tag">
+                                        <p class="item-tag1">玩转高级图标设计</p>
+                                        <p class="item-tag2">13279人学习</p>
+                                    </div>
+                                    <img src="/static/images/mxl_images/land/footerlink/wanzhuangaoji.png"
+                                         alt="玩转高级图标设计"
+                                         class="ur-img">
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/course/748/" target="_blank">
+                                    <div class="item-tag">
+                                        <p class="item-tag1">玩转sketch</p>
+                                        <p class="item-tag2">18998人学习</p>
+                                    </div>
+                                    <img src="/static/images/mxl_images/land/footerlink/Sketch.png" alt="玩转sketch"
+                                         class="ur-img">
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="copyright">
+                        <div class="copyright-box">
+                            <img src="/static/images/mxl_images/land/footerlink/footer-logo.png" class="ps-left"
+                                 alt="logo">
+                            <div class="ps-right">
+                                © 2012-2016 www.maiziedu.com<br>蜀ICP备13014270号-4 Version 5.0.0 release20160127
+                            </div>
+                            <a href="https://www.anquan.org/authenticate/cert/?site=www.maiziedu.com&amp;at=business"
+                               target="_blank" class="industry-validate" rel="nofollow"><img
+                                    src="/static/images/mxl_images/land/footerlink/hangye_validate.png"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--课程目录end-->
+        <!--学员评价-->
+        <div class="container01">
+            <div class="mzedu-student-review ">
+                <div class="mzedu-student-review-t">
+                    <div class="wrap">
+                        <div class="mzedu-student-review-t-l ">
+                            <h6>综合评分</h6>
+                            <div class="clear">
+                                <b>10.00</b>
+
+                                <img src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                    src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                    src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                    src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                    src="/static/images/mxl_images/land/python_img/star.png"/>
+
+                            </div>
+                        </div>
+                        <div class="mzedu-student-review-t-r fr">
+                            <ul class="clear">
+                                <li>
+                                    <b>课程质量</b>
+                                    <strong>10.00</strong>
+                                </li>
+                                <li>
+                                    <b>老师满意度</b>
+                                    <strong>10.00</strong>
+                                </li>
+                                <li>
+                                    <b>简洁易懂</b>
+                                    <strong>10.00</strong>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="mzedu-student-review-b">
+                    <div class="mz-wrap">
+                        <b class="mzedu-student-review-b-tit">全部评价</b>
+                        <div class="mzedu-student-review-bcontainer">
+                            <ul class="clear">
+                                <li>
+                                    <div class="review-bcontainer-t-pic">
+                                        <img src="/static/images/mxl_images/land/python_img/review-bcontainer-t-pic.jpg"
+                                             alt=""/>
+                                    </div>
+                                    <div class="clear review-bcontainer-t">
+                                        <div class="fl review-bcontainer-t-l">
+                                            <b>周安伟</b>
+
+                                            <img src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/>
+
+                                        </div>
+                                        <span class="fr">
+											45分钟前
+										</span>
+                                    </div>
+                                    <div class="review-bcontainer-contxt">
+                                        <div class="review-bcontainer-txt-sdu">
+                                            作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很
+                                            nice。1
+                                            天半看了 1/3 了，毫无难度，通俗易懂。唯一的一点不足就是这不是 Vue 2.0 的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                                        </div>
+                                        <div class="review-bcontainer-txt-tec">
+                                            <b>老师回复：</b>感谢支持~ 能学会使用 Vue 开发实战项目就是本门课的宗旨~由于课程录制时间比较早选择的是 1.0 的。
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="review-bcontainer-t-pic">
+                                        <img src="/static/images/mxl_images/land/python_img/review-bcontainer-t-pic.jpg"
+                                             alt=""/>
+                                    </div>
+                                    <div class="clear review-bcontainer-t">
+                                        <div class="fl review-bcontainer-t-l">
+                                            <b>周安伟</b>
+                                            <img src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/>
+
+                                        </div>
+                                        <span class="fr">
+											45分钟前
+										</span>
+                                    </div>
+                                    <div class="review-bcontainer-contxt">
+                                        <div class="review-bcontainer-txt-sdu">
+                                            作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很
+                                            nice。1
+                                            天半看了 1/3 了，毫无难度，通俗易懂。唯一的一点不足就是这不是 Vue 2.0 的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="review-bcontainer-t-pic">
+                                        <img src="/static/images/mxl_images/land/python_img/review-bcontainer-t-pic.jpg"
+                                             alt=""/>
+                                    </div>
+                                    <div class="clear review-bcontainer-t">
+                                        <div class="fl review-bcontainer-t-l">
+                                            <b>周安伟</b>
+                                            <img src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/>
+
+                                        </div>
+                                        <span class="fr">
+											45分钟前
+										</span>
+                                    </div>
+                                    <div class="review-bcontainer-contxt">
+                                        <div class="review-bcontainer-txt-sdu">
+                                            作为一个刚入门的前端工程师
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="review-bcontainer-t-pic">
+                                        <img src="/static/images/mxl_images/land/python_img/review-bcontainer-t-pic.jpg"
+                                             alt=""/>
+                                    </div>
+                                    <div class="clear review-bcontainer-t">
+                                        <div class="fl review-bcontainer-t-l">
+                                            <b>周安伟</b>
+                                            <img src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/>
+
+                                        </div>
+                                        <span class="fr">
+											45分钟前
+										</span>
+                                    </div>
+                                    <div class="review-bcontainer-contxt">
+                                        <div class="review-bcontainer-txt-sdu">
+                                            作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很
+                                            nice。1
+                                            天半看了 1/3 了，毫无难度，通俗易懂。唯一的一点不足就是这不是 Vue 2.0 的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                                        </div>
+                                        <div class="review-bcontainer-txt-tec">
+                                            <b>老师回复：</b>感谢支持~ 能学会使用 Vue 开发实战项目就是本门课的宗旨~由于课程录制时间比较早选择的是 1.0 的。
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="review-bcontainer-t-pic">
+                                        <img src="/static/images/mxl_images/land/python_img/review-bcontainer-t-pic.jpg"
+                                             alt=""/>
+                                    </div>
+                                    <div class="clear review-bcontainer-t">
+                                        <div class="fl review-bcontainer-t-l">
+                                            <b>周安伟</b>
+                                            <img src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/>
+
+                                        </div>
+                                        <span class="fr">
+											45分钟前
+										</span>
+                                    </div>
+                                    <div class="review-bcontainer-contxt">
+                                        <div class="review-bcontainer-txt-sdu">
+                                            作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很
+                                            nice。1
+                                            天半看了 1/3 了，毫无难度，通俗易懂。唯一的一点不足就是这不是 Vue 2.0 的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                                        </div>
+                                        <div class="review-bcontainer-txt-tec">
+                                            <b>老师回复：</b>感谢支持~ 能学会使用 Vue 开发实战项目就是本门课的宗旨~由于课程录制时间比较早选择的是 1.0 的。
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="review-bcontainer-t-pic">
+                                        <img src="/static/images/mxl_images/land/python_img/review-bcontainer-t-pic.jpg"
+                                             alt=""/>
+                                    </div>
+                                    <div class="clear review-bcontainer-t">
+                                        <div class="fl review-bcontainer-t-l">
+                                            <b>周安伟</b>
+                                            <img src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/>
+
+                                        </div>
+                                        <span class="fr">
+											45分钟前
+										</span>
+                                    </div>
+                                    <div class="review-bcontainer-contxt">
+                                        <div class="review-bcontainer-txt-sdu">
+                                            作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很
+                                            nice。1
+                                            天半看了 1/3 了，毫无难度，通俗易懂。唯一的一点不足就是这不是 Vue 2.0 的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                                        </div>
+                                        <div class="review-bcontainer-txt-tec">
+                                            <b>老师回复：</b>感谢支持~ 能学会使用 Vue 开发实战项目就是本门课的宗旨~由于课程录制时间比较早选择的是 1.0 的。
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="review-bcontainer-t-pic">
+                                        <img src="/static/images/mxl_images/land/python_img/review-bcontainer-t-pic.jpg"
+                                             alt=""/>
+                                    </div>
+                                    <div class="clear review-bcontainer-t">
+                                        <div class="fl review-bcontainer-t-l">
+                                            <b>周安伟</b>
+                                            <img src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/><img
+                                                src="/static/images/mxl_images/land/python_img/star.png"/>
+
+                                        </div>
+                                        <span class="fr">
+											45分钟前
+										</span>
+                                    </div>
+                                    <div class="review-bcontainer-contxt">
+                                        <div class="review-bcontainer-txt-sdu">
+                                            作为一个刚入门的前端工程师，用这个视频教程作为学习 Vue 真是太好了，主要之前没怎么接触过模块化设计，网上对将这些方面的又不是很多。这个教程很
+                                            nice。1
+                                            天半看了 1/3 了，毫无难度，通俗易懂。唯一的一点不足就是这不是 Vue 2.0 的，有些不一样的地方我还得翻官方文档去改。但总的来说很好。点赞！
+                                        </div>
+                                        <div class="review-bcontainer-txt-tec">
+                                            <b>老师回复：</b>感谢支持~ 能学会使用 Vue 开发实战项目就是本门课的宗旨~由于课程录制时间比较早选择的是 1.0 的。
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="review-load-more-item">
+                                    <div class="load-more-comment">
+                                        <p><img src="/static/images/mxl_images/land/python_img/add.png" id="add"/></p>
+                                        <p>加载更多评论</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="copyright-box clear">
+                    <a href="http://www.maiziedu.com/" class="ft-mz-logo">
+                        <img src="/static/images/mxl_images/land/footerlink/mxl-ft-mz-logo.png" alt="logo">
+                    </a>
+                    <div class="ps-right">
+                        © 2012-2016 www.maiziedu.com<br>蜀ICP备13014270号-4 Version 5.0.0 release20160127
+                    </div>
+                    <a href="https://www.anquan.org/authenticate/cert/?site=www.maiziedu.com&amp;at=business"
+                       target="_blank" class="industry-validate" rel="nofollow"><img
+                            src="/static/images/mxl_images/land/footerlink/hangye_validate.png"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block custom_script %}
+    <script type="text/javascript" src="/static/js/mxl_js/land/jquery-SliderPlay-1.0.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/static/js/mxl_js/land/mzWaterfall.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/static/js/mxl_js/land/python_index.js?v={{ time_stamp }}"></script>
+
+    <script type="text/javascript" src="/static/js/mxl_js/land/mzConsultation.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/index.js?v={{ time_stamp }}"></script>
+
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/static/js/yz-js/yz-form.js?v={{ time_stamp }}"></script>
+
+    <script>
+
+        goTop();
+        //咨询
+        $(".mzconsultation,.box-main li").click(function () {
+            mzConsultation()
+        });
+        //查看课程大纲
+        $(".see-kcdg").click(function () {
+            $(".mz-wrap").find("li").eq(1).trigger("click");
+        });
+        footerBannerSlider();
+    </script>
+
+{% endblock %}

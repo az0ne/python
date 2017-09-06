@@ -1,0 +1,39 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/teacher_breadcrumb.html"%}
+
+<p>{% include "mz_nadmin/modules/msgs.html" %}</p>
+
+{% if students.end_index >= 1 %}
+<div class="table-responsive">
+<table class="table table-bordered table-condensed">
+    <thead>
+        <th class="col-md-6">学员</th>
+        <th class="col-md-6">毕业状态</th>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>
+                {{ student.username }}
+            </td>
+            <td>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% include "mz_nadmin/modules/page_info.html" with items=students %}
+</div>
+{% else %}
+<p class="text-muted"><small>还没有任何学生</small></p>
+{% endif %}
+
+{% endblock %}
+
+
+
+
+

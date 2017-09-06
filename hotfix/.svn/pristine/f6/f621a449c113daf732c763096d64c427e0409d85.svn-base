@@ -1,0 +1,590 @@
+body{
+    background: #ededed;
+}
+.msg {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 4px;
+    height: 18px;
+    width: 18px;
+    background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Rjc1RUFBRjlGQTZCMTFFNjk1NUM4NzlEMzlDNkFCM0QiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Rjc1RUFBRkFGQTZCMTFFNjk1NUM4NzlEMzlDNkFCM0QiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGNzVFQUFGN0ZBNkIxMUU2OTU1Qzg3OUQzOUM2QUIzRCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGNzVFQUFGOEZBNkIxMUU2OTU1Qzg3OUQzOUM2QUIzRCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PjN+hYsAAAbASURBVHja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") 0 0 no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
+    position: relative;
+    font-style: normal
+}
+
+.msg:hover .pop {
+    display: block
+}
+
+body {
+    font-family: Microsoft Yahei;
+    margin: 0;
+    padding: 0
+}
+
+a {
+    text-decoration: none
+}
+
+p, a, ol, ul, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0
+}
+
+ul li {
+    list-style: none
+}
+
+.container {
+    background: #ededed;
+    background-position: 165px 129px;
+    min-width: 1000px;
+    height: 570px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto
+}
+
+.container .content {
+    text-align: center
+}
+
+.container .content img {
+    vertical-align: top
+}
+
+.container .content .login {
+    display: inline-block;
+    text-align: left;
+    margin: 130px 0 0 120px
+}
+
+.container .content .login .form-group label.error {
+    display: block;
+    color: #ea002f;
+    margin-top: 10px
+}
+
+.container .content .login .login_lbl {
+    font-weight: normal;
+    font-size: 20px;
+    margin-bottom: 30px
+}
+
+.container .content .login input, .container .content .login button {
+    width: 300px;
+    height: 34px;
+    border: 1px solid #a9a9a9
+}
+
+.container .content .login input {
+    width: 290px;
+    padding-left: 10px
+}
+
+.container .content .login button {
+    height: 40px;
+    color: #fff
+}
+
+.container .content .login .remember {
+    width: 12px;
+    height: 12px
+}
+
+.container .content .login .btn-submit {
+    background: #2fc5a0
+}
+
+.top .logo, .container .logo {
+    margin: 10px
+}
+
+.top .logo .logo-img, .container .logo .logo-img {
+    display: block;
+    width: 304px;
+    height: 42px
+}
+
+.container-index {
+    background: #ededed
+}
+
+.container-index .top {
+    background: #fff;
+    margin-bottom: 20px;
+    -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09);
+    -moz-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09);
+    -ms-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09);
+    -o-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09)
+}
+
+.container-index .top .logo {
+    display: inline-block
+}
+
+.container-index .top .user {
+    font-size: 0;
+    float: right;
+    margin: 10px 30px 0 0;
+    color: #959595
+}
+
+.container-index .top .user i {
+    vertical-align: middle;
+    display: inline-block;
+    height: 44px;
+    width: 44px;
+    border-radius: 100%;
+    margin-right: 10px;
+    background-image: url("/images/fxsys/default_avater.png")
+}
+
+.container-index .top .user .right {
+    font-size: 16px;
+    vertical-align: middle;
+    display: inline-block
+}
+
+.container-index .top .user .right .logout {
+    color: #959595
+}
+
+.container-index .top .user .right .logout:hover {
+    color: #ff855c
+}
+
+.container-index .content {
+    width: 1160px;
+    margin: 0 auto
+}
+
+.container-index .content .baseInfo {
+    font-size: 0;
+    height: 240px;
+    margin-bottom: 20px
+}
+
+.container-index .content .baseInfo .my-account {
+    height: 240px;
+    vertical-align: top;
+    width: 830px;
+    background: #fff;
+    display: inline-block;
+    margin-right: 20px;
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19);
+    -ms-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19);
+    -o-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19)
+}
+
+.container-index .content .baseInfo .my-account section {
+    height: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: top
+}
+
+.container-index .content .baseInfo .my-account .profit-info {
+    position: relative;
+    width: 240px;
+    padding-left: 20px;
+    border-right: 1px solid #ddd
+}
+
+.container-index .content .baseInfo .my-account .profit-info h3 {
+    margin-top: 24px;
+    font-size: 16px
+}
+
+.container-index .content .baseInfo .my-account .profit-info .total-money {
+    font-size: 36px;
+    color: #5B5B5B;
+    line-height: 40px;
+    margin-top: 30px;
+    width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden
+}
+
+.container-index .content .baseInfo .my-account .profit-info .move-money {
+    color: #939393;
+    font-size: 14px;
+    margin-top: 10px
+}
+.container-index .content .baseInfo .my-account .profit-info .rules a{
+    color: #0058FF;
+    text-decoration: underline;
+}
+.container-index .content .baseInfo .my-account .profit-info .rules a:hover{
+    color: #f60;
+}
+.container-index .content .baseInfo .my-account .profit-info .rules {
+    /*color: #939393;*/
+    font-size: 12px;
+    margin-top: 10px;
+    margin-left: 16px;
+}
+
+.container-index .content .baseInfo .my-account .profit-info .tx-btn {
+    font-size: 14px;
+    color: #fff;
+    background-color: #FF733E;
+    line-height: 30px;
+    width: 90px;
+    border-radius: 15px;
+    margin-top: 30px;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid #FF733E
+}
+
+.container-index .content .baseInfo .my-account .profit-info .tx-btn:hover {
+    color: #FF733E;
+    background-color: #fff
+}
+
+.container-index .content .baseInfo .my-account .detail-money {
+    width: 590px
+}
+
+.container-index .content .baseInfo .my-account .detail-money ul {
+    font-size: 0
+}
+
+.container-index .content .baseInfo .my-account .detail-money li {
+    font-size: 14px;
+    padding: 20px 0 0 20px;
+    position: relative
+}
+
+.container-index .content .baseInfo .my-account .detail-money li:first-child {
+    border-bottom: 1px solid #ddd
+}
+
+.container-index .content .baseInfo .my-account .detail-money li dl {
+    font-size: 0;
+    margin: 8px 0 12px
+}
+
+.container-index .content .baseInfo .my-account .detail-money li dl dd {
+    font-size: 14px;
+    color: #A0A0A0;
+    display: inline-block;
+    margin-right: 16px;
+    width: 126px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden
+}
+
+.container-index .content .baseInfo .my-account .detail-money h3 {
+    font-size: 16px;
+    color: #636363;
+    display: inline-block
+}
+
+.container-index .content .baseInfo .my-account .detail-money .f-right {
+    color: #ff7100;
+    float: right;
+    margin-right: 20px;
+    line-height: 18px
+}
+
+.container-index .content .baseInfo .my-account .detail-money .money-orange {
+    font-size: 18px;
+    color: #ff7100;
+    line-height: 25px;
+    margin-top: 12px
+}
+
+.container-index .content .baseInfo .my-account .detail-money .money-orange em {
+    font-size: 14px;
+    font-style: normal
+}
+
+.container-index .content .baseInfo .my-baseInfo {
+    background-color: #fff;
+    height: 240px;
+    width: 310px;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 24px 20px 20px;
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19);
+    -ms-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19);
+    -o-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.19);
+    position: relative
+}
+
+.container-index .content .baseInfo .my-baseInfo h2, .container-index .content .baseInfo .my-baseInfo h3, .container-index .content .baseInfo .my-baseInfo h6, .container-index .content .baseInfo .my-baseInfo p {
+    text-align: center
+}
+
+.container-index .content .baseInfo .my-baseInfo h3 {
+    font-size: 16px
+}
+
+.container-index .content .baseInfo .my-baseInfo h3 em {
+    color: #ff7100;
+    font-style: normal
+}
+
+.container-index .content .baseInfo .my-baseInfo h6 {
+    font-size: 12px;
+    width: 100%;
+    color: #969696;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    transform: translateX(-50%)
+}
+
+.container-index .content .baseInfo .my-baseInfo h2 {
+    font-size: 14px;
+    color: #ff7100;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%)
+}
+
+.container-index .content .baseInfo .my-baseInfo h2 mark {
+    font-size: 48px;
+    color: #ff7100;
+    background-color: transparent
+}
+
+.container-index .content .baseInfo .my-baseInfo h2 p {
+    font-size: 14px;
+    color: #000;
+    margin-top: 8px
+}
+
+.container-index .content .payments-detail {
+    background: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09);
+    -moz-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09);
+    -ms-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09);
+    -o-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.09)
+}
+
+.container-index .content .payments-detail label {
+    vertical-align: middle;
+    font-size: 18px;
+    margin: 0 10px 0 0
+}
+
+.container-index .content .payments-detail input, .container-index .content .payments-detail span, .container-index .content .payments-detail a {
+    vertical-align: middle
+}
+
+.container-index .content .payments-detail input {
+    padding-left: 8px
+}
+
+.container-index .content .payments-detail span {
+    margin: 0 5px
+}
+
+.container-index .content .payments-detail button {
+    color: #fff;
+    background: #ff855c;
+    font-size: 12px;
+    height: 30px;
+    width: 75px;
+    margin-left: 20px
+}
+
+.container-index .content .payments-detail .table {
+    margin: 30px 0
+}
+
+.container-index .content .payments-detail .zypage {
+    text-align: center;
+    display: table;
+    width: 100%;
+    font-size: 14px;
+    color: #5ecfbb
+}
+
+.container-index .content .payments-detail .zypage .zypage_div a {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    background: #f1eff0;
+    text-align: center;
+    color: #666666;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: small
+}
+
+.container-index .content .payments-detail .zypage .zypage_div a:hover {
+    background: #ff855c;
+    color: #fff
+}
+
+.container-index .content .payments-detail .zypage .zypage_div .jp-current {
+    background: #ff855c;
+    color: #fff
+}
+
+.crean {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000
+}
+
+.crean .prompt {
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    background-color: #fff;
+    -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
+    -ms-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
+    -o-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.7);
+    margin-left: -150px;
+    box-sizing: border-box;
+    z-index: 1010
+}
+
+.crean .prompt p {
+    font-size: 14px;
+    color: #636363;
+    letter-spacing: 0;
+    text-align: left
+}
+
+.reward_crean .reward_prompt {
+    color: #ff855c;
+    font-size: 22px;
+    height: 238px;
+    width: 416px;
+    margin-top: -100px;
+    padding: 20px 30px 40px;
+    border-top: 2px solid #ff732b
+}
+
+.reward_crean .reward_prompt h3 {
+    color: #ff732b;
+    font-size: 18px
+}
+
+.reward_crean .reward_prompt p {
+    margin-top: 28px
+}
+
+.reward_crean .reward_prompt p em {
+    color: #ff732b;
+    font-style: normal
+}
+
+.reward_crean .reward_prompt .off {
+    display: inline-block;
+    height: 30px;
+    width: 90px;
+    border-radius: 15px;
+    line-height: 30px;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 26px;
+    background-color: #ff732b
+}
+
+.sqtx_crean .sqtx_prompt {
+    height: 200px;
+    width: 300px;
+    margin: -100px 0 0 -150px;
+    padding: 50px 24px
+}
+
+.sqtx_crean .sqtx_prompt p {
+    font-size: 22px;
+    color: #ff732b;
+    text-align: center
+}
+
+.total-profit, .active-rule, .all-reward {
+    display: none;
+    position: absolute;
+    top: 26px;
+    left: -110px;
+    width: 236px;
+    padding: 12px 10px;
+    box-sizing: border-box;
+    -webkit-box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.19);
+    -ms-box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.19);
+    -o-box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.19);
+    background-color: #FFF;
+    z-index: 100
+}
+
+.total-profit p, .active-rule p, .all-reward p {
+    color: #000;
+    font-size: 12px;
+    line-height: 1.5
+}
+
+.total-profit:before, .active-rule:before, .all-reward:before {
+    content: '';
+    display: inline-block;
+    border: 8px solid transparent;
+    border-bottom: 8px solid #fff;
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    margin-left: -8px
+}
+
+.active-rule p {
+    text-align: left !important;
+    margin-bottom: 5px
+}
+
+.active-rule .rule {
+    display: none;
+    font-size: 12px;
+    color: #0069FF;
+    text-decoration: underline;
+    text-align: left !important
+}
+
+.all-reward .sub {
+    margin-top: 8px
+}
+
+.all-reward .sub p {
+    color: #7c7c7c
+}

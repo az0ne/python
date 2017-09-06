@@ -1,0 +1,75 @@
+<!-- 项目要求展示 -->
+        <div class="project-view">
+            <h2 class="font18 bold">项目制作</h2>
+            <div class="project-con">
+                <div class="left">
+                    <a href="{% if teacher %}{% url 'u:index' teacher.id %}{% endif %}"><img src="{% if teacher %}{{ MEDIA_URL }}{{ teacher.avatar_url }}
+                    {% else %}/static/images/wapwike/weixin_share_logo.jpg{% endif %}" alt=""><i class="teacher"></i></a>
+                    <p class="font18 textC bold">{% if teacher %}
+                        {% if teacher.real_name %}{{ teacher.real_name }}{% else %}{{ teacher.nick_name }}{% endif %}
+                        {% else %}小麦{% endif %}</p>
+                </div>
+                <div class="right">
+                    <h3 class="font18 color66 bold">项目描述</h3>
+                    <p class="font16 color66">{{ project_desc|linebreaksbr }}</p>
+                    {% if project_image %}
+                    <h3 class="font18 color66 bold">项目示例</h3>
+                    {% for image in project_image %}
+                    <p class="image-view">
+                        <img src="{{ MEDIA_URL }}{{ image.image }}" alt=""/>
+                    </p>
+                    {% endfor %}
+                    {% endif %}
+                    {% if project_material %}
+                    <dl class="source-lists color66" style="margin-top: 30px;">
+                        {% for material in project_material %}
+                        <dt class="source">{{ material.name }}</dt>
+                        <dd><a href="{{ MEDIA_URL }}{{ material.material }}">下载</a></dd>
+                        {% endfor %}
+                    </dl>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <!-- 项目回复展示 -->
+        <div class="project-view">
+            <div class="project-con" id="project-con">
+                {% for comment in comment_list %}
+                <div class="item">
+                    <div class="left">
+                        <a href="{% url 'u:index' comment.user_id %}"><img src="{{ MEDIA_URL }}{{ comment.head }}" alt="{{ comment.nick_name }}"><i class="{% if comment.user_type == 10 %}vip{% else %}teacher{% endif %}"></i></a>
+                        <p class="font18 textC bold">{{ comment.nick_name }}</p>
+                    </div>
+                    <div class="right">
+                        <div class="font16 color66 marginB40">
+                            <p>{{ comment.content|safe }}</p>
+                        </div>
+                        {% if comment.project %}
+                            <dl class="source-lists color66 marginB40">
+                            {% for material in comment.project %}
+                            <dt class="{% if material.file_type == 'rar' %}rar{% elif material.file_type == 'zip' %}zip{% else %}source{% endif %}">{{ material.file_name }}</dt>
+                            <dd><a target="_blank" href="{{ material.file_url }}">下载</a></dd>
+                            {% endfor %}
+                            </dl>
+                        {% endif %}
+                        <p class="return-time font16 color99">{{ comment.create_date }}</p>
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        {% if can_submit %}
+        <!-- 项目提交展示 -->
+        <div class="return-view">
+            <div class="return-con">
+                <div class="bdeditor marginB20" id="bdeditor"></div>
+                <a href="javascript:;" class="add-file font16 color66 textC marginB10">添加文件<input type="file" multiple="multiple" accept="*" name="file" id="add-file"></a>
+                <div class="file-con">
+                    <div class="source-lists font16 color66" id="source-lists"></div>
+                </div>
+                <button class="project-submit font20 colorff">提交</button>
+            </div>
+        </div>
+        {% endif %}

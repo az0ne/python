@@ -1,0 +1,151 @@
+{% extends "mz_common/base4.html" %}
+{% block title %}{{ seo.seo_title }}{% endblock %}
+{% block keywords %}{{ seo.seo_keyword }}{% endblock %}
+{% block description %}{{ seo.seo_description }}{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" href="/css/personalCenter.css">
+{% endblock %}
+{% block container %}
+    {% include 'header/header.html' %}
+    {% include 'mz_usercenter/div_user_header.html' %}
+    <div class="center personalCmain">        
+        {% block usercenter_left_panel %}
+            {% include 'mz_usercenter/div_left_menu.html' %}
+        {% endblock %}
+        <div class="personalCmainR font14 color33 tryStudentsCourseList">   
+			<p class="personalCmainRtit font22 color33">免费试学课程</p>
+			<ul class="personalCenterStasteList">
+				<li>
+					<div class="img fl">
+						<img src="http://www.maiziedu.com/uploads/course/2015/09/iOS.png"/>
+					</div>
+					<div class="fl courseInfo">
+						<strong class="font20 color33">iOS应用开发</strong>
+						<span class="color99">05.26-05.28（3天）<em class="active">试学中</em></span>
+						<a href="#">进入试学面板</a>
+					</div>
+					<div class="fl classMeeting">						
+						<span class="color66">班会<strong class="font16">周五（05.28） 18:00</strong></span>
+						<a href="#">进入班会</a>
+					</div>
+				</li>
+				<li>
+					<div class="img fl">
+						<img src="http://www.maiziedu.com/uploads/course/2015/09/iOS.png"/>
+					</div>
+					<div class="fl courseInfo">
+						<strong class="font20 color33">iOS应用开发</strong>
+						<span class="color99">05.26-05.28（3天）<em class="ordered">已预约</em></span>
+						<a href="#">进入试学面板</a>
+						<span class="font12 color99 tip">我们会在试学开始前，通过短信的方式提醒您</span>
+					</div>
+					<div class="fl classMeeting">						
+						<span class="color66">班会<strong class="font16">周五（05.28） 18:00</strong></span>
+						<a href="#">进入班会</a>
+					</div>
+				</li>
+				<div class="pcsLine">
+	                <i class="personalCico pcICO12"></i>
+	                <div class="color66 pf"><span class="font20">03.17</span><br>2016</div>
+	            </div>
+			</ul>
+			<ul class="personalCenterStasteList">
+				<li>
+					<div class="img fl">
+						<img src="http://www.maiziedu.com/uploads/course/2015/09/iOS.png"/>
+					</div>
+					<div class="fl courseInfo">
+						<strong class="font20 color33">iOS应用开发</strong>
+						<span class="color99">05.26-05.28（3天）<em class="over">试学已结束</em></span>
+						<a href="#">进入试学面板</a>
+					</div>					
+				</li>
+				<div class="pcsLine">
+	                <i class="personalCico pcICO12"></i>
+	                <div class="color66 pf"><span class="font20">03.10</span><br>2016</div>
+	            </div>
+			</ul>
+        </div>
+    </div>
+	
+	<!--新建试学班Modal-->
+    <div class="modal tryTeacherModal fade" id="tryTeacherNewClassModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="ModalTitle">新建试学班</h4>
+		    	</div>
+		    	<div class="modal-body">
+			        <div class="tryTeacherNewClassAdd">
+			        	<div class="form-group form-inline">
+			        		<label class="control-label">专业</label>
+			        		<select class="form-control">
+			        			<option>请选择专业</option>
+			        			<option value="1">专业1</option>
+			        			<option value="2">专业2</option>
+			        			<option value="3">专业3</option>
+			        			<option value="4">专业4</option>
+			        		</select>
+			        	</div>
+			        	<div class="first">
+			        		<p class="marginB20"><strong>首次班会</strong><span class="tips"><em>*</em>同一时间点已有试学班，请重新选择日期或时间</span></p>
+				        	<div class="form-group form-inline">			        		
+				        		<label class="control-label">日期</label>
+				        		<input type="date" class="form-control" />
+				        	</div>
+				        	<div class="form-group form-inline">
+				        		<label class="control-label">时间</label>
+				        		<input type="time" class="form-control" value="20:00" />
+				        	</div>
+			        	</div>
+						<div class="answer">
+			        		<strong class="marginB20">答疑班会</strong>
+				        	<div class="dates marginB10">			        		
+				        		<label class="control-label">日期</label>
+				        		<span>2016.05.28</span>
+				        	</div>
+				        	<div class="form-group form-inline">
+				        		<label class="control-label">时间</label>
+				        		<input type="time" class="form-control" value="20:00" />
+				        	</div>
+			        	</div>
+			        	<button type="button" class="btn create">创建</button>
+			        </div>
+			        <div class="tryTeacherNewClassResult">
+			        	<div class="result marginB20">
+			        		<p><strong>05.26-05.28（3天）</strong><span>iOS应用开发</span></p>
+			        		<ul>
+			        			<li><span>首次班会</span><strong>周五（05.28） 18:00</strong></li>
+			        			<li><span>答疑班会</span><strong>周五（05.28） 18:00</strong></li>
+			        		</ul>
+			        	</div>
+			        	<button type="button" class="btn back">返回修改</button>
+			        	<button type="button" class="btn confirm" data-dismiss="modal">确认创建</button>
+			        </div>
+		    	</div>		       
+	    	</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block footer%}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block sea_script %}
+<script type="text/javascript">
+    seajs.use("/js/lps4/src/main",function(main){main.loading("personalCenterStudent");});
+</script>
+{% endblock %}
+
+{% block 53kf %}
+<script>
+(function() {
+  var _53code = document.createElement("script");
+  _53code.src = "//tb.53kf.com/code/code/10111642/3";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(_53code, s);
+})();
+</script>
+{% endblock %}

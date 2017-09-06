@@ -1,0 +1,888 @@
+﻿{% extends "mz_common/global.html" %} {% block title %}网络运营 - 网络运营培训- 新媒体运营 -新媒体运营培训 - 麦子学院{% endblock %}
+{% block keywords %}新媒体培训,新媒体培训课程,网络运营,网络运营培训,网络营销,市场营销{% endblock %}
+{% block description %}麦子学院,专业新媒体网络运营培训机构,提供史上最靠谱的新媒体网络运营培训课程,定制化新媒体网络运营学习路线,名师1对1指导,通过通俗易懂的讲解,丰富有趣的实战,轻松学习新媒体运营和网络运营相关技能,升级为实力派运营大牛。{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/css/mz_ad/op-css/reset.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mz_ad/op-css/style.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mz_ad/common.css?v={{ time_stamp }}">
+{% endblock %} {% block csstype %}op{% endblock %}
+{% block container %} {% include 'header/index_header.html' %}
+        <script type="text/javascript" src="/static/js/mz_ad/op-js/jquery-1.7.2.min.js?v={{ time_stamp }}"></script>
+        <script type="text/javascript" src="/static/js/mz_ad/op-js/global.js?v={{ time_stamp }}"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".side ul li").hover(function () {
+                    $(this).find(".sidebox").stop().animate({"width": "124px"}, 200).css({
+                        "opacity": "1",
+                        "filter": "Alpha(opacity=100)"
+                    });
+                }, function () {
+                    $(this).find(".sidebox").stop().animate({"width": "44px"}, 200).css({
+                        "opacity": "0.8",
+                        "filter": "Alpha(opacity=80)"
+                    })
+                });
+            });
+
+
+            $(function () {
+                $("img.c").click(function () {
+                    $(".gz-emw").hide();
+                })
+                $("span.wxgz").click(function () {
+                    $(".gz-emw").show();
+                })
+                $(".nav-tabin a").click(function () {
+                    $('html,body').animate({scrollTop: '787' + 'px'}, 0);
+                })
+
+                $(".page3 a.lbtn").click(function () {
+                    $("#t_one2").addClass("cur");
+                    $("#t_one1").removeClass("cur");
+                    $("#t_one_con2").show();
+                    $("#t_one_con1").hide();
+                    $('html,body').animate({scrollTop: '787' + 'px'}, 0);
+                })
+
+            })
+
+            $(window).scroll(function () {
+                var sctop = 0;
+
+                if (document.documentElement && document.documentElement.scrollTop)
+                    sctop = document.documentElement.scrollTop;
+                else if (document.body)
+                    sctop = document.body.scrollTop;
+                if (sctop > 1545) {
+                    $(".sidetop").css("display", "block");
+                }
+                else {
+                    $(".sidetop").css("display", "none");
+                }
+            })
+
+            var _vds = _vds || [];
+            window._vds = _vds;
+            (function () {
+                _vds.push(['setAccountId', 'e896811fa91b4cd990a44509f88f5d41']);
+                (function () {
+                    var vds = document.createElement('script');
+                    vds.type = 'text/javascript';
+                    vds.async = true;
+                    vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(vds, s);
+                })();
+            })();
+            $(function () {
+                //点击弹出客服，添加.more
+                $('.more').unbind().click(function () {
+                    $('#KFLOGO .Lelem').eq(0).trigger('click');
+                });
+                //显示客服
+                function showtips() {
+                    $(".kftips").fadeIn();
+                }
+
+                setTimeout(function () {
+                    showtips();
+                }, 10000);
+            });
+        </script>
+
+        <!--[if IE 6]>
+<script src="/static/js/mz_ad/op-js/pngfix.js" language="javascript"></script>
+<![endif]-->
+    <div id="tab">
+        <ul>
+            <li><a href="/land/pm/" alt="产品经理">产品经理</a></li>
+            <li><a href="/land/ui/" alt="UI设计">UI设计</a></li>
+            <li><a href="/land/web/" alt="Web前端">Web前端</a></li>
+            <li><a href="/land/python/" alt="Python Web开发">Python Web开发</a></li>
+            <li class="active"><span>互联网运营</span></li>
+        </ul>
+    </div>
+    <div class="banner">
+        <div class="bannerin">
+            <img src="/static/images/mz_ad/op-images/banner-t1.png" alt="" class="txt1">
+            <div class="btn-zx"><a class="more fl" href="javascript:" onclick="_MEIQIA('showPanel')">立即报名</a><a class="more fr"
+                                                                                 href="javascript:" onclick="_MEIQIA('showPanel')">在线咨询</a></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function setTab(name, num, n) {
+            for (i = 1; i <= n; i++) {
+                var menu = document.getElementById(name + i);
+                var con = document.getElementById(name + "_" + "con" + i);
+                menu.className = i == num ? "cur" : "";
+                con.style.display = i == num ? "block" : "none";
+            }
+        }
+    </script>
+    <div class="nav-tab">
+        <div class="nav-tabin"><a id="t_one1" onclick="setTab('t_one',1,2)" class="cur"
+                                  href="javascript:">课程介绍<i></i></a><a id="t_one2" onclick="setTab('t_one',2,2)"
+                                                                       href="javascript:">课程大纲<i></i></a></div>
+    </div>
+    <div id="t_one_con1">
+        <div class="page1 page-js">
+            <h2>「 我们拒绝培养只会发微博的运营专员！」</h2>
+            <p class="js">不懂运营策略、只能配合活动执行、文案发布…这就是目前运营培训的现状。<br/>我们认为真正的运营应该是能制定运营推广策略、把控整体运营效果、能吸粉、能玩转用户、提高转化，将流量发挥出最大价值的人！
+            </p>
+            <ul class="teck-list">
+                <li>
+                    <img src="/static/images/mz_ad/op-images/teck01.png" alt="" class="teckpic">
+                    <h3>运营助理</h3>
+                    <p>文章整理发布<br/>微博微信发布<br/>数据报表</p>
+                </li>
+                <li class="tips"><img src="/static/images/mz_ad/op-images/link-tips.png" alt=""></li>
+                <li>
+                    <img src="/static/images/mz_ad/op-images/teck02.png" alt="" class="teckpic">
+                    <h3>运营专员</h3>
+                    <p>推广执行<br/>文案撰写<br/>活动执行<br/>用户互动</p>
+                </li>
+                <li class="tips"><img src="/static/images/mz_ad/op-images/link-tips.png" alt=""></li>
+                <li class="cur">
+                    <img src="/static/images/mz_ad/op-images/teck03.png" alt="" class="teckpic">
+                    <h3>高级运营</h3>
+                    <p>用户运营<br/>活动运营<br/>内容运营<br/>策略规划</p>
+                </li>
+                <li class="tips"><img src="/static/images/mz_ad/op-images/link-tips.png" alt=""></li>
+                <li>
+                    <img src="/static/images/mz_ad/op-images/teck01.png" alt="" class="teckpic">
+                    <h3>运营总监</h3>
+                    <p>商务支持<br/>流程把控<br/>运营数据决策<br/>产品支持</p>
+                </li>
+            </ul>
+            <h3 class="t2">麦子学院只培养相当于<b>两年以上</b>工作经验的网络运营！</h3>
+            <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">我能成为运营吗？</a>
+        </div>
+        <div class="page10">
+            <h3 class="t3">「 麦子学院如何保证学习效果？ 」</h3>
+            <ul class="xg-list">
+                <li>
+                    <h5>700课时+</h5>
+                    <img src="/static/images/mz_ad/op-images/xg-icon01.png" alt="" class="icon">
+                    <h4>线上视频</h4>
+                </li>
+                <li>
+                    <h5>随时指导</h5>
+                    <img src="/static/images/mz_ad/op-images/xg-icon02.png" alt="" class="icon">
+                    <h4>一对一指导</h4>
+                </li>
+                <li>
+                    <h5>随时答疑</h5>
+                    <img src="/static/images/mz_ad/op-images/xg-icon03.png" alt="" class="icon">
+                    <h4>金牌讲师答疑</h4>
+                </li>
+                <li>
+                    <h5>满意为止</h5>
+                    <img src="/static/images/mz_ad/op-images/xg-icon04.png" alt="" class="icon">
+                    <h4>高薪就业</h4>
+                </li>
+            </ul>
+            <div class="v1">
+                <div class="play01 play-b1">
+                    <img src="/static/images/mz_ad/op-images/video-1.jpg" alt="" class="p">
+                    <img src="/static/images/mz_ad/op-images/play-btn.png" alt="" class="play-btn">
+                    <div class="p-txt">快速认识麦子学院</div>
+                </div>
+                <div class="vinfo">
+                    <h4 class="vtitle">强大的LPS3.0学习过程管理系统 </h4>
+                    <h5 class="sitle">学习过程任务制管理</h5>
+                    <h5 class="sitle">学习效果监测实施调整进度</h5>
+                    <h5 class="sitle">学习数据直接生成简历</h5>
+                    <h5 class="sitle">无缝对接1000+互联网企业</h5>
+                    <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">什么是LPS?</a>
+                </div>
+            </div>
+        </div>
+        <div class="page2">
+            <h1 class="title">「 我们选择这个行业里最顶尖的实战派老师！」</h1>
+            <ul class="dn-list">
+                <li class="teck1">
+                    <img src="/static/images/mz_ad/op-images/dn01.png" alt="" class="user">
+                    <h3>Sundy</h3>
+                    <h4>麦子学院首席讲师&amp;CEO</h4>
+                    <h5>前三星北美分部产品经理</h5>
+                    <p>擅长产品战略规划、产品架构设计、产品整体运营等，是国内稀缺的把移动互联网领域从上层到底层讲解透彻的技术专家。</p>
+                </li>
+                <li class="teck2">
+                    <img src="/static/images/mz_ad/op-images/dn02.png" alt="" class="user">
+                    <h3>王 粲</h3>
+                    <h4>资深运营总监</h4>
+                    <h5>阿里巴巴资深运营总监</h5>
+                    <p>
+                        半年内为“布丁酒店”的公众号获取70万粉丝，实现三分之二的订单量来自公众号的创举；策划的阿里旅行品牌视频播放量达到18亿；负责亚朵O2O、金融等板块时，完成超4000万元众筹，再次成为行业创举。</p>
+                </li>
+                <li class="teck3">
+                    <img src="/static/images/mz_ad/op-images/dn03.png" alt="" class="user">
+                    <h3>杨大维</h3>
+                    <h4>运营总监</h4>
+                    <h5>前搜房、搜狐、好未来教育运营总监</h5>
+                    <p>果冻学院、加薪班合伙人，10余年互联网运营经验，精通产品、运营、营销</p>
+                </li>
+                <li class="teck3 teck4">
+                    <img src="/static/images/mz_ad/op-images/dn04.png" alt="" class="user">
+                    <h3>胡卫夕</h3>
+                    <h4>运营经理</h4>
+                    <h5>新浪微博高级运营经理</h5>
+                    <p>专注于社会化营销、微博营销、新媒体运营，畅销书《微博营销：把企业搬到微博上》作者</p>
+                </li>
+            </ul>
+            <div class="btn-more">
+                <a href="javascript:" class="lbtn more" onclick="_MEIQIA('showPanel')">跟老师聊聊</a>
+                <a href="javascript:" class="rbtn more" onclick="_MEIQIA('showPanel')">获得老师电话指导</a>
+            </div>
+        </div>
+        <div class="page3">
+            <h2 class="title">「 学习路线规划 」</h2>
+            <div class="jieduan">
+
+            </div>
+            <div class="btn-more">
+                <a href="javascript:" class="lbtn" style="display:block; margin:0 auto; float:none;">查看课程大纲</a>
+            </div>
+        </div>
+        <div class="page4">
+            <div class="fuwuin">
+                <h3 class="title">「 强大的就业服务体系 」</h3>
+                <div class="v2">
+                    <div class="t1">
+                        <img src="/static/images/mz_ad/op-images/fuwu-yq.png" alt="" class="p">
+                        <p>麦子学院携手<em>linkedin、拉勾、智联招聘、猎聘</em>等一线招聘平台，实现实习就业权威保障！</p></div>
+                    <div class="play">
+                        <div class="play01 play-b2">
+                            <img src="/static/images/mz_ad/op-images/video-2.jpg" alt="" class="p">
+                            <img src="/static/images/mz_ad/op-images/play-btn.png" alt="" class="play-btn">
+                            <div class="p-txt">麦子学院就业合作</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rxxy">
+                    <h3 class="txt">入学即签订<b>100%保就业服务协议</b><br/>不就业全额退款！</h3>
+                    <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">咨询保就业服务</a>
+                </div>
+            </div>
+        </div>
+        <div class="page5">
+            <div class="mx-show">
+                <h1 class="mtitle">「 他们已经实现了自己的运营梦，你呢？ 」</h1>
+                <div class="info">
+                    <div class="stu s1">
+                        <img src="/static/images/mz_ad/op-images/s1.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">刘 鑫</h5>
+                            <h5 class="t2">入职畅途网<br/>月薪9K</h5>
+                        </div>
+                        <div class="fif75">畅途网</div>
+                    </div>
+                    <div class="stu s2">
+                        <img src="/static/images/mz_ad/op-images/s2.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">任志强</h5>
+                            <h5 class="t2">入职阿里巴巴<br/>月薪13K</h5>
+                        </div>
+                        <div class="fif75">阿里巴巴</div>
+                    </div>
+                    <div class="stu s3">
+                        <img src="/static/images/mz_ad/op-images/s3.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">秦武甲</h5>
+                            <h5 class="t2">入职谷鸟科技<br/>月薪9K</h5>
+                        </div>
+                        <div class="fif75">谷鸟科技</div>
+                    </div>
+                    <div class="stu s4">
+                        <img src="/static/images/mz_ad/op-images/s4.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">曾 月</h5>
+                            <h5 class="t2">入职嘿呦网络<br/>月薪7K</h5>
+                        </div>
+                        <div class="fif75">嘿呦网络</div>
+                    </div>
+                    <div class="stu s5">
+                        <img src="/static/images/mz_ad/op-images/s5.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">陈 怡</h5>
+                            <h5 class="t2">入职省省回头车<br/>月薪9K</h5>
+                        </div>
+                        <div class="fif75">省省回头车</div>
+                    </div>
+                    <div class="stu s6">
+                        <img src="/static/images/mz_ad/op-images/s6.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">何新林</h5>
+                            <h5 class="t2">入职易乐享<br/>月薪11K</h5>
+                        </div>
+                        <div class="fif75">易乐享</div>
+                    </div>
+                    <div class="stu s7">
+                        <img src="/static/images/mz_ad/op-images/s7.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">钟小霞</h5>
+                            <h5 class="t2">入职甲壳科技<br/>月薪6K</h5>
+                        </div>
+                        <div class="fif75">甲壳科技</div>
+                    </div>
+                    <div class="stu s8">
+                        <img src="/static/images/mz_ad/op-images/s8.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">王 伟</h5>
+                            <h5 class="t2">入职折800<br/>月薪8K</h5>
+                        </div>
+                        <div class="fif75">折800</div>
+                    </div>
+                    <div class="stu s9">
+                        <img src="/static/images/mz_ad/op-images/s9.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">周建文</h5>
+                            <h5 class="t2">入职闪电云<br/>月薪12K</h5>
+                        </div>
+                        <div class="fif75">闪电云</div>
+                    </div>
+                    <div class="stu s10">
+                        <img src="/static/images/mz_ad/op-images/s10.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">邓丽芳</h5>
+                            <h5 class="t2">入职中润四方<br/>月薪8K</h5>
+                        </div>
+                        <div class="fif75">中润四方</div>
+                    </div>
+                    <div class="stu s0">
+                        <div class="n1">10000+</div>
+                        <div class="n2">麦子学员成功就业</div>
+                    </div>
+                </div>
+            </div>
+            <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">了解定向就业计划</a>
+        </div>
+        <div class="page6">
+            <h2 class="title">「 一千个选择麦子学院的理由，我们帮你想清楚了 」</h2>
+            <ul class="ly-list">
+                <li class="b1">
+                    <h3 class="t1">费 用</h3>
+                    <h5 class="d1">线下培训：2-3W</h5>
+                    <h5 class="d2">麦子学院：不到线下的1/3</h5>
+                </li>
+                <li class="b2">
+                    <h3 class="t1">时 间</h3>
+                    <h5 class="d1">线下培训：时间固定，舟车劳顿</h5>
+                    <h5 class="d2">麦子学院：随时随地，想学就学</h5>
+                </li>
+                <li class="b3">
+                    <h3 class="t1">模 式</h3>
+                    <h5 class="d1">线下培训：大班教学，不能反复学习，无人答疑</h5>
+                    <h5 class="d2">麦子学院：1对1教学，名师答疑辅导，反复学习</h5>
+                </li>
+                <li class="b4">
+                    <h3 class="t1">效 果</h3>
+                    <h5 class="d1">线下培训：传统教学，理论主导，无就业指导</h5>
+                    <h5 class="d2">麦子学院：智能学习，签订协议保就业，不就业全退</h5>
+                </li>
+            </ul>
+            <h3 class="stitle">我们用<b>科技+互联</b>网改变教育的模式，只为让你成为一名真正的网络运营</h3>
+            <div class="v3">
+                <div class="play01 play-b3">
+                    <img src="/static/images/mz_ad/op-images/video-3.jpg" alt="" class="p">
+                    <img src="/static/images/mz_ad/op-images/play-btn.png" alt="" class="play-btn">
+                    <div class="p-txt">麦子学院金牌讲师访谈</div>
+                </div>
+            </div>
+        </div>
+        <div class="page11">
+            <h3>媒体报道</h3>
+            <div class="mt-list">
+                <a href="http://36kr.com/p/5039661.html" target="_blank"><img
+                        src="/static/images/mz_ad/op-images/mt01.png" alt=""></a>
+                <a href="http://science.china.com.cn/2016-03/17/content_8645350.htm" target="_blank"><img
+                        src="/static/images/mz_ad/op-images/mt02.png" alt=""></a>
+                <a href="http://tech.sina.com.cn/i/2015-11-13/doc-ifxkszhk0231260.shtml" target="_blank"><img
+                        src="/static/images/mz_ad/op-images/mt03.png" alt=""></a>
+                <a href="http://edu.qq.com/a/20151201/056651.htm" target="_blank"><img
+                        src="/static/images/mz_ad/op-images/mt04.png" alt=""></a>
+                <a href="http://e.gmw.cn/2015-12/31/content_18319177.htm" target="_blank"><img
+                        src="/static/images/mz_ad/op-images/mt05.png" alt=""></a>
+                <a href="http://news.ifeng.com/a/20151126/46403469_0.shtml" target="_blank"><img
+                        src="/static/images/mz_ad/op-images/mt06.png" alt=""></a>
+            </div>
+        </div>
+        <div class="page12">
+            <div class="page12in">
+                <div class="mt-list mt-list5">
+                    <h3 class="title">合作企业</h3>
+                    <a href="http://study.163.com/u/microoh" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/hz01.png" alt=""></a>
+                    <a href="http://www.chuanke.com/s1266915.html" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/hz02.png" alt=""></a>
+                    <a href="http://www.iqiyi.com/u/2255633949" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/hz03.png" alt=""></a>
+                    <a href="https://www.aliyun.com/" target="_blank"><img src="/static/images/mz_ad/op-images/hz04.png"
+                                                                           alt=""></a>
+                    <a href="http://maiziedu.ke.qq.com/" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/hz05.png" alt=""></a>
+                    <a href="http://www.miguxue.com/p/search_list.jsp?keyWord=%E9%BA%A6%E5%AD%90%E5%AD%A6%E9%99%A2"
+                       target="_blank"><img src="/static/images/mz_ad/op-images/hz06.png" alt=""></a>
+                </div>
+                <div class="mt-list mt-list5">
+                    <h3 class="title">合作院校</h3>
+                    <a href="http://www.suse.edu.cn/" target="_blank"><img src="/static/images/mz_ad/op-images/yx01.png"
+                                                                           alt=""></a>
+                    <a href="http://www.scu.edu.cn/" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx02.png" alt=""></a>
+                    <a href="http://www.cdut.edu.cn/default.html" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx03.png" alt=""></a>
+                    <a href="http://www.uestc.edu.cn/" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx04.png" alt=""></a>
+                    <a href="http://www.sicnu.edu.cn/" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx05.png" alt=""></a>
+                    <a href="http://www.swust.edu.cn/" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx06.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <div class="page13">
+            <h3>获得奖项</h3>
+            <div class="jx-list">
+                <img src="/static/images/mz_ad/op-images/jx01.jpg" alt="">
+                <img src="/static/images/mz_ad/op-images/jx02.jpg" alt="">
+                <img src="/static/images/mz_ad/op-images/jx03.jpg" alt="">
+                <img src="/static/images/mz_ad/op-images/jx04.jpg" alt="">
+                <img src="/static/images/mz_ad/op-images/jx05.jpg" alt="">
+                <img src="/static/images/mz_ad/op-images/jx06.jpg" alt="">
+            </div>
+        </div>
+        <div class="page7">
+            <h2 class="title">「 他们跟我们一起见证！ 」</h2>
+            <div class="tx-info">
+                <div class="tinfo">
+                    <img src="/static/images/mz_ad/op-images/aliyun-icon.png" alt="" class="icon1">
+                    <p><em>“</em>麦子学院是IT在线教育的创领者，我们希望有更多像麦子一样的教育培训机构，将学习和就业效果做到极致。<em>”</em></p>
+                    <h3 class="s1">——王晓裴</h3>
+                    <h3 class="s2">阿里云教育创业部总监 </h3>
+                </div>
+                <div class="tinfo">
+                    <img src="/static/images/mz_ad/op-images/baidu-icon.png" alt="" class="icon2">
+                    <p><em>“</em>大数据显示，麦子学院在国内IT在线教育行业内有极高的就业率，我们希望在未来麦子学院的定制化就业学习模式更加深入，比如某学员想入职百度做运营，那么百度可以和麦子学院合作推出一套认证机制：学员在麦子学院的学习数据达到某个标准，就可以直接入职百度的对应岗位实习。<em>”</em>
+                    </p>
+                    <h3 class="s1">—— 陈明月</h3>
+                    <h3 class="s2">百度教育总监</h3>
+                </div>
+                <div class="tinfo">
+                    <img src="/static/images/mz_ad/op-images/360-icon.png" alt="" class="icon3">
+                    <p><em>“</em>智能化、数据化的学习过程监控，领先创新的LPS在线教育模式，高效可靠的商业项目训练，为社会培养1万+的高技能IT人才，我们会同与麦子学院一道，以IT技术服务为核心服务更多的企业和个人。<em>”</em>
+                    </p>
+                    <h3 class="s1">—— 徐旭升</h3>
+                    <h3 class="s2">360教育总监 </h3>
+                </div>
+            </div>
+        </div>
+        <div class="page8">
+            <h2 class="title">「 你准备好成为一名真正的网络运营了吗？ 」</h2>
+            <div class="zx-info">
+                <div class="pay-zx pay-zx1">
+                    <h2 class="t1" style="padding-bottom: 0;"><b>就业班</b></h2>
+                    <h3 style="color: #fff;font-size: 25px;line-height: 50px;line-height: 38px;padding: 10px 0;text-align: center;">
+                        全款优惠<br/>支持分期付款</h3>
+                    <a href="javascript:" class="zx-btn more"  onclick="_MEIQIA('showPanel')" >立即报名 &gt;</a>
+                </div>
+                <div class="pay-or"><img src="/static/images/mz_ad/op-images/pay-zxor.png" alt=""></div>
+                <div class="pay-zx pay-zx2">
+                    <h2 class="t1" style="padding-bottom: 0;"><b>非就业班</b></h2>
+                    <h3 style="color: #fff;font-size: 25px;line-height: 50px;line-height: 38px;padding: 10px 0;text-align: center;">
+                        无需就业服务<br/>支持分期付款</h3>
+                    <a href="javascript:" class="zx-btn more"  onclick="_MEIQIA('showPanel')">立即报名 &gt;</a>
+                </div>
+            </div>
+        </div>
+        <div class="page9">
+            <h2 class="title">「 我想再更加深入的了解一下学习模式、费用、周期等细节问题 」</h2>
+            <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">咨询专业顾问</a>
+        </div>
+
+    </div>
+
+    <div class="page1 page-kc" id="t_one_con2" style="display:none">
+        <img src="/static/images/mz_ad/op-images/page-t01.png" alt="" class="t1">
+        <ul class="page-js-list">
+            <li>
+                <div class="sitle">第一式：运营方法论</div>
+                <p>运营思维是运营人员的灵魂，这一刻你将成为真正的运营！本阶段你将通过运用6字真决全面掌握运营基础知识，从0基础掌握品牌、运营策略、原创内容撰写、推广拉粉丝方法及转化技巧等一系列知识。</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info kc3">
+                <i class="link ltips"></i><i class="link rtips"></i>
+                <div class="kinfo">
+                    <div class="klist">
+                        <h6>网络营销及运营思维</h6>
+                        <ol class="list-item">
+                            <li style="width:97%;">· 网络营销及运营思维</li>
+                            <li style="width:97%;">· 网络营销的“道”和“术”</li>
+                            <li style="width:97%;">· 广义运营和狭义运营</li>
+                        </ol>
+                    </div>
+                    <div class="klist">
+                        <h6>运营实操6字真诀</h6>
+                        <ol class="list-item">
+                            <li style="letter-spacing:-1px;">· 品－你的产品及服务特征</li>
+                            <li>· 策划－搭建骨架</li>
+                            <li>· 内容－你的血肉</li>
+                            <li>· 推广－血管输送</li>
+                            <li>· 拉粉－循环系统</li>
+                            <li>· 转－转化用户</li>
+                        </ol>
+                    </div>
+                    <div class="klist">
+                        <h6>6字真诀1-品牌决定你的人格特征</h6>
+                        <ol class="list-item">
+                            <li>· 用户分析</li>
+                            <li>· 品牌策划</li>
+                            <li>· 品牌文案成型</li>
+                            <li>· 品牌贯穿</li>
+                            <li style="border-bottom:none;">· 如何考核</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>6字真诀2-运营同样需要模式策划</h6>
+                        <ol class="list-item">
+                            <li>· 设计运营模式</li>
+                            <li>· 策划文案产出</li>
+                            <li>· 单点突破策划案</li>
+                            <li>· 如何考核</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>6字真诀3-坚持原创高质内容</h6>
+                        <ol class="list-item">
+                            <li>· 传播内容制作</li>
+                            <li>· 文案制作</li>
+                            <li>· 音频制作</li>
+                            <li>· 视频制作</li>
+                            <li style="border-bottom:none;">· 如何考核</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>6字真诀4-无所不用其极的巧妙推广</h6>
+                        <ol class="list-item">
+                            <li>· 寻找选择渠道</li>
+                            <li>· 鉴别流量渠道</li>
+                            <li>· 如何考核渠道</li>
+                            <li></li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>6字真诀5-拉流量变粉丝</h6>
+                        <ol class="list-item">
+                            <li>· 内容投放</li>
+                            <li>· 流量回拉</li>
+                            <li>· 打造粉丝池</li>
+                            <li>· 粉丝活跃运营</li>
+                            <li>· 刺激粉丝传播</li>
+                            <li>· 如何考核</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>6字真诀6-自然的用户转化</h6>
+                        <ol class="list-item">
+                            <li>· 转化用户的技巧</li>
+                            <li>· 买单过程中的设计</li>
+                            <li>· 用户转化考核</li>
+                            <li></li>
+                        </ol>
+                    </div>
+
+                </div>
+
+                <a href="javascript:" class="more-btn more" onclick="_MEIQIA('showPanel')">咨询老师</a>
+            </div>
+        </ul>
+
+
+        <ul class="page-js-list">
+            <li>
+                <div class="sitle sitle2">第二式：运营通用练习</div>
+                <p>作为一个合格的运营人员，你必须得有深厚的写作功底、活动策划能力、页面的设计能力、活跃用户能力，而这个阶段你将完全掌握！除了基础知识的掌握，老师还将传授你毕生总结的经验技巧，助你快速掌握！</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info kc2">
+                <i class="link ltips"></i><i class="link rtips"></i>
+                <div class="kinfo">
+                    <div class="klist">
+                        <h6>超级文案－微时代文案编写法宝</h6>
+                        <ol class="list-item">
+                            <li>· 编写高吸睛的文案</li>
+                            <li>· 软文编写和植入</li>
+                            <li>· 用户短信和转发内容</li>
+                            <li>· 全面内容策略</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>落地页设计和制作</h6>
+                        <ol class="list-item">
+                            <li>· 落地页设计的重要性</li>
+                            <li>· 落地页设计</li>
+                            <li>· 落地页制作</li>
+                            <li>· 部署统计与客服系统</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>用户运营－粉丝池的建立及运营</h6>
+                        <ol class="list-item">
+                            <li>· 新媒体运营基础</li>
+                            <li>· 建立粉丝池</li>
+                            <li>· 粉丝池内外围划分</li>
+                            <li>· 粉丝的圈定及对留存</li>
+                            <li>· 粉丝活跃与刺激</li>
+                            <li>· 粉丝转化与分享</li>
+                        </ol>
+                    </div>
+
+                </div>
+
+                <a href="javascript:" class="more-btn more" onclick="_MEIQIA('showPanel')">咨询老师</a>
+            </div>
+        </ul>
+
+
+        <ul class="page-js-list">
+            <li>
+                <div class="sitle sitle3">第三式：运营项目实操</div>
+                <p>走到这一步，你已经是个优秀的运营人员了！但这远远不够，我们将要把你培养成相当于2年经验的高级运营，本阶段带你实操微信、微博、推广等多个实战项目，现在起，拒绝纸上谈兵，开始你的运营征途吧！</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info kc1">
+                <i class="link ltips"></i><i class="link rtips"></i>
+                <div class="kinfo">
+                    <div class="klist">
+                        <h6>微信实操</h6>
+                        <ol class="list-item">
+                            <li>· 微信实战之品牌</li>
+                            <li>· 微信实战之策划</li>
+                            <li>· 微信实战之内容</li>
+                            <li>· 微信实战之推广</li>
+                            <li>· 微信实战之拉粉</li>
+                            <li>· 微信实战之转化</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>微博实操</h6>
+                        <ol class="list-item">
+                            <li>· 微博实战之品牌</li>
+                            <li>· 微博实战之策划</li>
+                            <li>· 微博实战之内容</li>
+                            <li>· 微博实战之推广</li>
+                            <li>· 微博实战之拉粉</li>
+                            <li>· 微博实战之转化</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>QQ空间实操</h6>
+                        <ol class="list-item">
+                            <li>· QQ空间实战之品牌</li>
+                            <li>· QQ空间实战之策划</li>
+                            <li>· QQ空间实战之内容</li>
+                            <li>· QQ空间实战之推广</li>
+                            <li>· QQ空间实战之拉粉</li>
+                            <li>· QQ空间实战之转化</li>
+                        </ol>
+                    </div>
+
+
+                    <div class="klist">
+                        <h6>多媒体运营实操</h6>
+                        <ol class="list-item">
+                            <li>· 音频制作</li>
+                            <li>· 视频制作</li>
+                            <li>· 内容制作</li>
+                            <li>· 平台选择</li>
+                            <li>· 运营策略</li>
+                            <li>· 拉粉策略</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>App推广及运营实操</h6>
+                        <ol class="list-item">
+                            <li>· App渠道选择</li>
+                            <li>· ASO优化</li>
+                            <li>· 刷单策略及操作</li>
+                            <li>· 商务合作换流</li>
+                            <li style="border-bottom:none;">· 日活跃提升</li>
+                        </ol>
+                    </div>
+
+
+                </div>
+
+                <a href="javascript:" class="more-btn more" onclick="_MEIQIA('showPanel')">咨询老师</a>
+            </div>
+        </ul>
+
+
+        <ul class="page-js-list">
+            <li>
+                <div class="sitle sitle4">第四式：实现自运营</div>
+                <p>作为一个高级运营，你需要更多思考，本阶段带你思考及实操如何实现自运营！还会为你高薪就业做准备，对你的运营职业生涯进行一对一规划，让你少走弯路，快速进入互联网名企。</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info kc2">
+                <i class="link ltips"></i><i class="link rtips"></i>
+                <div class="kinfo">
+                    <div class="klist">
+                        <h6>自运营基础－运营指导产品设计</h6>
+                        <ol class="list-item">
+                            <li>· 运营和产品的关系</li>
+                            <li>· 产品改进</li>
+                            <li>· 用户自运营策划</li>
+                            <li>· 用户自运营实现</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>自运营实操－经过设计的口碑传播</h6>
+                        <ol class="list-item">
+                            <li>· 产品与传播的关系</li>
+                            <li>· 产品设计优化</li>
+                            <li>· 用户自传播设计</li>
+                            <li>· 口碑效应</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>建立自己的数据链条－运营系统</h6>
+                        <ol class="list-item">
+                            <li>· 全方位的运营思路</li>
+                            <li>· 运营数据链条</li>
+                            <li>· 运营分析</li>
+                            <li>· 效率提升</li>
+                        </ol>
+                    </div>
+
+                </div>
+
+                <a href="javascript:" class="more-btn more" onclick="_MEIQIA('showPanel')">咨询老师</a>
+            </div>
+        </ul>
+
+
+        <div class="question-list">
+            <div class="title">常见问题</div>
+            <dl class="qlist">
+                <dt><em><i></i>什么是“企业直通班“？</em></dt>
+                <dd>
+                    <p>
+                        “企业直通班”是麦子学院的核心产品，通过在线教学提升学生技能，保障就业效果。目前覆盖有Android、iOS、Python、产品经理、嵌入式等十余个专业方向。选定专业方向并付费后，即可进入班级。每个班级学生不超过30人，有专业教师和班主任进行教学辅导与监督。全程贯穿项目制作来保障学员实践效果。每周会有直播班会进行答疑解惑、项目讨论、模拟面试等内容。最终由就业老师安排就业面试，顺利入职。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>什么是LPS呢？</em></dt>
+                <dd>
+                    <p>“LPS（Learning Process
+                        System的缩写）是麦子学院自主研发的教学过程系统。LPS系统通过整合录播、直播、测试等环节的数据，结合人工智能和数据挖掘技术，提升了老师辅导和同学在线学习的效率和针对性，让学习及就业效果更有保障。LPS目前仍然在不断地进行升级与迭代，只为实现“有教无类，因材施教”的梦想。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>麦子学院的视频是免费的吗？</em></dt>
+                <dd>
+                    <p>“企业直通班”有什么不同吗？
+                        麦子学院官网的课程目前绝大多数是免费开放的。企业直通班的直播视频和各专业的最新视频是仅对企业直通班学员开放的。此外，企业直通班的同学还能够得到专业老师的一对一辅导和讲解、就业老师的就业推荐、班级同学的线上线下活动……</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>在职人员为什么更适合在线学习？</em></dt>
+                <dd>
+                    <p>在职人士学习最关注学习时间和学习效果。如果脱产学习，时间成本和生活压力都很大。在麦子学院企业直通班，即可以使用移动设备随时随地学习，还可以在学业完成、面试通过后再离职。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>自律性差，怎么保证完成学习呢？</em></dt>
+                <dd>
+                    <p>
+                        我们通过改变学习过程，商业项目实战与知识点学习相结合的方式，让学习更有乐趣更有成就感。让同学一旦开始，就想学下去。另一方面，学习是一种习惯，需要自己和老师共同努力进行培养。同学遇到困难或者不适应时，我们会有专业老师和班主任对你进行解惑和监督。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>相比线下培训机构，在线学习有什么好处呢？</em></dt>
+                <dd>
+                    <p>最直接的好处：记录你的学习进度，通过网络，老师可以更有针对性地解决你的问题；比线下机构给予学生的辅导时间更加宽裕，更能保证你的学习效果。</p>
+                    <p>更自由：我们可以使用电脑、手机等移动设备，随时随地进行学习。</p>
+                    <p>更优质：你可以直接跟随国内一线企业工程师进行学习，经验更丰富，人脉更扎实。</p>
+                    <p>更实惠：我们的性价比更高。因为我们省去了房租成本，提升了老师辅导的效率，所以同样的学习与就业效果，我们的价格更低。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>麦子学院怎么保障就业的？</em></dt>
+                <dd>
+                    <p>我们通过3种方式解决就业问题：</p>
+                    <p>1.我们和智联招聘、拉勾网、猎聘网直接对接接口，进行岗位推荐和简历推送，让待就业学员最快匹配地点和岗位需求。</p>
+                    <p>2.我们和近千家企业直接签约，保证长期提供指定岗位的人员推荐和培训。</p>
+                    <p>3.每天都会有全国各地的创业型企业、软件园区、投后管理公司主动联系我们，提供招聘需求。</p>
+                    <p>此外，我们还在不断提升自身的教学水平和学习效果，来满足更多企业更高岗位的技能需求，提升学员的就业质量。</p>
+                </dd>
+            </dl>
+            <a href="javascript:" class="zx-btn more"  onclick="_MEIQIA('showPanel')">还有其他问题，咨询在线老师</a>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <div class="footerin">
+            <div class="flogo"><img src="/static/images/mz_ad/op-images/flogo.png" alt=""></div>
+            <div class="fnum">400 862 8862</div>
+            <div class="fewm">
+                <div class="mpic">
+                    <img src="/static/images/mz_ad/op-images/weibo-emw.png" alt=""><h5>手机浏览页面</h5>
+                </div>
+                <div class="mpic">
+                    <img src="/static/images/mz_ad/op-images/wx-emw.png" alt=""><h5>手机咨询老师</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="video-fifter video-f1">
+        <div class="video-fifterin">
+            <div class="close-btn c1-btn"></div>
+            <div id="video-f1"></div>
+        </div>
+    </div>
+
+    <div class="video-fifter video-f2">
+        <div class="video-fifterin">
+            <div class="close-btn c2-btn"></div>
+            <div id="video-f2"></div>
+        </div>
+    </div>
+
+    <div class="video-fifter video-f3">
+        <div class="video-fifterin">
+            <div class="close-btn c3-btn"></div>
+            <div id="video-f3"></div>
+        </div>
+    </div>
+
+
+        <!--此段代码从离线宝后台获取开始-->
+        <script>
+            document.write('<script type="text/javascript"  data-lxb-uid="10986738" data-lxb-gid="198532" src="http://lxbjs.baidu.com/api/asset/api.js?t=' + new Date().getTime() + '" charset="utf-8"></scr' + 'ipt>');
+        </script>
+        <div class="lxb"><img src="/static/images/mz_ad/op-images/kuang.png"></div>
+{% endblock %}
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/lib/superSlider/jquery.SuperSlide.2.1.1.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/index.js?v={{ time_stamp }}"></script>
+{% endblock %}

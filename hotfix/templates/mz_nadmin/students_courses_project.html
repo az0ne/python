@@ -1,0 +1,44 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/student_breadcrumb.html" %}
+
+<div class="tabbable">
+{% include "mz_nadmin/parts/student_course_tabs.html" %}
+
+<div class="tab-content">
+<div class="tab-pane active">
+
+<p>{% include "mz_nadmin/modules/msgs.html" %}</p>
+
+<dl class="dl-horizontal">
+    <dt>完成状态</dt>
+    <dd>
+        {% if course_project.upload_file %}
+        已经完成
+        {% else %}
+        未完成
+        {% endif %}
+    </dd>
+    <dt>评测分数</dt>
+    <dd>
+        {% if course_project.accuracy >= 0 %}
+        {{ course_paper.accuracy }}
+        {% else %}
+        -
+        {% endif %}
+    </dd>
+    <!--dt>已获得学力值</dt-->
+    <!--dd></dd-->
+</dl>
+
+</div>
+
+{% endblock %}
+
+
+
+
+
+

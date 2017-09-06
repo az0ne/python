@@ -1,0 +1,50 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/student_breadcrumb.html" %}
+
+<div class="tabbable">
+
+    {% include "mz_nadmin/parts/student_tabs.html" %}
+
+    <div class="tab-content">
+        <div class="tab-pane active">
+
+            {% include "mz_nadmin/modules/msgs.html" %}
+
+            {% if certificates %}
+            <div class="table-responsive">
+                <table class="table table-bordered table-condensed table-striped table-hover">
+                    <thead>
+                        <th class="col-md-4">证书名称</th>
+                        <th class="col-md-4">获得时间</th>
+                    </thead>
+                    <tbody>
+                        {% for certificate in certificates %}
+                        <tr>
+                            <td>
+                                {{ certificates.name }}
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            {% include "mz_nadmin/modules/page_info.html" with items=certificates %}
+
+            {% else %}
+            <p class="text-muted">
+                <small>没有任何证书</small>
+            </p>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

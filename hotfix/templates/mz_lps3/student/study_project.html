@@ -1,0 +1,619 @@
+{% extends "mz_lps3/student/base.html" %}
+{% block title %}项目制作{% endblock %}
+{% block css %}
+    <style>
+        html {overflow: hidden;}
+        .button {
+            background: #5ecfba;
+            border-radius: 3px;
+            display: inline-block;
+            border: none;
+            padding: 0;
+        }
+
+        .button:hover {
+            color: #ffffff;
+        }
+    </style>
+{% endblock %}
+{% block current_item_title %}
+        <span class="font20 colorff s">
+            {{ project_title }}
+            {% if is_task  %}
+            <span class="button font12 colorff project-production-tag">项目制作</span>
+            {% endif %}
+        </span>
+{% endblock %}
+{% block container %}
+    <div class="container examinationMain" style="overflow:hidden;">
+    <div class="project-main">
+        <div class="project-container">
+            <!--项目制作开始-->
+            <div class="project-module">
+                <h2 class="font18 color5e">项目制作</h2>
+
+                <div class="project-module-content">
+                    <label class="font16 color33 marginB14">项目描述</label>
+
+                    <p class="font14 color66 marginB29">{{ project_desc|linebreaksbr }}</p>
+                {% if images %}
+                    <label class="font16 color33 marginB14">项目示例</label>
+                    <ul id="project-module-image-list" class="clearfix">
+{#                        {% if video %}#}
+{#                            <li>#}
+{#                                <a href="{{ video }}">#}
+{#                                    <img src="/static/mz_lps3/images/project_screenshot.png" height="140" width="200">#}
+{#                                </a>#}
+{#                            </li>#}
+{#                        {% endif %}#}
+                        {% for image in images %}
+                            <li><img src="{{ MEDIA_URL }}{{ image.image }}" height="140" width="200" alt="{{ image.image }}"></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                    {% if materials %}
+                    <label class="font16 color33 marginB14">项目素材</label>
+                    <ul class="project-module-material">
+                        {% for material in materials %}
+                            <li>
+                                <div class="material-c-l"><a class="color40 font14">{{ material.name }}</a>
+                                    <span class="font12 color99 fr"></span></div>
+                                <a class="button font14 colorff a4 fr" href="{{ MEDIA_URL }}{{ material.material }}"><i
+                                        class="icon-download"></i>
+                                    下载</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+
+                <div class="project-module-footer">
+{#                {% if not is_refresher %}#}
+                {% if has_upload %}
+                    {% if is_score %}
+                        <a id="project-viewdetails" class="button bold font14 colorff a3" show="1">查看成绩</a>
+                    {% else %}
+                        <a id="project-viewdetails" class="button bold font14 colorff a3" show="2">查看详情</a>
+                    {% endif %}
+                {% else %}
+                    <a id="project-submit" class="button bold font14 colorff a3">上传项目</a>
+                {% endif %}
+
+{#                {% if not is_score %}#}
+{#                    {% if not has_upload %}#}
+{#                    #}
+{#                    {% endif %}#}
+{#                {% else %}#}
+{#                    {% if is_refresher %}#}
+{#                        <a id="project-submit" class="button bold font14 colorff a3">项目重修</a>#}
+{#                    {% endif %}#}
+{#                {% endif %}#}
+
+                </div>
+            </div>
+            <!--项目制作结束-->
+
+            <!--项目提交开始-->
+            <div class="project-submit-module">
+                <h2 class="font18 color5e"><span class="return-step">&lt;&lt;返回项目详情</span></h2>
+
+                <div class="project-submit-module-content">
+                    <label class="font16 color33 marginB29" style="display:inline-block">项目文件</label>
+                    <span class="font14 color66 project-submit-attachment" filepath=""></span><span class="font12 color5e project-reset-file"><a href="javascript:;" class="color5e">上传项目</a><input type="file" name="project-reset-file" id="project-reset-file"></span>
+                    <label class="font16 color33 marginB14">项目截图<span class="font14 color66" style="margin-left: 20px;"></span></label>
+                    <ul id="project-screenshot-list" class="clearfix">
+                        <li class="last"><span class="font14 color66 uploadPreview"><i class="add-screenshot-img"></i>添加项目截图<input
+                                type="file" name="uploadPreview" id="uploadPreview"><br><span class="font12 color99">格式：.jpg,.png,.jpeg<br>大小：500k以内</span></span>
+                        </li>
+                    </ul>
+                    <label class="font16 color33 marginB14">项目描述<span class="font font12 color99 fr" style="font-weight: 400">您还可以输入<span>300</span>字</span></label>
+
+                    <textarea id="project-submit-textarea" class="color99">你可以在这里对作业进行简单的描述，或者告诉老师你的思路和方法哦~</textarea>
+
+                </div>
+
+                <div class="project-submit-module-footer">
+                    <!-- <label class="porject-submit-ckeckbox"><input type="checkbox">同时分享到麦子圈</label> -->
+                    <a id="project-file-upload" class="disabled button bold font14 colorff a3">提交项目</a>
+
+                    {% if has_upload %}
+                        {% if is_task == 1 %}
+                            {% if student_class.is_free488_class %}
+                            <a class="button bold font14 colorff a3" href="{% url 'lps3f:student:class_index' class_id %}">返回试学面板</a>
+                            {% else %}
+                            {% if not is_lps4 %}
+                            <a class="button bold font14 colorff a3" href="{% url 'lps3:student_class' class_id %}#2">下一任务</a>
+                            {% else %}
+                            <a class="button bold font14 colorff a3" href="{% url 'lps4_index' is_lps4 %}">下一任务</a>
+                            {% endif %}
+                            {% endif %}
+                        {% else %}
+                            <a id="next-lesson" class="button bold font14 colorff a3" onclick="nextcourse()">下一节</a>
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+            </div>
+            <!--项目提交结束-->
+
+            <!--提交项目详情开始-->
+            <div class="project-viewdetails-module">
+                <h2 class="font18 color5e"><span class="return-step">&lt;&lt;返回项目详情</span></h2>
+                <div class="project-viewdetails-module-content">
+                    <label class="font16 color33 marginB29" style="display:inline-block">项目文件</label>
+                    <span class="font14 color66 project-viewdetails-attachment">已上传的项目制作</span><a id="file-download" class="button font14 colorff a4" href="javascript:;"><i class="icon-download"></i>下载</a>
+                    <label class="font16 color33 marginB14">项目截图<span class="font14 color66" style="margin-left: 20px;"></span></label>
+                    <ul id="project-viewdetails-list" class="clearfix"></ul>
+                    <label class="font16 color33 marginB14">项目描述</label>
+
+                    <div class="project-desc color99" style="word-break: break-all">你可以在这里对作业进行简单的描述，或者告诉老师你的思路和方法哦~</div>
+
+                </div>
+
+
+                <div class="project-viewdetails-module-footer">
+                    {% if is_score %}
+                    <div id="project-score" class="font14 color66"></div>
+                    <div id="project-remark" class="font14 color33" style="word-break: break-all"></div>
+                    {% endif %}
+
+                    {% if has_upload %}
+                        <div style="text-align: center;margin-top:10px;">
+                            {% if not is_score %}
+                            <a id="reset-submit" class="button bold font14 colorff a3">重新上传</a>
+                            {% endif %}
+
+                            {% if is_task == 1 %}
+                                {% if student_class.is_free488_class %}
+                                <a class="button bold font14 colorff a3" href="{% url 'lps3f:student:class_index' class_id %}#2">返回试学面板</a>
+                                {% else %}
+                                {% if not is_lps4 %}
+                                <a class="button bold font14 colorff a3" href="{% url 'lps3:student_class' class_id %}">下一任务</a>
+                                {% else %}
+                                <a class="button bold font14 colorff a3" href="{% url 'lps4_index' is_lps4 %}">下一任务</a>
+                                {% endif %}
+                                {% endif %}
+                            {% else %}
+                                <a id="next-lesson" class="button bold font14 colorff a3" onclick="nextcourse()">下一节</a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+
+                </div>
+
+
+
+            </div>
+            <!--提交项目详情结束-->
+
+        </div>
+    </div>
+    </div>
+    <!--侧边-->
+    <div class="zvright t5o" style="right:0;">
+        <a num=1><p><img src="{{ STATIC_URL }}mz_lps3/images/rightico001.png"></p><p>目录</p></a>
+    </div>
+    <!--目录-->
+    <div class="zvrightSreen t5o">
+        <div class="zvrightSreen1" style="display:block;">
+            {{ html_usertask_item_list }}
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascript %}
+    <script src="{{ STATIC_URL }}mz_lps3/js/jquery.ui.widget.js"></script>
+    <script src="{{ STATIC_URL }}mz_lps3/js/jquery.fileupload.js"></script>
+    <script src="{{ STATIC_URL }}mz_lps3/layer/layer.js"></script>
+    <script src="{{ STATIC_URL }}mz_lps3/js/jquery.mousewheel.js"></script>
+    <script src="{{ STATIC_URL }}mz_lps3/js/jquery.jscrollpane.min.js"></script>
+    <script src="{{ STATIC_URL }}mz_lps3/js/exam.js"></script>
+        <script type="text/javascript">
+            maizi_trace.trace({
+                "suid": maizi_trace.suid(),
+                "action_id": "trace_access_study_project",
+                "trace_pay_type": maizi_trace.pay_type(),
+                "trace_user_type": maizi_trace.user_type(),
+                "trace_career_name": maizi_trace.career_name(),
+                "trace_taskball_name": maizi_trace.taskball_name()
+            })
+
+            var zzyyb=true;
+            var oT = $('#project-submit-textarea');
+            var oModule1 = $('.project-module');
+            var oModule2 = $('.project-submit-module');
+            var oModule3 = $('.project-viewdetails-module');
+            var off = true;
+            var task_or_item = {{ is_task }};
+            var file_url = '/lps3/student/project/upload_item/{{ class_id }}/{{ stage_task_id }}/{{ obj_id }}/';
+            var score_url = '/lps3/student/project_detail/{{ class_id }}/{{ stage_task_id }}/{{ obj_id }}/';
+
+            if( task_or_item == 1 ){
+                file_url = '/lps3/student/project/upload_task/{{ class_id }}/{{ stage_task_id }}/{{ obj_id }}/';
+                score_url = '/lps3/student/project_score/{{ class_id }}/{{ obj_id }}/';
+            }
+
+            var ohhre = location.href.split("?");//nav=2
+
+            if(ohhre.length>1) {
+                if(ohhre[1].indexOf("nav")>-1){
+                    if(ohhre[1].split("=")[1]==2){
+                        $(function(){
+                            viewDetails();
+                        });
+                        oModule1.hide();oModule3.show();
+                    }
+                }
+            }
+
+            $(function(){
+                var imgpop = $('#project-module-image-list li');
+
+                imgpop.live('click',function(event){
+                    event.stopPropagation();
+                    event.preventDefault();
+
+                    imgPopup($(this).find('img').attr('alt'));
+                });
+
+                toTarget();
+
+                //$('.project-module').jScrollPane({mouseWheelSpeed:100});
+                $('.examinationMain').jScrollPane({mouseWheelSpeed:100});
+                $('.project-module .project-module-content').css("minHeight",$(window).height()-212+"px");
+                $('.project-submit-module .project-submit-module-content').css("minHeight",$(window).height()-212+"px");
+                $('.project-viewdetails-module .project-viewdetails-module-content').css("minHeight",$(window).height()-212+"px");
+                $(window).resize(function(e) {
+                    $('.examinationMain').jScrollPane({mouseWheelSpeed:100});
+                    $('.project-module .project-module-content').css("minHeight",$(window).height()-212+"px");
+                    $('.project-submit-module .project-submit-module-content').css("minHeight",$(window).height()-212+"px");
+                    $('.project-viewdetails-module .project-viewdetails-module-content').css("minHeight",$(window).height()-212+"px");
+                });
+
+                $('.return-step').live("click",function(){
+                    oModule1.show();oModule2.hide();oModule3.hide();
+                    $('.examinationMain').jScrollPane({mouseWheelSpeed:100});
+                })
+
+                var oA = $('#project-file-upload');
+                var iNum = 0;
+                var timer = null;
+
+                oT.on('input propertychange',function(){
+
+                    var num = Math.ceil(getLength($(this).val())/2);
+                    var oSapn = $('.font');
+
+                    if(num<=300){
+                        oSapn.html('<span class="font font12 color99 fr" style="font-weight: 400">您还可以输入<span>'+ (300 - num) +'</span>字</span>');
+
+                    }else{
+                        oSapn.html('已经超出<span style="color:red">' + (num - 300) + '</span>字' );
+                    };
+
+                    if(oT.val() == '' || num > 300){
+                        oA.addClass('disabled');
+                    }else{
+                        oA.removeClass('disabled');
+                    }
+                });
+
+                focusToggle();
+
+                oA.click(function(){
+                    if($('.project-submit-attachment').attr('filepath') == ''){
+                        layer.msg('请上传作业文件',{time:2000});
+                    }else if($('#project-screenshot-list li').length <= 1){
+                        layer.msg('请上传作业图片',{time:2000});
+                    }else if($(this).hasClass("disabled")){
+                        layer.msg('请填写项目描述',{time:2000});
+                        clearInterval(timer);
+                        timer = setInterval(function(){
+                            if(iNum==5){
+                                clearInterval(timer);
+                                iNum = 0;
+                            }else{
+                                iNum++;
+                            }
+
+                            if(iNum%2){
+                                oT.css('background','#fad9d9');
+                            }else{
+                                oT.css('background','');
+                            }
+                        },100);
+                    }else{
+                        if(zzyyb){
+                            var img_url = '';
+                            var img = $('#project-screenshot-list li').find('img');
+                                img.each(function(){
+                                    img_url += $(this).attr('data-src') + ',';
+                                });
+                            if (ohhre.length>1){
+                                if(ohhre[1] != 'nav=2'){
+                                    window.location.href = '/';
+                                }
+                            }
+
+                            $.ajax({
+                                type: "POST",
+                                url: file_url,
+                                data:{"desc":oT.val(),"img_urls":img_url,"file_path":$('.project-submit-attachment').attr('filepath')},
+                                dataType: "json",
+                                success: function(data) {
+                                    maizi_trace.trace({
+                                        "suid": maizi_trace.suid(),
+                                        "action_id": "trace_upload_study_project",
+                                        "trace_pay_type": maizi_trace.pay_type(),
+                                        "trace_user_type": maizi_trace.user_type(),
+                                        "trace_career_name": maizi_trace.career_name(),
+                                        "trace_taskball_name": maizi_trace.taskball_name()
+                                    })
+
+                                    if(data.status !='fail'){
+                                        layer.msg('项目提交成功',{time:2000},function(){
+
+                                            if (ohhre.length>1){
+                                                window.location.reload();
+                                            }else{
+                                                window.location.href = window.location.href + '?nav=2';
+                                            }
+                                        });
+                                    }else{
+                                        layer.msg(data.message,{time:2000});
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+
+                $('#project-reset-file').change(function(){
+                    var fileName = 0;
+                    fileName = $(this).val().replace(/.*(\/|\\)/, "");
+                    $(this).attr('fileName',fileName);
+                });
+
+                $('#project-reset-file').fileupload({
+                    dropZone:null,
+                    url: file_url,
+                    add:function(e,data){
+                        var uploadErrors = [];
+                        var acceptFileTypes = /^(zip|rar)$/i;
+                        var filesize = data.originalFiles[0]['size']/(1024)/(1024);
+                        Ntype = data.originalFiles[0]['name'];
+                        Ntype = Ntype.substring(Ntype.length-3,Ntype.length);
+                        if(!acceptFileTypes.test(Ntype)){
+                            layer.msg('文件格式不正确（zip，rar）');
+                            uploadErrors.push('Not an accepted file type');
+                        }
+                        if(parseInt(filesize)>10) {
+                            layer.msg('文件超过10M大小');
+                            uploadErrors.push('Filesize is too big');
+                        }
+                        if(uploadErrors.length==0){
+                            data.submit();
+                        }
+                    },
+                    dataType: 'json',
+                    autoUpload: true,
+                    done: function (e, result) {
+                        if(result.result.status == 'success'){
+                            $('.project-submit-attachment').attr('filepath',result.result.file_path);
+                            $('.project-submit-attachment').html($('#project-reset-file').attr('fileName'));
+                            $('.project-reset-file').find('a').text('重新上传');
+                        }
+                    }
+                });
+
+                $('#uploadPreview').fileupload({
+                    dropZone:null,
+                    url: file_url,
+                    add:function(e,data){
+                        var uploadErrors = [];
+                        var acceptFileTypes = /^(png|jpeg|jpg)$/i;
+                        var filesize = data.originalFiles[0]['size']/(1024);
+                        Ntype = data.originalFiles[0]['name'];
+                        Ntype = Ntype.substring(Ntype.length-3,Ntype.length);
+                        if(!acceptFileTypes.test(Ntype)){
+                            layer.msg('文件格式不正确（png，jpg, jpeg）');
+                            uploadErrors.push('Not an accepted file type');
+                        }
+                        if(parseInt(filesize)>500) {
+                            layer.msg('文件超过500KB大小');
+                            uploadErrors.push('Filesize is too big');
+                        }
+                        if(uploadErrors.length==0){
+                            data.submit();
+                        }
+                    },
+                    dataType: 'json',
+                    autoUpload: true,
+                    done: function (e,result) {
+                        var data = result.result;
+                        if(data.status == 'success'){
+
+
+                           var html = '<li><i class="remove-img"></i><img data-src="' + data.img_url + '" src="/uploads/' + data.img_url + '" height="140" width="200"></li>';
+                           $('#project-screenshot-list').prepend(html);
+
+                           if($('#project-screenshot-list li').length >= 6){
+                               $('#project-screenshot-list li.last').hide();
+                           }
+                           $('#project-screenshot-list li').each(function(){
+                              $(this).find('img').live('click',function(event){
+                                  event.stopPropagation();
+                                  event.preventDefault();
+
+                                  imgPopup(data.img_url);
+                              });
+                           });
+                        }
+
+                    }
+                });
+
+
+                $('.remove-img').live('click',function(){
+                    var _this = $(this);
+                    $.ajax({
+                        type:"POST",
+                        url: file_url,
+                        data: {img_url:$(this).siblings().attr('data-src')},
+                        dataType:'JSON',
+                        success: function(data){
+                            if(data.status == 'success'){
+                                _this.parent().remove();
+                            }
+                            if($('#project-screenshot-list li').length <= 5){
+                                $('#project-screenshot-list li.last').show();
+                            }
+                        }
+                    });
+
+                });
+            });
+
+
+            var msgcell = function(){zzyyb=true;}
+
+            var getLength = function(str){
+               return String(str).replace(/[^\x00-\xff]/g,'aa').length;
+            }
+
+
+            var imgPopup = function(img_src){
+                var html = '';
+
+                html += '<div id="imgzoom"><i class="imgzoom-close"></i><div id="imgzoom-image-ctn">';
+                html += '<img class="img" src="/uploads/'+ img_src +'" alt="">';
+                html += '</div></div>';
+
+                $('body').append(html);
+
+                var oImg = $('#imgzoom-image-ctn');
+                var Dheight=$(window).height()-56;
+                oImg.find('.img').load(function(){
+                    var ddh=oImg.outerHeight(),ddw=oImg.outerWidth(),whF=oImg.outerWidth()/oImg.outerHeight();
+                    if(oImg.outerWidth()>ddh){
+                        if(Dheight<oImg.outerHeight()){
+                            ddh=Dheight-20;
+                            ddw=ddh*whF
+                        }
+                    }
+                    else{
+                        if(ddw>1160){ddw=1160;ddh=1160/whF;}
+                    }
+
+                    oImg.css({'left': '50%','top': '50%','marginLeft': -ddw/2,'marginTop':-ddh/2});
+                });
+
+                $('#imgzoom').height(Dheight).fadeIn('fast','linear');
+
+                $('.imgzoom-close').on('click',function(event){$('#imgzoom').remove();});
+            };
+
+            //项目描述焦点事件
+            var focusToggle = function(){
+                oT.focus(function(){
+                    if(off){
+                        $(this).val('');
+                        off = false;
+                    }
+                    oT.css('color','#000000');
+                }).blur(function(){
+                    if($(this).val() == ''|| null){
+                        $(this).val('你可以在这里对作业进行简单的描述，或者告诉老师你的思路和方法哦~');
+                        off = true;
+                    }
+                    oT.css('color','#999999');
+                });
+            }
+
+            var toTarget = function(){
+
+                $('#project-viewdetails').on('click',function(){
+                    oModule1.css('display','none');
+                    oModule2.css('display','none');
+                    oModule3.css('display','block');
+                    //toAnimate();
+                    viewDetails();
+                });
+
+                $('#reset-submit').on('click',function(){
+                    oModule1.css('display','none');
+                    oModule3.css('display','none');
+                    oModule2.css('display','block');
+                    $('.examinationMain').jScrollPane({mouseWheelSpeed:100});
+                    //toAnimate();
+                });
+
+                $('#project-submit').on('click',function(){
+                    oModule1.css('display','none');
+                    oModule3.css('display','none');
+                    oModule2.css('display','block');
+                    $('.examinationMain').jScrollPane({mouseWheelSpeed:100});
+                    //toAnimate();
+                });
+            };
+
+            var toAnimate = function(){
+                var oContainer = $('.project-container');
+                var oStep = $('.return-step');
+
+                oContainer.stop().animate({'left':'-1142px'},function(){
+                    oStep.on('click',function(){
+                        oContainer.stop().animate({'left':'0px'});
+                    });
+                });
+            }
+
+            //查看成绩
+            var viewDetails = function(){
+                var attName = $('.project-viewdetails-attachment');
+                var aImgList = $('#project-viewdetails-list');
+                var descText = $('.project-desc');
+                var oFileDownload = $('#file-download');
+                var oScore = $('#project-score');
+                var oProjectRemark = $('#project-remark');
+                var html = '';
+
+                $.ajax({
+                    url:score_url,
+                    dataType:"JSON",
+                    success: function(data){
+                        if(data.status){
+                            oFileDownload.attr('href',data.data.file);
+                            for(var i = 0;i<data.data.image.length;i++){
+                                html += '<li><img src="/uploads/' + data.data.image[i] + '" alt="' + data.data.image[i] +'"></li>';
+                            }
+
+                            aImgList.html(html);
+
+                            aImgList.find('img').load(function(){
+                                $(this).on('click',function(){
+                                    imgPopup($(this).attr('alt'));
+                                });
+                            });
+
+                            descText.html(data.data.desc);
+                            oScore.html('获得成绩<br><span class="font30 color5e">' + data.data.score + '</span>');
+                            oProjectRemark.html('评语<br><p class="font14 color66">' + data.data.comment + '</p>');
+                            $('.examinationMain').jScrollPane({mouseWheelSpeed:100});
+                        }
+                    }
+                });
+            };
+
+            //项目提交页面初始化
+            var initMode = function(){
+                $('.project-submit-attachment').text('');
+                $('.project-reset-file').find('a').text('上传项目');
+                $('.font').html('<span class="font font12 color99 fr" style="font-weight: 400">您还可以输入<span>300</span>字</span>');
+                $('#project-screenshot-list li.last').show();
+                $('#project-screenshot-list li:not(:last)').remove();
+                focusToggle();
+                $('#project-file-upload').addClass('disabled');
+            }
+        </script>
+{% endblock %}

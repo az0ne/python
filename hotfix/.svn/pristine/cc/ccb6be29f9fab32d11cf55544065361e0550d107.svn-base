@@ -1,0 +1,5 @@
+{% extends 'mz_usercenter/usercenter_base.html' %}
+
+{% block usercenter_right_panel %}
+    {% include 'mz_usercenter/student/div_my_course_base.html' %}
+{% endblock %}

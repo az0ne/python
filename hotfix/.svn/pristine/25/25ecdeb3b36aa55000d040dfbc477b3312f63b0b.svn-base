@@ -1,0 +1,18 @@
+<ul class="nav nav-tabs nav-append-content">
+    {% if is_stage_edit %}
+    <li {% if tabs_active == "info" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:stages_edit' career_course.id stage.id %}">基本信息</a>
+    </li>
+    <li {% if tabs_active == "courses" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:stages_courses' stage.id %}">课程管理</a>
+    </li>
+    {% else %}
+    <li {% if tabs_active == "info" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:stages_create' career_course.id %}">基本信息</a>
+    </li>
+    <li class="disabled">
+        <a href="javascript:void(0);">课程管理</a>
+    </li>
+    {% endif %}
+</ul>
+

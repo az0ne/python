@@ -1,0 +1,48 @@
+{% extends "mz_backend/base.html" %}
+{% block title %}新增/编辑阅读{% endblock %}
+{% block container %}
+
+<div class="box mt10">
+  <div class="box_border">
+    <div class="box_top"><b class="pl15">新增/编辑阅读</b></div>
+    <div class="box_center">
+
+    {% if errors %}<div class="error" style="color:red; margin: 20px">{{ errors }}</div>{% endif %}
+    {% if messages %}<div class="info" style="color:green; margin: 20px">{{ messages }}</div>{% endif %}
+
+<form action="{% if reading %}{% url 'backend:recommend_reading_edit' reading.id%}{% else %}{% url 'backend:recommend_reading_add'%}{% endif %}" method="post">
+{% csrf_token %}
+  <table class="form_table pt15 pb15" width="600px" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td class="td_right">类型：</td>
+      <td>
+        <select name="reading_type" class="select">
+          {% for choice in choices %}
+            <option value={{ choice.0 }} {% if reading and reading.reading_type == choice.0 %}selected{% endif %}>{{ choice.1 }}</option>
+          {% endfor %}
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td class="td_right">标题：</td>
+      <td><input type="text" name="title" class="input-text lh30" size="60" value="{% if reading %}{{ reading.title }}{% endif %}"></td>
+    </tr>
+    <tr>
+      <td class="td_right">链接：</td>
+      <td><input type="text" name="url" class="input-text lh30" size="60" value="{% if reading %}{{ reading.url }}{% endif %}"></td>
+    </tr>
+    <tr>
+      <td class="td_right">
+        <a href="{% url 'backend:recommend_reading_index' %}">回到管理页</a>
+      </td>
+      <td class="td_right">
+        <input type="submit" value="保存" class="ext_btn ext_btn_submit">
+      </td>
+    </tr>
+  </table>
+</form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

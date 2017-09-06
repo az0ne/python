@@ -1,0 +1,65 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/courses_breadcrumb.html" %}
+
+<div class="tabbable">
+{% include "mz_nadmin/parts/lesson_tabs.html" %}
+
+<div class="tab-content">
+<div class="tab-pane active">
+
+    <p>
+        <a href="{% url 'nadmin:lessons_resources_create' course.id lesson.id %}"
+            class="btn btn-xs btn-primary">
+            + 添加新资源
+        </a>
+    </p>
+
+    {% include "mz_nadmin/modules/msgs.html" %}
+
+    {% if resources.end_index >= 1 %}
+    <div class="table-responsive">
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <th style="col-md-3">文件名</th>
+            <th style="col-md-7">下载次数</th>
+            <th style="col-md-2">操作</th>
+        </thead>
+        <tbody>
+            {% for resource in resources %}
+            <tr data-resource_id="{{ resource.id }}">
+                <td>
+                    <a href="{% url 'nadmin:lessons_resources_edit' course.id lesson.id resource.id %}">
+                        {{ resource.name|escape|default:"" }}
+                    </a>
+                </td>
+                <td>{{ career_course.download_count|default:0 }}</td>
+                <td class="action_list">
+                    <span class="btn btn-xs btn-danger" data-action="delete">删除</span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% include "mz_nadmin/modules/page_info.html" with items=resources %}
+    </div>
+    {% else %}
+    <p class="text-muted"><small>没有任何资源</small></p>
+    {% endif %}
+
+</div>
+</div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+window.page.name = "lesson_resources";
+</script>
+{% endblock %}
+
+

@@ -1,0 +1,87 @@
+{% extends "mz_common/base.html" %}
+{% block breadcrumb %}
+    <div class="colleges-bg">
+        <div class="container visible-md visible-lg">
+            <ol class="breadcrumb">
+                <li><a href="{% url 'index_front' %}">首页</a></li>
+                <li class="active">院校专区</li>
+            </ol>
+        </div>
+    </div>
+{% endblock %}
+
+{% block container %}
+
+    <div id="verify_block" class="colleges-wrap colleges-login" style="display: block">
+        <div class="container">
+            <div class="colleges-login-m">
+                <h1>欢迎来到麦子学院-{{ cur_university.name }}专区</h1>
+                <p class="about">请输入您的姓名、学号及唯一标识码以获取学习该专业课程的权限</p>
+                <form id="studentverify" action="" method="post" onsubmit="return false;">
+                    <div class="form-box">
+                        <div class="itm"><input type="text" id="stu_name" name="stu_name" placeholder="请输入您的姓名"/></div>
+                        <div class="itm"><input type="text" id="stu_no"  name="stu_no" placeholder="请输入您的学号"/></div>
+                        <div class="itm"><input type="text" id="verify_code" name="verify_code" placeholder="请输入您的唯一识别码"/></div>
+                        <div class="btn-box"><button id="student_verify_btn" onclick="verify_student_post()">提交</button></div>
+                        <div id="student_verify_div"  class="form-tip" style="display: none"><img src="/static/images/colleges/pic-11.png" alt=""/>
+                            <span id="student_verify_tips" >错误提示</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="verify_success"  class="colleges-wrap colleges-login" style="display: none">
+        <div class="container">
+            <div class="colleges-login-m">
+                <div class="success-tip">
+                    <div class="success-tip-ico"><img src="/static/images/colleges/pic-17.png" alt=""/></div>
+                    <h1>验证成功</h1>
+                    <p class="about">页面将在3秒后跳转您的专业实训课程限</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block custom_script %}
+    <script type="text/javascript">
+        //生成计划
+        function verify_student_post(){
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url:"{% url 'academiccourse:student_verify_post' university_id course_id %}",
+                data:$('#studentverify').serialize(),
+                async: true,
+                beforeSend:function(XMLHttpRequest){
+                    $("#student_verify_btn").attr("disabled","disabled");
+                },
+                success: function(data) {
+                    if(data.status == "success"){
+                        // $("#planset-tips").html(data.message).removeClass('bg-warning').removeClass('bg-danger').addClass("bg-success").show().delay(1000).fadeOut(500,function(){
+                        //     location.reload();
+                        // });
+                        //location.reload();
+                        $("#verify_block").css("display","none");
+                        $("#verify_success").css("display","block");
+                        $("#student_verify_btn").removeAttr("disabled");
+                        $("#verify_success").show().delay(2000).fadeIn(1000,function(){
+                           location.href="/course/"+data.course+"/"+data.university
+                        })
+                        //setTimeout(location.reload(),3000);
+                        //location.reload()
+                    }else if(data.status == "failure"){
+                        $("#student_verify_tips").html(data.message).show();
+                        $("#student_verify_div").css("display","block");
+                        $("#student_verify_btn").removeAttr("disabled");
+
+                    }
+                }
+            });
+        }
+
+    </script>
+{% endblock %}

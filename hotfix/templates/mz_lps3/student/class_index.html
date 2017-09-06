@@ -1,0 +1,1062 @@
+{% extends "mz_common/base.html" %}
+{% block title %}{{ sclass.display_name }} - 麦子学院{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}mz_lps3/css/style.css?version=201612051300"/>
+<style type="text/css">
+    body {background: #f5f5f5;}
+    .hHide > * {opacity: 0;}
+    #demo {opacity: 1;position: absolute;top: 100px;left: 36%;z-index: 1000;margin-left: -100px;}
+    #qwe .btn-warn { display: none;}
+</style>
+{% endblock %}
+{% load my_filter %}
+{% block container %}
+    {% include 'mz_lps3/student/div_class_dynmsg_header.html' %}
+
+    <div class="zyTopMenu3"><a class="aH">{{ sclass.display_name }}</a></div>
+    <div class="center topTrytolearn">
+        {% if class_student.is_full_payment_user and class_student.is_pause%}{# 全款用户休学中 #}
+            您目前处于<span class="colorf7f" style="font-size: 18px;">休学状态</span>,若需要学习,请联系您的教务老师进行复学处理~
+        {% elif class_student.is_trial_user and class_student.student_class.meeting_enabled %}{# 试学用户 #}
+            {% if class_student.need_pay %}
+                试学结束,续费截止时间:<span class="colorf7f" style="font-size: 14px;">{{ class_student.pay_deadline_str }}</span>
+            {% else %}
+                试学截止时间:<span class="colorf7f" style="font-size: 14px;">{{ class_student.deadline_str }}</span>
+            {% endif %}
+            <a href="{{ url_pay }}" target="_blank">立即续费</a>
+        {% endif %}
+
+    </div>
+    <!--您目前处于<span>休学状态</span>，若需要学习，请联系教务老师申请复学哦~   休学文字-->
+    <div class="container">
+        <div class="zyMainLeft hHide" id="lineList">
+            <ul class="zyStageUl t8o">
+                {% for stage in stages %}
+                    <li class="li{{ forloop.counter }}">
+                        <div class="zyStageTit">{{ stage.name }}</div>
+                        {% for task in stage.tasks %}
+                            <div id="stagetask_{{ task.task_rid }}"
+                                 _sS="{{ task.task_show_status }}"
+                                    {% if task.is_locked %}
+                                 pop_href="{% url 'lps3:student_unlock_new_task_guide' class_id task.task_rid %}"
+                                    {% elif task.is_fail %}
+                                 pop_href="{% url 'lps3:student_rebuild_task' class_id task.task_rid %}"
+                                    {% else %}
+                                 href="{% url 'lps3:student_stagetask' class_id task.task_rid %}"
+                                    {% endif %}
+
+                                 class="zytrophy textC {% if task.is_focus %}zystagego {% endif %}
+                                    {% if task.task_show_status == 2 %}studyTimeout
+                                    {% elif task.task_show_status == 1 %}studying
+                                    {% elif task.is_done %}teacherMark
+                                    {% elif task.is_pass %}
+                                    {% elif task.is_fail %}zystageError
+                                    {% elif task.is_redoing %}zystageErrorIng
+                                    {% elif task.can_be_unlocked %}zystageInitial
+                                    {% elif task.task_show_status == 5 %}
+                                    {% else %}zystageLock
+                                    {% endif %}
+                                          "
+                                    {% if task.is_doing %}
+                                 dataS="{{ task.get_progress }}"
+                                    {% if not task.is_pause %}datatBO="true"{% endif %}
+                                    {% endif %}
+                                    {% if task.task_show_status == 1 %}
+                                 datat="{{ task.get_timeleft }}"
+                                    {% endif %}
+                                    >
+                                {% if task.task_show_status == 1 %}
+                                    <div class="studyingdiv">
+                                        <div>
+                                            <p class="p">倒计时</p>
+
+                                            <p class="font14 bold t">0天0时0分</p>
+
+                                            <p class="pb font16 loadedNum">{{ task.get_progress }}%</p>
+                                        </div>
+                                        <canvas class="mask loadingProgress" width="140px" height="140px"></canvas>
+                                        <canvas class="bg"></canvas>
+                                    </div>
+                                {% elif task.task_show_status == 2 %}
+                                    <div class="studyingdiv">
+                                        <div>
+                                            <p class="p">任务</p>
+
+                                            <p class="font14 bold t">已超时</p>
+
+                                            <p class="pb font16 loadedNum">{{ task.get_progress }}%</p>
+                                        </div>
+                                        <canvas class="mask loadingProgress" width="140px" height="140px"></canvas>
+                                        <canvas class="bg"></canvas>
+                                    </div>
+                                {% elif task.task_show_status == 3 %}
+                                    <div class="colorff">
+                                        <p class="font12">等待</p>
+
+                                        <p class="font14 bold">老师打分</p>
+                                    </div>
+                                {% elif task.task_show_status == 5 %}
+                                    <i class="Sstars2"></i>
+                                {% elif task.task_show_status == 6 %}
+                                    <i class="Sstars3"></i>
+                                {% elif task.task_show_status == 8 %}
+                                    <div><p class="YaHei font16 colorff">重修中</p></div>
+                                {% elif task.can_be_unlocked %}
+                                    <div class="ball-scale-multiple">
+                                        <span></span><span></span><span></span><span></span>
+                                    </div>
+                                {% endif %}
+                                <p class="YaHei font16">{{ task.task_name| cutStrNN:30 }}</p>
+                            </div>
+                        {% endfor %}
+                    </li>
+                {% endfor %}
+            </ul>
+            <svg width="100%" height="100%" class="t8o" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <path stroke="#5ecfba" class="linestrokeD"/>
+                <path stroke="#ffffff" class="linestroke"/>
+            </svg>
+        </div>
+        <div class="zyMainRight">
+            <!--班级排名-->
+            {% if grade_top3 %}
+            <div class="billboard marginB20">
+                <h3 class="font16 color33 marginB20 bold">班级排名</h3>
+                <ul class="billboard-lists marginB20">
+                    <li>
+                        <ol class="bill_1">
+                            {% for student in grade_top3 %}
+                            <li>
+                                <a href="{% url 'u:index' student.student_id %}" target="_blank"><img src="{{ MEDIA_URL }}{{ student.avatar_url }}" alt="{{ student.nick_name }}"></a>
+                                <span class="classmate-name">{{ student.nick_name }}</span>
+                                {% if forloop.counter == 1 %}
+                                <span class="bill_first"></span>
+                                {% elif forloop.counter == 2 %}
+                                <span class="bill_second"></span>
+                                {% else %}
+                                <span class="bill_third"></span>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ol>
+                    </li>
+                    <li>
+                        <ol class="bill_2">
+                            {% for student in progress_top3 %}
+                            <li>
+                                <a href="{% url 'u:index' student.student_id %}" target="_blank"><img src="{{ MEDIA_URL }}{{ student.avatar_url }}" alt="{{ student.nick_name }}"></a>
+                                <span class="classmate-name">{{ student.nick_name }}</span>
+                                {% if forloop.counter == 1 %}
+                                <span class="bill_first"></span>
+                                {% elif forloop.counter == 2 %}
+                                <span class="bill_second"></span>
+                                {% else %}
+                                <span class="bill_third"></span>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ol>
+                    </li>
+                </ul>
+
+                <ul class="tab_menu">
+                    <li class="active"><i></i>成绩排名</li>
+                    <li><i></i>进度排名</li>
+                </ul>
+
+                <a class="check-billboard" href="{% url 'lps3:class_rank' class_id student_id %}" target="_blank">查看班级排名</a>
+            </div>
+            {% endif %}
+            <!--班级动态模块-->
+            <div class="always-new marginB20">
+                <h3 class="font16 color33 marginB20 bold">班级动态</h3>
+                <div class="scroll">
+                    <ul class="always-new-list"></ul>
+                </div>
+            </div>
+            <!--带班老师模块-->
+            <div class="managers marginB20">
+                <h3 class="font16 color33 marginB20 bold">班级联系人</h3>
+                <ul>
+                    {% for teacher in teachers %}
+                    <li>
+                        <h3 class="font12">老师</h3>
+
+                        <a class="manager-head" {% if teacher %} href="{% url 'u:index' teacher.id %}" {% else %} href="javascript:;" style="cursor: context-menu;" {% endif %} target="_blank"><img src="{% if teacher %} {{ teacher.avatar_url.url }} {% else %} {{ STATIC_URL }}mz_lps3/images/default-head.png {% endif %}" alt=""></a>
+                        <span class="manager-name font14">
+                            {{ teacher.staff_name }}
+                        </span>
+                        <a class="manager-qq" {% if teacher %} href="http://wpa.qq.com/msgrd?v=3&uin={{ teacher.qq }}&site=qq&menu=yes" target="_blank" {% else %} href="javascript:;" {% endif %}>QQ联系</a>
+                    </li>
+                    {% endfor %}
+
+                    <li>
+                        <h3 class="font12">班主任</h3>
+
+                        <a class="manager-head" {% if sclass.edu_admin %} href="{% url 'u:index' sclass.edu_admin.id %}" {% else %} href="javascript:;" style="cursor: context-menu;" {% endif %} target="_blank"><img src="{% if sclass.edu_admin %} {{ sclass.edu_admin.avatar_url.url }} {% else %} {{ STATIC_URL }}mz_lps3/images/default-head.png {% endif %}" alt=""></a>
+                        <span class="manager-name font14">{{ sclass.edu_admin.staff_name }}</span>
+                        <a class="manager-qq" {% if sclass.edu_admin %} href="http://wpa.qq.com/msgrd?v=3&uin={{ sclass.edu_admin.qq }}&site=qq&menu=yes" target="_blank" {% else %} href="javascript:;" {% endif %} >QQ联系</a>
+                    </li>
+                    <li>
+                        <h3 class="font12">班长</h3>
+                        <a class="manager-head" {% if sclass.monitor %} href="{% url 'u:index' sclass.monitor.id %}" {% else %} href="javascript:;" style="cursor: context-menu;" {% endif %} target="_blank"><img src="{% if sclass.monitor %} {{ sclass.monitor.avatar_url.url }} {% else %} {{ STATIC_URL }}mz_lps3/images/default-head.png {% endif %}" alt=""></a>
+                        <span class="manager-name font14">
+                        {% if sclass.monitor.nick_name %}
+                            {{ sclass.monitor.nick_name }}
+                        {% else %}
+                            {{ sclass.monitor.real_name }}
+                        {% endif %}</span>
+                        <a class="manager-qq" {% if sclass.monitor %} href="http://wpa.qq.com/msgrd?v=3&uin={{ sclass.monitor.qq }}&site=qq&menu=yes" target="_blank" {% else %} href="javascript:;" {% endif %} >QQ联系</a>
+                    </li>
+                </ul>
+            </div>
+
+            {% if classmeeting_lst %}
+                <div class="zy_Rlive marginB20">
+                    <p class="font16 bold color33 zy_Rlive_tit">直播课程</p>
+                    {% if class_student.is_active %}
+                    <ul class="zy_RliveList marginB20">
+                        {% for classmeeting in classmeeting_lst %}
+                        {% if classmeeting.status == 2 %}
+                            <li class="active">
+                                <p class="color5e font20 marginB10">{{ classmeeting.content }}</p>
+                                <p class="color33 font14 marginB10">{{ classmeeting.d_week }} {{ classmeeting.d_date }} {{ classmeeting.d_time }}</p>
+                                <a class="colorff font14 zlbtn bold textC" target="_blank"
+                                   href="{{ classmeeting.join_url }}">进入直播课</a>
+                            </li>
+                        {% else %}
+                            <li>
+                                <p class="color66">{{ classmeeting.content }}</p>
+                                <p class="color33">{{ classmeeting.d_week }} {{ classmeeting.d_date }} {{ classmeeting.d_time }}</p>
+                                <a class="font14 colorff textC a" target="_blank"
+                                   href="{{ classmeeting.join_url }}">未开始</a>
+                            </li>
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                    {% if is_classmeeting_video %}
+                        <a class="color66 font14 textC seeMore" target="_blank"
+                           href="{% url 'lps3:student_classmeeting' class_id %}">查看过往课程录制视频</a>
+                    {% endif %}
+
+                </div>
+            {% endif %}
+
+            <div class="zy_Rlive fresher-agreement marginB20">
+                <a class="fresher font14 color66" href="{% url 'lps3:student_admission_infor' %}" target="_blank">入学须知</a>
+                {% if class_student.is_view_employment_contract  %}
+                <a class="agreement font14 color66" href="{% url 'lps3:student_employment_agreement' class_id %}" target="_blank">就业协议</a>
+                {% endif %}
+                {% if class_student.is_view_not_employment_contract  %}
+                <a class="agreement font14 color66" href="{% url 'lps3:student_not_employment_agreement'%}" target="_blank">服务承诺</a>
+                {% endif %}
+
+            </div>
+            <!--已选择不需要就业服务-->
+            {% if class_student.is_employment_contract == False %}
+            <div class="zy_NoNeed textC"><img src="/static/mz_lps3/images/wuxu.png">已选择不需要就业服务</div>
+            {% endif %}
+            <!--班级二维码-->
+            {% if class_student.is_send_sms %}
+            <div class="zy_Rlive textC">
+                <p class="class_QRcode marginB14"><img src="{{ MEDIA_URL }}{{ sclass.qq_qrcode }}"></p>
+                <p class="color66 font14"><img src="/static/mz_lps3/images/QQqun.png" style="width: auto; vertical-align: middle; margin-right: 8px;">班级群号：{{ sclass.qq }}</p>
+            </div>
+            {% endif %}
+        </div>
+        <div id='demo'></div>
+    </div>
+    <!--填写问卷弹窗-->
+    {% include 'mz_lps3/student/div_questionnaire_pop_up.html' %}
+
+    <!--完善个人信息弹窗-->
+    {% include 'mz_lps3/student/div_sub_user_info.html' %}
+
+    <!--完善简历弹窗-->
+    {% include 'mz_lps4/popup/div_perfect_myresume.html' %}
+
+    <div class="modal fade YaHei" id="mytask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true"></div>
+    <div class="modal fade YaHei" id="mytaskRebuild" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true"></div>
+    <div class="modal fade YaHei" id="VideoDemo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-content zy_VideoDemo" style="width: 800px;">
+            <a class="close"></a>
+
+            <div style="height: 400px;">
+                <video id="microohvideo" class="video-js vjs-default-skin vjs-big-play-centered"
+                       autoplay="autoplay" controls="controls" preload="none" width="100%" height="100%"
+                       poster="">
+                    <source src="" type='video/mp4'/>
+                </video>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="live-start-0" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    </div>
+    <div class="modal fade" id="live-start-1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    </div>
+    <div class="modal fade YaHei" id="MyTaskScore" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    </div>
+
+    <div class="modal fade" id="classmeetingSreen" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    </div>
+    <!-- 教务弹窗 -->
+    <div class="modal fade YaHei" id="onejiongroup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-content zy_VideoDemo" style="width: 370px;">
+            <a class="onejiongroupclose"></a>
+            <div class="onejiongroup font16 color66"><i></i>
+                <div class="tou"><img src="{{ MEDIA_URL }}{{ sclass.edu_admin.avatar_url }}"></div>
+                <p class="marginB14">亲爱的同学，我是你的<span class="color33">教务老师
+                        {{ sclass.edu_admin.staff_name }}
+                </span></p>
+                <p class="marginB20">快加入我们的班级群吧~</p>
+                <p class="QRcode marginB10 textC"><a><img src="{{ MEDIA_URL }}{{ sclass.qq_qrcode }}"></a></p>
+                <p class="marginB20 textC">班级群号：{{ sclass.qq }}</p>
+                <p class="join textC marginB10"><a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey={{ sclass.qq_key }}">一键加群</a></p>
+                <p class="font12 textC"><span class="colorf7f">*</span>注：加群时验证信息请一定填写自己的真实姓名哦~</p>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade YaHei" id="perfectinfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-content zy_VideoDemo" style="width: 370px;">
+            <div class="onejiongroup font16 color66"><i></i>
+                <div class="tou"><img src="{{ MEDIA_URL }}{{ sclass.edu_admin.avatar_url }}"></div>
+                <p class="marginB14">亲爱的同学，我是你的<span class="color33">教务老师
+                        {{ sclass.edu_admin.staff_name }}
+                </span></p>
+                <p class="marginB20">请先完善一下个人基本信息哦。</p>
+                <p class="marginB20">请放心，麦子会对你的一切信息绝对保密~ 期待见证你在麦子学院的成长！</p>
+                <p class="join textC"><a href="{% url 'home:base:index' %}?class={{ sclass.id }}">立即完善学籍信息</a></p>
+            </div>
+
+        </div>
+    </div>
+    <!-- 就业意向 -->
+    <div class="modal fade YaHei" id="jobIntention" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-content zy_VideoDemo" style="width: 370px;">
+            <div class="onejiongroup font16 color66"><i></i>
+                <div class="tou"><img src="{{ MEDIA_URL }}{{ sclass.edu_admin.avatar_url }}"></div>
+                <p class="marginB14">亲爱的同学，我是你的<span class="color33">教务老师
+                        {{ sclass.edu_admin.staff_name }}
+                </span></p>
+                <p class="marginB20">完成整个课程学习后是否需要就业？</p>
+                <p class="join textC marginB10"><a class="a_grey">不需要就业</a><a class="a_green">有就业意向</a></p>
+                <p class="font12"><span class="colorf7f">*</span>注：选择不需就业后，不可修改，且不会有相应的就业流程服务。 请慎重选择。</p>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade YaHei" id="jobIntentionInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-content zy_VideoDemo" style="width: 600px;">
+            <p class="color5e font18 pt">就业信息</p>
+            <div class="onejiongroup font14 color66">
+                <p class="ptitle font12 marginB10"><span class="colorf7f">*</span>注：就业信息一旦保存不可修改，请如实谨慎填写哦~ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;填写后请签署就业协议，完成整个课程学习后，会有就业老师提供相应就业服务~</p>
+                <form action="{% url 'user:jobintentioninfo_save' %}" id="jobIntentionInfoForm" method="post">
+                <table class="color66 marginB10">
+                    <tr>
+                        <td class="bold t" align="right"><span class="colorf7f">*</span>学习目标</td><td><input name="studygoal"  type="text" class="jobIntentionInfoTxt" value="就业"></td>
+                    </tr>
+                    <tr>
+                        <td class="bold t" align="right"><span class="colorf7f">*</span>学历</td><td><select name="education" class="jobIntentionInfoTxt"> {% for degree in degrees %}<option>{{ degree }}</option>{% endfor %}</select></select></td>
+                    </tr>
+                    <tr>
+                        <td class="bold t" align="right"><span class="colorf7f">*</span>毕业院校</td><td><input name="university"  type="text" class="jobIntentionInfoTxt"></td>
+                    </tr>
+                    <tr>
+                        <td class="bold t" align="right"><span class="colorf7f">*</span>意向就业城市</td><td><input name="goCity"  type="text" class="jobIntentionInfoTxt"></td>
+                    </tr>
+                    <tr>
+                        <td class="bold t" align="right"><span class="colorf7f">*</span>工作年限</td><td><select name="WorkingLife"  class="jobIntentionInfoTxt">{% for service_year in service_years %}<option>{{ service_year }}</option>{% endfor %}</select></select></td>
+                    </tr>
+                    <tr>
+                        <td class="bold t"><span class="colorf7f">*</span>在职与否</td><td><label class="statisticsRadio"><input type="radio" name="onthejob" value="1"><i></i>在职</label><label class="statisticsRadio"><input type="radio" name="onthejob" value="2"><i></i>不在职</label></td>
+                    </tr>
+                    <tr>
+                        <td class="bold t" align="right">职位</td><td><input type="text" name="position"  class="jobIntentionInfoTxt"></td>
+                    </tr>
+                    <tr>
+                        <td class="bold t" align="right">所在行业</td><td><input type="text" name="industry"  class="jobIntentionInfoTxt"></td>
+                    </tr>
+                    <tr>
+                        <td class="bold t" align="right"><span class="colorf7f">*</span>想从事的行业</td><td><input name="goIndustry"  type="text" class="jobIntentionInfoTxt"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textC"><input type="button" class="jobIntentionInfoBtn" value="保存"><input type="reset" style="display: none;" /></td>
+                    </tr>
+                </table>
+
+                <input type="hidden" name="class_id" id="class_id" value="{{ class_id }}"/>
+
+                </form>
+                <p class="errorInfo">保存失败！请重试！</p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 查看出勤&计划日历弹窗 -->
+    <div class="modal fade YaHei" id="check-plan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-content" style="width: 550px;">
+            <a class="close"></a>
+            <div class="calender">
+                <div class="selectmouth">
+                    <p class="lastmonth"></p>
+                    <input type="text" class="selectdate" value="" readonly=readonly />
+                    <p class="nextmonth"></p>
+                </div>
+                <table class="data_table" cellspacing="0px">
+                    <thead>
+                        <tr>
+                            <td>日</td><td>一</td><td>二</td><td>三</td><td>四</td><td>五</td><td>六</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                        </tr>
+                        <tr>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                            <td><span></span><span></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" value="0" id="timestampe"/>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}mz_lps3/js/jquery.lazylinepainter-1.5.1.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}mz_lps3/js/svgData.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}mz_lps3/js/check-plan-date.js"></script>
+    <script type="text/javascript">
+        (function ($) {
+            $(document).ready(function () {
+                // Setup your Lazy Line element.
+                // see README file for more settings
+                var userAgent = navigator.userAgent;
+                 if(userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Version/5") > -1) {
+                 }
+                 else{
+                     $('#demo').lazylinepainter({
+                         'svgData': svgData,
+                         'strokeWidth': 2,
+                         'strokeColor': '#5ecfba',//'#dc908e',
+                         'onComplete': function () {
+                             $(".treeTip").show().addClass("zoomIn");
+                         },
+                         'onStart': function () {
+                             console.log('>> onStart');
+                         }
+                     })
+                     // Paint your Lazy Line, that easy!
+                     var state = 'paint';
+                     $('#demo').lazylinepainter(state);
+                 }
+            })
+
+        })(jQuery);
+
+        //radio
+        ;(function($){
+            $.fn.statisticsRadio=function(){
+                if(this.length == 0) return this;
+                if(this.length > 1){
+                    this.each(function(){$(this).statisticsRadio()});
+                    return this;
+                }
+                var th = this;
+                th.children("input").click(function(){
+                    $("input[name='"+this.name+"']").each(function(index, element) {
+                        if(element.checked){
+                            $(this).parent().addClass("rH");
+                        }else{
+                            $(this).parent().removeClass("rH");
+                        }
+                    });
+                });
+            }
+        })(jQuery);
+    </script>
+{% endblock %}
+
+{% block footer%}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block custom_script %}
+<script src="{{ STATIC_URL }}mz_lps3/js/stage.js"></script>
+<script src="{{ STATIC_URL }}mz_lps3/js/svganimations.js"></script>
+<script src="{{ STATIC_URL }}mz_lps3/js/select.js"></script>
+<script src="{{ STATIC_URL }}mz_lps3/js/d-progress-bar.js"></script>
+<script src="{{ STATIC_URL }}mz_lps3/js/student_info.js"></script>
+<script src="{{ STATIC_URL }}mz_lps3/js/student_message.js"></script>
+<link rel="stylesheet" href="{{ STATIC_URL }}mz_lps3/css/video-js.css">
+<script src="{{ STATIC_URL }}mz_lps3/js/video.js"></script>
+<script>
+    videojs.options.flash.swf = "/static/js/videojs/video-js.swf"
+</script>
+<script src="{{ STATIC_URL }}mz_lps3/layer/layer.js"></script>
+<script>
+    function openVideo(url) {
+        $("#microohvideo").children().attr("src", url)
+        $('#VideoDemo').modal('show');
+    }
+    $(function () {
+        {% if is_pop_up_questionnaire %}
+            //满意度问卷调查
+            $('#questionnaire_pop_up').modal({show:true, keyboard:false,backdrop: 'static'});
+        {% elif not student_info %}
+            //完善个人资料
+            $('#perfectinfo').modal({show:true, keyboard:false,backdrop: 'static'});
+        {% elif not class_student.is_view_contract %}
+            //入学协议
+            $('#myAgreement2').modal({show:true, keyboard:false,backdrop: 'static'});
+        {% elif not class_student.is_qq_hints %}
+            //加群提醒
+            $('#onejiongroup').modal({show:true, keyboard:false,backdrop: 'static'});
+            qq_hints_close();
+        {% elif is_employment_contract %}
+            //学生_就业意向_弹窗
+            $('#jobIntention').modal({show:true, keyboard:false,backdrop: 'static'});
+        {% elif is_job_intention_info %}
+            //完善就业信息
+            $("#jobIntentionInfo input[type=reset]").trigger("click");
+            //$("#jobIntentionInfo").modal("show");
+            $('#jobIntentionInfo').modal({show:true, keyboard:false,backdrop: 'static'});
+        {% elif is_view_employment_contract %}
+            //就业协议
+            $('#myAgreement').modal({show:true, keyboard:false,backdrop: 'static'});
+        {% elif is_view_not_employment_contract %}
+            //不需要就业的服务
+            $('#myAgreement3').modal({show:true, keyboard:false,backdrop: 'static'});
+        {% elif class_student.is_employment_contract and is_pop_complete_resume %}
+            var is_force_pop_complete_resume = "{{ is_force_pop_complete_resume }}";
+            //显示完善简历弹窗
+            $('#perfectMyResume').modal('show');
+            if (is_force_pop_complete_resume == 'True') {
+                $('#perfectMyResume .close').remove();
+            }
+            else {
+                $('#perfectMyResume .close').on('click', function () {
+                    $('#perfectMyResume').modal('hide');
+                });
+            }
+        {% endif %}
+        $(".statisticsRadio").statisticsRadio();
+        //开始班会提醒
+        //$("#classmeetingSreen").modal("show");
+        //未参加班会提醒
+        //$("#classmeetingSreen2").modal("show");
+        //20160217弹框关闭
+        $(".zy_mypersonal2 .cl").unbind().click(function(){
+             $("#classmeetingSreen").modal("hide");$("#classmeetingSreen2").modal("hide");$("#classmeetingSreen3").modal("hide");
+        });
+        $('#myAgreement2').on('shown.bs.modal', function () {
+            $('#myAgreement2 .zy_myAgreement_div').jScrollPane({
+                mouseWheelSpeed:80
+            });
+        })
+        $('#myAgreement').on('shown.bs.modal', function () {
+            $('#myAgreement .zy_myAgreement_div').jScrollPane({
+                mouseWheelSpeed:80
+            });
+        });
+        $('#myAgreement3').on('shown.bs.modal', function () {
+            $('#myAgreement3 .zy_myAgreement_div').jScrollPane({
+                mouseWheelSpeed:80
+            });
+        })
+        //就业意向
+        $("#jobIntention .join a").live("click",function(){
+            if($(this).hasClass("a_grey")){
+                //不需要就业
+                var data = {'class_id':{{ sclass.id }},'is_employment_contract':false}
+                employment_contract_submit(data)
+            }
+            else{
+                var data = {'class_id':{{ sclass.id }},'is_employment_contract':true}
+                employment_contract_submit(data)
+            }
+        });
+        $("#jobIntentionInfo .jobIntentionInfoBtn").live("click",function(){
+            var jobIntentionInfoForm1=$("#jobIntentionInfoForm").serialize();
+            var jobIntentionInfoForm=jobIntentionInfoForm1.split("&");
+{#            if(jobIntentionInfoForm1.indexOf("learningGoals")<0){#}
+{#                $(".errorInfo").html("请选择学习目标").slideDown();#}
+{#                return false;#}
+{#            }#}
+            for(var i=0;i<jobIntentionInfoForm.length;i++){
+                var arr=jobIntentionInfoForm[i].split("=");
+                if(arr[0]!="position"&&arr[0]!="industry"&&arr[1]==""){
+                    $(".errorInfo").html("不能为空").slideDown();
+                    $("#jobIntentionInfoForm input[name="+arr[0]+"]").focus();
+                    return false;
+                }
+            }
+            if(jobIntentionInfoForm1.indexOf("onthejob")<0){
+                $(".errorInfo").html("请选择在职与否").slideDown();
+                return false;
+            }
+            $("#jobIntentionInfoForm").submit();
+        });
+
+        //提交通过
+        //$('#mysuccess').modal('show');
+        //重修
+        //$('#mytaskRebuild').modal('show');
+        //老师评分
+        //$('#myEvaluate').modal('show');
+        $("#study_goal_opt,#study_base_opt").iSimulateSelect({width:400,height:0,selectBoxCls:"personal_info_selectD",optionCls:"personal_info_selectD_Op"});
+        //单选
+        $(".inpRadio input").click(function () {
+            var th = $(this).parent();
+            th.siblings().removeClass("rH");
+            if (th.hasClass("rH")) {
+                th.removeClass("rH");
+            }
+            else
+                th.addClass("rH");
+        });
+
+        var sum = 0, isEnd = true;
+        var xp = 34, yp = 0;
+        var countS;
+        var ldata = [], pointL = [], isV = true, Vlen = 110, Clen = 0, isV2 = true;
+        var linum = $(".zyStageUl li").length;
+        $(".zyStageUl li").each(function (index, element) {
+            var pcountS = 0;
+            ($(this).prev().length > 0) && (pcountS = $(this).prev().data("countS"));
+
+            var num = $(this).children(".zytrophy").length;
+            sum += num;
+            pointL = [];
+            isV2 && (isV = true);
+            var jiS = 1, stactH = 0;
+            Clen = $(this).width() - 68;
+            clentW = $(this).width() / 5;
+            countS = parseInt(num / 4 + 1);
+            if (num % 4 == 0) countS = num / 4;
+            var cS = (countS + 1) * 2;
+            for (var i = 0; i < cS; i++) {
+                if (pcountS % 2 == 0 && i == 0 && pcountS != 0) {
+                    continue;
+                }
+                Vlen = 110;
+                (i > 1) && (Vlen = 170)
+                if (ldata.length == 0) {
+                    ldata.push(new zypoint(xp, 0));
+                }
+                else {
+                    if (isV) {
+                        yp += Vlen;
+                        isV = false;
+                        stactH += Vlen
+                    } else {
+                        var nn = num % 4 == 0 ? 4 : num % 4;
+                        (jiS >= countS && isV2) && (Clen = clentW * nn + clentW / 2);
+                        if (jiS <= countS && i != 0) {
+                            var pcount = 4;
+                            (jiS == countS) && (num % 4 != 0) && (pcount = num % 4)
+                            for (var j = 1; j <= pcount; j++) {
+                                var pLeft = clentW * j;
+                                (!isV2) && (pLeft = $(this).width() - clentW * j)
+                                pointL.push(new zypoint(pLeft, yp));
+                            }
+                        }
+                        if (isV2) {
+                            xp += Clen;
+                            isV2 = false;
+                        } else {
+                            xp -= Clen;
+                            isV2 = true;
+                        }
+                        isV = true;
+                        if (xp < 34) {
+                            xp = 34
+                        }
+                        ;
+                        (i != 0) && (jiS++);
+                    }
+                    if (linum == index + 1 && cS - 2 <= i) {
+                        (isEnd) && ldata.push(pointL[pointL.length - 1]);
+                        isEnd = false;
+                    }
+                    else
+                        ldata.push(new zypoint(xp, yp));
+                }
+            }
+            $(this).height(stactH).data("countS", countS);
+            var temporaryHeight = 0;
+            ($(this).prev().length > 0) && (temporaryHeight = yp - stactH);
+            $(this).data("th", yp - stactH);
+            for (var pp in pointL) {
+                $(this).children(".zytrophy").eq(pp).css({
+                    "left": pointL[pp].x,
+                    "top": pointL[pp].y - temporaryHeight
+                });
+            }
+        });
+        var lineData = [], anlineL = [], bocanvas = true;
+        for (var i in ldata) {
+            if (i != 0) {
+                lineData.push(new zyline(ldata[i - 1], ldata[i]));
+                $("#lineList").append('<span class="line"></span>');
+            }
+            if (bocanvas) {
+                anlineL.push(ldata[i]);
+                var studyObj = $(".zyStageUl .zystagego");
+                var temporaryH = 0;
+                (studyObj.parent().prev().length > 0) && (temporaryH = studyObj.parent().data("th"))
+                var top = parseInt(studyObj.css("top")) + temporaryH, left = parseInt(studyObj.css("left"));
+                if (top == ldata[i].y) {
+                    anlineL.push(new zypoint(left, top));
+                    bocanvas = false;
+                }
+            }
+        }
+
+        for (var i in lineData) {
+            var ll = lineData[i];
+            var llobj = $("#lineList .line").eq(i);
+            var lleft = ll.startX - 3, lright = ll.startY - 3;
+            if (ll.isVC()) {
+                llobj.addClass("zzVertical").height(ll.length());
+            }
+            else {
+                llobj.addClass("zzCross").width(ll.length());
+                if (ll.startX > ll.endX) {
+                    lleft = ll.endX - 3;
+                    lright = ll.endY - 3;
+                }
+            }
+            llobj.css({"left": lleft + "px", "top": lright + 20 + "px"});
+        }
+        var ML = '';
+        for (var i in anlineL) {
+            if (i == 0)
+                ML += "M" + anlineL[i].x + " " + (anlineL[i].y + 20) + " "
+            else
+                ML += "L" + anlineL[i].x + " " + (anlineL[i].y + 20) + " "
+        }
+        $("#lineList>svg path").attr("d", ML);
+        var explorer = window.navigator.userAgent;
+
+        setTimeout(function () {
+            $(".hHide").removeClass("hHide");
+            $("#demo").animate({opacity: 0}, 800, function () {
+                $(this).remove();
+            });
+            if (explorer.indexOf("MSIE") < 0) {
+                init();
+            }
+        }, 1500);
+
+        //---------------------
+        //var oProgress = $(".progress_bg span");
+        //oProgress.animateProgress(parseInt(oProgress.parent().attr("s"), 10), 1000, function () {});
+
+        function studyGO() {
+            var studyingN=0;
+            $(".studying").each(function (index, element) {
+                if ($(this).attr("datat")) {
+                    ts.push(parseInt($(this).attr("datat"), 10));
+                    if($(this).attr("datatBO")=="true") {
+                        setInterval("timer(" + studyingN + ")", 1000);
+                    }
+                    else{
+                        timer(studyingN);
+                    }
+                    studyingN++;
+                }
+            });
+            $(".studying,.studyTimeout").each(function (index, element) {
+                if ($(this).attr("dataS")) {
+                    ulp(parseInt($(this).attr("dataS"), 10), index);
+                }
+            });
+        }
+        studyGO();
+        //----------事件------------
+        $(".zytrophy").on("click", function () {
+            if ($(this).hasClass("zystageError") || $(this).hasClass("zystageInitial") || $(this).hasClass("zystageLock")) {
+            } else {
+                location.href = $(this).attr("href");
+            }
+        });
+        $(".zystageInitial,.zystageLock").on("click", function () {
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr("pop_href"),
+                dataType: "html",
+                success: function (data) {
+                    $("#mytask").html(data);
+                    $('#mytask').modal('show');
+                }
+            });
+        });
+        $(".zystageError").on("click", function () {
+            $.ajax({
+                type: 'GET',
+                url: $(this).attr("pop_href"),
+                dataType: "html",
+                success: function (data) {
+                    $("#mytaskRebuild").html(data);
+                    $('#mytaskRebuild').modal('show');
+                }
+            });
+
+        });
+        $(".zy_newclose,.onejiongroupclose,.close").live("click", function () {
+            $('.modal').modal('hide');
+        });
+
+        $(".div_hidden").live("click", function () {
+            $('#mytask').modal('hide');
+            $('#mytaskRebuild').modal('hide');
+        });
+
+        $(".gostudy").click(function () {
+            ($(this).attr("to_task")) && ($("#" + $(this).attr("to_task")).trigger("click"));
+        });
+
+        //video
+        var player = videojs("microohvideo", {
+            controls: true,
+            playbackRates: [1, 1.25, 1.5, 2]
+        });
+
+        player.pause();
+        $(".zy_VideoDemo .close").unbind().click(function () {
+            player.pause();
+            $('#VideoDemo').modal('hide');
+        });
+        $('#VideoDemo').on('hide.bs.modal', function () {
+            player.pause();
+        });
+
+        //提交表明是否需要就要协议
+        function employment_contract_submit(data) {
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: "/lps3/student/employment_contract_submit/",
+                data: data,
+                dataType: "json",
+                success: function(data_msg){
+                    var data_msg = eval(data_msg);
+                    if (data_msg['status']) {
+                        if (data['is_employment_contract'] == true){
+                            $("#jobIntention").modal("hide");
+                            $("#jobIntentionInfo input[type=reset]").trigger("click");
+                            $("#jobIntentionInfo").modal("show");
+                        }else{
+                            $("#jobIntention").modal("hide");
+                        }
+;                    }
+                }
+            });
+        }
+        //提交关闭提示一键加群
+        function qq_hints_close(){
+             $.ajax({
+                type: "POST",
+                async: false,
+                url: "/lps3/student/qq_hints_close/",
+                data: {'class_id':{{ sclass.id }}},
+                dataType: "json",
+                success: function(data){}
+            });
+        }
+
+        {#        message_flag = false;#}
+        {#        {% if student_info and class_student.is_view_contract and class_student.is_view_employment_contract %}#}
+        {#            message_flag = true;#}
+        {#        {% endif %}#}
+        {#        //console.log(message_flag);#}
+        {#        if (message_flag){#}
+        {#            // 仅当用户填完个人资料，入学协议，浏览合同之后，才弹出消息。#}
+        {#            global_message({{student_id}}, {{class_id}});#}
+        {#            class_meeting_message({{student_id}}, {{class_id}});#}
+        {#            task_score_message({{student_id}});#}
+        {#            class_meeting_open({{ student_id }});#}
+        {#            class_meeting_absence({{student_id}}, {{class_id}});#}
+        {#        }#}
+        {% if student_info and class_student.is_active %}
+            // 仅当用户填完个人资料，就弹出消息。
+            global_message({{student_id}}, {{class_id}});
+            class_meeting_message({{student_id}}, {{class_id}});
+            task_score_message({{student_id}});
+            class_meeting_open({{ student_id }});
+            class_meeting_absence({{student_id}}, {{class_id}});
+        {% endif %}
+
+    });
+    // 2016-04-12 任务面板右侧班级排名tab交互
+    (function(){
+        var $div_li = $('.tab_menu li');
+        var num = 0;
+
+        setInterval(function(){
+            $div_li.eq(num).addClass('active').siblings().removeClass('active');
+            $('.billboard-lists > li').eq(num).show().siblings().hide();
+            if(num < $div_li.length){
+                num++;
+            }else{
+                num = 0;
+            };
+        },10000);
+
+        $div_li.click(function(){
+            $(this).addClass('active').siblings().removeClass('active');
+            var index = $div_li.index(this);
+            $('.billboard-lists > li').eq(index).show().siblings().hide();
+
+            zhuge.track($(this).text(), {
+                "事件位置": "LPS主面板"
+            });
+        });
+    })();
+    $(function(){
+        // 2016-04-12班级动态交互
+        var List = $('.always-new-list li');
+        var oUl = $('.always-new-list');
+        var Li = '';
+
+        setInterval(function(){
+            autoScroll(".always-new");
+        },2000);
+
+        setInterval(function(){
+            getDate();
+        },60000);
+
+        getDate();
+        function getDate(){
+            $.ajax({
+                type: 'GET',
+                url: '/lps3/student/class_dynamic_message/',
+                //url: '{{ STATIC_URL }}mz_lps3/js/class_dynamic_message.json',
+                data: {timestampe: $('#timestampe').val(), class_id: $('#class_id').val()},
+                dataType: "json",
+                success: function (data) {
+                    if (data.status == true) {
+                        if (data.data.length > 0) {
+                            $('.always-new').show();
+                            $('#timestampe').val(data.timestampe);
+                            Li="";
+                            for (var i = 0; i < data.data.length; i++) {
+                                Li += '<li>';
+                                Li += '<a class="classmate-head""><img src="' + data.data[i].avatar_url + '" alt=""></a>';
+                                Li += '<a class="classmate-dynamic font12 color66"><span>' + data.data[i].nick_name + '</span>' + data.data[i].message + '</a>';
+                                Li += '<span class="font12 color66">' + data.data[i].time + '</span>';
+                                Li += '</li>';
+                            }
+                            oUl.append(Li);
+                        }
+                    }
+                }
+            });
+        }
+
+        function autoScroll(obj){
+            List = $('.always-new-list li');
+            if(List.length > 4){
+                $(obj).find(".always-new-list").animate({
+                marginTop: "-60px"
+                }, 500, function () {
+                    $(this).css({marginTop: "0px"}).find("li:first").remove();
+                });
+            }
+        }
+    })
+</script>
+<!-- 诸葛io统计 -->
+<script type="text/javascript">
+$(function(){
+    zhuge.identify(
+        "{{ user.id }}",
+        {
+            'name' : "{{ user.nick_name }}",
+            'avatar' : "{{ MEDIA_URL }}{{ user.avatar_url }}",
+            'email' :  "{{ user.email }}",
+            'qq' : "{{ user.qq }}",
+            "phone" : "{{ user.mobile }}",
+            "is_vip" : "企业直通班学院"
+        }
+    );
+
+    zhuge.track("LPS主面板用户", {
+        "事件位置": "LPS主面板"
+    });
+
+    // 入学须知事件
+    $('.fresher-agreement a').click(function(){
+        zhuge.track($(this).text(), {
+            "事件位置": "LPS主面板"
+        });
+    });
+
+    // 查看班级排名
+    $('.check-billboard').click(function(){
+        zhuge.track($(this).text(), {
+            "事件位置": "LPS主面板"
+        });
+    });
+
+});
+</script>
+{% endblock %}

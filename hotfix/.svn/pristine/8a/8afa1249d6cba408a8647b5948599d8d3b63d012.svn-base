@@ -1,0 +1,51 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/teacher_breadcrumb.html" %}
+
+<div class="tabbable">
+{% include "mz_nadmin/parts/teacher_tabs.html" %}
+
+<div class="tab-content">
+<div class="tab-pane active">
+
+    <p>{% include "mz_nadmin/modules/msgs.html" %}</p>
+
+    {% if classes.end_index >= 1 %}
+    <div class="table-responsive">
+    <table class="table table-bordered table-condensed">
+        <thead>
+            <th class="col-md-6">班级编号</th>
+            <th class="col-md-6">班级人数</th>
+        </thead>
+        <tbody>
+            {% for class in classes %}
+            <tr>
+                <td>
+                    {{ class.display_name }}
+                </td>
+                <td>
+                    {{ class.current_student_count }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% include "mz_nadmin/modules/page_info.html" with items=classes %}
+    </div>
+    {% else %}
+    <p class="text-muted"><small>还没有任何班级信息</small></p>
+    {% endif %}
+
+</div><!--/.tab-pane-->
+</div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+

@@ -1,0 +1,111 @@
+{% include 'mz_lps4/module/div_header.html' %}
+
+<div class="main-center">
+    {% if is_normal_class and current_task %}
+        <div class="last-time">
+            <h2 class="pos-l"><span>上次学习到</span>{{ current_task.task_name }}</h2>
+            <a class="pos-r continue" rid="{{ current_task.task_rid }}">继续学习</a>
+        </div>
+    {% endif %}
+    <div class="right-side">
+        <!-- 判断有或无约课 -->
+        {% include 'mz_lps4/module/div_live_appointment.html' %}
+        {% include 'mz_lps4/module/div_add_qq.html' %}
+        {% include 'mz_lps4/module/div_skill_atlas.html' %}
+        {% include 'mz_lps4/module/div_ability_tree.html' %}
+        <div class="join-class-agreement">
+            <a class="starting-school" href="{% url 'lps4:student_admission_infor' %}" target="_blank">入学须知</a>
+            {% if class_type == 0 %}
+            <a class="service-promise" href="{% url 'lps4:student_not_employment_agreement'%}" target="_blank">服务承诺</a>
+            {% endif %}
+            {% if class_type == 1 %}
+            <a class="employment-agreement" href="{% url 'lps4:student_employment_agreement' class_id %}" target="_blank">就业协议</a>
+            {% endif %}
+        </div>
+        
+    </div>
+    <div class="left-main">
+        {% if not is_normal_class %}
+            <div class="ad">
+                <div class="left">
+                    <div class="lps-video">
+                        {% if px.ad_type == 'IMAGE' %}
+                            <a href="{{ px.url }}" target="_blank"><img src="{{ MEDIA_URL }}{{ px.ad_url }}" alt="lps_video"/></a>
+                        {% else %}
+                            <a class="see-video" data-href="{{ px.video_url }}"><img src="{{ MEDIA_URL }}{{ px.ad_url }}"
+                                                                                     alt="lps_video_0"/></a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="right">
+                    <h3>{{ px.name }}：</h3>
+                    <p>{{ px.description }}</p>
+                    <a class="detail" href="{{ px.url }}" target="_blank">了解详情>></a>
+                    <div>
+                        <span class="yuan-sale">市场价：{{ px.old_price }}</span>
+                        <span class="sale">麦子特惠价：{{ px.price }}</span>
+                    </div>
+                    <a class="go-buy{% if not user.is_authenticated %} need-sign-in{% endif %}" href="{% url 'pay:pay_view2' %}?career_id={{ px.id }}" target="_blank">立即购买</a>
+                </div>
+            </div>
+        {% endif %}
+        <div class="main-content">
+            {% for stage in stages %}
+                <div class="study-stage study-stage-1">
+                    <div class="study-stage-progress">
+                        <div class="progress-on"></div>
+                    </div>
+                    <div class="study-stage-box">
+                        <h2>{{ stage.name }}</h2>
+                        <div class="study-stage-ball">
+                            <ul class="lists">
+                                {% for task in stage.tasks %}
+                                    {% if task.is_done %}
+                                        <li class="score" id="{{ task.task_rid }}" trace_task_index="{{ task.task_real_index }}" trace_task_name="{{ task.task_name }}">
+                                            <div><span></span>
+                                                <p attr-a="" attr-b="评分中" color-a="green" color-b=""
+                                    {% elif task.is_pass %}
+                                        <li class="finish" id="{{ task.task_rid }}" trace_task_index="{{ task.task_real_index }}" trace_task_name="{{ task.task_name }}">
+                                            <div><span></span>
+                                                <p attr-a="" attr-b="已完成" color-a="orange" color-b=""
+                                    {% elif task.is_fail %}
+                                        <li class="rebuild" id="{{ task.task_rid }}" trace_task_index="{{ task.task_real_index }}" trace_task_name="{{ task.task_name }}">
+                                            <div><span></span>
+                                                <p attr-a="" attr-b="成绩不合格请重修" color-a="red" color-b=""
+                                    {% elif task.is_redoing %}
+                                        <li class="rebuilding" id="{{ task.task_rid }}" trace_task_index="{{ task.task_real_index }}" trace_task_name="{{ task.task_name }}">
+                                            <div><span><i></i></span>
+                                                <p attr-a="" attr-b="课程重修中" color-a="green" color-b=""
+                                    {% elif task.task_show_status == 1 %}
+                                        <li class="ongoing" id="{{ task.task_rid }}" trace_task_index="{{ task.task_real_index }}" trace_task_name="{{ task.task_name }}">
+                                            <div><span></span>
+                                                <p left-time="{{ task.get_timeleft }}"
+                                                   attr-b="正在学习（{{ task.get_progress }}%）" color-a="green"
+                                                   color-b="dark-green"
+                                    {% elif task.task_show_status == 2 %}
+                                        <li class="ongoing cutdwon-oneday" id="{{ task.task_rid }}" trace_task_index="{{ task.task_real_index }}" trace_task_name="{{ task.task_name }}">
+                                            <div><span><i></i></span>
+                                                <p attr-a="已超时" attr-b="正在学习（{{ task.get_progress }}%）" color-a="green"
+                                                   color-b="orange"
+                                    {% elif forloop.parentloop.first and forloop.first and user.is_authenticated and task.task_type != task_type_normal or task.can_be_unlocked %}
+                                        <li class="current" id="{{ task.task_rid }}" trace_task_index="{{ task.task_real_index }}" trace_task_name="{{ task.task_name }}">
+                                            <div><span></span>
+                                                <p attr-a="" attr-b="未解锁" color-a="green" color-b=""
+                                    {% else %}
+                                        <li class="lock" id="{{ task.task_rid }}" trace_task_index="{{ task.task_real_index }}" trace_task_name="{{ task.task_name }}">
+                                            <div><span></span>
+                                                <p attr-a="" attr-b="未解锁" color-a="green" color-b=""
+                                    {% endif %}
+                                           desc="{{ task.task_desc }}"
+                                           task_type="{{ task.task_type }}">{{ task.task_name }}</p></div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% include 'mz_lps4/module/div_footer.html' %}

@@ -1,0 +1,48 @@
+
+<ul class="nav nav-tabs nav-append-content">
+{% if lesson %}
+
+    <li {% if tabs_active == "info" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:lessons_edit' course.id lesson.id %}">基本信息</a>
+    </li>
+    <li {% if tabs_active == "resources" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:lessons_edit_resources' course.id lesson.id %}">课件及源码</a>
+    </li>
+    <li {% if tabs_active == "online_exam" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:lessons_edit_online_exam' course.id lesson.id %}">在线练习</a>
+    </li>
+    <li {% if tabs_active == "homework" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:lessons_edit_homework' course.id lesson.id %}">提交作业</a>
+    </li>
+    <li {% if tabs_active == "paper" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:lessons_edit_paper' course.id lesson.id %}">随堂测验</a>
+    </li>
+    <li {% if tabs_active == "discusses" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:lessons_edit_discusses' course.id lesson.id %}">用户评论</a>
+    </li>
+
+{% else %}
+
+    <li {% if tabs_active == "info" %}class="active"{% endif %}>
+        <a href="#">基本信息</a>
+    </li>
+    <li class="disabled">
+        <a href="javascript:void(0);">课件及源码</a>
+    </li>
+    <li class="disabled">
+        <a href="javascript:void(0);">在线练习</a>
+    </li>
+    <li class="disabled">
+        <a href="javascript:void(0);">提交作业</a>
+    </li>
+    <li class="disabled">
+        <a href="javascript:void(0);">随堂测验</a>
+    </li>
+    <li class="disabled">
+        <a href="javascript:void(0);">用户评论</a>
+    </li>
+
+{% endif %}
+</ul>
+
+

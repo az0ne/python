@@ -1,0 +1,31 @@
+<!--加上顶部和底部-->
+{% extends "mz_common/base.html" %}
+{% block title %}微信支付成功{% endblock %}
+{% block header %}
+    <header class="navbar navbar-default navbar-fixed-top" data-spy="affix" data-offset-top="64">
+{% endblock %}
+{% block container %}
+<div class="zy_main YaHei">
+	<div class="container">    
+    	<div class="pay_success">	
+            <div><img src="/static/images/zy_right2.png">
+                <p>支付成功！</p>
+                <p>您已经是直通班的成员啦，快去学习吧！</p>
+                <p><a href="{% url "lps2:lps2_learning_plan" user_purchase.pay_careercourse.id %}">进入班级</a></p>
+            </div>    
+            <ul class="pay_success_ul">
+                <li style="float:left;">
+                    <p class="p1"><img src="/static/images/weixi_sm.png">扫描关注麦子学院微信公众号<br>小麦与你不见不散</p>
+                    <p><img src="/static/images/weixi_er.png"></p>
+                </li>
+                <li>
+                    <p class="p1"><img src="/static/images/weixi_sm.png">扫描下载麦子学院APP<br>随时随地离线学习</p>
+                    <p><img src="/static/images/weixi_erapp.png"></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

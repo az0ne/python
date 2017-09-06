@@ -1,0 +1,88 @@
+<!-- 首页老带新弹窗开始 -->
+<div class="modal fade YaHei" id="Old-with-new-tips" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog Old-with-new-innerbox">
+        <div class="modal-content">
+            <div class="Old-with-new-close"><img src="{{ STATIC_URL }}mz_lps4/images/off.png"/></div>
+            <div class="Old-with-new-info">
+                <!--<div class="Old-with-new-share marginB20">
+                  <img src="{{ STATIC_URL }}mz_lps4/images/banner.png"/>
+                </div>-->
+                <p class="font24 color33 bold marginB10">分享邀请链接，好友注册后报名立减300学费！</p>
+                <p class="font18 color33 marginB29">每报名一位好友，立返300现金红包！<span class="Invitation-rules font14 color5e">邀请规则 &gt;&gt;</span></p>
+                <p class="Invitation-rules-info hide font14 color99">
+                <span class="marginB20">1.将邀请链接分享至社交媒体，当您的好友通过该链接进入麦子学院官网注册后，他的账号将带有您的邀请标记。</span>
+                <span class="marginB20">2.每一个拥有您邀请标记的账号报名课程时都将享受立减<i style="color:red;font-style: normal">300元</i>学费的优惠<i style="color:red;font-style: normal">(“688试学+尾款”模式除外)</i>。而您也将获得<i style="color:red;font-style: normal">300元</i>的现金红包。</span>
+                <span class="marginB20">3.成功获得红包后将通过站内消息和弹窗提醒您。官方客服会联系您，确认您的微信号并将红包发送给您。</span>
+                <span class="marginB20">注意：如果您的好友已经通过他人的邀请链接注册，便无法生成您的邀请标记！好友通过邀请链接进入官网后须在<i style="color:red;font-style: normal">首页或欢迎弹窗直接注册</i>，否则邀请标记将不会生效！</span>
+                <span>对活动时间及奖励设置，麦子学院拥有最终解释权</span>
+                </p>
+                <p class="Invitation-rules-up hide font14 color5e textR marginB10">收起</p>
+                <p class="font14 color66 marginB14">我的邀请链接</p>
+                <input class="form-control color99 share-link" id="share-link" type="text" value="www.maiziedu.com/dddddddd"/>
+                <input class="btn font14 copy-link" id="copy-link" onclick="jsCopy()" type="button" value="复制链接"/>
+
+                <div class="share-links">
+                  <span class="font14 color99">分享邀请链接到：</span>
+                  <div class="jiathis_style">
+                      <a class="jiathis_button_cqq"></a>
+                      <a class="jiathis_button_tsina"></a>
+                  </div>
+                  <a class="WX-share">
+                    <img src="{{ STATIC_URL }}mz_lps4/images/WX.png"/>
+                    <div class="QR-code-box">
+                        <span class="QR-code">二维码</span>
+                        <span class="saosao font14 color66">打开微信“扫一扫”，打开网页后点击屏幕右上角分享按钮</span>
+                    </div>
+                  </a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 首页老带新弹窗结束 -->
+
+<!-- 首页老带新注册弹窗开始 -->
+<div class="modal fade YaHei" id="own-register-tips" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog own-register-innerbox">
+        <div class="modal-content">
+            <img class="own-register-close" src="{{ STATIC_URL }}mz_lps4/images/OFF-2.png"/>
+            <div class="own-register-info">
+                <p class="font14">Hi~欢迎来到麦子学院</p>
+                <p class="font18">老带新用户注册后报名可享受立减300学费的优惠！</p>
+		<p class="font18">"688试学 + 尾款"&nbsp;模式除外</p>
+                <img class="own-just-register" src="/static/mz_lps4/images/just-register.png"/>
+                <p class="font12">在其他页面注册会失去奖励哦</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 首页老带新注册弹窗结束 -->
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2055164" charset="utf-8"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/share_introduce.js"></script>
+
+<script>
+$(function(){
+    // 首页老带新弹窗交互
+    {% if user.is_authenticated %}
+        share_introduce_login();
+    {% else %}
+        share_introduce_not_login();
+    {% endif %}
+
+    // 首页老带新注册交互
+    {% if not user.is_authenticated and is_invitation%}
+        share_introduce_register();
+    {% endif %}
+
+});
+
+// 复制链接交互
+function jsCopy(){ 
+    var e=document.getElementById("share-link");//对象是content 
+    e.select(); //选择对象 
+    document.execCommand("Copy"); //执行浏览器复制命令
+   alert("已复制好，可贴粘。"); 
+} 
+
+</script>

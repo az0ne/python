@@ -1,0 +1,112 @@
+{% if not user.is_authenticated %}
+<!--登录-->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" style="width:540px;">
+        <div class="modal-content" style="border: none;">
+            <div class="col-left"></div>
+            <div class="col-right">
+                <div class="modal-header">
+                    <button type="button" id="login_close" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="loginModalLabel" style="font-size: 18px;">{% if request.GET.partner and request.GET.openid %}绑定已有账号{% else %}登录{% endif %}</h4>
+                </div>
+                <div class="modal-body">
+                    <section class="box-login v5-input-txt" id="box-login">
+                        <form id="login_form" action="{% url 'user:login' %}" method="post" autocomplete="off">
+                            {% csrf_token %}
+                            <ul>
+                                <li class="form-group">{{ login_form.account_l }}</li>
+                                <li class="form-group">{{ login_form.password_l }}</li>
+                                {% if request.GET.partner and request.GET.openid %}
+                                <input type="hidden" name="partner" value="{{request.GET.partner}}">
+                                <input type="hidden" name="openid" value="{{request.GET.openid}}">
+                                {% endif %}
+                            </ul>
+                        </form>
+                        <p class="good-tips marginB10"><a id="btnForgetpsw" class="fr">忘记密码？</a>还没有账号？{% if request.GET.partner and request.GET.openid %}<a href="/user/signup/?reg_partner={{ request.GET.partner }}&amp;reg_openid={{ request.GET.openid }}" target="_blank" id="btnRegister">立即绑定新账号</a>{% else %}<a href="/user/signup/" target="_blank" id="btnRegister">立即注册</a>{% endif %}</p>
+                        <div class="login-box marginB10">
+                            <button id="login_btn" type="button" class="btn btn-micv5 btn-block globalLogin">{% if request.GET.partner and request.GET.openid %}立即绑定{% else %}登录{% endif %}</button>
+                            <div id="login-form-tips" class="tips-error bg-danger" style="display: none;">错误提示</div>
+                        </div>
+
+                        {% if request.GET.partner and request.GET.openid %}
+
+                        {% else %}
+                        <div class="threeLogin"><span>其他方式登录</span><a class="nqq" href="{% url 'user:connect' %}?partner=qq"></a><a class="nwx" href="{% url 'user:connect' %}?partner=wechat"></a><!--<a class="nwb"></a>--></div>
+                        {% endif %}
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--找回密码-->
+<div class="modal fade" id="forgetpswModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" data-toggle="modal" data-target="#loginModal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="forgetpswModalLabel" style="font-size: 18px;">找回密码</h4>
+            </div>
+            <div class="modal-body">
+                <section class="box-forgetpsw v5-input-txt" id="box-forgetpsw">
+                    <form id="find_password_form" action="{% url 'user:find_password' %}" method="post" autocomplete="off">
+                        {% csrf_token %}
+                        <ul>
+                            <li class="form-group">{{ find_password_form.account }}</li>
+                            <li class="form-group font14 color99">滑动完成验证</li>
+                            <li class="form-group"><div class="newcaptcha"></div></li>
+                        </ul>
+                        <div>
+                            <button id="findpassword_btn" type="button" class="btn btn-micv5 btn-block">提交</button>
+                        </div>
+                        <div id="findpassword-tips" class="tips-error bg-danger">错误提示</div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 忘记密码，手机验证码输入界面 -->
+<div class="modal fade" id="forgetpswMobileModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="forgetpswMobileModalLabel" style="font-size: 18px;">手机验证</h4>
+            </div>
+            <div class="modal-body">
+                <section class="box-forgetpsw v5-input-txt" id="box-forgetpsw-mobile-code">
+                    <form id="mobile_code_password_form" action="{% url 'user:find_password_mobile_code' %}" method="post" autocomplete="off">
+                        {% csrf_token %}
+                        <ul>
+                            <li class="form-group">{{ find_password_mobile_form.mobile_code_f }}
+                                <button type="button" class="send-verify font14">重发验证码</button>
+                            </li>
+                            <li class="form-group" id="mobile_code_password_form_message">手机短信验证码已发送，请查收！</li>
+                            {{ find_password_mobile_form.mobile_f }}
+                        </ul>
+                        <div>
+                            <button id="mobile_code_password_btn" type="button" class="btn btn-micv5 btn-block">下一步</button>
+                        </div>
+                        <div id="mobile_code_password-tips" class="tips-error bg-danger">错误提示</div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!--邮件验证-->
+<div class="modal fade" id="emailValidate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-content zy_email">
+        <a class="close"></a>
+        <p class="i"><img src="/static/images/zy_send.png"></p>
+        <p id="emailValidateEE">我们向您的邮箱<span>548748451@qq.com</span>发送了一封验证邮件</p>
+        <p>为保证您账号的安全和方便您参加我们的活动，邮箱完成验证才能继续学习哦</p>
+        <p class="a"><a target="_blank">去邮箱验证</a></p>
+        <p class="sendE2" style="display: none;">没收到，您可以查看您的垃圾邮件和被过滤邮件，也可以再次发送验证邮件（<span class="c5c">60s</span>）</p>
+        <p class="sendE">没收到，您可以查看您的垃圾邮件和被过滤邮件，也可以<a class="c5c">再次发送验证邮件</a></p>
+        <p class="zy_success t5o upmove"><img src="/static/images/zy_right.png"><span>验证邮件发送成功</span></p>
+    </div>
+</div>
+{% endif %}

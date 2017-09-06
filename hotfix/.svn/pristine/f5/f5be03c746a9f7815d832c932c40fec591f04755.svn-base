@@ -1,0 +1,129 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/student_breadcrumb.html" %}
+
+<div class="tabbable">
+{% include "mz_nadmin/parts/student_tabs.html" %}
+
+<div class="tab-content">
+<div class="tab-pane active">
+
+    {% include "mz_nadmin/modules/form_alert.html" %}
+    {% include "mz_nadmin/modules/msgs.html" %}
+
+    <form class="form-horizontal" role="form" action="javascript:void(0);" method="post">
+    {% csrf_token %}
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="description">
+            {{ form.username.label }}
+        </label>
+        <div class="col-md-10">
+            {% autoescape off %}
+                {{ form.username }}
+            {% endautoescape %}
+            <span class="help-block">
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="description">
+            {{ form.mobile.label }}
+        </label>
+        <div class="col-md-10">
+            {% autoescape off %}
+                {{ form.mobile }}
+            {% endautoescape %}
+            <span class="help-block">
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="description">
+            {{ form.date_joined.label }}
+        </label>
+        <div class="col-md-10">
+            {% autoescape off %}
+                {{ form.date_joined }}
+            {% endautoescape %}
+            <span class="help-block">
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="description">
+            已学习时间
+        </label>
+        <div class="col-md-10">
+            <p class="form-control-static">
+                {{ sum_time }}
+            </p>
+            <span class="help-block">
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="description">
+            {{ form.nick_name.label }}
+        </label>
+        <div class="col-md-10">
+            {% autoescape off %}
+                {{ form.nick_name }}
+            {% endautoescape %}
+            <span class="help-block">
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="description">
+            省份
+        </label>
+        <div class="col-md-10">
+            <p class="form-control-static">
+            {{ province.name }}
+            </p>
+            <span class="help-block">
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="description">
+            城市
+        </label>
+        <div class="col-md-10">
+            <p class="form-control-static">
+            {{ city.name }}
+            </p>
+            <span class="help-block">
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="description">
+            {{ form.qq.label }}
+        </label>
+        <div class="col-md-10">
+            {% autoescape off %}
+                {{ form.qq }}
+            {% endautoescape %}
+            <span class="help-block">
+            </span>
+        </div>
+    </div>
+
+    </form>
+</div>
+</div>
+</div>
+{% endblock %}
+
+

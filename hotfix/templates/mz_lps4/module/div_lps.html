@@ -1,0 +1,52 @@
+<div class="header">
+    <div class="lps-icon"><span></span></div>
+    <a class="mobile-app" href="/common/apppage/" target="_blank"></a>
+    <ul class="tab-nav">
+        {{ careers }}
+    </ul>
+</div>
+
+<div class="main-center">
+    {{ current_task }}
+    <div class="right-side">
+        {% include 'mz_lps4/module/div_live_appointment.html' %}
+        {% include 'mz_lps4/module/div_major_teacher.html' %}
+        {% include 'mz_lps4/module/div_student_work.html' %}
+        {% include 'mz_lps4/module/div_relate_article.html' %}
+        {% include 'mz_lps4/module/div_choice_answer.html' %}
+
+    </div>
+    <div class="left-main">
+        {% if not is_normal_class %}
+            <div class="ad">
+                <div class="left">
+                    <div class="lps-video">
+                        {% if px.ad_type == 'IMAGE' %}
+                            <a href="{{ px.url }}" target="_blank"><img src="{{ MEDIA_URL }}{{ px.ad_url }}" alt="lps_video"/></a>
+                        {% else %}
+                            <a class="see-video" data-href="{{ px.video_url }}"><img src="{{ MEDIA_URL }}{{ px.ad_url }}"
+                                                                                     alt="lps_video_0"/></a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="right">
+                    <h3>{{ px.name }}：</h3>
+                    <p>{{ px.description }}</p>
+                    <a class="detail" href="{% url 'course:course_detail' px.short_name %}" target="_blank">了解详情>></a>
+                    <div>
+                        <span class="yuan-sale">市场价：{{ px.old_price }}</span>
+                        <span class="sale">麦子特惠价：{{ px.price }}</span>
+                    </div>
+                    <a class="go-buy">立即购买</a>
+                </div>
+            </div>
+        {% endif %}
+        <div class="main-content">
+            {{ stages }}
+        </div>
+    </div>
+</div>
+{% include 'mz_lps4/module/div_footer.html' %}
+
+
+

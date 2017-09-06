@@ -1,0 +1,59 @@
+{% extends 'mz_usercenter/usercenter_base.html' %}
+{% block usercenter_right_panel %}
+    <div class="personalCmainR font14">
+    	<p class="personalCmainRtit font22 color33">进行中班级</p>
+        {% if class_list %}
+        <ul class="teacherCenterING">
+            {% for c in class_list %}
+            <li>
+            	<div class="color66 font14 pt marginB20">
+                    <span class="font20 color33">{{ c.class_coding }}</span><br>{{ c.careercourse_name }}&nbsp;&nbsp;&nbsp;&nbsp;
+                {% if c.class_left_days > 0 %}
+                    <span class="color99">开课时间：{{ c.class_begin_date }}</span>
+                    <div class="color66">{{ c.about_to_begin_clmt.content }}<br>{{ c.about_to_begin_clmt.d_date }}&nbsp;&nbsp;&nbsp;&nbsp;{{ c.about_to_begin_clmt.d_week }}&nbsp;&nbsp;&nbsp;&nbsp;{{ c.about_to_begin_clmt.d_time }}
+                        <a target="_blank" class="personalCbtn" {% if c.about_to_begin_clmt.status == 2 %}href="{{ c.about_to_begin_clmt.join_url }}">进入班会{% else %}style="background-color: #faae0b">未开始{% endif %}</a>
+                    </div>
+                {% endif %}
+                </div>
+                <div class="teacherCenterINGbox">
+                	<div class="teacherCenterINGboxL">
+                    	<div class="cavner" d1="{{ c.students_status.finish }}" d2="{{ c.students_status.normal }}" d3="{{ c.students_status.behind }}" d4="{{ c.students_status.paused }}"></div>
+                    	<div class="color99 div">总人数<br>
+                            <span class="color33 font40">{{ c.students_status.total }}</span>
+                        </div>
+                    </div>
+                    <div class="teacherCenterINGboxR">
+                    	<ul class="marginB20">
+                        	<li class="color66 font14 fl"><i class="i1"></i>新增作业<br>
+                                <span class="color33 font18">{{ c.class_total_done_tasks }}</span>
+                            </li>
+                            <li class="color66 font14 fl"><i class="i2"></i>班级倒计时<br>
+                                <span class="color33 font18">{% if c.class_left_days > 0 %}{{ c.class_left_days }}</span>天{% else %}未开始</span>{% endif %}
+                            </li>
+                            <li class="color66 font14 fl"><i class="i3"></i>班级完成度<br>
+                                <span class="color33 font18">{{ c.total_progress }}%</span>
+                            </li>
+                        </ul>
+                        <p><a class="greenbtn" href={% url 'lps3:teacher_class' c.class_id %}>
+                            进入班级面板
+                        </a></p>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <div class="textC nulldata">
+            <p class="marginB29"><img src="/images/no_doingclass.png"></p>
+            <p class="font22 color33 marginB10">暂无进行中的班级</p>
+        </div>
+        {% endif %}
+    </div>
+
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/lib/layer/layer.js"></script>
+<script type="text/javascript" src="/2016/lib/echarts/echarts.min.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/teacherCenterING.js?v={{ time_stamp }}"></script>
+{% endblock %}

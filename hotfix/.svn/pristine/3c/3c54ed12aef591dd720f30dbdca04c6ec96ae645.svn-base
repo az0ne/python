@@ -1,0 +1,36 @@
+{% load date_convert_tag %}
+
+<div class="{% if ca.problem_id == ca.parent_id %}questions-reply{% else %}child-reply{% endif %}">
+    <div class="left">
+        <input class="last_id" type="hidden" value="{{ ca.id }}"/>
+        <input class="problem_id" type="hidden" value="{{ ca.problem_id }}"/>
+        <input class="answer_user_id" type="hidden" value="{{ ca.user_id }}"/>
+        <input class="answer_nick_name" type="hidden" value="{{ ca.nick_name }}"/>
+        {% if ca.user_id == user.id %}
+            <a href="{% url 'home:index' %}" target="_blank">
+        {% else %}
+            <a href="{% url 'u:index' ca.user_id %}" target="_blank">
+        {% endif %}
+        <img src="{{ MEDIA_URL }}{{ ca.head }}"/>
+        {% if ca.group_name == 'student' %}<i></i>{% endif %}
+        </a>
+    </div>
+    <div class="right">
+        <div class="right-box" id="answer_{{ ca.id }}">
+            {% if ca.user_id == user.id %}
+                <a href="{% url 'home:index' %}" target="_blank">
+            {% else %}
+                <a href="{% url 'u:index' ca.user_id %}" target="_blank">
+            {% endif %}
+            {{ ca.nick_name }}
+            </a>
+            {% if ca.group_name == 'teacher' %}
+                <span class="teacher-mark">老师</span>
+            {% endif %}
+            <p class="reply-con">{{ ca.comment }}</p>
+
+            <p class="reply-date">{% date_convert ca.create_date %}{% if 1 %}
+                <a class="reply-btn">回复</a>{% endif %}</p>
+        </div>
+    </div>
+</div>

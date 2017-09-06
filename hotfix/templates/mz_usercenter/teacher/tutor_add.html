@@ -1,0 +1,145 @@
+{% extends "mz_common/global.html" %}
+{% load article_filter %}
+{% block title %}麦子学院 - 新建辅导信息{% endblock %}
+{% block keywords %}麦子学院，新建辅导信息{% endblock %}
+{% block description %}新建辅导信息{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="/css/teaOneVOneTutor.css?v={{ time_stamp }}"/>
+    <script type="text/javascript">
+    var career_id = '{{ career_id }}';
+    var student_id = '{{ student_id }}';
+    </script>
+{% endblock %}
+{% block container %}
+    {% include 'header/index_header.html' %}
+    <div class="tutor_add">
+        <div class="top">
+            <h3>新建辅导信息</h3>
+        </div>
+{#        <div class="student">#}
+{#            <h4>选择学员</h4>#}
+{#            <span class="stu_name"><i class="del"></i>将军</span>#}
+{#            <span class="stu_name"><i class="del"></i>将军</span>#}
+{#            <span class="stu_name"><i class="del"></i>将军</span>#}
+{#            <span class="stu_name"><i class="del"></i>将军</span>#}
+{#            <span class="stu_name"><i class="del"></i>将军</span>#}
+{#            <span class="stu_name"><i class="del"></i>将军</span>#}
+{#            <span class="stu_name"><i class="del"></i>将军</span>#}
+{#            <span class="stu_name"><i class="del"></i>将军</span>#}
+{#            <span class="stu_name"><i class="del"></i>将军</span>#}
+{#            <span class="stu_name"><i class="del"></i>将军</span>#}
+{#            <span class="add"><i>+</i>添加</span>#}
+{#        </div>#}
+        <div class="tutor_info">
+        <h4>辅导内容</h4>
+            <!-- 编辑器 -->
+            {% include 'mz_lps4/module/div_ueditor.html' %}
+        </div>
+    </div>
+    <div class="add_stu_crean">
+        <div class="add_stu">
+            <h3>选择你要添加的学员（可多选）</h3>
+            <ul>
+                <li class="active">将军</li>
+                <li>胖胖胖胖</li>
+                <li>胖胖胖胖</li>
+                <li>胖胖胖胖</li>
+                <li>胖胖胖胖</li>
+            </ul>
+            <button class="ensure_add">确定添加</button>
+            <button class="cancel">取消</button>
+        </div>
+    </div>
+
+{% endblock %}
+{% block footer %}{% endblock %}
+{% block toolbarDiv %}{% endblock %}
+{% block google %}{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/lib/ueditor/ueditor.config.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/layer/layer.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/ueditor/fudao.ueditor.all.min.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript">
+{#        var cancel_btn = $('.cancel'),stu_name = $('.add_stu>ul>li'),ensure_add_btn = $('.ensure_add'), add = $('.add'),del = $('.del');#}
+{##}
+{#        // 添加成员#}
+{#        add.off('click').on('click',function(){#}
+{#            $('.add_stu_crean').fadeIn('500');#}
+{#        });#}
+{#        // 删除已添加的成员#}
+{#        del.off('click').on('click',function(){#}
+{#            $(this).parent('.stu_name').remove();#}
+{#        });#}
+{#        // 取消添加成员#}
+{#        cancel_btn.off('click').on('click',function(){#}
+{#            $('.add_stu_crean').fadeOut('500');#}
+{#        });#}
+{#        // 确定添加成员#}
+{#        ensure_add_btn.off('click').on('click',function(){#}
+{##}
+{#            /* TODO 添加用户的操作动作 */#}
+{#            $('.add_stu_crean').fadeOut('500');#}
+{#        });#}
+var ue = createUE("bdeditor");
+ue.ready(function() {
+    ue.setContent('<p style="color: #7a7a7a;font-size: 14px;font-family: "Microsoft Yahei";">请输入你的问题</p>');
+});
+
+ue.addListener('focus',function(){
+    if(ue.getContentTxt() == '请输入你的问题'){
+        ue.setContent('');
+    }
+});
+function createUE(name){
+    return UE.getEditor(name,{
+        toolbars:[['simpleupload']],
+        autoClearinitialContent: true,
+        autoFloatEnabled: false,
+        wordCount: false,
+        elementPathEnabled: false,
+        initialFrameHeight: 200,
+        initialFrameWidth:1120,
+        initialContent: '请输入你的问题',
+        autoClearEmptyNode: true, // 清除空标签
+        enableContextMenu: false, // 关闭右键
+        wordCount: false, //关闭字数统计
+        autoHeightEnabled: false, // 关闭窗口自增长
+        initialStyle:'p{color: #7a7a7a;font-size: 14px;line-height:1em;font-family: Microsoft Yahei;}img{max-width:100%;}'
+    });
+}
+
+$("#bdeditor .submit-problem").on("click", function(){
+    var strContentcreate = ue.getContent();
+    if(strContentcreate == ""){
+        layer.alert('内容不能为空', {
+            skin: 'layui-layer-molv',
+            closeBtn: 0
+        });
+    }else{
+        $.ajax({
+            url: '/lps4/teacher_create_coach/' + career_id + '/' + student_id + '/',
+            type: 'POST',
+            data: {'content': strContentcreate},
+            success: function(data){
+                if(data.success){
+                    layer.alert('发布成功', {
+                        skin: 'layui-layer-molv',
+                        closeBtn: 0
+                    });
+                    window.location.href = '/lps4/teacher_coach/' + career_id + '/' + student_id + '/';
+                }else{
+                    layer.alert(data.message, {
+                        skin: 'layui-layer-molv',
+                        closeBtn: 0
+                    });
+                }
+                setTimeout(function(){
+                    $('.item').removeClass('new');
+                }, 3000);
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

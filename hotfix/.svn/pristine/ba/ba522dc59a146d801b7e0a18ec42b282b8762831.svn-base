@@ -1,0 +1,423 @@
+/* 预约试学样式 */
+@import 'core/_var';
+.personalCTop {
+    background: #4b688b;
+    width: 100%;
+    height: 158px;
+    .center {
+        background: url(../images/personalTopBg.png) right bottom no-repeat;
+        height: 100%;
+    }
+    .img {
+        float: left;
+        width: 90px;
+        height: 90px;
+        border: 4px solid rgba(255, 255, 255, 0.4);
+        border-radius: 50%;
+        overflow: hidden;
+        margin-top: 26px;
+        img {
+            width: 100%;
+            height: 100%;
+            vertical-align: top;
+        }
+    }
+    .font {
+        margin: 40px 0 0 30px;
+        width: 900px;
+    }
+    .personalCico {
+        margin-left: 10px;
+    }
+    .sudentICO {
+        margin-left: 10px;
+    }
+}
+.free-learn {
+    background-color: #f5f5f5;
+    .main-container {
+        @extend .W1160;
+        margin-bottom: 114px;
+    }
+    .breadcrumbs {
+        height: 55px;
+        a {
+            @extend .vam;
+            line-height: 55px;
+            transition: .5s;
+        }
+    }
+    .free-con {
+        background-color: #fff;
+        padding: 40px 50px 80px;
+        box-sizing: border-box;
+        margin-bottom: 136px;
+        h1 {
+            margin-bottom: 20px;
+        }
+        .appointment {
+            background-color: #f5f5f5;
+            padding: 20px 40px 40px;
+            box-sizing: border-box;
+            min-height: 235px;
+            h2 {
+                margin-bottom: 20px;
+            }
+        }
+        .no-learn {
+            padding: 50px 0;
+            box-sizing: border-box;
+            a {
+                text-decoration: underline;
+                transition: .5s;
+            }
+        }
+        .appointment-list {
+            margin-left: -25px;
+            &:before, &:after {
+                @extend .CLEARFIX;
+            }
+            li {
+                width: 310px;
+                height: 130px;
+                background: #fff;
+                float: left;
+                margin-left: 25px;
+                border: 1px solid #e8e8e8;
+                padding: 10px 20px;
+                box-sizing: border-box;
+                transition: .5s;
+                .one {
+                    padding-bottom: 10px;
+                    border-bottom: 1px solid #e8e8e8;
+                    margin-bottom: 10px;
+                    font-size: 0;
+                    .first, .second {
+                        @extend .vam;
+                    }
+                    .second {
+                        margin: 0 10px 0 10px;
+                    }
+                }
+                .two, .three {
+                    line-height: 24px;
+                }
+                .order {
+                    @extend .vam;
+                    width: 80px;
+                    height: 30px;
+                    line-height: 30px;
+                    border-radius: 2px;
+                    color: #5ecfba;
+                    border: 1px solid #5ecfba;
+                    text-align: center;
+                    transition: .5s;
+                }
+                .order:hover {
+                    background: #5ecfba;
+                    color: #fff;
+                }
+            }
+            li:hover {
+                border: 1px solid #5ecfba;
+            }
+        }
+    }
+    .pro-info {
+        .desc {
+            margin-bottom: 20px;
+        }
+        .desc-list {
+            margin-left: -20px;
+            margin-bottom: 30px;
+            &:before, &:after {
+                @extend .CLEARFIX;
+            }
+            li {
+                float: left;
+                width: 266px;
+                height: 140px;
+                margin-left: 20px;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+                max-width: 100%;
+            }
+        }
+    }
+    .class-teacher {
+        font-size: 0;
+        padding: 30px 0;
+        box-sizing: border-box;
+        border-top: 1px solid #e8e8e8;
+        .left, .right {
+            @extend .vam;
+        }
+        .left {                
+            width: 98px;
+            height: 98px;
+            margin-right: 15px;
+            border-radius: 50%;
+            max-width: 100%;
+        }
+        .right {
+            width: 947px;
+        }
+        .name {
+            margin-right: 20px;
+        }
+    }
+
+
+    // 预约弹窗
+    .modal-content {
+        border-radius: 0;
+    }
+    .m-close {
+        display: block;
+        width: 17px;
+        height: 17px;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        opacity: 1;
+        cursor: pointer;
+        z-index: 10;
+        background: url(../images/free_learn/sprite.png) 0 -173px no-repeat;
+    }
+    .class-time {
+        display: block;
+        width: 100%;
+        background-color: #fff9df;
+        padding: 20px 30px;
+        box-sizing: border-box;
+        font-size: 0;
+        margin-bottom: 30px;
+        .first {
+            span {
+                @extend .vam;
+                width: 50%;
+                font-size: 14px;
+                color: #666;
+            }
+        }
+        .second {
+            span {
+                @extend .vam;
+                width: 50%;
+                font-size: 16px;
+                color: #666;
+            }
+        }
+    }
+    .you-phone, .phone-num, .class-tips {
+        font-size: 14px;
+        color: #666;
+        text-align: center;
+        line-height: 24px;
+    }
+    .hover-tips {
+        @extend .vam;
+        padding: 0 10px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 12px;
+        box-sizing: border-box;
+        background-color: #333;
+        white-space: nowrap;
+        color: #fff;
+        font-weight: 400;
+        opacity: 0;
+        position: relative;
+        left: 35px;
+        top: -10px;
+        transition: .5s; 
+        &:before {
+            content: '';
+            width: 0;
+            height: 0;
+            border: 8px solid #333;
+            border-color: transparent #333 transparent transparent;
+            position: absolute;
+            left: -16px;
+            top: 7px;
+        }
+    }        
+
+    .phone-num {
+        font-weight: bold;
+        .change {
+            @extend .vam;
+            margin-left: 10px;
+            content: '';
+            width: 16px;
+            height: 16px;
+            background: url(../images/free_learn/sprite.png) 0 -200px no-repeat;
+            &:hover {
+                .hover-tips {
+                    left: 30px;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .enter-appo, .know, .retry {
+        display: block;
+        width: 120px;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 14px;
+        background-color: #5ecfba;
+        color: #fff;
+        border-radius: 2px;
+        margin: 20px auto 0;
+    }
+
+    // 预约试学弹窗
+    #appointment-study {        
+        .modal-body {
+            padding: 20px 30px 30px;
+            box-sizing: border-box;
+        }
+        h3 {
+            padding: 20px;
+            box-sizing: border-box;
+            font-size: 18px;
+            color: #1bbc9b;
+            border-bottom: 1px solid #e5e5e5;
+            position: relative;
+        }        
+    }
+    // 绑定手机弹窗
+    .pcSmodal .pt {
+        padding: 10px 14px;
+        border-bottom: 1px solid #e5e5e5;
+        .font18 {
+            color: #1bbc9b;
+            margin-right: 10px;
+        }
+    }
+    .newPhoneBox {
+        padding: 50px 30px 30px;
+        .mobile-label {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .pcsBasicTableTxt {
+            width: 100%;
+            box-sizing: border-box;
+            height: 40px;
+            padding: 8px 6px;
+            line-height: 22px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            transition: .5s;
+            &:hover, &:focus {
+                border: 1px solid #999;
+            }
+        }
+        .captchaMy {
+            margin-bottom: 20px;
+        }
+        .personalCbtn {
+            @extend .vam;
+            text-align: center;
+            background: #5ecfba;
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            color: #fff;
+            border-radius: 2px;
+            font-size: 14px;
+        }
+        p {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .validform {
+            position: absolute;
+            left: 4px;
+            top: 40px;
+            color: #f84858;
+        }
+    }
+
+    .modal .megError {
+        background: #ffecec;
+        color: red;
+        padding: 8px;
+        display: none;
+        width: auto;
+        height: auto;
+        line-height: 1;
+        margin-top: 20px;
+    }
+
+    #newMeg {
+        .cl {
+            width: 80px;
+        }
+        .modal-content {
+            padding: 60px 0 50px;
+        }
+    }    
+
+    #newPhone2 {
+        .pm {
+            background: #f5f5f5;
+            padding: 8px;
+        }
+        .fg > a {
+            display: inline-block;
+            width: 142px;
+            height: 38px;
+            border: 1px solid #5ecfba;
+            background: #5ecfba;
+            color: #fff;
+            line-height: 38px;
+            text-align: center;
+            font-size: 14px;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+        .fg > a.smsend {
+            background: #f5f5f5;
+            border: 1px solid #ccc;
+            color: #999;
+            pointer-events: none;
+        }
+        .fg > a.dis {
+            border-color: #ccc;
+            background: #f5f5f5;
+            color: #666;
+        }
+    }
+
+    #newMegPassword .modal-content { padding: 60px 0 50px; }
+
+    // 预约试学成功弹窗
+    #appointment-success {
+        .modal-content {
+            padding: 40px 30px 30px;
+            box-sizing: border-box;
+        }
+        .successful {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+    }
+    // 预约失败弹窗
+    #appointment-fail {
+        .modal-content {
+            padding: 50px 30px;
+            box-sizing: border-box;
+        }
+        .fail {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    }
+}

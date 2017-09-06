@@ -1,0 +1,13 @@
+      {% if pn != 1 %}
+              <div class="row v5-pages">
+                <div class="col-sm-12 v5-pages-list">
+                  <ul class="row fr">
+                    <li><a class="v5-icon v5-icon-prev" href="?page={{ppn}}"></a></li>
+                    {% for p in pr %}
+                        <li><a class="page-num {% ifequal cp p %} active {% endifequal %}" href="?page={{p}}">{{p}}</a></li>
+                    {% endfor %}
+                    <li><a class="v5-icon v5-icon-next" href="?page={{npn}}"></a></li>
+                  </ul>
+                </div>
+              </div>
+      {% endif %}

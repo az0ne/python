@@ -1,0 +1,52 @@
+{% extends "mz_usercenter/usercenter_base.html" %}
+{% block usercenter_right_panel %}
+    <div class="personalCmainR font14">
+        <p class="personalCmainRtit font22 color33">教务面板</p>
+
+        {% if edu_info.total_classes %}
+        <div class="eCmain">
+            <div class="eCmainL fl">
+                <div id="eCmainCavner"></div>
+                <div class="color99 people">总人数<br><span class="color66 font40">{{ edu_info.total }}</span></div>
+            </div>
+            <div class="eCmainR fl">
+                <div class="color66 fl d1">今日新增学员数<br>
+                    <span class="font50 color33">{{ edu_info.today }}</span>人
+                </div>
+                <div class="color66 fl d2">
+                    <p class="p1"><i class="personalCico pcICO19 fl"></i>班级数<br>
+                        <span class="font18 color33">{{ edu_info.total_classes|length }}</span>
+                    </p>
+                    <ul class="font12">
+                        {% for k, v in edu_info.classes.iteritems %}
+                            <li><span>· {{ k.1 }}</span>{{ v|length }}</li>
+                        {% endfor %}
+                    </ul>
+                    <p><a class="greenbtn" href={% url 'lps3:eduadmin:index' %}>进入教务面板</a></p>
+                </div>
+            </div>
+        </div>
+
+        {% else %}
+        <div class="textC nulldata">
+            <p class="marginB29"><img src="/images/no_class.png"></p>
+            <p class="font22 color33 marginB10">暂无管理中的班级</p>
+        </div>
+
+        {% endif %}
+
+    </div>
+{% endblock %}
+
+
+
+{% block sea_script %}
+<script>seajs.use("/js/lps4/uc/main", function (main) {main.loading("educationalCenter",[
+							{value:{{ edu_info.graduate }}, name:'毕业',itemStyle:{normal:{color:"#5496d1"}}},
+							{value:{{ edu_info.finish }}, name:'已完成',itemStyle:{normal:{color:"#6951a1"}}},
+							{value:{{ edu_info.normal }}, name:'正常',itemStyle:{normal:{color:"#5ecfba"}}},
+							{value:{{ edu_info.behind }}, name:'落后',itemStyle:{normal:{color:"#fbb855"}}},
+							{value:{{ edu_info.paused }}, name:'休学',itemStyle:{normal:{color:"#e24849"}}},
+							{value:{{ edu_info.quit }}, name:'退学',itemStyle:{normal:{color:"#e6e6e6"}}}
+						]);});</script>
+{% endblock %}

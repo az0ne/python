@@ -1,0 +1,59 @@
+{% extends "mz_usercenter/usercenter_base.html" %}
+{% block title %}他的主页-优质解答{% endblock %}
+{% block usercenter_left_panel %}
+     <div class="personalCmainL font14">
+            <ul class="personalCmainLmenu">
+                <li><a href={% url 'u:index' user_id %}>
+                    <i class="personalCico pcICO3 i1"></i>
+                    <span>老师个人主页</span>
+                    <i class="personalCico pcICOa i2"></i></a>
+                    </li>
+                <li><a class="aH">
+                    <i class="personalCico pcICOanswer i1"></i>
+                    <span>优质解答</span>
+                    <i class="personalCico pcICOa i2"></i></a>
+                </li>
+            </ul>
+    </div>
+{% endblock %}
+{% block usercenter_right_panel %}
+        <div class="personalCmainR font14 color33">   
+			<p class="personalCmainRtit font22 color33">优质解答</p>
+            <div class="teacherCenterMenu font16" style="display:none;">
+                <a class="aH" url="{% url 'u:ajax_answer' user_id %}">优质解答</a>
+        	</div>
+			<div class="teacherCenterTabContent personalInterlocutionQues" id="main">				
+				<div class="cur">
+                    {% if answer_list %}
+                    <ul>
+                    {% for my_problem in answer_list %}
+					{% include 'mz_usercenter/student/div_discuss.html' %}
+                    {% endfor %}
+                    </ul>
+                    {% else %}
+                    <div class="textC nulldata">
+                        <p class="marginB29"><img src="/images/no_answer2.png"></p>
+                        <p class="font22 color33 marginB10">优质解答记录空空</p>
+                        <p class="font14 color66">暂时还没有人向老师提问</p>
+                        <p class="font14 color66 marginB10">赶快去老师的课程下提问吧</p>
+                    </div>
+                    {% endif %}
+				</div>
+			</div>
+        	<div class="personalInterlocutionCardTime">
+				<strong class="font14 color33">2016-06-21</strong>
+				<em>21:06</em>
+			</div>
+        </div>
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block custom_script %}
+<script type="text/javascript" src="/2016/lib/layer/layer.js"></script>
+<script type="text/javascript" src="/2016/lib/jquery/wookmark.js"></script>
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/studentmyanswer.js?v={{ time_stamp }}"></script>
+{% endblock %}

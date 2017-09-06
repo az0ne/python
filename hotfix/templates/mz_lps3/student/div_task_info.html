@@ -1,0 +1,90 @@
+<div class="modal-dialog modal-sm modal-content zy_mytask">
+    <a class="zy_newclose"></a>
+
+    <p class="color5e font18 pt">课程任务</p>
+
+    <div class="zy_mytask_div">
+        <p class="color33 font24 marginB10">{{ task.name }}
+            {% if task.video_guide %}
+                <a onclick="openVideo('{{ task.video_guide }}')" target="_blank">
+                    <img src="{{ STATIC_URL }}images/gogo2.png" class="img">
+                </a>
+            {% endif %}
+        </p>
+
+        <p class="color99 marginB20">{{ task.desc }}</p>
+
+        <p class="color33 font16 marginB20">限定时长：<span class="colorfa0 bold">{{ task.expect_time }}天</span></p>
+
+        <p class="font16 color33 marginB10">任务包含知识点</p>
+        <dl class="knowledgePoint_list font14 color66 marginB29">
+            {% for knowledge in knowledges %}
+                <dd title="{{ knowledge.name }}">· {{ knowledge.name }}</dd>
+            {% endfor %}
+        </dl>
+        {% if is_experience_class %}
+            <div class="lt-desc font14">
+                <p>免费体验只能学习前两个任务哦~</p>
+
+                <p>报名学员即可进行完整学习</p>
+            </div>
+        {% elif task.gift %}
+            <div class="font14 color33 reward">
+                <p>最短完成时间：<span class="colorfa0 bold">{{ task.excellent_time }}</span>天</p>
+
+                <p>在最短时间内完成并获得成绩 <span class="colorfa0 bold">A</span>，可获得精美奖品哟</p>
+                <img src="{{ STATIC_URL }}mz_lps3/images/jiangli.png" class="reward_img">
+                <img class="reward_img2" title="{{ task.gift.name }}"
+                        {% if task.gift.image %}
+                     src="{{ task.gift.image.url }}"
+                        {% endif %}
+                        >
+            </div>
+        {% endif %}
+
+    </div>
+    {% if is_experience_class and  not task_can_be_unlocked %}
+        <div class="lt-footer modal-footer">
+            <a class="colorff font14 zxbtn textC" target="_blank"
+               onclick="hz6d_is_exist('setIsinvited()%3Bwindow.open(#liyc#http%3A%2F%2Fwww1.53kf.com%2FwebCompany.php%3Farg%3D10111642%26style%3D3%26kflist%3Doff%26kf%3Djenny%40maiziedu.com%2Cvicky.li%40maiziedu.com%2Cyiyahui%40maiziedu.com%2Cyangjuan%40maiziedu.com%2Ccrystal%40maiziedu.com%2Csharon%40maiziedu.com%2Cxvjian%40maiziedu.com%2Cjanly%40maiziedu.com%26zdkf_type%3D1%26language%3Dzh-cn%26charset%3Dgbk%26lytype%3D0%26referer%3D%7Bhz6d_referer%7D%26keyword%3D%26tfrom%3D1%26tpl%3Dcrystal_blue#liyc#%2C#liyc#_blank#liyc#%2C#liyc#height%3D473%2Cwidth%3D703%2Ctop%3D200%2Cleft%3D200%2Cstatus%3Dyes%2Ctoolbar%3Dno%2Cmenubar%3Dno%2Cresizable%3Dyes%2Cscrollbars%3Dno%2Clocation%3Dno%2Ctitlebar%3Dno#liyc#)');">咨询小麦</a>
+            <a class="colorff font14 wybtn textC" href="{{ url_pay }}">立即付费</a>
+        </div>
+    {% else %}
+        <div class="zy_mytask_foot textC ">
+            {% if task_can_be_unlocked %} {# 可以解锁 #}
+                <a class="bold font14 colorff a1"
+                   href="{% url 'lps3:student_unlock_new_task' class_id stagetask_id %}">开始学习</a>
+            {% elif class_student.is_full_payment_user %}{# 全款用户 #}
+                {% if class_student.is_pause %}
+                <div class="mytask_renew">
+                    <div class="fl d1"><img src="{{ MEDIA_URL }}{{ eduadmin.avatar_url }}"></div>
+                    <div class="fl d2">
+                        <p class="font12 p1">教务老师<span class="color5e">{{ eduadmin.staff_name }}</span>：</p>
+                        <p class="font14 p2 color66">
+                        您目前处于休学状态，若需要学习，请联系教务老师申请复学哦~
+                        </p>
+                    </div>
+                </div>
+                {% else %}{{ reason }}
+                {% endif %}
+            {% elif class_student.is_trial_user %}{# 试学用户 #}
+                {% if class_student.need_pay or reason == T_UNLOCK_ERR_NOT_PAID %}
+                <div class="mytask_renew">
+                    <div class="fl d1"><img src="{{ MEDIA_URL }}{{ eduadmin.avatar_url }}"></div>
+                    <div class="fl d2">
+                        <p class="font12 p1">教务老师<span class="color5e">{{ eduadmin.staff_name }}</span>：</p>
+                        <p class="font14 p2 color66">
+                        {% if class_student.need_pay %}试学时间已结束，续费后继续前行吧！
+                        {% else %}试学阶段已结束，续费后继续前进吧！
+                        {% endif %}
+                        <i></i><a href="{{ url_pay }}" target="_blank">立即续费</a>
+                        </p>
+                    </div>
+                </div>
+                {% else %}{{ reason }}
+                {% endif %}
+            {% else %}
+            {% endif %}
+        </div>
+    {% endif %}
+</div>

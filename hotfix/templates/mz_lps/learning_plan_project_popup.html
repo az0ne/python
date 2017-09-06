@@ -1,0 +1,149 @@
+<!--项目制作-->
+{% for course in cur_stage_course_list %}
+{% if course.is_unlockstage and course.project.description != "" %}
+<div class="modal fade" id="project_{{ course.id }}_Modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-custom">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="objectmdModalLabel">项目制作</h4>
+            </div>
+            <div class="modal-body modal-body-custom">
+                <div class="box-objectmd">
+                <div class="modal-line">
+                    <h4 class="ft20 defult-font-color">需求:</h4>
+                    <div class="p_scroll"><p style="word-break:break-all;">{{ course.project.description | safe }}</p></div>
+                </div>
+                <div class="modal-line">
+                    <h4 class="ft20 defult-font-color ml">项目制作:</h4>
+                    <span class="update-pro-msg">
+                        {% if course.project.upload_file == "" %}
+                        <a class="no-update">项目尚未上传</a>
+                        {% else %}
+                        <a class="yes-update" href="{{course.project.setting_url}}{{course.project.upload_file}}">项目文件</a>
+                        <span class="yes-update-msg">已上传</span>
+                        {% endif %}
+
+                    </span>
+
+
+                    <span class="btn sub-work fileinput-button">
+                          <span>上传</span>
+                          <input id="file_upload_{{ course.id }}" type="file" name="Filedata_{{ course.id }}">
+                    </span>
+                    <div class="percentage">0%</div>
+                    <h4 class="ft20 defult-font-color defult-font-mg">老师打分:</h4>
+                    {% if course.project.score != None and  course.project.score != 0 %}
+                    <div class="score"><span>{{course.project.score}}</span>分</div>
+                    {% else %}
+                    <span class="no-score">未评分</span>
+                    {% endif %}
+                </div>
+
+                <div class="modal-line modal-line-border">
+                    <h4 class="ft20 defult-font-color">老师评语:</h4>
+                    {% if not course.project.remark %}
+                    <div class="no-pinglun">尚未填写</div>
+                    {% else %}
+                    <p style="word-wrap: break-word;">{{course.project.remark}}</p>
+                    {% endif %}
+                    {# <div><textarea class="pingyu"></textarea></div> #}
+                </div>
+
+                    <!--<button class="btn btn-micv5 btn-v5-md btn-block">上传项目压缩包</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+    $(function(){
+        $('#file_upload_{{ course.id }}').fileupload({
+        dropZone:null,
+        url: '/lps/project/upload/',
+        formData:{'course_id':{{ course.id }}},
+        add:function(e,data){
+          var uploadErrors = [];
+          var acceptFileTypes = /^(zip|rar)$/i;
+          var filesize = data.originalFiles[0]['size']/(1024)/(1024);
+          Ntype = data.originalFiles[0]['name'];
+          Ntype = Ntype.substring(Ntype.length-3,Ntype.length);
+          if(!acceptFileTypes.test(Ntype)){
+              // $(".box-objectmd .tips-error").html("文件格式不正确（zip，rar）").show().delay(3000).fadeOut();
+              alert('文件格式不正确（zip，rar）');
+              uploadErrors.push('Not an accepted file type');
+          }
+          if(parseInt(filesize)>10) {
+             // $(".box-objectmd .tips-error").html("文件超过10M大小").show().delay(3000).fadeOut();
+             alert('文件超过10M大小');
+              uploadErrors.push('Filesize is too big');
+          }
+          if(uploadErrors.length==0){
+            data.submit();
+          }
+        },
+        dataType: 'json',
+        autoUpload: true,
+        done: function (e, data) {
+            $('#project_{{ course.id }}_Modal .sub-work >span').html('重新上传');
+
+            pro_url = data.result.pro_url;
+            pro = '<a href="'+pro_url+'" class="yes-update">项目文件</a><span class="yes-update-msg">已上传</span>';
+            console.log(pro);
+            $('#project_{{ course.id }}_Modal .update-pro-msg').html(pro);
+
+            $('#project_{{course.id}}_Modal .sub-work').delay(2000).queue(function(){
+                $(this).show();
+            });
+            $('#project_{{course.id}}_Modal .percentage').delay(2000).queue(function(){
+                $(this).hide();
+            });
+
+        },
+        progressall: function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#project_{{course.id}}_Modal .sub-work').hide();
+            $('#project_{{course.id}}_Modal .percentage').show();
+            $('#project_{{course.id}}_Modal .percentage').html(progress+'%');
+        }
+    }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+    $('.p_scroll').jScrollPane({
+      autoReinitialise: true
+    });
+        // $("#file_upload_{{ course.id }}").uploadify({
+        //     'swf'      :'/static/js/uploadify.swf',
+        //     'uploader':'/lps/project/upload/',
+        //     'buttonText': '<div>上传项目压缩包</div>',
+        //     'fileTypeDesc': '项目上传',
+        //     'fileTypeExts':'*.zip; *.rar;',
+        //     'formData'      : {'course_id':{{ course.id }}},
+        //     //选择文件后自动上传
+        //     'auto': true,
+        //     //设置为true将允许多文件上传
+        //     'multi': false,
+        //     //设置上传文件大小单位kb
+        //     'fileSizeLimit':0,
+        //     'width':200,
+        //     'height':60,
+        //     'onUploadSuccess':function(file,data,response){
+        //         // data.status
+        //         var obj = eval('(' + data + ')');
+        //         if(obj.status=='success'){
+        //             $('.job-sub #file_upload_{{ course.id }}-button .uploadify-button-text > div').html('重新上传项目压缩包');
+        //             $("#submit .success-msg").show().delay(3000).fadeOut();
+        //         }else{
+        //             $("#submit .tips-error").html(obj.message).show().delay(3000).fadeOut();
+        //         }
+        //     },
+        //     'onUploadError':function(file,errorCode,errorMsg,errorString){
+        //         $("#submit .tips-error").html(errorString).show().delay(3000).fadeOut();
+        //     }
+        // });
+        {% if course.project.upload_file != "" %}
+            $('#project_{{ course.id }}_Modal .sub-work >span').html('重新上传');
+        {% endif %}
+    });
+    </script>
+{% endif %}
+{% endfor %}

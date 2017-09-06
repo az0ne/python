@@ -1,0 +1,70 @@
+<div class="modal-dialog modal-sm modal-content zy_yourHomework">
+    <a class="zy_newclose"></a>
+
+    <p class="color5e font18 pt">作业批改 --{{ stage.name }}</p>
+
+    <div class="zy_yourHomework_div">
+        <p class="font26 color33 pp">{{ student_name }}</p>
+        <ul class="zy_yourHomework_divUL">
+            {% for task in stage.get_tasks %}
+                <li>
+                    <div class="a"><span class="s1" title="{{ task.task_name }}"><i></i>{{ task.task_name }}</span>
+                        {% if task.status == 'PASS' or task.status == 'FAIL' %}
+
+                                  {% if task.is_coach %}
+                                  <a class="color5e font16 bold s2" target="_blank" href="{% url 'lps4:teacher_coach_project' task.coach_id %}">{{ task.score }}</a>
+                                  {% else %}
+                                  <span class="color5e font16 bold s2" pop_href="{% url 'lps3:teacher_student_project_task' class_id student_id task.task_rid %}">{{ task.score }}</span>
+                                  {% endif %}
+
+
+                        {% elif task.status == "DOING" and task.task_show_status != 2 %}
+                            <span class="color5e font16 bold">进行中 {{ task.get_progress }}% </span>
+                        {% elif task.status == "DOING" and task.task_show_status == 2 %}
+                            <span class="red font16 bold">已超时 {{ task.get_progress }}% </span>
+                        {% elif task.status == "DONE" %}
+                            {% if task.get_done_type == "normal" %}
+                            {% elif task.get_done_type == "quickly" %}
+                                <span class="color5e font16 bold">提前完成 </span>
+                            {% elif task.get_done_type == "timeout" %}
+                                <span class="red font16 bold">超时完成 </span>
+                            {% endif %}
+
+                                  {% if task.is_coach %}
+                                  <a class="yhbtn" target="_blank" href="{% url 'lps4:teacher_coach_project' task.coach_id %}">批改</a>
+                                  {% else %}
+                                  <span class="yhbtn" pop_href="{% url 'lps3:teacher_student_project_task' class_id student_id task.task_rid %}">批改</span>
+                                  {% endif %}
+                        {% elif task.status == "REDOING" %}
+                            <span class="color5e font16 bold">重修中</span>
+                        {% endif %}
+                    </div>
+                    <dl>
+                        {% for v in task.extra_info %}
+                            {% if v.obj_type == "PROJECT" %}
+                                {% if v.is_coach %}
+                                    <dd class="font14 yourHomeworkProject">
+                                    <span class="color66" >{{ v.obj_name }}</span>
+                                    <a class="color5e" target="_blank" href="{% url 'lps4:teacher_coach_project' v.coach_id %}">查看作业</a>
+                                    </dd>
+                                {% else %}
+                                <dd class="font14 yourHomeworkProject" onClick="opItemProject(this)" pop_href="{% url 'lps3:teacher_project_item' class_id student_id task.task_rid v.item_id %}">
+                                <span class="color66">{{ v.obj_name }}</span>
+                                    <a class="color5e">查看作业</a>
+                                </dd>
+                                {% endif %}
+                            {% else %}
+                                <dd class="font14 yourHomeworkTest" onClick="opHomework(this)"
+                                    pop_href="{% url 'lps3:teacher_test_item' class_id student_id task.task_rid v.item_id %}">
+                                    <span class="color66">{{ v.obj_name }}</span>
+                                    <a class="color5e">正确率：{{ v.upaper_accuracy }}%</a>
+                                </dd>
+                            {% endif %}
+                        {% endfor %}
+                    </dl>
+                </li>
+
+            {% endfor %}
+        </ul>
+    </div>
+</div>

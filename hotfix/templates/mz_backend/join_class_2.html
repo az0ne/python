@@ -1,0 +1,67 @@
+{% extends "mz_backend/base.html" %}
+{% block title %}加入班级{% endblock %}
+{% block container %}
+<form action="{% url 'backend:join_class_save' %}" method="post">
+    {% csrf_token %}
+    <table width="800px">
+        <tr>
+            <td>
+                <h3>请仔细核对学生加班和解锁阶段的信息，核对正确之后再提交信息！</h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>学生昵称：</b>{{ user.nick_name }},<b>Email:</b>{% if user.email %}{{ user.email }}{% else %}无{% endif %},<b>Mobile:</b>{% if user.mobile %}{{ user.mobile }}{% else %}无{% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>班级：</b>{{ classobj.display_name }},<b>老师：</b>{{ classobj.teacher_name }}，<b>班级QQ：</b>{{ classobj.qq }},<b>学生上限：</b>{{ classobj.student_limit }},<b>当前报名人数：</b>{{ classobj.current_student_count }}
+            </td>
+        </tr>
+        <tr>
+            <td><b>职业课程：</b>{{ classobj.career_course.name }}</td>
+        </tr>
+        <tr>
+            {% if classobj.career_course.enable_free_488 %}
+            <td>
+                <b>是否需要就业：</b><input type="radio" id="need_job" name="is_need_job" value="True">需要<input type="radio" id="dont_need_job" name="is_need_job" value="False">不需要<br />
+                {% for stage in stages %}
+                    <input type="hidden" is_try="{{ stage.is_try }}" onclick="return false" value="{{ stage.id }}" name="stages" checked/>&nbsp;<br/>
+                {% endfor %}
+            </td>
+            <input type="hidden" id="is_free_488" name="is_free_488" value="True">
+            {% else %}
+            <td>
+                <b>解锁阶段：</b><input type="radio" id="choose_first" name="choose_first">首付<input type="radio" id="choose_all" name="choose_all">全款<br />
+                {% for stage in stages %}
+                    <input type="checkbox" is_try="{{ stage.is_try }}" onclick="return false" value="{{ stage.id }}" name="stages" {% if stage.is_unlock %}checked{% endif %}/>&nbsp;{{ stage.name }}<br/>
+                {% endfor %}
+            </td>
+            {% endif %}
+
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="hidden" id="user_id" name="user_id" value="{{ user.id }}">
+                <input type="hidden" id="coding" name="coding" value="{{ classobj.coding }}">
+                <input type="submit" value="确定加入班级" class="ext_btn ext_btn_submit">
+            </td>
+        </tr>
+    </table>
+</form>
+<script type="text/javascript">
+$(function(){
+    $("#choose_first").click(function(){
+        $("input[name='stages']").attr("checked",false);
+        $("input[name='stages']").each(function(index,element){
+           if($(element).attr("is_try") == 'True'){
+                $(element).attr("checked",true);}
+        });
+    });
+    $("#choose_all").click(function(){
+        $("input[name='stages']").attr("checked",true);
+    });
+});
+</script>
+{% endblock %}

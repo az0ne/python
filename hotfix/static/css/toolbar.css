@@ -1,0 +1,25 @@
+* { margin: 0; padding: 0; }
+
+.toolbar { position: fixed; right: 0; bottom: 120px; z-index: 9999; }
+
+.toolbar-item { width: 40px; height: 40px; display: block; margin-top: 1px; position: relative; /*transition: background-position 1s;*/ }
+
+.toolbar-item-weixin { background-image: url(../images/27right0.png); background-repeat: no-repeat; height: 80px; }
+
+.toolbar-item-weibo { background-image: url(../images/27right1.png); background-repeat: no-repeat; height: 80px; position: relative; }
+
+.toolbar-item-weibo > div { position: absolute !important; top: 0; right: 0; z-index: 1200; height: 80px !important; padding-top: 10px !important; display: none; }
+
+.toolbar-layer { position: absolute; right: 40px; bottom: 0; opacity: 0; filter: alpha(opacity=0); transition: all 1s; transform: scale(0.01); transform-origin: 95% 95%; }
+
+.toolbar-item-fankui { background: url(../images/fankui.png) center center no-repeat #5ecfba; }
+
+.toolbar-item-fankui > span { display: none; position: absolute; border: 1px solid #ececec; width: 90px; text-align: center; border-right: 0; box-sizing: border-box; background: #ffffff; height: 40px; line-height: 40px; top: 0; right: 40px; }
+
+.toolbar-item-fankui:hover { background-image: url(../images/fankui00.png); }
+
+.toolbar-item-gotop { background: url(../images/gotop.png) center center no-repeat #5ecfba; cursor: pointer; }
+
+.toolbar-item-gotop > span { display: none; position: absolute; border: 1px solid #ececec; width: 90px; text-align: center; border-right: 0; box-sizing: border-box; background: #ffffff; height: 40px; line-height: 40px; top: 0; right: 40px; }
+
+.toolbar-item-gotop:hover { background-image: url(../images/fanhui.png); }

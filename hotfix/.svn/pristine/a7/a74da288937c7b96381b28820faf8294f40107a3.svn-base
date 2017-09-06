@@ -1,0 +1,11 @@
+{% extends 'mz_usercenter/usercenter_base.html' %}
+
+{% block usercenter_right_panel %}
+    {% include 'mz_usercenter/student/div_exp_course_base.html' %}
+{% endblock %}
+
+{% block custom_script %}
+<script type="text/javascript" src="/2016/lib/layer/layer.js"></script>
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/personalCenterStaste.js?v={{ time_stamp }}"></script>
+{% endblock %}

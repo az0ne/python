@@ -1,0 +1,58 @@
+<!-- 预约试学 -->
+<div class="modal fade YaHei" id="appointment-study" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 460px;">
+            <h3>预约试学<a class="m-close"></a></h3>
+                        
+            <div class="modal-body">
+                <div class="class-time">
+                    <div class="first">
+                        <span>时间</span>
+                        <span>首次班会</span>
+                    </div>
+                    <div class="second">
+                        <span class="name">05.26-05.28</span>
+                        <span>周五 （05.28） 18:00</span>
+                    </div>
+                </div>
+                <p class="you-phone">您的手机号为</p>
+                <p class="phone-num">18585272260 <a class="change" href="javascript:void(0)" style="cursor: context-menu;outline: none"><span class="hover-tips">请前往个人中心修改</span></a></p>
+
+                <a class="enter-appo" href="javascript:void(0)" hrf="{% url 'lps3f:student:ajax_appointment_free_class' %}" onclick="zhuge.track('点击确认预约', {'页面名称':'预约面板','按钮位置':'预约试学弹窗','课程名称':'{{ ccourse.name }}'});">确认预约</a>
+
+            </div>            
+        </div>
+    </div>
+</div>
+<!-- 预约试学成功弹窗 -->
+<div class="modal fade YaHei" id="appointment-success" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 460px;">
+            <p class="successful font22 color33">预约试学成功！</p>                        
+            <div class="class-time">
+                <div class="first">
+                    <span>时间</span>
+                    <span>首次班会</span>
+                </div>
+                <div class="second">
+                    <span class="name">05.26-05.28</span>
+                    <span>周五 （05.28） 18:00</span>
+                </div>
+            </div>
+            <p class="you-phone">您的手机号为</p>
+            <p class="phone-num">18585272260</p>
+            <p class="class-tips">我们会在试学开始前3小时，通过短信的方式提醒您</p>
+
+            <a class="know" href="javascript:void(0)" onclick="zhuge.track('点击我知道了', {'页面名称':'预约面板','按钮位置':'预约试学成功弹窗'});">我知道了</a>
+        </div>
+    </div>
+</div>
+<!-- 预约试学失败弹窗 -->
+<div class="modal fade YaHei" id="appointment-fail" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 400px;">
+            <p class="fail font22 color33">预约失败</p>
+            <a class="retry" href="javascript:void(0)">请重试</a>
+        </div>
+    </div>
+</div>

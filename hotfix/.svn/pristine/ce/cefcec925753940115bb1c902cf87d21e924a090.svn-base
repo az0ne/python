@@ -1,0 +1,5 @@
+
+<div class="modal-dialog modal-sm modal-content zy_mypersonal2" style="width: 340px;"><a class="cl"></a>
+    <p class="textC font14 color66" style=" padding: 20px 0; line-height: 2;">班会<br><a class="a">{{ classmeeting.content }}</a><br>正在火热进行中！赶紧去参加吧！</p>
+    <div class="div"><a href="{{ classmeeting.join_url }}" target="_blank">立即前往</a></div>
+</div>

@@ -1,0 +1,31 @@
+<!--课程学习-->
+{% for course in cur_stage_course_list %}
+<div class="modal plan-modal fade" id="lesson_{{ course.id }}_Modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="coursestuModalLabel">课程学习</h4>
+            </div>
+            <div class="modal-body">
+                <section class="box-coursestu" id="box-coursestu">
+                    <ul class="modal-max-height scroll-pane">
+                        {% for lesson in course.lesson %}
+                        <li class="row">
+                            <div class="col-sm-9"><a href="{% url 'lesson:lesson_view' lesson.id %}?stageid={{ cur_stage.id }}" target="_blank">{{ lesson.name }}</a></div>
+                            <div class="col-sm-3 text-center">
+                                {% if lesson.is_complete %}
+                                    <i class="v5-icon v5-icon-rthb"></i>
+                                {% else %}
+                                    <div class="col-sm-3 text-center"><a href="{% url 'lesson:lesson_view' lesson.id %}?stageid={{ cur_stage.id }}" target="_blank" class="btn btn-micv5">去观看</a></div>
+                                {% endif %}
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}

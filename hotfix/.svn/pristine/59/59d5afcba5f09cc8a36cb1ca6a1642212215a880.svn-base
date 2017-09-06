@@ -1,0 +1,97 @@
+<div class="teacherCenterWorks cur">
+    <div class="teacherCenterTeacherIntroduce">
+        <strong>马青</strong>
+        <span>UI设计讲师</span>
+        <p>曾任职于上海gamania，上海Massiveblack。 参与过多款娱乐产品的的方案界面设计及APP界面设计，熟悉项目开发交互流程，有着丰富的UI设计和培训经验。 擅长界面设计、概念设计及传统美术绘画，作品多次发表于国内权威杂志《美术》和《中国版画年鉴》。</p>
+        <a href="{% url 'course:course_detail' 'ui' %}" target="_blank">报名TA的课程</a>
+    </div>
+    <ul class="teacherCenterTeacherCourse">
+        <li>带班数<strong>12</strong></li>
+        <li>累积毕业人数<strong>456</strong></li>
+        <li>就业率<strong>96<span>%</span></strong></li>
+    </ul>
+    <div class="teacherCenterTeacherWorks">
+        <h4>讲师作品</h4>
+        <div class="teacherCenterTeachBxslider">
+            <ul>
+                <li>
+                    <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceUiStu1.jpg" alt="PAINTING"/></p>
+                    <div class="text"><strong>PAINTING</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                </li>
+                <li>
+                    <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceUiStu2.jpg" alt="TOY story"/></p>
+                    <div class="text"><strong>TOY story</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                </li>
+                <li>
+                    <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceUiStu3.jpg" alt="游戏人物设计"/></p>
+                    <div class="text"><strong>游戏人物设计</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                </li>
+                <li>
+                    <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceUiStu4.jpg" alt="MAGICAL LAND"/></p>
+                    <div class="text"><strong>MAGICAL LAND</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                </li>
+                <li>
+                    <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceUiStu5.jpg" alt="游戏人物设计"/></p>
+                    <div class="text"><strong>游戏人物设计</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="teacherCenterTeachExperience">
+        <h4>讲师经历</h4>
+        <ul>
+            <li>
+                <span>2015</span>
+                <div class="infos">
+                    <strong>麦子学院</strong>
+                    <p>UI设计金牌讲师,教学风格幽默，有极强的设计思维与美术功底，将设计理念与商业实战完美结合，细化每一个知识点，开辟了学员高薪就业极速通道。</p>
+                    <!--<em>参与项目</em>
+                    <p>战神3、上古卷轴4、蝙蝠侠阿甘之城、黑道圣徒4</p>-->
+                </div>
+            </li><li>
+                <span>2013</span>
+                <div class="infos">
+                    <strong>成都趣胤网络科技有限公司</strong>
+                    <p>任艺术总监，负责PC和移动端界面设计风格制定，视觉包装方案等。独立负责项目整体界面设计。对总体艺术包装，设计思维有着深刻而独立的见解。</p>
+                    <em>参与项目</em>
+                    <p>多个娱乐产品界面设计</p>
+                </div>
+            </li>
+            <li>
+                <span>2010</span>
+                <div class="infos">
+                    <strong>上海gamania</strong>
+                    <p>任高级UI设计师，负责页面设计以及产品包装等，拥有深厚的美术基础，对色彩掌控、界面展示、风格打造有着丰富经验，擅长创作拥有艺术感和实践性的UI界面。</p>
+                    <em>参与项目</em>
+                    <p>上海gamania泛娱乐产品界面设计</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="teacherCenterTeachSaying">
+        <h4>讲师寄语</h4>
+        <dl>
+            <dt><img src="http://www.maiziedu.com/uploads/homepage/2016/04/maqing220.jpg"/></dt>
+            <dd><p>在设计麦子学院UI课程时，考虑更多的是审美与设计思路的贯穿性，不仅关注学员的设计能力，也关注学员基础能力的培养，目的在于为互联网行业培养更多优秀合格的ui设计师。</p></dd>
+        </dl>
+    </div>
+    <div class="teacherCenterStudentWorks">
+        <h4>学生作品</h4>
+        <div class="teacherCenterStudentBxslider">
+            <ul>
+                <li>
+                    <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceUiTea1.jpg" alt="学生作品"/>
+                </li>
+                <li>
+                    <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceUiTea2.jpg" alt="学生作品"/>
+                </li>
+                <li>
+                    <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceUiTea3.jpg" alt="学生作品"/>
+                </li>
+                <li>
+                    <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceUiTea4.jpg" alt="学生作品"/>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

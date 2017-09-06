@@ -1,0 +1,14 @@
+.zypage { text-align: center; display: table; width: 100%; font-size: 14px; color: #5ecfbb;margin-bottom: 70px;}
+.zypage > a { display: inline-block; vertical-align: middle; width: 20px; height: 20px; line-height: 20px; background: #5ecfbb; text-align: center; color: #ffffff; margin: 0 5px; border-radius: 50%; cursor: pointer;}
+.zypage > a:hover { background: #51b5a2;}
+.zypageTxt { width: 30px; height: 30px; line-height: 30px; text-align: center; border: 1px solid #b3c3c0; margin: 0 10px; font-size: 12px;color: #000000;}
+.zypageBtn { width: 40px; height: 30px; border-radius: 2px; background: #5ecfbb; color: #ffffff; text-align: center; line-height: 30px;border:0;outline:0; margin-left: 15px; cursor: pointer;}
+.zypage > a.zy_hide { background:none; color: #5ecfbb;}
+
+.zypage_div { display: inline-block; vertical-align: middle;}
+.zypage_div a { display: inline-block; vertical-align: middle; width: 30px; height: 30px; line-height: 30px; background: #f1eff0; text-align: center; color: #666666; margin: 0 5px; cursor: pointer; font-size: small;}
+.zypage_div a:hover,.zypage_div a.jp-current { background: #5ecfba; color: #ffffff;}
+.zypage_div a.jp-previous { background: url(../images/article_Icon.png) 10px -195px no-repeat #f1eff0;}
+.zypage_div a.jp-next { background: url(../images/article_Icon.png) 10px -238px no-repeat #f1eff0;}
+.zypage_div a.jp-first {background: url(../images/article_Icon.png) 10px -174px no-repeat #f1eff0;}
+.zypage_div a.jp-last {background: url(../images/article_Icon.png) 10px -217px no-repeat #f1eff0;}

@@ -1,0 +1,38 @@
+{% extends 'mz_usercenter/usercenter_base.html' %}
+
+{% block usercenter_right_panel %}
+    <div class="personalCmainR font14">
+    	<p class="personalCmainRtit font22 color33">就业信息</p>
+        <ul class="personalCenterSinfoList font14 color99">
+            {% for job_info in job_info_list %}
+            <li>
+            	<p class="pt"><span class="font20 color33">{{ job_info.career_course_name }}</span>已报名</p>
+                <table class="tableI marginB20">
+                	<tr>
+                    	<td style="width:80px;">入学时间：</td><td class="color33" style="width:200px;">{{ job_info.join_date|date:"Y-m-d" }}</td>
+                        <td style="width:44px;">老师：</td><td class="color33" style="width:200px;">{{ job_info.teacher_name }}</td>
+                        <td style="width:44px;">教务：</td><td class="color33">{{ job_info.edu_admin_name }}</td>
+                    </tr>
+                </table>
+                <table class="tableU marginB20">
+                	<tr>
+                    	<td style="width:80px;">学习目标：</td><td class="color33" style="width:180px;">就业</td>
+                        <td style="width:100px;">意向就业城市：</td><td class="color33" style="width:140px;">{{ job_info.intention_job_city }}</td>
+                        <td style="width:100px;">想从事的行业：</td><td class="color33">{{ job_info.to_industry }}</td>
+                    </tr>
+                    <tr>
+                    	<td>学历：</td><td class="color33">{{ job_info.degree }}</td>
+                        <td>工作年限：</td><td class="color33">{{ job_info.service_year }}</td>
+                        <td>职位：</td><td class="color33 sub"><span><b>{{ job_info.position }}</b><i class="personalCico pcICO11" title="修改"></i></span><div><input type="text" class="pcsBasicTableTxt" value="{{ job_info.position }}"><input type="button" value="保存" class="personalCbtn a1" pid="{{ job_info.career_course_id }}"></div></td>
+                    </tr>
+                    <tr>
+                    	<td>毕业院校：</td><td class="color33">{{ job_info.graduate_institution }}</td>
+                        <td>是否在职：</td><td class="color33">{{ job_info.in_service }}</td>
+                        <td>所在行业：</td><td class="color33 sub"><span><b>{{ job_info.industry }}</b><i class="personalCico pcICO11" title="修改"></i></span><div><input type="text" class="pcsBasicTableTxt" value="{{ job_info.industry }}"><input type="button" value="保存" class="personalCbtn a2" pid="{{ job_info.career_course_id }}"></div></td>
+                    </tr>
+                </table>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

@@ -1,0 +1,235 @@
+* {
+    font-family: "微软雅黑";
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+}
+li {
+    list-style: none;
+}
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+table td {
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    -ms-box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+
+.f14 {
+    font-size: 14px;
+}
+.f12 {
+    font-size: 12px;
+}
+
+.font-color-ft {
+    color: #424242 ;
+}
+.font-color-es {
+    color: #878787;
+}
+.font-color-fc {
+    color: #5c5c5c;
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+}
+
+
+#chart-box .jspHorizontalBar{
+  height: 14px;
+  background: #efefef;
+  border-radius: 20px;
+  width: 96.35%;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -webkit-border-radius: 20px;
+}
+#chart-box .jspTrack {
+  background: #efefef;
+  border-radius: 20px;
+  width: 96.35%;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -webkit-border-radius: 20px;
+}
+#chart-box .jspDrag {
+  background: #83e1d1;
+  border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -webkit-border-radius: 20px;
+}
+
+.chart-box {
+    position: relative;
+    margin: 0 auto;
+    margin-top: 20px;
+    height: 325px;
+}
+.chart-line {
+/*    border-left: 2px solid #6accf1;*/
+    height: 250px;
+/*    width: 1035px;*/
+}
+.table-name{
+    margin-top: 10px;
+    clear: fixed;
+}
+.table-name li {
+    float: left;
+}
+.right-size {
+    width: 1000px;
+}
+.table-name {
+    display: none;
+}
+.table-name td{
+    border-right: 1px solid #fff;
+}
+
+.table-content li {
+    float: left;
+}
+.table-content li {
+     border-right: 1px solid #e7e7e7;
+}
+.table-line li {
+    float: left;
+}
+.table-line li {
+    border-right: 1px solid #e7e7e7;
+    border-top: 2px solid #6accf1;
+}
+.table-date {
+    margin-left: -20px;
+}
+.table-date li {
+    float: left;
+}
+.table-date td {
+    color: #5c5c5c;
+}
+.table-date td {
+    border-right: 1px solid #fff;
+}
+.date {
+    border-left: 2px solid #fff;
+}
+
+.odd li{
+    border-bottom: 1px solid #e6e6e6;
+    background-color: #eeeeee;
+}
+
+.even li {
+    background-color: #f7f7f7;
+}
+/*
+.odd li:last-child,
+.even li:last-child {
+    border-right: none;
+}
+*/
+.process {
+    width: 40px;
+    margin-top: 30px;
+    border-right: 2px solid #6accf1;
+}
+.process li {
+    text-align: right;
+    color: #878787;
+    margin-right: 10px;
+}
+.process .li1 {
+    height: 97px;
+    line-height: 97px;
+}
+.process .li2 {
+    height: 70px;
+    line-height: 70px;
+}
+.process .li3 {
+    height: 80px;
+    line-height: 80px;
+}
+
+.transform{
+    transform-origin:0% 40%;
+    transform:rotate(-25deg);
+
+    -ms-transform:rotate(-25deg);
+    -ms-transform-origin:0% 40%;
+
+    -webkit-transform: rotate(-25deg);
+    -webkit-transform-origin:0% 40%;
+
+    -moz-transform: rotate(-25deg);
+    -moz-transform-origin:0% 40%;
+}
+.transform p {
+    position: relative;
+    top: 10px;
+}
+.table-name .off p{
+    color: #e78964;
+}
+
+.learn-plan-charts {
+    position: relative;
+}
+
+#charts-box-canvas {
+    position: absolute;
+    top: 40px;
+    height: 200px;
+    margin: 0 auto;
+}
+.learn-plan-tips {
+  position: fixed;
+  display: none;
+  width: 110px;
+  border: 1px solid #B4B4B4;
+  background-color: #ffffff;
+  -moz-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+  -o-box-shadow: 0 1px 8px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+
+.learn-plan-tips .item-msg {
+  font-size: 12px;
+  color: #868686;
+  width: 90px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  border-top: 1px solid #ececec;
+}
+
+.learn-plan-tips .item-msg:first-child {
+  position: relative;
+  border-top: none;
+}
+
+.learn-plan-tips .item-msg:first-child:after {
+  position: absolute;
+  top: -8px;
+  left: 38px;
+  width: 0;
+  height: 0;
+  border-width: 0 8px 8px;
+  border-style: solid;
+  content: "";
+  border-color: transparent transparent #ffffff;
+}

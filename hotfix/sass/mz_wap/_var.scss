@@ -1,0 +1,144 @@
+@charset "UTF-8";
+$sprite: url(/static/images/mz_wap/sprite.png) 0 0 no-repeat;
+// @function函数定义 */
+@function pxToRem($rem){
+    $max: length($rem);
+    $remVal:();
+    @for $i from 1 through $max{
+        @if (nth($rem, $i)!=0){
+            $val: nth($rem, $i)/40 * 1rem;
+            $remVal: append($remVal, $val);
+        }
+        @else{
+            $remVal: append($remVal, 0rem);
+        }
+    }
+    @return $remVal;
+}
+
+@function pcent($eleWidth,$bodyWidth: 640){
+    @return ($eleWidth / $bodyWidth) * 100%;
+}
+
+/* @mixin混合参数声明 */
+@mixin heights($heights){
+    height:pxToRem($heights);
+    line-height:pxToRem($heights);
+}
+/* 行高等于文字大小 */
+@mixin fz-lh($size){
+    font-size: pxToRem($size);
+    line-height: pxToRem($size);
+}
+@mixin linear-gradient($li-gr...){
+    background: -webkit-linear-gradient($li-gr);
+    background: -moz-linear-gradient($li-gr);
+    background: -o-linear-gradient($li-gr);
+    background: linear-gradient($li-gr);
+    
+}
+@mixin maxheight($maxheight){
+    height: auto;
+    max-height:pxToRem($maxheight);
+    overflow: hidden;
+}
+@mixin maxwidth($maxwidth){
+    max-width: pxToRem($maxwidth);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+@mixin rotate($angle...){   
+    -webkit-transform: rotate($angle);
+    -moz-transform: rotate($angle);
+    -ms-transform: rotate($angle);
+    -o-transform: rotate($angle);
+    transform: rotate($angle);
+}
+@mixin transition($transition...){
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+@mixin transform($transform...){
+    -webkit-transform: $transform;
+    -moz-transform: $transform;
+    -o-transform: $transform;
+    transform: $transform;
+}
+@mixin box-shadow($shadow...) {
+  -webkit-box-shadow:$shadow;
+  box-shadow:$shadow;
+}
+/* 多行文本溢出隐藏，并尾部显示省略号 */
+@mixin multi-line-hidden($lineNum){
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: $lineNum;
+    -webkit-box-orient: vertical;
+}
+@mixin box-flex($num){
+    -moz-box-flex: $num; 
+    -webkit-box-flex: $num; 
+    box-flex: $num;
+}
+@mixin mzicon($argument, $fz){
+    font-family: 'mzicon';
+    content: $argument;
+    font-size: pxToRem($fz);
+}
+/* %继承 */
+%box-sizing{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+%pseudo-class{
+    content:"";
+    display: inline-block;
+    vertical-align: middle;
+}
+%display{
+    display: table;
+    height: 1px;
+}
+// 盒子布局
+%disbox{
+    display: box;
+    display: -moz-box;
+    display: -webkit-box;
+}
+
+%mid {
+    display: inline-block;
+    vertical-align: middle;
+}
+%mtop {
+    display: inline-block;
+    vertical-align: top;
+}
+%substr {
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+}
+%clearfix {
+    &:before, &:after {
+        content: '';
+        clear: both;
+        display: block;
+    }
+}
+@font-face {
+  font-family: 'mzicon';
+  src:  url('../../fonts/mzicon/mzicon.eot?zi0eqs');
+  src:  url('../../fonts/mzicon/mzicon.eot?zi0eqs#iefix') format('embedded-opentype'),
+    url('../../fonts/mzicon/mzicon.ttf?zi0eqs') format('truetype'),
+    url('../../fonts/mzicon/../../fonts/mzicon/mzicon.woff?zi0eqs') format('woff'),
+    url('../../fonts/mzicon/mzicon.svg?zi0eqs#mzicon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

@@ -1,0 +1,98 @@
+{% extends "mz_common/base.html" %}
+{% block title %}web前端培训 - web前端开发工程师培训 - 麦子学院{% endblock %}
+{% block keywords%}web前端，web前端开发，web前端培训，web前端培训机构，web前端学习，web前端在线学习，web前端工程师{% endblock %}
+{% block description%}麦子学院，专业在线web前端培训机构，提供史上最靠谱的web前端开发培训课程，定制化web前端开发学习路线，名师在线指导，通过通俗易懂的讲解，丰富有趣的实战，轻松学习web前端，升级为实力派web前端工程师。{% endblock %}
+{% block breadcrumb %}
+    <div class="container visible-md visible-lg">
+        <ol class="breadcrumb" style="font-size: 14px">
+            <li><a href="{% url 'index_front' %}">首页</a></li>
+                <li><a href="{% url 'course:career_course_list' %}">企业直通班</a></li>
+            <li class="active">{{ cur_careercourse.name }}培训</li>
+        </ol>
+    </div>
+{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="/static/Lesson/css/jquery.bxslider.css">
+    <link rel="stylesheet" type="text/css" href="/static/Lesson/css/style22.css"/>
+{% endblock %}
+{% block container %}
+    <div class="container" style="position: relative;">
+        <ul class="zy_tab" style="z-index: 99">
+            <li class="liH">课程介绍<i></i></li>
+
+            <li><a href="{% url 'course:career_course_detail' couse_short_name %}">
+                课程大纲
+                <i></i></a>
+            </li>
+
+        </ul>
+    </div>
+
+
+<div style="width:1160px; margin:0 auto;" class="YaHei">
+
+	<div class="index_img"><img alt="麦子学院web前端开发培训" src="/static/Lesson/images/web_01.jpg">
+    	<div class="po"><p style="margin-bottom:40px;"><img src="/static/Lesson/images/web_11.png"></p>
+        	<p><a target="_blank" onclick="_MEIQIA('showPanel')" class="abtn zzpp">点击咨询课程详情&nbsp;></a></p>
+        </div>
+    </div>
+	<div class="index_img marginB40"><img alt="web前端开发薪资对比" src="/static/Lesson/images/web_02.jpg"></div>
+    <p class="textC" style="margin-bottom:70px;"><a target="_blank" onclick="_MEIQIA('showPanel')" class="abtn zzpp">点击咨询课程详情&nbsp;></a></p>
+    <div class="index_img"><img alt="web前端开发项目实战" src="/static/Lesson/images/web_03.jpg"></div>
+    <div class="index_img"><img alt="麦子学院web前端培训优势" src="/static/Lesson/images/web_04.jpg"></div>
+    <div class="divBlue textC">
+    	<p class="pt" style="margin-bottom:10px;">在麦子学院学习Web前端到底能学到什么？</p>
+        <p class="pt2" style="margin-bottom:30px;">Web前端知识大纲</p>
+        <p class="marginB40"><img alt="web前端开发学习路线" src="/static/Lesson/images/web_05.jpg"></p>
+        <p><a  class="abtn" href="{% url 'course:career_course_detail' couse_short_name %}">查看更多免费课程&nbsp;></a></p>
+    </div>
+    <div class="index_img" style="margin-bottom:74px;"><img alt="web前端开发项目实战" src="/static/Lesson/images/web_06.jpg"></div>
+    <p class="font34 textC bold color27" style="margin-bottom:16px;">为何在麦子学院学习能够保证学习效果？</p>
+    <p class="font18 textC color66" style="margin-bottom:34px;">麦子学院自主研发 LPS在线学习过程管理系统，开启在线教育教学管理智能时代。</p>
+    <p class="font18 textC bold color66" style="margin-bottom:32px;" id="bxslider_font">个性化定制学习进度</p>
+    <div class="zy_banner">
+        <ul class="bxslider">
+          <li ><img alt="个性化定制学习进度" src="/static/Lesson/images/webb001.jpg"></li>
+          <li ><img alt="重难知识点定期精讲，每周直播班会" src="/static/Lesson/images/webb002.jpg"></li>
+          <li ><img alt="阶段性项目实战演练，提升综合职业素养" src="/static/Lesson/images/webb003.jpg"></li>
+          <li ><img alt="数据学习结果预测，不断反馈调整学习计划" src="/static/Lesson/images/webb004.jpg"></li>
+          <li ><img alt="学习过程附加生成电子简历直接面向企业" src="/static/Lesson/images/webb005.jpg"></li>
+        </ul>  
+    </div>
+    <div class="index_img"><img alt="麦子学院web前端开发师资团队" src="/static/Lesson/images/web_07.jpg"></div>
+    <div class="index_img"><img alt="web前端就业保障" src="/static/Lesson/images/web_08.jpg"></div>
+    <div class="index_img"><img alt="如何学习web前端开发" src="/static/Lesson/images/web_09.jpg"></div>
+    <div class="index_img"><img alt="web前端开发学习疑惑" src="/static/Lesson/images/web_10.jpg"></div>
+    
+    <div class="footDiv textC">
+    	<p class=" font40" style="color:#ffffff;">麦子学院Web前端工程师培训班</p>
+        <div class="footDivD">
+        	<p class="font30 bold po">每月限时开班</p>
+            <p class="font60 bold" style="color:#fff001; padding-top:40px; margin-bottom:20px;">试学体验价688</p>
+            <p><a target="_blank" onclick="_MEIQIA('showPanel')" class="abtn zzpp">赶快抢名额</a></p>
+        </div>
+    </div>
+    
+</div>  
+{% endblock %}
+
+
+{% block custom_script %}
+<script src="/static/Lesson/js/jquery.bxslider.js"></script>
+<script>
+$(function(){
+    $('.j_zixun,.zzpp').click(function(){
+        $('#KFLOGO .Lelem').trigger('click');return false;
+    });
+    $('.bxslider').bxSlider({
+        mode: 'horizontal',
+        auto: true,
+        hideControlOnEnd: true,
+        pager: true,
+        onSlideAfter: function ($slideElement, oldIndex, newIndex) {
+            $("#bxslider_font").html($slideElement.find("img").attr("alt"));
+        }
+    });
+});
+</script>
+{% endblock %}

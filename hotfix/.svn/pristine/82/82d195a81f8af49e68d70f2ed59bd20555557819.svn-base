@@ -1,0 +1,812 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=gb2312">
+<meta name=ProgId content=Word.Document>
+<meta name=Generator content="Microsoft Word 14">
+<meta name=Originator content="Microsoft Word 14">
+<link rel=File-List href="protocol.files/filelist.xml">
+<!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Administrator</o:Author>
+  <o:LastAuthor>yopoing</o:LastAuthor>
+  <o:Revision>2</o:Revision>
+  <o:TotalTime>29</o:TotalTime>
+  <o:Created>2014-09-18T05:55:00Z</o:Created>
+  <o:LastSaved>2014-09-18T05:55:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>267</o:Words>
+  <o:Characters>1528</o:Characters>
+  <o:Lines>12</o:Lines>
+  <o:Paragraphs>3</o:Paragraphs>
+  <o:CharactersWithSpaces>1792</o:CharactersWithSpaces>
+  <o:Version>14.00</o:Version>
+ </o:DocumentProperties>
+</xml><![endif]-->
+<link rel=themeData href="protocol.files/themedata.thmx">
+<link rel=colorSchemeMapping href="protocol.files/colorschememapping.xml">
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:PunctuationKerning/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>ZH-CN</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:BreakWrappedTables/>
+   <w:SnapToGridInCell/>
+   <w:WrapTextWithPunct/>
+   <w:UseAsianBreakRules/>
+   <w:DontGrowAutofit/>
+   <w:SplitPgBreakAndParaMark/>
+   <w:UseFELayout/>
+  </w:Compatibility>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="true"
+  DefSemiHidden="true" DefQFormat="false" DefPriority="99"
+  LatentStyleCount="267">
+  <w:LsdException Locked="false" Priority="0" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 1"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 2"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 3"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 4"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 5"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 6"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 7"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 8"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 9"/>
+  <w:LsdException Locked="false" Priority="35" QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" Priority="10" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" Priority="1" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" Priority="11" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" Priority="22" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" Priority="20" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" Priority="59" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Table Grid"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" QFormat="true" Name="TOC Heading"/>
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:宋体;
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-alt:SimSun;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 680460288 22 0 262145 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;
+	mso-font-charset:1;
+	mso-generic-font-family:roman;
+	mso-font-format:other;
+	mso-font-pitch:variable;
+	mso-font-signature:0 0 0 0 0 0;}
+@font-face
+	{font-family:微软雅黑;
+	panose-1:2 11 5 3 2 2 4 2 2 4;
+	mso-font-charset:134;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-2147483001 672087122 22 0 262175 0;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-520081665 -1073717157 41 0 66047 0;}
+@font-face
+	{font-family:"\@宋体";
+	panose-1:2 1 6 0 3 1 1 1 1 1;
+	mso-font-charset:134;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:3 680460288 22 0 262145 0;}
+@font-face
+	{font-family:"\@微软雅黑";
+	panose-1:2 11 5 3 2 2 4 2 2 4;
+	mso-font-charset:134;
+	mso-generic-font-family:swiss;
+	mso-font-pitch:variable;
+	mso-font-signature:-2147483001 672087122 22 0 262175 0;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:10.0pt;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	layout-grid-mode:char;
+	mso-layout-grid-align:none;
+	font-size:11.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-fareast-font-family:微软雅黑;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-priority:99;
+	mso-style-link:"页眉 Char";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:10.0pt;
+	margin-left:0cm;
+	text-align:center;
+	mso-pagination:widow-orphan;
+	tab-stops:center 207.65pt right 415.3pt;
+	layout-grid-mode:char;
+	mso-layout-grid-align:none;
+	border:none;
+	mso-border-bottom-alt:solid windowtext .75pt;
+	padding:0cm;
+	mso-padding-alt:0cm 0cm 1.0pt 0cm;
+	font-size:9.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-fareast-font-family:微软雅黑;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-priority:99;
+	mso-style-link:"页脚 Char";
+	margin-top:0cm;
+	margin-right:0cm;
+	margin-bottom:10.0pt;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	tab-stops:center 207.65pt right 415.3pt;
+	layout-grid-mode:char;
+	mso-layout-grid-align:none;
+	font-size:9.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-fareast-font-family:微软雅黑;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+p
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	margin-top:6.0pt;
+	margin-right:0cm;
+	margin-bottom:18.0pt;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:宋体;
+	mso-bidi-font-family:宋体;}
+span.Char
+	{mso-style-name:"页眉 Char";
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:页眉;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:9.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-ascii-font-family:Tahoma;
+	mso-hansi-font-family:Tahoma;}
+span.Char0
+	{mso-style-name:"页脚 Char";
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:页脚;
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:9.0pt;
+	font-family:"Tahoma","sans-serif";
+	mso-ascii-font-family:Tahoma;
+	mso-hansi-font-family:Tahoma;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-size:11.0pt;
+	mso-ansi-font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-font-family:微软雅黑;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;
+	mso-font-kerning:0pt;}
+.MsoPapDefault
+	{mso-style-type:export-only;
+	margin-bottom:10.0pt;
+	line-height:11.0pt;}
+ /* Page Definitions */
+ @page
+	{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;
+	mso-footnote-separator:url("protocol.files/header.htm") fs;
+	mso-footnote-continuation-separator:url("protocol.files/header.htm") fcs;
+	mso-endnote-separator:url("protocol.files/header.htm") es;
+	mso-endnote-continuation-separator:url("protocol.files/header.htm") ecs;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:35.4pt;
+	mso-footer-margin:35.4pt;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+ table.MsoNormalTable
+	{mso-style-name:普通表格;
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin-top:0cm;
+	mso-para-margin-right:0cm;
+	mso-para-margin-bottom:10.0pt;
+	mso-para-margin-left:0cm;
+	line-height:11.0pt;
+	mso-pagination:widow-orphan;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:minor-latin;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:minor-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="2049"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body lang=ZH-CN style='tab-interval:36.0pt'>
+
+<div class=WordSection1>
+
+<p class=MsoNormal align=center style='margin-bottom:3.75pt;text-align:center;
+line-height:15.0pt;mso-outline-level:5;layout-grid-mode:both;mso-layout-grid-align:
+auto'><b><span style='font-size:14.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:#333333'>麦子学院用户协议<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal align=center style='margin-bottom:3.75pt;text-align:center;
+line-height:15.0pt;mso-outline-level:5;layout-grid-mode:both;mso-layout-grid-align:
+auto'><b><span lang=EN-US style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;color:#333333'><o:p>&nbsp;</o:p></span></b></p>
+
+<p class=MsoNormal style='margin-bottom:3.75pt;line-height:15.0pt;mso-outline-level:
+5;layout-grid-mode:both;mso-layout-grid-align:auto'><b><span style='font-size:
+12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>一、总则<span
+lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>1.1
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>麦子学院的所有权和运营权归成都麦子信息技术有限公司所有。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>1.2
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>用户在注册之前，应当仔细阅读本协议，并同意遵守本协议后方可成为注册用户。一旦注册成功，则用户与麦子学院之间自动形成协议关系，用户应当受本协议的约束。用户在使用特殊的服务或产品时，应当同意接受相关协议后方能使用。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>1.3
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>本协议则可由麦子学院随时更新，用户应当及时关注并同意本<span lang=EN-US>APP</span>不承担通知义务。本<span
+lang=EN-US>APP</span>的通知、公告、声明或其它类似内容是本协议的一部分。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-top:3.75pt;margin-right:0cm;margin-bottom:
+3.75pt;margin-left:0cm;line-height:15.0pt;mso-outline-level:5;layout-grid-mode:
+both;mso-layout-grid-align:auto'><b><span style='font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;color:#333333'>二、服务内容<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>2.1
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>麦子学院的具体内容由本<span lang=EN-US>APP</span>根据实际情况提供。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>2.2
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>本<span lang=EN-US>APP</span>仅提供相关的网络服务，除此之外与相关网络服务有关的设备<span
+lang=EN-US>(</span>如个人电脑、手机、及其他与接入互联网或移动网有关的装置<span lang=EN-US>)</span>及所需的费用<span
+lang=EN-US>(</span>如为接入互联网而支付的电话费及上网费、为使用移动网而支付的手机费<span lang=EN-US>)</span>均应由用户自行负担。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-top:3.75pt;margin-right:0cm;margin-bottom:
+3.75pt;margin-left:0cm;line-height:15.0pt;mso-outline-level:5;layout-grid-mode:
+both;mso-layout-grid-align:auto'><b><span style='font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;color:#333333'>三、用户<span class=GramE>帐号</span><span
+lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>3.1
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>经本<span lang=EN-US>APP</span>注册系统完成注册程序后，即成为正式用户，可以获得本<span
+lang=EN-US>APP</span>规定用户所应享有的一切权限；未经认证仅享有本<span lang=EN-US>APP</span>规定的部分会员权限。麦子学院有权对会员的权限设计进行变更。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>3.2
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>用户只能按照注册要求使用真实姓名，及身份证号注册。用户有义务保证密码和<span class=GramE>帐号</span>的安全，用户利用该密码和<span
+class=GramE>帐号</span>所进行的一切活动引起的任何损失或损害，由用户自行承担全部责任，本<span lang=EN-US>APP</span>不承担任何责任。如用户发现<span
+class=GramE>帐号</span>遭到未授权的使用或发生其他任何安全问题，应立即修改<span class=GramE>帐号</span>密码并妥善保管，如有必要，请通知本<span
+lang=EN-US>APP</span>。因黑客行为或用户的保管疏忽导致<span class=GramE>帐号</span>非法使用，本<span
+lang=EN-US>APP</span>不承担任何责任。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-top:3.75pt;margin-right:0cm;margin-bottom:
+3.75pt;margin-left:0cm;line-height:15.0pt;mso-outline-level:5;layout-grid-mode:
+both;mso-layout-grid-align:auto'><b><span style='font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;color:#333333'>四、隐私保护<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>4.1
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>本<span lang=EN-US>APP</span>不对外公开或向第三方提供单个用户的注册资料及用户在使用网络服务时存储在本<span
+lang=EN-US>APP</span>的非公开内容，但下列情况除外： <span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>(1)</span><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>事先获得用户的明确授权；
+<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>(2)</span><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>根据有关的法律法规要求；<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>(3)</span><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>按照相关政府主管部门的要求；<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>(4)</span><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>为维护社会公众的利益。
+<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>4.2
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>本<span lang=EN-US>APP</span>可能会与第三方合作向用户提供相关的网络服务，在此情况下，如该第三方同意承担与本<span
+lang=EN-US>APP</span>同等的保护用户隐私的责任，则本<span lang=EN-US>APP</span>有权将用户的注册资料等提供给该第三方。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>4.3
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>在不透露单个用户隐私资料的前提下，本<span lang=EN-US>APP</span>有权对整个用户数据库进行分析并对用户数据库进行商业上的利用。
+<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-top:3.75pt;margin-right:0cm;margin-bottom:
+3.75pt;margin-left:0cm;line-height:15.0pt;mso-outline-level:5;layout-grid-mode:
+both;mso-layout-grid-align:auto'><b><span style='font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;color:#333333'>五、版权声明<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>5.1
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>本<span lang=EN-US>APP</span>的文字、图片、音频、视频等版权属成都麦子信息技术有限公司享有，未经本<span
+lang=EN-US>APP</span>许可，不得任意转载。 <span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>5.2
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>本<span lang=EN-US>APP</span>特有的标识、版面设计、编排方式等版权均属成都麦子信息技术有限公司享有，未经本<span
+lang=EN-US>APP</span>许可，不得任意复制或转载。 <span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>5.3
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>使用本<span lang=EN-US>APP</span>的任何内容均应注明<span lang=EN-US>“</span>来源于麦子学院<span
+lang=EN-US>”</span>。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>5.4
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>本<span lang=EN-US>APP</span>享有所有资源用于其它用途的优先权，包括但不限于网站、电子杂志、平面出版等，但在使用前会通知麦子学院，并按同行业的标准支付稿酬。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>5.5
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>恶意转载本<span lang=EN-US>APP</span>内容的，本<span lang=EN-US>APP</span>保留将其诉诸法律的权利。
+<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-top:3.75pt;margin-right:0cm;margin-bottom:
+3.75pt;margin-left:0cm;line-height:15.0pt;mso-outline-level:5;layout-grid-mode:
+both;mso-layout-grid-align:auto'><b><span style='font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;color:#333333'>六、责任声明<span lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>7.1
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>用户明确同意其使用本<span lang=EN-US>APP</span>网络服务所存在的风险及一切后果将完全由用户本人承担，麦子学院对此不承担任何责任。
+<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>7.2
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>本<span lang=EN-US>APP</span>无法保证网络服务一定能满足用户的要求，也不保证网络服务的及时性、安全性、准确性。
+<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>7.3
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>本<span lang=EN-US>APP</span>不保证为方便用户而设置的外部链接的准确性和完整性，同时，对于该等外部链接指向的不由本<span
+lang=EN-US>APP</span>实际控制的任何网页上的内容，本<span lang=EN-US>APP</span>不承担任何责任。<span
+lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>7.4
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>对于因不可抗力或本<span lang=EN-US>APP</span>不能控制的原因造成的网络服务中断或其它缺陷，本<span
+lang=EN-US>APP</span>不承担任何责任，但将尽力减少因此而给用户造成的损失和影响。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>7.5
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>对于本<span lang=EN-US>APP</span>向用户提供的下列产品或者服务的质量缺陷本身及其引发的任何损失，本<span
+lang=EN-US>APP</span>无需承担任何责任： <span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>(1)</span><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>本<span
+lang=EN-US>APP</span>向用户免费提供的各项网络服务； <span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>(2)</span><span
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>本<span
+lang=EN-US>APP</span>向用户赠送的任何产品或者服务。 <span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>7.6
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>本<span lang=EN-US>APP</span>有权于任何时间暂时或永久修改或终止<span class=GramE>本服务</span><span
+lang=EN-US>(</span>或其任何部分<span lang=EN-US>)</span>，而无论其通知与否，本<span lang=EN-US>APP</span>对用户和任何第三人均无需承担任何责任。
+<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='margin-bottom:0cm;margin-bottom:.0001pt;line-height:
+15.0pt;layout-grid-mode:both;mso-layout-grid-align:auto'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='margin-top:3.75pt;line-height:15.0pt;mso-outline-level:
+5;layout-grid-mode:both;mso-layout-grid-align:auto'><b><span style='font-size:
+12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>七、附则<span
+lang=EN-US><o:p></o:p></span></span></b></p>
+
+<p class=MsoNormal style='mso-line-height-alt:11.0pt'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'>8.1
+</span><span style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+color:#333333'>本协议的订立、执行和解释及争议的解决均应适用中华人民共和国法律。 <span lang=EN-US>8.2 </span>如本协议中的任何条款无论因何种原因完全或部分无效或不具有执行力，本协议的其余条款仍应有<span
+class=GramE>效</span>并且有约束力。<span lang=EN-US><br>
+8.3 </span>本协议解释权及修订权归成都麦子信息技术有限公司所有。<span lang=EN-US><o:p></o:p></span></span></p>
+
+<p class=MsoNormal style='mso-line-height-alt:11.0pt'><span lang=EN-US
+style='font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;color:#333333'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='mso-line-height-alt:11.0pt'><span lang=EN-US
+style='font-size:12.0pt'><o:p>&nbsp;</o:p></span></p>
+
+<p class=MsoNormal style='line-height:11.0pt'><span lang=EN-US><o:p>&nbsp;</o:p></span></p>
+
+</div>
+
+</body>
+
+</html>

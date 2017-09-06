@@ -1,0 +1,96 @@
+@mixin borderradius($argument...){
+	-webkit-border-radius: $argument;
+	-moz-border-radius: $argument;
+	-o-border-radius: $argument;
+	-ms-border-radius: $argument;
+	border-radius: $argument;
+}
+
+@mixin rotate($angle...){	
+	-webkit-transform: rotate($angle);
+	-moz-transform: rotate($angle);
+	-ms-transform: rotate($angle);
+	-o-transform: rotate($angle);
+	transform: rotate($angle);
+}
+
+@mixin transition($argument...){
+	-webkit-transition: $argument;
+	-moz-transition: $argument;
+	-ms-transition: $argument;
+	-o-transition: $argument;
+	transition: $argument;
+}
+
+@mixin origin($argument...){
+	-webkit-transform-origin: $argument;
+	-moz-transform-origin: $argument;
+	-ms-transform-origin: $argument;
+	-o-transform-origin: $argument;
+	transform-origin: $argument;
+}
+
+@mixin scale($argument){
+	-webkit-transform: $argument; 
+	-moz-transform:  $argument;
+	-ms-transform: $argument;
+	-o-transform:$argument;
+	transform: $argument;
+}
+
+@mixin opacity($argument){
+	opacity: $argument; 
+	filter: alpha(opacity=$argument * 100);
+}
+
+@mixin box-sizing($argument...){
+	-webkit-box-sizing: $argument;
+	-moz-box-sizing: $argument;
+	-ms-box-sizing: $argument;
+	-o-box-sizing: $argument;
+	box-sizing: $argument;
+};
+
+@mixin transform($argument...){
+    -webkit-transform: $argument;
+    -moz-transform: $argument;
+    -ms-transform: $argument;
+    -o-transform: $argument;    
+    transform: $argument;
+}
+
+@mixin font_3_key($fz:16px,$lh:1,$clr:#fff){
+    font-size: $fz;
+    line-height: $lh;
+    color: $clr;
+}
+
+@mixin box-shadow($shadow...){
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    -ms-box-shadow: $shadow;
+    -o-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+
+@mixin animation($argument...){
+	-webkit-animation: $argument;
+	-moz-animation: $argument;
+	-ms-animation: $argument;
+	-o-animation: $argument;
+	animation: $argument;
+}
+
+@mixin animation-fill-mode($argument...){
+	-webkit-animation-fill-mode: $argument;
+	-moz-animation-fill-mode: $argument;
+	-ms-animation-fill-mode: $argument;
+	-o-animation-fill-mode: $argument;
+	animation-fill-mode: $argument;
+}
+
+@mixin text-shadow($text-shadow...){
+	 -moz-text-shadow: $text-shadow;
+	 -webkit-text-shadow: $text-shadow;
+	 text-shadow: $text-shadow;
+}

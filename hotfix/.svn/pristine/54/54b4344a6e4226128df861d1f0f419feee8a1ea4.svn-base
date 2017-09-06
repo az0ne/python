@@ -1,0 +1,100 @@
+@charset "UTF-8";
+.indexNav { padding: 22px 0; }
+.indexNav a { color: #999999; margin: 0 2px; }
+.indexNav a:first-child { margin-left: 0; }
+.indexNav a:hover { color: #5ECFBA; }
+
+.VLCico { background: url(../images/lesson_video_lists.png) no-repeat; }
+
+.icolist { background-position: 0 -125px; }
+
+.icopeople { background-position: 0 -164px; }
+
+/* 课程介绍样式 */
+.vlesson-infoL { width: 416px; height: 264px; position: relative; }
+.vlesson-infoL .vip_user, .vlesson-infoL .status_start, .vlesson-infoL .status_on, .vlesson-infoL .status_end { display: block; position: absolute; }
+.vlesson-infoL .vip_user { width: 68px; height: 25px; left: 0; top: 0; background-position: 0 -876px; }
+.vlesson-infoL .status_start { width: 58px; height: 20px; right: 5px; top: 5px; background-position: 0 -756px; }
+.vlesson-infoL .status_on { width: 46px; height: 20px; right: 5px; top: 5px; background-position: 0 -836px; }
+.vlesson-infoL .status_end { width: 46px; height: 20px; right: 5px; top: 5px; background-position: 0 -796px; }
+.vlesson-infoL img { width: 100%; height: 100%; }
+
+.vlesson-infoR { width: 654px; margin-left: 30px; }
+.vlesson-infoR .p2 { height: 77px; overflow: hidden; }
+.vlesson-infoR .lv_tag a { display: inline-block; background: #DEE7E5; color: #999999; padding: 4px 5px; margin-right: 5px; border-radius: 2px; }
+.vlesson-infoR .lv_tag2 > span > i { display: inline-block; width: 18px; height: 18px; vertical-align: middle; margin-right: 10px; }
+.vlesson-infoR .lv_tag2 > span:nth-child(1) { margin-right: 40px; }
+.vlesson-infoR .lv_tag2 > span:nth-child(2) { margin-left: 40px; }
+.vlesson-infoR .lv_btn a { vertical-align: middle; }
+.vlesson-infoR .lv_btn .a1 { display: inline-block; width: 200px; height: 50px; line-height: 50px; background: #5ECFBA; color: #ffffff; text-align: center; border-radius: 2px; }
+.vlesson-infoR .lv_btn .a2 { display: inline-block; width: 200px; height: 50px; background-color: #ECECEC; background-position: 42px -301px; padding: 8px; padding-left: 88px; box-sizing: border-box; margin-left: 30px; }
+.vlesson-infoR .lv_btn .a2:hover { background-position: 42px -212px; }
+
+/* 左侧样式 */
+.video-lists-container { width: 1160px; margin-left: auto; margin-right: auto; overflow: hidden; }
+.video-lists-container .VLCleft { float: left; width: 828px; background: #ffffff; }
+.video-lists-container .VLCleft .tab_menu { width: 100%; overflow: hidden; }
+.video-lists-container .VLCleft .tab_menu li { float: left; width: 140px; height: 52px; line-height: 52px; text-align: center; position: relative; }
+.video-lists-container .VLCleft .tab_menu li.active { color: #5ecfba; }
+.video-lists-container .VLCleft .tab_menu li.active:before { content: ''; display: block; width: 100%; height: 10px; position: absolute; left: 0; top: 0; background: url(../images/lesson_video_lists.png) 0 -630px no-repeat; }
+.video-lists-container .VLCleft .tab_menu li span { cursor: pointer; }
+.video-lists-container .VLCleft .tab_box > div { margin: 0 30px 26px; display: none;min-height: 570px; }
+.video-lists-container .VLCleft .tab_box > div:first-child { display: block; }
+
+.vlesson-info { background: #ffffff; box-sizing: border-box; padding: 30px; margin-bottom: 20px; }
+
+.video-lists-container .VLCleft .lesson-time { margin: 10px 0 20px; overflow: hidden; background: #F5F5F5; height: 50px; padding: 11px 20px; box-sizing: border-box; }
+.video-lists-container .VLCleft .lesson-time .fl i { display: inline-block; vertical-align: middle; width: 26px; height: 26px; background-position: 0 -269px; margin-right: 10px; }
+.video-lists-container .VLCleft .lesson-time .fr .just-check { display: inline-block; vertical-align: middle; width: 100px; height: 30px; margin-left: 20px; line-height: 30px; text-align: center; border-radius: 2px; background: #5ECFBA; }
+.video-lists-container .VLCleft .lesson-time .fr .just-check:hover { color: #ffffff; }
+.video-lists-container .VLCleft .lesson-lists li { height: 50px; line-height: 50px; border-bottom: 1px solid #ececec; padding: 0 30px 0 10px; }
+.video-lists-container .VLCleft .lesson-lists li a { display: block; overflow: hidden; }
+.video-lists-container .VLCleft .lesson-lists li .fl:before { content: ''; display: inline-block; vertical-align: middle; width: 12px; height: 16px; margin-right: 10px; margin-top: -1px; }
+.video-lists-container .VLCleft .lesson-lists li:hover { background: #F5F5F5; }
+.video-lists-container .VLCleft .lesson-lists li:hover .fl:before { background: url(../images/lesson_video_lists.png) 0 -12px no-repeat; }
+.video-lists-container .VLCleft .article_lists .col_l, .video-lists-container .VLCleft .article_lists .col_r { display: table-cell; vertical-align: top; }
+.video-lists-container .VLCleft .article_lists li { padding: 20px 0; border-bottom: 1px solid #ececec; }
+.video-lists-container .VLCleft .article_lists li:last-child { border-bottom: none; }
+.video-lists-container .VLCleft .article_lists .col_l { width: 210px; height: 140px; }
+.video-lists-container .VLCleft .article_lists .col_r { padding-left: 18px; position: relative; }
+.video-lists-container .VLCleft .article_lists .col_r h3:hover a { color: #5ecfba; }
+.video-lists-container .VLCleft .article_lists .col_r .lv_tag { position: absolute; left: 18px; bottom: 0; width: 100%; }
+.video-lists-container .VLCleft .article_lists .col_r .lv_tag a { display: inline-block; background: #DEE7E5; color: #999999; padding: 4px 5px; margin-right: 5px; border-radius: 2px; }
+.video-lists-container .VLCleft .lesson_download li { border-bottom: 1px solid #ececec; position: relative; height: 100px; }
+.video-lists-container .VLCleft .lesson_download li:last-child { border-bottom: none; }
+.video-lists-container .VLCleft .lesson_download .col_l { position: absolute; left: 0; top: 20px; }
+.video-lists-container .VLCleft .lesson_download .col_l img { position: absolute; left: 0; top: 0; }
+.video-lists-container .VLCleft .lesson_download .col_l span { display: block; margin-left: 60px; }
+.video-lists-container .VLCleft .lesson_download .col_l span:nth-child(2) { margin-top: 10px; }
+.video-lists-container .VLCleft .lesson_download .col_l span:nth-child(3) { margin-top: 5px; padding: 4px 5px; background: #f5f5f5; border-radius: 2px; }
+.video-lists-container .VLCleft .lesson_download .col_r { position: absolute; right: 0; top: 30px; width: 100px; height: 40px; line-height: 40px; background: #5ecfba; text-align: center; border-radius: 2px; }
+.video-lists-container .VLCleft .lesson_download .col_r:before { content: ''; display: inline-block; vertical-align: middle; margin-right: 8px; margin-top: -4px; width: 16px; height: 16px; background: url(../images/lesson_video_lists.png) 0 -52px no-repeat; }
+.video-lists-container .VLCleft .lesson_download .col_r:hover { color: #ffffff; background: #59b2a1; }
+.video-lists-container .VLCleft .tab_box .no_data { text-align: center; min-height: 490px; padding: 190px 0; box-sizing: border-box; }
+.video-lists-container .VLCleft .tab_box .no_data:before { content: ''; display: inline-block; vertical-align: middle; margin-right: 20px; width: 118px; height: 112px; background: url(../images/lesson_video_lists.png) 0 -389px no-repeat; }
+
+/* 右侧边栏样式 */
+.video-lists-container .VLCright { float: left; width: 312px; margin-left: 20px; }
+.video-lists-container .VLCright .teacher-info { padding: 30px; background: #ffffff; }
+.video-lists-container .VLCright .teacher-info > a { display: inline-block; vertical-align: middle; width: 80px; height: 80px; border-radius: 50%; overflow: hidden; margin-right: 20px; }
+.video-lists-container .VLCright .teacher-info > div { display: inline-block; vertical-align: middle; }
+.video-lists-container .VLCright .teacher-info > div a { display: inline-block; width: 100px; height: 30px; line-height: 30px; text-align: center; border-radius: 2px; background: #5ecfba; color: #ffffff; }
+.video-lists-container .VLCright .teacher-info > div h3 { width: 100px; text-overflow: ellipsis; -o-text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+.video-lists-container .VLCright .teacher-info > p { margin-top: 20px; height: 80px; overflow: hidden; }
+.video-lists-container .VLCright .teacher-info img { width: 100%; }
+.video-lists-container .VLCright .vocation-lesson, .video-lists-container .VLCright .other-user { padding: 20px 30px; background: #ffffff; }
+.video-lists-container .VLCright .vocation-lesson > h3, .video-lists-container .VLCright .other-user > h3 { padding-bottom: 10px; border-bottom: 1px solid #ececec; }
+.video-lists-container .VLCright .vocation-lesson > a, .video-lists-container .VLCright .other-user > a { display: block; width: 100%; height: 160px; position: relative; }
+.video-lists-container .VLCright .vocation-lesson > a span, .video-lists-container .VLCright .other-user > a span { position: absolute; left: 0px; bottom: 0; display: block; width: 100%; height: 30px; line-height: 30px; background: rgba(0, 0, 0, 0.5); padding: 0 20px; box-sizing: border-box; color: #ffffff; }
+.video-lists-container .VLCright .vocation-lesson > a img, .video-lists-container .VLCright .other-user > a img { width: 100%; }
+.video-lists-container .VLCright .vocation-lesson > a { display: table-cell; vertical-align: middle; }
+.video-lists-container .VLCright .vocation-lesson > a img { width: 30%; margin: 0 88px; }
+.video-lists-container .VLCright .vocation-lesson p { text-align: center; margin-top: 10px; }
+.video-lists-container .VLCright .other-user { padding-bottom: 16px; }
+.video-lists-container .VLCright .other-user ul li { padding: 10px 0; border-bottom: 1px solid #ececec; }
+.video-lists-container .VLCright .other-user ul li a { display: block; width: 100%; text-overflow: ellipsis; -o-text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+.video-lists-container .VLCright .other-user ul li:last-child { border-bottom: none; }
+
+/* 底部广告样式 */
+.footer-ad { background: #DD2936; width: 1160px; margin: 0 auto; }
+.footer-ad a { display: block; width: 100%; height: 90px; }

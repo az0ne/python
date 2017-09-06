@@ -1,0 +1,1103 @@
+@import 'core/reset';
+@import 'core/common';
+@import 'core/var';
+@import 'core/function';
+
+@import 'header';
+@import 'jspPane';
+$onevonebg:url(/images/teaOneVOneIcon.png) no-repeat;
+@mixin maxwidth($px){
+    max-width:$px;
+    @extend .substr;
+    display: inline-block;
+}
+body{
+    background: #f5f5f5;
+}
+/*1v1服务-个人中心*/
+.oneVoneService{
+    .personalCmainR{
+        width: 940px;
+        padding: 0;
+        margin-bottom: 78px;
+    }
+
+    /*弹框*/
+    .zy_mytask {
+        width:600px;
+        background:#ffffff;
+    }
+    .zy_newclose {
+        background:url(/static/mz_lps3/images/close.png) center center no-repeat;
+        font-size: 0;
+        height: 17px;
+        width: 17px;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        z-index:30;
+    }
+    .modal-content .pt{
+        padding:18px 14px;
+        padding-right: 44px;
+        border-bottom:1px solid #e5e5e5;
+        @extend .word-break;
+    }
+    .zy_mytask_div {
+        padding:30px;
+        @extend .word-break;
+        .img {
+            margin-left:10px;
+            vertical-align:-3px;
+            width:22px;
+        }
+    }
+    .zy_mytask_foot {
+        width:100%;
+        background:#f5f5f5;
+        padding:20px 0;
+        & > .a1 {
+            width:200px;
+            line-height:40px;
+            background:#5ecfba;
+            border-radius:40px;
+            display:inline-block;
+            &:hover {
+                color:#ffffff;
+            }
+        }
+        & > .a2 {
+            width:200px;
+            line-height:40px;
+            background:#5ecfba;
+            border-radius:3px;
+            display:inline-block;
+            &:hover {
+                color:#ffffff;
+            }
+        }
+        .a3 {
+            width:120px;
+            line-height:40px;
+            background:#5ecfba;
+            border-radius:3px;
+            display:inline-block;
+            margin:0 10px;
+            &:hover {
+                color:#ffffff;
+            }
+        }
+        
+        & > .er {
+            background:#ffffff;
+            color:#5ecfba;
+            border:1px solid #5ecfba;
+            &:hover {
+                color:#5ecfba;
+            }
+        }
+        
+    }
+    .zy_mypersonal_txt {
+        width:100%;
+        border-radius:3px;
+        border:1px solid #c1c1c1;
+        height:32px;
+        line-height:32px;
+        padding:0 4px;
+    }
+    .studying, .studyTimeout {
+        & > p {
+            top:130px;
+        }
+    }
+    /*下拉框*/
+    .personal_select {
+        visibility:hidden;
+        width:0px;
+        overflow:hidden;
+        border:0;
+    }
+    .personal_info_selectD {
+        height:32px;
+        line-height:30px;
+        background:url(/static/mz_lps3/images/selectarrow.png) right center no-repeat #ffffff;
+        border-radius:3px;
+        font-family:'Microsoft Yahei';
+        position:relative;
+        cursor:pointer;
+        @extend .vam;
+        text-align:left;
+        text-indent:10px;
+        width:100%;
+        border: 1px solid #c1c1c1;
+    }
+    .personal_info_selectD_Op {
+        border-top:0px;
+        overflow: auto;
+        max-height: 200px;
+        height: auto !important;
+        position:absolute;
+        top:32px;
+        left:0px;
+        background:#ffffff;
+        border:1px solid #c1c1c1;
+        dd {
+            text-indent:10px;
+            &:hover, &.selected{
+                background:#666666;
+                color:#ffffff;
+            }
+        }
+        
+    }
+    .personal_select2 {
+        visibility:hidden;
+        width:0px;
+        overflow:hidden;
+        border:0;
+    }
+    /*老师详情*/
+    .zyMainLeft .tabTitle{
+        height: 61px;
+        border-bottom: 1px solid #e3e5e7;
+        padding: 4px 5px 0;
+        overflow: hidden;
+        span{
+            font-size: 14px;
+            line-height: 53px;
+            display: inline-block;
+            color: #999;
+            margin: 0 15px;
+            cursor: pointer;
+            font-weight: 600;
+            border-bottom: 4px solid transparent;
+            &.cur{
+                color: #69d5c2;
+                border-bottom-color:#69d5c2;
+            }
+        }
+    }
+    .zyMainLeft .tabCon{
+        padding: 0 14px 0 18px;
+        margin-top: 20px;
+        &>div{
+            filter:alpha(opacity=0);
+            -moz-opacity:0;
+            opacity: 0;
+            @include transition(.5s);
+            display: none;
+            &.cur{
+                filter:alpha(opacity=1);
+                -moz-opacity:1;
+                opacity: 1;
+                display: block;
+            }
+        }
+    }
+
+    .teacherSreen_top {
+        width:100%;
+        height:60px;
+    }
+    .teacherSreen_topL {
+        float:left;
+        width:132px;
+    }
+    .teacherSreen_topR {
+        float:left;
+        width:766px;
+        margin-left:10px;
+        & > p {
+            float:left;
+            width:124px;
+            height:60px;
+            background:#5ecfba;
+            padding:0 10px;
+            line-height: 60px;
+            margin-right:4px;
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            &:last-child{ margin-right:0;}
+            &:nth-child(2){ background:#5496d1;}
+            &:nth-child(3){ background:#76c583;}
+            &:nth-child(4){ background:#6951a1;}
+            &:nth-child(5){ background:#f48147;}
+        }
+    }
+    .teacherSreen_Con {
+        width:100%;
+        padding-bottom:30px;
+        height: auto;
+    }
+
+    .teacherStulist {
+        width:100%;
+        li {
+            width:100%;
+            display:block;
+            height:60px;
+            position:relative;
+            &:last-child {
+                .s_details {
+                    top: -132px;
+                    & > i {
+                        top:140px;
+                    }
+                }
+            }
+            .img {
+                float:left;
+                width:60px;
+                box-sizing:border-box;
+                border:1px solid #ff7967;
+                padding:2px;
+                background:#ffffff;
+                position:relative;
+                border-radius:50%;
+                a {
+                    width:100%;
+                    display:block;
+                    border-radius:50%;
+                    overflow:hidden;
+                    position:relative;
+                }
+            }
+            .font {
+                float:left;
+                width:62px;
+                margin-left:10px;
+                padding-top:6px;
+                line-height:1.6;
+                p {
+                    white-space:nowrap;
+                    overflow:hidden;
+                    text-overflow:ellipsis;
+                }
+            }
+            &.yellowtou {
+                .img {
+                    border:1px solid #faae0b;
+                }
+            }
+            &.greentou {
+                .img {
+                    border:1px solid #5ecfba;
+                }
+            }
+            &.greytou {
+                .img {
+                    border:1px solid #bebebe;
+                }
+                a {
+                    span{
+                        position:absolute;
+                        top:0;
+                        left:0;
+                        width:100%;
+                        line-height:60px;
+                        color:#ffffff;
+                        background:rgba(97,97,97,.8);
+                        text-align:center;
+                    }
+                }
+            }
+        }
+    }
+    .zyshi {
+        position:absolute;
+        top:0;
+        right:0;
+        z-index:10;
+        background:url(/static/mz_lps3/images/shishi.png) no-repeat;
+        width:23px;
+        height:23px;
+    }
+    .redtou {
+        .img {
+            border:1px solid #ff7967;
+        }
+    }
+    .teacherTasklist {
+        width:100%;
+        li {
+            width:100%;
+            height:60px;
+            & > span {
+                float:left;
+                cursor: pointer;
+                width:124px;
+                height:60px;
+                line-height:60px;
+                margin-right:4px;
+                background:#f5f5f5;
+                border-radius:5px;
+                position:relative;
+                & > i {
+                    position:absolute;
+                    top:3px;
+                    right:3px;
+                    width:20px;
+                    height:20px;
+                    border-radius:50%;
+                    overflow:hidden;
+                    background:#ff725f;
+                    color:#ffffff;
+                    line-height:20px;
+                    text-align:center;
+                    font-style:normal;
+                    font-size:12px;
+                }
+                &.sH {
+                    background:#eff7f9;
+                    &:hover {
+                        background: #e6f4f8;
+                    }
+                }                
+                &.tSturight {
+                    background:url(/static/mz_lps3/images/tSturight.png) center center no-repeat #eff7f9;
+                }
+                &:last-child {
+                    margin-right:0;
+                }
+            }            
+        }
+        .onevone {
+            span {
+                vertical-align: middle;
+            }
+            .num {
+                @include maxwidth(40px);
+                @extend .substr;
+            }
+            .newinfo {
+                display: inline-block;
+                max-width: 66px;
+                text-align: right;
+                i {
+                    @include maxwidth(26px);
+                    @extend .substr;
+                    font-style: normal;
+                    vertical-align: bottom;
+                }
+            }
+            em {
+                font-size: 14px;
+                color: #ff7e6a;
+                font-style: normal;
+                display: block;
+                line-height: normal;
+            }
+        }
+    }
+    .teacherSreenR {
+        background:#fff;
+        padding:24px 20px;
+        .pimg {
+            img {
+                vertical-align:-4px;
+                margin-right:10px;
+            }
+        }
+    }
+    .teacherSreenR_div {
+        width:260px;
+        background:#f5f5f5;
+        padding:16px 0;
+        & > div {
+            display:inline-block;
+            border-right:1px solid #cccccc;
+            width:49%;
+            padding:0 20px;
+            &:last-child {
+                border:0;
+            }
+        }        
+    }
+    .s_details { 
+        position:absolute;
+        top:0px;
+        left:142px;
+        background:#fff;
+        border:1px solid #e8e8e8;
+        width:216px;
+        padding:20px;
+        z-index:100;
+        display:none;
+        -webkit-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+    }
+    .s_details {
+        .pt {
+            border-bottom:1px solid #e8e8e8;
+            padding-bottom:10px;
+            span {
+                margin-right:10px;
+                @include maxwidth(120px);
+            }
+        }
+        .dd {
+            padding:10px 0;
+            border-bottom:1px solid #e8e8e8;
+        }
+        & > i {
+            position:absolute; 
+            top:8px; 
+            left:-19px; 
+            background:url(/static/mz_lps3/images/teach_arrow.png) no-repeat; 
+            width:22px; 
+            height:32px;
+        }
+    }
+    .s_details_b {
+        color:#ffad0f;
+        line-height:26px;
+        a {
+            display:inline-block;
+            float:right;
+            width:80px;
+            height:26px; 
+            background:#ff725f; 
+            border-radius:2px; 
+            line-height:26px; 
+            text-align:center; 
+            color:#ffffff;
+        }
+    }
+    .s_details.HH {
+        display:block;
+    }
+    .s_details_b22 > a {
+        background:#5ecfba;
+    }
+    .zy_yourHomework{
+        background:#fff;
+        width:520px;
+        height: 600px;
+        border-radius: 0;
+        .jspVerticalBar {
+            opacity: 1;
+            background: #ddd;
+            right: 0;
+        }
+    }
+    .zy_yourHomework_div {
+        padding:0 30px;
+        width: 518px;
+        .pp{
+            padding:20px 0;
+            border-bottom:1px solid #e8e8e8;
+        }
+    }
+    .zy_yourHomework_divUL {
+        width:100%;
+        display:table;
+        li{
+            width:100%;
+            & > .a {
+                display:table;
+                width: 100%;
+                text-align:right;
+                color:#333333;
+                font-size:14px;
+                line-height:50px;
+                border-bottom:1px solid #e8e8e8;
+                cursor: pointer;
+                & > span.s1 {
+                    float:left;
+                    text-align: left;
+                    width: 314px;
+                    white-space:nowrap;
+                    overflow:hidden;
+                    text-overflow:ellipsis;
+                    i{ 
+                        display:inline-block;
+                        width:14px;
+                        height:14px;
+                        vertical-align:-2px;
+                        background:url(/static/mz_lps3/images/sprite.png) no-repeat;
+                        margin-right:8px;
+                    }
+                }
+                & > .s2 {
+                    display:inline-block;
+                    width:70px;
+                    text-align:center;
+                }
+            }
+            & > dl{
+                width:100%;
+                display:none;
+            }
+            dd {
+                height:40px;
+                line-height:40px;
+                text-align:right;
+                padding:0 10px 0 40px;
+                &:hover {
+                    background:#f5f5f5;
+                }
+                & > span {
+                    float:left;
+                }
+            }
+            &.liH > .a > span.s1 i {
+                background-position:0 -19px;
+            }
+            &.liH > dl {
+                display:block;
+            }            
+        }        
+        
+        .yhbtn {
+            background:#5ecfba;
+            border-radius:2px;
+            width:70px;
+            height:30px;
+            line-height:30px;
+            color:#ffffff;
+            text-align:center;
+            display:inline-block;
+        }
+        
+    }
+    .zy_yourHomework2 {
+        width:620px;
+        max-height: 600px;
+        background:#fff;
+        .jspVerticalBar {
+            opacity: 1;
+            background: #ddd;
+            right: 0;
+        }
+        .pt {
+            position:relative;
+            text-align:center;
+            a {
+                position:absolute;
+                left:12px;
+                top:18px;
+            }
+            span{
+                -o-text-overflow: ellipsis;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                width: 460px;
+                display: inline-block;
+                text-align: center;
+                vertical-align: top;
+                margin-left: 30px;
+            }
+        }
+        .zy_mytask_foot {
+            padding:20px 30px;
+        }
+    }
+
+    .zy_yourHomework2_div {
+        padding:24px;
+    }
+    .zy_yourHomework2_divImg {
+        width:100%;
+        display:table;
+        a {
+            float:left;
+            width:180px;
+            height:130px;
+            margin-right:9px;
+            margin-bottom: 9px;
+            img {
+                width:180px;
+                height:130px;
+                vertical-align:top;
+            }
+        }
+        a:nth-child(3n) {
+            margin-right:0;
+        }
+        a:last-child {
+            margin-right:0;
+        }
+    }
+    .adownload {
+        float:right;
+        width:70px;
+        height:30px;
+        text-align:center;
+        line-height:30px;
+        border-radius:3px;
+        background:#5ecfba;
+    }
+    .zy_yourHomework3 {
+        width:800px;
+        background:#ffffff;
+        .pt {
+            position:relative;
+            text-align:center;
+            a {
+                position:absolute;
+                left:12px;
+                top:18px;
+            }
+        }
+        .ptt {
+            padding:10px 20px;
+            background:#f5f5f5;
+        }
+        .examinationBottom {
+            height:46px;
+            padding:10px 0;
+            line-height:26px;
+            position:relative;
+            top:0;
+            left:0;
+            .ebtn {
+                position: absolute;
+                top: 11px;
+                border: 1px solid #1bbc9b;
+                font-size: 14px;
+                color: #1bbc9b;
+                background: #ffffff;
+                text-align: center;
+                line-height: 1;  padding: 5px 10px;
+                cursor: pointer;
+                border-radius: 3px;
+            }
+            .ebtn.prev {
+                left:10px;
+            }
+            .ebtn.next {
+                right:10px;
+            }
+        }
+    }
+    .examinationBottom {
+        a {
+            &.an {
+                @extend .vam;
+                width:12px;
+                height:12px;
+                background:#e9e9e9;
+                border-radius:50%;
+                margin:0 7px;
+                box-sizing:content-box;
+            }
+            &.error {
+                border:0px solid #f01400;
+                background:#ff725f;
+            }
+            &.aHH {
+                background:#e9e9e9;
+                border:0 solid #a5a5a5;
+            }
+            &.active {
+                border-width:3px;
+            }
+            &.aH, &:hover {
+                background:#5ecfba;
+                border:0px solid #59b2a1;
+            }
+        }
+        .ebtn:hover {
+            background:#1bbc9b;
+            color:#ffffff;
+        }
+        .ebtn.prev {
+            left:50px;
+        }
+        .ebtn.next {
+            right:50px;
+        }
+        
+        
+    }
+    .zy_yourHomework3_div {
+        padding:20px;
+        background:#e8e8e8;
+        ul {
+            width:100%;
+            display:table;
+            li {
+                width:100%;
+                background:#ffffff;
+                padding:10px 10px 10px 30px;
+                margin-bottom:10px;
+                border:1px solid #ffffff;
+                position: relative;
+                span {
+                    position: absolute; 
+                    top:50%; 
+                    left: 10px; 
+                    margin-top: -10px;
+                }
+                &.error { 
+                    border-color:#f01400; 
+                    color:#f01400;
+                }
+                &.right { 
+                    border-color:#1bbc9b; 
+                    color:#1bbc9b;
+                }
+            }
+            
+            
+            
+        }
+    }
+
+    .yourHomeworkD {
+        a {
+            width:40px;
+            height:40px;
+            line-height:40px;
+            text-align:center;
+            color:#999999;
+            background:#ffffff;
+            display:inline-block;
+            border-radius:2px;
+            margin-right:6px;
+            &.aH{
+                background:#5ecfba;
+                color:#ffffff;
+            }
+        }
+        
+    }
+    .zy_mytask_foot {
+        .zy_mypersonal_txt {
+            background:#ffffff;
+            width:100%;
+            height:100px;
+        }
+        & > table {
+            width:100%;
+            td {
+                padding-bottom:10px;
+            }
+        }
+    }
+
+    #imgzoom {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 65px;
+        background: rgba(0,0,0,.3);
+        display: none;
+        overflow: hidden; 
+        z-index: 800;
+        img {
+            max-width:100%;
+            max-height:100%;
+        }
+    }
+    #imgzoom-image-ctn {
+        width: 828px;
+        position: absolute;
+        text-align: center;
+    }
+
+    .imgzoom-close {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        background: #b7b7b7 url(/static/mz_lps3/images/remove-img.png) center no-repeat;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .modal-content {
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+    }
+
+}
+/*1v1服务-列表*/
+%onevoneitemleft {
+    width: 120px;
+    min-height: 200px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    p{
+        border-radius: 50%;
+        overflow: hidden;
+        img{
+            width: 100%;
+            border-radius: 50%;
+        }
+    }
+    strong{
+    font-size: 14px;
+    color: #636363;
+    padding-top: 3px;
+    @include maxwidth(100px);
+    }
+}
+.oneVoneServiceList{
+    .onevoneList{
+        margin: 40px auto 70px;
+        overflow: hidden;
+        @extend %bgff;
+        width: 1160px;
+        .title{
+            padding: 22px 20px;
+            line-height: 36px;
+            border-bottom: 1px solid #e3e5e7;
+            .created{
+                float: right;
+                width: 160px;
+                border-radius: 3px;
+                background:$onevonebg #69d5c2;
+                background-position: 19px -75px;
+                padding-left: 46px;
+                cursor: pointer;
+                color: #fff;
+                &:hover{
+                    background-color: #49d2ba;
+                }
+            }
+            .position{
+                a{
+                    color: #7a7a7a;
+                    &:hover{
+                        color: #5ecfba;
+                    }
+                }
+                span{
+                    color: #69d5c2;
+                }
+            }
+        }
+        .list{
+            padding: 20px 20px 0;
+            ul{
+                margin-left: -20px;
+            }
+            li{
+                margin: 0 0 20px 20px;
+                width: 550px;
+                float: left;
+                display: table;
+                background: #e8eaec;
+                &>span{
+                    display: none;
+                }
+            }
+            .teacher{
+                @extend %onevoneitemleft;
+                p{
+                    width: 80px;
+                    height: 80px;
+                    margin: 0 auto;
+                }
+            }
+            .infos{
+                min-height: 200px;
+                background: #f5f5f5;
+                display: table-cell;
+                padding: 15px 28px;
+                color: #b7b7b7;
+                position: relative;
+                .text{
+                    height: 60px;
+                    overflow: hidden;
+                    margin: 14px 0 50px 0;
+                    @extend .word-break;
+                }
+                &>span{
+                    @include maxwidth(374px);
+                    position: absolute;
+                    bottom: 36px;
+                }
+                em{font-style: normal;}
+                .times{
+                    a{
+                        float: right;
+                        color: #b7b7b7;
+                        &:hover{
+                            color: #69d5c2;
+                        }
+                    }
+                }
+            }
+            .new{
+                position: relative;
+                .infos{
+                    color: #7a7a7a;
+                    .times{
+                        a{
+                            color: #7a7a7a;
+                            &:hover{
+                                color: #69d5c2;
+                            }
+                        }
+                    }
+                }
+                &>span{
+                    display: inline-block;
+                    padding: 3px 5px;
+                    min-width: 28px;
+                    height: 28px;
+                    border-radius: 50%;
+                    background: #f00;
+                    color: #fff;
+                    text-align: center;
+                    font-size: 12px;
+                    border: 2px solid #fff;
+                    @include box-shadow(3px 3px 9px rgba(0,0,0,.15));
+                    position: absolute;
+                    right: -10px;
+                    top: -10px;
+                }
+            }
+            .zypage{
+                margin: 10px 0 45px;
+                text-align: right;
+                .zypage_div{margin-right: -5px;}
+            }
+        }
+    }
+    .createInfos{
+        width: 720px;
+        min-height: 454px;
+        margin: 20px auto 100px;
+        color: #7a7a7a;
+        &>span{
+            color: #7a7a7a;
+            line-height: 32px;
+            display: block;
+        }
+        &>div{
+            min-height: 190px;
+            margin-top: 10px;
+            background: #f5f5f5;
+            border: 1px solid #d4d4d4;
+            border-radius: 10px;
+        }
+        .submit_reviews{
+            padding: 0;
+            border: none;
+            width: 144px;
+            height: 34px;
+            color: #fff;
+            border-radius: 4px;
+            background: #69d5c2;
+            font-size: 16px;
+            outline: none;
+            float: right;
+            margin-top: 40px;
+        }
+        #edui1_toolbarbox {
+            position:absolute;
+            border-radius: 0;
+            @include box-shadow(none);
+            bottom: -60px;
+            margin: 0 0 10px 10px;
+        }
+        #edui1_toolbarboxouter {
+            border: none;
+            background: none;
+            @include box-shadow(none);
+        }
+        .edui-default {
+            .edui-editor {
+                background: #f5f5f5;
+                border: none;
+                border-radius: 10px;
+            }
+            .edui-toolbar {
+                .edui-button {
+                    .edui-icon {
+                        width: 34px!important;
+                        height: 34px!important;
+                        background: $onevonebg;
+                        background-position: 0 -113px;
+                    }
+                    .edui-state-hover {
+                        .edui-icon {
+                            background-position: 0 -147px;
+                        }
+                        .edui-button-wrap {
+                            border-color: transparent;
+                            background: none;
+                        }
+                    }
+                }
+            }
+        }
+        #edui1_iframeholder{
+            margin-bottom: 60px;
+            padding: 10px;
+        }
+        #edui1_bottombar{display: none;}
+    }
+    .onevoneItems{
+        ul{margin-bottom: 20px;}
+        li{
+            border-bottom: 1px solid #e3e5e7;
+            overflow: hidden;
+            display: table;
+            background: #e8eaec;
+            .teacher{
+                @extend %onevoneitemleft;
+                .stu{
+                    width: 56px;
+                    margin: 0 auto;
+                    position: relative;
+                    i{
+                        width: 20px;
+                        height: 18px;
+                        display: block;
+                        position: absolute;
+                        background: $onevonebg;
+                        background-position: 0 -183px;
+                        right: 0;
+                        bottom: 0;
+                    }
+                }
+                p{
+                    width: 56px;
+                    height: 56px;
+                }
+            }
+            .infos{
+                padding: 20px 40px 0 20px;
+                width: 1040px;
+                display: table-cell;
+                min-height: 200px;
+                color: #7a7a7a;
+                background: #fff;
+                .text{
+                    line-height: 24px;margin-bottom: 20px;overflow: hidden;min-height: 60px;word-wrap:break-word;word-break:break-all;
+                    img{max-width: 100%;display: block;}
+                }
+                .source{
+                    height: 36px;
+                    line-height: 36px;
+                    text-align: right;
+                    margin-top: 80px;
+                    em{font-style: normal;}
+                    .time{margin-left: 38px;}
+                }
+            }
+        }
+        .createInfos{
+            margin-top: 45px;
+            min-height: auto;
+            &>div{
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+@import '_zypage';
+
+@import 'footer';

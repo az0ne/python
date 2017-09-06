@@ -1,0 +1,87 @@
+                {% load  datetime_convert_tag %}
+                {% for item in discuss_list %}
+                    {% if item.parent_id == None %}
+                        <ul class="media-list">
+                          <li class="media">
+                            <a class="pull-left" href="/u/{{ item.user.id }}/" style="cursor: pointer;">
+                              <img class="media-object" src="/uploads/{{ item.user.avatar_url }}" >
+                            </a>
+                            <div class="media-body">
+                              <h4 class="media-heading">
+                                <a href="javascript:;" class="com_toggle">回复</a>
+                                <span class="user-name">{{ item.user.nick_name }}</span>
+                                {% if item.user.is_teacher == True %}<span class="grade">老师</span>{% endif %}
+                                <span class="time">{% date_convert item.date_publish %}</span>
+                                <span class="child_uid">{{item.user.id }}</span>
+                              </h4>
+                              <div class="zy_shou"><p class="t5o">{{ item.content }}</p><p>查看更多</p></div>
+                                {% for child_items in child_comment %}
+                                  {% for child_item in child_items%}
+                                      {% if child_item.parent_id == item.id %}
+
+                                      <div class="media">
+                                        <a class="pull-left" href="/u/{{ child_item.user.id }}/" style="cursor: pointer;">
+                                          <img class="media-object" src="/uploads/{{ child_item.user.avatar_url }}" >
+                                        </a>
+                                        <div class="media-body">
+                                          <h4 class="media-heading">
+                                            <a href="javascript:;" class="comment_{{item.id}} com_child_toggle">回复</a>
+                                            <span class="user-name">{{ child_item.user.nick_name }}</span>
+                                            {% if child_item.user.is_teacher == True %}<span class="grade">老师</span>{% endif %}
+                                            <span class="time">{% date_convert child_item.date_publish %}</span>
+                                            <span class="child_uid">{{ child_item.user.id }}</span>
+                                          </h4>
+                                          <div class="zy_shou"><p class="t5o">{{ child_item.content }}</p><p>查看更多</p></div>
+                                        </div>
+                                      </div>
+                                      {% endif%}
+                                  {% endfor%}
+
+                                {% endfor %}
+
+                                    {% if not user.is_authenticated %}
+                        <div class="media child_comment" style="display: none">
+                        <a href="javascript:void(0);" class="pull-left">
+                          <img src="/uploads/avatar/default_small.png" class="media-object">
+                        </a>
+                        <div class="media-body">
+                          <h4 class="media-heading">
+                            <span class="user-name">尚未登录</span>
+                          </h4>
+                          <div class="comment-input">
+                            <textarea disabled="" placeholder="我要评论" rows="3" maxlength="1000" class="form-control"></textarea>
+                            <div class="not-logged">
+                              <p>请先<a data-target="#loginModal" data-toggle="modal" href="#">登录</a>或<a data-target="#registerModal" data-toggle="modal" href="">注册</a></p>
+                            </div>
+                            <div class="btnbox">
+                              <button disabled="" class="btn btn-micv5 btn-lg-fts btn-micv5-disabled" type="button">回复</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                                    {% else %}
+                                    <div class="media child_comment" style="display: none">
+                                    <a class="pull-left" href="/u/{{ user.id }}/" style="cursor: pointer;">
+                                      <img src="/uploads/{{ user.avatar_url }}" class="media-object">
+                                    </a>
+                                    <div class="media-body">
+                                      <h4 class="media-heading">
+                                        <span class="user-name">{{ user.nick_name }}</span>
+                                        {% if user.is_teacher == True %}<span class="grade">老师</span>{% endif %}
+                                      </h4>
+                                      <div class="comment-input">
+                                        <textarea placeholder="我要评论" rows="3" maxlength="1000" class="form-control"></textarea>
+                                        <div class="btnbox">
+                                          <button class="btn btn-micv5 btn-lg-fts reply com_{{item.id}}" type="button">回复</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  {% endif %}
+
+                            </div>
+                          </li>
+                        </ul>
+                    {% endif %}
+                {% endfor %}

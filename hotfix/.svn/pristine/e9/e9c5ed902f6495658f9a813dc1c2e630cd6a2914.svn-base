@@ -1,0 +1,239 @@
+{% extends "mz_common/base.html" %}
+{% block title %}{% if cur_lesson.seo_title %}{{ cur_lesson.seo_title }}{% else %}{{ cur_lesson.name }}{% endif %} - {% if cur_careercourse %}{{ cur_careercourse.name }}{% else %}{{ cur_course.name }}{% endif %} - 麦子学院{% endblock %}
+{% block keywords %}{% if cur_lesson.seo_keyword %}{{ cur_lesson.seo_keyword }}{% endif %}{% endblock %}
+{% block description %}{% if cur_lesson.seo_description %}{{ cur_lesson.seo_description }}{% endif %}{% endblock %}
+{% block breadcrumb %}
+    <div class="container visible-md visible-lg">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'index_front' %}">首页</a></li>
+            {% if cur_careercourse %}
+                <li><a href="{% url 'course:career_course_list' %}">企业直通班</a></li>
+                <li><a href="{% url 'course:course_detail' cur_careercourse.short_name %}">{{ cur_careercourse.name }}</a></li>
+            {% endif %}
+            <li class="active">{{ cur_course.name }}</li>
+        </ol>
+    </div>
+{% endblock %}
+
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/css/jquery.fileupload.css">
+    <link rel="stylesheet" href="/static/css/imgareaselect-animated.css">
+    <style>
+    .iphone_video{ height: 180px;}
+    </style>
+{% endblock %}
+{% block container %}
+    <link rel="stylesheet" href="/static/css/videojs/video-js.css">
+    <script src="/static/js/videojs/video.js"></script>
+    <script>
+        videojs.options.flash.swf = "/static/js/videojs/video-js.swf"
+    </script>
+
+    <div class="iphone_video">
+        <video id="microohvideo" class="video-js vjs-default-skin vjs-big-play-centered" autoplay="autoplay" controls="controls" preload="none" width="100%" height="100%" poster="">
+            <source src="{{ cur_lesson.video_url }}" type='video/mp4'/>
+        </video>
+    </div>
+    <p style="padding: 3%; border-bottom: 1px solid #333333;">已有{{ cur_course.student_count }}位同学与你并肩作战</p>
+
+    <div class="iphone_nav">
+        <a num="1" class="aH">课程章节</a><a num="2">学习交流</a><a num="3">讲师介绍</a>
+    </div>
+
+    <div class="iphone_nav_div course-play-list iphone_nav_div1" id="playlist">
+        <ul>
+                                {% for item in lesson_list %}
+                                    <li {% if item.id == cur_lesson.id %}class="active_null"{% endif %}>
+                                        <a href="{% url 'course:lesson_view' careercourse item.course_id item.id %}"
+                                                {% if item.id == cur_lesson.id %} class="active"{% endif %}
+                                           lesson_id={{ item.id }}>{{ forloop.counter }}.&nbsp;{{ item.name }}</a>
+
+                                        {% if not user.is_authenticated %}
+                                            {% if forloop.counter >= 3 %}
+                                                <i class="v5-icon v5-icon-lock zyico2"></i>
+                                            {% endif %}
+                                            {% else %}
+                                            {% if cur_careercourse.short_name|lower == 'yuanhua' and cur_course.need_pay and not cur_careercourse.has_pay and  forloop.counter >= 3 %}
+                                                <i class="v5-icon v5-icon-lock zyico"></i>
+                                            {% endif %}
+
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+    </div>
+    <div class="iphone_nav_div iphone_nav_div2" style="display: none;"></div>
+    <p style="text-align: center; padding: 3% 0; display: none;" class="iphone_nav_div4"><a onclick="goiphonePage()">查看更多</a></p>
+    <div class="iphone_nav_div iphone_nav_div3" style="display: none;">
+        <div class="iphone_teacher_img"><img src="/uploads/{{ cur_course.teacher.avatar_middle_thumbnall }}" alt="{% if cur_course.teacher.avatar_alt != None %}{{ cur_course.teacher.avatar_alt }}{% else %}麦子学院老师{% endif %}"></div>
+        <div class="iphone_teacher_font">
+            <p><a style="font-size: 14px; color: #000000;" href="/u/{{ cur_course.teacher.id }}/">{{ cur_course.teacher.nick_name }}</a></p>
+            <article style="font-size: 12px;">
+              	{{ cur_course.teacher.description }}
+              </article>
+        </div>
+    </div>
+</div>
+
+
+    <input type="hidden" value="{{ cur_lesson.id }}" id="lesson-id">
+
+{% endblock %}
+
+
+
+
+{% block custom_script %}
+
+    <!--    <script src="/static/js/jquery.jscrollpane.min.js"></script>-->
+    <script src="/static/js/jquery.cookie.js"></script>
+    
+    {% ifequal discuzz_provider 'LPS' %}
+    <script src="/static/js/mz-comment.js"></script>
+    {% endifequal %}
+
+    {% ifequal discuzz_provider 'FPS' %}
+    <script src="{{ FPS_HOST }}static/js/ajaxfps.js?4646546"></script>
+    {% endifequal %}
+
+
+<script>
+var ipPage= 1,ipPageBo=true;
+function goiphonePage(){
+    if(ipPageBo) {
+        ipPage++;
+        ipPageBo = false;
+        page_commment_iphone(ipPage);
+    }
+}
+var uploading = false;
+$(function(){
+    {% ifequal discuzz_provider 'FPS' %}
+    page_commment_iphone(ipPage);
+    {% endifequal %}
+
+    $(".iphone_nav a").click(function(){
+        $(this).addClass("aH").siblings().removeClass("aH");
+        $(".iphone_nav_div").hide();
+        $(".iphone_nav_div"+$(this).attr("num")).show();
+        if($(this).attr("num")=="2"){
+            $(".iphone_nav_div4").show();
+        }
+        else{
+            $(".iphone_nav_div4").hide();
+        }
+    })
+    //视频播放
+    var player = videojs("microohvideo", {
+        controls: true,
+        playbackRates: [1, 1.25, 1.5, 2]
+    });
+
+    // 获取视频开始播放的时间并从该时间播放
+    var video_current_time = $.cookie('lesson_{{ cur_lesson.id }}');
+    if (!video_current_time) video_current_time = 0;
+
+    player.ready(function () {
+                player.currentTime(video_current_time);
+                player.on("play", function () {
+                    zy_nbo2=true;
+                    if ($("#playlist li.active_null a.active").next().hasClass('zyico2')) {
+                        player.pause();
+                        alert("请先登录后再继续免费观看课程视频");
+                        return false;
+                    }
+
+                });
+
+                player.on("ended", function () {
+                    getPlayPostion();
+                    $.cookie('lesson_{{ cur_lesson.id }}', null);
+
+                    if (uploading) {
+                        return;
+                    }
+
+                    $("#playlist li.active_null").nextAll().find("a").each(function () {
+                        lesson_id = $(this).attr("lesson_id");
+                        if (lesson_id)
+                            location.href = "/lesson/" + lesson_id + "/?stageid={{ stageid }}";
+                        return false;
+                    });
+                });
+
+                var tag = player.L;
+                //var doc = tag.ownerDocument || document;
+                $(player.tag || player.L).on('dblclick', function () {
+                    if (player.isFullscreen()) {
+                        player.exitFullscreen();
+                    } else {
+                        player.requestFullscreen();
+                    }
+                });
+
+                if ($("#playlist li.active_null a.active").next().hasClass('zyico2')) {
+                    player.pause();
+                    alert("请先登录后再继续免费观看课程视频");
+                    return false;
+                }
+
+            });
+
+    getPlayPostion();
+
+    // 获取视频的播放进度
+    var is_poppup_exam = false; //是否弹出过考试测试框
+    function getPlayPostion() {
+        //将当前播放实际进度保存到cookie
+        current_position = Math.ceil(player.currentTime());
+        if (current_position) {
+            $.cookie('lesson_{{ cur_lesson.id }}', current_position, {expires: 7});
+            {% if user.is_authenticated %}
+                //判断视频是否播放到整体进度的95%
+                video_total_time = {{ cur_lesson.video_length }};
+                if (current_position / video_total_time > {{ VIDEO_EXAM_COMPLETE }}) {
+                    if (!is_poppup_exam) {
+                        {% if uncomplete_quiz_list %}
+                            //暂停视频、退出全屏并弹出考试测试框
+                            alert("请进入电脑版参加考试")
+                        {% endif %}
+                        is_poppup_exam = true;
+                    }
+                    // 更新是否完成该章节的学习
+                    $.get("/lesson/{{ cur_lesson.id }}/update/status/");
+                }
+            {% endif %}
+        }
+        setTimeout(getPlayPostion, 5000)
+    }
+
+    var zy_nnn= 0,zy_nbo=false,zy_nbo2=true;
+    $(".course-play-list li").each(function(){
+        zy_nnn++;
+        if($(this).hasClass("active_null")){
+            return false;
+        }
+    });
+    {% if user.is_authenticated and cur_careercourse.short_name|lower == 'yuanhua' and cur_course.need_pay and not cur_careercourse.has_pay %}
+        if(zy_nnn>2)
+            zy_nbo=true;
+    {% endif %}
+    setInterval(function(){
+        if(player.currentTime()>60&&zy_nbo&&zy_nbo2){
+            zy_nbo2=false;
+            player.pause()
+            alert("抱歉，该课程视频仅限该直通班学员观看哦,请进入电脑版报名。")
+        }
+    },1000)
+
+    {% if user.is_authenticated %}
+        {% if cur_lesson.is_popup and career_ids != '' %}
+            player.pause();
+        {% endif %}
+    {% endif %}
+
+})
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+<meta name="applicable-device" content="pc,mobile">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="renderer" content="webkit">
+<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta content="true" name="HandheldFriendly">
+<meta name="keywords" content="{% block keywords%}{{ seo.seo_keywords }}{% endblock %}">
+<meta name="description" content="{% block description%}{{ seo.seo_description }}{% endblock %}">
+<title>{% block title %}{{ seo.seo_title }}{% endblock %}</title>
+<link rel="stylesheet" href="/static/css/toolbarbox.css?v={{ time_stamp }}">
+<link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}images/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css?v={{ time_stamp }}"/>
+    <style>
+        #cnzz_stat_icon_1263077165{
+            display: none !important;
+        }
+    </style>
+<script type='text/javascript'>
+      var _vds = _vds || [];
+      window._vds = _vds;
+      (function(){
+        _vds.push(['setAccountId', 'bbf5b5656387fd73']);
+        (function() {
+          var vds = document.createElement('script');
+          vds.type='text/javascript';
+          vds.async = true;
+          vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(vds, s);
+        })();
+      })();
+  </script>
+<script type="text/javascript">
+
+    function is_int(x) {
+        var y = parseInt(x, 10);
+        return !isNaN(y) && x == y && x.toString() == y.toString();
+    }
+
+    function snap_callback_for_project_upload(data) {
+        if (data.result == null) {
+            console.log(data.msg);
+        } else {
+            var result = JSON.parse(data.result);
+            if (is_int(result.coach_id) == true) {
+                window.location.href = "/lps4/teacher_coach_project/" + result.coach_id + "/";
+                return;
+            }
+            if (is_int(result.class_id) == true && is_int(result.stage_task_id) == true && is_int(result.item_id) == true && is_int(result.lps_version) == true) {
+                if (result.lps_version == 4) {
+                    window.location.href = "/lps4/student_coach_project/" + result.class_id + "_" + result.stage_task_id + "_" + result.item_id + "/";
+                } else {
+                    if (result.item_id == 0){
+                        window.location.href = "/lps3/student/task_project/" + result.class_id + "_" + result.stage_task_id + "/";
+                    } else {
+                        window.location.href = "/lps3/student/item_project/" + result.class_id + "_" + result.stage_task_id + "_" + result.item_id + "/";
+                    }
+                }
+                return;
+            }
+        }
+    }
+
+    (function () {
+        var reg = RegExp(/.*?\/lps4\/teacher_coach_project\/\d+?/);
+        if (reg.test(window.location.href) == true) {
+            return;
+        }
+        reg = RegExp(/.*?\/lps4\/student_coach_project\/\d+?_\d+?_\d+?/);
+        if (reg.test(window.location.href) == true) {
+            return;
+        }
+        reg = RegExp(/.*?\/lps3\/student\/task_project\/\d+?_\d+?/);
+        if (reg.test(window.location.href) == true) {
+            return;
+        }
+        reg = RegExp(/.*?\/lps3\/student\/item_project\/\d+?_\d+?_\d+?/);
+        if (reg.test(window.location.href) == true) {
+            return;
+        }
+
+        var url_prefix = "";
+        reg = RegExp(/maiziedu.com/);
+        if (reg.test(window.location.hostname) == true) {
+            url_prefix = "https://snap.maiziedu.com/get/?snap_key=project_upload_";
+        } else {
+            url_prefix = "http://121.41.96.44:34000/get/?snap_key=project_upload_";
+        }
+
+        var url = "";
+
+        if ("{{request.user.is_student}}" == "True") {
+            url = url_prefix + encodeURIComponent("student_{{request.user.id}}") + "&callback=snap_callback_for_project_upload";
+        }
+        if ("{{request.user.is_teacher}}" == "True") {
+            url = url_prefix + encodeURIComponent("teacher_{{request.user.id}}") + "&callback=snap_callback_for_project_upload";
+        }
+
+        if (url == "") {
+            return;
+        }
+
+        var script = document.createElement("script");
+        script.setAttribute("src", url);
+        document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+</script>
+{% block custom_css %}{% endblock %}
+<script type="text/javascript">
+
+    var get_cookie = function(c_name) {
+        if (document.cookie.length > 0) {
+            var c_start = document.cookie.indexOf(c_name + "=");
+            if (c_start != -1) {
+                c_start = c_start + c_name.length + 1;
+                c_end = document.cookie.indexOf(";", c_start);
+                if (c_end == -1) {
+                    c_end = document.cookie.length;
+                }
+                return unescape(document.cookie.substring(c_start, c_end));
+            }
+        }
+        return "";
+    }
+
+    var set_cookie = function (c_name,value,exdays) {
+        var exdate = new Date();
+        exdate.setDate(exdate.getDate() + exdays);
+        var c_value = escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+        document.cookie = c_name + "=" + c_value + "; path=/";
+    }
+
+
+    /*
+     * set maiziuid
+    */
+
+    var uid_gen = function() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+        }
+        return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4();
+    }
+
+    if (get_cookie("maiziuid") == "") {
+        set_cookie("maiziuid", uid_gen(), 1024);
+    }
+
+    if (window.location.hostname.indexOf("maiziedu.com") >= 0) {
+        (function () {
+            var query_string = "url=" + escape(window.location.href) + "&";
+            query_string = query_string + "maiziuid=" + get_cookie("maiziuid") + "&";
+            query_string = query_string + "referrer=" + escape(document.referrer);
+
+            var url = "http://hit.maiziedu.com/?" + query_string + "&callback=" + new Date().getTime();
+            var script = document.createElement("script");
+            script.setAttribute("src", url);
+            document.getElementsByTagName("head")[0].appendChild(script);
+        })();
+    }
+
+</script>
+<script type="text/javascript">
+//页面手机跳转
+if(/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|android|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){if(window.location.href.indexOf("{{mobile_site}}")<0){window.location.href="{{mobile_site}}" + window.location.pathname;}};
+</script>
+{% block baiduJS %}
+<script type="text/javascript">
+<!-- 百度统计代码 -->
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?e3879546912fd4b2d6e909e064d49262";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+{% endblock %}
+<script type="text/javascript">var login_popupvar={% if request.GET.partner and request.GET.openid %}true{% else %}false{% endif %};</script>
+<script type="text/javascript" src="/2016/lib/geetest/gt.min.js"></script>
+<script type="text/javascript">
+window.zhuge = window.zhuge || [];window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");window.zhuge.factory = function(b){return function() {var a = Array.prototype.slice.call(arguments);a.unshift(b);window.zhuge.push(a);return window.zhuge;}};for(var i = 0; i < window.zhuge.methods.length; i++){var key = window.zhuge.methods[i];window.zhuge[key] = window.zhuge.factory(key);}window.zhuge.load=function(b, x){if (!document.getElementById("zhuge-js")){var a = document.createElement("script");var verDate=new Date();var verStr=verDate.getFullYear().toString()+verDate.getMonth().toString()+verDate.getDate().toString();a.type = "text/javascript";a.id = "zhuge-js";a.async = !0;a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;var c = document.getElementsByTagName("script")[0];c.parentNode.insertBefore(a, c);window.zhuge._init(b, x)}};
+window.zhuge.load('7bdc65f630344e4fa3b5d23e5c096d35');
+//window.zhuge.load('7bdc65f630344e4fa3b5d23e5c096d35', {debug:true});
+</script>
+</head>
+<body class="YaHei {% block csstype %}{% endblock %}">
+<div id="maizi_trace_common_data" style="display: none;">
+  <p id="trace_pay_type_common_data" style="display: none;" value={{trace_pay_type}}></p>
+  <p id="trace_user_type_common_data" style="display: none;" value={{trace_user_type}}></p>
+  <p id="trace_career_name_common_data" style="display: none;" value={{trace_career_name}}></p>
+  <p id="trace_taskball_name_common_data" style="display: none;" value={{trace_taskball_name}}></p>
+  <p id="trace_project_name_common_data" style="display: none;" value={{trace_project_name}}></p>
+  <p id="trace_video_name_common_data" style="display: none;" value={{trace_video_name}}></p>
+</div>
+
+{% load my_filter %}
+{% block container %}{% endblock %}
+
+{% block footer%}
+<div class="footNewBox2 textC color99">
+    <p class="p">&copy; 2012-2016 <a href="http://www.maiziedu.com">www.maiziedu.com</a></p>
+    <p>蜀ICP备13014270号-4 Version 5.0.0 release20160127 </p>
+</div>
+{% endblock %}
+{#{% include "mz_lps3/feedback_box.html" %}#}
+
+{% include "mz_common/login.html" %}
+{% block toolbarDiv %}
+<div class="toolbar">
+
+    <div class="toolbarbox">
+        <div class="msg" onclick="_MEIQIA('showPanel')" >
+            <img src="/static/images/toolbarbox/msg.png" alt=""  class="msg-img" id="msg">
+            <div class="msg-line " ></div>
+            <div class="hidemsgAfter">
+                <div class="hidemsg">
+                    <p>有一位课程导师想与你聊聊</p>
+                     <div> </div>
+                </div>
+            </div>
+        </div>
+        <div class="mobel">
+            <img src="/static/images/toolbarbox/mobel.jpg" alt="">
+            <div class="tool-line"></div>
+            <div class="hidemobelBox">
+                <p>客服热线 400-862-8862</p>
+
+            </div>
+        </div>
+        <div class="Rtop">
+           <a href="#"><img src="/static/images/toolbarbox/Rtop.jpg" alt=""></a>
+            <div class="hideRtop">
+                <p>回到顶部</p>
+            </div>
+        </div>
+    </div>
+
+{#    <div class="toolbar-item" {% if user.is_teacher%}style="display: none;"{% endif %}>#}
+{#        <a href="javascript:;" class="toolbar-item toolbar-item-weixin" onclick="_MEIQIA('showPanel')"></a>#}
+{#        {% if not user.is_unlockstage and not user.is_teacher%}#}
+{#        <div class="toolbar-kf">#}
+{#            <div class="ball-scale">#}
+{#                <!-- <span>你有一个红包等你领取!</span> -->#}
+{#                <span>有一位课程导师想与你聊聊</span>#}
+{#                <!--[if IE]> <div style="background:transparent"></div> <![endif]-->#}
+{#                <!--[if !IE]><!-->#}
+{#                <div></div>#}
+{#                <!--<![endif]-->#}
+{#            </div>#}
+{#        </div>#}
+{#        {% endif %}        #}
+{#    </div>#}
+{#    <a href="javascript:;" class="toolbar-item toolbar-item-weibo" {% if user.is_unlockstage or user.is_teacher%}style="display: none;"{% endif %}>#}
+{##}
+{#    </a>#}
+{#    <div class="lixianB_B">#}
+    {#            <p class="font12 colorff textC marginB6">免费电话咨询</p>#}
+    {#            <p class="marginB6"><input type="text" class="intxt" id="telInput" placeholder="请输入您的电话号码"></p>#}
+    {#            <p class="textC"><input type="button" class="inbtn" id="callBtn" value=""></p>#}
+{#           400-862-8862#}
+{#    </div>#}
+{#    <!-- <a href="{{ FPS_HOST }}common/feedback/publish/" target="_blank" class="toolbar-item toolbar-item-fankui"></a> -->#}
+{#        <!--<a id="feedbakbtn" class="toolbar-item toolbar-item-fankui"><span>意见反馈</span></a>-->#}
+{#    <div class="toolbar-item toolbar-item-gotop"></div>#}
+</div>
+{% endblock %}
+<script type="text/javascript" src="/2016/lib/jquery/jquery2.2.2.min.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/dev/maizi_trace.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/bootstrap/js/bootstrap.min.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/static/js/lixianB.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/static/js/rotate/rotate.js?v={{ time_stamp }}"></script>
+{% block custom_script %}{% endblock %}
+{% block google %}
+<script type="text/javascript">// 谷歌
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-61416428-1', 'auto');ga('send', 'pageview');
+</script>
+{% endblock %}
+{% block baidu %}
+<script type="text/javascript">// 离线宝
+document.write('<script type="text/javascript"  data-lxb-uid="10986738" data-lxb-gid="198532" src="http://lxbjs.baidu.com/api/asset/api.js?t=' + new Date().getTime() + '" charset="utf-8"></scr' + 'ipt>' );if(document.getElementById("callBtn"))document.getElementById("callBtn").onclick = function (){lxb.call(document.getElementById("telInput"));}
+</script>
+{% endblock %}
+{% block 53kf %}
+{% if not user.is_teacher %}
+<script type="text/javascript">
+
+{#(function(){var _MEIQIA = document.createElement("script");_MEIQIA.src = "//static.meiqia.com/dist/meiqia.js";var s = document.getElementsByTagName("script")[0];s.parentNode.insertBefore(_MEIQIA, s);})();#}
+  (function(m, ei, q, i, a, j, s) {
+        m[i] = m[i] || function() {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        j = ei.createElement(q),
+            s = ei.getElementsByTagName(q)[0];
+        j.async = true;
+        j.charset = 'UTF-8';
+        j.src = '//static.meiqia.com/dist/meiqia.js';
+        s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '_MEIQIA');
+    _MEIQIA('entId', 54180);
+     _MEIQIA('withoutBtn');
+{#    _MEIQIA('allSet', function(){#}
+{#     $('.toolbar-item').click(function () {#}
+{#         MEIQIA('showPanel');#}
+{#     });#}
+{#    });#}
+</script>
+
+{% endif %}
+{% endblock %}
+
+
+<script>
+$(document).ready(function() {
+   _rotate_start("msg");
+})
+</script>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1263077165'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/stat.php%3Fid%3D1263077165%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</body>
+</html>

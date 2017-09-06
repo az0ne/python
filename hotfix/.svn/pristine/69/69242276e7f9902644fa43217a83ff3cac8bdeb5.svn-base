@@ -1,0 +1,1120 @@
+{% extends "mz_common/global.html" %} {% block title %}web前端培训 - web前端开发培训 - web前端开发培训课程 - 麦子学院{% endblock %}
+{% block keywords %}web前端,web前端开发,web前端培训,web前端培训课程,web前端学习,web前端工程师{% endblock %}
+{% block description %}
+    麦子学院,web前端开发培训,是专业web前端培训机构,提供史上最靠谱的web前端开发培训课程,定制化web前端开发学习路线,名师1对1指导,通过通俗易懂的讲解,丰富有趣的实战,轻松学习web前端,升级为实力派web前端工程师。{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/css/mz_ad/web-css/reset.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mz_ad/web-css/style.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mz_ad/common.css?v={{ time_stamp }}">
+{% endblock %} {% block csstype %}op{% endblock %}
+{% block container %} {% include 'header/index_header.html' %}
+    <script type="text/javascript" src="/static/js/mz_ad/web-js/jquery-1.7.2.min.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/static/js/mz_ad/web-js/global2.js?v={{ time_stamp }}"></script>
+
+    <script type="text/javascript">
+        var get_cookie = function (c_name) {
+            if (document.cookie.length > 0) {
+                var c_start = document.cookie.indexOf(c_name + "=");
+                if (c_start != -1) {
+                    c_start = c_start + c_name.length + 1;
+                    c_end = document.cookie.indexOf(";", c_start);
+                    if (c_end == -1) {
+                        c_end = document.cookie.length;
+                    }
+                    return unescape(document.cookie.substring(c_start, c_end));
+                }
+            }
+            return "";
+        }
+
+        var set_cookie = function (c_name, value, exdays) {
+            var exdate = new Date();
+            exdate.setDate(exdate.getDate() + exdays);
+            var c_value = escape(value) + ((exdays == null) ? "" : "; expires=" + exdate.toUTCString());
+            document.cookie = c_name + "=" + c_value + "; path=/";
+        }
+
+
+        /*
+         * set maiziuid
+         */
+
+        var uid_gen = function () {
+            function s4() {
+                return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+            }
+
+            return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4();
+        }
+
+        if (get_cookie("maiziuid") == "") {
+            set_cookie("maiziuid", uid_gen(), 1024);
+        }
+
+        if (window.location.hostname.indexOf("maizitime.com") >= 0) {
+            (function () {
+                var query_string = "url=" + escape(window.location.href) + "&";
+                query_string = query_string + "maiziuid=" + get_cookie("maiziuid") + "&";
+                query_string = query_string + "referrer=" + escape(document.referrer);
+
+                var url = "http://hit.maiziedu.com/?" + query_string + "&callback=" + new Date().getTime();
+                var script = document.createElement("script");
+                script.setAttribute("src", url);
+                document.getElementsByTagName("head")[0].appendChild(script);
+            })();
+        }
+
+        $(document).ready(function () {
+            $(".side ul li").hover(function () {
+                $(this).find(".sidebox").stop().animate({"width": "124px"}, 200).css({
+                    "opacity": "1",
+                    "filter": "Alpha(opacity=100)"
+                });
+            }, function () {
+                $(this).find(".sidebox").stop().animate({"width": "44px"}, 200).css({
+                    "opacity": "0.8",
+                    "filter": "Alpha(opacity=80)"
+                })
+            });
+        });
+
+
+        $(function () {
+            $("img.c").click(function () {
+                $(".gz-emw").hide();
+            })
+            $("span.wxgz").click(function () {
+                $(".gz-emw").show();
+            })
+            $(".nav-tabin a").click(function () {
+                $('html,body').animate({scrollTop: '787' + 'px'}, 0);
+            })
+
+            $(".page3 a.lbtn").click(function () {
+                $("#t_one2").addClass("cur");
+                $("#t_one1").removeClass("cur");
+                $("#t_one_con2").show();
+                $("#t_one_con1").hide();
+                $('html,body').animate({scrollTop: '787' + 'px'}, 0);
+            })
+
+        })
+
+        $(window).scroll(function () {
+            var sctop = 0;
+
+            if (document.documentElement && document.documentElement.scrollTop)
+                sctop = document.documentElement.scrollTop;
+            else if (document.body)
+                sctop = document.body.scrollTop;
+            if (sctop > 1545) {
+                $(".sidetop").css("display", "block");
+            }
+            else {
+                $(".sidetop").css("display", "none");
+            }
+        })
+
+        var _vds = _vds || [];
+        window._vds = _vds;
+        (function () {
+            _vds.push(['setAccountId', 'e896811fa91b4cd990a44509f88f5d41']);
+            (function () {
+                var vds = document.createElement('script');
+                vds.type = 'text/javascript';
+                vds.async = true;
+                vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(vds, s);
+            })();
+        })();
+        $(function () {
+            //点击弹出客服，添加.more
+            $('.more').unbind().click(function () {
+                $('#KFLOGO .Lelem').eq(0).trigger('click');
+            });
+            //显示客服
+            function showtips() {
+                $(".kftips").fadeIn();
+            }
+
+            setTimeout(function () {
+                showtips();
+            }, 10000);
+        });
+    </script>
+    <!--[if IE 6]>
+<script src="/static/js/mz_ad/web-js/pngfix.js" language="javascript"></script>
+<![endif]-->
+     <div id="tab">
+        <ul>
+            <li><a href="/land/pm/" alt="产品经理">产品经理</a></li>
+            <li><a href="/land/ui/" alt="UI设计">UI设计</a></li>
+            <li class="active"><span>Web前端</span></li>
+            <li><a href="/land/python/" alt="Python Web开发">Python Web开发</a></li>
+            <li><a href="/land/op/" alt="新媒体网络运营">新媒体网络运营</a></li>
+        </ul>
+    </div>
+    <div class="banner2">
+        <div class="bannerin2">
+            <a href="https://www.maiziedu.com" target="_blank"><img src="/static/images/mz_ad/web-images/logo2.png"
+                                                                    alt="" class="logo"></a>
+            <img src="/static/images/mz_ad/web-images/web-banner3.png" alt="" class="txt1">
+            <div class="btn-zx"><a class="more" href="javascript:" onclick="_MEIQIA('showPanel')">立即报名</a><a class="more" href="javascript:" onclick="_MEIQIA('showPanel')">咨询课程</a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function setTab(name, num, n) {
+            for (i = 1; i <= n; i++) {
+                var menu = document.getElementById(name + i);
+                var con = document.getElementById(name + "_" + "con" + i);
+                menu.className = i == num ? "cur" : "";
+                con.style.display = i == num ? "block" : "none";
+            }
+        }
+    </script>
+    <div class="nav-tab">
+        <div class="nav-tabin"><a id="t_one1" onclick="setTab('t_one',1,2)" class="cur"
+                                  href="javascript:">课程介绍<i></i></a><a id="t_one2" onclick="setTab('t_one',2,2)"
+                                                                       href="javascript:">课程大纲<i></i></a></div>
+    </div>
+    <div id="t_one_con1">
+        <div class="page1 page-js">
+            <h2>「 我们拒绝培养只会写简单网页的前端程序员！」</h2>
+            <p class="js">我们不培养只会写简单html代码，制作简单网页的前端程序员；我们认为合格的Web开发工程师<br/>是网页用户体验优化师，必须具有良好的创意、创新能力和独特的审美，在麦子学院你学到的将不止是技术!
+            </p>
+            <ul class="teck-list">
+                <li>
+                    <img src="/static/images/mz_ad/web-images/teck01.png" alt="" class="teckpic">
+                    <h3>前端程序员</h3>
+                    <p>了解html/css/js等语言<br/>简单掌握网页基本处理<br/>简单使用前端基本框架</p>
+                </li>
+                <li class="tips"><img src="/static/images/mz_ad/web-images/link-tips.png" alt=""></li>
+
+                <li>
+                    <img src="/static/images/mz_ad/web-images/teck03.png" alt="" class="teckpic">
+                    <h3>前端工程师</h3>
+                    <p>精通图形处理工具<br/>熟练掌握HTML5/CSS3<br/>精通Javascript+Jquery</p>
+                </li>
+                <li class="tips"><img src="/static/images/mz_ad/web-images/link-tips.png" alt=""></li>
+
+                <li class="cur">
+                    <img src="/static/images/mz_ad/web-images/teck02.png" alt="" class="teckpic">
+                    <h3>高级工程师</h3>
+                    <p>精通h5+css3<br/>精通JS原生态+Jquery<br/>精通Bootstrap+Zeptojs<br/>掌握Angluarjs+Less+Nodejs</p>
+                </li>
+                <li class="tips"><img src="/static/images/mz_ad/web-images/link-tips.png" alt=""></li>
+
+                <li>
+                    <img src="/static/images/mz_ad/web-images/teck01.png" alt="" class="teckpic">
+                    <h3>前端架构师</h3>
+                    <p>框架研发<br/>前端优化<br/>移动端前沿技术<br/>艺术性强的视觉设计</p>
+                </li>
+            </ul>
+            <h3 class="t2">麦子学院只培养相当于<b>两年以上</b>工作经验的Web开发工程师！</h3>
+            <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我能成为Web开发工程师吗？</a>
+        </div>
+        <div class="page10">
+            <h3 class="t3">「 麦子学院如何保证学习效果？ 」</h3>
+            <ul class="xg-list">
+                <li>
+                    <h5>700课时+</h5>
+                    <img src="/static/images/mz_ad/web-images/xg-icon01.png" alt="" class="icon">
+                    <h4>线上视频</h4>
+                </li>
+                <li>
+                    <h5>2次/周</h5>
+                    <img src="/static/images/mz_ad/web-images/xg-icon02.png" alt="" class="icon">
+                    <h4>导师直播难点</h4>
+                </li>
+                <li>
+                    <h5>随时答疑</h5>
+                    <img src="/static/images/mz_ad/web-images/xg-icon03.png" alt="" class="icon">
+                    <h4>金牌讲师答疑</h4>
+                </li>
+                <li>
+                    <h5>满意为止</h5>
+                    <img src="/static/images/mz_ad/web-images/xg-icon04.png" alt="" class="icon">
+                    <h4>高薪就业</h4>
+                </li>
+            </ul>
+            <div class="v1">
+                <div class="play01 play-b1">
+                    <img src="/static/images/mz_ad/web-images/video-1.jpg" alt="" class="p">
+                    <img src="/static/images/mz_ad/web-images/play-btn.png" alt="" class="play-btn">
+                    <div class="p-txt">快速认识麦子学院</div>
+                </div>
+                <div class="vinfo">
+                    <h4 class="vtitle">强大的LPS4.0学习过程管理系统 </h4>
+                    <h5 class="sitle">学习过程任务制管理</h5>
+                    <h5 class="sitle">学习效果监测实施调整进度</h5>
+                    <h5 class="sitle">学员1V1约课模式</h5>
+                    <h5 class="sitle">无缝对接1000+互联网企业</h5>
+                    <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">什么是LPS?</a>
+                </div>
+            </div>
+        </div>
+        <div class="page2">
+            <h1 class="title">「 十年总监级大牛 手把手教你做前端 」</h1>
+            <ul class="dn-list">
+                <li class="teck1">
+                    <img src="/static/images/mz_ad/web-images/dn01.png" alt="" class="user">
+                    <h3>何 虎</h3>
+                    <h4>5年实训项目经理</h4>
+                    <h5>8年Web开发经验 </h5>
+                    <p>擅长互联网应用程序开发，曾研发过价值千万级医药行业ERP项目。</p>
+                </li>
+                <li class="teck2">
+                    <img src="/static/images/mz_ad/web-images/dn02.png" alt="" class="user">
+                    <h3>雷晋宁</h3>
+                    <h4>前千行集团高级工程师</h4>
+                    <h5>5年互联网研发经验</h5>
+                    <p>精通Web前端研发，负责过多家大型公司株高前端项目开发，主导开发过最高人民法院安全项目。</p>
+                </li>
+                <li class="teck3">
+                    <img src="/static/images/mz_ad/web-images/dn03.png" alt="" class="user">
+                    <h3>李景山</h3>
+                    <h4>前端开发高级工程师</h4>
+                    <h5>百万级流量电商网站研发总监 </h5>
+                    <p>曾担任某百万级流量电商网站研发负责人,乐于程序设计，负责过多个大型综合信息网站的研发，精通移动和PC WEB开发技术。</p>
+                </li>
+                <li class="teck3 teck4">
+                    <img src="/static/images/mz_ad/web-images/dn04.png" alt="" class="user">
+                    <h3>魏畅然</h3>
+                    <h4>前雅虎高级工程师</h4>
+                    <h5>麦子学院资深讲师</h5>
+                    <p>美国南加州大学计算机硕士，曾负责雅虎邮箱前端开发，专注前端框架搭建。</p>
+                </li>
+            </ul>
+            <div class="btn-more">
+                <a href="javascript:" class="lbtn more" onclick="_MEIQIA('showPanel')">跟老师聊聊</a>
+                <a href="javascript:" class="rbtn more" onclick="_MEIQIA('showPanel')">获得老师电话指导</a>
+            </div>
+        </div>
+        <div class="page3">
+            <h2 class="title">「 学习路线规划 」</h2>
+            <div class="jieduan">
+
+            </div>
+            <div class="btn-more">
+                <a href="javascript:" class="lbtn" style="display:block; margin:0 auto; float:none;">查看课程大纲</a>
+            </div>
+        </div>
+        <div class="page4">
+            <div class="fuwuin">
+                <h3 class="title">「 强大的就业服务体系 」</h3>
+                <div class="v2">
+                    <div class="t1">
+                        <img src="/static/images/mz_ad/web-images/fuwu-yq.png" alt="" class="p">
+                        <p>麦子学院携手<em>linkedin、拉勾、智联招聘、猎聘</em>等一线招聘平台，实现实习就业权威保障！</p></div>
+                    <div class="play">
+                        <div class="play01 play-b2">
+                            <img src="/static/images/mz_ad/web-images/video-2.jpg" alt="" class="p">
+                            <img src="/static/images/mz_ad/web-images/play-btn.png" alt="" class="play-btn">
+                            <div class="p-txt">麦子学院就业合作</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rxxy">
+                    <h3 class="txt">入学即签订<b>100%保就业服务协议</b><br/>不就业全额退款！</h3>
+                    <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">咨询保就业服务</a>
+                </div>
+            </div>
+        </div>
+        <div class="page5">
+            <div class="mx-show">
+                <h1 class="mtitle">「 他们已经实现了自己的研发梦，你呢？ 」</h1>
+                <div class="info">
+                    <div class="stu s1">
+                        <img src="/static/images/mz_ad/web-images/s1.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">李云</h5>
+                            <h5 class="t2">入职合生元<br/>月薪9K</h5>
+                        </div>
+                        <div class="fif75">合生元</div>
+                    </div>
+                    <div class="stu s2">
+                        <img src="/static/images/mz_ad/web-images/s2.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">黄庆</h5>
+                            <h5 class="t2">入职天涯社区<br/>月薪10K</h5>
+                        </div>
+                        <div class="fif75">天涯社区</div>
+                    </div>
+                    <div class="stu s3">
+                        <img src="/static/images/mz_ad/web-images/s3.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">方晓</h5>
+                            <h5 class="t2">入职络捷斯特科技<br/>月薪11K</h5>
+                        </div>
+                        <div class="fif75">互动科技传媒有限公司</div>
+                    </div>
+                    <div class="stu s4">
+                        <img src="/static/images/mz_ad/web-images/s4.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">刘 清</h5>
+                            <h5 class="t2">入职珠海西山居<br/>月薪9K</h5>
+                        </div>
+                        <div class="fif75">珠海西山居</div>
+                    </div>
+                    <div class="stu s5">
+                        <img src="/static/images/mz_ad/web-images/s5.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">周军</h5>
+                            <h5 class="t2">入职成都逊捷科技公司<br/>月薪10K</h5>
+                        </div>
+                        <div class="fif75">成都逊捷科技公司</div>
+                    </div>
+                    <div class="stu s6">
+                        <img src="/static/images/mz_ad/web-images/s6.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">张佑</h5>
+                            <h5 class="t2">入职土巴兔彬讯科技<br/>月薪11K</h5>
+                        </div>
+                        <div class="fif75">土巴兔彬讯科技</div>
+                    </div>
+                    <div class="stu s7">
+                        <img src="/static/images/mz_ad/web-images/s7.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">王扬</h5>
+                            <h5 class="t2">入职深圳易乐享<br/>月薪9K</h5>
+                        </div>
+                        <div class="fif75">深圳易乐享</div>
+                    </div>
+                    <div class="stu s8">
+                        <img src="/static/images/mz_ad/web-images/s8.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">刘明</h5>
+                            <h5 class="t2">入职铭万互联科技<br/>月薪10K</h5>
+                        </div>
+                        <div class="fif75">铭万互联科技</div>
+                    </div>
+                    <div class="stu s9">
+                        <img src="/static/images/mz_ad/web-images/s9.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">钟迪</h5>
+                            <h5 class="t2">入职丁香园<br/>月薪12K</h5>
+                        </div>
+                        <div class="fif75">丁香园</div>
+                    </div>
+                    <div class="stu s10">
+                        <img src="/static/images/mz_ad/web-images/s10.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">杨旭</h5>
+                            <h5 class="t2">入职中检远航<br/>月薪10K</h5>
+                        </div>
+                        <div class="fif75">中检远航</div>
+                    </div>
+                    <div class="stu s0">
+                        <div class="n1">10000+</div>
+                        <div class="n2">麦子学员成功就业</div>
+                    </div>
+                </div>
+            </div>
+            <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">了解定向就业计划</a>
+        </div>
+        <div class="page6">
+            <h2 class="title">「 一千个选择麦子学院的理由，我们帮你想清楚了 」</h2>
+            <ul class="ly-list">
+                <li class="b1">
+                    <h3 class="t1">费 用</h3>
+                    <h5 class="d1">线下培训：2-3W</h5>
+                    <h5 class="d2">麦子学院：不到线下的1/3</h5>
+                </li>
+                <li class="b2">
+                    <h3 class="t1">时 间</h3>
+                    <h5 class="d1">线下培训：时间固定，舟车劳顿</h5>
+                    <h5 class="d2">麦子学院：随时随地，想学就学</h5>
+                </li>
+                <li class="b3">
+                    <h3 class="t1">模 式</h3>
+                    <h5 class="d1">线下培训：大班教学，不能反复学习，无人答疑</h5>
+                    <h5 class="d2">麦子学院：1对1教学，名师答疑辅导，反复学习</h5>
+                </li>
+                <li class="b4">
+                    <h3 class="t1">效 果</h3>
+                    <h5 class="d1">线下培训：传统教学，理论主导，无就业指导</h5>
+                    <h5 class="d2">麦子学院：智能学习，签订协议保就业，不就业全退</h5>
+                </li>
+            </ul>
+            <h3 class="stitle">我们用<b>科技+互联</b>网改变教育的模式，只为让你成为一名真正的Web开发工程师</h3>
+            <div class="v3">
+                <div class="play01 play-b3">
+                    <img src="/static/images/mz_ad/web-images/video-3.jpg" alt="" class="p">
+                    <img src="/static/images/mz_ad/web-images/play-btn.png" alt="" class="play-btn">
+                    <div class="p-txt">麦子学院金牌讲师访谈</div>
+                </div>
+            </div>
+        </div>
+        <div class="page11">
+            <h3>媒体报道</h3>
+            <div class="mt-list">
+                <a href="http://36kr.com/p/5039661.html" target="_blank"><img
+                        src="/static/images/mz_ad/web-images/mt01.png" alt=""></a>
+                <a href="http://science.china.com.cn/2016-03/17/content_8645350.htm" target="_blank"><img
+                        src="/static/images/mz_ad/web-images/mt02.png" alt=""></a>
+                <a href="http://tech.sina.com.cn/i/2015-11-13/doc-ifxkszhk0231260.shtml" target="_blank"><img
+                        src="/static/images/mz_ad/web-images/mt03.png" alt=""></a>
+                <a href="http://edu.qq.com/a/20151201/056651.htm" target="_blank"><img
+                        src="/static/images/mz_ad/web-images/mt04.png" alt=""></a>
+                <a href="http://e.gmw.cn/2015-12/31/content_18319177.htm" target="_blank"><img
+                        src="/static/images/mz_ad/web-images/mt05.png" alt=""></a>
+                <a href="http://news.ifeng.com/a/20151126/46403469_0.shtml" target="_blank"><img
+                        src="/static/images/mz_ad/web-images/mt06.png" alt=""></a>
+            </div>
+        </div>
+        <div class="page12">
+            <div class="page12in">
+                <div class="mt-list mt-list5">
+                    <h3 class="title">合作企业</h3>
+                    <a href="http://study.163.com/u/microoh" target="_blank"><img
+                            src="/static/images/mz_ad/web-images/hz01.png" alt=""></a>
+                    <a href="http://www.chuanke.com/s1266915.html" target="_blank"><img
+                            src="/static/images/mz_ad/web-images/hz02.png" alt=""></a>
+                    <a href="http://www.iqiyi.com/u/2255633949" target="_blank"><img
+                            src="/static/images/mz_ad/web-images/hz03.png" alt=""></a>
+                    <a href="https://www.aliyun.com/" target="_blank"><img
+                            src="/static/images/mz_ad/web-images/hz04.png" alt=""></a>
+                    <a href="http://maiziedu.ke.qq.com/" target="_blank"><img
+                            src="/static/images/mz_ad/web-images/hz05.png" alt=""></a>
+                    <a href="http://www.miguxue.com/p/search_list.jsp?keyWord=%E9%BA%A6%E5%AD%90%E5%AD%A6%E9%99%A2"
+                       target="_blank"><img src="/static/images/mz_ad/web-images/hz06.png" alt=""></a>
+                </div>
+                <div class="mt-list mt-list5">
+                    <h3 class="title">合作院校</h3>
+                    <a href="http://www.suse.edu.cn/" target="_blank"><img src="/static/images/mz_ad/op-images/yx01.png"
+                                                                           alt=""></a>
+                    <a href="http://www.scu.edu.cn/" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx02.png" alt=""></a>
+                    <a href="http://www.cdut.edu.cn/default.html" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx03.png" alt=""></a>
+                    <a href="http://www.uestc.edu.cn/" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx04.png" alt=""></a>
+                    <a href="http://www.sicnu.edu.cn/" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx05.png" alt=""></a>
+                    <a href="http://www.swust.edu.cn/" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx06.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <div class="page13">
+            <h3>获得奖项</h3>
+            <div class="jx-list">
+                <img src="/static/images/mz_ad/web-images/jx01.jpg" alt="">
+                <img src="/static/images/mz_ad/web-images/jx02.jpg" alt="">
+                <img src="/static/images/mz_ad/web-images/jx03.jpg" alt="">
+                <img src="/static/images/mz_ad/web-images/jx04.jpg" alt="">
+                <img src="/static/images/mz_ad/web-images/jx05.jpg" alt="">
+                <img src="/static/images/mz_ad/web-images/jx06.jpg" alt="">
+            </div>
+        </div>
+        <div class="page7">
+            <h2 class="title">「 他们跟我们一起见证！ 」</h2>
+            <div class="tx-info">
+                <div class="tinfo">
+                    <img src="/static/images/mz_ad/web-images/aliyun-icon.png" alt="" class="icon1">
+                    <p><em>“</em>麦子学院是IT在线教育的创领者，我们希望有更多像麦子一样的教育培训机构，将学习和就业效果做到极致。<em>”</em></p>
+                    <h3 class="s1">——王晓裴</h3>
+                    <h3 class="s2">阿里云教育创业部总监 </h3>
+                </div>
+                <div class="tinfo">
+                    <img src="/static/images/mz_ad/web-images/baidu-icon.png" alt="" class="icon2">
+                    <p><em>“</em>大数据显示，麦子学院在国内IT在线教育行业内有极高的就业率，我们希望在未来麦子学院的定制化就业学习模式更加深入，比如某学员想入职百度做Web开发，那么百度可以和麦子学院合作推出一套认证机制：学员在麦子学院的学习数据达到某个标准，就可以直接入职百度的对应岗位实习。<em>”</em>
+                    </p>
+                    <h3 class="s1">—— 陈月</h3>
+                    <h3 class="s2">百度总监</h3>
+                </div>
+                <div class="tinfo">
+                    <img src="/static/images/mz_ad/web-images/360-icon.png" alt="" class="icon3">
+                    <p><em>“</em>智能化、数据化的学习过程监控，领先创新的LPS在线教育模式，高效可靠的商业项目训练，为社会培养1万+的高技能IT人才，我们会同与麦子学院一道，以IT技术服务为核心服务更多的企业和个人。<em>”</em>
+                    </p>
+                    <h3 class="s1">—— 徐旭升</h3>
+                    <h3 class="s2">360教育总监 </h3>
+                </div>
+            </div>
+        </div>
+        <div class="page8">
+            <h2 class="title">「 你准备好成为一名真正的web开发工程师了吗？ 」</h2>
+            <div class="zx-info">
+                <div class="pay-zx pay-zx1">
+                    <h2 class="t1" style="padding-bottom: 0;"><b>就业班</b></h2>
+                    <h3 style="color: #fff;font-size: 25px;line-height: 50px;line-height: 38px;padding: 10px 0;text-align: center;">
+                        全款优惠<br/>支持分期付款</h3>
+                    <a href="javascript:" class="zx-btn more"  onclick="_MEIQIA('showPanel')">立即报名 &gt;</a>
+                </div>
+                <div class="pay-or"><img src="/static/images/mz_ad/web-images/pay-zxor.png" alt=""></div>
+                <div class="pay-zx pay-zx2">
+                    <h2 class="t1" style="padding-bottom: 0;"><b>非就业班</b></h2>
+                    <h3 style="color: #fff;font-size: 25px;line-height: 50px;line-height: 38px;padding: 10px 0;text-align: center;">
+                        无需就业服务<br/>支持分期付款</h3>
+                    <a href="javascript:" class="zx-btn more"  onclick="_MEIQIA('showPanel')">立即报名 &gt;</a>
+                </div>
+            </div>
+        </div>
+        <div class="page9">
+            <h2 class="title">「 我想再更加深入的了解一下学习模式、费用、周期等细节问题 」</h2>
+            <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">咨询专业顾问</a>
+        </div>
+
+    </div>
+
+    <div class="page1 page-kc" id="t_one_con2" style="display:none">
+        <img src="/static/images/mz_ad/web-images/page-t01.png" alt="" class="t1">
+        <ul class="page-js-list">
+            <li>
+                <div class="sitle">第一阶段：网页基础入门</div>
+                <p>作为前端工程师必须要有扎实的网页基础功底，培训第一阶段主要HTML网页标签，CSS常用属性，通过实际案例练习，实现静态网页布局。在第一阶段进行JavaScript基础语法学习，完成课程内容。</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info kc1">
+                <i class="link ltips"></i><i class="link rtips"></i>
+                <div class="kinfo">
+                    <div class="klist">
+                        <h6>HTML基础入门</h6>
+                        <ol class="list-item">
+                            <li>· 什么是网页前端</li>
+                            <li>· 开发工具介绍</li>
+                            <li>· Html常见的标签</li>
+                            <li>· 相关的命名规则</li>
+                            <li>· ul/ol/li列表元素</li>
+                            <li>· dl/dt/dd列表元素</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>Css基础入门</h6>
+                        <ol class="list-item">
+                            <li>· Css选择器</li>
+                            <li>· Css样式的使用</li>
+                            <li>· Css背景属性</li>
+                            <li>· Css文本属性</li>
+                            <li style="width:97%; border-bottom:none;">· 表格实例</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>Div+Css盒子模型</h6>
+                        <ol class="list-item">
+                            <li>· 认识默认的文档流模式</li>
+                            <li>· float浮动效果</li>
+                            <li>· div+span及盒子模型</li>
+                            <li>· 网页布局模式</li>
+                            <li>· 实例：网页布局</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>Css导航栏自适应</h6>
+                        <ol class="list-item">
+                            <li>· Csss边框样式</li>
+                            <li>· Css外间距样式</li>
+                            <li>· Css内间距样式</li>
+                            <li>· Css之Hover伪类元素</li>
+                            <li style="width:97%; border-bottom:none;">· 实例：背景自适应列表案例</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>Css定位</h6>
+                        <ol class="list-item">
+                            <li>· 网页定位原理</li>
+                            <li>· 相对定位</li>
+                            <li>· 绝对定位</li>
+                            <li>· Css实现三角形效果</li>
+                            <li>· 实例：带说明的导航</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>JavaScript初识</h6>
+                        <ol class="list-item">
+                            <li>· javascript变量</li>
+                            <li>· 数据类型</li>
+                            <li>· js隐式转换</li>
+                            <li>· 事件的绑定和移出</li>
+                            <li>· js强制类型转换</li>
+                            <li>· JavaScript初识</li>
+                        </ol>
+                    </div>
+
+                </div>
+
+                <a href="javascript:" class="more-btn more" onclick="_MEIQIA('showPanel')">咨询老师</a>
+            </div>
+        </ul>
+
+
+        <ul class="page-js-list">
+            <li>
+                <div class="sitle sitle2">第二阶段：专业JS编程</div>
+                <p>一位优秀
+                    前端工程师必掌握的专业技能就是JavaScript编程，如果你具备优秀的JavaScript编程技能，那么你将是众多公司青睐的对象。此阶段主要通过实际案例掌握JavaScript原生态编程，掌握Jquery编程，初步了解响应式框架。</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info kc2">
+                <i class="link ltips"></i><i class="link rtips"></i>
+                <div class="kinfo">
+                    <div class="klist">
+                        <h6>JavaScript基础语法</h6>
+                        <ol class="list-item">
+                            <li>· 流程控制：if语句</li>
+                            <li>· 流程控制：switch语句</li>
+                            <li>· 自定义函数</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>JavaScript基础语法</h6>
+                        <ol class="list-item">
+                            <li>· for循环</li>
+                            <li>· while和do...while循环</li>
+                            <li>· js参数及变量作用域</li>
+                            <li>· 对元素的输出</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>运算符</h6>
+                        <ol class="list-item">
+                            <li>· 算数运算符</li>
+                            <li>· 逻辑运算符</li>
+                            <li>· 三元运算符</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>定时器</h6>
+                        <ol class="list-item">
+                            <li>· 定时器创建</li>
+                            <li>· 定时器清除</li>
+                            <li>· 实例：实现图片轮播</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>实现dom操作</h6>
+                        <ol class="list-item">
+                            <li>· 对元素的获取</li>
+                            <li>· 对元素的属性设置</li>
+                            <li>· 对元素注册事件</li>
+                            <li>· 创建元素或删除元素</li>
+                            <li>· 实例：仿淘宝购物车</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>Jquery框架使用</h6>
+                        <ol class="list-item">
+                            <li>· 掌握Jq选择器</li>
+                            <li>· Jquery对dom操作</li>
+                            <li>· jq事件</li>
+                            <li>· jq自定义动画</li>
+                            <li>· Bootstrap框架使用</li>
+                        </ol>
+                    </div>
+
+                </div>
+
+                <a href="javascript:" class="more-btn more" onclick="_MEIQIA('showPanel')">咨询老师</a>
+            </div>
+        </ul>
+
+
+        <ul class="page-js-list">
+            <li>
+                <div class="sitle sitle3">第三阶段：专业阶段-综合案例</div>
+                <p>
+                    学到此阶段，从专业技能上，同学应该都具备一定的前端编程能力了，可以实现pc端所有静态页面和常用js特效的制作，本阶段通过几个综合案例主要让同学们了解掌握兼容性处理的相关办法和初步进入h5+css3的学习。</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info kc3">
+                <i class="link ltips"></i><i class="link rtips"></i>
+                <div class="kinfo">
+                    <div class="klist">
+                        <h6>网页兼容</h6>
+                        <ol class="list-item">
+                            <li>· 掌握网页兼容工具的使用</li>
+                            <li>· 常见的css兼容问题及解决方法</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>jquery-UI</h6>
+                        <ol class="list-item">
+                            <li>· 掌握JqueryUI基本框架</li>
+                            <li>· JqueryUI模态窗体</li>
+                            <li>· Jquery日历插件</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>Ajax技术</h6>
+                        <ol class="list-item">
+                            <li style="width: 90%">· XmlHttpRequset对象介绍</li>
+                            <li>· onreadystatechange</li>
+                            <li>· readySate属性</li>
+                            <li>· jquery ajax</li>
+                            <li>· 实际案例</li>
+                        </ol>
+                    </div>
+
+
+                    <div class="klist">
+                        <h6>正则表达式</h6>
+                        <ol class="list-item">
+                            <li>· 正则表达式基本语法</li>
+                            <li>· 第js实现正则表达式</li>
+                            <li>· jquery验证框架</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>html5媒体标签</h6>
+                        <ol class="list-item">
+                            <li style="width:97%;">· embed</li>
+                            <li style="width:97%;">· video及相关属性</li>
+                            <li style="width:97%; border-bottom:none;">· audio标签和相关属性</li>
+                        </ol>
+                    </div>
+
+
+                    <div class="klist">
+                        <h6>js无缝滚动效果</h6>
+                        <ol class="list-item">
+                            <li>· 无缝滚动的基本原理</li>
+                            <li>· offsetWidth属性</li>
+                            <li>· scrollLeft属性</li>
+                            <li>· 结合定时器实现</li>
+
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>js实现放大镜特效</h6>
+                        <ol class="list-item">
+                            <li style="width:97%;">· 放大镜设计的实现原理和设计思路</li>
+                            <li style="width:97%;">· event对象及event对象ie和ff兼容处理</li>
+                            <li style="width:97%; border-bottom:none;">· 掌握position实现定位</li>
+                        </ol>
+                    </div>
+
+
+                    <div class="klist">
+                        <h6>HTML5+CSS3</h6>
+                        <ol class="list-item">
+                            <li>· H5+css3实现网页框架</li>
+                            <li>· input新增标签</li>
+                            <li>· Canvas编程</li>
+                            <li>· HTML5绘图基础</li>
+                            <li style="width:97%; border-bottom:none;">· 案例：canvas实现小游戏</li>
+                        </ol>
+                    </div>
+
+
+                </div>
+
+                <a href="javascript:" class="more-btn more" onclick="_MEIQIA('showPanel')">咨询老师</a>
+            </div>
+        </ul>
+
+
+        <ul class="page-js-list">
+            <li>
+                <div class="sitle sitle4">第四阶段：移动端开发</div>
+                <p>掌握了前3个阶段的前端知识，其实你已经具备了开发一个综合项目的基本能力，为了增加你的项目经验的多样性，适应市场的需求，获取更高的薪资，请继续学习移动端编程吧。</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info kc4">
+                <i class="link ltips"></i><i class="link rtips"></i>
+                <div class="kinfo">
+                    <div class="klist">
+                        <h6>Bootstrap栅格系统</h6>
+                        <ol class="list-item">
+                            <li>· Bootstrap栅格原理</li>
+                            <li>· Bootstrap栅格用法</li>
+                            <li>· Bootstrap排版基础</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>Bootstrap响应式组件</h6>
+                        <ol class="list-item">
+                            <li>· Bootstrap表格样式</li>
+                            <li>· Bootstrap表单样式</li>
+                            <li>· Bootstrap按钮组</li>
+                            <li>· Bootstrap图片与辅助样式</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>Bootstrap响应式组件</h6>
+                        <ol class="list-item">
+                            <li>· 焦点轮播图；折叠效果</li>
+                            <li>· Js选项卡</li>
+                            <li>· 进度条和媒体对象</li>
+                            <li>· 标签、徽章、大屏展播</li>
+                            <li>· 页面标题</li>
+                            <li>· Boostrap导航条</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>Bootstrap响应式网页</h6>
+                        <ol class="list-item">
+                            <li>· 创建新的项目</li>
+                            <li>· 响应式导航</li>
+                            <li>· 第一屏home区域制作</li>
+                            <li>· footer底部区域制作</li>
+                            <li>· 效果插件</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>zepto入门</h6>
+                        <ol class="list-item">
+                            <li>· zepto和jquery的联系</li>
+                            <li>· zepto和jquery的区别</li>
+                            <li>· Zepto.js 入门</li>
+                            <li>· Zepto 工具方法</li>
+                            <li>· 用 Zepto 快速选择元素</li>
+                            <li>· Zepto.js 自定义</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>zepto实战</h6>
+                        <ol class="list-item">
+                            <li>· Zepto 的应用开发框架</li>
+                            <li>· App.js Zepto 脚手架</li>
+                            <li>· App.js Zepto 列表页</li>
+                            <li>·App.js Zepto 详情页</li>
+                            <li>· App.js Zepto 评论页</li>
+                        </ol>
+                    </div>
+
+                </div>
+
+                <a href="javascript:" class="more-btn more" onclick="_MEIQIA('showPanel')">咨询老师</a>
+            </div>
+        </ul>
+
+
+        <ul class="page-js-list">
+            <li>
+                <div class="sitle sitle5">第五阶段：选修阶段</div>
+                <p>
+                    经历了前4个阶段的系统学习，你已经具备了pc端和移动端编程的基本技能，在前端领域可以独当一面了，为了适应前端专业各个领域的开发和效率的经一步提升，建议你可以自修AngularJS，Less等框架。</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info kc5">
+                <i class="link ltips"></i><i class="link rtips"></i>
+                <div class="kinfo">
+                    <div class="klist">
+                        <h6>AngularJS入门</h6>
+                        <ol class="list-item">
+                            <li>· AngularJS的语法介绍</li>
+                            <li>· AngularJS中的简单数据绑定</li>
+                            <li>· AngularJS中的事件绑定</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>AngularJS编程</h6>
+                        <ol class="list-item">
+                            <li>· AngularJS中的控制器</li>
+                            <li>· AngularJS表单开发</li>
+                            <li>· AngularJS表单开发</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>AngularJS模块化编程</h6>
+                        <ol class="list-item">
+                            <li style="width:97%;">· AngularJS模块化应用（上）</li>
+                            <li style="width:97%;">· AngularJS模块化应用（下）</li>
+                        </ol>
+                    </div>
+
+
+                    <div class="klist">
+                        <h6>LESS编程</h6>
+                        <ol class="list-item">
+                            <li>· 初见less</li>
+                            <li>· 变量(variables)</li>
+                            <li>· 函数(functions)</li>
+                            <li>· f函数库 - 其他函数</li>
+                        </ol>
+                    </div>
+
+                    <!--<div class="klist">
+                      <h6>Web及移动产品设计</h6>
+                      <ol class="list-item">
+                        <li>· Web端产品设计</li>
+                        <li>· 移动端产品设计</li>
+                        <li>· Web端产品设计案例1</li>
+                        <li>· Web端产品设计案例2</li>
+                        <li>· 移动端产品设计案例1</li>
+                        <li>· 移动端产品设计案例2</li>
+                      </ol>
+                    </div>
+
+
+                    <div class="klist">
+                      <h6>怎么做一款O2O互联网产品</h6>
+                      <ol class="list-item">
+                        <li style="width:97%;">· 从零打造一款web社区产品</li>
+                        <li style="width:97%;">· 怎么做一款O2O互联网产品</li>
+                        <li style="width:97%;">· 互联网产品商业案例解析</li>
+                      </ol>
+                    </div>
+
+                    <div class="klist">
+                      <h6>UX轻松入门</h6>
+                      <ol class="list-item">
+                        <li >· 互联网发展和基础</li>
+                        <li >· 互联网思维</li>
+                        <li >· 互联网产品</li>
+                        <li >· 互联网产品及产品经理</li>
+                        <li >· 互联网产品经理必修课1</li>
+                        <li >· 互联网产品经理必修课2</li>
+                      </ol>
+                    </div>
+
+
+                    <div class="klist">
+                      <h6>产品经理创新及自我提升</h6>
+                      <ol class="list-item">
+                        <li>· 产品的创新之路</li>
+                        <li>· 产品经理自我提升之路</li>
+                        <li>·  产品经理内功修炼</li>
+                        <li>·  产品经理不再纸上谈兵</li>
+                        <li>·  产品经理的自我修养</li>
+                        <li>·  产品经理从专能到全能</li>
+                      </ol>
+                    </div>-->
+
+
+                </div>
+
+                <a href="javascript:" class="more-btn more" onclick="_MEIQIA('showPanel')">咨询老师</a>
+            </div>
+        </ul>
+
+
+        <div class="question-list">
+            <div class="title">常见问题</div>
+            <dl class="qlist">
+                <dt><em><i></i>什么是“企业直通班“？</em></dt>
+                <dd>
+                    <p>
+                        “企业直通班”是麦子学院的核心产品，通过在线教学提升学生技能，保障就业效果。目前覆盖有Android、iOS、Python、产品经理、嵌入式等十余个专业方向。选定专业方向并付费后，即可进入班级。每个班级学生不超过30人，有专业教师和班主任进行教学辅导与监督。全程贯穿项目制作来保障学员实践效果。每周会有直播班会进行答疑解惑、项目讨论、模拟面试等内容。最终由就业老师安排就业面试，顺利入职。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>什么是LPS呢？</em></dt>
+                <dd>
+                    <p>“LPS（Learning Process
+                        System的缩写）是麦子学院自主研发的教学过程系统。LPS系统通过整合录播、直播、测试等环节的数据，结合人工智能和数据挖掘技术，提升了老师辅导和同学在线学习的效率和针对性，让学习及就业效果更有保障。LPS目前仍然在不断地进行升级与迭代，只为实现“有教无类，因材施教”的梦想。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>麦子学院的视频是免费的吗？</em></dt>
+                <dd>
+                    <p>“企业直通班”有什么不同吗？
+                        麦子学院官网的课程目前绝大多数是免费开放的。企业直通班的直播视频和各专业的最新视频是仅对企业直通班学员开放的。此外，企业直通班的同学还能够得到专业老师的一对一辅导和讲解、就业老师的就业推荐、班级同学的线上线下活动……</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>在职人员为什么更适合在线学习？</em></dt>
+                <dd>
+                    <p>在职人士学习最关注学习时间和学习效果。如果脱产学习，时间成本和生活压力都很大。在麦子学院企业直通班，即可以使用移动设备随时随地学习，还可以在学业完成、面试通过后再离职。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>自律性差，怎么保证完成学习呢？</em></dt>
+                <dd>
+                    <p>
+                        我们通过改变学习过程，商业项目实战与知识点学习相结合的方式，让学习更有乐趣更有成就感。让同学一旦开始，就想学下去。另一方面，学习是一种习惯，需要自己和老师共同努力进行培养。同学遇到困难或者不适应时，我们会有专业老师和班主任对你进行解惑和监督。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>相比线下培训机构，在线学习有什么好处呢？</em></dt>
+                <dd>
+                    <p>最直接的好处：记录你的学习进度，通过网络，老师可以更有针对性地解决你的问题；比线下机构给予学生的辅导时间更加宽裕，更能保证你的学习效果。</p>
+                    <p>更自由：我们可以使用电脑、手机等移动设备，随时随地进行学习。</p>
+                    <p>更优质：你可以直接跟随国内一线企业工程师进行学习，经验更丰富，人脉更扎实。</p>
+                    <p>更实惠：我们的性价比更高。因为我们省去了房租成本，提升了老师辅导的效率，所以同样的学习与就业效果，我们的价格更低。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>麦子学院怎么保障就业的？</em></dt>
+                <dd>
+                    <p>我们通过3种方式解决就业问题：</p>
+                    <p>1.我们和智联招聘、拉勾网、猎聘网直接对接接口，进行岗位推荐和简历推送，让待就业学员最快匹配地点和岗位需求。</p>
+                    <p>2.我们和近千家企业直接签约，保证长期提供指定岗位的人员推荐和培训。</p>
+                    <p>3.每天都会有全国各地的创业型企业、软件园区、投后管理公司主动联系我们，提供招聘需求。</p>
+                    <p>此外，我们还在不断提升自身的教学水平和学习效果，来满足更多企业更高岗位的技能需求，提升学员的就业质量。</p>
+                </dd>
+            </dl>
+            <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">还有其他问题，咨询在线老师</a>
+        </div>
+
+    </div>
+
+
+
+   <div class="footer">
+        <div class="footerin">
+            <div class="flogo"><img src="/static/images/mz_ad/web-images/flogo.png" alt=""></div>
+            <div class="fnum">400 862 8862</div>
+            <div class="fewm">
+                <div class="mpic">
+                    <img src="/static/images/mz_ad/web-images/weibo-emw0.png" alt=""><h5>手机浏览页面</h5>
+                </div>
+                <div class="mpic">
+                    <img src="/static/images/mz_ad/web-images/wx-emw0.png" alt=""><h5>手机咨询老师</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="video-fifter video-f1">
+        <div class="video-fifterin">
+            <div class="close-btn c1-btn"></div>
+            <div id="video-f1"></div>
+        </div>
+    </div>
+
+    <div class="video-fifter video-f2">
+        <div class="video-fifterin">
+            <div class="close-btn c2-btn"></div>
+            <div id="video-f2"></div>
+        </div>
+    </div>
+
+    <div class="video-fifter video-f3">
+        <div class="video-fifterin">
+            <div class="close-btn c3-btn"></div>
+            <div id="video-f3"></div>
+        </div>
+    </div>
+
+    <!--此段代码从离线宝后台获取开始-->
+    <script>
+        document.write('<script type="text/javascript"  data-lxb-uid="10986738" data-lxb-gid="198532" src="http://lxbjs.baidu.com/api/asset/api.js?t=' + new Date().getTime() + '" charset="utf-8"></scr' + 'ipt>');
+    </script>
+    <div class="lxb"><img src="/static/images/mz_ad/op-images/kuang.png"></div>
+
+{% endblock %}
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/lib/superSlider/jquery.SuperSlide.2.1.1.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/index.js?v={{ time_stamp }}"></script>
+    <!--弹窗-->
+
+{% endblock %}

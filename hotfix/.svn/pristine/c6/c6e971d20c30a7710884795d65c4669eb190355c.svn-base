@@ -1,0 +1,48 @@
+{% load date_convert_tag %}
+{% for answer in answer_list %}
+<li discuss_id={{ answer.0.id }}>
+    <a href="{% url 'u:index' answer.0.user_id %}" class="img" target="_blank">
+        <img src="{{ MEDIA_URL }}{{ answer.0.head }}" alt="{{ answer.0.nick_name }}"/>
+    </a>
+    <div class="infos">
+        <div class="user">
+            <a href="{% url 'u:index' answer.0.user_id %}" target="_blank">
+                <strong answer_user_id={{ answer.0.user_id }}>{{ answer.0.nick_name }}</strong>
+                {% if answer.0.group_name == 'teacher' %}
+                <em class="teacher-mark">老师</em>
+                {% endif %}
+            </a>
+        </div>
+        <p>{{ answer.0.comment }}</p>
+        <div class="timeReply font12">
+            <span class="time">{% date_convert answer.0.create_date %}</span>
+            <span class="reply">回复</span>
+        </div>
+    </div>
+    {% for canswer in answer.1 %}
+    <div class="item" discuss_id={{ canswer.id }}>
+        <a href="{% url 'u:index' canswer.user_id %}" class="img" target="_blank">
+            <img src="{{ MEDIA_URL }}{{ canswer.head }}" alt="{{ canswer.nick_name }}"/>
+        </a>
+        <div class="infos">
+            <div class="user">
+                <a href="{% url 'u:index' canswer.user_id %}" target="_blank">
+                    <strong answer_user_id={{ canswer.user_id }}>{{ canswer.nick_name }}</strong>
+                    {% if canswer.group_name == 'teacher' %}
+                    <em class="teacher-mark">老师</em>
+                    {% endif %}
+                </a>
+                 {% if canswer.answer_user_id %}
+                <span class="replyTxt">回复<a href="{% url 'u:index' canswer.answer_user_id %}" target="_blank">{{ canswer.answer_nick_name }}</a></span>
+                {% endif %}
+            </div>
+            <p>{{ canswer.comment }}</p>
+            <div class="timeReply font12">
+                <span class="time">{% date_convert canswer.create_date %}</span>
+                <span class="reply">回复</span>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</li>
+{% endfor %}

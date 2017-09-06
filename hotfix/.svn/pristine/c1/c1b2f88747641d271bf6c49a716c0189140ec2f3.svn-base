@@ -1,0 +1,16 @@
+<section class="list_catalog">
+    <ul>
+        {% for item_data in item_data_list %}
+        <li>
+            {% for k, v in item_data.items %}
+            <h3>{{ k }}</h3>
+            <nav>
+                {% for itm in v %}
+                <a href="{% url 'wiki_item_detail' course_short_name itm.short_name %}" title="{{ itm.name }}" {% if itm.id == item.id %} class="cur"{% endif %}>· {{ itm.name }}</a>
+                {% endfor %}
+            </nav>
+            {% endfor %}
+        </li>
+        {% endfor %}
+    </ul>
+</section>

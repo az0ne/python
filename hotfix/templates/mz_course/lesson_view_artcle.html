@@ -1,0 +1,38 @@
+<div class="v5-box">
+  <div id="related-article" url="{{ relate_article_url }}">
+    <h1>相关文章</h1>
+
+{#    <ul class="related-article-list color66">#}
+{#        {% for relate_article in relate_article_lst %}#}
+{#        <li><a class="font14" href="{{ relate_article.url }}" target="_blank">{{ relate_article.title }}</a></li>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+
+
+  </div>
+
+  <div id="about-job">
+    <h1>相关职位</h1>
+    <ul class="about-job-ul">
+    {% for item in lagou %}
+	   <li>
+	    <span class="dict">
+		    <div class="li-div">
+		    	<div class="mb10">
+		            <a target="_blank" title="{{item.positionName}}" href="{{item.posiitonDetailUrl}}" rel="nofollow">{{item.positionName}}</a>
+		            &nbsp;
+		            <span class="c9">[{{item.city}}]</span>
+				</div>
+				<span class="s2"><em class="c7">公司名称：</em>{{item.companyName}}</span><br>
+				<span class="s1"><em class="c7">年薪：</em>{{item.salary}}</span>
+				<span class="s1 m60"><em class="c7">规模：</em>{{item.companySize}}</span><br>
+				<span class="s1"><em class="c7">最低学历：</em>{{item.education}}</span>
+				<span class="s1 m60"><em class="c7">阶段：</em>{% if item.financeStage|length > 7 %}{{ item.financeStage|slice:"6" }}...{% else%} {{item.financeStage}}{% endif %}</span><br>
+				<span class="s2"><em class="c7">职位诱惑：</em>{{item.positionAdvantage}}</span>
+			</div>
+	    </span>
+		</li>
+	{% endfor %}
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,295 @@
+@import 'core/reset';
+@import 'core/common';
+@import 'core/var';
+@import 'core/function';
+
+@import 'toolbar';
+.sign-up,.sign-success {
+    background: #f5f5f5;
+    .footNewBox2 {
+        width: 100%;
+        height: 74px;
+        background: #e9e9e9;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        a {
+            color: #999999;
+        }
+        .p {
+            padding-top: 24px;
+        }
+    }
+}
+.sign-main-area {
+    padding: 126px 0 0;
+    width: 100%;
+    min-height: 578px;
+}
+
+.sign-container {
+    background: #fff;
+    padding: 60px 58px;
+    height: 480px;
+}
+
+.sign-tabs {
+    padding-bottom: 12px;
+    border-bottom: #C4C4C4 solid 1px;
+    margin-bottom: 70px;
+    font-size: 0;
+    li {
+        width: 50%;
+        display: inline-block;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+        &.active {
+            a {
+                color: #1BBC9B;
+                &:after {
+                    content: '';
+                    border-bottom: 2px solid #5ECFBA;
+                    position: absolute;
+                    width: 100%;
+                    left: 0;
+                    bottom: -13px;
+                }
+            }
+            .sign-mobile:before {
+                background-position: -436px -112px;
+            }
+            .sign-email:before {
+                background-position: -426px -188px;
+            }
+        }
+        a {
+            width: 100%;
+            height: 28px;
+            line-height: 28px;
+            display: inline-block;
+            position: relative;
+            color: #666;
+            outline: none;
+            &:before {
+                content: '';
+                display: inline-block;
+                background: url(../images/sprite.png) 0 0 no-repeat;
+                vertical-align: middle;
+                margin-right: 20px;
+            }
+        }
+        .sign-mobile:before {
+            width: 18px;
+            height: 28px;
+            background-position: -436px -72px;
+        }
+        .sign-email:before {
+            width: 28px;
+            height: 20px;
+            background-position: -426px -152px;
+        }
+    }
+}
+
+.sign-left {
+    width: 680px;
+    border-right: 1px solid #E7E7E7;
+    padding-right: 72px;
+    .form-group {
+        position: relative;
+    }
+    .form-control, .verify-info #verify-ok {
+        width: 320px;
+        box-shadow: none;
+        border-radius: 0px;
+        transition: all .3s ease-in-out;
+    }
+    .p_sign_tips, .m_sign_tips, .e_sign_tips, .v_sign_tips {
+        position: absolute;
+        left: 340px;
+        top: 6px;
+        width: 100%;
+    }
+    .sign_btn {
+        width: 320px;
+        border-radius: 0;
+    }
+    .form-control + label {
+        display: inline-block;
+        position: absolute;
+        top: 5px;
+        left: 10px;
+        bottom: 5px;
+        pointer-events: none;
+        padding: 5px 10px 5px 0;
+        color: #999;
+        font-weight: normal;
+        font-size: 12px;
+        transition: all .3s ease-in-out;
+        background: white;
+    }
+    .form-control:focus + label, .form-control:active + label {
+        color: #5ECFBA;
+        background: white;
+    }
+    .tab-content {
+        .tab-pane {
+            display: none;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+    }
+    .captcha {
+        height: 40px;
+    }
+    #verify_form {
+        display: none;
+    }
+    .verify-info {
+        font-size: 14px;
+        color: #333;
+        font-weight: normal;
+        width: 320px;
+    }
+    .verify-info {
+        label, input, .send-verify, .verify-tips {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        label {
+            margin-right: 30px;
+            font-weight: normal;
+        }
+        input[name="Verify"] {
+            width: 85px;
+            height: 30px;
+            margin-right: 19px;
+        }
+        .send-verify {
+            width: 135px;
+            height: 30px;
+            line-height: 30px;
+            background: #5ECFB5;
+            color: #fff;
+            text-align: center;
+            padding: 0;
+            cursor: pointer;
+            border: none;
+        }
+        .verify-tips {
+            width: 245px;
+            font-size: 12px;
+            color: #333;
+            margin-left: 75px;
+        }
+    }
+
+    span.success:before, span.error:before {
+        content: '';
+        width: 16px;
+        height: 16px;
+        margin-right: 10px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    span.success:before {
+        background: url(../images/sprite.png) -36px -176px no-repeat;
+    }
+    span.error:before {
+        background: url(../images/sprite.png) -36px -152px no-repeat;
+    }
+    #email_form {
+        display: none;
+        .email-tips { display: block; }
+    }
+}
+.sign-right {
+    padding-left: 50px;
+    padding-top: 100px;
+    text-align: center;
+    width: 374px;
+    h2 {
+        border-bottom: 1px solid #e7e7e7;
+        margin-bottom: 30px;
+        width: 100%;
+        span {
+            display: inline-block;
+            background: #fff;
+            position: relative;
+            bottom: -6px;
+            padding: 0 20px;
+        }
+    }
+    .weixin-sign, .qq-sign {
+        display: block;
+        width: 240px;
+        height: 30px;
+        color: #fff;
+        margin: 0 auto 20px;
+        line-height: 30px;
+        position: relative;
+        &:before, &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            vertical-align: middle;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background: url(../images/sprite.png) 0 0 no-repeat;
+        }
+    }
+    .weixin-sign:before { background-position: -36px -111px; }
+    .qq-sign:before { background-position: -36px -68px; }
+    .weixin-sign { background: #55D865; }
+    .qq-sign { background: #4796D4; }
+    .qq-sign + div {
+        width: 240px;
+        text-align: left;
+        margin: 0 auto;
+        span {
+            margin-right: 10px;
+        }
+    }
+}
+
+.sign-success-container {
+    padding: 120px 455px;
+    background: #fff;
+    text-align: center;
+    height: 480px;
+    a {
+        display: block;
+        width: 260px;
+        height: 50px;
+        line-height: 50px;
+        position: relative;
+    }
+    a:after {
+        content: '';
+        vertical-align: middle;
+        margin-left: 40px;
+        width: 36px;
+        height: 36px;
+        display: inline-block;
+        background: url(../images/sprite.png) 0 0 no-repeat;
+        vertical-align: middle;
+    }
+    .finish-info {
+        background: #5ECFBA;
+        color: #fff;
+        &:after {
+            background-position: 0 -199px;
+        }
+    }
+    .see-lesson {
+        background: #4796DF;
+        color: #fff;
+        &:after {
+            background-position: 0 -252px;
+        }
+    }
+}

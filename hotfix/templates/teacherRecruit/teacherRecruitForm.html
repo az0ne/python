@@ -1,0 +1,138 @@
+{% extends "mz_common/global.html" %}
+{% block title %}IT职业在线教育讲师资料填写 - 麦子学院{% endblock %}
+{% block keywords%}麦子学院，IT职业培训，IT技能培训，IT在线教育，IT在线学习，编程学习，android,ios,php,java,python,html5,cocos2dx{% endblock %}
+{% block description%}麦子学院专注IT职业在线教育，现正在招募android开发、ios开发、平面设计、ui设计、物联网、产品经理、嵌入式、php开发、web前端、python开发等一系列IT技术讲师，让我们一起培养更多改变世界的人。{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/teacherRecruit.css?v={{ time_stamp }}"/>
+<style type="text/css">.head-container {border-bottom: 1px solid #ddd;}</style>
+{% endblock %}
+{% block indexhead %}{% endblock %}
+{% block csstype %}teacherRecruitFormBox{% endblock %}
+{% block container %}
+{% include 'header/index_header.html' %}
+<div class="teacherRecruitFrom">
+    <div class="teacherRecruitFormFlow">
+        <strong class="active"><em>1</em>填写资料</strong>
+        <strong class=""><em>2</em>提交审核</strong>
+    </div>
+    <div class="teacherRecruitFormContent">
+        <div class="teacherRecruitFormWrite active">
+            <span class="formtips">您正在申请麦子讲师，需要花费您几分钟填写一些简单的资料</span>
+            <div class="teacherRecruitForms">
+                <form action="#" method="" id="teacherRecruitForms">
+                    <ul>
+                        <li>
+                            <strong>您申请的是：</strong>
+                            <p>
+                                <label class="radioBtn"><input type="radio"  name="lecturerType" id="dkjs" value="1" /><span>带班老师</span></label>
+                                <label class="radioBtn"><input type="radio" name="lecturerType" id="lkjs" value="2" /><span>录课讲师</span></label>
+                            </p>
+                            <span class="textTips">录课讲师仅提供兼职编制哦</span>
+                            <em class="teacherRecruitFormLecturerTypeTips">请选择讲师类型</em>
+                        </li>
+                        <li>
+                            <strong>您想成为全职讲师吗?</strong>
+                            <p>
+                                <label class="radioBtn"><input type="radio" name="formation" id="jzjs" value="1" /><span>兼职讲师</span></label>
+                                <label class="radioBtn"><input type="radio" name="formation" id="qzjs" value="2" /><span>全职讲师</span></label>
+                            </p>
+                             <span class="textTips">全职编制仅针对带班讲师哦</span>
+                            <em class="teacherRecruitFormFormationTips">请选择编制类型</em>
+                        </li>
+                        <li>
+                            <strong>您的真实姓名：</strong>
+                            <p><input type="text" name="teacherRecruitName" class="text teacherRecruitName" /></p>
+                            <em class="teacherRecruitNameTips">请填写您的真实姓名</em>
+                            <span class="error teacherRecruitNameError">对不起，超出字数限制，请保证在20个字符以内</span>
+                        </li>
+                        <li>
+                            <strong>技术方向：<span>（您希望在麦子学院教授哪一门课程？）</span></strong>
+                            <p><input type="text" name="teacherRecruitSkill" class="text teacherRecruitSkill" /></p>
+                            <em class="teacherRecruitSkillTips">请填写您的技术方向</em>
+                            <span class="error teacherRecruitSkillError">对不起，超出字数限制，请保证在30个字符以内</span>
+                        </li>
+                        <li>
+                            <strong>相关经验年限：</strong>
+                            <p>
+                                <label class="radioBtn"><input type="radio" name="workingLife" id="lessThree" value="1" /><span>3年以下</span></label>
+                                <label class="radioBtn"><input type="radio" name="workingLife" id="lessFive" value="2" /><span>3至5年</span></label>
+                                <label class="radioBtn"><input type="radio" name="workingLife" id="lessEight" value="3" /><span>5至8年</span></label>
+                                <label class="radioBtn"><input type="radio" name="workingLife" id="greaterEight" value="4" /><span>8年以上</span></label>
+                            </p>
+                            <em class="teacherRecruitFormWorkingLifeTips">请选择您的工作年限</em>
+                        </li>
+                        <li>
+                            <strong>个人简介：</strong>
+                            <p class="textareaBox">
+                                <textarea class="teacherRecruitTextArea" name="teacherRecruitTextArea" rows="" cols="" placeholder="请简要描述您任职的公司和相关项目经验"></textarea>
+                            </p>
+                            <span class="warrant">未经您的许可，麦子学院将不会对外公开您工作的相关信息</span>
+                            <em class="teacherRecruitTextAreaTips">请填写您的工作描述</em>
+                            <span class="error teacherRecruitTextAreaError1">您的简历太过于简单（低于50字），丰富的工作描述将提高审核通过的几率哦。</span>
+                            <span class="error teacherRecruitTextAreaError2">对不起，超过字数限制，请保证在1000字以内</span>
+                        </li>
+                        <li>
+                            <strong>手机号码：</strong>
+                            <p><input type="text" class="text teacherRecruitPhone" name="teacherRecruitPhone"/></p>
+                            <em class="teacherRecruitPhoneTips">请填写您的联系方式</em>
+                            <span class="error teacherRecruitPhoneError">对不起，请填写有效手机号</span>
+                        </li>
+                        <li>
+                            <strong>QQ:</strong>
+                            <p><input type="text" class="text teacherRecruitQQ" name="teacherRecruitQQ"/></p>
+                            <em class="teacherRecruitQQTips">请填写您的QQ号</em>
+                            <span class="error teacherRecruitQQError">对不起，请输入5-11位纯数字</span>
+                        </li>
+                        <li>
+                            <strong>滑动完成验证</strong>
+                            <div><div class="captcha"></div><em class="teacherRecruitCapchaTips">请滑动进行验证</em></div>
+                        </li>
+                    </ul>
+                    <input type="button" class="submitBtn" value="提交审核"/>
+                </form>
+            </div>
+        </div>
+        <div class="teacherRecruitFormSubmit">
+            <div class="teacherRecruitFormSubmitBox teacherRecruitFormSuccess">
+                <div class="submittips">
+                    <h3><em></em>恭喜你，提交成功！</h3>
+                    <p>麦子学院讲师顾问团队已经收到了您的申请资料，我们会在48小时内使用您预留的联系方式联系您。</p>
+                </div>
+                <p>如果您认为反馈速度太慢，您也可以立即拨打下方咨询电话与麦子学院讲师顾问直接联系。 </p>
+                <span>咨询电话：028-69759682</span>
+                <a href="{% url 'teacher_recruit' %}" class="back">返回讲师招募页</a>
+            </div>
+            <div class="teacherRecruitFormSubmitBox teacherRecruitFormError">
+                <div class="submittips">
+                    <h3><em></em>对不起，提交失败！</h3>
+                    <div class="reason">
+                        <strong>失败原因可能是：</strong>
+                        <ol>
+                            <li id="error_msg"></li>
+                        </ol>
+                    </div>
+                    <a class="tj">重新提交</a>
+                    <a href="{% url 'teacher_recruit' %}" class="back">返回讲师招募页</a>
+                </div>
+                <p>如果您认为反馈速度太慢，您也可以立即拨打下方咨询电话与麦子学院讲师顾问直接联系。 </p>
+                <span>咨询电话：028-69759682</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="http://static.geetest.com/static/tools/gt.js"></script>
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/teacherRecruitForm.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript">
+        zhuge.track('申请麦子讲师', {'来源': '首页金牌讲师'})
+    </script>
+{% endblock %}

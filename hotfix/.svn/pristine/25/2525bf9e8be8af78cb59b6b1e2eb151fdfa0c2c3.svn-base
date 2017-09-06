@@ -1,0 +1,64 @@
+{% load date_convert_tag %}
+<input class="object_id" type="hidden" value="{{ lesson.id }}"/>
+<input class="object_name" type="hidden" value="{{ lesson.name }}"/>
+<input class="discuss_location" value="{{ discuss_location }}" type="hidden"/>
+
+<div class="questions-box t5o">
+    <div class="all-questions-lists">
+        <p class="font16 color33 pt">问答</p>
+        <ul class="tab-nav">
+            <li class="active">全部问答</li>
+            <li>我的问答</li>
+        </ul>
+        <div class="tab-box">
+            <div class="all-questions scroll-pane t5o">
+                {% if all_questions %}
+                    <ul>
+                        {% include 'mz_course/video_right_side/lesson_all_questions_item_div.html' %}
+                    </ul>
+                    <a class="load-more">加载更多</a>
+                {% else %}
+                    <div class="no-answer">
+                        <p class="marginB29"><img src="/images/no_answer1.png"></p>
+                        <p class="font16 color66 marginB10">全部问答记录空空</p>
+                        <p class="font14 color99">暂时还没有人提出过疑问</p>
+                        <p class="font14 color99">提出疑问大家一起解答吧</p>
+                    </div>
+                {% endif %}
+                
+            </div>
+            <div class="my-questions scroll-pane t5o">
+                {% if my_questions %}
+                    <ul>
+                        {% include 'mz_course/video_right_side/lesson_my_questions_item_div.html' %}
+                    </ul>
+                    <a class="load-more">加载更多</a>
+                {% else %}
+                    <div class="no-answer">
+                        <p class="marginB29"><img src="/images/no_answer1.png"></p>
+                        <p class="font16 color66 marginB10">我的问答记录空空</p>
+                        <p class="font14 color99">你暂时还没有在此章节提出疑问</p>
+                        <p class="font14 color99">提出你的疑问大家一起解答吧</p>
+                    </div>
+                {% endif %}
+                
+            </div>
+        </div>
+    </div>
+    <div class="questions-views">
+        <p class="font16 color33 pt"><a id="back-questions" href="javascript:void(0)">&lt;&lt;返回</a></p>
+
+        <div class="question-view-box">
+            <div class="one-question-view scroll-pane">
+                <ul><li></li></ul>
+                <a class="load-more">加载更多</a>
+            </div>
+        </div>
+    </div>
+    <div class="reply-textarea t5o">
+        <p class="reply-msg"><textarea></textarea></p>
+        <!-- <a class="emoji" href="javascript:void(0)"></a> -->
+        <button class="submit-reply-btn">回复</button>
+        <button class="reply-cancel">取消</button>
+    </div>
+</div>

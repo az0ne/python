@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="renderer" content="webkit"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>推荐有奖—麦子学院</title>
+		<meta name="Keywords" content=""/>
+		<meta name="Description" content="麦子学院推荐有奖活动，介绍好友，各得200元现金。"/>
+        <link rel="shortcut icon" type="image/x-icon" href="/static/images/favicon.ico" />
+		<link rel="stylesheet" type="text/css" href="/static/css/invited160408_style.css"/>
+	</head>
+	<body>
+		<div class="bg-box"></div>
+		<div class="containers">
+			<div class="banner"><img src="/static/images/add_invited_160408/banner.png"/></div>
+			<div class="share-box">
+				<strong>您的邀请链接：</strong>
+				<p>
+					<span class="txt"><input type="text" id="share-link" value="" /></span>
+					<span class="btn"><input type="button" id="copy-link" onclick="jsCopy()" value="一键复制" /></span>
+				</p>
+				<div class="share-btn">
+					<span>分享连接到：</span>
+					<ul>
+						<li class="qq"><a class="jiathis_button_cqq" title="分享到QQ好友">QQ</a></li>
+						<li class="sina"><a class="jiathis_button_tsina" title="分享到新浪微博">新浪</a></li>
+						<li class="q-zone"><a class="jiathis_button_qzone" title="分享到QQ空间">空间</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="hd-infos">
+				<span class="hd-open">活动说明</span>				
+				<div class="hd-infos-box">					
+					<div class="title">
+						<span class="closed">关闭</span>
+						<strong>活动说明</strong>						
+					</div>
+					<div class="content">
+						<ol>
+							<li>1.将邀请链接分享至社交媒体，当您的好友通过该链接进入麦子学院官网注册后，他的账号将带有您的邀请标记。 </li>
+							<li>2.每一个拥有您邀请标记的账号报名课程时都将享受立减200元学费的优惠(“488试学+尾款”模式除外)。而您也将获得200元的现金红包。</li>
+							<li>3.成功获得红包后将通过站内消息和弹窗提醒您。官方客服会联系您，确认您的微信号并将红包发送给您。</li>
+						</ol>
+						<p><em>注意：</em>如果您的好友已经通过他人的邀请链接注册，便无法生成您的邀请标记！好友通过邀请链接注册，否则邀请标记将不会生效！</p>
+						<p>对活动时间及奖励设置，麦子学院拥有最终解释权</p>
+						<span class="closed">关闭</span>
+					</div>
+				</div>
+			</div>
+			<div class="steps">
+				<ul>
+					<li><img src="/static/images/add_invited_160408/step1_img.png"/></li>
+					<li><img src="/static/images/add_invited_160408/step2_img.png"/></li>
+					<li><img src="/static/images/add_invited_160408/step3_img.png"/></li>
+				</ul>
+			</div>
+		</div>
+		<div class="login-box">
+			<div class="title">
+				<span class="closed">关闭</span>
+				<strong>请登录以获取邀请链接</strong>
+			</div>
+			<div class="login-body" id="box-login">
+				<form id="login_form" action="/user/login/" method="post" autocomplete="off">
+                    <ul>
+                        <li><input id="id_account_l" maxlength="50" name="account_l" placeholder="请输入邮箱账号/手机号" type="text"></li>
+                        <li><input id="id_password_l" name="password_l" placeholder="请输入密码" type="password"></li>
+                    </ul>
+                </form>
+                <p class="good-tips"><a href="#" class="Forgetpsw" id="btnForgetpsw">忘记密码？</a>还没有账号？<a href="/user/signup/" class="Register" target="_blank" id="btnRegister">立即注册</a></p>
+                <div class="login-btn">
+                    <button id="login_btn" type="button" onclick="login_form_submit('login-form-tips')">登录</button>
+                </div>
+                <div id="login-form-tips" class="tips-error">错误提示</div>
+                <div class="otherLogin"><span>其他方式登录</span>
+                	<a class="wx" href="/user/connect/?partner=wechat"></a>
+                	<a class="qq" href="/user/connect/?partner=qq"></a>
+                </div>
+			</div>
+		</div>
+		
+		<script src="/static/js/jquery-1.11.1.min.js"></script>
+        <script src="/static/js/layer/layer.min.js"></script>
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2055164" charset="utf-8"></script>
+		<script src="/static/js/share_introduce_invited_160408.js" type="text/javascript"></script>
+        <script type="text/javascript">
+			$(function(){
+				// 微信二维码显示/隐藏
+				//$(".share-btn .weixin a").hover(function(){
+				//	$(this).next().stop().fadeToggle();
+				//});
+				
+				// 活动说明
+				$(".hd-open").click(function(){
+					$(".bg-box").show();
+					$(".hd-infos-box").show(200);
+				});
+				$(".closed").click(function(){
+					$(".bg-box").fadeOut(200);
+					$(this).parent().parent().hide(200);
+				});
+
+                {% if user.is_authenticated %}
+                    {% if link_display %}
+                        share_introduce_login();
+                    {% else %}
+                        layer.alert('只有企业直通班学员能够分享邀请链接');
+                    {% endif %}
+                {% else %}
+                    share_introduce_not_login();
+                {% endif %}
+			});
+			// 复制链接交互
+			function jsCopy(){ 
+			    var e=document.getElementById("share-link");//对象是content 
+			    e.select(); //选择对象 
+			    document.execCommand("Copy"); //执行浏览器复制命令
+			   alert("已复制好，可贴粘。"); 
+			} 
+		</script>
+		<script src="/static/js/microoh-v5.js" type="text/javascript"></script>
+		<script src="/static/js/mz-common.js?201602031517" type="text/javascript"></script>		
+	</body>
+</html>

@@ -1,0 +1,99 @@
+{% extends "mz_common/base.html" %}
+{% block title %}Android培训 - Android开发工程师培训 - 麦子学院{% endblock %}
+{% block keywords%}Android，Android培训，Android培训机构，安卓开发，Android学习，Android在线学习，安卓工程师{% endblock %}
+{% block description%}麦子学院，专业在线Android培训机构，提供史上最靠谱的安卓开发培训课程，定制化Android学习路线，名师在线指导，通过通俗易懂的讲解，丰富有趣的实战，轻松学习Android，升级为实力派Android工程师。{% endblock %}
+{% block breadcrumb %}
+    <div class="container visible-md visible-lg">
+        <ol class="breadcrumb" style="font-size: 14px">
+            <li><a href="{% url 'index_front' %}">首页</a></li>
+                <li><a href="{% url 'course:career_course_list' %}">企业直通班</a></li>
+            <li class="active">{{ cur_careercourse.name }}培训</li>
+        </ol>
+    </div>
+{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="/static/Lesson/css/jquery.bxslider.css">
+    <link rel="stylesheet" type="text/css" href="/static/Lesson/css/style22.css"/>
+{% endblock %}
+{% block container %}
+    <div class="container" style="position: relative;">
+        <ul class="zy_tab" style="z-index: 99">
+            <li class="liH">课程介绍<i></i></li>
+            <li>
+                <a href="{% url 'course:career_course_detail' couse_short_name %}">
+                课程大纲
+                <i></i>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+{#<html style="overflow-y: hidden">#}
+<style>
+.android_p{ background:#1B2C33; width:100%; padding:20px 0;}
+.footDivAnd{ background:#15A86A;}
+.footDivAnd .footDivD > .po{ background:#15A86A;}
+</style>
+
+
+
+<div style="width:1160px; margin:0 auto;" class="YaHei" >
+	<div class="index_img"><img alt="Android开发培训" src="/static/Lesson/images/android_01.jpg">
+    	<div class="po" style=" right:auto; left:18%;"><p style="margin-bottom:40px;"><img alt="Android开发课程" src="/static/Lesson/images/android_02.png"></p>
+        	<p><a target="_blank" class="abtn zzpp" style="color:#15A86A; width:200px; margin-left:118px;" href="http://m.53kf.com/72114760/54/1">了解详情</a></p>
+        </div>
+    </div>
+	<div class="index_img marginB40"><img alt="Android工程师薪资对比" src="/static/Lesson/images/android_03.jpg"></div>
+    <p class="textC" style="margin-bottom:70px;"><a target="_blank" class="abtn zzpp" href="http://m.53kf.com/72114760/54/1" style="color:#222A35;">点击咨询课程详情</a></p>
+    <div class="index_img"><img alt="Android市场优势" src="/static/Lesson/images/android_04.jpg"></div>
+    <div class="index_img"><img alt="麦子学院资深Android开发讲师" src="/static/Lesson/images/android_05.jpg"></div>
+    <div class="index_img marginB40"><img alt="麦子学院   不一样的Android学习体验" src="/static/Lesson/images/android_06.jpg"></div>
+    <p class="font34 textC bold color27" style="margin-bottom:16px;"><img alt="麦子学院是如何保证Android学习效果的" src="/static/Lesson/images/android_12.png"></p>
+    <p class="font18 textC color66" style="margin-bottom:34px;">麦子学院自主研发LPS在线学习过程管理系统，开启了在线教育教学管理智能时代</p>
+    <p class="font18 textC bold color66" style="margin-bottom:32px;" id="bxslider_font">个性化定制学习进度</p>
+    <div class="zy_banner">
+        <ul class="bxslider">
+          <li ><img alt="个性化定制学习进度" src="/static/Lesson/images/webb001.jpg"></li>
+          <li ><img alt="重难知识点定期精讲，每周直播班会" src="/static/Lesson/images/webb002.jpg"></li>
+          <li ><img alt="阶段性项目实战演练，提升综合职业素养" src="/static/Lesson/images/webb003.jpg"></li>
+          <li ><img alt="数据学习结果预测，不断反馈调整学习计划" src="/static/Lesson/images/webb004.jpg"></li>
+          <li ><img alt="学习过程附加生成电子简历直接面向企业" src="/static/Lesson/images/webb005.jpg"></li>
+        </ul>  
+    </div>
+    <div class="index_img"><img alt="Android开发学习路线" src="/static/Lesson/images/android_07.jpg"></div>
+    <p class="android_p textC" style="padding-bottom:80px;"><a class="abtn" href="{% url 'course:career_course_detail' couse_short_name %}" style="color:#222A35;">查看更多免费课程</a></p>
+    <div class="index_img"><img alt="Android开发项目实战" src="/static/Lesson/images/android_08.jpg"></div>
+    <div class="index_img"><img alt="麦子学院Android开发就业保障" src="/static/Lesson/images/android_09.jpg"></div>
+    <div class="index_img"><img alt="如何学习Android开发" src="/static/Lesson/images/android_10.jpg"></div>
+    <div class="index_img"><img alt="学习安卓的疑惑" src="/static/Lesson/images/android_11.jpg"></div>
+    <div class="footDiv textC footDivAnd">
+    	<p class=" font40" style="color:#ffffff;">麦子学院Android应用开发课程</p>
+        <div class="footDivD" style="width:800px;">
+        	<p class="font30 bold po">每月限时开班</p>
+            <p class="font60 bold" style="color:#fff001; padding-top:40px; margin-bottom:20px;">试学体验价688</p>
+            <p><a target="_blank" class="abtn zzpp" href="http://m.53kf.com/72114760/54/1" style="color:#333333;">赶快抢名额</a></p>
+        </div>
+    </div>
+    
+</div>  
+{% endblock %}
+
+{% block custom_script %}
+<script src="/static/Lesson/js/jquery.bxslider.js"></script>
+<script>
+$(function(){
+    $('.j_zixun,.zzpp').click(function(){
+        $('#KFLOGO .Lelem').trigger('click');return false;
+    });
+    $('.bxslider').bxSlider({
+        mode: 'horizontal',
+        auto: true,
+        hideControlOnEnd: true,
+        pager: true,
+        onSlideAfter: function ($slideElement, oldIndex, newIndex) {
+            $("#bxslider_font").html($slideElement.find("img").attr("alt"));
+        }
+    });
+});
+</script>
+{% endblock %}

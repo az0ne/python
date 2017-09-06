@@ -1,0 +1,20 @@
+<nav class="pagination-a zypage">
+    <ul class="pagination zypage_div">
+        <li><a class="jp-first" href="/common/feedback/?page=1"></a></li>
+        <li><a class="jp-previous" href="/common/feedback/?page=1" aria-label="Previous"></a></li>
+        <li><a href="/common/feedback/?page=1" >1</a></li>
+        <li><a href="/common/feedback/?page=2" class="active">2</a></li>
+        <li><a href="/common/feedback/?page=3" >3</a></li>
+        <li><a href="/common/feedback/?page=4" >4</a></li>
+        <li><a href="/common/feedback/?page=5" >5</a></li>
+        <li><span>...</span></li>
+        <li><a href="/common/feedback/?page=10" >10</a></li>
+        <li><a class="jp-next" href="/common/feedback/?page=3 "aria-label="Next"></a>
+        </li>
+        <li><a class="jp-last" href="/common/feedback/?page=10"></a></li>
+    </ul>
+    共<span id="page-pane2">10</span>页，
+    <form style="display: inline-block;" action="/common/feedback/?" method="get" id="page_from1">
+        到第<input type="text" class="zypageTxt" name="page" onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')">页 <input type="submit" value="确定" class="zypageBtn">
+    </form>
+</nav>

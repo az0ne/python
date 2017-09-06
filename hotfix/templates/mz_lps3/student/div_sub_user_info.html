@@ -1,0 +1,236 @@
+<input type="hidden" id="default_p_c" value="{% if student.city %}{{student.city.province.id}}{% endif %}_{% if student.city %}{{student.city.id}}{% endif %}">
+<input type="hidden" id="class_id" value="{{class_id}}">
+<div class="modal fade" id="mypersonal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-content zy_mypersonal">
+        <p class="color5e font18 pt">完善个人资料</p>
+        <div class="zy_mypersonal_div color66 font14">
+        	<p class="font12 marginB16">为方便老师和班主任更好地与您沟通，请填写一下您的个人基本信息。
+            <br>后续礼品和毕业证书的发放，也会以您填写的地址为准，请填写真实信息。<br>您放心，小麦会对您的个人资料绝对保密。
+            </p>
+
+            <p class="marginB10 bold"><span class="red">*</span>真实姓名</p>
+            <p class="marginB20"><input id='real_name' type="text" class="zy_mypersonal_txt" maxlength="10"></p>
+            <p class="marginB10 bold"><span class="red">*</span>电话</p>
+            <p class="marginB20"><input id='mobile' type="text" class="zy_mypersonal_txt" maxlength="11" {% if student.valid_mobile and student.mobile %}readonly value="{{student.mobile}}"{% else %}value=""{% endif %}></p>
+            <p class="marginB10 bold"><span class="red">*</span>QQ</p>
+            <p class="marginB20"><input id='qq' type="text" class="zy_mypersonal_txt" maxlength="20" value="{% if student.qq %}{{student.qq}}{% endif %}"></p>
+            <p class="marginB10 bold"><span class="red">*</span>邮箱</p>
+            <p class="marginB20"><input id='email' type="text" class="zy_mypersonal_txt" maxlength="30" {% if student.valid_email and student.email %}readonly value="{{student.email}}"{% else %}value=""{% endif %}></p>
+            <p class="marginB10 bold"><span class="red">*</span>省市</p>
+            <table class="marginB20">
+            	<tr>
+                	<td  style="padding-bottom:10px;"><select id='id_prov' class="personal_select">
+                        {% for province in provinces %}
+                        <option value="{{province.id}}">{{province.name}}</option>
+                        {% endfor %}
+                    </select></td>
+                    <td style="padding-left:10px;padding-bottom:10px;"><select id='id_city' class="personal_select">
+                        {% for city in citys %}
+                        <option value="{{city.id}}">{{city.name}}</option>
+                        {% endfor %}
+                    </select></td>
+                </tr>
+                <tr>
+                	<td colspan="2">详细地址<input id='address' type="text" class="zy_mypersonal_txt" maxlength="50"></td>
+                </tr>
+            </table>
+            <p class="marginB10 bold"><span class="red">*</span>学习目标</p>
+            <p class="marginB20">
+                <select id='study_goal_opt' class="personal_select">
+                {% for studygoal in studygoals %}
+                <option value="{{studygoal.id}}" {% ifequal student.study_goal_opt studygoal %}selected{% endifequal %}>{{studygoal.name}}</option>
+                {% endfor %}
+                </select>
+            </p>
+            <p class="marginB10 bold"><span class="red">*</span>学习基础</p>
+            <p class="marginB20">
+                <select id='study_base_opt' class="personal_select">
+                {% for studybase in studybases %}
+                <option value="{{studybase.id}}" {% ifequal student.study_base_opt studybase %}selected{% endifequal %}>{{studybase.name}}</option>
+                {% endfor %}
+                </select>
+            </p>
+        </div>
+        <div class="zy_mytask_foot textC">
+        	<a class="bold font14 colorff a3 marginB10" style="margin-bottom: 10px;" id="student_info_submit">提交</a>
+            <p class="font12 color99">信息有更新，可前往“个人设置”进行修改哦</p>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mypersonal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-content zy_mypersonal2">
+        <p class="textC font14 color66" style=" padding: 42px 0; line-height: 2;">亲爱的同学，为了更好地与您沟通并帮助您的学习，<br>请在开始学习前完善您的个人学籍信息~<br>您放心，小麦会对您的一切资料绝对保密！</p>
+        <div class="div"><a href="/home/settings/?lps=3">立即完善</a></div>
+    </div>
+</div>
+
+<!--协议-->
+<div class="modal fade" id="myAgreement" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-content zy_myAgreement">
+        <p class="textC font30 color33">麦子学院就业服务协议</p>
+        <div class="zy_myAgreement_div">
+        	<div>3
+        	<p style="margin:50px 0 20px;position:relative;">
+                <h2 class="font14 bold marginB20">甲方：成都麦子信息技术有限公司（盖章）</h2>
+                <h2 class="font14 bold marginB50">乙方：{{ student.real_name }}</h2>
+                <img src="{{ STATIC_URL }}mz_lps3/images/yinzhang.png" style="position:absolute;opacity:0.75;left:280px;top:8px;width: 90px;" alt=""/>
+            </p>
+            <p>
+            作为国内IT在线教育创新领导品牌，甲方将向乙方提供技术教学及就业服务。为清晰培训过程、提高培训质量，经双方沟通协商，甲、乙双方签订以下协议。甲方为本项目提供优质的教学、服务和管理，并承诺在完成本项目学习后获得良好的就业结果！
+            </p><br>
+            <span style="font-weight: 600">一、服务内容及期限</span><br /><br />
+            <p>甲方拟向乙方提供技术教学及就业服务，服务期限为：开班之日起1年。</p><br>
+            <span style="font-weight: 600">二、甲方责任、权利和义务</span><br /><br />
+            <p>
+            1、甲方有责任在乙方培训期间，按照《学员学习异动管理条例》及学员相关管理规定对乙方进行严格管理，并根据规定对乙方表现进行评定考核；</p>
+            <p>2、甲方承诺向乙方提供符合要求的技能培养内容和考核体系，并提供符合企业需求的相关培训课程，课程内容全部来源于国内外一线大师亲自设计制作；</p>
+            <p>3、甲方承诺配备技术导师、班主任、就业辅导老师为学生提供教学、学习、就业服务管理；</p>
+            <p>4、甲方承诺对于遵守并通过相关培训项目制作及考核的毕业学员，进入麦子学院雇主人才库，并做好就业安置与推荐服务，就业薪资(城市：{{ intention_job_city }};学历：{{ degree }})不低于{{ salary }} 元/月（税前)；</p>
+            <p>5、如非乙方原因导致面试成功但未能通过1个月试用期（经甲方核实），甲方继续为乙方提供岗位机会；</p>
+            <p>6、乙方参加培训后加入麦子学院实名交友圈，甲方为乙方提供终身的职业生涯跟踪指导服务，毕业后可在就业、转行、跳槽、升职等向甲方提出咨询，甲方将进行相关服务；</p>
+            <p>7、甲方将联合全国部分创业孵化基地、国腾园、天府软件园等全国科技园区提供创业孵化咨询与服务；</p>
+            <p>8、乙方毕业答辩结束后，乙方指定需就业地点无相关岗位招聘需求的，甲方可免除就业安置义务；但在服务有效期内，乙方指定就业地点出现相关岗位需求，或者乙方变更就业地点，且变更后的就业地有相关岗位需求的，甲方仍需提供就业安置和推荐服务。</p><br>
+            <span style="font-weight: 600">三、乙方责任、权利和义务</span><br /><br />
+            <p>1、乙方参加本项目后，须遵守《学员学习异动管理条例》及学员相关管理规定，同时积极配合各项教学计划，努力学习；</p>
+            <p>2、乙方应承担实训期间的所有费用，并按照甲方要求进行入学、学习、就业等各项工作。</p><br>
+            <span style="font-weight: 600">四、就业服务标准</span><br /><br />
+            <p>学员同时满足以下四个条件方可享受甲方提供的就业服务：</p>
+            <p>1、完成所有课程（项目制作、模拟面试等）并完成毕业考核；</p>
+            <p>2、培训费用已缴清；</p>
+            <p>3、提供《就业问卷调查表》和《个人简历》；</p>
+            <p>4、观看就业指导课全部课程。</p><br>
+            <span style="font-weight: 600">五、有以下几种情况，不再提供就业服务</span><br /><br />
+            <p>1、乙方在获得甲方的面试通知后，不得私自放弃或更换他人，不得无故迟到和缺席，否则甲方有权取消乙方此后的推荐机会，甲方基于本合同的义务终止；</p><br />
+            <p>2、乙方因疾病或心理生理障碍等不可抗拒因素而导致无法就业，则甲方不承担就业帮助义务。</p><br />
+            <p>3、乙方属于在读学生且半年内无法取得高校毕业证，导致无法签订劳动合同者，甲方不承担就业安置和推荐服务。乙方在取得毕业证后，经专业考核评定通过者，甲方可以给予就业安置和推荐服务；</p><br />
+            <p>4、乙方在甲方学习期间，违反学员管理制度3次以上（含3次），甲方不承担就业安置和推荐服务，具体条款参考《学员管理制度》；</p><br />
+            <p>5、乙方应在培训期间提交个人简历，在毕业答辩结束后15天内，仍未提交个人简历者视为自动放弃甲方就业推荐机会，甲方不承担就业安置和推荐服务。但经乙方说明，确有特殊情况者，甲方可以视情况提供就业安置和推荐服务；</p><br />
+            <p>6、超过本协议服务有效期的，甲方不再提供就业安置和推荐服务。经乙方说明，确有特殊情况者，甲方可以视情况提供就业安置和推荐服务。</p><br />
+            <span style="font-weight: 600">六、培训后退款</span><br /><br />
+            <p>1、如乙方符合本协议第四条标准并不具备第五条排除情况者，至本协议服务有效期届满之时乙方仍未能成功就业的，可由乙方提出申请，并提供不予录用的证明（至少5个），可由乙方提出申请，经甲方核实后，甲方将全额退还乙方所有培训费用；</p>
+            <p>2、就业未达标全额退费周期为：乙方提出退费申请后1个月内。</p><br />
+
+            <span style="font-weight: 600">七、不可抗力条款 </span><br /><br />
+            <p>对不可抗力所造成的影响，双方应及时协商解决办法和补救措施。因不可抗力不能履行协议的一方，应尽力采取合理措施减轻可能给对方造成的损失，否则应对由此而扩大的损失承担赔偿责任。本协议所称不可抗力，是指不能预见、不能避免、并不能克服的客观情况，如重大疾病、自然灾害、瘟疫、战争、骚乱等。</p><br />
+            <span style="font-weight: 600">八、适用法律及争议解决方法</span><br /><br />
+            <p>1、甲方拥有对本协议的解释权，协议的履行、解释及争议解决均适用中华人民共和国有关法律；</p>
+            <p>2、双方在履行本协议中如发生争议，应先由双方协商解决。如协商不成，依法向甲方所在地人民法院提起诉讼。</p><br />
+            <span style="font-weight: 600">九、协议的补充、 变更、修改</span><br /><br />
+            <p>对本协议的任何补充、变更、修改应采用书面补充协议形式。补充协议在双方签署后与本协议具有同等法律效力。</p><br />
+            <span style="font-weight: 600">十、生效及终止条款</span><br /><br />
+            <p>1、本协议由学员点击“我已经阅读并同意以上协议”即生效。</p>
+            <p>2、本协议正本及附件均一式二份，具有同等法律效力，甲、乙各执一份；</p>
+            <p style="margin-bottom: 150px">3、本协议约定的服务期限届满，本协议终止。</p>
+            <div style="font-size: 0;">
+                <div style="display: inline-block;width: 50%;vertical-align: bottom;font-size: 14px;">
+                    <p class="marginB20" style="position:relative;">甲方：（盖章）<img src="/static/images/yinzhang.png" style="position:absolute;opacity:0.75;left:150px;top:-65px;width: 90px;" ></p>
+                    <p class="marginB10 color00 bold">成都麦子信息技术有限公司</p>
+                    <p><span>{{ contract_time|date:'Y' }}</span>&nbsp;年&nbsp;<span>{{ contract_time|date:'m' }}</span>&nbsp;月&nbsp;<span>{{ contract_time|date:'d' }}</span>&nbsp;日</p>
+                </div>
+                <div style="display: inline-block;width: 50%;vertical-align: bottom;font-size: 14px;text-align: right;">
+                    <p class="marginB50 color00">乙方：{{ student.real_name }}</p>
+                    <p><span>{{ contract_time|date:'Y' }}</span>&nbsp;年&nbsp;<span>{{ contract_time|date:'m' }}</span>&nbsp;月&nbsp;<span>{{ contract_time|date:'d' }}</span>&nbsp;日</p>
+                </div>
+            </div>
+            </div>
+        </div>
+        <p class="zy_myAgreementB">
+        	<label><input type="checkbox" id="myAgreement_checkbox"><span>我已经阅读并同意以上协议</span></label><a pd="2" class="bold font14 colorff a3 marginB10 greyBG" id="myAgreement_submit">提交</a>
+        </p>
+    </div>
+</div>
+
+<div class="modal fade" id="myAgreement2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-content zy_myAgreement">
+        <p class="textC font30 color33">入学须知：学习制度</p>
+        <div class="zy_myAgreement_div">
+        	<div style="line-height: 1.4;">
+                <p>亲爱的同学:<br><br>
+您好 ，欢迎您加入麦子学院学习大家庭 ，为了更好的了解我们服务的细则，做到超越传统学习效果，在线学习找工作，请仔细阅读本文。<br><br>
+<b>一、班级服务人员及职责</b><br><br>
+1、班主任---负责班级QQ群的日常管理，负责学员LPS学习管理；教学协调与监督工作，解决学员的非专业课程类的问题；<br>
+2、专业老师---负责学员提出的相关课程类技术问题解答，批改作业，直播课讲解课程和专业问题答疑；<br>
+3、测试老师---负责学员观看视频中的疑难类问题。<br>
+学员根据问题类型找到相应解决人员。<br><br>
+
+<b>二、入学须知</b><br><br>
+1、付款成功后，麦子账号为邮箱地址可收到邮件提醒学员加入的班级编号和QQ群号；<br>
+2、学员报名成功后加入相应班级QQ群，学员进入班级QQ群后请遵守群内规则，不遵守相关规则者会扣除相应学分影响毕业成绩；<br>
+3、学员缴完全部学费后，教务老师会根据学员要求邮寄纸质版《麦子学院就业服务协议》。<br><br>
+<b>三、学习须知</b><br><br>
+1、在线教学模式分为三个环节：录播视频学习、直播和一对一的教学辅导，这三个环节是同步进行、相互配合开展<br>
+（一）录播：把大量重复的基础知识录制成视频，方便学员随时随地的多次重复学习（比方说碎片式的空闲时间），并支持手机APP线下离线和缓冲观看；<br>
+（二）直播（每周1次班会和1次答疑）：LPS直播间，学员在直播间可以进行视频或语音沟通，学员间沟通，学员与专业老师沟通；<br>
+（三）一对一的教学辅导：老师随时把控学员学习进度，督促学习，解答疑问，并进行模拟面试。<br>
+2、每堂课结束后，我们都有对应的项目制作，老师会对学员学习的内容进行分析评估，也会随时知道学员学习过程中遇到的问题。在LPS系统里，学员只有学习通过了每堂课的项目制作，才能进入到下一个阶段学习，保障学员的学习效果。<br><br>
+<b>四、就业须知</b><br><br>
+           详情见《麦子学院就业服务协议》<br><br>
+<b>五、学习提醒</b><br><br>
+（一）如果暂时不能学习，可以跟班主任申请休学处理，这样不会影响你的学习评定<br>
+关于学习休学:由学员主动向带班老师提出申请，由班主任老师办理休学；每位学员只有两次休学机会，每次休学时间大于15天，不超过3个月。<br>
+1、15天≤休学时间≤一个月  保留所在班级qq群和LPS；<br>
+2、休学时间＞一个月  保留LPS，退出所在班qq群，班主任保留学籍。<br>
+休学复课由专业老师评定，不达标的学员退出所在班qq群和LPS，进入下一个班级<br>
+说明:试学学员无休学权利。<br><br>
+（二）如果入班后发现专业不合适，可以跟带班老师申请转专业。由班主任老师核实办理。<br>
+试学学员，入班后10个自然日（备注：即10天）可申请调换专业重新入班；
+全程班学员，入班后30个自然日（备注：即30天）可申请调换专业重新入班；
+超过规定日期，一律不再允许调换专业。<br>
+由于专业老师要做专业指导，学员不能转让账号供给他人学习。<br><br>
+（三）关于学员管理<br>
+1、学员不能参加直播课，必须提前向班主任请假；<br>
+2、专业老师要求补课的学员，必须按时参加补课；<br>
+3、无故旷课三次，不再为学员就业负责；<br>
+4、失联（班主任通过各种方式联系不到）三周以上，视为学员自动放弃学习。<br><br>
+（四）关于退学（开除）：<br>
+1、自动放弃继续学习，一切费用均不予退还；<br>
+2、恶意欠费学员；<br>
+3、学员恶意诋毁麦子学院或老师行为，一经核实，予以退学处理；<br>
+4、其他涉及触犯法律的学员。<br><br><br>
+                感谢您选择麦子学院，在线职业教育 未来 我来
+</p>
+
+            </div>
+        </div>
+        <p class="zy_myAgreementB">
+        	<label><input type="checkbox" id="myAgreement2_checkbox"><span>我已经阅读并同意以上协议</span></label><a pd="3" class="bold font14 colorff a3 marginB10 greyBG" id="myAgreement2_submit">提交</a>
+        </p>
+    </div>
+</div>
+
+<div class="modal fade" id="myAgreement3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-content zy_myAgreement">
+        <p class="textC font30 color33">服务承诺</p>
+        <div class="zy_myAgreement_div">
+        	<div style="line-height: 1.4;">
+                <p>
+                    <b>一、教学内容</b><br><br>
+                    学员在保证正常的学习付出的前提下，企业直通班学习时间一般为3-4.5个月，根据专业不同而设定不同。学习过程中以达到对应岗位的企业要求为目标，会包含基础知识视频讲解、教师直播授课、日常在线答疑、项目制作等环节。<br><br>
+                    <b>二、教学过程</b><br><br>
+                    在企业直通班的学习过程中，每周至少有1-2堂直播课。授课的主要内容是根据当周的任务球内容以及学生的学习进度，进行重难点讲解、项目经验分享、集中答疑、项目实战等内容的教学。<br>
+                    在同学的日常学习过程中，教师通过班级QQ群，进行一对多、一对一的答疑，使学生能够及时获得教师的专业指导，保证学习进度和学习效果。<br>
+                    学生在开班后一个月内，遵守各项学生守则并达到指定完成度的前提下，可以通过补足学费差额，申请从兴趣学习转为就业保障；申请通过后，补签就业保障协议。<br><br>
+                    <b>三、师资配备</b><br><br>
+                    每个企业直通班由专业带班教师至少1人，班主任1人，就业指导老师1人。根据班级人数规模，还会选择性配备助教老师，以保证学员答疑的及时性。<br>
+                    带班教师：主要负责直播课教学、作业批改、学生答疑等服务<br>
+                    班主任：主要负责学员日常督促与管理，沟通协调教师和学员间的时间与进度。<br>
+                    就业指导老师：主要负责有就业要求的同学的就业推荐服务、就业技能提升等课程内容。<br>
+                    助教老师：在带班教师时间不足的情况下，负责批改作业或者在线答疑工作。<br><br>
+                    <b>四、毕业标准</b><br><br>
+                    对于兴趣学习的同学，我们的毕业标准和就业班的标准是相同的。学员需要达到规定的出勤率和作业提交的完成度后，完成毕业设计项目并通过毕业设计答辩，才有资格获得麦子学院的毕业认证。<br>
+                    对于兴趣学习的同学，因为个人原因无法付出足够的学习时间，或者跟不上正常的教学进度，我们在教学管理过程中可以增加一次滑班的机会。<br><br>
+                    <b>五、投诉与举报</b><br><br>
+                    为了给予学员更好地服务体验与教学质量，欢迎学员对我们的服务各个环节给予监督和考察。对于影响学生学习效果和体验的任何情况，可以直接通过下面的联系方式进行建议与举报，我们会在第一时间给予处理及反馈：<br><br>
+                    邮箱：caliber@maiziedu.com &nbsp;&nbsp;chanpinyanfa@maiziedu.com<br>
+                    QQ：130313399<br>
+                    电话：400-862-8862<br>
+                </p>
+
+            </div>
+        </div>
+        <p class="zy_myAgreementB">
+        	<label><input type="checkbox" id="myAgreement3_checkbox"><span>我知道了</span></label><a pd="3" class="bold font14 colorff a3 marginB10 greyBG" id="myAgreement3_submit">提交</a>
+        </p>
+    </div>
+</div>

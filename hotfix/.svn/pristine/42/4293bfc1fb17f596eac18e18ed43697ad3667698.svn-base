@@ -1,0 +1,2092 @@
+{% extends "mz_common/base.html" %}
+{% block title %}学习计划{% endblock %}
+
+{% block custom_css %}
+<link href="/static/lps2/css/jquery.jscrollpane.css" type="text/css" rel="stylesheet" media="all" />
+<link href="/static/lps2/js/jqueryUi/jquery-ui.min.css" rel="stylesheet"/>
+<link href="/static/lps2/css/panel.css" rel="stylesheet"/>
+<style type="text/css">
+    p{font-size:14px;}
+    .clause{margin-left:-35px;font-size:16px;font-weight:600;font-family:"宋体";}
+    #title{margin-left:175px;font-size:20px;}
+    #agreement{width:600px;margin-left: 40px;}
+    #agreement p{margin-left:30px;font-size:14px;}
+</style>
+{% endblock %}
+
+{% block breadcrumb %}
+<div class="container visible-md visible-lg" style="position: relative;">
+    <ol class="breadcrumb">
+        <li><a href="{% url 'user:user_center' %}">我的班级22</a></li>
+        <li class="active">{{ class_coding }}</li>
+    </ol>
+    {% if clazz.is_closed %}
+    <div class="teacherOP">班级已在报名页面关闭，是否开启？<a href="{% url 'lps2:close_display' class_id %}?is_close=false">开启</a></div>
+    {% else %}
+    <div class="teacherOP">是否在报名页面关闭该班级？<a href="{% url 'lps2:close_display' class_id %}?is_close=true">关闭</a></div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block container %}
+<div class="p-main">
+    <div class="container">
+        <div class="sidebar teacher-bar">
+            <div class="row">
+                <div id="tab_box_1" class="sidebar-in box" tab-role="tab-box">
+                    <div class="box-head clearfix webfont">
+                        <h2 class="pull-left"><span>教学任务</span></h2>
+                        <div class="pull-right" tab-role="btn-group"><span tab-role="btn" tab-target="1" class="active">未完成</span><span tab-role="btn" tab-target="2">已完成</span></div>
+                    </div>
+                    <div class="box-body" tab-role="cnt-group">
+                        <div class="tab-cnt" tab-role="cnt" tab-mark="1">
+                            <div class="tab-cnt-in">
+                                {% for user_task in user_task_show_list %}
+                                    {% if user_task.type == 'givescoreuser' %}
+                                        <input type="hidden" value="{{user_task.classmeeting_id}}">
+                                        <div class="item" mt="stufill" onclick="ask_evalute_stu(this, 'stufill')">
+                                            <div class="date">{{ user_task.time }}</div>
+                                            <div class="title"><span class="text">{{ user_task.title }}</span><img src="/static/lps2/images/word-2.png" alt=""/></div>
+                                            <ul>
+                                                <li><i class="dot"></i><span class="text">直播班会已经结束了，快去给学员打分吧~</span></li>
+                                            </ul>
+                                        </div>
+                                    {% endif %}
+                                    {% if user_task.type == 'stu_status_progress' %}
+                                        <div class="item" onclick="show_window_pro(this)">
+
+                                            <input type="hidden" value="{{user_task.stustatus_id}}">
+                                            <div class="date">{{ user_task.create_datetime }}</div>
+                                            <div class="title"><span class="text">{{ user_task.title }}</span>
+
+                                            </div>
+                                            <ul>
+                                                <li><i class="dot"></i><span class="text">{{ user_task.content }}</span></li>
+                                            </ul>
+                                        </div>
+                                    {% endif %}
+                                    {% if user_task.type == 'classmeeting' %}
+
+                                        <div class="item">
+                                            <a href="{% if user_task.status == 2 %} {{ user_task.join_url }}?nickname={{ user_task.nick_name }}&token={{ user_task.token }} {% else %} ### {% endif %}">
+                                                <div class="date">{{ user_task.startline }}</div>
+                                                <div class="title"><span class="text">
+                                                    {% if user_task.is_temp %}
+                                                        临时班会
+                                                    {% else %}
+                                                        周直播班会
+                                                    {% endif %}
+                                                </span>
+                                                    {% if user_task.status == 0 %}
+                                                        <img src="/static/lps2/images/word-3.png" alt=""/>
+                                                    {% else %}
+                                                            <img src="/static/lps2/images/word-2.png" alt=""/>
+                                                    {% endif %}
+                                                </div>
+                                                <ul>
+                                                    <li><i class="dot"></i><span class="text">{{ user_task.content }}</span></li>
+                                                </ul>
+                                            </a>
+                                        </div>
+
+                                    {% endif %}
+                                    {% if user_task.type == 'stu_status_pro' %}
+                                        <div class="item">
+                                            <a href="/lps2/teach/plan/{{class_id}}/{{user_task.student_id}}/?course_id={{user_task.relate_id}}&stage_id={{user_task.relate_stage_id}}">
+                                                <div class="date">{{ user_task.create_datetime }}</div>
+                                                <div class="title"><span class="text">{{ user_task.title }}</span>
+
+                                                </div>
+                                                <ul>
+                                                    <li><i class="dot"></i><span class="text">{{ user_task.content }}~</span></li>
+                                                </ul>
+                                            </a>
+                                        </div>
+
+                                    {% endif %}
+                                    {%  if user_task.type == 'tea_profile' %}
+                                        <div class="item personal_profile_btn" data-pic="{% if request.user.avatar_middle_thumbnall %}{{ request.user.avatar_middle_thumbnall }}{% endif %}">
+                                            <div class="date">{{ user_task.create_datetime }}</div>
+                                             <div class="title"><span class="text">{{ user_task.title }}</span></div>
+                                            <ul>
+                                                <li><i class="dot"></i><span class="text">让更多人认识你吧</span></li>
+                                            </ul>
+                                        </div>
+                                    {%  endif  %}
+                                    {% if user_task.type == 'read_me' %}
+                                        <div class="item" onclick="$.commonTool.ruleShow();">
+                                            <div class="date">{{ user_task.create_datetime }}</div>
+
+                                            <div class="title"><span class="text">{{ user_task.title }}
+                                            </span>
+                                            </div>
+                                            <script>$(function(){$("#agree_contract").attr('style','');$("#check_contract").attr('style','');$("#already_read_and_aggree").attr('style','');})</script>
+                                            <ul>
+                                                <li><i class="dot"></i><span class="text">点击阅读教师须知</span></li>
+                                            </ul>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="tab-cnt plan-end" tab-role="cnt" tab-mark="2">
+                            <div class="tab-cnt-in" id="teacher_finish">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div id="zbbh" class="sidebar-in box zbbh">
+                    <div class="box-head clearfix webfont">
+                        <h2 class="pull-left"><span>直播班会</span></h2>
+                        <div id="show_bhcj_btn" class="pull-right"><span><img src="/static/lps2/images/add-2.png" alt=""/></span></div>
+                    </div>
+                    <div class="box-body">
+                        <div class="tab-cnt">
+                            <div class="tab-cnt-in">
+                                {% for classmeeting in class_meeting_manage_list %}
+                                    <input type="hidden" value="{{classmeeting.id}}">
+                                    {% if classmeeting.status == 0 %}
+                                        {% if classmeeting.is_temp %}
+                                        <div class="item">
+                                            <div class="title"><span class="text">
+                                                        临时班会
+                                            </span><img src="/static/lps2/images/word-3.png" alt=""/></div>
+                                            <ul>
+                                                <li><img class="ico" src="/static/lps2/images/ico-4b.png" alt=""/><span class="text">{{classmeeting.startline}}</span></li>
+                                            </ul>
+                                        </div>
+                                        {% else %}
+                                        <div id="edit_bh_btn" class="item" {% if not classmeeting.is_temp %} onclick="modify_meet_time(this)" {% endif %}>
+                                            <div class="title">
+                                                <span class="text">
+                                                        周直播班会
+                                                </span>
+                                                <img src="/static/lps2/images/word-3.png" alt=""/>
+                                            </div>
+                                            <ul>
+                                                <li><img class="ico" src="/static/lps2/images/ico-4b.png" alt=""/><span class="text">{{classmeeting.startline}}</span></li>
+                                            </ul>
+                                            <div class="fun"><i></i><span>修改时间</span></div>
+                                        </div>
+                                        {% endif %}
+                                    {% endif %}
+                                    {% if classmeeting.status == 2 %}
+                                        {% if classmeeting.is_temp %}
+                                        <div class="item">
+                                            <div class="title"><span class="text">
+                                                        临时班会
+                                            </span><img src="/static/lps2/images/word-2.png" alt=""/></div>
+                                            <ul>
+                                                <li><img class="ico" src="/static/lps2/images/ico-4b.png" alt=""/><span class="text">{{ classmeeting.startline }}</span></li>
+                                            </ul>
+                                            <div class="fun" onclick="finish_classmeeting({{classmeeting.id}})"><i></i><span class="red" >结束直播</span></div>
+                                        </div>
+                                        {% else %}
+                                        <div class="item">
+                                            <div class="title"><span class="text">
+                                                        周直播班会
+                                            </span><img src="/static/lps2/images/word-2.png" alt=""/></div>
+                                            <ul>
+                                                <li><img class="ico" src="/static/lps2/images/ico-4b.png" alt=""/><span class="text">{{ classmeeting.startline }}</span></li>
+                                            </ul>
+                                            <div class="fun" onclick="finish_classmeeting({{classmeeting.id}})"><i></i><span class="red" >结束直播</span></div>
+                                        </div>
+                                        {% endif %}
+                                    {% endif %}
+                                    {% if classmeeting.status == 1 %}
+                                        {% if classmeeting.is_fill_score %}
+                                            {% if classmeeting.is_temp %}
+                                            <div class="item">
+                                                <div class="title"><span class="text">
+                                                        临时班会
+                                                </span><img src="/static/lps2/images/word-6.png" alt=""/></div>
+                                                <ul>
+                                                    <li><img class="ico" src="/static/lps2/images/ico-4b.png" alt=""/><span class="text">{{ classmeeting.startline }}</span></li>
+                                                </ul>
+                                            </div>
+                                            {% else %}
+                                            <div id="lspf_btn" mt="lookup" class="item" onclick="ask_evalute_stu(this, 'lookup')">
+                                                <div class="title"><span class="text">
+                                                        周直播班会
+                                                </span><img src="/static/lps2/images/word-6.png" alt=""/></div>
+                                                <ul>
+                                                    <li><img class="ico" src="/static/lps2/images/ico-4b.png" alt=""/><span class="text">{{ classmeeting.startline }}</span></li>
+                                                </ul>
+                                                 <div class="fun" id="ask_stu_score"><i></i><span>查看学员数据</span></div>
+                                            </div>
+                                            {% endif %}
+
+                                        {% else %}
+                                            {% if classmeeting.is_temp %}
+                                            <div class="item">
+                                                <div class="title"><span class="text">
+                                                        临时班会
+                                                </span><img src="/static/lps2/images/word-6.png" alt=""/></div>
+                                                <ul>
+                                                    <li><img class="ico" src="/static/lps2/images/ico-4b.png" alt=""/><span class="text">{{ classmeeting.startline }}</span></li>
+                                                </ul>
+                                            </div>
+                                            {% else %}
+                                                {% if classmeeting.is_first %}
+                                                    <div class="item">
+                                                        <div class="title"><span class="text">
+                                                                周直播班会
+                                                        </span><img src="/static/lps2/images/word-6.png" alt=""/></div>
+                                                        <ul>
+                                                            <li><img class="ico" src="/static/lps2/images/ico-4b.png" alt=""/><span class="text">{{ classmeeting.startline }}</span></li>
+                                                        </ul>
+                                                    </div>
+                                                {% else %}
+                                                    <div id="lspf_btn" mt="stufill" class="item" onclick="ask_evalute_stu(this, 'stufill')">
+                                                        <div class="title"><span class="text">
+                                                                周直播班会
+                                                        </span><img src="/static/lps2/images/word-6.png" alt=""/></div>
+                                                        <ul>
+                                                            <li><img class="ico" src="/static/lps2/images/ico-4b.png" alt=""/><span class="text">{{ classmeeting.startline }}</span></li>
+                                                        </ul>
+                                                         <div class="fun" id="ask_stu_score" ><i></i><span >学员打分</span></div>
+                                                    </div>
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endif %}
+
+                                    {% endif %}
+
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="main teacher-main">
+            <div class="row">
+                <div class="box" id="tab_box_2">
+                    <div class="box-head clearfix webfont">
+                        <h2 class="pull-left"><span>班级数据</span></h2>
+                        <div class="pull-right" tab-role="btn-group"><span tab-role="btn" tab-target="1" class="active">本周KPI</span><span tab-role="btn" tab-target="2">综合排名</span></div>
+                    </div>
+                    <div class="box-body grades-box-body" tab-role="cnt-group">
+                    <div class="class-meeting-kpi-lock">
+                        <div class="tab-cnt scroll-box" tab-role="cnt" tab-mark="1">
+                            <div class="tab-cnt-in">
+                                <div class="turn-box clearfix">
+                                        {% if is_step.0 and this_week.id%}
+                                            <span id="pull_left_btn" class="pull-left active" onclick="another_weeek_data_post(1)"></span>
+                                        {% else %}
+                                            <span id="pull_left_btn" onclick="another_weeek_data_post(1)"></span>
+                                        {% endif %}
+                                        {% if is_step.1 %}
+                                            <span id="pull_right_btn" class="pull-right active" onclick="another_weeek_data_post(-1)"></span>
+                                        {% else %}
+                                            <span id="pull_right_btn" onclick="another_weeek_data_post(-1)"></span>
+                                        {% endif %}
+                                    <div class="text-center"><i></i><span id="classdatadate" class="text">{{ class_start_date }}——{{ class_end_date }}</span><i></i></div>
+                                </div>
+                                <div id="chart_1">
+                                    <canvas id="canvas_1" style="width:100%;height:355px;"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="tab-cn scroll-box" tab-role="cnt" tab-mark="2">
+                            <div class="tab-cnt-in" id="chart_2">
+                                <canvas id="canvas_2" style="width:100%;height:465px;"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="row">
+            <div class="box" id="xxjl"></div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<!-- 班会创建 -->
+<div id="bhcj_box" class="box d-bh-box" style="display:none">
+    <div class="box-head">
+        <span class="text">班会创建</span>
+    </div>
+    <div class="box-body">
+        <div class="item">
+            <span class="label">日期：</span>
+            <select class="selectmenu" id="create_class_meeting_year">
+                <option selected="selected">{{ class_meeting_year_list.0 }}</option>
+                <option>{{ class_meeting_year_list.1 }}</option>
+            </select> 年
+            <select class="selectmenu" id="create_class_meeting_month">
+                <option selected="selected">1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+            </select> 月
+            <select id="create_class_meeting_day" >
+                <option selected="selected">1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+                <option>21</option>
+                <option>22</option>
+                <option>23</option>
+                <option>24</option>
+                <option>25</option>
+                <option>26</option>
+                <option>27</option>
+                <option>28</option>
+                <option>29</option>
+                <option>30</option>
+                <option>31</option>
+            </select> 日
+        </div>
+        <div class="item">
+            <span class="label">时间：</span>
+            <select class="selectmenu" id="create_class_meeting_hours">
+                <option selected="selected">1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+                <option>21</option>
+                <option>22</option>
+                <option>23</option>
+                <option>0</option>
+            </select> 时
+            <select class="selectmenu" id="create_class_meeting_minute">
+                <option selected="selected">1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+                <option>21</option>
+                <option>22</option>
+                <option>23</option>
+                <option>24</option>
+                <option>25</option>
+                <option>26</option>
+                <option>27</option>
+                <option>28</option>
+                <option>29</option>
+                <option>30</option>
+                <option>31</option>
+                <option>32</option>
+                <option>33</option>
+                <option>34</option>
+                <option>35</option>
+                <option>36</option>
+                <option>37</option>
+                <option>38</option>
+                <option>39</option>
+                <option>40</option>
+                <option>41</option>
+                <option>42</option>
+                <option>43</option>
+                <option>44</option>
+                <option>45</option>
+                <option>46</option>
+                <option>47</option>
+                <option>48</option>
+                <option>49</option>
+                <option>50</option>
+                <option>51</option>
+                <option>52</option>
+                <option>53</option>
+                <option>54</option>
+                <option>55</option>
+                <option>56</option>
+                <option>57</option>
+                <option>58</option>
+                <option>59</option>                                
+            </select> 分
+        </div>
+        <div class="item">
+            <span class="label">内容：</span>
+            <textarea name="" id="create_class_meeting_content" cols="30" rows="10"></textarea>
+        </div>
+        <div class="item text-right">
+            <input type="button" class="btn" value="&nbsp;&nbsp;创建&nbsp;&nbsp;" onclick="create_temp_classmeeting_time(this)"/>
+        </div>
+    </div>
+</div>
+
+<!-- 直播班会时间修改 -->
+<div id="edit_bh_box" class="box d-bh-box" style="display:none">
+    <input id="meeting_mo_id" type="hidden" value="">
+    <input id="meeting_time" type="hidden" value="">
+	<div class="box-head">
+		<span class="text">直播班会时间修改</span>
+	</div>
+	<div class="box-body">
+		<div class="item">
+			<span class="label">星期：</span>
+			<select id="edit_week">
+				<option value="1" selected="selected">一</option>
+				<option value="2">二</option>
+				<option value="3">三</option>
+				<option value="4">四</option>
+				<option value="5">五</option>
+                <option value="6">六</option>
+				<option value="0">日</option>
+			</select>
+		</div>
+		<div class="item">
+			<span class="label">时间：</span>
+			<select id="edit_hours">
+				<option selected="selected">1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+                <option>6</option>
+				<option>7</option>
+				<option>8</option>
+				<option>9</option>
+                <option>10</option>
+				<option>11</option>
+				<option>12</option>
+				<option>13</option>
+                <option>14</option>
+				<option>15</option>
+				<option>16</option>
+				<option>17</option>
+                <option>18</option>
+				<option>19</option>
+				<option>20</option>
+				<option>21</option>
+                <option>22</option>
+				<option>23</option>
+				<option>24</option>
+
+			</select> 时
+			<select id="edit_minute"><option>0</option>
+				<option selected="selected">1</option>
+				<option>2</option>
+				<option>3</option>
+				<option>4</option>
+				<option>5</option>
+                <option>6</option>
+				<option>7</option>
+				<option>8</option>
+				<option>9</option>
+                <option>10</option>
+				<option>11</option>
+				<option>12</option>
+                <option>13</option>
+				<option>14</option>
+				<option>15</option>
+				<option>16</option>
+                <option>17</option>
+				<option>18</option>
+				<option>19</option>
+				<option>20</option>
+                <option>21</option>
+				<option>22</option>
+				<option>23</option>
+                <option>24</option>
+				<option>25</option>
+				<option>26</option>
+				<option>27</option>
+                <option>28</option>
+				<option>29</option>
+				<option>30</option>
+				<option>31</option>
+                <option>32</option>
+				<option>33</option>
+				<option>34</option>
+                <option>35</option>
+				<option>36</option>
+				<option>37</option>
+				<option>38</option>
+                <option>39</option>
+				<option>40</option>
+				<option>41</option>
+				<option>42</option>
+                <option>43</option>
+				<option>44</option>
+				<option>45</option>
+                <option>46</option>
+				<option>47</option>
+				<option>48</option>
+				<option>49</option>
+                <option>50</option>
+				<option>51</option>
+				<option>52</option>
+				<option>53</option>
+                <option>54</option>
+				<option>55</option>
+				<option>56</option>
+                <option>57</option>
+				<option>58</option>
+				<option>59</option>
+			</select> 分
+		</div>
+		<div class="item">
+			<span class="label">内容：</span>
+			<textarea name="" id="edit_content" cols="30" rows="10">周直播班会</textarea>
+		</div>
+		<div class="item text-right">
+			<input type="button" class="btn" value="&nbsp;&nbsp;保存&nbsp;&nbsp;" onclick="modify_classmeeting_time(this)"/>
+		</div>
+	</div>
+</div>
+
+<!-- 老师评分 -->
+<div id="lspf_box" class="box d-pf-box" style="display:none" >
+	<div class="box-head">
+		<span class="text" id="score_title">老师评分</span>
+	</div>
+    <form method="post" id="score_form">
+    {% csrf_token %}
+	<div class="box-body" >
+
+		<div class="item clearfix">
+			<div class="pull-right">
+				<span class="ico"><img src="/static/lps2/images/word-7.png" alt=""/></span> <input type="text" class="form-control"/> / 100 <span class="submit-btn"></span>
+			</div>
+			<span class="photo"><img class="img-circle" src="/static/lps2/images/photo.jpg" alt=""/></span>
+			<div class="item-c">
+				<div><span>讲师</span><br/><span>时长：30分钟</span></div>
+			</div>
+		</div>
+		<div class="item clearfix">
+			<div class="pull-right">
+				<span class="ico"><img src="/static/lps2/images/word-7.png" alt=""/></span> <input type="text" class="form-control"/> / 100 <span class="submit-btn"></span>
+			</div>
+			<span class="photo"><img class="img-circle" src="/static/lps2/images/photo.jpg" alt=""/></span>
+			<div class="item-c">
+				<div><span>讲师</span><br/><span>时长：30分钟</span></div>
+			</div>
+		</div>
+        <div class="item item-legend">未参加班会学员</div>
+        <div class="item clearfix">
+            <span class="photo"><img class="img-circle" src="/static/lps2/images/photo.jpg" alt=""/></span>
+            <div class="item-c">
+                <div><span>某某某</span></div>
+            </div>
+        </div>
+        <div class="item clearfix">
+            <span class="photo"><img class="img-circle" src="/static/lps2/images/photo.jpg" alt=""/></span>
+            <div class="item-c">
+                <div><span>某某某</span></div>
+            </div>
+        </div>
+        <div class="item clearfix">
+            <span class="photo"><img class="img-circle" src="/static/lps2/images/photo.jpg" alt=""/></span>
+            <div class="item-c">
+                <div><span>某某某</span></div>
+            </div>
+        </div>
+		<div class="item clearfix">
+			<div class="text-center">
+				<input type="submit" class="btn" value="&nbsp;&nbsp;&nbsp;&nbsp;提交&nbsp;&nbsp;&nbsp;&nbsp;"/>
+			</div>
+		</div>
+	</div>
+    </form>
+</div>
+
+<!-- 老师评分B -->
+<div id="lspf_boxB" class="box d-pf-box" style="display:none" >
+	<div class="box-head">
+		<span class="text">老师评分</span>
+	</div>
+    <form method="post">
+		<div class="box-body" >
+			<div class="item clearfix">
+				<div class="pull-right">
+					<span class="ico"><img src="/static/lps2/images/word-7.png" alt=""/></span> <input type="text" class="form-control"/> / 100 <span class="submit-btn"></span>
+				</div>
+				<span class="photo"><img class="img-circle" src="/static/lps2/images/photo.jpg" alt=""/></span>
+				<div class="item-c">
+					<div><span>讲师</span><br/><span>时长：30分钟</span></div>
+				</div>
+			</div>
+			<div class="item clearfix">
+				<div class="pull-right">
+					<span class="ico"><img src="/static/lps2/images/word-7.png" alt=""/></span> <input type="text" class="form-control"/> / 100 <span class="submit-btn"></span>
+				</div>
+				<span class="photo"><img class="img-circle" src="/static/lps2/images/photo.jpg" alt=""/></span>
+				<div class="item-c">
+					<div><span>讲师</span><br/><span>时长：30分钟</span></div>
+				</div>
+			</div>
+	        <div class="item item-legend">未参加班会学员</div>
+	        <div class="item clearfix">
+	            <span class="photo"><img class="img-circle" src="/static/lps2/images/photo.jpg" alt=""/></span>
+	            <div class="item-c">
+	                <div><span>某某某</span></div>
+	            </div>
+	        </div>
+	        <div class="item clearfix">
+	            <span class="photo"><img class="img-circle" src="/static/lps2/images/photo.jpg" alt=""/></span>
+	            <div class="item-c">
+	                <div><span>某某某</span></div>
+	            </div>
+	        </div>
+	        <div class="item clearfix">
+	            <span class="photo"><img class="img-circle" src="/static/lps2/images/photo.jpg" alt=""/></span>
+	            <div class="item-c">
+	                <div><span>某某某</span></div>
+	            </div>
+	        </div>
+			<div class="item clearfix">
+				<div class="text-center">
+					<input type="submit" class="btn" value="&nbsp;&nbsp;&nbsp;&nbsp;提交&nbsp;&nbsp;&nbsp;&nbsp;"/>
+				</div>
+			</div>
+		</div>
+    </form>
+</div>
+<!-- 查看教师须知 -->
+<div id="xy_panel" class="d-xy-panel" style="display:none">
+    <h2>麦子学院用户协议</h2>
+    <div class="xy-box">
+        <div class="xy-box-in">
+            <div id="agreement">
+                <span class="clause">亲爱的老师，您好:</span><br />
+                <p>感谢你对在线教育未来的付出，麦子学院愿意与你一同为中国的职业教育做出努力。为了更高的在麦子学院带班，请熟悉并且遵守如下带班要求：</p><br />
+                <span class="clause">麦子学院带班原则：</span><br />
+                <p>宽进严出，把精力更多的分配给真正想学的同学，我们要求就业率100%<br />
+                    看中效果，用数字说话，重在线学生的活跃度及课程完成度<br />
+                    引导和鼓励学生互相解决问题，班级讨论<br />
+                    老师努力做双师型人才，真正的要有“育人”之心<br />
+                    鼓励教学创新，达到更好效果<br /><br />
+                </p>
+                <span  class="clause">必须做到（必须执行到位，否则按照老师管理办法处理）：</span><br />
+                <p>
+                    新学生进群，必须一对一沟通，让学生明确学习目的和学习方式<br />
+                    每周至少一次直播班会，班会时间，请根据班级商定，在系统内修改<br />
+                    每次直播班会以1-2小时为宜，至少包含：督促学习，答疑，学生要求扩展知识讲解等环节；<br />并且，每次直播班会必须要讲解知识点（即便是短短的十几分钟的一个知识点），这样会大大增强学生的认可度 。 <br />
+                    严格把控学生情况，并且进行督促，具体把控及督促办法见下<br />
+                </p>
+                <span  class="clause">学生把控办法：</span><br />
+                <p>
+                    例行班会日即为每周考核节点<br />
+                    连续两次直播班会旷课，降级<br />
+                    连续三周计划完成度25%以下（柱状体飘红），降级<br />
+                    每周考核节点（学习周末）学生进度飘红，必须要联系学生访谈原因，并且记录下来，反馈给班级班主任老师，联系不上即为失联<br />
+                    连续两周失联学生，我们做降级处理<br />
+                </p>
+                <span  class="clause">关于降级和升级：</span><br />
+                <p>
+                    降级即保留LPS，不再提供一切人工服务，并且不再对学生学习结果负责，学生退出班级群，不再答疑，不再参与直播<br />
+                    降级表现好，两周后可以提出升级申请，到时候会有系统自动处理 。<br />
+                </p>
+
+                <span  class="clause">关于德行：</span><br />
+                <p>
+                不得谩骂以及诋毁学生<br />
+
+                不得毁坏学院的名誉，破坏学院的信用<br />
+
+                不得私下甚至公共场合议论带班消极信息（比如不满学员基础差等）<br />
+
+                百年树人，在线教育时代，跟麦子学院一起重塑学习，为中国的职业教育发展作出努力，实现自己的社会价值 ， Fighting 各位！
+                </p>
+            </div><br />
+
+        </div>
+    </div>
+    <div class="row">
+        <form>
+            <div class="pull-left checkbox">
+                <label id="already_read_and_aggree" style="display:none;"><input type="checkbox" style="display:none;" id="check_contract" onclick="enable_submit()"/> 我已经阅读并同意以上协议</label>
+            </div>
+            <div class="pull-right">
+                <button type="submit" class="btn btn-default" id="agree_contract" style="display:none;" disabled="disabled" onclick="submit_teach_contract()">提交</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer%}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block custom_script %}
+<script type="text/javascript" src="/static/lps2/js/jqueryUi/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/static/lps2/js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="/static/lps2/js/mwheelIntent.js"></script>
+<script type="text/javascript" src="/static/lps2/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="/static/lps2/js/layer/layer.js"></script>
+<script type="text/javascript" src="/static/lps2/js/Chart.js"></script>
+<script type="text/javascript" src="/static/lps2/js/Chart-extend.js"></script>
+<script type="text/javascript" src="/static/lps2/js/common-tool.js"></script>
+<script type="text/javascript" src="/static/lps2/js/mz-lps2-common.js"></script>
+<script type="text/javascript" src="/static/js/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="/static/js/jquery.iframe-transport.js"></script>
+<script type="text/javascript" src="/static/js/jquery.fileupload.js"></script>
+<script type="text/javascript" src="/static/js/jquery.fileupload-process.js"></script>
+<script type="text/javascript" src="/static/js/jquery.fileupload-validate.js"></script>
+<script type="text/javascript" src="/static/js/template.js"></script>
+<script type="text/javascript">
+    // 老师评分
+    $(function(){
+        (function(){
+            var oBtn = $('#lspf_btn_02B'),
+                oBox = $('#lspf_boxB'),
+                offset,
+                oCntBody,
+                index;
+            offset = oBtn.offset();
+            oBtn.click(function(){
+                index = layer.open({
+                    type: 1,
+                    title : 0,
+                    skin : 'd-common-tool',
+                    area: ['456px','auto'], //宽高
+                    content: oBox
+                });
+                return false;
+            });
+            oCntBody = $('.box-body', oBox)
+            oCntBody.height(455).jScrollPane({ autoReinitialise: true });
+            oCntBody.find('input.btn[type=submit]').click(function(){
+                index!=null && layer.close(index);
+            });
+        }());
+    });
+
+    var tab = $('#tab_box_2 [tab-role=btn]');
+
+    // 本周KPI
+    function clazz_data(chartData){
+        var parentcanvas = $("#canvas_1").parent();
+        $("#canvas_1").remove();
+        $(parentcanvas).prepend('<canvas id="canvas_1" style="width: 2250px; height: 355px; margin-bottom: 10px;" width="2014" height="317"></canvas>');
+        var canvas = $('#canvas_1');
+        var chartBox = $('#chart_1');
+        var div = $('<div/>');
+        div.css({ 'width' : chartBox.width(), 'overflow' : 'hidden' });
+        div.append(canvas.css({'marginBottom' : 10}));
+        chartBox.html('').append(div);
+
+        var defaultStep;
+        (function(){
+            var max=0;
+            $.each(chartData, function(i,o){
+                max = Math.max(o.kpi, max);
+            });
+            defaultStep = Math.ceil(max/25);
+            if(defaultStep < 4){
+                defaultStep = 4;
+            }
+        })();
+
+        // 图表实例
+        $.chartExtend.BarE2({
+            'canvas' : '#canvas_1',
+            'data' : chartData,
+            'suf' : '%',
+            'defaultStep': defaultStep,
+            'colorGroup' : {
+                '100' : ['#5ECFBA', '#5ECFBA'],
+                '75' : ['#5ECFBA', '#5ECFBA'],
+                '50' : ['#62D43A', '#62D43A'],
+                '25' : ['#FFC80A', '#FFC80A'],
+                '0' : ['#FF7150', '#FF7150']
+            }
+        });
+    }
+
+    //老师点击已完成的任务(学生进度落后)
+    function teacher_suggest_complish(ele) {
+        var stustatus_id = $(ele).children("input").val();
+        $.ajax({
+            url:'/lps2/teach/plan/teacher_suggest_complish/',
+            type:'POST',
+            data:'stustatus_id='+stustatus_id,
+            dataType:'json',
+            success:function(data){
+                var dcxs_box = $('#dcxs_box');
+
+                $("#btn_submit").remove();
+
+                index = layer.open({
+                    type: 1,
+                    title: 0,
+                    zIndex: 9999,
+                    skin: 'd-common-tool',
+                    area: ['456px', 'auto'], //宽高
+                    content: dcxs_box
+                });
+
+                $("#select_trace").empty();
+                $("#select_trace").append("<option >"+data.select_type+"</option>");
+                $("#text_suggest").val(data.suggest_text);
+                $("#select_trace").attr("disabled","disabled");
+                $("#text_suggest").attr("disabled","disabled");
+                $(".layui-layer-close").bind("click",function(){
+                    top.window.location.reload();
+                });
+            }
+
+        });
+    }
+
+    // 督促学生
+    function show_window_pro(ele) {
+        var stustatus_id = $(ele).children("input").val();
+        //从服务端取出数据 督促类型
+        $.ajax({
+            url:'/lps2/teach/plan/teacher_suggest_type/',
+            type:'POST',
+            dataType:'json',
+            success:function(data)
+            {
+                //console.info(data);
+                var dcxs_box = $('#dcxs_box');
+                var selectmenu = $(".selectmenu").selectmenu();
+                index = layer.open({
+                    type: 1,
+                    title: 0,
+                    zIndex: 9999,
+                    skin: 'd-common-tool',
+                    area: ['456px', 'auto'], //宽高
+                    content: dcxs_box
+                });
+                $(".layui-layer-close").bind("click",function(){
+                    top.window.location.reload();
+                });
+                $("#dcxs_box").children("#stustatusId").val(stustatus_id);
+                var option;
+                $("#select_trace").empty();
+                for(var i = 0; i < data.length; i++){
+                    option = "<option value='"+data[i].id+"'>"+ data[i].name +"</option>";
+                    $("#select_trace").append(option);
+                }
+
+            }
+        });
+
+    }
+
+    //督促学生界面提交按钮事件
+    function btn_submit(){
+        //学生id
+        var stustatus_id = $("#dcxs_box").children('#stustatusId').val();
+        var send_message = $("#text_suggest").val();
+        var class_number = "{{ class_coding }}";
+        if (send_message.length > 140) {
+            $(".avatar-error").html("消息长度不超过140").show(500).delay(1000).fadeOut(500);
+            $("#text_suggest").focus();
+            return;
+        }
+        $.ajax({
+            url:'/lps2/teach/plan/teacher_suggest/',
+            type:'POST',
+            data:'class_number='+class_number+'&stustatus_id='+stustatus_id+'&suggest_content='+$("#text_suggest").val()+'&suggest_type='+$("#select_trace").val(),
+            dataType:'json',
+            success:function(data)
+            {
+                if(data['suc'] == "1")
+                {
+                    index!=null && layer.close(index);
+                    top.window.location.reload();
+                }else{
+                    alert("发送失败");
+                }
+
+            }
+        });
+    }
+
+	$(function(){
+        {# 没创建班会任务锁定列表#}
+
+        $("create_class_meeting_day").selectmenu().selectmenu("menuWidget").height(10);
+
+        var this_week_id = {{ this_week.id }}
+        if ( this_week_id=="-1" ){
+            $.commonTool.addLock('.class-meeting-kpi-lock');
+        }
+
+		// 学习状态
+		(function(){
+			var box = $('#study_state_box'),
+				state1 = $('.state-1', box),
+				state2 = $('.state-2', box),
+				stopWhy = $('.stop-why', box),
+				stopBtn = $('.group .btn', state1),
+				subBtn = $('.btn', stopWhy),
+				recoverBtn = $('.btn', state2);
+			var mask;
+
+			state2.hide();
+			stopWhy.hide();
+			stopBtn.click(function(){
+				var zIndex = 99999, interval = 200;
+				mask = $('<div style="position:fixed;width:100%;height:100%;top:0;left:0;z-index:'+ zIndex +'">').css('opacity',0);
+				mask.mousedown(function(){
+					stopWhy.slideUp(interval);
+					mask.remove();
+				});
+				stopWhy.slideDown(interval).css('zIndex',zIndex).before(mask);
+			});
+
+			subBtn.click(function(){
+				mask && mask.mousedown();
+				state1.hide();
+				state2.show();
+			});
+
+			recoverBtn.click(function(){
+				state1.show();
+				state2.hide();
+			});
+
+		}());
+
+
+		// 左边栏
+		(function(){
+			var tabBox = $('#tab_box_1');
+
+			// 自定义"教学任务"滚动条
+			var tabCnt = $('.tab-cnt', tabBox).eq(0),
+				tabCntIn = tabCnt.find('.tab-cnt-in'),
+				scrollBar;
+			tabCntIn.width( tabCntIn.width() );
+			tabCnt.jScrollPane();
+			scrollBar = tabCnt.find('.jspVerticalBar,.jspHorizontalBar');
+			scrollBar.hide();
+			// 鼠标经过
+			tabCnt.hover(function(){
+				scrollBar.fadeIn();
+			},function(){
+				scrollBar.fadeOut();
+			});
+			/**自定义的滚动条定义好之后，才能加载*/
+			// 左边栏"教学任务"tab
+			$.commonTool.tab({
+				'tabBox' : tabBox
+			});
+		}());
+
+		(function(){
+			// 所有下拉菜单
+			var selectmenu = $( ".selectmenu" ).selectmenu();
+
+            $("#create_class_meeting_day").selectmenu().selectmenu("menuWidget").height(195);
+            $("#create_class_meeting_hours").selectmenu().selectmenu("menuWidget").height(147);
+            $("#create_class_meeting_minute").selectmenu().selectmenu("menuWidget").height(147);
+			// 班会创建
+			(function(){
+				var oBtn = $('#show_bhcj_btn'),
+					oBox = $('#bhcj_box'),
+					offset,
+					oDialog;
+				offset = oBtn.offset();
+				oBtn.click(function(){
+					oDialog = $.commonTool.slide({
+						direction: 'right',
+						dom: oBox,
+						width: 340,
+						top: offset.top - 20,
+						left: offset.left + oBtn.outerWidth() + 30,
+						maskClose: true,
+						zIndex: 2015
+					});
+
+					return false;
+				});
+				// 弹出内容，内部按钮关闭弹窗
+				oBox.find('.btn').click(function(){
+					oDialog && oDialog.close();
+				});
+			}());
+
+			// 直播班会时间修改
+			(function(){
+				var oBtn = $('#edit_bh_btn'),
+					oBox = $('#edit_bh_box'),
+					offset,
+					oDialog;
+				oBtn.click(function(){
+                    offset = oBtn.offset();
+					oDialog = $.commonTool.slide({
+						direction: 'right',
+						dom: oBox,
+						width: 340,
+						top: offset.top + 20,
+						left: offset.left + oBtn.outerWidth() + 30,
+						maskClose: true,
+						zIndex: 2015
+					});
+					return false;
+
+                    index = layer.open({
+						type: 1,
+						title : 0,
+						skin : 'd-common-tool',
+						area: ['456px','auto'], //宽高
+						content: oBox
+					});
+					return false;
+				});
+				// 弹出内容，内部按钮关闭弹窗
+				oBox.find('.btn').click(function(){
+				oDialog && oDialog.close();
+
+					index!=null && layer.close(index);
+                });
+			}());
+
+			// 老师评分
+			(function(){
+				var oBtn = $('div[mt="stufill"],div[mt="lookup"]'),
+					oBox = $('#lspf_box'),
+					offset,
+					offset,
+					oCntBody,
+					index;
+				offset = oBtn.offset();
+                oBtn.each(function(index,eleDom){
+                    $(this).click(function(){
+					index = layer.open({
+                            type: 1,
+                            title : 0,
+                            skin : 'd-common-tool',
+                            area: ['456px','auto'], //宽高
+                            content: oBox
+                        });
+                        return false;
+                    });
+                });
+
+				oCntBody = $('.box-body', oBox)
+
+				oCntBody.height(455).jScrollPane({ autoReinitialise: true });
+
+				oCntBody.find('input.btn[type=submit]').click(function(){
+					index!=null && layer.close(index);
+				});
+			}());
+
+		}());
+
+		(function(){
+			// 定义"直播班会"滚动条
+			var oScrollBox = $('#zbbh .tab-cnt'),
+				tabCntIn = oScrollBox.find('.tab-cnt-in'),
+				scrollBar;
+			tabCntIn.width( tabCntIn.width() );
+			oScrollBox.jScrollPane();
+			scrollBar = oScrollBox.find('.jspVerticalBar,.jspHorizontalBar');
+			scrollBar.hide();
+			oScrollBox.hover(function(){
+				scrollBar.fadeIn();
+			},function(){
+				scrollBar.fadeOut();
+			});
+			// 鼠标经过
+			var oItem = $('.fun', oScrollBox);
+			oItem.each(function(i){
+				var oCurItem = oItem.eq(i);
+				oCurItem.parent().hover(function(){
+					oCurItem.stop(1,1).slideDown(150);
+				}, function(){
+					oCurItem.stop(1,1).slideUp(150);
+				});
+			});
+		}());
+
+		// 图表
+		(function(){
+			//标记
+            // json数据
+			var chartData = {{ this_week_kpi_list | safe}};
+            clazz_data(chartData);
+
+			// 综合排名
+			tab[1]._initChart = function(){
+
+				var canvas = $('#canvas_2');
+				var chartBox = $('#chart_2');
+				var div = $('<div/>');
+				div.css({ 'height' : chartBox.height()-30, 'overflow' : 'hidden' });
+				div.append(canvas.css({'marginBottom' : 10}));
+				chartBox.html('').append(div);
+
+				// json数据
+				var chartData = {{ rank_in_class | safe }}
+				// 图表实例
+				$.chartExtend.BarE1({
+					'canvas' : '#canvas_2',
+					'data' : chartData,
+					'maxValue' : {{ chart_maxvalue | safe}},
+					'labels' : [{
+						'dataKey' : 'study_point',
+						'label' : '学力值',
+						'color' : ['#5ECFBA','#5ECFBA']
+					},{
+						'dataKey' : 'ava_score',
+						'label' : '评测分数',
+						'color' : ['#FFCC74','#FFCC74']
+					}]
+				});
+			};
+		}());
+
+		// 图表tab
+		$.commonTool.tab({
+			'tabBox' : '#tab_box_2',
+			'transitionCallback' : function(btn,cnt){
+				var canvas;
+				if(this._initChart){
+					canvas = cnt.find('canvas');
+					if(canvas){
+						canvas.parent().html('').append(canvas.clone());
+						this._initChart();
+					}
+				}
+			}
+		}
+        );
+
+		// 学习交流 start
+		(function(){
+			var replyBtnEventBind = (function(){
+
+				// 创建回复输入框
+				function createWriteBox(isQuestion) {
+					var html;
+					if(isQuestion){
+						// 发言
+						html = '<div class="q-item"><div class="q-left">';
+						html += '<a href="##"><img class="img-circle" src="images/photo.jpg" alt=""/></a>';
+						html += '</div><div class="q-body">';
+						html += '<form action="" class="q-body-in"><div class="q-title clearfix">';
+						html += '<div class="pull-left">Robert：</div>';
+						html += '</div><div class="q-content">';
+						html += '<textarea placeholder="提点什么问题吧" name="" id="" cols="" rows=""></textarea>';
+						html += '</div><div class="q-fun">';
+						html += '<input class="btn cancel-btn" type="reset" value="取消"/><input class="btn ok-btn" type="button" value="发言"/>';
+						html += '</div></form></div></div>';
+					}else{
+						// 评论
+						html = '<div class="q-reply-write"><div class="q-left">';
+						html += '<a href="##"><img class="img-circle" src="images/photo.jpg" alt=""/></a>';
+						html += '</div><div class="q-body">'
+						html += '<form action="" class="q-body-in">';
+						html += '<div class="q-title clearfix"><div class="pull-left">Robert：</div></div>';
+						html += '<div class="q-content">';
+						html += '<textarea placeholder="回复：" name="" id="" cols="" rows=""></textarea>';
+						html += '</div><div class="q-fun">';
+						html += '<input class="btn cancel-btn" type="reset" value="取消"/><input class="btn ok-btn" type="button" value="回复"/>';
+						html += '</div></form></div></div>';
+					}
+
+					var reply = $(html);
+
+					/* code */
+
+					return reply;
+				}
+				function replyShowOrNoBtnFun(o){
+					var $o = $(o), role = $o.attr('role') == 'question-button';
+					if(o.cntIsShow !== true){
+						!role && $o.html('收起回复').addClass('reply-open');
+						o.cntIsShow = true;
+					}else{
+						!role && $o.html('回复').removeClass('reply-open');
+						o.cntIsShow = false;
+					}
+					return o.cntIsShow;
+				}
+					
+				var oReplyMark = { 'writeBox' : null, 'handle' : null};
+				return function(elm, isQuestion){
+					$(elm).click(function(){
+						var self = this, $self = $(self);
+						var qItemM, domPosition, oCurWriteBox;
+
+						if( replyShowOrNoBtnFun(self) ){// 显示or隐藏按钮
+							// 如果已经有一个"回复or评论输入布局"存在，则隐藏
+							oReplyMark.writeBox && oReplyMark.writeBox.slideUp();
+							oReplyMark.handle && replyShowOrNoBtnFun(oReplyMark.handle);
+							// 创建一个新的"回复or评论输入布局"
+							oCurWriteBox = createWriteBox(isQuestion);
+							// 为"回复输入布局"中按钮"取消""回复"绑定事件
+							oCurWriteBox.find('.btn').click(function(){
+								$self.click();
+							});
+							// 新"回复or评论输入布局"在dom中的位置
+							if(isQuestion){
+								$('.q-list').prepend( oCurWriteBox );
+							}else if($self.closest('.q-body').parent().hasClass('q-reply')){
+								$self.closest('.q-reply').after( oCurWriteBox );
+							}else{
+								qItemM = $self.closest('.q-item-m');
+								domPosition = qItemM.next('.q-reply-group');
+								if( !domPosition.length ){
+									oCurWriteBox = $('<div class="q-reply-group"/>').append(oCurWriteBox);
+									qItemM.after( oCurWriteBox );
+								}else{
+									domPosition.prepend( oCurWriteBox );
+								}
+							}
+							// 新"回复输入布局"动画展现
+							oCurWriteBox.hide().slideDown(function(){
+								oReplyMark.writeBox && oReplyMark.writeBox.remove();
+
+								oReplyMark.handle = self;
+								oReplyMark.writeBox = oCurWriteBox;
+							});
+
+						}else{
+							oReplyMark.writeBox && oReplyMark.writeBox.slideUp(function(){
+								oReplyMark.writeBox.remove();
+								oReplyMark.writeBox = null;
+								oReplyMark.handle = null;
+								oReplyMark.isQ = false;
+							});
+						}
+						//event.stopPropagation();
+						return false;
+					});
+				};
+			}());
+
+			// "提问"按钮绑定点击事件
+			replyBtnEventBind('#show_q_box', true);
+			// 为已经存在页面上的 “回复” 按钮绑定点击事件
+			replyBtnEventBind('.q-item .reply');
+
+			// 评论显示or隐藏
+			(function(){
+				//
+				$('.q-item .comment').click(function(){
+					var self = this, $self = $(self);
+					var replyGroup, replyList;
+
+					if(self._text==null){
+						self._text = $self.text();
+					}
+
+					replyGroup = $self.closest('.q-item-m').next('.q-reply-group');
+					if( replyGroup.length ){
+						replyList = replyGroup.find('.q-reply');
+						if( replyList.length ){
+							replyShowOrNoBtnFun(self);
+							replyList.slideToggle();
+						}
+					}
+
+					return false;
+
+					function replyShowOrNoBtnFun(o){
+						var $o = $(o);
+						if(o.cntIsShow !== true){
+							$o.html('收起评论').addClass('reply-open');
+							o.cntIsShow = true;
+						}else{
+							$o.html(o._text).removeClass('reply-open');
+							o.cntIsShow = false;
+						}
+						return o.cntIsShow;
+					}
+				});
+			}());
+
+			// 更多评论
+			(function(){
+				$('#more_comment').click(function(){
+					var $self = $(this);
+
+					// 新加载的评论
+					var oNewComment = $('<div class="q-item"><div class="q-item-m"><div class="q-left"><a href="##"><img class="img-circle" src="images/photo.jpg" alt=""/></a></div><div class="q-body"><div class="q-body-in"><div class="q-title clearfix"><div class="pull-left">Robert在<a href="##">Android开发基础</a>中提问：</div><div class="pull-right"><span class="date-time"><span>03-12</span><pan>16:00</span></span></div></div><div class="q-content"><p>我就是来听老师讲课的！讲的凑合。没学到太多知识，也算巩固了下。</></div><div class="q-fun"><a href="javascript:;" class="comment">0条评论</a><a href="javascript:;" class="reply">回复</a></div></div></div></div></div>');
+
+					// 为新 “回复” 按钮绑定点击事件
+					replyBtnEventBind( $('.reply', oNewComment) );
+
+					// 新评论添加到页面
+					oNewComment.hide();
+					$self.parent().before( oNewComment );
+					oNewComment.slideDown();
+				});
+			}());
+
+			// "学习交流"内容滚动
+			var xxjl = $('#xxjl'),
+				oScrollBox = $('.scroll-box', xxjl),
+				oScrollApi,
+				oScrollBar;
+			// autoReinitialise: true  内容改变时自动更新滚动条
+			// ".jspVerticalBar,.jspHorizontalBar" 纵横向滚动条是新的dom，显示隐藏滚动条需要重新查找dom
+			oScrollBox.jScrollPane({ autoReinitialise: true });
+			oScrollApi = oScrollBox.data('jsp');
+			oScrollBar = xxjl.find('.jspVerticalBar,.jspHorizontalBar');
+			xxjl.hover(function(){
+				xxjl.find('.jspVerticalBar,.jspHorizontalBar').fadeIn();
+			},function(){
+				xxjl.find('.jspVerticalBar,.jspHorizontalBar').fadeOut();
+			});
+			xxjl.find('.jspVerticalBar,.jspHorizontalBar').hide();
+			setTimeout(function(){
+				xxjl.find('.jspVerticalBar,.jspHorizontalBar').hide();
+			},500);
+		}());
+	});
+</script>
+
+<!-- 督促学生 -->
+<div id="dcxs_box" class="box d-bh-box d-bh-box2" style="display:none">
+    <input id="stustatusId" type="hidden" value=""/>
+    <div class="box-head">
+        <span class="text">督促学生</span>
+    </div>
+    <div class="box-body">
+        <div class="item">
+            <span class="label">信息种类：</span>
+            <select id="select_trace">
+            </select>
+        </div>
+        <div class="item">
+            <span class="label">消息内容：</span>
+            <textarea name="" id="text_suggest" cols="" rows="" placeholder="请填写原因"></textarea>
+            <div class="error-info info-error"></div>
+        </div>
+        <div class="item text-right">
+            <input type="button" id="btn_submit" class="btn" onclick="btn_submit()" value="&nbsp;&nbsp;发送&nbsp;&nbsp;" />
+        </div>
+    </div>
+</div>
+
+<!-- 完善个人资料 -->
+<div id="user_panel" class="d-user-panel" style="display:none">
+    <h2 class="webfont">请完善你的个人信息</h2>
+    <form class="form-horizontal" id="user_profile" method="post" action="{% url 'lps2:teacher_profile_handler' %}" autocomplete="off">
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label img-label">上传头像</label>
+            <div class="col-sm-10">
+                <span class="img-box">
+                    <a></a>
+                    <input id="update_photo" type="file" name="Filedata"/>
+                    <input id="update_photo_hidden" type="hidden" name="Filedata_hidden"/>
+                </span>
+                <span class="photo-h photo-h-tips photo-h-active">想和学生更快地认识你就上传真实头像吧~</span>
+                <span class="photo-h photo-h-slide"><span id="photo_h_slide"></span></span>
+                <span class="photo-h spanphoto-h-update"><span>正在上传</span><span id="avatar-upload-progress">25%</span></span>
+                <span class="photo-h photo-h-ok"><img src="/static/lps2/images/ico-10.png"/></span>
+                <div class="error-info avatar-error">请上传头像</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="" class="col-sm-2 control-label">真实姓名</label>
+            <div class="col-sm-10">
+                <input type="text" class="" placeholder="请输入真实姓名" id="real_name" name="real_name">
+                <div class="error-info name-error">请填写真实姓名</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="" class="col-sm-2 control-label">讲师介绍</label>
+            <div class="col-sm-10">
+                <textarea class="form-control" placeholder="介绍下你自己吧" id="description" name="description"></textarea>
+                <div class="error-info info-error">请填写个人介绍</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10 text-right">
+                <input type="hidden" name="careercourse_id" value={{cur_careercourse.id}}>
+                <input type="hidden" id="marginTop" name="marginTop" value="">
+                <input type="hidden" id="marginLeft" name="marginLeft" value="">
+                <input type="hidden" id="boxwidth" name="boxwidth" value="">
+                <input type="hidden" id="boxheight" name="boxheight" value="">
+                <input type="hidden" id="zoompicwidth" name="zoompicwidth" value="">
+                <input type="hidden" id="zoompicheight" name="zoompicheight" value="">
+                <span id="submit-tips" class="tips-error bg-danger">信息提示</span>
+                <button type="button" id="user_profile_submit" class="btn btn-default" onclick="user_profile_form_submit()">提交</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!-- 班级数据__本周KPI__学员学习数据 -->
+<div id="kpi_info"></div>
+<script type="text/html" id="kpi_info_tmplate">
+    <%for(var i=0;i<user_curinfo_lst.length;i++){%>
+    <div class="KPI-uinfo-box" style="display:none">
+        <i class="arrow-ico"></i>
+        <div class="KPI-uinfo-boxin">
+            <div class="u-info">
+                <div class="row">
+                    <div class="col-xs-6">
+                        <div class="u-info-cnt">
+                            <span class="u-img"><img class="img-circle" src="<%=user_curinfo_lst[i].image%>" alt="<%=user_curinfo_lst[i].user_name%>" title="<%=user_curinfo_lst[i].user_name%>"></span>
+                            <span class="u-name"><%=user_curinfo_lst[i].user_name%></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="u-info-cnt">
+                            <span class="label"><img src="/static/lps2/images/ico-3.png" alt=""><span>学习状态：</span></span>
+                            <span class="value"><em style="color:#5ecfba"><%=user_curinfo_lst[i].status%></em></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="u-info-cnt">
+                            <span class="label"><img src="/static/lps2/images/ico-3.png" alt=""><span>学习目的：</span></span>
+                            <span class="value"><em><%=user_curinfo_lst[i].study_goal%></em></span>
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div class="u-info-cnt">
+                            <span class="label"><img src="/static/lps2/images/ico-3.png" alt=""><span>学习基础：</span></span>
+                            <span class="value"><em><%=user_curinfo_lst[i].study_base%></em></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <%if(user_curinfo_lst[i].user_task_list.length>0){%>
+             <!-- 有计划时显示 -->
+            <div class="u-study-info">
+                <div class="row">
+                    <h4>本周任务完成情况：</h4>
+                    <div class="list-box">
+                        <%for(var j=0;j<user_curinfo_lst[i].user_task_list.length;j++){
+                             var user_task=user_curinfo_lst[i].user_task_list;%>
+                          <div class="list-item">
+                            <i class="dot"></i>
+                            <span class="list-item-tit"><%=user_task[j].title%></span>
+                            <ul>
+                                <%if (user_task[j].text1){%>
+                                <li>
+                                    <div class="row">
+                                        <div class="pull-left"><%=user_task[j].text1%></div>
+                                        <div class="pull-right">
+                                            <%if (user_task[j].is_ext == 1){%>
+                                            <img src="/static/lps2/images/word-1.png" alt=""/>
+                                            <%}else{%>
+                                                <% if(user_task[j].status == 2){%>
+                                                <img src="/static/lps2/images/word-2.png" alt=""/>
+                                                <%}%>
+                                                <% if(user_task[j].status == 1){%>
+                                                <img src="/static/lps2/images/word-9.png" alt=""/>
+                                                <%}%>
+                                                <% if(user_task[j].status == 0){%>
+                                                <img src="/static/lps2/images/word-8.png" alt=""/>
+                                                <%}%>
+                                            <%}%>
+                                        </div>
+                                    </div>
+                                </li>
+                                <%}%>
+
+                                <%if (user_task[j].text2){%>
+                                <li>
+                                    <div class="row">
+                                        <div class="pull-left"><%=user_task[j].text2%></div>
+                                        <div class="pull-right">
+                                            <%if (user_task[j].is_ext == 1){%>
+                                            <img src="/static/lps2/images/word-1.png" alt=""/>
+                                            <%}else{%>
+                                             <% if(user_task[j].status == 2){%>
+                                                <img src="/static/lps2/images/word-2.png" alt=""/>
+                                                <%}%>
+                                                <% if(user_task[j].status == 1){%>
+                                                <img src="/static/lps2/images/word-9.png" alt=""/>
+                                                <%}%>
+                                                <% if(user_task[j].status == 0){%>
+                                                <img src="/static/lps2/images/word-8.png" alt=""/>
+                                                <%}%>
+                                            <%}%>
+                                        </div>
+                                    </div>
+                                </li>
+                                <%}%>
+
+                            </ul>
+                        </div>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
+            <%}else{%>
+            <!-- 无学习计划时显示 -->
+            <div class="u-study-info">
+                <div class="u-study-no">
+                    <img src="/static/lps2/images/ico-18.png" alt=""/>
+                    <span>本周暂无学习计划</span>
+                </div>
+            </div>
+            <%}%>
+         </div>
+    </div>
+    <%}%>
+</script>
+<script type="text/html" id="teacher_finish_tmplate">
+    <%for(var i=0;i<user_task_finish_list.length;i++){
+        var user_task=user_task_finish_list[i];%>
+        <% if(user_task.type == "givescoreuser"){%>
+            <input type="hidden" value="<%=user_task.classmeeting_id%>">
+            <div class="item" mt="lookup" onclick="ask_evalute_stu(this, 'lookup')">
+                <div class="date"><%=user_task.time%></div>
+                <div class="title"><span class="text"><%=user_task.title%></span><img src="/static/lps2/images/word-6.png" alt=""/></div>
+                <ul>
+                    <li><i class="dot"></i><span class="text">直播班会已经结束了，快去给学员打分吧~</span></li>
+                </ul>
+            </div>
+        <%}%>
+        <% if(user_task.type == "stu_status_progress"){%>
+            <div class="item" onclick="teacher_suggest_complish(this)">
+                <input type="hidden" value="<%=user_task.stustatus_id%>">
+                <div class="date"><%=user_task.create_datetime%></div>
+                <div class="title"><span class="text"><%=user_task.title%></span><img src="/static/lps2/images/word-6.png" alt=""/></div>
+                <ul>
+                    <li><i class="dot"></i><span class="text"><%=user_task.content%></span></li>
+                </ul>
+            </div>
+        <%}%>
+        <% if(user_task.type == "classmeeting"){%>
+            <div class="item">
+                <div class="date"><%=user_task.startline%></div>
+                <div class="title"><span class="text">
+                <% if(user_task.is_temp){%>
+                    临时班会
+                <%}else{%>
+                    周直播班会
+                <%}%>
+                </span><img src="/static/lps2/images/word-6.png" alt=""/></div>
+                <ul>
+                    <li><i class="dot"></i><span class="text"><%=user_task.content%></span></li>
+                </ul>
+            </div>
+        <%}%>
+        <% if(user_task.type == "stu_status_pro"){%>
+            <div class="item">
+                <div class="date"><%=user_task.create_datetime%></div>
+                <div class="title"><span class="text"><%=user_task.title%></span><img src="/static/lps2/images/word-6.png" alt=""/></div>
+                <ul>
+                    <li><i class="dot"></i><span class="text"><%=user_task.content%>~</span></li>
+                </ul>
+            </div>
+        <%}%>
+        <% if(user_task.type == "tea_profile"){%>
+            <div class="item">
+                <div class="date"><%=user_task.create_datetime%></div>
+                <div class="title"><span class="text"><%=user_task.title%></span><img src="/static/lps2/images/word-6.png" alt=""/></div>
+                <ul>
+                    <li><i class="dot"></i><span class="text">让更多人认识你吧</span></li>
+                </ul>
+            </div>
+        <%}%>
+        <% if(user_task.type == "read_me"){%>
+            <div class="item" onclick="$.commonTool.ruleShow();">
+                <div class="date"><%=user_task.create_datetime%></div>
+                <div class="title"><span class="text"><%=user_task.title%></span><img src="/static/lps2/images/word-6.png" alt=""/></div>
+                <ul>
+                    <li><i class="dot"></i><span class="text">点击阅读教师须知</span></li>
+                </ul>
+            </div>
+        <%}%>
+    <%}%>
+</script>
+<script type="text/javascript">
+    // 班级数据__本周KPI__学员学习数据
+     $(function(){
+         $.ajax({
+             cache: false,
+             type: "get",
+             url: "/lps2/teach/plan/finishtask/{{ class_id }}/",
+             data: '',
+             async: true,
+             success: function (data) {
+                 data = $.parseJSON(data);
+                 //console.log(data);
+                 if (data.status == "success") {
+                    // json数据
+                    var html = template('teacher_finish_tmplate', {user_task_finish_list: data.user_task_finish_list});
+                    $('#teacher_finish').html(html);
+                    var tabBox = $('#tab_box_1');
+                    // 自定义"教学任务"滚动条
+                    var tabCnt0 = $('.tab-cnt', tabBox).eq(0),
+                        tabCntIn0 = tabCnt0.find('.tab-cnt-in');
+
+                    var tabCnt = $('.tab-cnt', tabBox).eq(1),
+                        tabCntIn = tabCnt.find('.tab-cnt-in'),
+                        scrollBar;
+
+                     tabCntIn.width( tabCntIn0.width() );
+                     tabCnt.width( tabCnt0.width() );
+
+                    tabCnt.height(537).jScrollPane({ autoReinitialise: true });
+                 } else if (data.status == "failure") {
+                    alert(data.message)
+                 }
+             }
+         });
+         //异步请求班级当周的所以学生数据
+         get_studentsusertask_info(0,0);
+    });
+    function get_studentsusertask_info(ifpre,step){
+        $.ajax({
+             cache: false,
+             type: "POST",
+             url: "/lps2/teach/plan/studentsusertask/{{ class_id }}/",
+             data: "weekid={{ this_week.id }}&step="+ifpre+"&n_step="+step,
+            dataType:'json',
+             async: true,
+             success: function (data) {
+                 var html = template('kpi_info_tmplate',{user_curinfo_lst:data.user_curinfo_lst})
+                 //绑定当周任务
+                var kpi_info = $('#kpi_info');
+                kpi_info.html(html)
+                //绑定每周任务数据的事件
+                bind_kpi_info();
+             }
+         });
+    }
+    function bind_kpi_info(){
+        var arrBox = $('.KPI-uinfo-box');
+        var arrItem = $('#canvas_1').parent().find('a');
+        arrItem.each(function(i){
+            var uBox = arrBox.eq(i);
+            //var uBoxIn = uBox.find('.KPI-uinfo-boxin');
+            //var uStudyInfo = uBox.find('.u-study-info');
+            var oArrow = uBox.find('.arrow-ico');
+            var oItem = arrItem.eq(i);
+            var timer;
+
+            oItem.hover(function(e){
+                var other = $(this);
+                var box = other.closest('.box');
+                var offsetA = other.offset();
+                var offsetB = box.offset();
+
+                timer && clearTimeout(timer);
+
+                oArrow.css({
+                    left: offsetA.left-offsetB.left + ( other.width() - 20 ) / 2
+                });
+                uBox.css({
+                    top: offsetB.top + box[0].clientHeight + 12,
+                    left: offsetB.left,
+                    width: box[0].clientWidth
+                }).stop(1,1).slideDown();
+            }, function(){
+                timer = setTimeout(function(){
+                    uBox.slideUp();
+                },100);
+
+            });
+
+            uBox.hover(function(){
+                timer && clearTimeout(timer);
+            }, function(){
+                timer = setTimeout(function(){
+                    uBox.slideUp();
+                },600);
+            });
+        });
+    }
+</script>
+
+{# 查看教师须知 #}
+<script type="text/javascript">
+    function submit_teach_contract(){
+        $.post("/lps2/teach/plan/teach_contract_handle/", {}, function(data){console.info(data);});
+    };
+
+    function enable_submit(){
+        var check_contract = document.getElementById("check_contract");
+        var agree_contract = document.getElementById("agree_contract");
+        if (check_contract.checked == true) {
+            agree_contract.removeAttribute("disabled");
+        }else{
+            agree_contract.setAttribute("disabled", "disabled");
+        }
+    }
+</script>
+
+{# 请求学员打分操作 #}
+<script type="text/javascript">
+    function blur_knt(ele_dom){
+        var reg = /^(\d{1,2}|0|100)$/;
+        var in_val = $(ele_dom).val();
+        if(!(in_val == ""))
+        if(!reg.test(in_val)){
+            $(ele_dom).val("");
+            alert("请输入0-100的数字")
+        }
+    }
+
+
+
+function modify_meet_time(ele_dom){
+    var spanEle = $(ele_dom).prev();
+    $("#edit_bh_box").children("#meeting_mo_id").val(spanEle.val());
+    $.ajax({
+        url:'/lps2/teach/plan/get_class_meeting_time/',
+        type:'POST',
+        data:'class_meeting_id='+spanEle.val(),
+        dataType:'json',
+        success:function(data){
+            $("#edit_week").empty();
+            var pre_week = data.pre_class_meeting.pre_week;
+            var pre_hours = data.pre_class_meeting.pre_hours;
+            var pre_minutes = data.pre_class_meeting.pre_minutes;
+            for(var index in data.day) {
+                if(index == pre_week - 1){
+                    $("#edit_week").append('<option selected="selected" value="' + data.day[index].time + '">' + data.day[index].week + '</option>');
+                }else{
+                    $("#edit_week").append('<option value="' + data.day[index].time + '">' + data.day[index].week + '</option>');
+                }
+            }
+
+            $("#create_class_meeting_content").val(data.content);
+
+            for(var i = 1;i <= 24;i++){
+                if(i == pre_hours){
+                    $("#edit_hours").append('<option selected="selected" value="' + i + '">' + i + '</option>');
+                }else{
+                    $("#edit_hours").append('<option value="' + i + '">' + i + '</option>');
+                }
+            }
+
+            for(var i = 0;i < 60;i++)
+            {
+                if(i == pre_minutes)
+                {
+                    $("#edit_minute").append('<option selected = "selected" value="' + i + '">' + i + '</option>');
+                }else{
+                    $("#edit_minute").append('<option value="' + i + '">' + i + '</option>');
+                }
+            }
+
+        }
+
+    });
+}
+
+function ask_evalute_stu(ele_dom, mt){
+    var spanEle = $(ele_dom).prev();
+    var box_head_span = $("#score_title");
+    var box_body = $("#lspf_box").children("form").children("div[class='box-body']");
+    $.ajax({
+        url:"/lps2/teach/plan/ask_evaluate_stu_handle/",
+        type:"post",
+        data: {"class_meeting_id":spanEle.val(),"mt":mt},
+        dataType:"json",
+        success:function(data){
+            var stu_join_list = data["stu_join_list"];
+            var stu_vacancy_list = data["stu_vacancy_list"]
+            var classmeeting_id = data["class_meeting_id"]
+            box_body.empty();
+            for(var index in stu_join_list){
+
+                var str = '<div class="item clearfix">' +
+                '<div class="pull-right">' +
+                '<span class="ico"><img src="/static/lps2/images/word-7.png" alt=""/></span> ';
+                if(stu_join_list[index].chat_capacity == -1){
+                      str += '<input type="text" onblur="blur_knt(this)"  class="form-control" name="' + stu_join_list[index].id +'"/>';
+                }else{
+                    str += stu_join_list[index].chat_capacity;
+                }
+
+                str += ' / 100  ' +
+                '</div> ' +
+                '<span class="photo"><img class="img-circle" src="'+stu_join_list[index].icon+'" alt=""/></span> ' +
+                '<div class="item-c"> ' +
+                '<div><span>'+stu_join_list[index].name+'</span><br/><span>时长：'+stu_join_list[index].join_length+'分钟</span></div> ' +
+                '</div> ' +
+                '</div>';
+                box_body.append(str);
+            }
+            box_body.append('<div class="item item-legend">未参加班会学员</div>')
+            for(var index in stu_vacancy_list){
+                var str = '<div class="item clearfix">'
+
+                str +=  '<span class="photo"><img class="img-circle" src="'+stu_vacancy_list[index].icon+'" alt=""/></span> ' +
+                        '<div class="item-c"> ' +
+                        '<div><span>'+stu_vacancy_list[index].name+'</span></div> ' +
+                        '</div> ' +
+                        '</div>';
+                box_body.append(str)
+            }
+            if (mt == "stufill"){
+            box_body.append('<div class="item clearfix"><div class="text-center"><input type=hidden name="classmeeting_id" value="'+classmeeting_id+'"/><input type="submit" class="btn" onclick="submit_score()" value="&nbsp;&nbsp;&nbsp;&nbsp;提交&nbsp;&nbsp;&nbsp;&nbsp;"/></div></div>');
+            }else{
+                box_head_span.html("查看学员数据");
+            }
+        }
+
+    });
+    $("#score_form").children(".box-body").css("overflow","auto");
+}
+
+
+</script>
+
+{# 提交学员打分#}
+<script type="text/javascript">
+function submit_score(){
+    var form_data = $('#score_form').serialize();
+
+    $.ajax({
+        url:"/lps2/teach/plan/submit_stu_score_handle/",
+        type:"post",
+        data: form_data,
+        dataType:"json",
+        success:function(data){
+            alert(data);
+        }
+    });
+
+}
+</script>
+
+{# 关闭直播班会#}
+<script type="text/javascript">
+    function finish_classmeeting(classmeeting_id){
+        $.ajax({
+            url:'/lps2/teach/plan/finish_classmeeting_handle/',
+            data:'classmeeting_id='+classmeeting_id,
+            type:'POST',
+            dataType:'json',
+            success:function(data){
+                if(data.status == "success"){
+                    window.location.reload();
+                }else{
+                    alert("结束直播失败");
+                }
+            }
+        });
+
+    }
+</script>
+
+{# 修改班会时间#}
+<script type="text/javascript">
+    function modify_classmeeting_time(ele_dom) {
+        var spanEle = $(ele_dom).parent().children("input[type='hidden']");
+        var week = $("#edit_week").val();
+        var hours = $("#edit_hours").val();
+        var minute = $("#edit_minute").val();
+        var content = $("#edit_content").val();
+        var class_meeting_id = $("#edit_bh_box").children("#meeting_mo_id").val();
+
+        //获取今天星期几
+        var meet_time_str = $("#edit_bh_box").children("#meeting_time").val();
+        var meet_time = meet_time_str.replace(/-/g,"/");
+        var class_meeting_time = new Date(meet_time);
+
+
+        var str_time = week+" "+hours+":"+minute+":"+"00";
+        var str = str_time.replace(/-/g,"/");
+        var start_line_date = new Date(str);
+        //console.info("用户选择的"+start_line_date.toLocaleString());
+        //console.info("服务器上的"+class_meeting_time.toLocaleString());
+        if(class_meeting_time > start_line_date)
+        {
+            alert("请选择正确的时间");
+            return false
+        }
+        $.ajax({
+            url:"/lps2/teach/plan/modifier_class_meeting_time/",
+            type:"POST",
+            data:"class_meeting_id="+class_meeting_id+"&content="+content+"&modify_class_meeting_time="+str_time,
+            dataType:"json",
+            success:function(data){
+                $("div[onclick='modify_meet_time(this)']").children("ul").children("li").children(".text").html(data.class_meeting_time);
+            }
+        });
+    }
+
+    Date.prototype.pattern=function(fmt) {
+        var o = {
+        "M+" : this.getMonth()+1, //月份
+        "d+" : this.getDate(), //日
+        "h+" : this.getHours()%12 == 0 ? 12 : this.getHours()%12, //小时
+        "H+" : this.getHours(), //小时
+        "m+" : this.getMinutes(), //分
+        "s+" : this.getSeconds(), //秒
+        "q+" : Math.floor((this.getMonth()+3)/3), //季度
+        "S" : this.getMilliseconds() //毫秒
+        };
+        var week = {
+        "0" : "/u65e5",
+        "1" : "/u4e00",
+        "2" : "/u4e8c",
+        "3" : "/u4e09",
+        "4" : "/u56db",
+        "5" : "/u4e94",
+        "6" : "/u516d"
+        };
+        if(/(y+)/.test(fmt)){
+            fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));
+        }
+        if(/(E+)/.test(fmt)){
+            fmt=fmt.replace(RegExp.$1, ((RegExp.$1.length>1) ? (RegExp.$1.length>2 ? "/u661f/u671f" : "/u5468") : "")+week[this.getDay()+""]);
+        }
+        for(var k in o){
+            if(new RegExp("("+ k +")").test(fmt)){
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+            }
+        }
+        return fmt;
+    };
+
+    function create_temp_classmeeting_time(ele_dom) {
+        var create_class_meeting_year = $("#create_class_meeting_year").val();
+        var create_class_meeting_month = $("#create_class_meeting_month").val();
+        var create_class_meeting_day = $("#create_class_meeting_day").val();
+        var create_class_meeting_hours = $("#create_class_meeting_hours").val();
+        var create_class_meeting_minute = $("#create_class_meeting_minute").val();
+        var content = $("#create_class_meeting_content").val();
+
+        if (create_class_meeting_month.length == 1 ){
+            create_class_meeting_month = "0" + create_class_meeting_month
+        }
+        if (create_class_meeting_day.length == 1 ){
+            create_class_meeting_day = "0" + create_class_meeting_day
+        }
+        {# 验证日期有效性#}
+        var datejudge = create_class_meeting_year + "/" + create_class_meeting_month +
+                        "/" + create_class_meeting_day;
+        if ((new Date(datejudge)).getDate() != datejudge.substring(datejudge.length - 2)) {
+            alert("日期输入错误");
+            return;
+        }
+
+        var create_date = new Date(create_class_meeting_year,create_class_meeting_month - 1,
+                create_class_meeting_day,create_class_meeting_hours,create_class_meeting_minute);
+
+        var today = new Date();
+        if(today > create_date){
+            alert("请选择正确的时间");
+            return;
+        }
+        if(content == ''){
+            alert("请输入内容");
+            return;
+        }
+        create_date = create_date.pattern("yyyy-MM-dd HH:mm");
+        $.ajax({
+            url:"/lps2/teach/plan/create_temp_class_meeting/",
+            type:"POST",
+            data:"class_id={{ class_id }}&content="+content+"&class_meeting_time="+create_date,
+            dataType:"json",
+            success:function(data){
+                if(data.status == "success"){
+                    location.reload()
+                }
+                if(data.status == "failure"){
+                    alert("班会创建失败")
+                }
+            }
+        });
+    }
+
+    function getDaysInMonth(year,month){
+        month = parseInt(month,10)+1;
+        var temp = new Date(year+"/"+month+"/0");
+        return temp.getDate();
+    }
+</script>
+
+{# 班级排名分页#}
+<script type="text/javascript">
+
+    var step = 0;
+
+    //add by yuxin
+    function another_weeek_data_post(ifpre){
+        step = step + ifpre;
+        $.ajax({
+           cache: false,
+            type: "get",
+            url: "/lps2/teach/plan/weekkpi/{{ class_id }}?weekid={{ this_week.id }}&step="+ifpre+"&n_step="+step,
+            data:'',
+            async: true,
+            beforeSend:function(XMLHttpRequest){
+                $("#pull_left_btn").removeAttr("class","pull-left active");
+                $("#pull_right_btn").removeAttr("class","pull-right active");
+            },
+
+            success: function(data) {
+                if(data.status == "success"){
+
+                    // json数据
+                    var chartData = data.message;
+                    clazz_data(chartData);
+                    get_studentsusertask_info(ifpre,step)
+                }else if(data.status == "failure") {
+
+                }
+                if(data.is_step[0] == 0){
+                    $("#pull_left_btn").removeAttr("class","pull-left active");
+                }else{
+                    $("#pull_left_btn").attr("class","pull-left active");
+                }
+                if(data.is_step[1] == 0){
+                    $("#pull_right_btn").removeAttr("class","pull-right active");
+
+                }else{
+                    $("#pull_right_btn").attr("class","pull-right active");
+
+                }
+                $("#classdatadate").text(data.class_start_date + "——" + data.class_end_date)
+            }
+        });
+    }
+</script>
+{% endblock %}

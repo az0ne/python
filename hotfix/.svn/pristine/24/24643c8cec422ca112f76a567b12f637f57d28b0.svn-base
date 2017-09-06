@@ -1,0 +1,236 @@
+{% if user.is_authenticated and uncomplete_quiz_list %}
+<!--在线测试提示-->
+<div class="popover-test" id="popover_test">
+    <span>本章节即将播放结束，赶快自测 一下知识点吧。答对挣学分哦~</span>
+    <a href="" class="start-test">开始测试</a>
+</div>
+<!--在线测试-->
+<div class="modal fade testModal-div" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button">
+                    <span aria-hidden="true"></span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 id="quizjobModalLabel" class="modal-title">随堂测验</h4>
+                <span class="lr_span">
+                    <a class="left_c lr_c">
+                        <</a>
+                            <span class="lr-num">0/0</span>
+                            <a class="right_c lr_c">></a>
+                        </span>
+            </div>
+            <div class="modal-body">
+                <div class="box-onlinetest">
+                    <article>
+                        <div class="onlinetest-wp cf">
+                            {% for quiz in uncomplete_quiz_list %}
+                            <section quiz_id={{ quiz.id }}>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">{{ forloop.counter }}、{{ quiz.question | safe }}</p>
+                                    {{ quiz.item_list | safe }}
+                                    <span>{{ forloop.counter }}/{{ uncomplete_quiz_list | length }}</span>
+                                </div>
+                            </section>
+                            {% endfor %}
+                           <section  class="last_section">
+                                <div class="test_result_div test_result_div_{{course.id}}">
+                                    <div class="test_result test_result1">
+                                        <span>答对题数</span>
+                                        <div class="re_score">0</div>
+                                    </div>
+                                    <div class="test_result test_result2">
+                                        <span>答错题数</span>
+                                        <div class="re_score">0</div>
+                                    </div>
+                                    <div class="test_result test_result3">
+                                        <span>正确率</span>
+                                        <div class="re_score">0%</div>
+                                    </div>
+                                    <div class="test_result test_result4">
+                                        <span>获得学力</span>
+                                        <div class="re_score">0</div>
+                                    </div>
+                                    <div style="clear:both;"></div>
+                                    <div class="result_text_button result_text_button1">查看错题</div>
+                                    <div class="result_text_button result_text_button2">结束测试</div>
+                                </div>
+                            </section>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(function(){
+
+    function onlinetest(){
+            $('.testModal-div').modal('show');
+            $('.closetest').click(function(){
+                $('.testModal-div').modal('hide');
+            })
+            onlinetst();
+    }
+    $('.result_text_button2').click(function(){
+        $('.testModal-div').modal('hide');
+    })
+    //在线测试
+    function onlinetst(){
+        var _section = $('.onlinetest-wp').find('section');
+        var _button = $('.onlinetest-wp').find('button');
+        var _this_section_length = _section.length;
+        var _this_section_width = _section.outerWidth();
+        $('.onlinetest-wp').width(_this_section_width*_this_section_length);
+
+        _button.bind('click',function(){
+   
+            var _select = $(this).attr("value");
+            var _quiz_id = $(this).parent().parent().attr("quiz_id");
+            var _cur_obj = $(this);
+
+            $.ajax({
+                type:'GET',
+                url:"/lps/quiz/answer/"+_quiz_id+"/"+_select+"/",
+                dataType:'json',
+                success:function(data){
+                    if(data.status=="success"){
+                        if(data.result != _select){
+                            $('.onlinetest-wp section[quiz_id = '+_quiz_id+'] button[value='+data.result+']').addClass('q_right');
+                            _cur_obj.addClass('q_error');
+                            $('section[quiz_id = '+_quiz_id+'] button').unbind();
+                            setTimeout(function(){
+                                _cur_obj.parents('.onlinetest-wp').animate({marginLeft:'-='+_this_section_width},500);
+                            },1000)
+                            
+                        }else{
+                            _cur_obj.addClass('q_right');
+                            $('section[quiz_id = '+_quiz_id+'] button').unbind();
+                            _cur_obj.parents('.onlinetest-wp').animate({marginLeft:'-='+_this_section_width},500);
+                        }
+                        var _counter = _cur_obj.nextAll("span").text().split("/");
+                        if(_counter[0] == _counter[1]){ 
+                            get_paper_result();
+                        }
+
+                    }
+                }
+            });
+        });
+
+}
+
+    function get_paper_result(){
+        $.get("/lps/paper/result/lesson/{{ cur_lesson.id }}/", function(data){
+            if(data.status=="success"){
+                $(".testModal-div .test_result1 .re_score").html(data.quiz_right_count);
+                $(".testModal-div .test_result2 .re_score").html(data.quiz_wrong_count);
+                $(".testModal-div .test_result3 .re_score").html(data.paper_accuracy);
+                $(".testModal-div .test_result4 .re_score").html(data.study_point)
+            }
+        });
+    }
+
+
+    function onlinetestpopup(event){
+        event.preventDefault();
+        $('.popover-test-container').popover('hide');
+        onlinetest();
+    }
+
+    //在线测试提示
+    $('.start-test').click(function(event){
+        onlinetestpopup(event);
+    })
+
+    $('.result_text_button1').click(function(event) {
+     var reviewing = false;
+     var index = 0;
+
+        $.ajax({
+                type:'GET',
+                url:"/lps/user/review/answers/?lesson_id={{ cur_lesson.id }}",
+                dataType:'json',
+                success:function(data){
+                    if(data.success){
+                        str_html = "";
+                        for(var i = 0;i < data.quizs.length;i++){
+                            str_html+= "<section class='section-"+i+"'>"; 
+                            str_html+= '<div class="onlinetest-quiz"><p style="word-wrap: break-word;">'+data.quizs[i].question+'</p>';
+                            str_html+= data.quizs[i].item_list
+                            str_html+="</div></section>";
+                        }
+                        $('.last_section').siblings().remove();
+                        $('.last_section').before(str_html);
+                        $('.onlinetest-wp').animate({marginLeft:'0'},0);
+                        for(var j = 0;j < data.quizs.length;j++){
+                            wrong = data.quizs[j].wrong;
+                            se_right = data.quizs[j].right;
+                            obj = $('.last_section').siblings();
+                            obj.each(function(){
+                               objclass= $(this).attr('class');
+                               s_id =objclass.split('-')[1];
+                               if(j ==s_id){
+                                $('.section-'+j+' button[value='+se_right+']').addClass('q_right');
+                                $('.section-'+j+' button[value='+wrong+']').addClass('q_error');
+                               }
+                            });
+                        }
+                        se_obj = $('.onlinetest-wp section');
+                        if(se_obj.length > 1){
+                            se_num = se_obj.length-1;
+
+                            var _this_section_width = se_obj.outerWidth();
+                            $('.lr-num').html('1/'+se_num);
+                            $('.lr_span').show();
+                            $('.onlinetest-wp').width(_this_section_width*se_obj.length);
+
+                            index = 1;
+                            if(reviewing) {
+                                return;
+                            }
+                            $('.left_c').click(function(event) {
+                                 
+                                if(index == 1){
+                                    return;
+                                }
+                                $('.onlinetest-wp').animate({marginLeft:'+='+_this_section_width},500);
+                                index -= 1;
+                                if(index <= se_num){
+                                    $('.lr-num').html(index+'/'+se_num);
+                                }
+                            });
+                            $('.right_c').click(function(event) {
+                                if(index == se_obj.length) {
+                                    return;
+                                }
+
+                                $('.onlinetest-wp').animate({marginLeft:'-='+_this_section_width},500);
+                                index += 1;
+                                if(index <= se_num){
+                                    $('.lr-num').html(index+'/'+se_num);
+                                }
+                             });
+
+                            reviewing = true;
+
+                        }
+
+                    }
+                }
+            });
+
+
+    });
+
+    {% if request.GET.t == "true" %}
+        player.pause(true);
+        $('.start-test').trigger("click");
+    {% endif %}
+
+    });
+</script>
+{% endif %}

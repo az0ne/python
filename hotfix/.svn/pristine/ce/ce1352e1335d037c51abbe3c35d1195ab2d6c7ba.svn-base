@@ -1,0 +1,77 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}IT培训_IT职业在线培训_专业软件开发培训机构 - 麦子学院{% endblock %}
+{% block keywords %}IT教程，IT职业课程,IT在线学习,IT在线教育,IT视频教程,IT在线教程，软件开发教程{% endblock %}
+{% block description %}IT职业在线培训，提供IT视频教程在线学习,课程涵盖Android培训教程，iOS培训教程，cocos2d-x教程，嵌入式开发，python基础教程，drupal教程、产品经理、物联网、Unity3D等等，免费学习软件开发视频教程就上麦子学院。{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/css/mz_wap/enter_style.css"/>
+{% endblock %}
+
+{% block container %}
+    <div class="enter-banner">
+        <img class="ui-imglazyload" data-url="/static/images/mz_wap/enter_banner.jpg" alt="企业直通班Banner" src="/static/images/mz_wap/imgloading.gif"/>
+    </div>
+    <article class="enter-article1">
+        <h2>企业直通班</h2>
+        <ul>
+            <li>入班即签订保就业协议，我们更关注你的学习效果</li>
+            <li>遍布中美的企业大牛，会手把手带你解决学习问题</li>
+            <li>班级同学在麦子圈实名互动，扩展你的职业人脉</li>
+            <li>阶段性商业项目实战，拥有详细源码和VIP视频</li>
+            <li>小班授课，每周班会直播，更高效为你答疑解惑</li>
+        </ul>
+    </article>
+    <article class="enter-employ">
+        <h2>就业明星</h2>
+        <ul>
+            <li><a href="javascript:void(0);">
+                <p><img class="ui-imglazyload" data-url="/static/images/mz_wap/enter_xyimg1.jpg" alt="周安伟"/></p>
+                <strong>周安伟</strong>
+                <span>Cocos2d-x开发学员</span>
+                <em>就业月薪<mark>￥8000</mark></em>
+                </a>
+            </li>
+            <li><a href="javascript:void(0);">
+                <p><img class="ui-imglazyload" data-url="/static/images/mz_wap/enter_xyimg2.jpg" alt="刘梦奇"/></p>
+                <strong>刘梦奇</strong>
+                <span>产品经理学员</span>
+                <em>就业月薪<mark>￥9000</mark></em>
+            </a></li>
+            <li><a href="javascript:void(0);">
+                <p><img class="ui-imglazyload" data-url="/static/images/mz_wap/enter_xyimg3.jpg" alt="李云青"/></p>
+                <strong>李云青</strong>
+                <span>产品经理学员</span>
+                <em>就业月薪<mark>￥7500</mark></em>
+            </a></li>
+            <li><a href="javascript:void(0);">
+                <p><img class="ui-imglazyload" data-url="/static/images/mz_wap/enter_xyimg4.jpg" alt="段新枰"/></p>
+                <strong>段新枰</strong>
+                <span>Android开发工程师</span>
+                <em>就业月薪<mark>￥9000</mark></em>
+            </a></li>
+        </ul>
+    </article>
+    <article class="enter-hot">
+    	<h2>热门专业</h2>
+    	<ul class="index-learning enter-hot-majors">
+            {% for career_course in career_courses %}
+    		<li><a href="{% url 'career_course_detail' career_course.short_name|lower %}">
+    			<p><img class="ui-imglazyload" data-url="{{ career_course.image.url }}" alt="{{ career_course.name }}"/></p>
+    			<strong>{{ career_course.name }} </strong>
+    			<span><mark>{{ career_course.student_count }}</mark>人正在学习</span>
+    		</a></li>
+            {% endfor %}
+    	</ul>
+    	<a href="{% url 'course_list_all' %}" class="more-course">查看更多课程</a>
+    </article>
+    {% include 'mz_wap/footer.html' %}
+    <div class="seek-floats">
+		<a onclick="_MEIQIA('showPanel')">在线咨询</a>
+		<span>关闭</span>
+    </div>
+{% endblock %}
+
+{% block custom_script %}
+    <script src="/static/js/mz_wap/zepto.js"></script>
+    <script src="/static/js/mz_wap/main.js"></script>
+    <script src="/static/js/mz_wap/imglazyload.js"></script>
+{% endblock %}

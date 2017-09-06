@@ -1,0 +1,49 @@
+// 头部下载区域
+.topwrap {
+	position: fixed;
+	width: 100%;
+	z-index: 100;
+}
+.m-down {
+	width: 100%;
+	height: pxToRem(100);
+	background: #212121;
+	a {
+		width: 3rem;
+		height: 1.375rem;
+		line-height: 1.375rem;
+		text-align: center;
+		border-radius: .1rem;
+		background-color: #fff;
+		float: right;
+		color: #333;
+		font-size: .55rem;
+		margin: .6rem .65rem 0 0;
+	}
+}
+.m-down .close, .search-box .search-text em {
+	width: 1rem;
+	height: 1rem;
+	background-position: 23.45% -2.82%;
+	background-size: 862.5% 412.5%;
+	float: left;
+	margin: .8rem .5rem 0 .3rem;
+}
+
+.m-down-txt {
+	padding: .425rem 0 0 11.25%;
+	&:before {
+		width: 1.75rem;
+		height: 1.75rem;
+		background-position: 0 0;
+		background-size: 492.86% 235.71%;
+		float: left;
+		margin-right: .4rem;
+	}
+	span {
+		display: block;
+		font-size: pxToRem(24);
+		color: #fff;
+		padding-top: pxToRem(20);
+	}
+}

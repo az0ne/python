@@ -1,0 +1,139 @@
+{% extends 'mz_usercenter/usercenter_base.html' %}
+
+{% block usercenter_right_panel %}
+
+    <div class="personalCmainR font14">
+    	<p class="personalCmainRtit font22 color33">基本资料</p>
+        <form action="/home/base/" id="pcBasicForm" method="post">
+        <table class="pcsBasicTable color66 marginB50">
+        	<tr>
+            	<td style="width: 96px;">头像</td>
+                <td colspan="3" class="pcsBasicTableOne">
+                	<div class="img"><img src="{{ MEDIA_URL }}{{ user.avatar_url }}"></div>
+                    <a class="imgSelect"><i class="personalCico"></i>换一个</a>
+                    <div class="font color66">支持jpg、gif、png或bmp格式的图片，文件须小于1M<br><a data-toggle="modal" data-target="#cuttPicture">上传头像</a></div>
+                </td>
+            </tr>
+            <tr>
+            	<td>昵称<span class="red">*</span></td>
+                <td style="width: 346px;"><input type="text" class="pcsBasicTableTxt" datatype="*1-11" name="nick_name" value="{% if user.nick_name %}{{ user.nick_name }}{% endif %}"></td>
+                <td style="width: 210px;"></td>
+                <td></td>
+            </tr>
+            <tr>
+            	<td>真实姓名<span class="red">*</span></td>
+                <td><input type="text" class="pcsBasicTableTxt" datatype="*1-5" name="real_name" value="{% if user.real_name %}{{ user.real_name }}{% endif %}"></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+            	<td>电话<span class="red">*</span></td>
+                <td class="ph">{% if user.mobile %}{{ user.mobile }}<span>(已验证)</span><a class="editphon">修改手机</a>{% else %}<a class="addphone" style="float:none;">新增手机</a>{% endif %}<input type="hidden" datatype="*" value="{% if user.mobile %}{{ user.mobile }}{% endif %}"></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                {% if is_join_job_class %}
+                    <td>身份证号<span class="red">*</span></td>
+                    {% if user.id_number %}
+                        <td>{{ user.id_number }}</td>
+                        <td><span>保就业已生效，身份证将不可修改</span></td>
+                    {% else %}
+                        <td><input type="text" placeholder="这是保就业生效的重要依据" class="pcsBasicTableTxt" name="id_number" datatype="carded" value=""></td>
+                         <td><span class="red">请仔细核对身份证号，保存后将不可修改。</span></td>
+                    {% endif %}
+
+                {% else %}
+                    <td>身份证号</td>
+                    <td><input type="text" class="pcsBasicTableTxt" name="id_number" datatype="carded" value="{% if user.id_number %}{{ user.id_number }}{% endif %}"></td>
+                    <td></td>
+                {% endif %}
+                <td></td>
+            </tr>
+            <tr>
+            	<td>性别<span class="red">*</span></td>
+                <td>
+                    {% for gender in gender_list %}
+                    <label class="pcsRadio{% if user_gender == gender.0 %} rH{% endif %}">
+                    <input type="radio" datatype="*" name="gender" value="{{ gender.0 }}" {% if user_gender == gender.0 %} checked {% endif %}>
+                    <i></i>{{ gender.1 }}</label>
+                    {% endfor %}
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+            	<td>出生日期<span class="red">*</span></td>
+                <td class="birTD"><select id="year1"></select><select id="month2"></select><select id="day3"></select></td>
+                <td><input type="hidden" name="birthday" class="bir"></td>
+                <td></td>
+            </tr>
+            <tr>
+            	<td>QQ<span class="red">*</span></td>
+                <td><input type="text" class="pcsBasicTableTxt" datatype="n5-20" name="qq" value="{% if user.qq %}{{ user.qq }}{% endif %}"></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>微信<span class="red">*</span></td>
+                <td><input type="text" class="pcsBasicTableTxt" datatype="*5-75" name="wechat" value="{% if user.wechat %}{{ user.wechat }}{% endif %}"></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+            	<td>地址<span class="red">*</span></td>
+                <td>
+                    <select class="pcprovince">
+                        {% for province_id,province_name in province_list %}
+                            <option value="{{ province_id }}" {% if user_province_id  == province_id%} selected {% endif %}>
+                                {{ province_name }}</option>
+                        {% endfor %}</select>
+                    <select name="city" class="pccity">
+                        {% for city in city_list %}
+                            <option value="{{ city.city_id }}" {% if user_city_id  == city.city_id%} selected {% endif %}>
+                                {{ city.city_name }}</option>
+                        {% endfor %}</select>
+                    </select>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+            	<td></td>
+                <td><input type="text" placeholder="详细地址" datatype="*1-150" class="pcsBasicTableTxt" name="address" value="{% if user.address %}{{ user.address }}{% endif %}"></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+            	<td></td>
+                <td colspan="3"><a class="personalCbtn" style="width:90px;">{% if is_perfected_userinfo %}下一步{% else %}保存{% endif %}</a></td>
+            </tr>
+        </table>
+        </form>
+    </div>
+
+{% endblock %}
+
+{% block usercenter_extend_div %}
+<div class="modal fade" id="cuttPicture" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm pcSmodal" style="width:460px;">
+        <div class="modal-content">
+        	<a class="zy_close"></a>
+        	<p class="pt color99"><span class="font18">图片裁剪</span></p>
+            <div class="cuttPictureBox">
+            	<div class="cuttPictureBoxL">
+                	<div class="img"></div>
+                    <p class="pb"><input type="file" name="image" id="cuttPictureFile" accept="images/*" style="display:none;"><a class="a1">保存</a><a class="a2">选择头像</a></p>
+                    <input type="hidden" id="x" name="x" value="0" />
+                    <input type="hidden" id="y" name="y" value="0" />
+                    <input type="hidden" id="w" name="w" value="100" />
+                    <input type="hidden" id="h" name="h" value="100" />
+                </div>
+                <div class="cuttPictureBoxR"><p><img src="/images/pop_03.jpg"></p></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'mz_usercenter/div_bind_mobile.html' %}
+{% include 'mz_usercenter/student/div_intro_course.html' %}
+{% endblock %}

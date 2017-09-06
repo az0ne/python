@@ -1,0 +1,8 @@
+<header>
+    <span class="search"></span>
+    <h2><a class="logo" href="/">麦子学院</a></h2>
+    <nav>
+        <a href="{% url 'course_list_all' %}" {% if nav_name == 'course' %}class="active"{% endif %}>课程库</a>
+        <a href="{% url 'wiki_index' %}" {% if nav_name == 'wiki' %}class="active"{% endif %}>WIKI库</a>
+    </nav>
+</header>

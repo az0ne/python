@@ -1,0 +1,29 @@
+<div class="relate-article">
+    <h2>相关文章干货<a class="more" href="{% url 'article_list_view' article_type='tech'%}" target="_blank">更多</a></h2>
+    <div class="slide-box">
+        <ul>
+            {% for article in articles %}
+            <li>
+                <div>
+                    <h3><a href="{% url 'article_detail_view' article.id %}" target="_blank">{{ article.title }}</a></h3>
+                    <p class="tag">
+                        {% for tag in article.tag %}
+                        <a href="{% url 'artilcle_list_tag_view' tag.id %}" target="_blank" class="tagyun">{{ tag.name }}</a>
+                         {% endfor %}
+                        <span class="date">{{ article.publish_date }}</span></p>
+                        <a href="{% url 'article_detail_view' article.id %} " target="_blank">
+                            {% if article.title_image1 %}
+                            <img src="{{ MEDIA_URL }}{{ article.title_image1 }}" alt="{{ article.title }}"/>
+                            {% else %}
+                            <img src="{{ MEDIA_URL }}{{ article.title_image2 }}" alt="{{ article.title }}"/>
+                            {% endif %}
+                        </a>
+
+                    <p class="article-desc">{{ article.abstract }}</p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+        <ol class="slide-tab textR"></ol>
+    </div>
+</div>

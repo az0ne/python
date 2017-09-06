@@ -1,0 +1,82 @@
+/* 文章列表布局样式 */
+.main_container {width: 1160px;margin: 0 auto 60px;}
+.main_container:before,.main_container:after {content:'';display: table;clear: both;}
+.main_container .layout_left {width: 830px;}
+.main_container .layout_right {width: 300px;}
+/* 文章导航分类样式 */
+.article_nav_lists:before,.article_nav_lists:after {content:'';display: table;clear: both;}
+.article_nav_lists {width: 100%;background: rgba(251, 251, 251, 1);}
+.article_nav_lists li {float: left;height: 53px;line-height: 53px;width: 100px;text-align: center;position: relative;}
+.article_nav_lists li a {display: block;}
+.article_nav_lists .active a {color: #5ecfba;}
+.article_nav_lists .active:after {
+    content: '';display: block;width: 100%;height: 0;border-bottom: 2px solid #5ecfba;position: absolute;
+    left: 0;bottom: 0;
+}
+/* 文章列表样式 */
+.main_container .article_lists {margin-bottom: 30px;}
+.main_container .article_lists li {padding-bottom: 30px;overflow: hidden;}
+.main_container .article_lists li:last-child {border-bottom: 1px dotted #ececec;}
+.main_container .article_lists .fl {width: 210px;height: 140px;display: block;}
+.main_container .article_lists .fl img {max-width: 100%;width: 100%;height: 100%;}
+.main_container .article_lists .fr {width: 600px;}
+.main_container .article_lists .fr p:last-child span,.main_container .article_lists .fr p:last-child a {display: inline-block;vertical-align: middle;margin-right: 20px;}
+
+.main_container .article_lists .fr p:last-child a.hot_tag:before {
+    content:'';display: inline-block;vertical-align: middle;width: 14px;height: 14px;margin-right: 10px;
+    background: url("../images/article_Icon.png") 0 -160px no-repeat;
+}
+.main_container .layout_left .no_data {text-align: center;min-height: 490px;padding: 190px 0;box-sizing: border-box;}
+.main_container .layout_left .no_data:before {content: '';display: inline-block;vertical-align: middle;margin-right: 20px;width: 118px;height: 112px;background:url(../images/lesson_video_lists.png) 0 -389px no-repeat;}
+
+
+/* 文章列表分页样式 */
+.pagination {display:inline-block;padding-left:0;margin:20px 0;border-radius:2px}
+.pagination-a .pagination > li > a {border:none;background-color: #f1eff0;margin-right:5px;}
+.pagination-a .pagination> li > a:hover {background-color: #e5e3e4;}
+.pagination-a .pagination > li > .active, .pagination-a .pagination > li > .active:hover {background-color:#5ecfba;color:#fff;}
+.pagination-a .pagination > li > .rally {float: left;margin-right: 5px;border: none;background: none;}
+.pagination-a .pagination > li > .rally:hover, .pagination-a .pagination > li > .rally:focus {background: none;}
+.pagination > li > a,.pagination > li > span {
+    position:relative;float:left;padding:6px 12px;line-height:1.42857;text-decoration:none;color:#777;
+    background-color:#fff;border:1px solid #ddd;margin-left:-1px;box-sizing: border-box;
+}
+.pagination-a .pagination > li > span { border: 0;}
+.pagination-a .pagination > li > span:hover { background: none;}
+
+.zypage { text-align: center; display: table; width: 100%; font-size: 14px; color: #5ecfbb;margin-bottom: 70px;}
+.zypage > a { display: inline-block; vertical-align: middle; width: 20px; height: 20px; line-height: 20px; background: #5ecfbb; text-align: center; color: #ffffff; margin: 0 5px; border-radius: 50%; cursor: pointer;}
+.zypage > a:hover { background: #51b5a2;}
+.zypageTxt { width: 30px; height: 30px; line-height: 30px; text-align: center; border: 1px solid #b3c3c0; margin: 0 10px; font-size: 12px;color: #000000;}
+.zypageBtn { width: 40px; height: 30px; border-radius: 2px; background: #5ecfbb; color: #ffffff; text-align: center; line-height: 30px;border:0;outline:0; margin-left: 15px; cursor: pointer;}
+.zypage > a.zy_hide { background:none; color: #5ecfbb;}
+
+.zypage_div { display: inline-block; vertical-align: middle;}
+.zypage_div a { display: inline-block; vertical-align: middle; width: 30px; height: 30px; line-height: 30px; background: #f1eff0; text-align: center; color: #666666; margin: 0 5px; cursor: pointer; font-size: small;}
+.zypage_div a:hover,.zypage_div a.jp-current { background: #5ecfba; color: #ffffff;}
+.zypage_div a.jp-previous { background: url(../images/article_Icon.png) 10px -195px no-repeat #f1eff0;}
+.zypage_div a.jp-next { background: url(../images/article_Icon.png) 10px -238px no-repeat #f1eff0;}
+.zypage_div a.jp-first {background: url(../images/article_Icon.png) 10px -174px no-repeat #f1eff0;}
+.zypage_div a.jp-last {background: url(../images/article_Icon.png) 10px -217px no-repeat #f1eff0;}
+
+/* 文章侧边栏样式 */
+.main_container .hot_lesson h2,.main_container .tag_yun h2 {position: relative;}
+.main_container .hot_lesson h2:before,.main_container .tag_yun h2:before {content: '';width: 0;height: 100%;border-left: 4px solid #5ecfba;position: absolute;left: -20px;top: 0;}
+
+.main_container .layout_right {background: #fbfbfb;padding: 20px;box-sizing: border-box;margin-bottom: 60px;}
+.main_container .tag_yun .hot_tag_link {overflow: hidden;}
+.main_container .tag_yun .hot_tag_link li {float: left;width: 48%;height: 30px;line-height: 30px;margin: 0 1% 1% 0;}
+.main_container .tag_yun .hot_tag_link li a {display: block;padding: 0 8px;box-sizing: border-box;color: #666666;}
+.main_container .tag_yun .hot_tag_link li a:hover,.main_container .tag_yun .hot_tag_link li.active a {background: #ffffff;color: #5ecfba;}
+
+.main_container .hot_lesson .hot_lesson_lists li {width: 120px;height: 70px;float: left;margin-left: 20px;margin-bottom: 20px;}
+.main_container .hot_lesson .hot_lesson_lists {margin-left: -20px;overflow: hidden;}
+.main_container .hot_lesson .hot_lesson_lists li a {display: table-cell;vertical-align: middle;width: 120px;height: 70px;position: relative;}
+.main_container .hot_lesson .hot_lesson_lists li a img {width: 60px;height: 60px;margin: 0 30px;}
+.main_container .hot_lesson .hot_lesson_lists li a span {position: absolute;width: 100%;height: 19px;line-height: 19px;left: 0;bottom:0;display: none;text-align: center;background: rgba(0,0,0,.3);}
+.main_container .hot_lesson .hot_lesson_lists li:hover span {display: block;}
+
+.main_container .article_index_ad {padding-top: 20px;border-top: 1px dashed #ececec;width: 100%;height: 147px;overflow: hidden;}
+.main_container .article_index_ad img {width: 100%;}
+
+.zypage_div a.jp-disabled { pointer-events:none; }

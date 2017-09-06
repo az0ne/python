@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>学习计划</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<meta name="baidu-site-verification" content="TlN38QiORE"/>
+<link href="http://dev.microoh.com/static/css/base.css" rel="stylesheet"/>
+<link href="http://dev.microoh.com/static/css/microoh-v5.css" rel="stylesheet"/>
+<link href="http://dev.microoh.com/static/css/flat-ui.css" rel="stylesheet"/>
+<link href="http://dev.microoh.com/static/css/develop.css" rel="stylesheet"/>
+<link href="css/jquery.jscrollpane.css" type="text/css" rel="stylesheet" media="all" />
+<link href="css/panel.css" rel="stylesheet"/>
+<link rel="shortcut icon" type="image/x-icon" href="http://dev.microoh.com/static/images/favicon.ico"/>
+<!--[if lt IE 9]>
+<script src="/static/js/html5shiv.min.js"></script>
+<script src="/static/js/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="microoh-main">
+
+	<header class="navbar navbar-default navbar-fixed-top affix" data-offset-top="64">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="./" title="麦子学院"><img src="http://dev.microoh.com/static/images/logo.png" alt="麦子学院logo"><img src="http://dev.microoh.com/static/images/logo-font.png" alt="麦子学院"></a>
+			</div>
+			<div class="collapse navbar-collapse" id="microoh-navbar-collapse">
+				<ul class="nav navbar-nav navbar-left">
+					<li class="visible-xs visible-sm"><a href="./">首页</a></li>
+					<li><a href="./course/">企业直通班</a></li>
+					<li><a href="./academic/home/">院校专区</a></li>
+					<li class="visible-md visible-lg"><a href="./user/goto/bbs/">论坛</a></li>
+					<li class="hidden-xs hidden-sm"><a href="./common/apppage/">移动APP</a></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search" onsubmit="return false">
+					<div class="form-group">
+						<i class="v5-icon v5-icon-search"></i>
+						<input type="text" class="form-control" id="search" placeholder="搜索你感兴趣的课程">
+					</div>
+					<div class="search-dp" id="hotkeyword" style="display: none;">
+						<!--推荐关键词-->
+						<div class="hotkeyword">
+							<h4>推荐搜索关键词</h4>
+							<ul class="cf">
+								<li><a href="javascript:void(0);">iOS</a></li>
+								<li><a href="javascript:void(0);">Android</a></li>
+								<li><a href="javascript:void(0);">嵌入式</a></li>
+							</ul>
+						</div>
+					</div>
+				</form>
+				<div class="v5-topbar-login">
+					<div class="v5-topbar-login-on cf visible-md visible-lg">
+						<dl>
+							<dt><a href="" class="dt-username"><span>cjw11</span><i class="v5-icon v5-icon-rd"></i></a></dt>
+						</dl>
+						<!--a href="./user/message/" class="dt-usermsg"><i class="v5-icon v5-icon-havemsg"></i><em>2</em></a-->
+					</div>
+					<div class="v5-topbar-login-on cf visible-xs visible-sm"><a href="./user/student/" class="user-t"><img src=""></a></div>
+				</div>
+				<div class="navbar-search-btn visible-xs visible-sm"><a href="./common/mobile/search/" class="sch"></a></div>
+			</div>
+			<div class="search-dp" id="keyword-group" style="">
+				<!--搜索结果-->
+				<div class="keyword-group scroll-pane" style="overflow: hidden; padding: 0px; width: 0px;">
+					<div class="jspContainer" style="width: 0px; height: 360px;">
+						<div class="jspPane" style="padding: 0px; top: 0px; left: 0px; width: 0px;">
+							<dl class="">
+								<dt>职业课程</dt>
+								<dd class="careercourses cf"></dd>
+							</dl>
+							<dl class="">
+								<dt>课程</dt>
+								<dd class="courses cf"></dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div class="container visible-md visible-lg">
+		<ol class="breadcrumb">
+			<li><a href="./user/center/">我的课程</a></li>
+			<li class="active">iOS应用开发工程师</li>
+		</ol>
+	</div>
+
+
+
+
+	<div class="breadcrumb-right-box">
+		<div class="container">
+			<div class="box-in">
+				<span><span class="text">您的首付体验有效期至2015年X月X日</span><input type="button" class="btn" value="支付余款" /></span>
+				<input type="button" class="btn" value="查看教师须知" onclick="$.commonTool.ruleShow();" />
+				<input type="button" class="btn" value="完善个人资料" onclick="$.commonTool.editUserInfo('#user_panel');" />
+				<input type="button" class="btn" value="完善个人资料2" onclick="$.commonTool.editUserInfo('#user_panel2','auto');" />
+				<input type="button" class="btn" value="加锁" onclick="$.commonTool.addLock('.box-body');" />
+				<input type="button" class="btn" value="解锁" onclick="window.location.reload();" />
+			</div>
+		</div>
+	</div>
+	
+
+
+
+	
+
+	<div class="p-nav box">
+		<div class="container webfont">
+			<a href="student-1.html">我的数据</a>
+			<a href="student-3.html">评测详情</a>
+			<a class="active" href="student-2.html">班级交流</a>
+		</div>
+	</div>
+
+	<div class="p-main">
+		<div class="container">
+			<div class="row">
+				<div class="box" id="tab_box_1">
+					<div class="box-head clearfix webfont">
+						<h2 class="pull-left"><span>班级数据</span></h2>
+						<div class="pull-right" tab-role="btn-group"><span tab-role="btn" tab-target="1" class="active">本周KPI</span><span tab-role="btn" tab-target="2">综合排名</span></div>
+					</div>
+					<div class="box-body grades-box-body" tab-role="cnt-group">
+						<div class="tab-cnt" tab-role="cnt" tab-mark="1">
+							<div class="tab-cnt-in">
+								<div class="turn-box clearfix">
+									<span class="pull-left active"></span>
+									<span class="pull-right"></span>
+									<div class="text-center"><i></i><span class="text">2015.04.01——2015.04.27</span><i></i></div>
+								</div>
+								<div id="chart_1">
+									<canvas id="canvas_1" style="width:100%;height:355px;"></canvas>
+								</div>
+							</div>
+						</div>
+						<div class="tab-cnt" tab-role="cnt" tab-mark="2">
+							<div class="tab-cnt-in"id="chart_2">
+								<canvas id="canvas_2" style="width:100%;height:465px;"></canvas>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="box">
+					<div class="box-head clearfix webfont">
+						<h2 class="pull-left"><span>学习交流</span></h2>
+						<div class="pull-right"><span id="show_q_box" role="question-button"><img src="images/ico-7.png" alt=""/> 提问</span></div>
+					</div>
+					<div class="box-body">
+						<div class="q-list">
+							<div class="q-item">
+								<div class="q-item-m">
+									<div class="q-left">
+										<a href="##">
+											<img class="img-circle" src="images/photo.jpg" alt=""/>
+										</a>
+									</div>
+									<div class="q-body">
+										<div class="q-body-in">
+											<div class="q-title clearfix">
+												<div class="pull-left">Robert在<a href="##">Android开发基础</a>中提问：</div>
+												<div class="pull-right"><span class="date-time"><span>03-12</span><span>16:00</span></span></div>
+											</div>
+											<div class="q-content">
+												<p>我就是来听老师讲课的！讲的凑合。没学到太多知识，也算巩固了下。</p>
+											</div>
+											<div class="q-fun">
+												<a href="javascript:;" class="comment">2条评论</a><a href="javascript:;" class="reply">回复</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="q-reply-group">
+									<div class="q-reply">
+										<div class="q-left">
+											<a href="##">
+												<img class="img-circle" src="images/photo.jpg" alt=""/>
+											</a>
+										</div>
+										<div class="q-body">
+											<div class="q-body-in">
+												<div class="q-title clearfix">
+													<div class="pull-left">Hello-Kitty回复：</div>
+													<div class="pull-right"><span class="date-time"><span>03-17</span><span>08:25</span></span></div>
+												</div>
+												<div class="q-content">
+													<p>别期望太高就好。嘿嘿！牛逼大shi。</p>
+												</div>
+												<div class="q-fun">
+													<!-- <a href="javascript:;" class="comment">0条评论</a> --><a href="javascript:;" class="reply">回复</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="q-reply">
+										<div class="q-left">
+											<a href="##">
+												<img class="img-circle" src="images/photo.jpg" alt=""/>
+											</a>
+										</div>
+										<div class="q-body">
+											<div class="q-body-in">
+												<div class="q-title clearfix">
+													<div class="pull-left">Babby回复：</div>
+													<div class="pull-right"><span class="date-time"><span>03-17</span><span>08:25</span></span></div>
+												</div>
+												<div class="q-content">
+													<p>我看好你唷！</p>
+												</div>
+												<div class="q-fun">
+													<!-- <a href="javascript:;" class="comment">0条评论</a> --><a href="javascript:;" class="reply">回复</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<div class="q-item">
+								<div class="q-item-m">
+									<div class="q-left">
+										<a href="##">
+											<img class="img-circle" src="images/photo.jpg" alt=""/>
+										</a>
+									</div>
+									<div class="q-body">
+										<div class="q-body-in">
+											<div class="q-title clearfix">
+												<div class="pull-left">Robert在<a href="##">Android开发基础</a>中提问：</div>
+												<div class="pull-right"><span class="date-time"><span>03-12</span><span>16:00</span></span></div>
+											</div>
+											<div class="q-content">
+												<p>我就是来听老师讲课的！讲的凑合。没学到太多知识，也算巩固了下。</p>
+											</div>
+											<div class="q-fun">
+												<a href="javascript:;" class="comment">0条评论</a><a href="javascript:;" class="reply">回复</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="q-item">
+								<div class="q-item-m">
+									<div class="q-left">
+										<a href="##">
+											<img class="img-circle" src="images/photo.jpg" alt=""/>
+										</a>
+									</div>
+									<div class="q-body">
+										<div class="q-body-in">
+											<div class="q-title clearfix">
+												<div class="pull-left">Robert在<a href="##">Android开发基础</a>中提问：</div>
+												<div class="pull-right"><span class="date-time"><span>03-12</span><span>16:00</span></span></div>
+											</div>
+											<div class="q-content">
+												<p>我就是来听老师讲课的！讲的凑合。没学到太多知识，也算巩固了下。</p>
+											</div>
+											<div class="q-fun">
+												<a href="javascript:;" class="comment">0条评论</a><a href="javascript:;" class="reply">回复</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="more-box"><a id="more_comment" href="javascript:;">更多</a></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="v5-footer colleges-foot">
+		<div class="container">
+			<div class="v5-footer-bottom">
+				<p>© 2012-2014 <a href="www.maiziedu.com">maiziedu.com</a> | 服务条款 | 蜀ICP备13014270号-4 Version 4.0.1 release20140721.1</p>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+	<!-- 完善个人资料 -->
+	<div id="user_panel" class="d-user-panel" style="display:none">
+		<h2 class="webfont">请完善你的个人信息以保证更好的学习</h2>
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label img-label">上传头像</label>
+				<div class="col-sm-10">
+					<span class="img-box"><a></a><input id="update_photo" type="file"/></span>
+					<span class="photo-h photo-h-tips photo-h-active">想在班级中更快地混脸熟就上传真实头像吧~</span>
+					<span class="photo-h photo-h-slide"><span  id="photo_h_slide"></span><a href="javascript:;" class="btn btn-default">上传</a></span>
+					<span class="photo-h photo-h-update"><span>正在上传</span><span>25%</span></span>
+					<span class="photo-h photo-h-ok"><img src="images/ico-10.png" alt=""/></span>
+					<div class="error-info">请上传头像</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-2 control-label">真实姓名</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="" placeholder="请输入真实姓名">
+					<div class="error-info">请填写真实姓名</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-2 control-label">讲师介绍</label>
+				<div class="col-sm-10">
+					<textarea class="form-control" id="" placeholder="介绍下你自己吧"></textarea>
+					<div class="error-info">请填写学习目标</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10 text-right">
+					<button type="submit" class="btn btn-default">提交</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<!-- 完善个人资料2 -->
+	<div id="user_panel2" class="d-user-panel" style="display:none">
+		<h2 class="webfont">请完善你的个人信息以保证更好的学习</h2>
+		<form class="form-horizontal">
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label img-label">上传头像</label>
+				<div class="col-sm-10">
+					<span class="img-box"><a></a><input id="update_photo" type="file"/></span>
+					<span class="photo-h photo-h-tips photo-h-active">想在班级中更快地混脸熟就上传真实头像吧~</span>
+					<span class="photo-h photo-h-slide"><span  id="photo_h_slide"></span><a href="javascript:;" class="btn btn-default">上传</a></span>
+					<span class="photo-h photo-h-update"><span>正在上传</span><span>25%</span></span>
+					<span class="photo-h photo-h-ok"><img src="images/ico-10.png" alt=""/></span>
+					<div class="error-info">请上传头像</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-2 control-label">真实姓名</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="" placeholder="请输入真实姓名">
+					<div class="error-info">请填写真实姓名</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-2 control-label">学习目标</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" id="" placeholder="学习课程的目标是什么？如：就业、转行">
+					<div class="error-info">请填写学习目标</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="" class="col-sm-2 control-label">讲师介绍</label>
+				<div class="col-sm-10">
+					<textarea class="form-control" id="" placeholder="介绍下你自己吧"></textarea>
+					<div class="error-info">请填写学习目标</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10 text-right">
+					<button type="submit" class="btn btn-default">提交</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+
+
+
+
+	<!-- 查看教师须知 -->
+	<div id="xy_panel" class="d-xy-panel" style="display:none">
+		<h2>麦子学院用户协议</h2>
+		<div class="xy-box">
+			<div class="xy-box-in">
+				<p>
+						X轴：⽇日期（会调⽤用后台的Json数组）
+					Y轴：分别有25%、50%、75%、100%四个刻度，每个刻度都有⽔水平参考线
+					执⾏行⼒力、主动性及沟通⼒力有各⾃自的变化曲线，⿏鼠标移动到某⼀一点时，显⽰示对应的数值。
+						动画效果：同”我的学习数据 - 完成计划图表“
+					颜⾊色⽰示例：同”我的学习数据 - 完成计划图表“X轴：⽇日期（会调⽤用后台的Json数组）
+					Y轴：分别有25%、50%、75%、100%四个刻度，每个刻度都有⽔水平参考线
+					执⾏行⼒力、主动性及沟通⼒力有各⾃自的变化曲线，⿏鼠标移动到某⼀一点时，显⽰示对应的数值。
+						动画效果：同”我的学习数据 - 完成计划图表“
+					颜⾊色⽰示例：同”我的学习数据 - 完成计划图表“X轴：⽇日期（会调⽤用后台的Json数组）
+					Y轴：分别有25%、50%、75%、100%四个刻度，每个刻度都有⽔水平参考线
+					执⾏行⼒力、主动性及沟通⼒力有各⾃自的变化曲线，⿏鼠标移动到某⼀一点时，显⽰示对应的数值。
+						动画效果：同”我的学习数据 - 完成计划图表“
+					颜⾊色⽰示例：同”我的学习数据 - 完成计划图表“X轴：⽇日期（会调⽤用后台的Json数组）
+					Y轴：分别有25%、50%、75%、100%四个刻度，每个刻度都有⽔水平参考线
+					执⾏行⼒力、主动性及沟通⼒力有各⾃自的变化曲线，⿏鼠标移动到某⼀一点时，显⽰示对应的数值。
+					动画效果：同”我的学习数据 - 完成计划图表“
+					颜⾊色⽰示例：同”我的学习数据 - 完成计划图表“
+				</p>
+				<p>
+						X轴：⽇日期（会调⽤用后台的Json数组）
+					Y轴：分别有25%、50%、75%、100%四个刻度，每个刻度都有⽔水平参考线
+					执⾏行⼒力、主动性及沟通⼒力有各⾃自的变化曲线，⿏鼠标移动到某⼀一点时，显⽰示对应的数值。
+						动画效果：同”我的学习数据 - 完成计划图表“
+					颜⾊色⽰示例：同”我的学习数据 - 完成计划图表“X轴：⽇日期（会调⽤用后台的Json数组）
+					Y轴：分别有25%、50%、75%、100%四个刻度，每个刻度都有⽔水平参考线
+					执⾏行⼒力、主动性及沟通⼒力有各⾃自的变化曲线，⿏鼠标移动到某⼀一点时，显⽰示对应的数值。
+						动画效果：同”我的学习数据 - 完成计划图表“
+					颜⾊色⽰示例：同”我的学习数据 - 完成计划图表“X轴：⽇日期（会调⽤用后台的Json数组）
+					Y轴：分别有25%、50%、75%、100%四个刻度，每个刻度都有⽔水平参考线
+					执⾏行⼒力、主动性及沟通⼒力有各⾃自的变化曲线，⿏鼠标移动到某⼀一点时，显⽰示对应的数值。
+						动画效果：同”我的学习数据 - 完成计划图表“
+					颜⾊色⽰示例：同”我的学习数据 - 完成计划图表“X轴：⽇日期（会调⽤用后台的Json数组）
+					Y轴：分别有25%、50%、75%、100%四个刻度，每个刻度都有⽔水平参考线
+					执⾏行⼒力、主动性及沟通⼒力有各⾃自的变化曲线，⿏鼠标移动到某⼀一点时，显⽰示对应的数值。
+					动画效果：同”我的学习数据 - 完成计划图表“
+					颜⾊色⽰示例：同”我的学习数据 - 完成计划图表“
+				</p>
+			</div>
+		</div>
+		<div class="row">
+			<form action="">
+				<div class="pull-left checkbox">
+					<label><input type="checkbox" checked="checked" /> 我已经阅读并同意以上协议</label>
+				</div>
+				<div class="pull-right">
+					<button type="submit" class="btn btn-default">提交</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+
+
+</div>
+
+<script type="text/javascript" src="http://dev.microoh.com/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="js/mwheelIntent.js"></script>
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="js/layer/layer.js"></script>
+<script type="text/javascript" src="js/Chart.js"></script>
+<script type="text/javascript" src="js/Chart-extend.js"></script>
+<script type="text/javascript" src="js/common-tool.js"></script>
+<script type="text/javascript">
+	$(function(){
+
+		// 图表
+		(function(){
+
+			var tab = $('#tab_box_1 [tab-role=btn]');
+
+			// 本周KPI
+			tab[0]._initChart = function(){
+				
+				var canvas = $('#canvas_1');
+				var chartBox = $('#chart_1');
+				var div = $('<div/>');
+				div.css({ 'width' : chartBox.width(), 'overflow' : 'hidden' });
+				div.append(canvas.css({'marginBottom' : 10}));
+				chartBox.html('').append(div);
+
+				// json数据
+				var chartData = [{
+						'name':'姚 No.3',
+						'kpi':100,
+						'img' : 'images/photo.jpg'
+					},{
+						'name':'姚 No.2',
+						'kpi':90,
+						'img' : 'images/photo.jpg'
+					},{
+						'name':'姚 No.4',
+						'kpi':80,
+						'img' : 'images/photo.jpg'
+					},{
+						'name':'姚 No.5',
+						'kpi':70,
+						'img' : 'images/photo.jpg'
+					},{
+						'name':'姚 No.1',
+						'kpi':60,
+						'img' : 'images/photo.jpg'
+					},{
+						'name':'姚 No.6',
+						'kpi':53,
+						'img' : 'images/photo.jpg'
+					},{
+						'name':'姚 No.7',
+						'kpi':45,
+						'img' : 'images/photo.jpg'
+					},{
+						'name':'姚 No.1',
+						'kpi':36,
+						'img' : 'images/photo.jpg'
+					},{
+						'name':'姚 No.6',
+						'kpi':30,
+						'img' : 'images/photo.jpg'
+					},{
+						'name':'姚 No.7',
+						'kpi':25,
+						'img' : 'images/photo.jpg'
+					},{
+						'name':'姚 No.1',
+						'kpi':20,
+						'img' : 'images/photo.jpg'
+					},{
+						'name':'姚 No.6',
+						'kpi':17,
+						'img' : 'images/photo.jpg'
+					},{
+						'name':'姚 No.7',
+						'kpi':14,
+						'img' : 'images/photo.jpg'
+					},{
+						'name':'姚 No.1',
+						'kpi':12,
+						'img' : 'images/photo.jpg'
+					},{
+						'name':'姚 No.6',
+						'kpi':10,
+						'img' : 'images/photo.jpg'
+					},{
+						'name':'姚 No.7',
+						'kpi':8,
+						'img' : 'images/photo.jpg'
+					}];
+				// 图表实例
+				$.chartExtend.BarE2({
+					'canvas' : '#canvas_1',
+					'data' : chartData,
+					'suf' : '%',
+					'colorGroup' : {
+						'100' : ['#5ECFBA', '#5ECFBA'], // fillColor, strokeColor
+						'75' : ['#5ECFBA', '#5ECFBA'],
+						'50' : ['#62D43A', '#62D43A'],
+						'25' : ['#FFC80A', '#FFC80A'],
+						'0' : ['#FF7150', '#FF7150']
+					}
+				});
+			};
+
+			// 综合排名
+			tab[1]._initChart = function(){
+				
+				var canvas = $('#canvas_2');
+				var chartBox = $('#chart_2');
+				var div = $('<div/>');
+				div.css({ 'height' : chartBox.height()-30, 'overflow' : 'hidden' });
+				div.append(canvas.css({'marginBottom' : 10}));
+				chartBox.html('').append(div);
+
+				// json数据
+				var chartData = [{
+						'name':'限制六个汉字',
+						'study_point':150,
+						'ava_score':90
+					},{
+						'name':'限制六个汉字',
+						'study_point':80,
+						'ava_score':60
+					},{
+						'name':'限制六个汉字',
+						'study_point':50,
+						'ava_score':70
+					},{
+						'name':'姚 No.2',
+						'study_point':55,
+						'ava_score':60
+					},{
+						'name':'姚 No.1',
+						'study_point':50,
+						'ava_score':40
+					},{
+						'name':'姚 No.6',
+						'study_point':30,
+						'ava_score':25
+					},{
+						'name':'姚No.7',
+						'study_point':25,
+						'ava_score':20
+					},{
+						'name':'姚No.7',
+						'study_point':25,
+						'ava_score':17
+					},{
+						'name':'姚No.7',
+						'study_point':18,
+						'ava_score':15
+					},{
+						'name':'姚No.7',
+						'study_point':17,
+						'ava_score':13
+					},{
+						'name':'姚No.7',
+						'study_point':15,
+						'ava_score':10
+					},{
+						'name':'姚No.7',
+						'study_point':12,
+						'ava_score':10
+					},{
+						'name':'姚No.7',
+						'study_point':8,
+						'ava_score':5
+					}];
+				// 图表实例
+				$.chartExtend.BarE1({
+					'canvas' : '#canvas_2',
+					'data' : chartData,
+					'maxValue' : 100,
+					'labels' : [{
+						'dataKey' : 'study_point',
+						'label' : '学力值',
+						'color' : ['#5ECFBA','#5ECFBA']
+					},{
+						'dataKey' : 'ava_score',
+						'label' : '评测分数',
+						'color' : ['#FFCC74','#FFCC74']
+					}]
+				});
+			};
+		}());
+			
+
+
+
+		// 提问 or 回复
+		var replyBtnEventBind = (function(){
+
+			// 创建回复输入框
+			function createWriteBox(isQuestion) {
+				var html;
+				if(isQuestion){
+					// 提问
+					html = '<div class="q-item"><div class="q-left">';
+					html += '<a href="##"><img class="img-circle" src="images/photo.jpg" alt=""/></a>';
+					html += '</div><div class="q-body">';
+					html += '<form action="" class="q-body-in"><div class="q-title clearfix">';
+					html += '<div class="pull-left">Robert：</div>';
+					html += '</div><div class="q-content">';
+					html += '<textarea placeholder="提点什么问题吧" name="" id="" cols="" rows=""></textarea>';
+					html += '</div><div class="q-fun">';
+					html += '<input class="btn cancel-btn" type="reset" value="取消"/><input class="btn ok-btn" type="button" value="提问"/>';
+					html += '</div></form></div></div>';
+				}else{
+					// 评论
+					html = '<div class="q-reply-write"><div class="q-left">';
+					html += '<a href="##"><img class="img-circle" src="images/photo.jpg" alt=""/></a>';
+					html += '</div><div class="q-body">'
+					html += '<form action="" class="q-body-in">';
+					html += '<div class="q-title clearfix"><div class="pull-left">Robert：</div></div>';
+					html += '<div class="q-content">';
+					html += '<textarea placeholder="回复：" name="" id="" cols="" rows=""></textarea>';
+					html += '</div><div class="q-fun">';
+					html += '<input class="btn cancel-btn" type="reset" value="取消"/><input class="btn ok-btn" type="button" value="回复"/>';
+					html += '</div></form></div></div>';
+				}
+
+				var reply = $(html);
+
+				/* code */
+
+				return reply;
+			}
+			function replyShowOrNoBtnFun(o){
+				var $o = $(o), role = $o.attr('role') == 'question-button';
+				if(o.cntIsShow !== true){
+					!role && $o.html('收起回复').addClass('reply-open');
+					o.cntIsShow = true;
+				}else{
+					!role && $o.html('回复').removeClass('reply-open');
+					o.cntIsShow = false;
+				}
+				return o.cntIsShow;
+			}
+				
+			var oReplyMark = { 'writeBox' : null, 'handle' : null};
+			return function(elm, isQuestion){
+				$(elm).click(function(){
+					var self = this, $self = $(self);
+					var qItemM, domPosition, oCurWriteBox;
+
+					if( replyShowOrNoBtnFun(self) ){// 显示or隐藏按钮
+						// 如果已经有一个"回复or评论输入布局"存在，则隐藏
+						oReplyMark.writeBox && oReplyMark.writeBox.slideUp();
+						oReplyMark.handle && replyShowOrNoBtnFun(oReplyMark.handle);
+						// 创建一个新的"回复or评论输入布局"
+						oCurWriteBox = createWriteBox(isQuestion);
+						// 为"回复输入布局"中按钮"取消""回复"绑定事件
+						oCurWriteBox.find('.btn').click(function(){
+							$self.click();
+						});
+						// 新"回复or评论输入布局"在dom中的位置
+						if(isQuestion){
+							$('.q-list').prepend( oCurWriteBox );
+						}else if($self.closest('.q-body').parent().hasClass('q-reply')){
+							$self.closest('.q-reply').after( oCurWriteBox );
+						}else{
+							qItemM = $self.closest('.q-item-m');
+							domPosition = qItemM.next('.q-reply-group');
+							if( !domPosition.length ){
+								oCurWriteBox = $('<div class="q-reply-group"/>').append(oCurWriteBox);
+								qItemM.after( oCurWriteBox );
+							}else{
+								domPosition.prepend( oCurWriteBox );
+							}
+						}
+						// 新"回复输入布局"动画展现
+						oCurWriteBox.hide().slideDown(function(){
+							oReplyMark.writeBox && oReplyMark.writeBox.remove();
+
+							oReplyMark.handle = self;
+							oReplyMark.writeBox = oCurWriteBox;
+						});
+
+					}else{
+						oReplyMark.writeBox && oReplyMark.writeBox.slideUp(function(){
+							oReplyMark.writeBox.remove();
+							oReplyMark.writeBox = null;
+							oReplyMark.handle = null;
+							oReplyMark.isQ = false;
+						});
+					}
+
+					//event.stopPropagation();
+					return false;
+				});
+			};
+
+		}());
+
+		// "提问"按钮绑定点击事件
+		replyBtnEventBind('#show_q_box', true);
+		// 为已经存在页面上的 “回复” 按钮绑定点击事件
+		replyBtnEventBind('.q-item .reply');
+
+		// 评论显示or隐藏
+		(function(){
+			//
+			$('.q-item .comment').click(function(){
+				var self = this, $self = $(self);
+				var replyGroup, replyList;
+
+				if(self._text==null){
+					self._text = $self.text();
+				}
+
+				replyGroup = $self.closest('.q-item-m').next('.q-reply-group');
+				if( replyGroup.length ){
+					replyList = replyGroup.find('.q-reply');
+					if( replyList.length ){
+						replyShowOrNoBtnFun(self);
+						replyList.slideToggle();
+					}
+				}
+
+				return false;
+
+				function replyShowOrNoBtnFun(o){
+					var $o = $(o);
+					if(o.cntIsShow !== true){
+						$o.html('收起评论').addClass('reply-open');
+						o.cntIsShow = true;
+					}else{
+						$o.html(o._text).removeClass('reply-open');
+						o.cntIsShow = false;
+					}
+					return o.cntIsShow;
+				}
+			});
+		}());
+
+		// 更多评论
+		(function(){
+			$('#more_comment').click(function(){
+				var $self = $(this);
+
+				// 新加载的评论
+				var oNewComment = $('<div class="q-item"><div class="q-item-m"><div class="q-left"><a href="##"><img class="img-circle" src="images/photo.jpg" alt=""/></a></div><div class="q-body"><div class="q-body-in"><div class="q-title clearfix"><div class="pull-left">Robert在<a href="##">Android开发基础</a>中提问：</div><div class="pull-right"><span class="date-time"><span>03-12</span><pan>16:00</span></span></div></div><div class="q-content"><p>我就是来听老师讲课的！讲的凑合。没学到太多知识，也算巩固了下。</></div><div class="q-fun"><a href="javascript:;" class="comment">0条评论</a><a href="javascript:;" class="reply">回复</a></div></div></div></div></div>');
+
+				// 为新 “回复” 按钮绑定点击事件
+				replyBtnEventBind( $('.reply', oNewComment) );
+
+				// 新评论添加到页面
+				oNewComment.hide();
+				$self.parent().before( oNewComment );
+				oNewComment.slideDown();
+			});
+		}());
+
+
+
+		// tab
+		$.commonTool.tab({
+			'tabBox' : '#tab_box_1',
+			'transitionCallback' : function(btn,cnt){
+				var canvas;
+				if(this._initChart){
+					canvas = cnt.find('canvas');
+					if(canvas){
+						canvas.parent().html('').append(canvas.clone());
+						this._initChart();
+					}
+				}
+			}
+		});
+
+	});
+</script>
+</body>
+</html>

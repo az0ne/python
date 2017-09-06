@@ -1,0 +1,63 @@
+		<div class="modal fade" id="feedbakBox"  tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    		<div  class="modal-dialog font14 color66">
+    			<div class="modal-content">
+    				<div class="modal-header">
+    					<a class="zy_close"></a>
+    					<h4 class="modal-title font18">期待你的反馈</h4>
+    				</div>
+    				<div class="modal-body">
+    					<form id="feedback_modal_form" action="{% url 'common:feedback_save'%}" method="post" enctype="multipart/form-data">
+    						<div class="form-group type">
+    							<label class="control-label">选择反馈类型</label>
+    							<select id="feedback_type" class="form-control" name="feedback_type">
+									<option value="" selected="selected">请选择分类</option>
+									<option value="0">bug</option>
+									<option value="1">功能建议</option>
+									<option value="2">交互体验</option>
+									<option value="3">吐个槽</option>
+									<option value="4">表个扬</option>
+									<option value="5">课程建议</option>
+								</select>
+								<em id="selectError">请选择反馈类型</em>
+    						</div>
+    						<div class="form-group">
+    							<div class="textareaBox">
+    								<textarea id="feedback_content" name="feedback_content" maxlength="200" placeholder="意见和建议"></textarea>
+    								<span>你还可以输入<em>200</em>字</span>
+    							</div>
+    							<em id="textareaError">请留下你的宝贵意见！～</em>
+    						</div>
+    						<div class="form-group">
+								<input type="hidden" id="hideen_image_url" name="image_url" value="">
+    							<p>
+    								<a href="javascript:;" class="file"><span>上传图片</span><input type="file" id="feedbackupload" name="image" accept="images/*"></a>
+    								<span class="showFileName"></span>
+    							</p>
+    							<em class="fileerrorTip"></em>
+    						</div>
+    						<div class="form-group">
+    							<input type="tel" class="form-control" name="contact" id="telphone" placeholder="联系方式" />
+    							<em id="telError">请留下正确的电话号码，以便我们能帮助你！</em>
+    						</div>
+    						<div class="form-group">
+		                        <div style="margin-bottom:6px;">
+		                        	<label class="control-label">滑动完成验证</label>
+		                        	<div id="captcha" class="feedbackcaptcha"></div>
+		                        </div>
+		                        <em>请滑动进行验证</em>
+    						</div>
+    						<input id="feedback_submit_btn" type="button" class="subminBtn disable"  value="提交" disabled="disabled" />
+							<input type="reset" name="reset" style="display:none">
+    					</form>
+    				</div>				
+				</div>
+    		</div>
+		</div>
+	<div class="modal fade" id="feedbakBoxSuccess"  tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+		<div class="modal-dialog font16 color33">
+			<div class="modal-content">
+				<em></em>
+				<p>感谢你的反馈，你的支持永远是我们前进的动力！</p>
+			</div>
+		</div>
+	</div>

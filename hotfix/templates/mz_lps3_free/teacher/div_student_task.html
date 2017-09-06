@@ -1,0 +1,60 @@
+<div class="modal-dialog tryTeacherCorrWork">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="ModalTitle"></h4>
+        </div>
+        <div class="modal-body">
+            <div class="item">
+                <strong>作业需求</strong>
+
+                <p>{{ project.description }}</p>
+            </div>
+
+            <div class="item">
+                <strong>作业截图</strong>
+                <ul>
+                    {% for img in project_image %}
+                        <li><a href=""><img src="{{ MEDIA_URL }}{{ img.image }}"></a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="item">
+                <strong>作业描述</strong>
+                <p>{{ project_record.desc }}</p>
+            </div>
+            <div class="file">
+                <a href="{{ MEDIA_URL }}{{ project_record.upload_file }}">下载</a>
+                <strong>作业文件</strong><span></span>
+            </div>
+            {% if is_marking %}
+                <div class="assess">
+                    <div class="score">
+                        <strong>评分</strong>
+                        {{ user_task_record.score }}
+                    </div>
+                    <div class="comment">
+                        <strong>评语</strong>
+                        <p>{{ project_record.remark }}</p>
+                    </div>
+                </div>
+            {% else %}
+                <div class="assess">
+                    <div class="score">
+                        <strong>评分</strong>
+                        <span v="优">A</span>
+                        <span v="良">B</span>
+                        <span v="及格">C</span>
+                    </div>
+                    <div class="comment">
+                        <strong>评语</strong>
+                        <p><textarea name="" rows="" cols=""></textarea></p>
+                    </div>
+                    <button type="button" class="submitBtn">提交</button>
+                    <input type="hidden" value="/lps3/teacher/project_marking/{{ class_id }}/{{ student_id }}/{{ stage_task_id }}/" id="project_marking">
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

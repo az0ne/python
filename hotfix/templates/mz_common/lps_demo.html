@@ -1,0 +1,2653 @@
+{% extends "mz_common/base.html" %}
+{% block title %}Android学习计划 – LPS在线智能学习体验 – 麦子学院{% endblock %}
+{% block keywords%}Android学习，Android学习计划，LPS智能学习系统，在线学习{% endblock %}
+{% block description%}麦子学院LPS智能学习系统，让你体验软件开发培训从进班学习到基础进阶，阶段考核，项目开发进度，实战经验等通过系统据化显示，老师一对一在线指导、在线教学的过程，充分感受智能学习时代IT职业技术在线学习的魅力。{% endblock %}
+{% block breadcrumb %}
+    <div class="container visible-md visible-lg">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'user:user_center' %}">我的课程</a></li>
+            <li class="active">Android 应用开发工程师</li>
+        </ol>
+    </div>
+{% endblock %}
+{% block custom_css %}
+<link href="/static/css/jquery.fileupload.css" rel="stylesheet">
+<link href="/static/css/chart/jquery.jscrollpane.css" rel="stylesheet" />
+<link href="/static/css/chart/style.css" rel='stylesheet' />
+<link href="/static/js/helper/helper.css" rel="stylesheet">
+{% endblock %}
+{% block container %}
+<div class="container">
+  <div class="study-plan">
+    <div class="box-echart visible-md visible-lg">
+    <div class="title">
+        <div class="fr plan-day">
+    		    <span class="fl">
+    		    	课程计划天数：207天
+    		    </span>
+            <div class="fl plan-tip">
+            </div>
+        </div>
+        <h1 class="ft20">Android 应用开发工程师</h1>
+    </div>
+    <div class="row chart-legend">
+        <span class="myplan">我的学习计划</span>
+        <span class="legend"><i style="background-color: #1ABC9C;"></i>计划时间点</span>
+        <span class="legend"><i style="background-color: #E78964;"></i>实际时间点</span>
+    </div>
+    <div class="chart-container-box">
+        <div id="chart-container" class="chart-container">
+            <div class="learn-plan-charts">
+                <div class="fl">
+                    <ul class="process">
+                        <li class="li1">100%</li>
+                        <li class="li2">50%</li>
+                        <li class="li3">0</li>
+                    </ul>
+                </div>
+                <div id="chart-box" class="chart-box fl">
+                    <div class="right-size">
+                        <div class="chart-line">
+                            <ul class="table-name">
+                                <li style="width:110px;height:50px;">
+                                    <p class="font-color-es ">&nbsp;完成度(%)</p>
+                                </li>
+                            </ul>
+                            <div class="table-content" height="157">
+                                <ul class="odd">
+
+                                </ul>
+                                <ul class="even">
+
+                                </ul>
+                            </div>
+                            <ul class="table-line">
+
+                            </ul>
+                        </div>
+                        <div class="date">
+                            <ul height="25" class="table-date">
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="charts-box-canvas" ></div>
+                </div>
+                <div class="learn-plan-tips">
+                    <p>一些课程的提示数据</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+    <div class="row-stage">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8">
+<div class="bar-stage helper-ps-04">
+    <div class="row bar-df">
+        
+        <div class="col-sm-2 bar-cm zindex-5">
+            <div class="pt-cm">
+                <a href="javascript:;">
+                    <i class="v5-icon v5-icon-lock-op"></i>
+                </a>
+            </div>
+            <span>阶段一</span>
+        </div>
+        
+        <div class="col-sm-2 bar-cm zindex-4">
+            <div class="pt-do">
+                <a href="javascript:;">
+                    <i class="v5-icon v5-icon-lock-op"></i>
+                </a>
+            </div>
+            <span>阶段二</span>
+        </div>
+        
+        <div class="col-sm-2 bar-cm zindex-3">
+            <div class="pt-cm">
+                <a href="javascript:;">
+                    <i class="v5-icon v5-icon-lock-op"></i>
+                </a>
+            </div>
+            <span>阶段三</span>
+        </div>
+        
+        <div class="col-sm-2 bar-cm zindex-2">
+            <div class="pt-cm">
+                <a href="javascript:;">
+                    <i class="v5-icon v5-icon-lock-op"></i>
+                </a>
+            </div>
+            <span>阶段四</span>
+        </div>
+        
+        <div class="col-sm-2 bar-cm zindex-1">
+            <div class="pt-cm">
+                <a href="javascript:;">
+                    <i class="v5-icon v5-icon-lock-op"></i>
+                </a>
+            </div>
+            <span>阶段五</span>
+        </div>
+        
+    </div>
+</div>
+<div class="plan-lead">
+    <h1 class="ft20">阶段二 - Android 基础</h1>
+    <p>本阶段学习Android的环境搭建，基础UI控件，Activity，以及一个小项目实战，力求Android快速入手，掌握Android常用知识点，锻炼Android编程思维，养成好的Android编程习惯。</p>
+</div>
+
+<section class="chapters-list">
+    <div class="title">
+        <h2 class="ft16">
+            第1课&nbsp;&nbsp;Android App 开发环境搭建和配置<small>共6节</small>
+        </h2>
+    </div>
+    <div class="plan-task">
+        <ul class="cf">
+            <li style="vertical-align: top;">
+                <div class="v5-popover top">
+                    <div class="arrow"></div>
+                    <div data-toggle="modal" data-target="#lesson_61_Modal" class="v5-popover-content  helper-ps-05">
+                        <p>课程学习</p>
+                        <small>(1/6)</small>
+                    </div>
+                </div>
+                <div class="task-p">
+                    <span></span>
+                </div>
+            </li>
+            
+            <li style="vertical-align: bottom;">
+                <div class="task-p">
+                    <span><i class="v5-icon v5-icon-rth"></i></span>
+                </div>
+                <div class="v5-popover bottom">
+                    <div class="arrow"></div>
+                    <div data-toggle="modal" data-target="#lesson_exam_61_Modal" class="v5-popover-content helper-ps-06"  onclick="page_tip()">
+                        <p>随堂测验</p>
+                        <small>(2/2)</small>
+                    </div>
+                </div>
+            </li>
+            
+            <li style="vertical-align: top;">
+                <div class="v5-popover top">
+                    <div class="arrow"></div>
+                    <div data-toggle="modal" data-target="#homework_61_Modal" class="v5-popover-content helper-ps-07" onclick="page_tip()">
+                        <p>随堂作业</p>
+                        <small>(0/6)</small>
+                    </div>
+                </div>
+                <div class="task-p">
+                    <span></span>
+                </div>
+            </li>
+            
+            <li style="vertical-align: bottom;">
+                <div class="task-p">
+                    <span id="exam_is_complete_2_61"><i class="v5-icon v5-icon-rth"></i></span>
+                </div>
+                <div class="v5-popover bottom">
+                    <div class="arrow"></div>
+                    <div class="v5-popover-content helper-ps-08" onclick="onlinetest_61()">
+                        <p>课程总测验</p>
+                        <small id="exam_is_complete_61">(1/1)</small>
+                    </div>
+                </div>
+            </li>
+            
+            
+                <li style="vertical-align: top;">
+                    <div class="v5-popover top">
+                        <div class="arrow"></div>
+                        <div class="v5-popover-content helper-ps-09" data-toggle="modal" data-target="#project_61_Modal">
+                            <p>项目制作</p>
+                            <small class="p-green">已打分:100</small>
+                        </div>
+                    </div>
+                    <div class="task-p">
+                        <span><i class="v5-icon v5-icon-rth"></i></span>
+                    </div>
+                </li>
+            
+        </ul>
+    </div>
+</section>
+
+<section class="chapters-list">
+    <div class="title">
+        <h2 class="ft16">
+            第2课&nbsp;&nbsp;Android App开发起手式 - HelloWorld 二三事<small>共9节</small>
+
+        </h2>
+    </div>
+    <div class="plan-task">
+        <ul class="cf">
+            <li style="vertical-align: top;">
+                <div class="v5-popover top">
+                    <div class="arrow"></div>
+                    <div data-toggle="modal" data-target="#lesson_62_Modal" class="v5-popover-content">
+                        <p>课程学习</p>
+                        <small>(1/9)</small>
+                    </div>
+                </div>
+                <div class="task-p">
+                    <span></span>
+                </div>
+            </li>
+            
+            <li style="vertical-align: bottom;">
+                <div class="task-p">
+                    <span><i class="v5-icon v5-icon-rth"></i></span>
+                </div>
+                <div class="v5-popover bottom">
+                    <div class="arrow"></div>
+                    <div data-toggle="modal" data-target="#lesson_exam_62_Modal" class="v5-popover-content"  onclick="page_tip()">
+                        <p>随堂测验</p>
+                        <small>(2/5)</small>
+                    </div>
+                </div>
+            </li>
+            
+            <li style="vertical-align: top;">
+                <div class="v5-popover top">
+                    <div class="arrow"></div>
+                    <div data-toggle="modal" data-target="#homework_62_Modal" class="v5-popover-content" onclick="page_tip()">
+                        <p>随堂作业</p>
+                        <small>(0/9)</small>
+                    </div>
+                </div>
+                <div class="task-p">
+                    <span></span>
+                </div>
+            </li>
+            
+            <li style="vertical-align: bottom;">
+                <div class="task-p">
+                    <span id="exam_is_complete_2_62"><i class="v5-icon v5-icon-rth"></i></span>
+                </div>
+                <div class="v5-popover bottom">
+                    <div class="arrow"></div>
+                    <div class="v5-popover-content" onclick="onlinetest_62()">
+                        <p>课程总测验</p>
+                        <small id="exam_is_complete_62">(1/1)</small>
+                    </div>
+                </div>
+            </li>
+            
+            
+                <li style="vertical-align: top;">
+                    <div class="v5-popover top">
+                        <div class="arrow"></div>
+                        <div class="v5-popover-content" data-toggle="modal" data-target="#project_62_Modal">
+                            <p>项目制作</p>
+                            
+                                
+                                    
+                                        <small class="p-green">已打分:100</small>
+                                    
+                                                            
+                            
+                        </div>
+                    </div>
+                    <div class="task-p">
+                        <span><i class="v5-icon v5-icon-rth"></i></span>
+                    </div>
+                </li>
+            
+        </ul>
+    </div>
+</section>
+
+<section class="chapters-list">
+    <div class="title">
+        <h2 class="ft16">
+            第3课&nbsp;&nbsp;Android的面孔 - Activity<small>共34节</small>
+
+        </h2>
+    </div>
+    <div class="plan-task">
+        <ul class="cf">
+            <li style="vertical-align: top;">
+                <div class="v5-popover top">
+                    <div class="arrow"></div>
+                    <div data-toggle="modal" data-target="#lesson_63_Modal" class="v5-popover-content">
+                        <p>课程学习</p>
+                        <small>(0/34)</small>
+                    </div>
+                </div>
+                <div class="task-p">
+                    <span></span>
+                </div>
+            </li>
+            
+            <li style="vertical-align: bottom;">
+                <div class="task-p">
+                    <span><i class="v5-icon v5-icon-rth"></i></span>
+                </div>
+                <div class="v5-popover bottom">
+                    <div class="arrow"></div>
+                    <div data-toggle="modal" data-target="#lesson_exam_63_Modal" class="v5-popover-content"  onclick="page_tip()">
+                        <p>随堂测验</p>
+                        <small>(12/18)</small>
+                    </div>
+                </div>
+            </li>
+            
+            <li style="vertical-align: top;">
+                <div class="v5-popover top">
+                    <div class="arrow"></div>
+                    <div data-toggle="modal" data-target="#homework_63_Modal" class="v5-popover-content" onclick="page_tip()">
+                        <p>随堂作业</p>
+                        <small>(0/34)</small>
+                    </div>
+                </div>
+                <div class="task-p">
+                    <span></span>
+                </div>
+            </li>
+            
+            <li style="vertical-align: bottom;">
+                <div class="task-p">
+                    <span id="exam_is_complete_2_63"><i class="v5-icon v5-icon-rth"></i></span>
+                </div>
+                <div class="v5-popover bottom">
+                    <div class="arrow"></div>
+                    <div class="v5-popover-content" onclick="onlinetest_63()">
+                        <p>课程总测验</p>
+                        <small id="exam_is_complete_63">(1/1)</small>
+                    </div>
+                </div>
+            </li>
+            
+            
+                <li style="vertical-align: top;">
+                    <div class="v5-popover top">
+                        <div class="arrow"></div>
+                        <div class="v5-popover-content" data-toggle="modal" data-target="#project_63_Modal">
+                            <p>项目制作</p>
+                            
+                                
+                                    
+                                        <small class="p-green">已打分:100</small>
+                                    
+                                                            
+                            
+                        </div>
+                    </div>
+                    <div class="task-p">
+                        <span><i class="v5-icon v5-icon-rth"></i></span>
+                    </div>
+                </li>
+            
+        </ul>
+    </div>
+</section>
+
+<section class="chapters-list">
+    <div class="title">
+        <h2 class="ft16">
+            第4课&nbsp;&nbsp;Android 基础UI控件<small>共66节</small>
+
+        </h2>
+    </div>
+    <div class="plan-task">
+        <ul class="cf">
+            <li style="vertical-align: top;">
+                <div class="v5-popover top">
+                    <div class="arrow"></div>
+                    <div data-toggle="modal" data-target="#lesson_64_Modal" class="v5-popover-content">
+                        <p>课程学习</p>
+                        <small>(0/66)</small>
+                    </div>
+                </div>
+                <div class="task-p">
+                    <span></span>
+                </div>
+            </li>
+            
+            <li style="vertical-align: bottom;">
+                <div class="task-p">
+                    <span><i class="v5-icon v5-icon-rth"></i></span>
+                </div>
+                <div class="v5-popover bottom">
+                    <div class="arrow"></div>
+                    <div data-toggle="modal" data-target="#lesson_exam_64_Modal" class="v5-popover-content"  onclick="page_tip()">
+                        <p>随堂测验</p>
+                        <small>(0/35)</small>
+                    </div>
+                </div>
+            </li>
+            
+            <li style="vertical-align: top;">
+                <div class="v5-popover top">
+                    <div class="arrow"></div>
+                    <div data-toggle="modal" data-target="#homework_64_Modal" class="v5-popover-content" onclick="page_tip()">
+                        <p>随堂作业</p>
+                        <small>(0/66)</small>
+                    </div>
+                </div>
+                <div class="task-p">
+                    <span></span>
+                </div>
+            </li>
+            
+            <li style="vertical-align: bottom;">
+                <div class="task-p">
+                    <span id="exam_is_complete_2_64"><i class="v5-icon v5-icon-rth"></i></span>
+                </div>
+                <div class="v5-popover bottom">
+                    <div class="arrow"></div>
+                    <div class="v5-popover-content" onclick="onlinetest_64()">
+                        <p>课程总测验</p>
+                        <small id="exam_is_complete_64">(1/1)</small>
+                    </div>
+                </div>
+            </li>
+            
+            
+                <li style="vertical-align: top;">
+                    <div class="v5-popover top">
+                        <div class="arrow"></div>
+                        <div class="v5-popover-content" data-toggle="modal" data-target="#project_64_Modal">
+                            <p>项目制作</p>
+                            
+                                
+                                    
+                                        <small class="p-green">已打分:100</small>
+                                    
+                                                            
+                            
+                        </div>
+                    </div>
+                    <div class="task-p">
+                        <span><i class="v5-icon v5-icon-rth"></i></span>
+                    </div>
+                </li>
+            
+        </ul>
+    </div>
+</section>
+
+
+</div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4">
+
+    <div class="row info-tips">
+        <div class="col-sm-6">
+            <em>422</em>
+            <span>我的学力</span>
+        </div>
+        <div class="col-sm-6">
+            <em>1</em>
+            <span>班级排名</span>
+        </div>
+    </div>
+    <div class="rank-list">
+        <h5>本班学员学力排行榜</h5>
+    <div id="rank_ul">
+
+            <ul class="media-rank" style="">
+                
+                <li class="media">
+                        <em class="bg-greyred">1</em>
+                        <a class="pull-left" href="javascript:void(0)">
+                            <img class="media-object" src="http://www.maiziedu.com/uploads/avatar/2015/01/ae6b4d2e-a04d-11e4-8dde-00163e02100b_small.jpg">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">cjw11</h4>
+                            <h5>422</h5>
+                        </div>
+                </li>
+                
+                <li class="media">
+                        <em class="bg-greyred">2</em>
+                        <a class="pull-left" href="javascript:void(0)">
+                            <img class="media-object" src="http://www.maiziedu.com/uploads/avatar/default_small.png">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading">cjw1234</h4>
+                            <h5>71</h5>
+                        </div>
+                </li>
+                
+            </ul>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!--课程学习-->
+<div class="modal plan-modal fade" id="lesson_61_Modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">课程学习</h4>
+            </div>
+            <div class="modal-body">
+                <section class="box-coursestu">
+                    <ul class="modal-max-height scroll-pane">
+
+                        <li class="row">
+                            <div class="col-sm-9"><a href="/lesson/80/" target="_blank">概述：开发环境搭建和配置</a></div>
+                            <div class="col-sm-3 text-center">
+
+                                <i class="v5-icon v5-icon-rthb"></i>
+
+                            </div>
+                        </li>
+
+                        <li class="row">
+                            <div class="col-sm-9"><a href="/lesson/81/" target="_blank">JDK的安装</a></div>
+                            <div class="col-sm-3 text-center">
+
+                                <div class="col-sm-3 text-center"><a href="/lesson/81/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+                            </div>
+                        </li>
+
+                        <li class="row">
+                            <div class="col-sm-9"><a href="/lesson/82/" target="_blank">ADT (Bundle)的安装</a></div>
+                            <div class="col-sm-3 text-center">
+
+                                <div class="col-sm-3 text-center"><a href="/lesson/82/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+                            </div>
+                        </li>
+
+                        <li class="row">
+                            <div class="col-sm-9"><a href="/lesson/83/" target="_blank">配置JDK环境变量</a></div>
+                            <div class="col-sm-3 text-center">
+
+                                <div class="col-sm-3 text-center"><a href="/lesson/83/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+                            </div>
+                        </li>
+
+                        <li class="row">
+                            <div class="col-sm-9"><a href="/lesson/84/" target="_blank">Eclipse 常规配置</a></div>
+                            <div class="col-sm-3 text-center">
+
+                                <div class="col-sm-3 text-center"><a href="/lesson/84/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+                            </div>
+                        </li>
+
+                        <li class="row">
+                            <div class="col-sm-9"><a href="/lesson/85/" target="_blank">Android SDK Manager&amp;模拟器的配置</a></div>
+                            <div class="col-sm-3 text-center">
+
+                                <div class="col-sm-3 text-center"><a href="/lesson/85/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="project_61_Modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-custom">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">项目制作</h4>
+            </div>
+            <div class="modal-body modal-body-custom">
+                <div class="box-objectmd">
+                <div class="modal-line">
+                    <h4 class="ft20 defult-font-color">需求:</h4>
+                    <div class="p_scroll"><p style="word-break:break-all;">搭建好android开发环境后,直接运行时是否有HelloWorld显示出来.</p></div>
+                </div>
+                <div class="modal-line">
+                    <h4 class="ft20 defult-font-color ml">项目制作:</h4>
+                    <span class="update-pro-msg">
+
+                        <a class="yes-update" href="http://www.maiziedu.com/uploads/project/2015/02/LPS体验-项目上传.rar">项目文件</a>
+                        <span class="yes-update-msg">已上传</span>
+
+
+                    </span>
+
+
+                    <span class="btn sub-work fileinput-button">
+                          <span>上传</span>
+                          <input id="file_upload_61" type="file" name="Filedata_61">
+                    </span>
+                    <div class="percentage" style="display:none;">0%</div>
+                    <h4 class="ft20 defult-font-color defult-font-mg">老师打分:</h4>
+
+                    <div class="score" style="left:auto; right:4px;"><span>100</span>分</div>
+
+                </div>
+
+                <div class="modal-line modal-line-border">
+                    <h4 class="ft20 defult-font-color">老师评语:</h4>
+
+                    <div class="no-pinglun">尚未填写</div>
+
+
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal plan-modal fade" id="lesson_62_Modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="coursestuModalLabel">课程学习</h4>
+            </div>
+            <div class="modal-body">
+                <section class="box-coursestu" id="box-coursestu">
+                    <ul class="modal-max-height scroll-pane">
+
+                        <li class="row">
+                            <div class="col-sm-9"><a href="/lesson/86/" target="_blank">通过一个简单App - HelloWorld你要学到什么？</a></div>
+                            <div class="col-sm-3 text-center">
+
+                                <i class="v5-icon v5-icon-rthb"></i>
+
+                            </div>
+                        </li>
+
+                        <li class="row">
+                            <div class="col-sm-9"><a href="/lesson/87/" target="_blank">新建Android Application Project 向导详解</a></div>
+                            <div class="col-sm-3 text-center">
+
+                                <div class="col-sm-3 text-center"><a href="/lesson/87/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+                            </div>
+                        </li>
+
+                        <li class="row">
+                            <div class="col-sm-9"><a href="/lesson/88/" target="_blank">Android Project 目录结构和文件详解1</a></div>
+                            <div class="col-sm-3 text-center">
+
+                                <div class="col-sm-3 text-center"><a href="/lesson/88/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+                            </div>
+                        </li>
+
+                        <li class="row">
+                            <div class="col-sm-9"><a href="/lesson/89/" target="_blank">Android Project 目录结构和文件详解2</a></div>
+                            <div class="col-sm-3 text-center">
+
+                                <div class="col-sm-3 text-center"><a href="/lesson/89/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+                            </div>
+                        </li>
+
+                        <li class="row">
+                            <div class="col-sm-9"><a href="/lesson/90/" target="_blank">Android Project 目录结构和文件详解3</a></div>
+                            <div class="col-sm-3 text-center">
+
+                                <div class="col-sm-3 text-center"><a href="/lesson/90/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+                            </div>
+                        </li>
+
+                        <li class="row">
+                            <div class="col-sm-9"><a href="/lesson/91/" target="_blank">Android 开发相关小工具 - DDMS</a></div>
+                            <div class="col-sm-3 text-center">
+
+                                <div class="col-sm-3 text-center"><a href="/lesson/91/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+                            </div>
+                        </li>
+
+                        <li class="row">
+                            <div class="col-sm-9"><a href="/lesson/92/" target="_blank"> Android 开发相关小工具 - ADB</a></div>
+                            <div class="col-sm-3 text-center">
+
+                                <div class="col-sm-3 text-center"><a href="/lesson/92/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+                            </div>
+                        </li>
+
+                        <li class="row">
+                            <div class="col-sm-9"><a href="/lesson/93/" target="_blank"> Android 开发相关小工具 - LogCat</a></div>
+                            <div class="col-sm-3 text-center">
+
+                                <div class="col-sm-3 text-center"><a href="/lesson/93/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+                            </div>
+                        </li>
+
+                        <li class="row">
+                            <div class="col-sm-9"><a href="/lesson/94/" target="_blank">了解一个Android App 是怎么运行工作的</a></div>
+                            <div class="col-sm-3 text-center">
+
+                                <div class="col-sm-3 text-center"><a href="/lesson/94/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+                            </div>
+                        </li>
+
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="project_62_Modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-custom">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="objectmdModalLabel">项目制作</h4>
+            </div>
+            <div class="modal-body modal-body-custom">
+                <div class="box-objectmd">
+                <div class="modal-line">
+                    <h4 class="ft20 defult-font-color">需求:</h4>
+                    <div class="p_scroll"><p style="word-break:break-all;">新建一个Android工程、然后在对应的文件下写自己的名字、然后用代码从后台（过滤）打印出来。</p></div>
+                </div>
+                <div class="modal-line">
+                    <h4 class="ft20 defult-font-color ml">项目制作:</h4>
+                    <span class="update-pro-msg">
+
+                        <a class="yes-update" href="http://www.maiziedu.com/uploads/project/2015/02/LPS体验-项目上传.rar">项目文件</a>
+                        <span class="yes-update-msg">已上传</span>
+
+
+                    </span>
+
+
+                    <span class="btn sub-work fileinput-button">
+                          <span>上传</span>
+                          <input id="file_upload_62" type="file" name="Filedata_62">
+                    </span>
+                    <div class="percentage">0%</div>
+                    <h4 class="ft20 defult-font-color defult-font-mg">老师打分:</h4>
+
+                    <div class="score"><span>100</span>分</div>
+
+                </div>
+
+                <div class="modal-line modal-line-border">
+                    <h4 class="ft20 defult-font-color">老师评语:</h4>
+                    <div class="no-pinglun">尚未填写</div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal plan-modal fade" id="lesson_63_Modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="coursestuModalLabel">课程学习</h4>
+    </div>
+    <div class="modal-body">
+    <section class="box-coursestu" id="box-coursestu">
+    <ul class="modal-max-height scroll-pane">
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/2077/" target="_blank">进入Android开发大门的准备-Log上</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/2077/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/2078/" target="_blank">进入Android开发大门的准备-Log下</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/2078/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/95/" target="_blank">掌上设备开发特点</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/95/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/96/" target="_blank">Android应用开发七大件</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/96/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/97/" target="_blank">了解Android Framework</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/97/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/98/" target="_blank">应用程序资源目录介绍（上）</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/98/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/99/" target="_blank">应用程序资源目录介绍（下）</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/99/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/100/" target="_blank">调用应用程序资源</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/100/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/101/" target="_blank">Manifest文件（上）</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/101/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/102/" target="_blank">Manifest文件（下）</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/102/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/103/" target="_blank">进程生命周期（上）</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/103/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/104/" target="_blank">进程生命周期（下）</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/104/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/105/" target="_blank">讲一个浪漫的校园故事</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/105/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/106/" target="_blank">基于故事的UML来讲解Activity使用</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/106/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/107/" target="_blank">编写Activity步骤总结</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/107/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/108/" target="_blank">分析源码看Activity的生命周期</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/108/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/109/" target="_blank">动态添加组件</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/109/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/110/" target="_blank">Intent和IntentFilter</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/110/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/111/" target="_blank">利用Intent传值（上）</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/111/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/113/" target="_blank"> 利用Intent传值（下）</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/113/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/115/" target="_blank">Activity传值也是靠Binder机制</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/115/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/117/" target="_blank">IntentFilter高级应用</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/117/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/118/" target="_blank">Activity状态保存与恢复</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/118/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/120/" target="_blank">HierarchyViewer</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/120/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/121/" target="_blank">Activity生命周期</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/121/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/123/" target="_blank">Activity生命周期高级（上）</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/123/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/125/" target="_blank"> Activity生命周期高级（下）</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/125/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/126/" target="_blank">设置改变ConfigurationChanges</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/126/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/128/" target="_blank">Android任务栈TaskStack（上）</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/128/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/129/" target="_blank">Android任务栈TaskStack（下）</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/129/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/131/" target="_blank">Activity任务栈配置详解（上）</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/131/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/133/" target="_blank">Activity任务栈配置详解（下）</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/133/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/135/" target="_blank">Activity任务栈配置详解(有LaunchMode)</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/135/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/136/" target="_blank">Activity扩展及总结</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/136/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    </ul>
+    </section>
+    </div>
+    </div>
+    </div>
+</div>
+
+<div class="modal fade" id="project_63_Modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-custom">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">项目制作</h4>
+            </div>
+            <div class="modal-body modal-body-custom">
+                <div class="box-objectmd">
+                <div class="modal-line">
+                    <h4 class="ft20 defult-font-color">需求:</h4>
+                    <div class="p_scroll"><p style="word-break:break-all;">实现：C，3个Activity、然后处理实现C分别向A传值、、打印出不同Activity传入A的值。</p></div>
+                </div>
+                <div class="modal-line">
+                    <h4 class="ft20 defult-font-color ml">项目制作:</h4>
+                    <span class="update-pro-msg">
+
+                        <a class="yes-update" href="http://www.maiziedu.com/uploads/project/2015/02/LPS体验-项目上传.rar">项目文件</a>
+                        <span class="yes-update-msg">已上传</span>
+
+
+                    </span>
+
+
+                    <span class="btn sub-work fileinput-button">
+                          <span>上传</span>
+                          <input id="file_upload_63" type="file" name="Filedata_63">
+                    </span>
+                    <div class="percentage">0%</div>
+                    <h4 class="ft20 defult-font-color defult-font-mg">老师打分:</h4>
+
+                    <div class="score"><span>100</span>分</div>
+
+                </div>
+
+                <div class="modal-line modal-line-border">
+                    <h4 class="ft20 defult-font-color">老师评语:</h4>
+                    <div class="no-pinglun">尚未填写</div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal plan-modal fade" id="lesson_64_Modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="coursestuModalLabel">课程学习</h4>
+    </div>
+    <div class="modal-body">
+    <section class="box-coursestu" id="box-coursestu">
+    <ul class="modal-max-height scroll-pane">
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/139/" target="_blank">开场白</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/139/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/140/" target="_blank">商业项目中美工与程序员UI搭配流程</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/140/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/141/" target="_blank">UI就是View</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/141/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/143/" target="_blank">UI开发的2+1法则</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/143/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/145/" target="_blank">UI的底层支持Skia2D图像库及FrameBuffer</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/145/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/146/" target="_blank">UI开发的2+1法则（界面呈现机制）上</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/146/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/147/" target="_blank">UI开发的2+1法则（界面呈现机制）中</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/147/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/148/" target="_blank"> UI开发的2+1法则（界面呈现机制）下</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/148/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/149/" target="_blank">用Canvas画图</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/149/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/150/" target="_blank">用Drawable画组件</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/150/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/152/" target="_blank">用Drawable画组件（9 PatchButton）</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/152/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/154/" target="_blank">OpenGL es实现3D</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/154/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/155/" target="_blank">以商业界面讲标准组件-公用属性</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/155/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/156/" target="_blank">以商业界面讲标准组件-TextView1</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/156/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/157/" target="_blank">以商业界面讲标准组件-TextView2</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/157/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/158/" target="_blank">以商业界面讲标准组件-TextView3</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/158/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/160/" target="_blank">以商业界面讲标准组件-TextView4</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/160/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/173/" target="_blank">以商业界面讲标准组件-Button</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/173/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/174/" target="_blank">以商业界面讲标准组件-ToggleButton</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/174/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/176/" target="_blank">以商业界面讲标准组件-CheckBox &amp; RadioBox</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/176/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/179/" target="_blank">以商业界面讲标准组件-Adapter模式</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/179/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/184/" target="_blank">以商业界面讲标准组件-Spinner1</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/184/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/186/" target="_blank">以商业界面讲标准组件-Spinner2</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/186/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/189/" target="_blank">以商业界面讲标准组件-Spinner3</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/189/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/191/" target="_blank">以商业界面讲标准组件-ProgressBar</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/191/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/193/" target="_blank">以商业界面讲标准组件-SeekBar</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/193/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/194/" target="_blank">以商业界面讲标准组件-RateBar</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/194/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/196/" target="_blank">以商业界面讲标准组件-EditText</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/196/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/198/" target="_blank">AutoCompelteTextView</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/198/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/200/" target="_blank">以商业界面讲标准组件-ListView1</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/200/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/202/" target="_blank">以商业界面讲标准组件-ListView2</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/202/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/205/" target="_blank">以商业界面讲标准组件-ListView3</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/205/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/206/" target="_blank">以商业界面讲标准组件-ListView4</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/206/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/207/" target="_blank">以商业界面讲标准组件-ListView5</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/207/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/208/" target="_blank">以商业界面讲标准组件-ExpandableListView1</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/208/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/209/" target="_blank">以商业界面讲标准组件-ExpandableListView2</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/209/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/210/" target="_blank">以商业界面讲标准组件-GridView</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/210/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/211/" target="_blank">ScrollView &amp; SlidingDrawer</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/211/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/213/" target="_blank">以商业界面讲标准组件-TabHost &amp; TabSpec</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/213/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/216/" target="_blank">WebView &amp; ImageView</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/216/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/223/" target="_blank">ImageButton（ARGB）&amp; Gallery</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/223/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/230/" target="_blank">ImageSwitcher</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/230/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/234/" target="_blank">DatePicker</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/234/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/236/" target="_blank">界面布局像网页一样思考-公共属性1</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/236/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/239/" target="_blank">界面布局像网页一样思考-公共属性2</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/239/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/241/" target="_blank">界面布局-LineraLayout</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/241/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/245/" target="_blank">界面布局-RelativeLayout</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/245/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/249/" target="_blank">界面布局-TableLayout1</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/249/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/253/" target="_blank">界面布局-TableLayout2</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/253/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/255/" target="_blank">界面布局-讲解及实现金蝶随手记界面1</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/255/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/260/" target="_blank">界面布局-讲解及实现金蝶随手记界面2</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/260/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/266/" target="_blank">菜单-菜单实质是什么</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/266/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/269/" target="_blank">菜单-各种方式实现OptionMenu及事件</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/269/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/270/" target="_blank">菜单-ContenxtMenu实现及事件</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/270/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/273/" target="_blank">对话框-Dialog（Builder设计模式）</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/273/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/281/" target="_blank">对话框-实现AlertDialog实操</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/281/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/284/" target="_blank">对话框-Dialog源码分析（Builder设计模式）</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/284/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/287/" target="_blank">对话框-自定义Dialog</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/287/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/290/" target="_blank">提醒-Notification强大的模式及Binder的关系</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/290/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/291/" target="_blank">提醒-Notification实现</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/291/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/293/" target="_blank">提醒-PendingIntent（单件模式）</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/293/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/296/" target="_blank">样式及主题1</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/296/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/298/" target="_blank">样式及主题2</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/298/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/302/" target="_blank">开发自定义组件-自定义呈现1</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/302/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/303/" target="_blank">开发自定义组件-自定义呈现2</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/303/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    <li class="row">
+        <div class="col-sm-9"><a href="/lesson/307/" target="_blank">考核目标及总结</a></div>
+        <div class="col-sm-3 text-center">
+
+            <div class="col-sm-3 text-center"><a href="/lesson/307/" target="_blank" class="btn btn-micv5">去观看</a></div>
+
+        </div>
+    </li>
+
+    </ul>
+    </section>
+    </div>
+    </div>
+    </div>
+</div>
+
+<div class="modal fade" id="project_64_Modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-custom">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">项目制作</h4>
+            </div>
+            <div class="modal-body modal-body-custom">
+                <div class="box-objectmd">
+                <div class="modal-line">
+                    <h4 class="ft20 defult-font-color">需求:</h4>
+                    <div class="p_scroll"><p style="word-break:break-all;">用系统内置id和自己定义的id两种不同的方法实现：listview的数据绑定以及显示。</p></div>
+                </div>
+                <div class="modal-line">
+                    <h4 class="ft20 defult-font-color ml">项目制作:</h4>
+                    <span class="update-pro-msg">
+
+                        <a class="yes-update" href="http://www.maiziedu.com/uploads/project/2015/02/LPS体验-项目上传.rar">项目文件</a>
+                        <span class="yes-update-msg">已上传</span>
+
+
+                    </span>
+
+
+                    <span class="btn sub-work fileinput-button">
+                          <span>上传</span>
+                          <input id="file_upload_64" type="file" name="Filedata_64">
+                    </span>
+                    <div class="percentage" style="display:none;">0%</div>
+                    <h4 class="ft20 defult-font-color defult-font-mg">老师打分:</h4>
+
+                    <div class="score" style="left:auto; right:4px;"><span>100</span>分</div>
+
+                </div>
+
+                <div class="modal-line modal-line-border">
+                    <h4 class="ft20 defult-font-color">老师评语:</h4>
+                    <div class="no-pinglun">尚未填写</div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 额外任务 -->
+
+<!--课程总测验-->
+<div class="modal fade testModal-div" id="course_61_testModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"> <span aria-hidden="true"></span> <span class="sr-only">Close</span> </button>
+                <h4 id="quizjobModalLabel" class="modal-title">课程总测验</h4>
+                <span class="lr_span"> <a class="left_c lr_c"> &lt;</a> <span class="lr-num">0/0</span> <a class="right_c lr_c">&gt;</a> </span> </div>
+            <div class="modal-body">
+                <div class="box-onlinetest">
+                    <article>
+                        <div class="onlinetest-wp cf">
+                            <section quiz_id=463 course_id=61>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">1、使用RadioButton时，要想实现互斥的选择需要用的组件是()</p>
+                                    <button value="a">RadioButton</button>
+                                    <button value="b">RadioGroup</button>
+                                    <button value="c">Button</button>
+                                    <button value="d">Spinner</button>
+                                    <span>1/6</span> </div>
+                            </section>
+                            <section quiz_id=464 course_id=61>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">2、在手机开发中常用的数据库是()</p>
+                                    <button value="a">mySql</button>
+                                    <button value="b">SQLite</button>
+                                    <button value="c">SQL server</button>
+                                    <button value="d">Oracle</button>
+                                    <span>2/6</span> </div>
+                            </section>
+                            <section quiz_id=465 course_id=61>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">3、intent是()</p>
+                                    <button value="a">连接四大组件的纽带</button>
+                                    <button value="b">包含动作数据</button>
+                                    <button value="c">可以包含动作</button>
+                                    <button value="d">以实现界面间切换</button>
+                                    <span>3/6</span> </div>
+                            </section>
+                            <section quiz_id=466 course_id=61>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">4、显示一系列图像的组件是()</p>
+                                    <button value="a">ImageButton</button>
+                                    <button value="b">Gallery</button>
+                                    <button value="c">ImageView</button>
+                                    <button value="d">TextView</button>
+                                    <span>4/6</span> </div>
+                            </section>
+                            <section quiz_id=467 course_id=61>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">5、ContentValues()</p>
+                                    <button value="a">也是负责存储一些名值对</button>
+                                    <button value="b">和Hashtable比较类似</button>
+                                    <button value="c">但是他存储的名值对当中的名是String类型,而值都是基本类型</button>
+                                    <button value="d">不用键值对存储数据</button>
+                                    <span>5/6</span> </div>
+                            </section>
+                            <section quiz_id=468 course_id=61>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">6、多选框被选择事件()</p>
+                                    <button value="a">onClick()</button>
+                                    <button value="b">setonCheckchangeListener()</button>
+                                    <button value="c">onItemClickListener()</button>
+                                    <button value="d">onOptionsItemSelected()</button>
+                                    <span>6/6</span> </div>
+                            </section>
+                            <section course_id=61 class="last_section">
+                                <div class="test_result_div test_result_div_61">
+                                    <div class="test_result test_result1"> <span>答对题数</span>
+                                        <div class="re_score">0</div>
+                                    </div>
+                                    <div class="test_result test_result2"> <span>答错题数</span>
+                                        <div class="re_score">0</div>
+                                    </div>
+                                    <div class="test_result test_result3"> <span>正确率</span>
+                                        <div class="re_score">0%</div>
+                                    </div>
+                                    <div class="test_result test_result4"> <span>获得学力</span>
+                                        <div class="re_score">0</div>
+                                    </div>
+                                    <div style="clear:both;"></div>
+                                    <div class="result_text_button result_text_button1">查看错题</div>
+                                    <div class="result_text_button result_text_button2">结束测试</div>
+                                </div>
+                            </section>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade testModal-div" id="course_62_testModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"> <span aria-hidden="true"></span> <span class="sr-only">Close</span> </button>
+                <h4 class="modal-title">课程总测验</h4>
+                <span class="lr_span"> <a class="left_c lr_c"> &lt;</a> <span class="lr-num">0/0</span> <a class="right_c lr_c">&gt;</a> </span> </div>
+            <div class="modal-body">
+                <div class="box-onlinetest">
+                    <article>
+                        <div class="onlinetest-wp cf">
+                            <section quiz_id=463 course_id=62>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">1、处理菜单项单击事件的方法()</p>
+                                    <button value="a">使用onMenuItemSelected(int featureId ,MenuItem item)响应</button>
+                                    <button value="b">使用onOptionsItemSelected(MenuItem item)响应</button>
+                                    <button value="c">使用onMenuItemClick(MenuItem item)响应</button>
+                                    <button value="d">使用onItemClickListener()响应</button>
+                                    <span>1/6</span> </div>
+                            </section>
+                            <section quiz_id=464 course_id=62>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">2、Android中输入日期的组件是()</p>
+                                    <button value="a">DatePickerDialog</button>
+                                    <button value="b">DatePicker</button>
+                                    <button value="c">TimePicker</button>
+                                    <button value="d">TimePickerDialog</button>
+                                    <span>2/6</span> </div>
+                            </section>
+                            <section quiz_id=465 course_id=62>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">3、Android对资源状态保存最好在哪个个函数进行?</p>
+                                    <button value="a">onPause()</button>
+                                    <button value="b">onStart()</button>
+                                    <button value="c">onCreate()</button>
+                                    <button value="d">onResume()</button>
+                                    <span>3/6</span> </div>
+                            </section>
+                            <section quiz_id=466 course_id=62>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">4、当启动一个Activity并且新的Activity执行完后需要返回到启动它的Activity来执行 的回调函数是()</p>
+                                    <button value="a">startActivity()</button>
+                                    <button value="b">startActivityForResult()</button>
+                                    <button value="c">start()</button>
+                                    <button value="d">onCreate()</button>
+                                    <span>4/6</span> </div>
+                            </section>
+                            <section quiz_id=467 course_id=62>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">5、使用LinearLayout实现组件垂直排列,用什么属性进行设置()</p>
+                                    <button value="a">androiorientation="horizontal"</button>
+                                    <button value="b">androiorientation="vertical"</button>
+                                    <button value="c">androiorientation="wrap_content"</button>
+                                    <button value="d">androiorientation="match_parent"</button>
+                                    <span>5/6</span> </div>
+                            </section>
+                            <section quiz_id=468 course_id=62>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">6、Android 中使用 SQLiteOpenHelper 这个辅助类时，哪些操作可能生成一个数据库()</p>
+                                    <button value="a">new SQLiteOpenHelper()</button>
+                                    <button value="b">getWriteableDatabase()</button>
+                                    <button value="c">onCreate()</button>
+                                    <button value="d">getData()</button>
+                                    <span>6/6</span> </div>
+                            </section>
+                            <section course_id=62 class="last_section">
+                                <div class="test_result_div test_result_div_62">
+                                    <div class="test_result test_result1"> <span>答对题数</span>
+                                        <div class="re_score">0</div>
+                                    </div>
+                                    <div class="test_result test_result2"> <span>答错题数</span>
+                                        <div class="re_score">0</div>
+                                    </div>
+                                    <div class="test_result test_result3"> <span>正确率</span>
+                                        <div class="re_score">0%</div>
+                                    </div>
+                                    <div class="test_result test_result4"> <span>获得学力</span>
+                                        <div class="re_score">0</div>
+                                    </div>
+                                    <div style="clear:both;"></div>
+                                    <div class="result_text_button result_text_button1">查看错题</div>
+                                    <div class="result_text_button result_text_button2">结束测试</div>
+                                </div>
+                            </section>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade testModal-div" id="course_63_testModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"> <span aria-hidden="true"></span> <span class="sr-only">Close</span> </button>
+                <h4 class="modal-title">课程总测验</h4>
+                <span class="lr_span"> <a class="left_c lr_c"> &lt;</a> <span class="lr-num">0/0</span> <a class="right_c lr_c">&gt;</a> </span> </div>
+            <div class="modal-body">
+                <div class="box-onlinetest">
+                    <article>
+                        <div class="onlinetest-wp cf">
+                            <section quiz_id=463 course_id=63>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">1、在android中使用Menu时可能需要重写的方法有()</p>
+                                    <button value="a">onItemSelected() </button>
+                                    <button value="b">onOptionsItemSelected() </button>
+                                    <button value="c">onCreateMenu()</button>
+                                    <button value="d">onPrepareOptionsMenu()</button>
+                                    <span>1/6</span> </div>
+                            </section>
+                            <section quiz_id=464 course_id=63>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">2、AlertDialog中下列那些方法可使用() </p>
+                                    <button value="a"> SetAction()</button>
+                                    <button value="b">SetView()</button>
+                                    <button value="c">SetData()</button>
+                                    <button value="d">setDialog()</button>
+                                    <span>2/6</span> </div>
+                            </section>
+                            <section quiz_id=465 course_id=63>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">3、android.util.Log查看错误信息方法（）</p>
+                                    <button value="a">Log.v() --VERBOSE</button>
+                                    <button value="b">Log.e() --ERROR</button>
+                                    <button value="c">Log.w() --WARN</button>
+                                    <button value="d">Log.i() --INFO</button>
+                                    <span>3/6</span> </div>
+                            </section>
+                            <section quiz_id=466 course_id=63>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">4、Math.round(11.5)和Math.round(-11.5)分别是（）</p>
+                                    <button value="a">11 ,-11</button>
+                                    <button value="b">12 ,-11</button>
+                                    <button value="c">11 ,-12</button>
+                                    <button value="d">12 ,-12</button>
+                                    <span>4/6</span> </div>
+                            </section>
+                            <section quiz_id=467 course_id=63>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">5、下面退出Activity错误的方法是（）</p>
+                                    <button value="a">finish()</button>
+                                    <button value="b">System.exit()</button>
+                                    <button value="c">抛异常强制退出</button>
+                                    <button value="d">onStop()</button>
+                                    <span>5/6</span> </div>
+                            </section>
+                            <section quiz_id=468 course_id=63>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">6、Android项目工程下面的assets目录的作用是什么()</p>
+                                    <button value="a">放置应用到的图片资源</button>
+                                    <button value="b">主要放置多媒体等数据文件</button>
+                                    <button value="c">放置字符串，颜色，数组等常量数据</button>
+                                    <button value="d">放置一些与UI相应的布局文件</button>
+                                    <span>6/6</span> </div>
+                            </section>
+                            <section course_id=63 class="last_section">
+                                <div class="test_result_div test_result_div_63">
+                                    <div class="test_result test_result1"> <span>答对题数</span>
+                                        <div class="re_score">0</div>
+                                    </div>
+                                    <div class="test_result test_result2"> <span>答错题数</span>
+                                        <div class="re_score">0</div>
+                                    </div>
+                                    <div class="test_result test_result3"> <span>正确率</span>
+                                        <div class="re_score">0%</div>
+                                    </div>
+                                    <div class="test_result test_result4"> <span>获得学力</span>
+                                        <div class="re_score">0</div>
+                                    </div>
+                                    <div style="clear:both;"></div>
+                                    <div class="result_text_button result_text_button1">查看错题</div>
+                                    <div class="result_text_button result_text_button2">结束测试</div>
+                                </div>
+                            </section>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade testModal-div" id="course_64_testModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"> <span aria-hidden="true"></span> <span class="sr-only">Close</span> </button>
+                <h4 class="modal-title">课程总测验</h4>
+                <span class="lr_span"> <a class="left_c lr_c"> &lt;</a> <span class="lr-num">0/0</span> <a class="right_c lr_c">&gt;</a> </span> </div>
+            <div class="modal-body">
+                <div class="box-onlinetest">
+                    <article>
+                        <div class="onlinetest-wp cf">
+                            <section quiz_id=463 course_id=64>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">1、关于res/raw目录说法正确的是()</p>
+                                    <button value="a">存储到设备上会转换为二进制格式</button>
+                                    <button value="b">存储到设备上不会转换为二进制格式</button>
+                                    <button value="c">以二进制的格式存储到指定包中</button>
+                                    <button value="d">不以二进制的格式存储到指定包中</button>
+                                    <span>1/6</span> </div>
+                            </section>
+                            <section quiz_id=464 course_id=64>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">2、下面属于android的动画分类的有()</p>
+                                    <button value="a">Drawable</button>
+                                    <button value="b">Tween</button>
+                                    <button value="c">Draw</button>
+                                    <button value="d">Animation</button>
+                                    <span>2/6</span> </div>
+                            </section>
+                            <section quiz_id=465 course_id=64>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">3、下列程序段的输出结果是（）<br/>
+                                        void complicatedexpression_r(){<br/>
+                                        int x=20, y=30;<br/>
+                                        boolean b;<br/>
+                                        b=x>50&&y>60||x>50&&y<-60||x<-50&&y>60||x<-50&&y<-60;<br/>
+                                        System.out.println(b);<br/>
+                                        }</p>
+                                    <button value="a">true</button>
+                                    <button value="b">false</button>
+                                    <button value="c">1</button>
+                                    <button value="d">011.activity5.</button>
+                                    <span>3/6</span> </div>
+                            </section>
+                            <section quiz_id=466 course_id=64>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">4、下列哪些语句关于内存回收的说明是正确的? ( )</p>
+                                    <button value="a">程序员必须创建一个线程来释放内存</button>
+                                    <button value="b">内存回收程序负责释放无用内存</button>
+                                    <button value="c">内存回收程序允许程序员直接释放内存</button>
+                                    <button value="d">内存回收程序可以在指定的时间释放内存对象</button>
+                                    <span>4/6</span> </div>
+                            </section>
+                            <section quiz_id=467 course_id=64>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">5、java.io包中定义了多个流类型来实现输入和输出功能，可以从不同的角度对其进行分类,按功能分为：(）</p>
+                                    <button value="a">输入流和输出流</button>
+                                    <button value="b">节点流和处理流</button>
+                                    <button value="c">字节流和字符流</button>
+                                    <button value="d">File stream</button>
+                                    <span>5/6</span> </div>
+                            </section>
+                            <section quiz_id=468 course_id=64>
+                                <div class="onlinetest-quiz">
+                                    <p style="word-wrap: break-word;">6、我们都知道Hanlder是线程与Activity通信的桥梁,如果线程处理不当，你的机器就会变得越慢，那么线程销毁的方法是()</p>
+                                    <button value="a">onClear()</button>
+                                    <button value="b">onDestroy()</button>
+                                    <button value="c">onFinish()</button>
+                                    <button value="d">onStop()</button>
+                                    <span>6/6</span> </div>
+                            </section>
+                            <section course_id=64 class="last_section">
+                                <div class="test_result_div test_result_div_64">
+                                    <div class="test_result test_result1"> <span>答对题数</span>
+                                        <div class="re_score">0</div>
+                                    </div>
+                                    <div class="test_result test_result2"> <span>答错题数</span>
+                                        <div class="re_score">0</div>
+                                    </div>
+                                    <div class="test_result test_result3"> <span>正确率</span>
+                                        <div class="re_score">0%</div>
+                                    </div>
+                                    <div class="test_result test_result4"> <span>获得学力</span>
+                                        <div class="re_score">0</div>
+                                    </div>
+                                    <div style="clear:both;"></div>
+                                    <div class="result_text_button result_text_button1">查看错题</div>
+                                    <div class="result_text_button result_text_button2">结束测试</div>
+                                </div>
+                            </section>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 咨询客服 -->
+<div class="page-bottom-fix">
+    <i class="page-bottom-fix-in"></i>
+    <div class="container">
+        {% if is_consult %}
+        <span class="btn-itm btn-zx" onclick="openchat()" >咨询客服</span>
+        {% endif %}
+        <a href="{{ url }}"><span class="btn-itm btn-back">返回上一页</span></a>
+    </div>
+</div>
+
+
+</body>
+</html>
+{% endblock %}
+{% block custom_script %}
+    <script src="/static/js/icheck.min.js"></script>
+    <script src="/static/js/highcharts.js"></script>
+    <script src="/static/js/jquery.ui.widget.js"></script>
+    <script src="/static/js/jquery.iframe-transport.js"></script>
+    <script src="/static/js/jquery.fileupload.js"></script>
+    <script src="/static/js/jquery.fileupload-process.js"></script>
+    <script src="/static/js/jquery.fileupload-validate.js"></script>
+    <script type="text/javascript" src="/static/js/chart/esl.js"></script>
+    <script type="text/javascript" src="/static/js/chart/main.js"></script>
+    <script type="text/javascript" src="/static/js/helper/helper.js"></script>
+    <script>
+    //获取试卷得分信息
+        function get_paper_result(data){ /* yb-2015 */
+            $(".test_result_div_"+data.id+" .test_result1 .re_score").html(data.quiz_right_count);
+            $(".test_result_div_"+data.id+" .test_result2 .re_score").html(data.quiz_wrong_count);
+            $(".test_result_div_"+data.id+" .test_result3 .re_score").html(Math.floor(data.quiz_right_count/(data.quiz_right_count+data.quiz_wrong_count)*100) + '%');
+            $(".test_result_div_"+data.id+" .test_result4 .re_score").html(data.study_point);
+        }
+        $(function(){
+            $('.upload-input').click(function(event) {
+                THIS_ID = $(this).attr('id');
+                LESSID = THIS_ID.split("-")[2];
+                homework_upload(LESSID);
+            });
+        });
+        function openchat(){
+            $('#KFLOGO .Lelem').trigger('click');
+            //window.open("http://chat10.live800.com/live800/chatClient/chatbox.jsp?companyID=430494&configID=230400&lan=zh&jid=2057226289&enterurl=http%3A%2F%2Flocalhost%3A8000%2Fcommon%2Flps%2Fdemo%2F&timestamp=1423121877764&pagereferrer=http%3A%2F%2Flocalhost%3A8000%2F&firstEnterUrl=http%3A%2F%2Flocalhost%3A8000%2F&pagetitle=%E5%AD%A6%E4%B9%A0%E8%AE%A1%E5%88%92+-+LPS%E4%BD%93%E9%AA%8C",'chatwindow','height=686,width=936');
+        }
+    </script>
+    <script>
+        function onlinetest_61(){
+            $('#course_61_testModal').modal('show');
+            onlinetst();
+        }
+        function onlinetest_62(){
+            $('#course_62_testModal').modal('show');
+            onlinetst();
+        }
+        function onlinetest_63(){
+            $('#course_63_testModal').modal('show');
+            onlinetst();
+        }
+        function onlinetest_64(){
+            $('#course_64_testModal').modal('show');
+            onlinetst();
+        }
+        get_paper_result(61);
+        get_paper_result(62);
+        get_paper_result(63);
+        get_paper_result(64);
+    </script>
+    <script type="text/javascript">
+
+        $('.result_text_button2').click(function(){
+            var _course_id = $(this).parent().parent().attr("course_id");
+            $('#course_'+_course_id+'_testModal').modal('hide');
+        });
+
+        $('.result_text_button1').click(function(event) {
+            var _course_id = $(this).parent().parent().attr("course_id");
+            var that = this;
+            /* yb-2015 */
+            var onlinetest_wp = $('.onlinetest-wp');
+            var err = onlinetest_wp.find('.q_error');
+            var lr_span = $('#course_'+_course_id+'_testModal .lr_span');
+            var cur_num = 1;
+            var lr_num = lr_span.find('.lr-num');
+            var _this_section_width = err.closest( 'section' ).outerWidth();
+            if( !that._click ){
+                that._click = true;
+                onlinetest_wp.find( '.onlinetest-quiz' ).parent().each(function(){
+                    if( !$( '.q_error',this ).length ){
+                        $(this).hide();
+                    }
+                });
+            }
+            onlinetest_wp.width( _this_section_width * (err.length + 1) ).css( {'marginLeft' : 0} );
+            lr_span.show();
+            lr_num.html( cur_num + '/'+err.length);
+            lr_span.find('.left_c').off('click').click(function(event) {
+                if(cur_num > 1){
+                    cur_num --;
+                }else{
+                    return;
+                }
+                onlinetest_wp.stop().animate({ marginLeft : -_this_section_width * (cur_num-1) },500);
+                lr_num.html( Math.max( cur_num,0 ) + '/' + err.length);
+            });
+            lr_span.find('.right_c').off('click').click(function(event) {
+                if(cur_num <= err.length){
+                    cur_num ++;
+                }else{
+                    return;
+                }
+                onlinetest_wp.stop().animate({ marginLeft : -_this_section_width * (cur_num-1) },500);
+                lr_num.html( Math.min(cur_num,err.length) + '/' + err.length);
+            });
+        });
+
+    </script>
+    <script>
+        $(function(){
+            $('#file_upload_61').fileupload({
+                dropZone:null,
+                url: '/lps/project/upload-test/',
+                formData:{'course_id':61},
+                add:function(e,data){
+                    var uploadErrors = [];
+                    var acceptFileTypes = /^(zip|rar)$/i;
+                    var filesize = data.originalFiles[0]['size']/(1024)/(1024);
+                    Ntype = data.originalFiles[0]['name'];
+                    Ntype = Ntype.substring(Ntype.length-3,Ntype.length);
+                    if(!acceptFileTypes.test(Ntype)){
+                        alert('文件格式不正确（zip，rar）');
+                        uploadErrors.push('Not an accepted file type');
+                    }
+                    if(parseInt(filesize)>10) {
+                        alert('文件超过10M大小');
+                        uploadErrors.push('Filesize is too big');
+                    }
+                    if(uploadErrors.length==0){
+                        data.submit();
+                    }
+                },
+                dataType: 'json',
+                autoUpload: true,
+                done: function (e, data) {
+                    $('#project_61_Modal .sub-work >span').html('重新上传');
+
+                    pro_url = data.result.pro_url;
+                    pro = '<a href="http://www.maiziedu.com/uploads/project/2015/02/LPS体验-项目上传.rar" class="yes-update">项目文件</a><span class="yes-update-msg">已上传</span>';
+                    $('#project_61_Modal .update-pro-msg').html(pro);
+
+                    $('#project_61_Modal .sub-work').delay(2000).queue(function(){
+                        $(this).show();
+                    });
+                    $('#project_61_Modal .percentage').delay(2000).queue(function(){
+                        $(this).hide();
+                    });
+
+                },
+                progressall: function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('#project_61_Modal .sub-work').hide();
+                    $('#project_61_Modal .percentage').show();
+                    $('#project_61_Modal .percentage').html(progress+'%');
+                }
+            }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+            $('.p_scroll').jScrollPane({
+                autoReinitialise: true
+            });
+
+            $('#project_61_Modal .sub-work >span').html('重新上传');
+
+            $('#file_upload_62').fileupload({
+                dropZone:null,
+                url: '/lps/project/upload-test/',
+                formData:{'course_id':62},
+                add:function(e,data){
+                    var uploadErrors = [];
+                    var acceptFileTypes = /^(zip|rar)$/i;
+                    var filesize = data.originalFiles[0]['size']/(1024)/(1024);
+                    Ntype = data.originalFiles[0]['name'];
+                    Ntype = Ntype.substring(Ntype.length-3,Ntype.length);
+                    if(!acceptFileTypes.test(Ntype)){
+                        alert('文件格式不正确（zip，rar）');
+                        uploadErrors.push('Not an accepted file type');
+                    }
+                    if(parseInt(filesize)>10) {
+                        alert('文件超过10M大小');
+                        uploadErrors.push('Filesize is too big');
+                    }
+                    if(uploadErrors.length==0){
+                        data.submit();
+                    }
+                },
+                dataType: 'json',
+                autoUpload: true,
+                done: function (e, data) {
+                    $('#project_62_Modal .sub-work >span').html('重新上传');
+
+                    pro_url = data.result.pro_url;
+                    pro = '<a href="http://www.maiziedu.com/uploads/project/2015/02/LPS体验-项目上传.rar" class="yes-update">项目文件</a><span class="yes-update-msg">已上传</span>';
+                    $('#project_62_Modal .update-pro-msg').html(pro);
+                    $('#project_62_Modal .sub-work').delay(2000).queue(function(){
+                        $(this).show();
+                    });
+                    $('#project_62_Modal .percentage').delay(2000).queue(function(){
+                        $(this).hide();
+                    });
+
+                },
+                progressall: function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('#project_62_Modal .sub-work').hide();
+                    $('#project_62_Modal .percentage').show();
+                    $('#project_62_Modal .percentage').html(progress+'%');
+                }
+            }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+            $('#project_62_Modal .sub-work >span').html('重新上传');
+
+            $('#file_upload_63').fileupload({
+                dropZone:null,
+                url: '/lps/project/upload-test/',
+                formData:{'course_id':63},
+                add:function(e,data){
+                    var uploadErrors = [];
+                    var acceptFileTypes = /^(zip|rar)$/i;
+                    var filesize = data.originalFiles[0]['size']/(1024)/(1024);
+                    Ntype = data.originalFiles[0]['name'];
+                    Ntype = Ntype.substring(Ntype.length-3,Ntype.length);
+                    if(!acceptFileTypes.test(Ntype)){
+                        alert('文件格式不正确（zip，rar）');
+                        uploadErrors.push('Not an accepted file type');
+                    }
+                    if(parseInt(filesize)>10) {
+                        alert('文件超过10M大小');
+                        uploadErrors.push('Filesize is too big');
+                    }
+                    if(uploadErrors.length==0){
+                        data.submit();
+                    }
+                },
+                dataType: 'json',
+                autoUpload: true,
+                done: function (e, data) {
+                    $('#project_63_Modal .sub-work >span').html('重新上传');
+
+                    pro_url = data.result.pro_url;
+                    pro = '<a href="http://www.maiziedu.com/uploads/project/2015/02/LPS体验-项目上传.rar" class="yes-update">项目文件</a><span class="yes-update-msg">已上传</span>';
+                    $('#project_63_Modal .update-pro-msg').html(pro);
+
+                    $('#project_63_Modal .sub-work').delay(2000).queue(function(){
+                        $(this).show();
+                    });
+                    $('#project_63_Modal .percentage').delay(2000).queue(function(){
+                        $(this).hide();
+                    });
+                },
+                progressall: function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('#project_63_Modal .sub-work').hide();
+                    $('#project_63_Modal .percentage').show();
+                    $('#project_63_Modal .percentage').html(progress+'%');
+                }
+            }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+            $('#project_63_Modal .sub-work >span').html('重新上传');
+
+            $('#file_upload_64').fileupload({
+                dropZone:null,
+                url: '/lps/project/upload-test/',
+                formData:{'course_id':64},
+                add:function(e,data){
+                    var uploadErrors = [];
+                    var acceptFileTypes = /^(zip|rar)$/i;
+                    var filesize = data.originalFiles[0]['size']/(1024)/(1024);
+                    Ntype = data.originalFiles[0]['name'];
+                    Ntype = Ntype.substring(Ntype.length-3,Ntype.length);
+                    if(!acceptFileTypes.test(Ntype)){
+                        alert('文件格式不正确（zip，rar）');
+                        uploadErrors.push('Not an accepted file type');
+                    }
+                    if(parseInt(filesize)>10) {
+                        alert('文件超过10M大小');
+                        uploadErrors.push('Filesize is too big');
+                    }
+                    if(uploadErrors.length==0){
+                        data.submit();
+                    }
+                },
+                dataType: 'json',
+                autoUpload: true,
+                done: function (e, data) {
+                    $('#project_64_Modal .sub-work >span').html('重新上传');
+
+                    pro_url = data.result.pro_url;
+                    pro = '<a href="http://www.maiziedu.com/uploads/project/2015/02/LPS体验-项目上传.rar" class="yes-update">项目文件</a><span class="yes-update-msg">已上传</span>';
+                    $('#project_64_Modal .update-pro-msg').html(pro);
+
+                    $('#project_64_Modal .sub-work').delay(2000).queue(function(){
+                        $(this).show();
+                    });
+                    $('#project_64_Modal .percentage').delay(2000).queue(function(){
+                        $(this).hide();
+                    });
+
+                },
+                progressall: function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('#project_64_Modal .sub-work').hide();
+                    $('#project_64_Modal .percentage').show();
+                    $('#project_64_Modal .percentage').html(progress+'%');
+                }
+            }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+            $('#project_64_Modal .sub-work >span').html('重新上传');
+        });
+    </script>
+    <script>
+        //在线测试
+        function onlinetst(){
+            var onlinetest_wp = $('.onlinetest-wp');
+            var _section = onlinetest_wp.find('section').show();
+            var _button = $('.onlinetest-wp').find('.onlinetest-quiz button');
+            var _this_section_length = _section.length;
+            var _this_section_width = _section.outerWidth();
+            onlinetest_wp.width(_this_section_width*_this_section_length).css({ marginLeft : 0 }).find('button').removeClass('q_right q_error q_select_right');
+
+            $('#course_61_testModal .lr_span').hide();
+            $('#course_62_testModal .lr_span').hide();
+            $('#course_63_testModal .lr_span').hide();
+            $('#course_64_testModal .lr_span').hide();
+            $('.result_text_button1').each(function(){
+                this._click = false;
+            });
+
+            _section._cur=1;
+            _button.bind('click',function(){
+                var _select = $(this).attr("value");
+                var _quiz_id = $(this).parent().parent().attr("quiz_id");
+                var _course_id = $(this).parent().parent().attr("course_id");
+                var _cur_obj = $(this);
+
+                /* yb-2015 */
+                var data = {status:"success", result : 'b'};
+                if(data.status=="success"){
+                    if(data.result != _select){
+                        _cur_obj.addClass('q_error');
+                        _cur_obj.parent().find( 'button' ).each(function(){
+                            var that = $( this );
+                            if( that.attr( 'value' ) == data.result ){
+                                that.addClass('q_right');
+                            }
+                        });
+                    }else{
+                        _cur_obj.addClass('q_right q_select_right');
+                    }
+                    $('section[quiz_id = '+_quiz_id+'] button').unbind();
+                    setTimeout(function(){
+                        onlinetest_wp.stop().animate({marginLeft:'-='+_this_section_width},500);
+                        _section.cur ++;
+                        if( _section._cur = _section.length ){
+                            get_paper_result({
+                                id : _course_id,
+                                quiz_right_count : onlinetest_wp.find('.q_select_right').length,
+                                quiz_wrong_count : onlinetest_wp.find('.q_error').length,
+                                paper_accuracy : 0,
+                                study_point : 1
+                            });
+                        }
+                    },500);
+                }
+            });
+        }
+
+    </script>
+{% endblock %}
+{% block custom_script_chart %}
+    <script>
+            /*
+             * @note
+             * process : 课程阶段
+             * class   : 第几堂
+             * state   : 0 -> 正常上课 1 -> 重修
+             * classDate : 开始时间
+             * interval : 相隔天数
+             */
+            var chart = new chart();
+            chart.init({
+                classList :
+                        [
+                            
+                            { process: "阶段1", iclass: "第1课", state  : "on" , rank: 0, msg: ['视频观看：0/37','章节测验：0/1',],interval:"14"},
+                            
+                            { process: "阶段1", iclass: "第2课", state  : "on" , rank: 0, msg: ['视频观看：0/11',],interval:"7"},
+                            
+                            { process: "阶段1", iclass: "第3课", state  : "on" , rank: 14, msg: ['视频观看：1/7',],interval:"3"},
+                            
+                            { process: "阶段1", iclass: "第4课", state  : "on" , rank: 0, msg: ['视频观看：0/7',],interval:"3"},
+                            
+                            { process: "阶段1", iclass: "第5课", state  : "on" , rank: 0, msg: ['视频观看：0/16',],interval:"3"},
+                            
+                            { process: "阶段2", iclass: "第1课", state  : "on" , rank: 0, msg: ['视频观看：0/6',],interval:"2"},
+                            
+                            { process: "阶段2", iclass: "第2课", state  : "off" , rank: 0, msg: ['视频观看：0/9',],interval:"2"},
+                            
+                            { process: "阶段2", iclass: "第3课", state  : "on" , rank: 0, msg: ['视频观看：0/32',],interval:"7"},
+                            
+                            { process: "阶段2", iclass: "第4课", state  : "off" , rank: 0, msg: ['视频观看：0/66',],interval:"14"},
+                            
+                            { process: "阶段2", iclass: "第5课", state  : "on" , rank: 100, msg: [],interval:"14"},
+                            
+                            { process: "阶段3", iclass: "第1课", state  : "on" , rank: 11, msg: ['视频观看：1/16','章节测验：1/2',],interval:"7"},
+                            
+                            { process: "阶段3", iclass: "第2课", state  : "on" , rank: 0, msg: ['视频观看：0/19','课程测验：0/1',],interval:"7"},
+                            
+                            { process: "阶段3", iclass: "第3课", state  : "on" , rank: 0, msg: ['视频观看：0/6',],interval:"5"},
+                            
+                            { process: "阶段3", iclass: "第4课", state  : "on" , rank: 17, msg: ['视频观看：1/3','章节测验：0/2','课程测验：0/1',],interval:"7"},
+                            
+                            { process: "阶段3", iclass: "第5课", state  : "on" , rank: 0, msg: ['视频观看：0/36','章节测验：0/2',],interval:"7"},
+                            
+                            { process: "阶段3", iclass: "第6课", state  : "on" , rank: 5, msg: ['视频观看：0/18','课程测验：0/1','项目制作：1/1'],interval:"14"},
+                            
+                            { process: "阶段3", iclass: "第7课", state  : "on" , rank: 100, msg: [],interval:"21"},
+                            
+                            { process: "阶段4", iclass: "第1课", state  : "on" , rank: 28, msg: ['视频观看：1/14','章节测验：2/2','课程测验：1/1','项目制作：1/1'],interval:"7"},
+                            
+                            { process: "阶段5", iclass: "第1课", state  : "on" , rank: 100, msg: [],interval:"7"},
+                            
+                            { process: "阶段5", iclass: "第2课", state  : "off" , rank: 0, msg: ['视频观看：0/6',],interval:"7"},
+                            
+                            { process: "阶段5", iclass: "第3课", state  : "on" , rank: 100, msg: [],interval:"7"},
+                            
+                            { process: "阶段5", iclass: "第4课", state  : "on" , rank: 100, msg: [],interval:"7"},
+                            
+                            { process: "阶段5", iclass: "第5课", state  : "on" , rank: 100, msg: [],interval:"7"},
+                            
+                            { process: "阶段5", iclass: "第6课", state  : "on" , rank: 100, msg: [],interval:"7"},
+                            
+                            { process: "阶段5", iclass: "第7课", state  : "on" , rank: 0, msg: ['视频观看：0/6',],interval:"7"},
+                            
+                            { process: "阶段5", iclass: "第8课", state  : "on" , rank: 67, msg: ['视频观看：4/6',],interval:"7"},
+                            
+                            { process: "阶段5", iclass: "第9课", state  : "on" , rank: 0, msg: ['视频观看：0/17',],interval:"7"}
+                            
+                        ],
+                classDate : { startDay : "2015-01-22"}
+            });
+
+            $(function(){
+                $('.chart-box').jScrollPane();
+                $('.scroll-pane').jScrollPane({
+                    autoReinitialise: true
+                });
+            });
+
+            function page_tip(){
+              alert('该功能请在实际环境中进行体验！');
+            }
+    </script>
+
+{% endblock %}

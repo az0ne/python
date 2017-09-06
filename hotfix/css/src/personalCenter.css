@@ -1,0 +1,603 @@
+@charset "UTF-8";
+/*! LPS4.0 2016-06-02
+* Whether ‘tis nobler in the mind to suffer  
+*/
+body { background: #f5f5f5; }
+
+.personalCico { background-image: url(../images/personal.png); }
+
+.sudentICO { background-position: 0 -486px; width: 24px; height: 24px; vertical-align: middle; display: inline-block; }
+
+.educationalICO { background-position: 0 -462px; width: 24px; height: 24px; vertical-align: middle; display: inline-block; }
+
+.teacherICO { height: 24px; width: 24px; background-position: 0 -438px; vertical-align: middle; display: inline-block; }
+
+.pcICO2 { background-position: 0 -114px; width: 20px; height: 18px; display: inline-block; vertical-align: middle; }
+
+.pcICOa { background-position: 0 0; width: 6px; height: 12px; display: inline-block; vertical-align: middle; }
+
+.pcICO3 { background-position: 2px -12px; width: 20px; height: 18px; display: inline-block; vertical-align: middle; }
+
+.pcICO4 { height: 17px; width: 20px; background-position: 0 -150px; display: inline-block; vertical-align: middle; }
+
+.pcICO5 { height: 16px; width: 20px; background-position: 0 -256px; display: inline-block; vertical-align: middle; }
+
+.pcICO6 { height: 19px; width: 20px; background-position: 0 -218px; display: inline-block; vertical-align: middle; }
+
+.pcICO7 { height: 20px; width: 20px; background-position: 0 -342px; display: inline-block; vertical-align: middle; }
+
+.pcICO8 { height: 18px; width: 20px; background-position: 3px -96px; display: inline-block; vertical-align: middle; }
+
+.pcICO11 { height: 16px; width: 20px; background-position: 0 -80px; display: inline-block; vertical-align: middle; }
+
+.pcICO12 { height: 20px; width: 20px; background-position: 0 -382px; display: inline-block; vertical-align: middle; }
+
+.pcICO14 { height: 14px; width: 14px; background-position: 0 -48px; display: inline-block; vertical-align: middle; }
+
+.pcICO15 { height: 121px; width: 121px; background-position: 0 -566px; display: inline-block; vertical-align: middle; }
+
+.pcICO19 { height: 40px; width: 40px; background-position: 0 -526px; display: inline-block; vertical-align: middle; }
+
+.pcICO20 { height: 18px; width: 20px; background-position: 0 -184px; display: inline-block; vertical-align: middle; }
+
+.pcICO21 { height: 16px; width: 20px; background-position: 0 -326px; display: inline-block; vertical-align: middle; }
+
+.personalCTop { background: #4b688b; width: 100%; height: 158px; }
+
+.personalCTop .center { background: url(../images/personalTopBg.png) right bottom no-repeat; height: 100%; }
+
+.personalCTop .img { float: left; width: 90px; height: 90px; border: 4px solid rgba(255, 255, 255, 0.4); border-radius: 50%; overflow: hidden; margin-top: 26px; }
+
+.personalCTop .img img { width: 100%; height: 100%; vertical-align: top; }
+
+.personalCTop .font { margin: 40px 0 0 30px; width: 900px; }
+
+.personalCTop .font .personalCico { margin-left: 10px; }
+
+.personalCTop .font .sudentICO { margin-left: 10px; }
+
+.personalCmain { padding-top: 20px; }
+
+.personalCmainL { float: left; width: 200px; }
+
+.personalCmainLmenu { display: table; width: 100%; background: #fff; border-radius: 2px; overflow: hidden; margin-bottom: 20px; }
+
+.personalCmainLmenu li { float: left; width: 100%; height: 52px; border-bottom: 1px solid #f5f5f5; }
+
+.personalCmainLmenu li:last-child { border: 0; }
+
+.personalCmainLmenu li > a { display: block; width: 100%; height: 52px; line-height: 52px; color: #666; }
+
+.personalCmainLmenu li > a .i1 { margin-right: 20px; margin-left: 22px; }
+
+.personalCmainLmenu li > a .i2 { display: none; }
+
+.personalCmainLmenu li > a > span { display: inline-block; vertical-align: middle; width: 106px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-right: 10px; line-height: 1;}
+
+.personalCmainLmenu li > a:hover, .personalCmainLmenu li > a.aH { color: #00b38a; }
+
+.personalCmainLmenu li > a:hover .i2, .personalCmainLmenu li > a.aH .i2 { display: inline-block; }
+
+.personalCmainLmenu li > a:hover .pcICO2, .personalCmainLmenu li > a.aH .pcICO2 { background-position: 0 -132px; }
+
+.personalCmainLmenu li > a:hover .pcICO3, .personalCmainLmenu li > a.aH .pcICO3 { background-position: 2px -30px; }
+
+.personalCmainLmenu li > a:hover .pcICO4, .personalCmainLmenu li > a.aH .pcICO4 { background-position: 0 -167px; }
+
+.personalCmainLmenu li > a:hover .pcICO5, .personalCmainLmenu li > a.aH .pcICO5 { background-position: 0 -202px; }
+
+.personalCmainLmenu li > a:hover .pcICO6, .personalCmainLmenu li > a.aH .pcICO6 { background-position: 0 -237px; }
+
+.personalCmainLmenu li > a:hover .pcICO7, .personalCmainLmenu li > a.aH .pcICO7 { background-position: 0 -362px; }
+
+.personalCmainLmenu li > a:hover .pcICO8, .personalCmainLmenu li > a.aH .pcICO8 { background-position: 3px -62px; }
+
+.personalCmainLmenu li > a:hover .pcICO20, .personalCmainLmenu li > a.aH .pcICO20 { background-position: 0 -272px; }
+
+.personalCmainLmenu li > a:hover .pcICO21, .personalCmainLmenu li > a.aH .pcICO21 { background-position: 0 -402px; }
+
+.personalCmainR { float: left; width: 860px; background: #fff; padding: 0 40px; margin-left: 20px; min-height: 600px; margin-bottom: 20px; }
+
+.personalCmainRtit { padding: 20px 0; position: relative; }
+
+.pCcourseList { width: 100%; display: table; }
+
+.pCcourseList li { float: left; width: 100%; box-sizing: border-box; border: 1px solid #e0e0e0; padding: 30px; margin-bottom: 20px; position: relative; overflow: hidden; -webkit-transition: all .3s ease-out 0s; -moz-transition: all .3s ease-out 0s; -o-transition: all .3s ease-out 0s; transition: all .3s ease-out 0s; }
+
+.pCcourseList li .img { float: left; width: 100px; height: 100px; margin-right: 30px; }
+
+.pCcourseList li .img img { width: 100%; height: 100%; vertical-align: top; }
+
+.pCcourseList li .font { float: left; width: 280px; }
+
+.pCcourseList li .font .p span { margin-right: 16px; }
+
+.pCcourseList li .font > dl { display: table; width: 100%; }
+
+.pCcourseList li .font > dl > dd { float: left; padding: 0 18px; border-right: 1px solid #e1e4e7; border-width: 0 1px; }
+
+.pCcourseList li .font > dl > dd:first-child { padding-left: 0; }
+
+.pCcourseList li .font > dl > dd:last-child { padding-right: 0; border: 0; }
+
+.pCcourseList li .pcircle { width: 100px; height: 100px; margin: 0 54px; position: relative; box-sizing: border-box; padding-top: 26px; }
+
+.pCcourseList li .pcircle svg { position: absolute; top: 0; left: 0; pointer-events: none; transform: rotate(30deg); -ms-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); -o-transform: rotate(-90deg); -moz-transform: rotate(-90deg); }
+
+.pCcourseList li .pcircle svg > .c { -webkit-transition: all 2s ease .1s; -moz-transition: all 2s ease .1s; -o-transition: all 2s ease .1s; transition: all 2s ease .1s; }
+
+.pCcourseList li .pcircle svg > .cend { stroke-dasharray: 280 280; }
+
+.pCcourseList li .describe { width: 180px; }
+
+.pCcourseList li .describe .pbtn, .personalCbtn { width: 180px; height: 40px; line-height: 40px; text-align: center; background: #5ecfba; border-radius: 3px; color: #fff; font-size: 14px; display: inline-block; }
+
+.personalCmainR .greenbtn { width: 180px; height: 40px; line-height: 40px; text-align: center; background: #fff; border-radius: 3px; color: #5ecfba; font-size: 14px; display: inline-block; border: 1px solid #5ecfba; box-sizing: border-box; -webkit-transition: all .3s ease-out 0s; -moz-transition: all .3s ease-out 0s; -o-transition: all .3s ease-out 0s; transition: all .3s ease-out 0s; }
+
+.personalCmainR .greenbtn:hover { background: #5ecfba; color: #fff; }
+
+.graduated { position: absolute; right: -10px; top: -39px; }
+
+.pCcourseList li .try { display: none; }
+
+.pCcourseList li:hover { box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); }
+
+.pCcourseList li.litry { padding-bottom: 80px; }
+
+.pCcourseList li.litry .try { display: block; position: absolute; bottom: 0; left: 0; width: 100%; height: 50px; line-height: 50px; background: #fff9df; box-sizing: border-box; padding: 0 30px; }
+
+.pCcourseList li.litry .try span { color: #ff721d; }
+
+.pCcourseList li.litry .try .personalCico { margin-right: 10px; }
+
+.personalCbtn:hover { color: #fff; }
+
+.personalCenterSinfoList { display: table; width: 100%; margin-bottom: 40px; }
+
+.personalCenterSinfoList li { float: left; width: 100%; box-sizing: border-box; padding: 20px 30px; border: 1px solid #e0e0e0; margin-bottom: 20px; -webkit-transition: all .3s ease-out 0s; -moz-transition: all .3s ease-out 0s; -o-transition: all .3s ease-out 0s; transition: all .3s ease-out 0s; }
+
+.personalCenterSinfoList li .pt { padding-bottom: 20px; border-bottom: 1px solid #e0e0e0; }
+
+.personalCenterSinfoList li .pt > span { margin-right: 14px; }
+
+.personalCenterSinfoList li .tableI { border-bottom: 1px solid #e0e0e0; width: 100%; }
+
+.personalCenterSinfoList li .tableI td { padding: 20px 0; }
+
+.personalCenterSinfoList li .tableU { width: 100%; }
+
+.personalCenterSinfoList li .tableU td { padding: 6px 0; }
+
+.personalCenterSinfoList li .tableU td.sub > div { display: none; }
+
+.personalCenterSinfoList li .tableU td.sub b { font-weight: 400; }
+
+.personalCenterSinfoList li .tableU td.sub .pcsBasicTableTxt { padding: 2px 6px; width: 90px; }
+
+.personalCenterSinfoList li .tableU td.sub .personalCbtn { height: 28px; line-height: 28px; width: 60px; }
+
+.personalCenterSinfoList li .pcICO11 { cursor: pointer; margin-left: 10px; }
+
+.personalCenterSinfoList li .renew { margin-top: 16px; }
+
+.personalCenterSinfoList li .renew > div { display: inline-block; vertical-align: middle; width: 668px; background: #fff9df; color: #666; padding: 10px; }
+
+.personalCenterSinfoList li .renew > div > span { color: #ff721d; }
+
+.personalCenterSinfoList li .renew > a { display: inline-block; vertical-align: middle; width: 100px; height: 40px; line-height: 40px; text-align: center; background: #ffad0f; color: #fff; margin-left: 10px; }
+
+.personalCenterSinfoList li:hover { box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); }
+
+.pcSmodal .pt { padding: 10px 14px; border-bottom: 1px solid #e5e5e5; }
+
+.pcSmodal .pt .font18 { color: #1bbc9b; margin-right: 10px; }
+
+.pcSmodalDiv { padding: 30px; }
+
+.pcSmodalDiv table { width: 100%; }
+
+.pcSmodalDiv table td.t { padding: 8px 30px; }
+
+.pcSmodalDiv table tr.reder { background: #ffecec; }
+
+.pcSmodalDiv table td .pcsRadio { margin-right: 20px; }
+
+.personalCenterSsetting_table { width: 100%; }
+
+.personalCenterSsetting_table td { padding: 20px 0; }
+
+.personalCenterSsetting_table .bind > i { display: inline-block; width: 30px; height: 30px; background: url(../images/icons.png) -4px 0 no-repeat; margin-right: 18px; vertical-align: middle; }
+
+.personalCenterSsetting_table .bind > span { display: inline-block; width: 180px; }
+
+.personalCenterSsetting_table .bind > i.iH { background-position: -4px -35px; }
+
+.personalCenterSsetting_table .bind2 > i { display: inline-block; width: 30px; height: 30px; background: url(../images/icons.png) 0 -72px no-repeat; margin-right: 18px; vertical-align: middle; }
+
+.personalCenterSsetting_table .bind2 > span { display: inline-block; width: 180px; }
+
+.personalCenterSsetting_table .bind2 > i.iH { background-position: 0 -113px; }
+
+.personalCenterSsetting_table .t > a { margin-left: 24px; }
+
+.personalCenterStasteList { width: 100%; display: table; position: relative; box-sizing: border-box; padding: 54px 0 5px 50px; }
+
+.personalCenterStasteList li { float: left; width: 100%; box-sizing: border-box; padding: 30px; border: 1px solid #e8e8e8; margin-bottom: 20px; -webkit-transition: all 0.3s ease-out 0s; -moz-transition: all 0.3s ease-out 0s; -o-transition: all 0.3s ease-out 0s; transition: all 0.3s ease-out 0s; }
+
+.personalCenterStasteList li:hover { box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); }
+
+.personalCenterStasteList li .img { width: 100px; height: 100px; margin-right: 20px; }
+
+.personalCenterStasteList li .img img { vertical-align: top; width: 100%; height: 100%; }
+
+.personalCenterStasteList li .font { width: 374px; }
+
+.personalCenterStasteList li .font .pcbtnP > a { display: inline-block; width: 176px; height: 36px; line-height: 36px; text-align: center; border: 2px solid #5ecfba; border-radius: 2px; color: #5ecfba; -webkit-transition: all .3s ease-out 0s; -moz-transition: all .3s ease-out 0s; -o-transition: all .3s ease-out 0s; transition: all .3s ease-out 0s; }
+
+.personalCenterStasteList li .font .pcbtnP > a:hover { background: #5ecfba; color: #fff; }
+
+.personalCenterStasteList li .font .pcbtnP > a.a1 { background: #5ecfba; color: #fff; margin-right: 10px; }
+
+.personalCenterStasteList li .pcircle { width: 100px; height: 100px; box-sizing: border-box; padding-top: 26px; margin-left: 80px; position: relative; }
+
+.personalCenterStasteList li .pcircle svg { position: absolute; top: 0; left: 0; pointer-events: none; transform: rotate(30deg); -ms-transform: rotate(-90deg); -webkit-transform: rotate(-90deg); -o-transform: rotate(-90deg); -moz-transform: rotate(-90deg); }
+
+.personalCenterStasteList li .pcircle svg > .c { -webkit-transition: all 2s ease .1s; -moz-transition: all 2s ease .1s; -o-transition: all 2s ease .1s; transition: all 2s ease .1s; }
+
+.personalCenterStasteList li .pcircle svg > .cend { stroke-dasharray: 280 280; }
+
+.personalCenterStasteList li:hover { box-shadow: 0 2px 20px rgba 0, 0, 0, 0.15; }
+
+.personalCenterStasteList .pcsLine { position: absolute; left: 0; top: 0; width: 20px; height: 100%; background: url(../images/pcsline.jpg) center 0 repeat-y; }
+
+.personalCenterStasteList .pcsLine .personalCico { position: absolute; top: 0; left: 0; }
+
+.personalCenterStasteList .pcsLine .pf { position: absolute; top: -4px; left: 30px; line-height: 1.2; }
+
+.pcsBasicTable { width: 100%; }
+
+.pcsBasicTableTxt { width: 276px; height: 22px; padding: 8px 6px; line-height: 22px; border: 1px solid #ccc; border-radius: 2px; }
+
+.pcsBasicTableTxt:focus { border-color: #999; }
+
+.pcsBasicTableTxt.er { border: 1px solid #f84858; }
+
+.pcsBasicTable td { padding: 14px 0; position: relative; }
+
+.pcsBasicTable td.ph { width: 346px; }
+
+.pcsBasicTable td.ph > span { color: #999; }
+
+.pcsBasicTable td.ph > a { float: right; margin-right: 60px; }
+
+.pcsBasicTable select { margin-right: 10px; }
+
+.pcsBasicTable .validform { position: absolute; left: 0; top: 54px; }
+
+.pcsBasicTable .error { color: #f84858 !important; margin-left: 4px; }
+
+.pcsBasicTable tr.er { background: #ffecec; }
+
+.pcsBasicTableOne .img { width: 90px; height: 90px; border-radius: 50%; overflow: hidden; display: inline-block; vertical-align: middle; }
+
+.pcsBasicTableOne .img img { width: 100%; height: 100%; vertical-align: top; }
+
+.imgSelect { color: #ccc; margin-left: 20px; }
+
+.imgSelect > i { display: inline-block; vertical-align: middle; height: 20px; width: 23px; background-position: 0 -418px; margin-right: 6px; }
+
+.pcsBasicTableOne .font { display: inline-block; width: 400px; vertical-align: middle; margin-left: 34px; }
+
+.pcsRadio { color: #666; font-weight: 400; margin-right: 30px; cursor: pointer; }
+
+.pcsRadio > input { display: none; }
+
+.pcsRadio > i { display: inline-block; width: 16px; height: 16px; vertical-align: -4px; background: url(../images/personal.png) 0 -510px no-repeat; margin-right: 10px; }
+
+.pcsRadio.rH > i { background-position: -16px -510px; }
+
+.eCmain { width: 100%; padding-bottom: 50px; overflow: hidden; }
+
+.eCmainL { width: 340px; height: 230px; position: relative; }
+
+.eCmainL #eCmainCavner { width: 340px; height: 230px; }
+
+.eCmainL .people { position: absolute; left: 48px; top: 62px; width: 100px; text-align: center; line-height: 1.4; }
+
+.eCmainR { width: 520px; background: #f7f7f7; padding: 30px; box-sizing: border-box; }
+
+.eCmainR .d1 { width: 150px; }
+
+.eCmainR .d2 { width: 300px; margin-left: 10px; }
+
+.eCmainR .d2 .p1 > i { margin-right: 10px; }
+
+.eCmainR .d2 > ul { width: 150px; margin: 20px 0; }
+
+.eCmainR .d2 > ul > li { text-align: right; }
+
+.eCmainR .d2 > ul > li > span { float: left; }
+
+.teacherCenterMenu { color: #e0e0e0; }
+
+.teacherCenterMenu a { color: #666; padding: 0 20px; }
+
+.teacherCenterMenu a:hover, .teacherCenterMenu a.aH { color: #00b38a; }
+
+.teacherCenterMenu a:first-child { padding-left: 0; }
+
+.teacherCenterTabContent > div { display: none; visibility: hidden; }
+
+.teacherCenterTabContent > div.cur { display: block; visibility: visible; }
+
+.teacherCenterWorks { border: 1px solid #e0e0e0; margin: 30px 0 42px; overflow: hidden; padding: 30px; }
+
+.teacherCenterWorks h4 { font-size: 20px; font-weight: 700; padding: 33px 0; }
+
+.teacherCenterTeacherIntroduce { padding-bottom: 30px; border-bottom: 1px solid #e8e8e8; }
+
+.teacherCenterTeacherIntroduce strong { font-size: 30px; font-weight: 400; display: block; margin-top: 6px; }
+
+.teacherCenterTeacherIntroduce span { font-size: 16px; color: #666; padding: 2px 0; display: block; }
+
+.teacherCenterTeacherIntroduce p { font-size: 14px; color: #858585; line-height: 1.7; margin-top: 14px; }
+
+.teacherCenterTeacherIntroduce a { width: 180px; height: 52px; line-height: 52px; background: #5ecfba; display: block; color: #fff; font-size: 16px; border-radius: 3px; margin-top: 18px; text-align: center; }
+
+.teacherCenterTeacherCourse { border-bottom: 1px solid #e8e8e8; overflow: hidden; padding: 30px 0; }
+
+.teacherCenterTeacherCourse li { float: left; margin-right: 72px; font-size: 16px; color: #666; }
+
+.teacherCenterTeacherCourse li:last-child { margin: 0; }
+
+.teacherCenterTeacherCourse strong { display: block; font-size: 38px; font-weight: 400; margin-left: 80px; line-height: 1.1; }
+
+.teacherCenterTeacherCourse span { font-size: 18px; }
+
+.teacherCenterTeacherCourse li:before, .teacherCenterTeachExperience .infos:before { background-image: url(../images/addTeacher_icon.png); background-repeat: no-repeat; }
+
+.teacherCenterTeacherCourse li:before { width: 60px; height: 60px; display: block; content: ""; float: left; margin-right: 20px; background-position: -1px -62px; }
+
+.teacherCenterTeacherCourse li:first-child:before { background-position: -1px -1px; }
+
+.teacherCenterTeacherCourse li:last-child:before { background-position: -1px -123px; }
+
+.teacherCenterTeacherWorks { padding-bottom: 30px; border-bottom: 1px solid #e8e8e8; }
+
+.teacherCenterWorks { width: 800px; overflow: hidden; }
+
+.teacherCenterWorks .bx-wrapper { width: 800px; max-height: none; }
+
+.teacherCenterWorks .bx-wrapper .bx-controls-direction a { width: 42px; height: 70px; background-image: url(../images/addTeacher_icon.png); background-repeat: no-repeat; background-color: rgba(0, 0, 0, 0.1); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#19000000, endColorstr=#19000000); }
+
+.teacherCenterTeachBxslider .bx-wrapper .bx-controls-direction a { margin-top: -80px; }
+
+.teacherCenterWorks .bx-wrapper .bx-controls-direction a:hover { background-color: rgba(0, 0, 0, 0.3); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#4c000000, endColorstr=#4c000000); }
+
+.teacherCenterWorks .bx-wrapper .bx-controls-direction .bx-prev { left: 10px; background-position: -1px -190px; }
+
+.teacherCenterWorks .bx-wrapper .bx-controls-direction .bx-next { right: 10px; background-position: -47px -190px; }
+
+.teacherCenterTeachBxslider p { width: 800px; height: 420px; overflow: hidden; }
+
+.teacherCenterTeachBxslider .text { overflow: hidden; line-height: normal; }
+
+.teacherCenterTeachBxslider .text strong { font-size: 20px; font-weight: 400; margin-top: 15px; display: block; }
+
+.teacherCenterTeachBxslider .text span { color: #666; }
+
+.teacherCenterWorks .bx-wrapper .bx-pager.bx-default-pager .bx-pager-item a { display: none; }
+
+.teacherCenterWorks .bx-wrapper .bx-pager.bx-default-pager a.active { text-indent: 0; font-size: 14px; color: #666; font-size: 28px; font-weight: 400; background: 0; display: block; }
+
+.teacherCenterTeachBxslider .bx-has-pager .bx-pager { text-align: right; bottom: 10px; }
+
+.teacherCenterWorks .bx-pager > em { font-size: 14px; color: #999; font-weight: 400; }
+
+.teacherCenterTeachExperience { border-bottom: 1px solid #e8e8e8; }
+
+.teacherCenterTeachExperience .infos { border-left: 1px solid #d7d7d7; margin-left: 85px; padding: 0 0 36px 58px; position: relative; }
+
+.teacherCenterTeachExperience .infos p { color: #858585; }
+
+.teacherCenterTeachExperience .infos em { color: #5c5c5c; }
+
+.teacherCenterTeachExperience li:last-child .infos { padding-bottom: 60px; }
+
+.teacherCenterTeachExperience .infos:before { content: ""; display: block; width: 22px; height: 22px; background-position: -78px 0; position: absolute; left: -11px; }
+
+.teacherCenterTeachExperience span { font-size: 20px; float: left; width: 85px; display: block; padding-bottom: 36px; color: #666; }
+
+.teacherCenterTeachExperience strong { font-size: 20px; margin-bottom: 10px; display: block; }
+
+.teacherCenterTeachExperience em { font-size: 16px; margin-top: 10px; display: block; font-style: normal; }
+
+.teacherCenterTeachSaying { border-bottom: 1px solid #e8e8e8; padding-bottom: 30px; }
+
+.teacherCenterTeachSaying dl { overflow: hidden; }
+
+.teacherCenterTeachSaying dt { width: 90px; height: 90px; float: right; border-radius: 50%; overflow: hidden; }
+
+.teacherCenterTeachSaying dt img { width: 100%; }
+
+.teacherCenterTeachSaying dd { margin-right: 138px; background: #f5f5f5; padding: 10px 40px 24px 30px; position: relative; }
+
+.teacherCenterTeachSaying dd:before { content: "“"; font-family: arial; font-weight: 700; color: #ccc; font-size: 50px; float: left; }
+
+.teacherCenterTeachSaying dd:after { content: ""; display: block; border-top: 18px solid transparent; border-bottom: 18px solid transparent; border-left: 30px solid #f5f5f5; position: absolute; right: -30px; top: 30px; }
+
+.teacherCenterTeachSaying p { color: #747474; font-size: 16px; line-height: 1.625; font-style: italic; margin: 15px 0 0 40px; }
+
+.teacherCenterStudentBxslider { padding-bottom: 52px; }
+
+.teacherCenterStudentBxslider .bx-wrapper .bx-pager { width: auto; bottom: -48px; }
+
+.teacherCenterList { width: 100%; display: table; }
+
+.teacherCenterList li { width: 100%; float: left; padding: 30px 0; border-bottom: 1px solid #e8e8e8; }
+
+.teacherCenterList li > a { display: table; width: 100%; color: #666; }
+
+.teacherCenterList li .img { float: left; width: 210px; height: 134px; }
+
+.teacherCenterList li .img img { width: 100%; height: 100%; vertical-align: top; }
+
+.teacherCenterList li .font { margin-left: 30px; float: left; }
+
+.teacherCenterList li:last-child { border: 0; }
+
+.teacherCenterList li:hover .color00 { color: #00b38a; }
+
+.teacherCenterING { display: table; width: 100%; }
+
+.teacherCenterING > li { float: left; width: 100%; padding: 20px 30px; box-sizing: border-box; border: 1px solid #e0e0e0; margin-bottom: 20px; position: relative; overflow: hidden; -webkit-transition: all .3s ease-out 0s; -moz-transition: all .3s ease-out 0s; -o-transition: all .3s ease-out 0s; transition: all .3s ease-out 0s; }
+
+.teacherCenterING > li .pt { padding-bottom: 16px; border-bottom: 1px solid #e0e0e0; position: relative; }
+
+.teacherCenterING > li .pt > div { position: absolute; top: 6px; right: 0; padding-right: 110px; }
+
+.teacherCenterING > li .pt > div > a { float: right; width: 90px; position: absolute; top: 0; right: 0; }
+
+.teacherCenterING > li:hover { box-shadow: 0 0 20px rgba(0, 0, 0, 0.15); }
+
+.teacherCenterINGbox { display: table; width: 100%; }
+
+.teacherCenterINGboxL { float: left; width: 326px; height: 160px; position: relative; }
+
+.teacherCenterINGboxR { float: left; width: 466px; height: 160px; background: #f7f7f7; box-sizing: border-box; padding: 30px; position: relative; }
+
+.teacherCenterINGboxR > ul { display: table; width: 100%; }
+
+.teacherCenterINGboxR > ul > li { float: left; width: 135px; line-height: 1.2; }
+
+.teacherCenterINGboxR > ul > li > i { float: left; background-image: url(../images/tcICO.png); display: inline-block; width: 40px; height: 40px; margin-right: 10px; }
+
+.teacherCenterINGboxR > ul > li > i.i1 { background-position: 0 0; }
+
+.teacherCenterINGboxR > ul > li > i.i2 { background-position: 0 -40px; }
+
+.teacherCenterINGboxR > ul > li > i.i3 { background-position: 0 -80px; }
+
+.teacherCenterINGboxL > .div { position: absolute; left: 30px; top: 44px; width: 100px; line-height: 1.2; text-align: center; }
+
+.teacherCenterINGboxL > .cavner { width: 326px; height: 160px; }
+
+.teacherCenterENDbox { display: table; width: 100%; position: relative; }
+
+.teacherCenterENDbox > li { float: left; width: 176px; line-height: 1.2; }
+
+.teacherCenterENDbox > li > i { float: left; width: 40px; height: 40px; vertical-align: middle; margin-right: 10px; background-image: url(../images/tcICO.png); }
+
+.teacherCenterENDbox > li > i.i1 { background-position: 0 -120px; }
+
+.teacherCenterENDbox > li > i.i2 { background-position: 0 -160px; }
+
+.teacherCenterENDbox > .a { position: absolute; right: 0; top: 0; }
+
+.pcprize { position: absolute; top: 24px; right: 0; color: #ee4f39; font-size: 14px; }
+
+.pcprize:hover { color: #ee4f39; }
+
+.pcprize > i { display: inline-block; width: 18px; height: 18px; vertical-align: bottom; background: url(../images/icon_invitation.png) no-repeat; margin-right: 8px; }
+
+.cuttPictureBox { padding: 30px; overflow: hidden; }
+
+.cuttPictureBoxL { width: 250px; float: left; }
+
+.cuttPictureBoxR { width: 122px; float: left; margin-left: 26px; }
+
+.cuttPictureBoxR img { width: 120px; height: 120px; }
+
+.cuttPictureBoxR > p { display: block; width: 100%; height: 120px; overflow: hidden; }
+
+.cuttPictureBoxL .img { width: 100%; height: 250px; background: #f5f5f5; margin-bottom: 10px; }
+
+.cuttPictureBoxL .img img { vertical-align: top; display: none; max-width: 100%; max-height: 100%; }
+
+.cuttPictureBoxL .pb > a { display: inline-block; width: 120px; height: 40px; line-height: 40px; text-align: center; font-size: 14px; font-weight: 700; vertical-align: bottom; }
+
+.cuttPictureBoxL .pb > a.a1 { background: #5ecfba; color: #fff; margin-right: 10px; }
+
+.cuttPictureBoxL .pb > a.a2 { border: 1px solid #e0e0e0; color: #666; box-sizing: border-box; }
+
+.jcrop-keymgr { display: none !important; }
+
+.newPhoneBox { padding: 30px; }
+
+.newPhoneBox .pcsBasicTableTxt { width: 100%; box-sizing: border-box; height: 40px; }
+
+.newPhoneBox .personalCbtn { width: 100%; }
+
+.newPhoneBox p { position: relative; margin-bottom: 20px; }
+
+.newPhoneBox .validform { position: absolute; left: 4px; top: 40px; color: #f84858; }
+
+#newMeg .cl { width: 80px; }
+
+#newMeg .modal-content { padding: 60px 0 50px; }
+
+#newPhone2 .pm { background: #f5f5f5; padding: 8px; }
+
+#newPhone2 .fg > a { display: inline-block; width: 142px; height: 38px; border: 1px solid #5ecfba; background: #5ecfba; color: #fff; line-height: 38px; text-align: center; font-size: 14px; vertical-align: middle; margin-left: 10px; }
+
+#newPhone2 .fg > a.smsend { background: #f5f5f5; border: 1px solid #ccc; color: #999; pointer-events: none; }
+
+#newPhone2 .fg > a.dis { border-color: #ccc; background: #f5f5f5; color: #666; }
+
+#newMegPassword .modal-content { padding: 60px 0 50px; }
+
+.modal .megError { background: #ffecec; color: red; padding: 8px; display: none; width: auto; height: auto; line-height: 1; margin-top: 10px; }
+
+.nulldata { padding: 40px 0; }
+
+.eCother { background: url(../images/eCbg.png) 660px 80px no-repeat #fff9df; padding: 30px; padding-right: 286px; }
+
+.eCother > p { margin-bottom: 10px; }
+
+.personalCenterOLDList { width: 100%; display: table; }
+
+.personalCenterOLDList li { float: left; width: 270px; height: 120px; color: #fff; font-size: 12px; margin: 0 20px 20px 0; }
+
+.personalCenterOLDList li > a { color: #fff; width: 100%; display: table; box-sizing: border-box; padding: 10px 14px; }
+
+.personalCenterOLDList li img { float: left; width: 100px; height: 100px; margin-right: 6px; }
+
+.personalCenterOLDList li .font16 { padding-top: 26px; padding-bottom: 4px; }
+
+.personalCenterOLDList li p { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.personalCenterOLDList li:nth-child(3n) { margin-right: 0; }
+
+#interestCourse .modal-dialog{width: 470px;font-family: "microsoft yahei";margin: 100px auto 0;}
+#interestCourse .modal-content{border-radius: 0;}
+#interestCourse .modal-header{background: url(/images/interestCourseTitle.jpg) no-repeat;height: 60px;}
+#interestCourse .modal-title{font-size: 26px;color: #fff;text-align: center;line-height: 60px;}
+#interestCourse .modal-body{padding: 0 5px 20px;}
+#interestCourse .modal-body ul{overflow: hidden;margin-left: -5px;}
+#interestCourse .modal-body li{width: 130px;height: 130px;float: left;margin:20px 0 0 19px;overflow: hidden;}
+#interestCourse .modal-body li:nth-child(n+7){display: none;}
+#interestCourse .modal-body img{width: 100%;}
+#interestCourse .modal-body a{display: block;position: relative;}
+#interestCourse .modal-body strong{width:100%;display: block;position: absolute;left: 0;bottom: 0;z-index: 9;background: rgba(0,0,0,.3);height: 40px;line-height: 40px;font-weight: normal;text-align: center;font-size: 14px;color: #fff;}
+#interestCourse .modal-footer{border: 0;background: #f5f5f5;height: 50px;padding: 20px 0;}
+#interestCourse .modal-footer span{display: block;width: 130px;height: 50px;line-height: 50px;text-align: center;color: #fff;font-size: 14px;background: #5ECFBA;border-radius: 2px;margin: 0 auto;cursor: pointer;font-weight: bold;}
+#interestCourse .close{width: 46px;height: 46px;display: block;background: url(/images/interestCourseClose.jpg) no-repeat;text-indent: -9999px;float: none;filter: alpha(opacity=100);opacity: 1;margin: 20px auto 0;}
+
+.personalCico.pcICOanswer,.personalCico.pcICOtry,.personalCico.pcICOonevoneser,.personalCico.pcICOonevoneline,.personalCico.pcICOruseme{width: 20px;display: inline-block; vertical-align: middle;}
+/*问答*/
+.personalCico.pcICOanswer{background: url(/static/images/personalInterlocutionIcon.png) no-repeat;height: 18px;}
+.personalCmainLmenu li > a:hover .pcICOanswer, .personalCmainLmenu li > a.aH .pcICOanswer { background-position: 0 -18px; }
+.personalInterlocutionCount{color: #fff;line-height: 1.5;font-size: 12px; background: #e45050;display: inline-block; padding: 0 6px; font-style: normal;border-radius: 8px; margin-left: 10px;max-width: 22px;-ms-text-overflow: ellipsis;text-overflow: ellipsis;overflow: hidden; white-space: nowrap; margin-top: -2px;position: absolute;-webkit-box-sizing: content-box; -moz-box-sizing: content-box;box-sizing: content-box;}
+/*免费试学班*/
+.personalCico.pcICOtry{height: 20px;  background: url(/static/images/tryTeacherIcon.png) no-repeat; background-position: -1px -74px;}
+.personalCmainLmenu li > a:hover .pcICOtry, .personalCmainLmenu li > a.aH .pcICOtry { background-position: -1px -94px;}
+/*1v1服务*/
+.personalCico.pcICOonevoneser,.personalCico.pcICOonevoneline{height: 19px;  background: url(/images/teaOneVOneIcon.png) no-repeat;}
+.personalCmainLmenu li > a:hover .pcICOonevoneser, .personalCmainLmenu li > a.aH .pcICOonevoneser { background-position: 0 -19px;}
+/*1v1直播*/
+.personalCico.pcICOonevoneline{background-position: 0 -38px;}
+.personalCmainLmenu li > a:hover .pcICOonevoneline , .personalCmainLmenu li > a.aH .pcICOonevoneline{ background-position: 0 -57px;}
+
+/*简历信息*/
+.personalCico.pcICOruseme{height:18px;background: url(/images/resume/resumeIcon.png) no-repeat 0 -53px;}
+.personalCmainLmenu li > a:hover .pcICOruseme,.personalCmainLmenu li > a.aH .pcICOruseme{ background-position: 0 -72px;}

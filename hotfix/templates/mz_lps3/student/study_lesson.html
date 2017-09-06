@@ -1,0 +1,605 @@
+{% extends "mz_lps3/student/base.html" %}
+
+{% block title %}任务详情-课程学习{% endblock %}
+{% block css %}
+    <style>
+    html{ overflow: hidden;}
+    </style>
+{% endblock %}
+
+
+{% block current_item_title %}
+    <span class="font20 colorff s">
+            {{ video_name }}
+            <!--<span class="button font12 colorff project-production-tag">项目制作</span>-->
+        </span>
+{% endblock %}
+
+
+{% block container %}
+    <div class="zyNewVideo_main">
+        <div class="zvideo_index t5o" id="zvideo_index">
+            <div class="zvideo" id="zvideo">
+                <video id="microohvideo" class="video-js vjs-default-skin vjs-big-play-centered" autoplay controls
+                       preload="none" width="100%" height="100%" poster="">
+                    <source src="{{ video_url }}" type='video/mp4'/>
+                    <p class="vjs-no-js">无法运行，请执行js权限</p>
+                </video>
+                <div class="videoStopMeg textC">
+                    <div>
+                    <p class="font18 marginB20">下一节：2.3函数返回基本数据类型</p>
+                    <p class="font14 VSMbtn"><a class="VSMbtn1"><i></i>重新观看</a><a class="VSMbtn2">下一节</a></p>
+                    </div>
+                </div>
+            </div>
+            {% if not student_class.is_free488_class %}
+            <div class="zvideo_index_bottom">
+                课程评分
+                <div id="readzvstar" class="zvstar"></div>
+                <span class="colorCC changed_score">{{ score }}</span>
+                {% if my_score %}
+                    <div class="myNScore color99 marginL20"><span>已评分</span></div>
+                {% else %}
+                    <div class="myNScore color99 marginL20"><span>我要评分</span>
+                        <div class="myNScore_div t5o">
+                            <div id="zvstar" class="zvstar marginB10"></div>
+                            <input type="hidden" id="myNScoreval" value="0">
+                            <a class="myNScorebtn">提交</a>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="zvideo_index_bottomR">
+                    <a class="favorite">
+                        {% if is_favorite %}
+                            <!--<i class="v5-icon v5-icon-save v5-icon-saved"></i>-->
+                            <!--<span>已收藏</span>-->
+                            <img src="{{ STATIC_URL }}mz_lps3/images/starG.png"><span>已收藏</span>
+                        {% else %}
+                            <!--<i class="v5-icon v5-icon-save"></i>-->
+                            <!--<span>收藏</span>-->
+                            <img src="{{ STATIC_URL }}mz_lps3/images/starN.png"><span>收藏</span>
+                        {% endif %}
+                    </a>
+                    <div class="vfenxiang"><span><i></i>分享</span>
+
+                        <div class="myNScore_div t5o">
+                            <!-- JiaThis Button BEGIN -->
+                            <a class="jiathis_button_weixin"><img src="{{ STATIC_URL }}mz_lps3/images/vweibo.png"></a>
+                            <a class="jiathis_button_cqq"><img src="{{ STATIC_URL }}mz_lps3/images/vqq.png"></a>
+                            <script type="text/javascript">
+                                var jiathis_config = {
+                                    data_track_clickback: true,
+                                    shortUrl: false,
+                                    hideMore: false,
+                                    url: "",
+                                    summary: "麦子学院",
+                                    title: "麦子学院 #麦子学院#"
+                                }
+                            </script>
+                            <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1680508"
+                                    charset="utf-8"></script>
+                            <!-- JiaThis Button END -->
+                        </div>
+                    </div>
+                    |
+                    <div class="vdownload"><span><i></i>下载</span>
+                        <div class="myNScore_div t5o">
+                            <p class="color99 line1 marginB10">APP可离线下载该课程</p>
+                            <img src="{{ STATIC_URL }}mz_lps3/img/appcode.png">
+                        </div>
+                    </div>
+
+                    <a href="{{ FPS_HOST }}common/feedback/publish/" target="_blank"><img src="{{ STATIC_URL }}mz_lps3/images/icoask.png">报告问题</a>{{ study_number }}位同学正在学习
+                    {% if qq_group %},学习QQ群：<span
+                        class="colorfa0 bold">{{ qq_group }}</span>
+                    {% endif %}
+                </div>
+
+            </div>
+            {% endif %}
+            <div class="zvright">
+                <a num=1><p><img src="{{ STATIC_URL }}mz_lps3/images/rightico001.png"></p>
+
+                    <p>目录</p></a>
+                {% if not student_class.is_free488_class %}
+                <a num=2><p><img src="{{ STATIC_URL }}mz_lps3/images/rightico002.png"></p>
+
+                    <p>提问</p></a>
+                <a num=3><p><img src="{{ STATIC_URL }}mz_lps3/images/rightico003.png"></p>
+
+                    <p>课件</p></a>
+                {% endif %}
+                {% if 0 and task_is_guide %}
+                <div class="videoguided"><i class="arr"></i><i class="close"></i>
+                <p>点击展开或收起任务路线</p>
+                <p>直接在展开的任务图可以进行<br>知识点的跳转哦~</p>
+                {% endif %}
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="zvrightSreen t5o">
+        <div class="zvrightSreen1">
+            {{ task_index }}
+        </div>
+
+        {% include 'mz_lps3/student/lesson_view_common.html' %}
+
+        <div class="zvrightSreen3">
+            {% include 'mz_lps3/student/div_lesson_view_download.html' %}
+        </div>
+    </div>
+<input id="course_id" type="hidden" value="{{ course_id }}"/>
+<input id="lesson_id" type="hidden" value="{{ lesson_id }}"/>
+<script>
+var winWidth,winHeight;
+var getStyle = function(dom, attr){
+  return dom.currentStyle ? dom.currentStyle[attr] : getComputedStyle(dom, false)[attr];
+}
+function findDimensions(){
+    //获取窗口宽度
+    if(window.innerWidth)
+        winWidth = window.innerWidth;
+    else if ((document.body) && (document.body.clientWidth))
+        winWidth = document.body.clientWidth;
+    //获取窗口高度
+    if (window.innerHeight)
+        winHeight = window.innerHeight;
+    else if ((document.body) && (document.body.clientHeight))
+        winHeight = document.body.clientHeight;
+    //通过深入Document内部对body进行检测，获取窗口大小
+    if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth)
+    {
+        winHeight = document.documentElement.clientHeight;
+    }
+    var pl = getStyle(document.getElementById("zvideo_index"), "paddingTop");
+    document.getElementById("zvideo").style.height=winHeight - 120 -parseInt(pl)*2 +"px";
+}
+findDimensions();
+</script>
+{% endblock %}
+
+
+{% block javascript %}
+    <link href="{{ STATIC_URL }}mz_lps3/css/video-js.css" rel="stylesheet" type="text/css">
+    <script src="{{ STATIC_URL }}mz_lps3/js/video.js"></script>
+    <script>
+        videojs.options.flash.swf = "/static/js/videojs/video-js.swf";
+    </script>
+    <script src="{{ STATIC_URL }}mz_lps3/js/jquery.raty.js"></script>
+    <script src="{{ STATIC_URL }}mz_lps3/layer/layer.js"></script>
+    <script src="{{ STATIC_URL }}mz_lps3/js/jquery.mousewheel.js"></script>
+    <script src="{{ STATIC_URL }}mz_lps3/js/abc.js?v={{ time_stamp }}"></script>
+    <script src="{{ STATIC_URL }}mz_lps3/js/global.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script>
+    function zzyyre(){
+        location.reload();
+    }
+        $(function () {
+            var player = videojs("microohvideo", {
+                controls: true,
+                playbackRates: [1, 1.25, 1.5, 2]
+            });
+
+            // 定期判断: 当视频处于播放状态, 向后端发送用户和课程信息 for business log
+            setInterval(function(){
+                if (!player.paused()) {
+                    var course_id = $("#course_id").val();
+                    var lesson_id = $("#lesson_id").val();
+                    $.get("/v4/append_study_info?course_id=" + course_id + "&lesson_id=" + lesson_id);
+                }
+            }, 1000 * 60);
+
+            $(".vjs-error-display").html('<div><img src="/static/images/refresh.png">&nbsp;&nbsp;视频加载失败，请<a onclick="zzyyre()" style="cursor: pointer;">刷新重试</a></div>')
+            $("#microohvideo").append($(".videoStopMeg"))
+            // 获取视频开始播放的时间并从该时间播放, copied and modified from LPS2.0
+            var video_current_time = $.cookie('lesson_{{ lesson_id }}');
+            if (!video_current_time) video_current_time = 0;
+            var playerBO=true;
+            player.ready(function () {
+                player.currentTime(video_current_time);
+
+                player.on("ended", function () {
+                    getPlayPostion();
+                    $.cookie('lesson_{{ lesson_id }}', null);
+                    //player.stop();
+                    $(".videoStopMeg").show();
+                    $(".videoStopMeg").height($(".videoStopMeg").parent().height());
+                    var goA=$(".zyleve1>li,.zvrightSreen .d-task-list li.last");
+                    goA.each(function(index,ele){
+                        if($(ele).hasClass("liH")){
+                            $(".videoStopMeg > div>.marginB20").html("下一节："+goA.eq(index+1).find("a").attr("title"));
+                            return false;
+                        }
+                    })
+                });
+
+                // not very sure about the following codes. just let them alone here.
+                var tag = player.L;
+                var doc = tag.ownerDocument || document;
+                $(doc).on('keydown', function (e) {
+                    if (32 == e.keyCode&&playerBO) {
+                        if (player.paused()) {
+                            player.play();
+                        } else {
+                            player.pause();
+                        }
+                    }
+                });
+
+                $(player.tag || player.L).on('dblclick', function () {
+                    if (player.isFullscreen()) {
+                        player.exitFullscreen();
+                    } else {
+                        player.requestFullscreen();
+                    }
+                });
+            });
+
+            // 视频进度控制
+            getPlayPostion();
+
+            // 获取视频的播放进度， copied and modified from LPS2.0
+            function getPlayPostion() {
+                //将当前播放实际进度保存到cookie
+                current_position = Math.ceil(player.currentTime());
+                if (current_position) {
+                    $.cookie('lesson_{{ lesson_id }}', current_position, {expires: 7});
+                    {% if user.is_authenticated %}
+                        //判断视频是否播放到整体进度的95%
+                        video_total_time = {{ video_length }};
+                        if (current_position / video_total_time > {{ VIDEO_EXAM_COMPLETE }}) {
+                            // 更新是否完成该章节的学习
+                            $.get("/lps3/student/ajax/item_lesson/update/{{useritem}}/");return;
+                        }
+                    {% endif %}
+                }
+                setTimeout(getPlayPostion, 5000)
+            }
+            //重新播放
+            $(".VSMbtn1").on("click",function(){
+                player.currentTime(0);
+                player.play();
+                $(".videoStopMeg").hide();
+            });
+            //提交评分 copy and modified from lesson_view.html which services LPS 2.0
+            $(".myNScorebtn").on("click", function () {
+                //评分的值
+                {% if not user.is_authenticated %}
+                    login_popup();
+                {% else %}
+                $.ajax({
+                    url: "/course/score/",
+                    type: "post",
+                    data: {'csrfmiddlewaretoken':$.cookie('csrftoken'),
+                           'score': $("#myNScoreval").val(),
+                           'course_id':'{{ course_id }}',
+                           'user_id':{{ user.id }}},
+                    success: function (data){
+                        if (data.is_succeed){
+                            $('.changed_score').text(data.score);
+                            $(".myNScore").children("div").hide();
+                            $(".myNScore").text('已评分');
+                            $('#readzvstar').raty({
+                                path: '{{ STATIC_URL }}mz_lps3/images',
+                                readOnly: true,
+                                score: data.score
+                            });
+                        }
+                    }
+                });
+                {% endif %}
+            })
+
+            //点击收藏/取消收藏 copy from lesson_view.html which services LPS 2.0
+            $('.favorite').on('click', function (event) {
+                event.preventDefault();
+                {% if not user.is_authenticated %}
+                    login_popup();
+                {% else %}
+                    $.ajax({
+                        cache: false,
+                        type: "get",
+                        url: "/course/{{ course_id }}/favorite/update",
+                        async: true,
+                        success: function (data) {
+                            if (data.status == 'success') {
+                                if (data.message == "收藏成功") {
+                                    $('.favorite').children('img').attr("src", '{{ STATIC_URL }}mz_lps3/images/starG.png');
+                                    $('.favorite').children('span').text('已收藏');
+                                } else if (data.message == "取消收藏成功") {
+                                    $('.favorite').children('img').attr("src", '{{ STATIC_URL }}mz_lps3/images/starN.png');
+                                    $('.favorite').children('span').text('收藏');
+                                }
+                            }
+                        }
+                    });
+                {% endif %}
+            });
+
+            $('#readzvstar').raty({
+                path: '{{ STATIC_URL }}mz_lps3/images',
+                readOnly: true,
+                score: parseInt('{{ score }}')
+            });
+            $('#zvstar').raty({
+                hints: ['1', '2', '3', '4', '5'],
+                showHalf:false,
+                path: '{{ STATIC_URL }}mz_lps3/images',
+                "click": function (score, evt) {
+                    $("#myNScoreval").val(score);
+                }
+            });
+            $(".myNScore>span").on("click",function () {
+                if($(this).parent().hasClass("sH")) {
+                    $(this).parent().removeClass("sH");
+                }
+                else{
+                    $(this).parent().addClass("sH");
+                }
+            })
+            $(".vfenxiang>span,.vdownload>span").unbind().click(function () {
+                if ($(this).parent().hasClass("sH"))
+                    $(this).parent().removeClass("sH")
+                else
+                    $(this).parent().addClass("sH")
+            })
+            $(".d-task-list>li>div").unbind().click(function () {
+                if ($(this).parent().hasClass("activeH")) {
+                    $(this).parent().removeClass("activeH");
+                } else {
+                    $(this).parent().addClass("activeH");
+                }
+                zzload();
+            });
+
+
+            zzload();
+
+            //侧边
+            $(".zvright a").on("click", function () {
+                zyright=false;
+                if (!$(this).hasClass("aH")) {
+                    if ($(".zvright a.aH").length == 0) {
+                        $(".zvrightSreen").css("right", 0);
+                        $(".zvideo_index").width(zvideoW - 340);
+                    }
+                    $(this).addClass("aH").siblings().removeClass("aH");
+                }
+                else {
+                    $(this).removeClass("aH");
+                    $(".zvrightSreen").css("right", -340+"px");
+                    $(".zvideo_index").width(zvideoW);
+                }
+                $(".zvrightSreen>div").hide();
+                $(".zvrightSreen" + $(this).attr("num")).show();
+                if($(this).attr("num")==2&&parseInt($(".zvrightSreen").css("right"),10)<0){loaddiscuss(1)}
+                zzload();
+                setTimeout(function(){zyright=true;},600);
+            });
+
+            $(window).resize(function () {
+                zzload();
+            });
+            //----------事件----------
+            $(".VSMbtn2").live("click",function(){
+                nextcourse();
+                if(player) player.cancelFullScreen();
+                var zvA=$(".zvright a").eq(0);
+                if(!zvA.hasClass("aH")) zvA.trigger("click");
+            })
+            //评论加载更多
+            $(".playlist2 .newlmore").on("click", function () {
+                if(zv_messgaelistBO){
+                    var th=$(this);
+                    th.html('<img src="{{ STATIC_URL }}mz_lps3/images/loading.gif">');
+                    zv_messgaelistBO=false;
+                    pa+=1;
+                    loaddiscuss(pa);
+                }
+            });
+            //评论事件
+            $(".zv_messgae_txt").bind({"focus":function(){
+                    playerBO=false;
+                },"blur":function(){
+                    playerBO=true;
+                }
+            });
+            $(".zv_messgae_btn").on("click", function () {
+                var con=$(".zv_messgae_txt").val().trim();
+                if(con==""){
+                    layer.tips('不能为空', '.zv_messgae_btn', {tips: [2, '#68c8b6']});
+                    return;}
+                var rid=0,cid=0,pid=0;
+                ($(this).data("rid"))&&(rid=$(this).data("rid"));
+                ($(this).data("pid"))&&(pid=$(this).data("pid"));
+                ($(this).data("cid"))&&(cid=$(this).data("cid"));
+                if($(".zv_messgae_label input").attr("checked")!="checked") {
+                    rid=0,cid=0,pid=0;
+                }
+                $.ajax({
+                    async: false,
+                    //url: '/group/course_discuss/comment/',
+                    url: '{{ FPS_HOST }}'+'course_discuss/comment/',
+                    type: "GET",
+                    dataType: 'jsonp',
+                    jsonp: 'jsonpCallback',
+                    data: {
+                        'jsonp': 'jsonpCallback2',
+                        "relate_id": rid,
+                        "lesson_id": $("#lesson_id").val(),
+                        "comment": $(".zv_messgae_txt").val(),
+                        "parent_id": pid,
+                        "child_id": cid,
+                        "user_id": {{ user.id }},
+                        "sys_type": 1
+                    },
+                    timeout: 10000,
+                    beforeSend: function () {
+                    },
+                    success: function (json) {
+                    },
+                    complete: function (XMLHttpRequest, textStatus) {
+                    },
+                    error: function (xhr) {
+                    }
+                });
+            });
+            //提交评分
+            $(".myNScorebtn").on("click", function () {
+                $("#myNScoreval").val();//评分的值
+            });
+            //子回复
+            $(".zv_messTop .return").live("click",function(){
+                $(".zv_messgae_txt").val("回复"+$(this).prev().children(".color66").text()+":");
+                $("#zv_messgae_txtCB").attr("checked","checked").parent().show();
+                var btn=$(".zv_messgae_btn");
+                if($(this).attr("relate_id")) btn.data("rid",$(this).attr("relate_id"));
+                if($(this).attr("parent_id")){
+                    btn.data("pid",$(this).attr("parent_id"));
+                    btn.data("cid",$(this).attr("id"));
+                }
+            })
+            $("#zv_messgae_txtCB").unbind().click(function(){
+                if(!$(this).attr("checked")){
+                    $(this).removeAttr("checked").parent().hide();
+                    var btn=$(".zv_messgae_btn");
+                    btn.removeData("pid");
+                    btn.removeData("cid");
+                    btn.removeData("rid");
+                    $(".zv_messgae_txt").val("");
+                }
+            });
+            $(".videoguided>i.close").click(function(){
+                $(this).parent().remove();
+            });
+            //$(".zvright a").eq(0).trigger("click");
+            //初始化标题
+            var headTitle=$(".zyleve1 li.liH a").attr("title");
+            $(".zyNewVideo_top .s").html(headTitle);
+
+        })
+    //---------------分页------------------
+    var pane, pane2,zyright=true;
+    var zvideoW=$(".zvideo_index").width();
+    function zzload() {
+        $(".zvideo").height($(window).height() - 120 - parseInt($(".zvideo_index").css("paddingTop"), 10) * 2);
+        $('.playlist').height($(window).height() - 122);
+        $(".playlist2").height($(window).height() - 286);
+
+        pane = $('.playlist').jScrollPane({
+            mouseWheelSpeed: 100
+        });
+        pane2 = $('.playlist2').jScrollPane({
+            mouseWheelSpeed: 100
+        });
+        if(zyright) {
+            var zr = parseInt($(".zvrightSreen").css("right"), 10);
+            if (zr == 0) {
+                $(".zvideo_index").width($(window).width() - 460);
+            }
+            else {
+                $(".zvideo_index").width($(window).width() - 120);
+            }
+            zvideoW=$(window).width() - 120;
+        }
+    }
+    var zv_messgaelistBO=true,pa=1;
+    function jsonpCallback(re){
+        if(pa==1){
+            $(".zv_messgaelist").html(re.html);
+        }
+        else{
+            $(".zv_messgaelist").append(re.html);
+        }
+        $(".playlist2 .newlmore").html('加载更多');
+        zzload();
+        zv_messgaelistBO=true;
+        if(re=="error"){
+            $(".playlist2 .newlmore").html('没有更多');
+            zv_messgaelistBO=false;
+        }
+    }
+    function jsonpCallback2(data){
+        pa=1;
+        loaddiscuss(1);
+        $(".zv_messgae_txt").val("");
+        layer.tips('评论成功', '.zv_messgae_btn', {tips: [2, '#68c8b6']});
+        var btn=$(".zv_messgae_btn");
+        btn.removeData("rid");
+        btn.removeData("pid");
+        btn.removeData("cid");
+        $("#zv_messgae_txtCB").removeAttr("checked").parent().hide();
+    }
+    function loaddiscuss(pn1){
+        (pn1)&&(pa=pn1);
+        $.ajax({
+            async:false,
+            url: '{{ FPS_HOST }}'+'course_discuss/list/',
+            //url: 'http://192.168.1.109:8002/group/course_discuss/list/',
+            type: "GET",
+            dataType: 'jsonp',
+            jsonp: 'jsonpCallback',
+            data: {'jsonp':'jsonpCallback',"lesson_id":$("#lesson_id").val(),"page":pa,"user_id":{{ user.id }},"sys_type":1},
+            timeout: 10000,
+            beforeSend: function(){
+            },
+            success: function (json) {
+            },
+            complete: function(XMLHttpRequest, textStatus){
+            },
+            error: function(xhr){
+            }
+        });
+    }
+
+    </script>
+    <!-- 诸葛io统计 -->
+    <script type="text/javascript">
+        $(function(){
+            // 目录、提问、课件点击
+            $('.zvright a').click(function(){
+                zhuge.track("LPS视频学习页", {
+                    "事件位置": $(this).find('p:last').text()
+                });
+            });
+
+            // 评论点击
+            $('.zv_messgae_btn').click(function(){
+                zhuge.track("LPS视频学习页", {
+                    "事件位置": $(this).text()
+                });
+            });
+
+            // 下载课件点击
+            $('.zrjiaoxue li a').click(function(){
+                zhuge.track("LPS视频学习页", {
+                    "事件位置": '下载课件点击'
+                });
+            });
+
+            // 课程评分
+            $('.myNScore').click(function(){
+                zhuge.track("LPS视频学习页", {
+                    "事件位置": '课程评分'
+                });
+            });
+
+            // 收藏点击
+            $('.favorite,.vfenxiang,.vdownload').click(function(){
+                zhuge.track("LPS视频学习页", {
+                    "事件位置": $(this).find('span').text()
+                });
+            });
+
+            // 报告问题点击
+            $('.zvideo_index_bottomR a:last').click(function(){
+                zhuge.track("LPS视频学习页", {
+                    "事件位置": $(this).text()
+                });
+            });
+        });
+    </script>
+{% endblock %}

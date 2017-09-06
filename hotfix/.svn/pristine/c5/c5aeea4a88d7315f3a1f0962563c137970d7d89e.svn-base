@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<title>高校专区</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="职业">
+<meta name="description" content="测试尘世">
+<meta name="baidu-site-verification" content="TlN38QiORE" />
+<link href="http://dev.microoh.com/static/css/base.css" rel="stylesheet">
+<link href="http://dev.microoh.com/static/css/microoh-v5.css" rel="stylesheet">
+<link href="http://dev.microoh.com/static/css/flat-ui.css" rel="stylesheet">
+<link href="../static/css/develop.css" rel="stylesheet">
+<link rel="shortcut icon" type="image/x-icon" href="http://dev.microoh.com/static/images/favicon.ico" />
+<!--[if lt IE 9]>
+<script src="http://dev.microoh.com/static/js/html5shiv.min.js"></script>
+<script src="http://dev.microoh.com/static/js/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="microoh-main">
+  <header class="navbar navbar-default navbar-fixed-top affix" data-offset-top="64">
+    <div class="container">
+      <div class="navbar-header"> <a class="navbar-brand" href="http://dev.microoh.com/" title="麦子学院"><img src="http://dev.microoh.com/static/images/logo.png"><img src="http://dev.microoh.com/static/images/logo-font.png"></a> </div>
+      <div class="collapse navbar-collapse" id="microoh-navbar-collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <li class="visible-xs visible-sm"><a href="http://dev.microoh.com/">首页</a></li>
+          <li><a href="http://dev.microoh.com/course/">企业直通班</a></li>
+          <li class="visible-md visible-lg"> <a href="http://bbstest.microoh.com">论坛</a> </li>
+          <li><a href="http://dev.microoh.com/common/apppage/">移动APP</a></li>
+        </ul>
+        <form class="navbar-form navbar-left" role="search" onSubmit="return false">
+          <div class="form-group"> <i class="v5-icon v5-icon-search"></i>
+            <input type="text" class="form-control" id="search" placeholder="搜索你感兴趣的课程">
+          </div>
+          <div class="search-dp" id="hotkeyword">
+            <!--推荐关键词-->
+            <div class="hotkeyword">
+              <h4>推荐搜索关键词</h4>
+              <ul class="cf">
+                <li>加载中……</li>
+              </ul>
+            </div>
+          </div>
+        </form>
+        <div class="v5-topbar-login">
+          <div class="v5-topbar-login-off"> <a href="#" onClick="login_popup()" class="visible-md visible-lg">登录</a> <a href="http://dev.microoh.com/user/mobile/login/" class="visible-xs visible-sm">登录</a> </div>
+        </div>
+        <div class="navbar-search-btn visible-xs visible-sm"> <a href="http://dev.microoh.com/common/mobile/search/" class="sch"></a> </div>
+      </div>
+      <div class="search-dp" id="keyword-group">
+        搜索结果
+        <div class="keyword-group scroll-pane">
+          <dl class="">
+            <dt>职业课程</dt>
+            <dd class="careercourses cf"></dd>
+          </dl>
+          <dl class="">
+            <dt>课程</dt>
+            <dd class="courses cf"></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!--  当前位置  -->
+  <div class="colleges-bg">
+    <div class="container visible-md visible-lg">
+      <ol class="breadcrumb">
+        <li><a href="http://dev.microoh.com/">首页</a></li>
+        <li class="active">高校专区</li>
+      </ol>
+    </div>
+  </div>
+
+
+  <!--  高校专区介绍  -->
+  <div class="colleges-wrap colleges-page">
+    <div class="container">
+      <h2><img src="../static/images/colleges/pic-14.png" alt=""/>高校专区介绍</h2>
+      <p class="desc">高校专区是麦子学院为全国高校师生量身打造的在线技能实训平台，高校专区通过LPS系统为高校提供企业一线课程资源，在线实训服务，学生大数据分析，充分体现校企合作成果，实现学生随时随地的技能提升，为高校提供学生学习行为监测、学习结果回馈和学习行为数据分析，协助高校教师快捷高效的教学，全力助推高校在线教育生态环境的持续健康发展。同时，高校专区完全与智联招聘，拉勾网等招聘平台合作，并配备专门就业服务部门，帮助高校和同学们解决实习就业和职业发展问题。</p>
+      <div class="center">
+        <span id="videoPopBtn" class="btn"><span class="ico"><img src="/static/images/colleges/pic-16.png" alt="视频介绍"/></span><span class="text"><span class="cn">视频介绍</span><span class="en">Video</span></span></span>
+      </div>
+    </div>
+  </div>
+  <div class="colleges-wrap colleges-page colleges-bg">
+    <div class="container">
+      <div class="tab-btn-list center">
+        <div class="row">
+          <div class="col-xs-3 col-md-3 col-lg-3"><div class="itm"><img src="/static/images/colleges/pic-02.png" alt=""/><span class="text">企业技术课程</span></div></div>
+          <div class="col-xs-3 col-md-3 col-lg-3"><div class="itm"><img src="/static/images/colleges/pic-04.png" alt=""/><span class="text">专区定制</span></div></div>
+          <div class="col-xs-3 col-md-3 col-lg-3"><div class="itm"><img src="/static/images/colleges/pic-06.png" alt=""/><span class="text">效果把控</span></div></div>
+          <div class="col-xs-3 col-md-3 col-lg-3"><div class="itm"><img src="/static/images/colleges/pic-08.png" alt=""/><span class="text">就业服务</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="colleges-wrap colleges-page colleges-tab-cnt-box">
+    <span class="arrow"><i></i></span>
+    <div class="container">
+      <div class="tab-cnt-list">
+        <div class="itm">
+          <div class="col-xs-4 col-md-4">
+            <div class="right"><img src="/static/images/colleges/pic-01.png" alt=""/></div>
+          </div>
+          <div class="col-xs-8 col-md-8">
+            <div class="info">
+              <h3>企业技术课程</h3>
+              <p>高校专区课程内容由来自硅谷，台湾，⼤大陆的一线企业工程师设计制作，包括facebook,谷歌，雅虎，微软，百度，腾讯，去哪儿网等，全项目导向，实时更新，干货分享。</p>
+            </div>
+          </div>
+        </div>
+        <div class="itm">
+          <div class="col-xs-4 col-md-4">
+            <div class="right"><img src="/static/images/colleges/pic-03.png" alt=""/></div>
+          </div>
+          <div class="col-xs-8 col-md-8">
+            <div class="info">
+              <h3>专区定制</h3>
+              <p>高校专区以LPS系统为框架，配备点播，直播，计划⽣生成，测验，项目验收，社交，大数据分析等功能，课程内容与实训项目可根据校方需个性化定制，高校专区只属于你。</p>
+            </div>
+          </div>
+        </div>
+        <div class="itm">
+          <div class="col-xs-4 col-md-4">
+            <div class="right"><img src="/static/images/colleges/pic-05.png" alt=""/></div>
+          </div>
+          <div class="col-xs-8 col-md-8">
+            <div class="info">
+              <h3>效果把控</h3>
+              <p>高校专区核心在于过程管理，实时监控学员的学习进度，实时提醒学员的相关任务，导师实时答疑与辅导，游戏化学习阶段考核，效果显而易见。</p>
+            </div>
+          </div>
+        </div>
+        <div class="itm">
+          <div class="col-xs-4 col-md-4">
+            <div class="right"><img src="/static/images/colleges/pic-07.png" alt=""/></div>
+          </div>
+          <div class="col-xs-8 col-md-8">
+            <div class="info">
+              <h3>就业服务</h3>
+              <p>全国最强大的在线学习生态系统，实现学习，学习过程管理，社交，项目验收，就业全环节打通，智联招聘，拉勾网资源对接，专业就业服务团队全国软件园区紧缺人才⼈人才服务，学员学习结束系统⽣生成数字模型简历，全国千万岗位定向服务。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <!--  热门省份及城市  -->
+  <div class="colleges-wrap colleges-page colleges-bg">
+    <div class="container">
+      <div class="hot-tag-box">
+        <h2><img src="../static/images/colleges/pic-15.png" alt=""/>热门省份及城市</h2>
+        <div id="hotTagList">
+          <a href="##">北京</a><a href="##">上海</a><a href="##">广州</a><a href="##">成都</a><a href="##">南京</a><a href="##">深圳</a><a href="##">杭州</a><a href="##">昆明</a><a href="##">大连</a><a href="##">西藏</a><a href="##">甘肃</a><a href="##">内蒙古</a><a href="##">长春</a><a href="##">北京</a><a href="##">上海</a><a href="##">广州</a><a href="##">成都</a><a href="##">南京</a><a href="##">深圳</a><a href="##">杭州</a><a href="##">昆明</a><a href="##">大连</a><a href="##">西藏</a><a href="##">甘肃</a><a href="##">内蒙古</a><a href="##">长春</a><a href="##">上海</a><a href="##">广州</a><a href="##">成都</a><a href="##">南京</a><a href="##">深圳</a><a href="##">杭州</a><a href="##">昆明</a><a href="##">大连</a><a href="##">西藏</a><a href="##">甘肃</a><a href="##">内蒙古</a><a href="##">长春</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="colleges-wrap colleges-page">
+    <div class="container">
+      <div class="colleges-list">
+        <ul id="hotTagColleges" class="row">
+          <!-- 添加大学列表 -->
+          <!-- <li class="col-xm-3 col-md-3 col-lg-3">
+            <div class="itm"><a href="collegesInfo.html"><span class="img"><img src="/static/images/colleges/pic-12.png" alt=""/></span><span class="text">四川大学</span></a></div>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <!--  更多院校合作  -->
+  <div class="colleges-wrap colleges-page colleges-cooperate">
+    <div class="container">
+      <h2><img src="../static/images/colleges/pic-13.png" alt=""/>更多院校合作</h2>
+      <p class="cooperate-info">我们期待与更多的高校进行合作，共建课程，请通过以下的方式与我们联系：<br/>
+      联系人：张老师<br/>
+      座机：028-86567913<br/>
+      QQ：916252114<br/>
+      邮箱：ocean@maiziedu.com<br/>
+      地址：四川省成都市天府软件软D区</p>
+    </div>
+  </div>
+
+
+
+  <div class="v5-footer colleges-foot">
+    <div class="container">
+      <div class="v5-footer-bottom">
+        <p>© 2012-2014 <a href="www.maiziedu.com">maiziedu.com</a> | 服务条款 | 蜀ICP备13014270号-4 Version 4.0.1 release20140721.1</p>
+      </div>
+    </div>
+  </div>
+        
+
+
+  <script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="../static/js/layer/layer.min.js"></script>
+  <script type="text/javascript">
+
+    /* 视频介绍 */    
+    $(function(){
+      $('#videoPopBtn').click(function(){
+        $.layer({
+          type : 1,
+          title : false,
+          closeBtn: [0, true],
+          shade: [0.5, '#000'],
+          area: ['800px', '440px'],
+          bgcolor: '#000',
+          border: [0],
+          shift: 'top',
+          page:{
+            html : videoCnt( 'http://www.w3school.com.cn/example/html5/mov_bbb.mp4' ),
+          }
+        });
+      });
+      function videoCnt(url){
+        return '<video style="width:800px;height:440px" src="'+url+'" controls="controls"></video>'
+      }
+    });
+
+
+    /* 高校专区介绍 */
+    /* tab-btn-list 切换 */
+    $(function(){
+      var btn = $('.tab-btn-list .itm'), cnt = $('.tab-cnt-list .itm'), arrow = $('.colleges-tab-cnt-box .arrow');
+      btn.each(function(i,o){
+        o.index = i;
+      }).hover(function(){
+        run(this);
+      });
+      run( btn.eq(0)[0] );
+      function run(that){
+        if(btn.cur == that)return;
+        clearTimeout(btn.t);
+        btn.t = setTimeout(function(){
+          var o, s='itm-act';
+          o = btn.removeClass(s).eq(that.index).addClass(s);
+          cnt.hide().eq(that.index).stop().fadeIn();
+          arrow.stop().animate({ 'left' : o.offset().left + o.width()/2 - 15 });
+          btn.cur = that;  
+        },50);
+      }
+    });
+
+
+    /* 热门省份及城市 */
+    /* hot-tag-box 切换院校 */
+    $(function(){
+      var tags = $('#hotTagList a'), collegeBox = $('#hotTagColleges');
+      collegeBox.parent().css({'minHeight' : 690});
+      tags.click(function(){
+        var that = $(this);
+        tags.removeClass('act');
+        that.addClass('act');
+        var ajaxDate = [{
+          'href' : 'collegesInfo.html',
+          'src' : '/static/images/colleges/pic-12.png',
+          'text' : that.text()+'大学'
+        },{
+          'href' : 'collegesInfo.html',
+          'src' : '/static/images/colleges/pic-12.png',
+          'text' : that.text()+'大学'
+        },{
+          'href' : 'collegesInfo.html',
+          'src' : '/static/images/colleges/pic-12.png',
+          'text' : that.text()+'大学'
+        },{
+          'href' : 'collegesInfo.html',
+          'src' : '/static/images/colleges/pic-12.png',
+          'text' : that.text()+'大学'
+        },{
+          'href' : 'collegesInfo.html',
+          'src' : '/static/images/colleges/pic-12.png',
+          'text' : that.text()+'大学'
+        },{
+          'href' : 'collegesInfo.html',
+          'src' : '/static/images/colleges/pic-12.png',
+          'text' : that.text()+'大学'
+        },{
+          'href' : 'collegesInfo.html',
+          'src' : '/static/images/colleges/pic-12.png',
+          'text' : that.text()+'大学'
+        },{
+          'href' : 'collegesInfo.html',
+          'src' : '/static/images/colleges/pic-12.png',
+          'text' : that.text()+'大学'
+        },{
+          'href' : 'collegesInfo.html',
+          'src' : '/static/images/colleges/pic-12.png',
+          'text' : that.text()+'大学'
+        },{
+          'href' : 'collegesInfo.html',
+          'src' : '/static/images/colleges/pic-12.png',
+          'text' : that.text()+'大学'
+        },{
+          'href' : 'collegesInfo.html',
+          'src' : '/static/images/colleges/pic-12.png',
+          'text' : that.text()+'大学'
+        },{
+          'href' : 'collegesInfo.html',
+          'src' : '/static/images/colleges/pic-12.png',
+          'text' : that.text()+'大学'
+        }];
+        editHtml( ajaxDate );
+      });
+      function editHtml(json){
+        var html='';
+        $.each(json,function(k,o){
+          html += '<li class="col-xm-3 col-md-3 col-lg-3">';
+          html += '<div class="itm"><a href="';
+          html += o.href || 'javascript:;';
+          html += '"><span class="img"><img src="';
+          html += o.src || 'about:blank';
+          html += '" alt=""/></span><span class="text">';
+          html += o.text || '';
+          html += '</span></a></div></li>';
+        });          
+        collegeBox.hide().html( html ).stop().fadeIn();
+      }
+
+      // 默认显示第一个tag      
+      tags.eq(0).click();
+    });
+  </script>
+</body>
+</html>

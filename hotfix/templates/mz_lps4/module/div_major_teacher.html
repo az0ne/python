@@ -1,0 +1,22 @@
+<div class="major-teacher">
+    <div class="major-box">
+        {% for teacher in teachers %}
+        <div {% if forloop.first %}class="first"{% endif %}>
+            <a href="{% url 'course:course_detail' short_name %}"><img src="{{ MEDIA_URL }}{{ teacher.avatar_url }}" alt="{{ teacher.nick_name }}"/></a>
+            <div class="major-desc">
+                <h3><a href="{% url 'course:course_detail' short_name %}"><span>{{ teacher.nick_name }}</span></a> {{ teacher.position }}</h3>
+                <p>{{ teacher.description }}</p>
+                <a href="{% url 'course:course_detail' short_name %}" target="_blank">立刻了解→</a>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+    <ul class="major-nav">
+        {% for teacher in teachers %}
+        <li {% if forloop.first %}class="first active"{% endif %}>
+            <img src="{{ MEDIA_URL }}{{ teacher.avatar_url }}" alt="{{ teacher.nick_name }}"><i></i>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

@@ -1,0 +1,1194 @@
+{% extends "mz_common/global.html" %} {% block title %}UI设计培训 - UI界面设计培训- UI界面设计训课程 - 麦子学院{% endblock %}
+{% block keywords %}UI设计,UI设计培训,UI界面设计,UI培训课程,UI设计学习,UI设计师{% endblock %}
+{% block description %}
+    麦子学院,专业UI界面设计培训机构,提供史上最靠谱的UI设计培训课程,定制化UI设计学习路线,名师1对1指导,通过通俗易懂的讲解,丰富有趣的实战,轻松学习UI界面设计,升级为实力派UI界面设计师。{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/css/mz_ad/ui-css/reset.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mz_ad/ui-css/swiper.min.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mz_ad/ui-css/animate.min.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mz_ad/ui-css/style.css?v={{ time_stamp }}">
+    <link rel="stylesheet" href="/static/css/mz_ad/common.css?v={{ time_stamp }}">
+{% endblock %} {% block csstype %}ui{% endblock %}
+{% block container %} {% include 'header/index_header.html' %}
+    <script type="text/javascript" src="/static/js/mz_ad/ui-js/jquery-1.7.2.min.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/static/js/mz_ad/ui-js/global2.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/static/js/mz_ad/ui-js/wow.min.js?v={{ time_stamp }}"></script>
+
+
+    <script>
+        new WOW().init();
+        $(document).ready(function () {
+            $(".side ul li").hover(function () {
+                $(this).find(".sidebox").stop().animate({"width": "124px"}, 200).css({
+                    "opacity": "1",
+                    "filter": "Alpha(opacity=100)"
+                });
+            }, function () {
+                $(this).find(".sidebox").stop().animate({"width": "44px"}, 200).css({
+                    "opacity": "0.8",
+                    "filter": "Alpha(opacity=80)"
+                })
+            });
+        });
+
+
+        $(function () {
+            $("img.c").click(function () {
+                $(".gz-emw").hide();
+            })
+            $("span.wxgz").click(function () {
+                $(".gz-emw").show();
+            })
+            $(".nav-tab a").click(function () {
+                $('html,body').animate({scrollTop: '710' + 'px'}, 0);
+            })
+
+            $(".page3 a.btn-dg").click(function () {
+                $("#t_one2").addClass("cur");
+                $("#t_one1").removeClass("cur");
+                $("#t_one_con2").show();
+                $("#t_one_con1").hide();
+                $('html,body').animate({scrollTop: '710' + 'px'}, 0);
+            })
+
+        })
+
+        $(window).scroll(function () {
+            var sctop = 0;
+
+            if (document.documentElement && document.documentElement.scrollTop)
+                sctop = document.documentElement.scrollTop;
+            else if (document.body)
+                sctop = document.body.scrollTop;
+            if (sctop > 1545) {
+                $(".sidetop").css("display", "block");
+            }
+            else {
+                $(".sidetop").css("display", "none");
+            }
+            if (sctop > 710) {
+                $(".nav-tab").addClass("nav-ftab")
+            }
+            else {
+                $(".nav-tab").removeClass("nav-ftab")
+            }
+        })
+
+        var _vds = _vds || [];
+        window._vds = _vds;
+        (function () {
+            _vds.push(['setAccountId', 'e896811fa91b4cd990a44509f88f5d41']);
+            (function () {
+                var vds = document.createElement('script');
+                vds.type = 'text/javascript';
+                vds.async = true;
+                vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(vds, s);
+            })();
+        })();
+
+
+        $(function () {
+            //点击弹出客服，添加.more
+            $('.more').unbind().click(function () {
+                $('#KFLOGO .Lelem').eq(0).trigger('click');
+            });
+            //显示客服
+            function showtips() {
+                $(".kftips").fadeIn();
+            }
+
+            setTimeout(function () {
+                showtips();
+            }, 10000);
+        })
+    </script>
+    <!--[if IE 6]>
+<script src="/static/js/mz_ad/ui-js/pngfix.js" language="javascript"></script>
+<![endif]-->
+    <div id="tab">
+        <ul>
+            <li><a href="/land/pm/" alt="产品经理">产品经理</a></li>
+            <li class="active"><span>UI设计</span></li>
+            <li><a href="/land/web/" alt="Web前端">Web前端</a></li>
+            <li><a href="/land/python/" alt="Python Web开发">Python Web开发</a></li>
+            <li><a href="/land/op/" alt="新媒体网络运营">新媒体网络运营</a></li>
+        </ul>
+    </div>
+    <div class="banner">
+        <div class="bannerin">
+            <a href="https://www.maiziedu.com" target="_blank"><img src="/static/images/mz_ad/ui-images/logo.png" alt=""
+                                                                    class="logo"></a>
+
+            <img src="/static/images/mz_ad/ui-images/banner-t1.png" alt="" class="txt1">
+
+            <div class="btn-zx"><a class="more" href="javascript:" onclick="_MEIQIA('showPanel')">立即报名</a><a class="more" href="javascript:"  onclick="_MEIQIA('showPanel')">在线咨询</a>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function setTab(name, num, n) {
+            for (i = 1; i <= n; i++) {
+                var menu = document.getElementById(name + i);
+                var con = document.getElementById(name + "_" + "con" + i);
+                menu.className = i == num ? "cur" : "";
+                con.style.display = i == num ? "block" : "none";
+            }
+        }
+    </script>
+    <div class="nav-tab">
+        <a id="t_one1" onclick="setTab('t_one',1,2)" class="cur" href="javascript:">课程介绍<i></i></a><a id="t_one2"
+                                                                                                      onclick="setTab('t_one',2,2)"
+                                                                                                      href="javascript:">课程大纲<i></i></a>
+    </div>
+    <div id="t_one_con1">
+        <div class="page1 page-js">
+            <h2>我们拒绝培养只会PS的UI设计师！</h2>
+            <p class="js">没有设计思维、不懂视觉创意、只会图形拼凑配合执行工作…这就是目前UI设计培训的现状。<br/>我们认为真正的UI设计师应该是用设计思维来规划产品形态、推动项目进程、实现产品价值的人。
+            </p>
+            <ul class="teck-list">
+                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay=".5s">
+                    <img src="/static/images/mz_ad/ui-images/teck01.png" alt="" class="teckpic">
+                    <div class="tips-txt tips-t1">平面设计师</div>
+                    <p>印刷流程<br/>广告设计<br/>VI设计</p>
+                </li>
+                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                    <i class="line"></i>
+                    <img src="/static/images/mz_ad/ui-images/teck02.png" alt="" class="teckpic">
+                    <div class="tips-txt tips-t2">网页设计师</div>
+                    <p>网页页面设计<br/>Html+css前端<br/>网站页面升级</p>
+                </li>
+                <li class="wow fadeIn cur" data-wow-duration="1s" data-wow-delay="1.5s">
+                    <i class="line"></i>
+                    <img src="/static/images/mz_ad/ui-images/teck03.png" alt="" class="teckpic">
+                    <div class="tips-txt tips-t3">UI/UE设计师</div>
+                    <p>视觉营销创意设计<br/>人机交互设计原则<br/>UI设计交互与流程</p>
+                </li>
+                <li class="wow fadeIn" data-wow-duration="1s" data-wow-delay="2s">
+                    <i class="line"></i>
+                    <img src="/static/images/mz_ad/ui-images/teck04.png" alt="" class="teckpic">
+                    <div class="tips-txt tips-t4">设计总监</div>
+                    <p>项目把控能力<br/>视觉战略定位<br/>产品价值实现</p>
+                </li>
+            </ul>
+            <h3 class="t2">麦子学院只培养相当于<b>两年以上</b>工作经验的UI设计师！</h3>
+            <a href="javascript:" class="zx-btn more"  onclick="_MEIQIA('showPanel')">我能成为UI设计师吗？</a>
+        </div>
+        <div class="page10">
+            <h3 class="t3">「 麦子学院如何保证学习效果？ 」</h3>
+            <ul class="xg-list">
+                <li>
+                    <div class="icon i1">
+                        <i class="iscion"></i>
+                    </div>
+                    <h4>线上视频</h4>
+                    <h5>700课时+</h5>
+                </li>
+                <li>
+                    <div class="icon i2">
+                        <i class="iscion"></i>
+                    </div>
+                    <h4>一对一指导</h4>
+                    <h5>随时指导</h5>
+                </li>
+                <li>
+                    <div class="icon i3">
+                        <i class="iscion"></i>
+                    </div>
+                    <h4>金牌讲师答疑</h4>
+                    <h5>随时答疑</h5>
+                </li>
+                <li>
+                    <div class="icon i4">
+                        <i class="iscion"></i>
+                    </div>
+                    <h4>高薪就业</h4>
+                    <h5>满意为止</h5>
+                </li>
+            </ul>
+            <div class="v1 clearfix">
+                <img src="/static/images/mz_ad/ui-images/lps-quan.png" alt="" class="quan">
+                <div class="play01 play-b1">
+                    <img src="/static/images/mz_ad/ui-images/video-1.jpg" alt="" class="p">
+                    <img src="/static/images/mz_ad/ui-images/play-btn.png" alt="" class="play-btn">
+                    <div class="p-txt">快速认识麦子学院</div>
+                </div>
+                <div class="vinfo">
+                    <h4 class="vtitle">强大的LPS4.0学习过程管理系统</h4>
+                    <h5 class="sitle s1">学习过程任务制管理</h5>
+                    <h5 class="sitle s2">学习效果监测实施调整进度</h5>
+                    <h5 class="sitle s3">学员1V1约课模式</h5>
+                    <h5 class="sitle s4">无缝对接1000+互联网企业</h5>
+                    <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">什么是LPS?</a>
+                </div>
+            </div>
+        </div>
+        <div class="page2">
+            <h1 class="title">「 十年总监级大牛，手把手教你做UI设计！ 」</h1>
+            <div class="dn-pic">
+                <em class="q1"></em>
+                <em class="q2"></em>
+                <em class="q3"></em>
+                <div class="slidebox" id="yixing">
+                    <ul class="box-ul-slide">
+                        <li class="denghou">
+                            <img src="/static/images/mz_ad/ui-images/techer02.png"/>
+                            <div class="txtbox-slide">
+                                <h3 class="slide-txt"><b>邢天博</b>&nbsp;&nbsp;&nbsp;&nbsp;7年UI设计经验</h3>
+                                <h4 class="detail-txt-h4">
+                                    前百度UI资深设计师,凭借17年的美术功底，在美术设计领域，曾获取各类竞赛奖项达47次，曾在多家品牌营销公司、4A设计公司任职美术指导及设计总监。</h4>
+                            </div>
+                        </li>
+                        <li class="denghou">
+                            <img src="/static/images/mz_ad/ui-images/techer03.png"/>
+                            <div class="txtbox-slide">
+                                <h3 class="slide-txt"><b>刘昊琛</b>&nbsp;&nbsp;&nbsp;&nbsp;资深UI设计师</h3>
+                                <h4 class="detail-txt-h4">日本动漫《火影忍者》
+                                    设计主创之一,毕业于日本九州产业大学，专注移动产品及智能交互终端的UI设计；曾参与多个知名企业的大型平台项目的视觉设计、多款企业内部产品的APP设计等。</h4>
+                            </div>
+                        </li>
+                        <li class="no0">
+                            <img src="/static/images/mz_ad/ui-images/techer01.png"/>
+                            <div class="txtbox-slide">
+                                <h3 class="slide-txt"><b>马&nbsp;&nbsp;青</b>&nbsp;&nbsp;&nbsp;&nbsp;资深画师，概念设计师</h3>
+                                <h4 class="detail-txt-h4">
+                                    前腾讯TgameUI设计师索尼首席UI设计师参与过多款娱乐产品的的方案界面设计及APP界面设计，熟悉项目开发交互流程，有着丰富的UI设计和培训经验。
+                                    擅长界面设计、概念设计及传统美术绘画，作品多次发表于国内权威杂志《美术》和《中国版画年鉴》。</h4>
+                            </div>
+                        </li>
+                        <li class="no1">
+                            <img src="/static/images/mz_ad/ui-images/techer02.png"/>
+                            <div class="txtbox-slide">
+                                <h3 class="slide-txt"><b>邢天博</b>&nbsp;&nbsp;&nbsp;&nbsp;7年UI设计经验</h3>
+                                <h4 class="detail-txt-h4">
+                                    前百度UI资深设计师,凭借17年的美术功底，在美术设计领域，曾获取各类竞赛奖项达47次，曾在多家品牌营销公司、4A设计公司任职美术指导及设计总监。</h4>
+                            </div>
+                        </li>
+                        <li class="no2">
+                            <img src="/static/images/mz_ad/ui-images/techer03.png"/>
+                            <div class="txtbox-slide">
+                                <h3 class="slide-txt"><b>刘昊琛</b>&nbsp;&nbsp;&nbsp;&nbsp;资深UI设计师</h3>
+                                <h4 class="detail-txt-h4">日本动漫《火影忍者》
+                                    设计主创之一,毕业于日本九州产业大学，专注移动产品及智能交互终端的UI设计；曾参与多个知名企业的大型平台项目的视觉设计、多款企业内部产品的APP设计等。</h4>
+                            </div>
+                        </li>
+                        <li class="no3">
+                            <img src="/static/images/mz_ad/ui-images/techer01.png"/>
+                            <div class="txtbox-slide">
+                                <h3 class="slide-txt"><b>马&nbsp;&nbsp;青</b>&nbsp;&nbsp;&nbsp;&nbsp;资深画师，概念设计师</h3>
+                                <h4 class="detail-txt-h4">
+                                    前腾讯TgameUI设计师索尼首席UI设计师参与过多款娱乐产品的的方案界面设计及APP界面设计，熟悉项目开发交互流程，有着丰富的UI设计和培训经验。
+                                    擅长界面设计、概念设计及传统美术绘画，作品多次发表于国内权威杂志《美术》和《中国版画年鉴》。</h4>
+                            </div>
+                        </li>
+                        <li class="no4">
+                            <img src="/static/images/mz_ad/ui-images/techer02.png"/>
+                            <div class="txtbox-slide">
+                                <h3 class="slide-txt"><b>邢天博</b>&nbsp;&nbsp;&nbsp;&nbsp;7年UI设计经验</h3>
+                                <h4 class="detail-txt-h4">
+                                    前百度UI资深设计师,凭借17年的美术功底，在美术设计领域，曾获取各类竞赛奖项达47次，曾在多家品牌营销公司、4A设计公司任职美术指导及设计总监。</h4>
+                            </div>
+                        </li>
+                        <li class="no5">
+                            <img src="/static/images/mz_ad/ui-images/techer03.png"/>
+                            <div class="txtbox-slide">
+                                <h3 class="slide-txt"><b>刘昊琛</b>&nbsp;&nbsp;&nbsp;&nbsp;资深UI设计师</h3>
+                                <h4 class="detail-txt-h4">日本动漫《火影忍者》
+                                    设计主创之一,毕业于日本九州产业大学，专注移动产品及智能交互终端的UI设计；曾参与多个知名企业的大型平台项目的视觉设计、多款企业内部产品的APP设计等。</h4>
+                            </div>
+                        </li>
+                        <li class="no6">
+                            <img src="/static/images/mz_ad/ui-images/techer01.png"/>
+                            <div class="txtbox-slide">
+                                <h3 class="slide-txt"><b>马&nbsp;&nbsp;青</b>&nbsp;&nbsp;&nbsp;&nbsp;资深画师，概念设计师</h3>
+                                <h4 class="detail-txt-h4">
+                                    前腾讯TgameUI设计师索尼首席UI设计师参与过多款娱乐产品的的方案界面设计及APP界面设计，熟悉项目开发交互流程，有着丰富的UI设计和培训经验。
+                                    擅长界面设计、概念设计及传统美术绘画，作品多次发表于国内权威杂志《美术》和《中国版画年鉴》。</h4>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="anniu">
+                        <span class="zuoanniu"></span>
+                        <span class="youanniu"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-more">
+                <a href="javascript:" class="lbtn more" onclick="_MEIQIA('showPanel')">跟老师聊聊</a>
+                <a href="javascript:" class="rbtn more" onclick="_MEIQIA('showPanel')">获得老师电话指导</a>
+            </div>
+        </div>
+        <div class="page3">
+            <h2 class="title">学习路线规划</h2>
+            <ul class="jieduan">
+                <div class="quan lq">
+                    <h3>0</h3>
+                    <h5>基础</h5>
+                </div>
+                <div class="quan rq">
+                    <h3 style="font-size:20px;">UI</h3>
+                    <h5>设计师</h5>
+                </div>
+                <li class="lv1 wow fadeIn" data-wow-duration="1s" data-wow-delay=".5s">
+                    <div class="item-title">第一阶段</div>
+                    <div class="item-name">视觉设计基础</div>
+                    <img src="/static/images/mz_ad/ui-images/quan-icon.png" alt="" class="quan-icon">
+                    <div class="quan-line"></div>
+                    <i class="sq"></i>
+                </li>
+                <li class="lv2 wow fadeIn" data-wow-duration="1s" data-wow-delay="1s">
+                    <div class="item-title">第二阶段</div>
+                    <div class="item-name">UI设计师入门</div>
+                    <img src="/static/images/mz_ad/ui-images/quan-icon.png" alt="" class="quan-icon">
+                    <div class="quan-line"></div>
+                    <i class="sq"></i>
+                </li>
+                <li class="lv3 wow fadeIn" data-wow-duration="1s" data-wow-delay="1.5s">
+                    <div class="item-title">第三阶段</div>
+                    <div class="item-name">多平台界面设计</div>
+                    <img src="/static/images/mz_ad/ui-images/quan-icon.png" alt="" class="quan-icon">
+                    <div class="quan-line"></div>
+                    <i class="sq"></i>
+                </li>
+                <li class="lv4 wow fadeIn" data-wow-duration="1s" data-wow-delay="2s">
+                    <div class="item-title">第四阶段</div>
+                    <div class="item-name">交互设计思维</div>
+                    <img src="/static/images/mz_ad/ui-images/quan-icon.png" alt="" class="quan-icon">
+                    <div class="quan-line"></div>
+                    <i class="sq"></i>
+                </li>
+                <li class="lv5 wow fadeIn" data-wow-duration="1s" data-wow-delay="2.5s">
+                    <div class="item-title">第五阶段</div>
+                    <div class="item-name">动效设计及项目实战</div>
+                    <img src="/static/images/mz_ad/ui-images/quan-icon.png" alt="" class="quan-icon">
+                    <div class="quan-line"></div>
+                    <i class="sq"></i>
+                </li>
+            </ul>
+            <a href="javascript:" class="btn-dg">查看课程大纲</a>
+        </div>
+        <div class="page4">
+            <div class="fuwuin">
+                <h3 class="title">「 强大的就业服务体系 」</h3>
+                <div class="v2">
+                    <div class="t1">
+                        <img src="/static/images/mz_ad/ui-images/fuwu-yq.png" alt="" class="p">
+                        <p>麦子学院携手<em>linkedin、拉勾、智联招聘、猎聘</em>等一线招聘平台，实现实习就业权威保障！</p></div>
+                    <div class="play">
+                        <div class="play01 play-b2">
+                            <img src="/static/images/mz_ad/ui-images/video-2.jpg" alt="" class="p">
+                            <img src="/static/images/mz_ad/ui-images/play-btn.png" alt="" class="play-btn">
+                            <div class="p-txt">麦子学院就业合作</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="rxxy">
+                    <h3 class="txt">入学即签订<b>100%保就业服务协议</b><br/>不就业全额退款！</h3>
+                    <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">咨询保就业服务</a>
+                </div>
+            </div>
+        </div>
+        <div class="page5">
+            <div class="mx-show">
+                <h1 class="mtitle">他们已经实现了自己的设计梦，你呢？</h1>
+                <div class="info">
+                    <div class="stu s1">
+                        <img src="/static/images/mz_ad/ui-images/s1.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">王兴</h5>
+                            <h5 class="t2">入职携程旅游<br/>月薪12K</h5>
+                        </div>
+                        <div class="fif75">携程旅游</div>
+                    </div>
+                    <div class="stu s2">
+                        <img src="/static/images/mz_ad/ui-images/s2.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">崔月</h5>
+                            <h5 class="t2">入职果壳网<br/>月薪12K</h5>
+                        </div>
+                        <div class="fif75">果壳网</div>
+                    </div>
+                    <div class="stu s3">
+                        <img src="/static/images/mz_ad/ui-images/s3.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">唐中良</h5>
+                            <h5 class="t2">入职迅雷<br/>月薪11K</h5>
+                        </div>
+                        <div class="fif75">迅雷</div>
+                    </div>
+                    <div class="stu s4">
+                        <img src="/static/images/mz_ad/ui-images/s4.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">李静</h5>
+                            <h5 class="t2">入职春雨医生<br/>月薪10K</h5>
+                        </div>
+                        <div class="fif75">春雨医生</div>
+                    </div>
+                    <div class="stu s5">
+                        <img src="/static/images/mz_ad/ui-images/s5.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">陆兰勤</h5>
+                            <h5 class="t2">入职饿了么<br/>月薪9K</h5>
+                        </div>
+                        <div class="fif75">饿了么</div>
+                    </div>
+                    <div class="stu s6">
+                        <img src="/static/images/mz_ad/ui-images/s6.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">洪立欢</h5>
+                            <h5 class="t2">入职卷皮网<br/>月薪9K</h5>
+                        </div>
+                        <div class="fif75">卷皮网</div>
+                    </div>
+                    <div class="stu s7">
+                        <img src="/static/images/mz_ad/ui-images/s7.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">苗英杰</h5>
+                            <h5 class="t2">入职聚美优品<br/>月薪9K</h5>
+                        </div>
+                        <div class="fif75">聚美优品</div>
+                    </div>
+                    <div class="stu s8">
+                        <img src="/static/images/mz_ad/ui-images/s8.jpg" alt="">
+                        <div class="fif">
+                            <h5 class="t1">柯小兴</h5>
+                            <h5 class="t2">入职长虹电器<br/>月薪8K</h5>
+                        </div>
+                        <div class="fif75">长虹电器</div>
+                    </div>
+                </div>
+            </div>
+            <a href="javascript:" class="zx-btn more"  onclick="_MEIQIA('showPanel')">了解定向就业计划</a>
+        </div>
+        <div class="page6">
+            <h2 class="title">一千个选择麦子学院的理由，我们帮你想清楚了！</h2>
+            <ul class="jxly">
+                <li class="bt wow fadeIn animated" data-wow-delay="0.5s" data-wow-duration="1s">
+                    <div class="title">
+                        <span class="txt ltxt">麦子学院</span>
+                        <span class="txt rtxt">线下培训</span>
+                    </div>
+                </li>
+                <li class="wow fadeIn animated" data-wow-delay="1s" data-wow-duration="1s">
+                    <div class="title">
+                        <span class="txt ltxt">不到线下的1/3</span>
+                        <i class="point pl"></i>
+                        <i class="line lleft"></i>
+                        <img src="/static/images/mz_ad/ui-images/jxly-icon01.png" alt="" class="icon">费 用
+                        <i class="line lright"></i>
+                        <i class="point pr"></i>
+                        <span class="txt rtxt">2-3W</span>
+                    </div>
+                </li>
+                <li class="wow fadeIn animated" data-wow-delay="1.5s" data-wow-duration="1s">
+                    <div class="title">
+                        <span class="txt ltxt">随时随地，想学就学</span>
+                        <i class="point pl"></i>
+                        <i class="line lleft"></i>
+                        <img src="/static/images/mz_ad/ui-images/jxly-icon02.png" alt="" class="icon">时 间
+                        <i class="line lright"></i>
+                        <i class="point pr"></i>
+                        <span class="txt rtxt">时间固定，舟车劳顿</span>
+                    </div>
+                </li>
+                <li class="wow fadeIn animated" data-wow-delay="2s" data-wow-duration="1s">
+                    <div class="title">
+                        <span class="txt ltxt">1对1教学，名师答疑辅导，反复学习</span>
+                        <i class="point pl"></i>
+                        <i class="line lleft"></i>
+                        <img src="/static/images/mz_ad/ui-images/jxly-icon03.png" alt="" class="icon">模 式
+                        <i class="line lright"></i>
+                        <i class="point pr"></i>
+                        <span class="txt rtxt">大班教学，不能反复学习，无人答疑</span>
+                    </div>
+                </li>
+                <li class="wow fadeIn animated" data-wow-delay="2.5s" data-wow-duration="1s">
+                    <div class="title">
+                        <span class="txt ltxt">智能学习，签订协议保就业，不就业全退</span>
+                        <i class="point pl"></i>
+                        <i class="line lleft"></i>
+                        <img src="/static/images/mz_ad/ui-images/jxly-icon04.png" alt="" class="icon">效 果
+                        <i class="line lright"></i>
+                        <i class="point pr"></i>
+                        <span class="txt rtxt">传统教学，理论主导，无就业指导</span>
+                    </div>
+                </li>
+            </ul>
+            <h3 class="stitle"><b>我们用科技+互联改变教育的模式</b>，只为让你成为一名真正的UI设计师</h3>
+            <div class="v3">
+                <div class="play01 play-b3">
+                    <img src="/static/images/mz_ad/ui-images/video-3.jpg" alt="" class="p">
+                    <img src="/static/images/mz_ad/ui-images/play-btn.png" alt="" class="play-btn">
+                    <div class="p-txt">麦子学院金牌讲师访谈</div>
+                </div>
+            </div>
+        </div>
+        <div class="page8-back">
+            <h3 class="title">麦子学院学员可通过CEAC权威认证，获得CEAC网站设计专家证书，通过率达到100%</h3>
+            <img src="/static/images/mz_ad/ui-images/page8-p1.png" alt="" class="p1">
+            <div class="ptxt">
+                <a href="javascript:" class="more"  onclick="_MEIQIA('showPanel')" ><i class="icon icon01"></i>CEAC官方授权机构</a>
+                <a href="javascript:" class="more"  onclick="_MEIQIA('showPanel')"><i class="icon icon02"></i>Adobe认证讲师亲授课程</a>
+                <a href="javascript:" class="more"  onclick="_MEIQIA('showPanel')"><i class="icon icon03"></i>CEAC官方认证考试</a>
+            </div>
+        </div>
+        <div class="page11">
+            <h3>媒体报道</h3>
+            <div class="mt-list">
+                <a href="http://36kr.com/p/5039661.html" target="_blank"><img
+                        src="/static/images/mz_ad/ui-images/mt01.png" alt=""></a>
+                <a href="http://science.china.com.cn/2016-03/17/content_8645350.htm" target="_blank"><img
+                        src="/static/images/mz_ad/ui-images/mt02.png" alt=""></a>
+                <a href="http://tech.sina.com.cn/i/2015-11-13/doc-ifxkszhk0231260.shtml" target="_blank"><img
+                        src="/static/images/mz_ad/ui-images/mt03.png" alt=""></a>
+                <a href="http://edu.qq.com/a/20151201/056651.htm" target="_blank"><img
+                        src="/static/images/mz_ad/ui-images/mt04.png" alt=""></a>
+                <a href="http://e.gmw.cn/2015-12/31/content_18319177.htm" target="_blank"><img
+                        src="/static/images/mz_ad/ui-images/mt05.png" alt=""></a>
+                <a href="http://news.ifeng.com/a/20151126/46403469_0.shtml" target="_blank"><img
+                        src="/static/images/mz_ad/ui-images/mt06.png" alt=""></a>
+            </div>
+        </div>
+        <div class="page12">
+            <div class="page12in">
+                <div class="mt-list mt-list5">
+                    <h3 class="title">合作企业</h3>
+                    <a href="http://study.163.com/u/microoh" target="_blank"><img
+                            src="/static/images/mz_ad/ui-images/hz01.png" alt=""></a>
+                    <a href="http://www.chuanke.com/s1266915.html" target="_blank"><img
+                            src="/static/images/mz_ad/ui-images/hz02.png" alt=""></a>
+                    <a href="http://www.iqiyi.com/u/2255633949" target="_blank"><img
+                            src="/static/images/mz_ad/ui-images/hz03.png" alt=""></a>
+                    <a href="https://www.aliyun.com/" target="_blank"><img src="/static/images/mz_ad/ui-images/hz04.png"
+                                                                           alt=""></a>
+                    <a href="http://maiziedu.ke.qq.com/" target="_blank"><img
+                            src="/static/images/mz_ad/ui-images/hz05.png" alt=""></a>
+                    <a href="http://www.miguxue.com/p/search_list.jsp?keyWord=%E9%BA%A6%E5%AD%90%E5%AD%A6%E9%99%A2"
+                       target="_blank"><img src="/static/images/mz_ad/ui-images/hz06.png" alt=""></a>
+                </div>
+                <div class="mt-list mt-list5">
+                    <h3 class="title">合作院校</h3>
+                    <a href="http://www.suse.edu.cn/" target="_blank"><img src="/static/images/mz_ad/op-images/yx01.png"
+                                                                           alt=""></a>
+                    <a href="http://www.scu.edu.cn/" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx02.png" alt=""></a>
+                    <a href="http://www.cdut.edu.cn/default.html" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx03.png" alt=""></a>
+                    <a href="http://www.uestc.edu.cn/" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx04.png" alt=""></a>
+                    <a href="http://www.sicnu.edu.cn/" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx05.png" alt=""></a>
+                    <a href="http://www.swust.edu.cn/" target="_blank"><img
+                            src="/static/images/mz_ad/op-images/yx06.png" alt=""></a>
+                </div>
+            </div>
+        </div>
+        <div class="page13">
+            <h3>获得奖项</h3>
+            <div class="jx-list">
+                <img src="/static/images/mz_ad/ui-images/jx01.jpg" alt="">
+                <img src="/static/images/mz_ad/ui-images/jx02.jpg" alt="">
+                <img src="/static/images/mz_ad/ui-images/jx03.jpg" alt="">
+                <img src="/static/images/mz_ad/ui-images/jx04.jpg" alt="">
+                <img src="/static/images/mz_ad/ui-images/jx05.jpg" alt="">
+                <img src="/static/images/mz_ad/ui-images/jx06.jpg" alt="">
+            </div>
+        </div>
+        <div class="page7">
+            <h3 class="title">他们跟我们一起见证！</h3>
+            <div class="swiper-container">
+                <a href="javascript:" class="swiper-button-next"></a>
+                <a href="javascript:" class="swiper-button-prev"></a>
+                <ul class="swiper-wrapper swiper-list">
+                    <li class="swiper-slide">
+                        <img src="/static/images/mz_ad/ui-images/360-icon.png" alt="" class="logo"/>
+                        <p class="info"><img class="ltips" src="/static/images/mz_ad/ui-images/jytips01.png" alt="">智能化、数据化的学习过程监控，领先创新的LPS在线教育模式，高效可靠的商业项目训练，为社会培养1万+的高技能IT人才，我们会同与麦子学院一道，以IT技术服务为核心服务更多的企业和个人。<img
+                                class="rtips" src="/static/images/mz_ad/ui-images/jytips02.png" alt=""></p>
+                        <p class="txt"> —— 徐旭升 · 360教育总监</p>
+                    </li>
+                    <li class="swiper-slide">
+                        <img src="/static/images/mz_ad/ui-images/baidu-icon.png" alt="" class="logo"/>
+                        <p class="info"><img class="ltips" src="/static/images/mz_ad/ui-images/jytips01.png" alt="">大数据显示，麦子学院是国内就业率最高的IT在线教育机构，我们很期待麦子学院的定制化就业学习模式，比如我想入职百度做UI，那么百度可以和麦子学院合作推出一套认证机制：某学员在麦子学院的学习数据达到某个标准，就可以直接入职百度的对应岗位实习。
+                            <img class="rtips" src="/static/images/mz_ad/ui-images/jytips02.png" alt=""></p>
+                        <p class="txt"> —— 陈月 · 百度总监</p>
+                    </li>
+                    <li class="swiper-slide">
+                        <img src="/static/images/mz_ad/ui-images/aliyun-icon.png" alt="" class="logo"/>
+                        <p class="info"><img class="ltips" src="/static/images/mz_ad/ui-images/jytips01.png" alt="">麦子学院是IT在线教育的创领者，我们希望有更多像麦子一样的教育培训机构，将学习和就业效果做到极致。
+                            <img class="rtips" src="/static/images/mz_ad/ui-images/jytips02.png" alt=""></p>
+                        <p class="txt">——王晓裴 · 阿里云教育创业部总监</p>
+                    </li>
+                </ul>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="page8">
+            <h2 class="title">你准备好成为一名真正的UI设计师了吗？</h2>
+            <div class="zx-info">
+                <div class="pay-zx">
+                    <h1 class="t0">就业班</h1>
+                    <h2 class="t1">全款优惠<br/>支持分期付款</h2>
+                    <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">立即报名 &gt;</a>
+                </div>
+                <div class="pay-or"><img src="/static/images/mz_ad/ui-images/pay-zxor.png" alt=""></div>
+                <div class="pay-zx">
+                    <h1 class="t0">非就业班</h1>
+                    <h2 class="t1">无需就业服务<br/>支持分期付款</h2>
+                    <a href="javascript:" class="zx-btn more" onclick="_MEIQIA('showPanel')">立即报名 &gt;</a>
+                </div>
+            </div>
+        </div>
+        <div class="page9">
+            我想再更加深入的了解一下学习模式、费用、周期等细节问题
+            <a href="javascript:" class="zx-btn more"  onclick="_MEIQIA('showPanel')">咨询专业顾问</a>
+        </div>
+
+    </div>
+
+    <div class="page1 page-kc" id="t_one_con2" style="display:none;">
+        <img src="/static/images/mz_ad/ui-images/page-t01.png" alt="" class="t1">
+        <ul class="page-js-list">
+            <li>
+                <img src="/static/images/mz_ad/ui-images/sitle1.png" class="sitle" alt="">
+                <h4>视觉设计基础篇</h4>
+                <p>掌握UI设计工具的使用后，通过学习素描光影关系、色彩原理与搭配及构图原理，打好成为UI设计师的美术造型基础和树立色彩审美意识，并能利用色彩原理进行相关案例设计与制作。</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info wow">
+                <div class="kinfo">
+                    <div class="klist">
+                        <h6>Photoshop应用</h6>
+                        <ol class="list-item">
+                            <li>· 控制面板</li>
+                            <li>· 图像编辑</li>
+                            <li>· 图像合成</li>
+                            <li>· 校色调色</li>
+                            <li>· 功能色效</li>
+                            <li>· 色彩设定</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>Illustrator应用</h6>
+                        <ol class="list-item">
+                            <li>· 描边绘图</li>
+                            <li>· 上色</li>
+                            <li>· 艺术画笔</li>
+                            <li>· 矢量图形处理功能</li>
+                            <li>· 贝赛尔曲线的使用</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>素描光影关系</h6>
+                        <ol class="list-item">
+                            <li>· 黑－白－灰</li>
+                            <li>· 光源及高光</li>
+                            <li>· 亮面及暗面</li>
+                            <li>· 明暗交界线</li>
+                            <li>· 光照射物体的明暗变化</li>
+                            <li>· 反光</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>色彩原理与搭配</h6>
+                        <ol class="list-item">
+                            <li>· 光色原理</li>
+                            <li>· 三原色</li>
+                            <li>· 光的反射</li>
+                            <li>· 光源色</li>
+                            <li>· 物体色</li>
+                            <li>· 暗面和固有色</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>构图原理</h6>
+                        <ol class="list-item">
+                            <li>· 构图的基本法则</li>
+                            <li>· 水平式</li>
+                            <li>· 垂直式及S形</li>
+                            <li>· 三角形及圆形</li>
+                            <li>· 长方形</li>
+                            <li>· 西方构图</li>
+                        </ol>
+                    </div>
+
+                </div>
+
+                <a href="javascript:" class="more-btn more" onclick="_MEIQIA('showPanel')">咨询老师</a>
+            </div>
+        </ul>
+
+
+        <ul class="page-js-list">
+            <li>
+                <img src="/static/images/mz_ad/ui-images/sitle2.png" class="sitle" alt="">
+                <h4>UI设计师入门篇</h4>
+                <p>树立设计师意识，了解UI发展规律及就业前景，并通过本阶段的学习能独立完成图标作品设计、平面作品设计及手绘作品设计等。</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info wow">
+                <div class="kinfo">
+
+                    <div class="klist">
+                        <h6>UI简述</h6>
+                        <ol class="list-item">
+                            <li>· UI的工作内容</li>
+                            <li>· UI设计师的职责</li>
+                            <li>· 从事UI行业的人群</li>
+                            <li>· 执行命令</li>
+                            <li style="width:97%;">· UI设计师在工作中扮演的角色</li>
+
+
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>设计美术</h6>
+                        <ol class="list-item">
+                            <li>· 设计色彩</li>
+                            <li>· 设计构成</li>
+                            <li>· 设计手绘</li>
+                            <li>· 美术基础提升</li>
+                            <li>· 项目实战</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>图标设计</h6>
+                        <ol class="list-item">
+                            <li>· 剪影图标实训</li>
+                            <li>· 扁平图标实训</li>
+                            <li>· 拟真图标实训</li>
+                            <li>· 卡通图标风格实训</li>
+                            <li>· 复古图标风格实训</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>现代UI设计</h6>
+                        <ol class="list-item">
+                            <li>· Windows磁片设计</li>
+                            <li>· Google纸片设计</li>
+                            <li>· 声音检测案例剖析</li>
+                            <li>· 扁平化起缘</li>
+                            <li>· 扁平化变革</li>
+                        </ol>
+                    </div>
+
+
+                </div>
+
+                <a href="javascript:" class="more-btn more" onclick="_MEIQIA('showPanel')">咨询老师</a>
+            </div>
+        </ul>
+
+
+        <ul class="page-js-list">
+            <li>
+                <img src="/static/images/mz_ad/ui-images/sitle3.png" class="sitle" alt="">
+                <h4>多平台界面设计篇</h4>
+                <p>基于用户界面设计准则和移动新特征，了解UI设计流程和学习后，能独立完成移动端框架设计和产品界面设计。</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info wow">
+                <div class="kinfo">
+                    <div class="klist">
+                        <h6>移动新特征</h6>
+                        <ol class="list-item">
+                            <li>· 用户基本类型及特征</li>
+                            <li>· 用户隐私及平台差异</li>
+                            <li>· 智能家居与穿戴设备</li>
+                            <li>· 云与应用摄像头</li>
+                            <li>· 硬件交互方式环境</li>
+                            <li>· 响应式Web设计</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>用户界面设计准则</h6>
+                        <ol class="list-item">
+                            <li>· GUI 设计原则</li>
+                            <li>· 同行准则</li>
+                            <li>· WIN设计原则</li>
+                            <li>· IOS设计原则</li>
+                            <li>· UI的问题</li>
+                            <li>· NUI设计原则</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>设计流程</h6>
+                        <ol class="list-item">
+                            <li>· UID与团队合作</li>
+                            <li>· 细节及其建议</li>
+                            <li>· 开始设计</li>
+                            <li>· 后期工作</li>
+                            <li>· 设计流程前期工作</li>
+                        </ol>
+                    </div>
+
+
+                    <div class="klist">
+                        <h6>框架设计</h6>
+                        <ol class="list-item">
+                            <li>· 框架是什么</li>
+                            <li>· 框架与信息</li>
+                            <li>· 手机信息架构</li>
+                            <li>· 深度与广度</li>
+                            <li>· app架构设计</li>
+                            <li>· 导航设计模</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>平台规范</h6>
+                        <ol class="list-item">
+                            <li>· IOS</li>
+                            <li>· IPHONE</li>
+                            <li>· IPAD</li>
+                            <li>· iWATCH</li>
+                            <li>· ANDROID</li>
+                            <li>· WINDOWS PHONE</li>
+                        </ol>
+                    </div>
+
+
+                </div>
+
+                <a href="javascript:" class="more-btn more" onclick="_MEIQIA('showPanel')">咨询老师</a>
+            </div>
+        </ul>
+
+
+        <ul class="page-js-list">
+            <li>
+                <img src="/static/images/mz_ad/ui-images/sitle4.png" class="sitle" alt="">
+                <h4>交互设计思维篇</h4>
+                <p>通过对产品设计思维的掌握和原型图、脑图设计学习后，充分了解用户体验的重要性，学习触摸式设计和界面优化设计，成为一名真正懂交互的UI设计师。</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info wow">
+                <div class="kinfo">
+                    <div class="klist">
+                        <h6>产品设计思维</h6>
+                        <ol class="list-item">
+                            <li>· 设计方法论</li>
+                            <li>· 需求分析</li>
+                            <li>· 产品案例分析</li>
+                            <li>· 设计思维</li>
+                            <li>· 设计逻辑</li>
+                            <li>· 编写需求文档</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>原型纸本</h6>
+                        <ol class="list-item">
+                            <li>· 什么是原型</li>
+                            <li>· 原型的分类及意义</li>
+                            <li>· 线框原型图与手绘</li>
+                            <li>· 纸本手工思考</li>
+                        </ol>
+                    </div>
+
+
+                    <div class="klist">
+                        <h6>用户体验</h6>
+                        <ol class="list-item">
+                            <li>· 什么是用户体验</li>
+                            <li>· 用户体验基本特征</li>
+                            <li>· 用户体验构成要素</li>
+                            <li>· 信息流与任务流</li>
+                            <li>· 如何设计好的用户体验</li>
+                            <li>· 用户体验层次</li>
+                        </ol>
+                    </div>
+
+
+                    <div class="klist">
+                        <h6>触摸式设计</h6>
+                        <ol class="list-item">
+                            <li>· 触摸</li>
+                            <li> · 合理设置操作区</li>
+                            <li>· 拇指操作区</li>
+                            <li>· 触摸式界面设计手法</li>
+                            <li>· 触觉与手势</li>
+                            <li>· 手指特征以内容为主导</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>界面优化设计</h6>
+                        <ol class="list-item">
+                            <li>· 页面布局</li>
+                            <li>· 栅格系统</li>
+                            <li>· 信息扁平化</li>
+                            <li>· 动态数据可视化</li>
+                            <li>· 横竖屏切换设计</li>
+                            <li>· 精细的视差</li>
+                        </ol>
+                    </div>
+
+
+                </div>
+                <a href="javascript:" class="more-btn more"  onclick="_MEIQIA('showPanel')">咨询老师</a>
+
+            </div>
+        </ul>
+
+
+        <ul class="page-js-list">
+            <li>
+                <img src="/static/images/mz_ad/ui-images/sitle5.png" class="sitle" alt="">
+                <h4>Html5学习篇</h4>
+                <p>基于web端知识的学习，在个人能力的基础上进一步提高，并能独立完成PC端及移动端的各种响应式网站制作。</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info wow">
+                <div class="kinfo">
+                    <div class="klist">
+                        <h6>HTML + CSS 实现网页布局</h6>
+                        <ol class="list-item">
+                            <li>· 表单控件</li>
+                            <li>· CSS选择器及属性</li>
+                            <li>· DIV+CSS盒子模型</li>
+                            <li>· 浏览器调试工具</li>
+                            <li>· PC端网页布局</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>Javascript 脚本编程</h6>
+                        <ol class="list-item">
+                            <li>· Javascript简介</li>
+                            <li>· m变量和数据模型</li>
+                            <li>· 表达式和运算符</li>
+                            <li>· 兼容性问题</li>
+                            <li style="width:97%;">·正则表达式及表单验证实战</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>HTML5</h6>
+                        <ol class="list-item">
+
+                            <li>· Html5新标签</li>
+                            <li>· html5新的网页结构</li>
+                            <li>· Html5新特性</li>
+                            <li>· html5新事件</li>
+                            <li style="width:97%;">· Html5+css3的应用前景</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>CSS3及响应式设计</h6>
+                        <ol class="list-item">
+                            <li>· CSS3新增选择器</li>
+                            <li>· CSS3新增动画效果</li>
+                            <li>· media queries响应式</li>
+                            <li>· 兼容性问题</li>
+                            <li>· 移动端响应式网站设计实战/li>
+                        </ol>
+                    </div>
+
+
+                </div>
+
+                <a href="javascript:" class="more-btn more"  onclick="_MEIQIA('showPanel')">咨询老师</a>
+            </div>
+        </ul>
+
+        <ul class="page-js-list">
+            <li>
+                <img src="/static/images/mz_ad/ui-images/sitle6.png" class="sitle" alt="">
+                <h4>动效设计及项目实战</h4>
+                <p>学习AE在UI交互过程中的动态效果设计方法和把握动画节奏。并以实战项目来进阶工作经验，让你快速成长为全能的UI设计师 。</p>
+                <a href="javascript:" class="more-btn">查看详情</a>
+            </li>
+            <div class="kc-info wow">
+                <div class="kinfo">
+                    <div class="klist">
+                        <h6>After Effects应用</h6>
+                        <ol class="list-item">
+                            <li>· 图形视频处理</li>
+                            <li>· 路径功能特技控制</li>
+                            <li>· 多层剪辑</li>
+                            <li>· 关键帧编辑</li>
+                            <li>· 动态效果设计</li>
+                            <li>· 渲染</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>动效提案设计</h6>
+                        <ol class="list-item">
+                            <li>· 动效原则</li>
+                            <li>· 提案方式设计</li>
+                            <li>· 动效设计方法</li>
+                            <li>· 动画节奏把控</li>
+                            <li>· 交互设计提案准备</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>移动UI实战项目</h6>
+                        <ol class="list-item">
+                            <li>· 项目模拟</li>
+                            <li>· 界面设计</li>
+                            <li>· 交互思维</li>
+                            <li>· 项目成品</li>
+                            <li>· 效果图提案展示</li>
+                            <li>· 互联网行业设计规范</li>
+                        </ol>
+                    </div>
+
+                    <div class="klist">
+                        <h6>UI行业项目</h6>
+                        <ol class="list-item">
+                            <li>· 面试技巧</li>
+                            <li>· 简历制作</li>
+                            <li>· 项目材料准备</li>
+                            <li>· 了解公司</li>
+                            <li>· 面试准备</li>
+                        </ol>
+                    </div>
+
+
+                </div>
+
+                <a href="javascript:" class="more-btn more"  onclick="_MEIQIA('showPanel')">咨询老师</a>
+            </div>
+        </ul>
+
+        <div class="question-list">
+            <div class="title">常见问题</div>
+            <dl class="qlist">
+                <dt><em><i></i>什么是“企业直通班“？</em></dt>
+                <dd>
+                    <p>
+                        “企业直通班”是麦子学院的核心产品，通过在线教学提升学生技能，保障就业效果。目前覆盖有UI设计、Android、iOS、Python、产品经理、嵌入式等十余个专业方向。选定专业方向并付费后，即可进入班级。每个班级学生不超过30人，有专业教师和班主任进行教学辅导与监督。全程贯穿项目制作来保障学员实践效果。每周会有直播班会进行答疑解惑、项目讨论、模拟面试等内容。最终由就业老师安排就业面试，顺利入职。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt  onclick="_MEIQIA('showPanel')"><em><i></i>什么是LPS呢？</em></dt>
+                <dd>
+                    <p>“LPS（Learning Process
+                        System的缩写）是麦子学院自主研发的教学过程系统。LPS系统通过整合录播、直播、测试等环节的数据，结合人工智能和数据挖掘技术，提升了老师辅导和同学在线学习的效率和针对性，让学习及就业效果更有保障。LPS目前仍然在不断地进行升级与迭代，只为实现“有教无类，因材施教”的梦想。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>麦子学院的视频是免费的吗？</em></dt>
+                <dd>
+                    <p>“企业直通班”有什么不同吗？
+                        麦子学院官网的课程目前绝大多数是免费开放的。企业直通班的直播视频和各专业的最新视频是仅对企业直通班学员开放的。此外，企业直通班的同学还能够得到专业老师的一对一辅导和讲解、就业老师的就业推荐、班级同学的线上线下活动……</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>在职人员为什么更适合在线学习？</em></dt>
+                <dd>
+                    <p>在职人士学习最关注学习时间和学习效果。如果脱产学习，时间成本和生活压力都很大。在麦子学院企业直通班，即可以使用移动设备随时随地学习，还可以在学业完成、面试通过后再离职。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>自律性差，怎么保证完成学习呢？</em></dt>
+                <dd>
+                    <p>
+                        我们通过改变学习过程，商业项目实战与知识点学习相结合的方式，让学习更有乐趣更有成就感。让同学一旦开始，就想学下去。另一方面，学习是一种习惯，需要自己和老师共同努力进行培养。同学遇到困难或者不适应时，我们会有专业老师和班主任对你进行解惑和监督。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>相比线下培训机构，在线学习有什么好处呢？</em></dt>
+                <dd>
+                    <p>最直接的好处：记录你的学习进度，通过网络，老师可以更有针对性地解决你的问题；比线下机构给予学生的辅导时间更加宽裕，更能保证你的学习效果。</p>
+                    <p>更自由：我们可以使用电脑、手机等移动设备，随时随地进行学习。</p>
+                    <p>更优质：你可以直接跟随国内一线企业工程师进行学习，经验更丰富，人脉更扎实。</p>
+                    <p>更实惠：我们的性价比更高。因为我们省去了房租成本，提升了老师辅导的效率，所以同样的学习与就业效果，我们的价格更低。</p>
+                </dd>
+            </dl>
+            <dl class="qlist">
+                <dt><em><i></i>麦子学院怎么保障就业的？</em></dt>
+                <dd>
+                    <p>我们通过3种方式解决就业问题：</p>
+                    <p>1.我们和智联招聘、拉勾网、猎聘网直接对接接口，进行岗位推荐和简历推送，让待就业学员最快匹配地点和岗位需求。</p>
+                    <p>2.我们和近千家企业直接签约，保证长期提供指定岗位的人员推荐和培训。</p>
+                    <p>3.每天都会有全国各地的创业型企业、软件园区、投后管理公司主动联系我们，提供招聘需求。</p>
+                    <p>此外，我们还在不断提升自身的教学水平和学习效果，来满足更多企业更高岗位的技能需求，提升学员的就业质量。</p>
+                </dd>
+            </dl>
+            <a href="javascript:" class="zx-btn more"  onclick="_MEIQIA('showPanel')">还有其他问题，咨询在线老师</a>
+        </div>
+
+    </div>
+
+
+<div class="footer">
+        <div class="footerin">
+            <div class="flogo"><img src="/static/images/mz_ad/py-images/flogo.png" alt=""></div>
+            <div class="fnum">400 862 8862</div>
+            <div class="fewm">
+                <div class="mpic">
+                    <img src="/static/images/mz_ad/py-images/weibo-emw0.png" alt=""><h5>手机浏览页面</h5>
+                </div>
+                <div class="mpic">
+                    <img src="/static/images/mz_ad/py-images/wx-emw0.png" alt=""><h5>手机浏览页面</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="video-fifter video-f1">
+        <div class="video-fifterin">
+            <div class="close-btn c1-btn"></div>
+            <div id="video-f1"></div>
+        </div>
+    </div>
+
+    <div class="video-fifter video-f2">
+        <div class="video-fifterin">
+            <div class="close-btn c2-btn"></div>
+            <div id="video-f2"></div>
+        </div>
+    </div>
+
+    <div class="video-fifter video-f3">
+        <div class="video-fifterin">
+            <div class="close-btn c3-btn"></div>
+            <div id="video-f3"></div>
+        </div>
+    </div>
+
+    <!--此段代码从离线宝后台获取开始-->
+    <script>
+        document.write('<script type="text/javascript"  data-lxb-uid="10986738" data-lxb-gid="198532" src="http://lxbjs.baidu.com/api/asset/api.js?t=' + new Date().getTime() + '" charset="utf-8"></scr' + 'ipt>');
+    </script>
+    <div class="lxb"><img src="/static/images/mz_ad/op-images/kuang.png"></div>
+{% endblock %}
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/lib/superSlider/jquery.SuperSlide.2.1.1.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/index.js?v={{ time_stamp }}"></script>
+    <!-- Swiper JS -->
+    <script src="/static/js/mz_ad/ui-js/swiper.min.js?v={{ time_stamp }}"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            /*必用效果，根据需求增减*/
+            autoplay: 3000,//设置自动切换时间
+            autoplayDisableOnInteraction: false, //设置用户操作后是否停止，默认是true
+            speed: 300, /*滑动速度，即slider自动滑动开始到结束的时间（单位ms），默认300。*/
+            pagination: '.swiper-pagination', /*增加分页器样式，分页器样式可根据自己需求调整*/
+            paginationClickable: true, /*此参数设置为true时，点击分页器的指示点分页器会控制Swiper切换。*/
+            loop: true, /*循环滚动，滚动到最后一个时候可以继续滚动*/
+            nextButton: '.swiper-button-next', /*向右滚动样式，可自行定义*/
+            prevButton: '.swiper-button-prev', /*向左滚动样式，可自行定义*/
+        });
+    </script>
+{% endblock %}

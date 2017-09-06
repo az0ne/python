@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>麦子学院直播室</title>
+    <style type="text/css">
+        {% if request.user.is_teacher %}
+        #t-iframe{ background:#fff; position:absolute; z-index:1; width: 800px; height: 800px; left: 50%; margin-left: -400px;}
+        {% else %}
+        #t-iframe{ background:#fff; position:absolute; z-index:1; width: 100%; height: 800px;}
+        {% endif %}
+        .box{ position:absolute; background:#ffffff; width:800px; height:100px;z-index:5; top:400px; left: 50%; margin-left: -400px}
+    </style>
+</head>
+<body>
+{% if request.user.is_teacher %}
+<div class="box"></div>
+{% endif %}
+<iframe id="t-iframe" src="{{ join_url }}?nickname={{ nick_name }}&token={{ token }}" frameBorder="0 "marginwidth="0" marginheight="0" scrolling="no"></iframe>
+</body>
+</html>

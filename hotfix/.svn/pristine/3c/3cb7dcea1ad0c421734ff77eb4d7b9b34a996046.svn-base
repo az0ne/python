@@ -1,0 +1,4 @@
+{% extends "mz_backend/base.html" %}
+{% block container %}
+    欢迎使用麦子学院后台管理系统
+{% endblock %}

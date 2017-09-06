@@ -1,0 +1,18 @@
+
+<ul class="breadcrumb">
+    <li><a href="{% url 'nadmin:career_courses' %}">职业课程</a></li>
+
+    {% if is_edit %}
+    <li><a href="{% url 'nadmin:career_courses_edit' career_course.id %}">{{ career_course.name }}</a></li>
+    {% if active == "info" %}
+    <li class="active"><a href="#">阶段详情</a></li>
+    {% elif active == "courses" %}
+    <li class="active"><a href="#">课程管理</a></li>
+    {% endif %}
+
+    {% else %}
+    <li class="active"><a href="#">新建阶段</a></li>
+    {% endif %}
+</ul>
+
+

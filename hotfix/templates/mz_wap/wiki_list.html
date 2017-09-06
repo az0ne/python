@@ -1,0 +1,25 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}学习{{ course.seo_name }}-{{ course.seo_name }}学习路径-麦子学院{% endblock %}
+{% block keywords %}学习{{ course.seo_name }},{{ course.seo_name }}学习路径,{{ course.seo_name }}教程{% endblock %}
+{% block description %}{{ course.info }}{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/mz_wap/wiki_style.css"/>
+{% endblock %}
+{% block csstype %}wap_wiki{% endblock %}
+{% block container %}
+    <div class="position"><a href="{% url 'index_front' %}">首页</a>><a href="{% url 'wiki_index' %}">WIKI库</a>><span>{{ course.name }}</span></div>
+    <article class="list_info">
+        <div><p><img class="ui-imglazyload" data-url="{{ MEDIA_URL }}{{ course.img_url }}" alt="{{ course.name }}"></p><h2>{{ course.name }}</h2></div>
+        <p>{{ course.info }}</p>
+    </article>
+    {% include 'mz_wap/module/div_wiki_directory.html' %}
+    {% include 'mz_wap/login.html' %}
+    {% include 'mz_wap/footer.html' %}
+{% endblock %}
+
+{% block custom_script %}
+    <script src="{{STATIC_URL}}js/mz_wap/zepto.js"></script>
+    <script src="{{STATIC_URL}}js/mz_wap/imglazyload.js"></script>
+	<script src="{{STATIC_URL}}js/mz_wap/main.js"></script>
+	<script src="{{STATIC_URL}}js/mz_wap/login.js"></script>
+{% endblock %}

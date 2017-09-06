@@ -1,0 +1,32 @@
+.helper-box{position: absolute;width:100%;height:100%;left:0;top:0;z-index:990;}
+.helper-m{position: absolute;background-color: #000;opacity: 0.5;filter:alpha(opacity=50);}
+.helper-mt{width: 100%;left:0;top:0;}
+.helper-ml{left:0;}
+.helper-mr{right:0;}
+.helper-mb{width:100%;left:0;bottom:0;}
+.helper-area{position: absolute;box-shadow: 0 0 20px #000}
+.helper-close{position:fixed;z-index:1029;top:64px;right:0;width:48px;height: 48px;background: url(close.png) 50% 50% no-repeat;}
+
+.helper-tip-cnt{border-radius:10px;position:absolute;background-color:#ff725f;color: #ffffff;padding:20px;font-family: 'Microsoft YaHei';box-shadow:0 0 20px rgba(0,0,0,0.5);z-index:1029;cursor: pointer;}
+.helper-tip-cnt .text{font-size: 18px;font-weight:700}
+.helper-tip-cnt .text small{font-size: 13px;font-weight:400}
+.helper-tip-arrow{position:absolute;border:10px solid #ff725f;border-left-color:transparent;border-right-color:transparent;}
+.helper-tip-arrow-tl,.helper-tip-arrow-tr,.helper-tip-arrow-tc{border-top:none;bottom:100%;}
+.helper-tip-arrow-tl{left:25%;}
+.helper-tip-arrow-tr{right:25%;}
+.helper-tip-arrow-tc{right:50%;}
+.helper-tip-arrow-bl,.helper-tip-arrow-br,.helper-tip-arrow-bc{border-bottom:none;top:100%;}
+.helper-tip-arrow-bl{left:25%;}
+.helper-tip-arrow-br{right:25%;}
+.helper-tip-arrow-bc{right:50%;}
+.helper-tip-next{position:absolute;left:100%;top:50%;margin-top:-34px;width: 48px;height: 68px;background:url(arrow-next.png) no-repeat;}
+.helper-tip-end{padding: 110px 30px 30px; background-image: url(ok-ico.png);background-repeat:  no-repeat;background-position:50% 20px;cursor: default;}
+.helper-tip-end .helper-tip-arrow, .helper-tip-end .helper-tip-next{display: none;}
+.helper-tip-btn{display:inline-block;border-radius:10px;padding:10px 20px;background-color:#ff725f;font-size: 18px;font-weight: 700;box-shadow:0 0 20px rgba(0,0,0,0.5);cursor: pointer;}
+
+.page-bottom-fix{position: fixed;z-index:2014131592;bottom:0;left: 0;height: 98px;width: 100%;display: none}
+.page-bottom-fix-in{position: absolute;top:0;left: 0;height:100%;width: 100%;background-color:#000;opacity: 0.5;filter:alpha(opacity=50);}
+.page-bottom-fix .container{text-align: right;padding:25px 0}
+.page-bottom-fix .btn-itm{display:inline-block;height: 50px;line-height: 50px;text-align: center;padding-right:20px;padding-left:20px;border-radius: 5px;font-family: 'Microsoft YaHei';font-weight:700;font-size:16px;color:#fff;cursor: pointer;}
+.page-bottom-fix .btn-zx{padding-left:64px;background:#ff725f url(zixun.png) no-repeat 20px 50%;margin-right: 40px}
+.page-bottom-fix .btn-back{background-color:rgb(94,207,186);}

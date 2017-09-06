@@ -1,0 +1,24 @@
+<form action="/home/s/ajax_save_studybase/" id="pcInfoForm">
+    <input type="hidden" name="domain_name" value="{{ domain_name }}">
+	<h2 class="marginB10">学习基础</h2>
+    <table class="marginB20">
+        {% for study_base in study_base_list %}
+        <tr>
+            <td style="width:180px;" class="t">{{ study_base.name }}</td>
+            <td>{% for level in level_list %}<label class="pcsRadio"><input {% if forloop.first %}datatype="*"{% endif %} type="radio" value="{{ forloop.counter0 }}" name="skill{{ study_base.id }}"><i></i>{{ level }}</label>{% endfor %}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2 class="marginB10">学习目标</h2>
+    <table class="marginB20">
+        {% for goal_list in study_goal_data %}
+        <tr>
+            {% for goal in goal_list %}
+                <td {% if forloop.first %}style="width:180px;" class="t"{% endif %}><label class="pcsRadio"><input datatype="*" type="radio" value="{{ goal.id }}" name="goal"><i></i>{{ goal.name }}</label></td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <p class="marginB10 textC"><span class="red">*</span>提交后将不能修改</p>
+    <p class="textC"><a class="personalCbtn" style="width:90px;">保存</a></p>
+</form>

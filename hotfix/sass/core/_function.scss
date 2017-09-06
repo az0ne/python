@@ -1,0 +1,3 @@
+@function pcent($c, $p:1160){
+    @return ($c/$p) * 100%;
+}

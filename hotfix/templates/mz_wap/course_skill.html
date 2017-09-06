@@ -1,0 +1,149 @@
+{% extends "mz_wap/base.html" %}
+{% load article_filter %}
+{% block title %}{{ ori_keyword }}-{{ ori_keyword }}视频教程-麦子学院{% endblock %}
+{% block keywords %}{{ ori_keyword }},{{ ori_keyword }}教程,{{ ori_keyword }}视频教程{% endblock %}
+{% block description %}
+    {% if searchResults.result.items.0.description %}
+        {{ searchResults.result.items.0.description|content_brief:'200' }}
+    {% else %}
+        "麦子学院wiki库为麦子学院独创的软件开发|android、iOS、python、php、软件测试，产品运营，产品经理，智能硬件|嵌入式、物联网，设计|ui设计、游戏原画设计基础教程学习平台，提供了大量的最新原创教程和在线实例，让您可以更好的学习IT技术。
+    {% endif %}
+{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/static/css/mz_wap/search_result.css">
+{% endblock %}
+{% block csstype %}search_result{% endblock %}
+{% block container %}
+<div class="container">
+	<div class="search_area">
+		<div class="search_box">
+			<div class="search_border">
+				<div class="search">
+					<div><input type="type" name="search" class="search_txt" value="{{ keyword }}"><em class="empty"></em></div>
+				</div>
+			</div>
+			<span class="cancel">取消</span>
+		</div>
+	</div>
+	<div class="suggest">
+		<div class="career_course">
+			<ul>
+		    </ul>
+	</div>
+        <div class="search_teacher">
+            <ul>
+            </ul>
+    </div>
+        <div class="course_course">
+	<ul>
+	</ul>
+	</div>
+	</div>
+
+    <div class="content">
+        {% with 'course' as temp_name %}
+        {% include 'mz_wap/module/div_search_switch_btn.html' %}
+        {% endwith %}
+        <div class="course">
+		      {% include 'mz_wap/module/div_search_adbanner.html' %}
+            <div class="sear_result_course_list">
+                <ul>
+                    {% for course in searchResults.result.items %}
+                    <li><a href="{% url 'course_detail' course.id %}"><p class="img"><img class="ui-imglazyload" alt="{{ course.name }}" src="/static/images/mz_wap/imgloading.gif" data-url="{{ MEDIA_URL }}{{ course.image }}"></p>
+                        <div class="txt">
+                            <h3>{{ course.name|safe }}</h3>
+                            <p>{{ course.description|safe }}</p>
+                            <dl><dd class="chapter">{{ course.chapter_num }}章</dd><dd>{{ course.click_count }}人正在学习</dd></dl>
+                        </div>
+                    </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    {% if not searchResults.result.items %}
+        <div class="empty_recommend">
+        <h3><span>你可能感兴趣</span></h3>
+        <ul>
+		{% for course in courses %}
+		<li><a href="{% url 'course_detail' course.id %}"><p class="img"><img class="ui-imglazyload" src="/static/images/mz_wap/imgloading.gif" alt="{{ course.name }}" data-url="{{ MEDIA_URL }}{{ course.image }}"></p>
+		<strong class="course_name">{{ course.name }}</strong></a></li>
+        {% endfor %}
+	</ul>
+    </div>
+    {% endif %}
+
+    {% include 'mz_wap/module/div_search_pagination.html' %}
+
+        <div class="relate_search">
+            <h3><span>相关搜索</span></h3>
+            <ul>
+                {% for key in searchResults.result.rkeys %}
+                <li><a href="{% url 'wap_search_course' key 1 %}">{{ key }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="hot_skill">
+            <h3><span>热门技能</span></h3>
+            <ul>
+                <li><a href="/course/oam/">运维</a></li>
+                <li><a href="/course/op/">网络运营</a></li>
+                <li><a href="/course/pm/">产品经理</a></li>
+                <li><a href="/course/ios/">IOS</a></li>
+                <li><a href="/course/android/">Android</a></li>
+                <li><a href="/course/python/">Python</a></li>
+                <li><a href="/course/php/">PHP</a></li>
+                <li><a href="/course/qrsqd/">嵌入式</a></li>
+                <li><a href="/course/iot/">物联网</a></li>
+                <li><a href="/course/gd/">平面设计</a></li>
+                <li><a href="/course/ui/">UI设计</a></li>
+                <li><a href="/course/te/">软件测试</a></li>
+                <li><a href="/course/web/">Web前端</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="foot-bottom" id="foot">
+    <a href="tel:400-862-8862" class="phone">立即致电</a>
+    <a onclick="_MEIQIA('showPanel')"  class="consulte">在线咨询</a>
+</div>
+<input type="hidden" value="1" id="pageIndex">
+{% endblock %}
+{% block custom_script %}
+<script src="/static/js/mz_wap/zepto.js"></script>
+<script src="/static/js/mz_wap/slider.js"></script>
+<script src="/static/js/mz_wap/imglazyload.js"></script>
+<script src="/static/js/mz_wap/main.js"></script>
+<script src="/static/js/mz_wap/search_suggest.js"></script>
+<script src="/static/js/mz_wap/search_btn.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.hot_skill li,.relate_search li').off('tap').on('tap',function(){
+		$(this).addClass('selected');
+	});
+	// 加载更多
+   // $(".load_more a").bind("touchend",function(){
+   //     var pagenum = parseInt($("#pageIndex").val()) + 1;
+   //     $.ajax({
+   //          type: "POST",
+   //          url: "{% url 'wap_search_page' %}",
+   //         dataType: "json",
+   //          data: {
+   //              app: 'course',
+   //              keyword: '{{ keyword }}',
+   //              page_index: pagenum
+   //              },
+   //          success:function(data){
+   //              $(".sear_result_course_list ul").append(data.data);
+   //              $("#pageIndex").val(data.page_index);
+   //              if(!data.is_next){
+   //                  $(".load_more").remove();
+   //              }
+   //          }
+   //     })
+   // });
+});
+
+</script>
+{% endblock %}

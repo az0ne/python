@@ -1,0 +1,3 @@
+/*! LPS4.0 2016-11-11
+*/
+var init=function(){$(".personalCTop .font .personalCico").hover(function(){layer.tips($(this).attr("title"),$(this),{tips:[1,"#333333"]})},function(){}),$(".personalCenterStasteList li").each(function(t,n){var e=$(n).find(".pcircle").attr("percents");e&&setTimeout(function(){e=parseInt(e,10),$(n).find(".c").attr("stroke-dasharray",parseInt(280*(e/100),10)+" 280")},400)})};init();

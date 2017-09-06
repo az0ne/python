@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Content-Language" content="utf-8" />
+    <meta name="robots" content="INDEX, FOLLOW" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="MSSmartTagsPreventParsing" content="true" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        html,body {
+            width: 100%;
+            height: 100%;
+            background-color: #1C1C20;
+        }
+        .tips {
+            display: none;
+        }
+        .tips img {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div id="tips" class="tips">    
+    <img src="{{ STATIC_URL }}images/wechart-tips.png" />
+</div>
+    
+<script type="text/javascript">
+    var ua = navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+         var tips = document.getElementById('tips');
+         tips.style.display = 'block';
+    }else{
+        if (ua.indexOf('iphone') > 0) {                     //需对所有 iOS 系统 UA 信息进行判断
+            window.location.href = "{{ IOS_DOWN_URL }}";
+        } else if (ua.indexOf('android') > 0) {             //需对所有 Android 系统 UA 信息进行判断
+            window.location.href = "{{ ANDROID_DOWN_URL }}";
+        } else if (ua.indexOf('windows phone') > 0) {               //需对所有 windows phone 系统 UA 信息进行判断
+            window.location.href = "{{ WINPHONE_DOWN_URL }}";
+        } else if (ua.indexOf('ipad') > 0) {                //ipad UA 信息判断
+            window.location.href = "{{ IPAD_DOWN_URL }}";
+        }
+    }
+    
+</script>
+</body>
+</html>

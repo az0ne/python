@@ -1,0 +1,79 @@
+<ul class="stage-lists">
+    {% for knowledge in knowledges %}
+        <li class="{% if knowledge.is_done %}active {% endif %}open">
+            <div><span>{{ knowledge.name }}</span><i></i></div>
+            <ol class="sub-lists">
+                {% for item in knowledge.items %}
+                    <li>
+                        <a class="title
+                            {% if user.is_authenticated %}
+                                {% if need_pay %} need_pay
+                                {% elif status == 'lock' and item.obj_type != "LESSON" and try_class_lock == False %} lock_pop
+                                {% elif status == 'lock' and try_class_lock == True %} try_lock_pop
+                                {% elif status == 'current' %} current_pop
+                                {% elif item.obj_type != "LESSON" and not item.can_be_unlocked and item.is_undo %} can_be_unlock_pop
+                                {% endif %}
+                            {% else %} need-sign-in
+                            {% endif %}
+                            {% if item.obj_type == "LESSON" %} v-icon
+                            {% elif item.obj_type == "TEST" %} n-icon
+                            {% elif item.obj_type == "PROJECT" %} s-icon
+                            {% endif %}
+                            {% if item.is_done %}
+                                {% if item.obj_type == "LESSON" %} v-icon-1
+                                {% elif item.obj_type == "TEST" %} n-icon-1
+                                {% elif item.obj_type == "PROJECT" %} s-icon-1
+                                {% endif %}
+                            {% elif item.is_doing %}
+                                {% if item.obj_type == "LESSON" %} h-icon-1
+                                {% endif %}
+                            {% endif %}"
+                            {% if user.is_authenticated %}
+                                {% if status != 'lock' %}
+                                    {% if item.is_lesson or item.can_be_unlocked or not item.is_undo %}
+                                        href="{% url 'lps3:student_knowledgeitem' class_id stagetask_id item.id %}"
+                                    {% endif %}
+                                {% elif status == 'lock' and item.obj_type == "LESSON" and try_class_lock == False %}
+                                    href="{% url 'lps3:student_knowledgeitem' class_id stagetask_id item.id %}"
+                                {% endif %}
+                            {% endif %} target="_blank">
+                            {{ forloop.parentloop.counter }}.{{ forloop.counter }}
+                            {% if item.obj_type == "TEST" %}在线测试:
+                            {% elif item.obj_type == "PROJECT" %}项目制作:
+                            {% endif %}
+                            {% if item.obj_type == "LESSON" %}
+                                {{ item.lesson_name }}
+                            {% else %}
+                                {{ item.exam_title }}
+                            {% endif %}
+                        </a>
+                        {% if item.id == current_item.id %}
+                            <a class="go-on"
+                               href="{% url 'lps3:student_knowledgeitem' class_id stagetask_id item.id %}"
+                               target="_blank">继续学习</a>
+                        {% endif %}
+                        <span>{% if item.obj_type == 'LESSON' %}{{ item.get_video_length }}{% endif %}</span></li>
+                {% endfor %}
+            </ol>
+        </li>
+    {% endfor %}
+    <li class="last{% if usertask.has_done %} active{% endif %}
+        {% if user.is_authenticated %}
+            {% if need_pay %} need_pay
+            {% elif status == 'lock' and try_class_lock == False %} lock_pop
+            {% elif status == 'lock' and try_class_lock == True %} try_lock_pop
+            {% elif status == 'current' %} current_pop
+            {% elif not all_items_have_done and not usertask.has_done %} can_be_unlock_pop
+            {% endif %}
+        {% else %} need-sign-in
+        {% endif %}">
+        <div>
+            <span>项目制作:</span>
+            <a {% if status != 'lock' and user.is_authenticated %}
+                {% if all_items_have_done or usertask.has_done %}
+                    href="{% url 'lps3:student_project_task' class_id stagetask_id %}" target="_blanck"
+                {% endif %}
+            {% endif %}>{{ stage_task.task.project.title }}</a>
+        </div>
+    </li>
+</ul>

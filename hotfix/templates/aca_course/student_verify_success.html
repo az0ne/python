@@ -1,0 +1,31 @@
+{% extends "mz_common/base.html" %}
+{% block breadcrumb %}
+    <div class="colleges-bg">
+        <div class="container visible-md visible-lg">
+            <ol class="breadcrumb">
+                <li><a href="{% url 'index_front' %}">首页</a></li>
+                <li class="active">院校专区</li>
+            </ol>
+        </div>
+    </div>
+{% endblock %}
+
+{% block container %}
+
+    <div class="colleges-wrap colleges-login">
+        <div class="container">
+            <div class="colleges-login-m">
+                <div class="success-tip">
+                    <div class="success-tip-ico"><img src="/static/images/colleges/pic-17.png" alt=""/></div>
+                    <h1>验证成功</h1>
+                    <p class="about">页面将在3秒后跳转您的专业实训课程限</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block custom_script %}
+
+{% endblock %}

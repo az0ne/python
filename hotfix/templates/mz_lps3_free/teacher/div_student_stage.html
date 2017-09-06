@@ -1,0 +1,57 @@
+<div class="modal-dialog tryTeacherLearnData modal-data">
+    <div class="modal-content">
+        <div class="data">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="ModalTitle"></h4>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    {% for v in rel.items %}
+                        {% if v.obj_type == "LESSON" %}
+                            <li data-type="{{ v.obj_type }}">
+                                <a>
+                                    <span>{% if v.status == 'DONE' %}已看完{% else %}未看完{% endif %}</span>
+                                    <strong>{{ v.lesson_name }}</strong>
+                                </a>
+                            </li>
+                        {% elif v.obj_type == "TEST" %}
+                            <li>
+                                {% if v.status == 'DONE' %}
+                                    <a pop_href="{% url 'lps3:teacher_test_item' class_id student_id stagetask_id v.item_id %}">
+                                        <span>正确率：{{ v.accuracy }}%</span>
+                                        <strong>{{ v.exam_title }}</strong>
+                                    </a>
+                                {% else %}
+                                    <a>
+                                        <span>未做完</span>
+                                        <strong>{{ v.exam_title }}</strong>
+                                    </a>
+                                {% endif %}
+                            </li>
+                        {% endif %}
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="test">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <span class="backBtn font18">&lt&lt返回</span>
+                <h4 class="modal-title" id="ModalTitle"></h4>
+            </div>
+            <div class="modal-body">
+                <h5></h5>
+                <ol>
+                </ol>
+                <div class="infos">
+                    <a href="#" class="nextQuest">下一题</a>
+                    <a href="#" class="lastQuest">上一题</a>
+                    <ul>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,102 @@
+{% extends "mz_common/global.html" %}
+{% load article_filter %}
+{% block title %}麦子学院 - 专业IT职业在线教育平台|ui设计培训|python培训|php培训|web前端培训{% endblock %}
+{% block keywords %}麦子学院，IT职业培训，IT技能培训，IT在线教育，IT在线学习，编程学习，android,ios,php,java,python,html5,cocos2dx{% endblock %}
+{% block description %}麦子学院专注IT职业在线教育，提供android开发、ios开发、coocs2d-x、Unity3D、游戏原画、物联网、产品经理、嵌入式、php等一系列线上IT培训服务，推出在线教育智能化学习系统，保证在线学习效果，每年帮助上万名软件开发学习者成功就业。{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/oneToOne.css?v={{ time_stamp }}"/>
+<link rel="stylesheet" type="text/css" href="/2016/lib/layer/skin/layer.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block csstype %}oto-detail{% endblock %}
+{% block container %}
+<div class="left-side">
+    {% include 'mz_lps4/module/div_left_side.html' %}
+</div>
+<div class="main-container">
+    {% include 'mz_lps4/module/div_header.html' %}
+
+    <div class="main-center">
+        <div class="right-side">
+            {% include 'mz_lps4/module/div_teaching_team.html' %}
+        </div>
+        <div class="left-main">
+            <div class="main-content">
+                <p class="go-back"><a href="{% url 'lps4:student_service_list' onevone_meeting.career_id %}?m=true">&lt;返回</a></p>
+                <div class="onLineDetail">
+                    <div class="lineInfo">
+                        <dl class="card">
+                            <dt>
+                                {% if status == 'enter' %}
+                                    <a href="javascript:;" class="enter appointment-btn-3" id="{{ onevone_meeting.id }}">进入直播</a>
+                                {% else %}
+                                    {% if onevone_meeting.video_join_url %}
+                                        <a target="_blank" href="{{ onevone_meeting.video_join_url }}" class="review appointment-btn-3" id="{{ onevone_meeting.id }}">回看录播</a>
+                                    {% endif %}
+                                {% endif %}
+                            </dt>
+                            <dd>
+                                <div class="img">
+                                    <p><img src="{{ MEDIA_URL }}{{ onevone_meeting.teacher_head }}" alt="{{ onevone_meeting.teacher_nick_name }}"></p>
+                                    <strong>{% if onevone_meeting.teacher_real_name %}{{ onevone_meeting.teacher_real_name }}{% else %}{{ onevone_meeting.teacher_nick_name }}{% endif %}</strong>
+                                </div>
+                                <div class="time">
+                                    <span>{{ onevone_meeting.start_time|date:"Y年m月d日" }}</span>
+                                    <strong>{{ onevone_meeting.start_time | date:"H:i"}}-{{ onevone_meeting.end_time | date:"H:i"}}</strong>
+                                </div>
+                            </dd>
+                        </dl>
+                        {% if onevone_meeting.status != 'ENDED' %}
+                        <p><em>{% if onevone_meeting.teacher_real_name %}{{ onevone_meeting.teacher_real_name }}{% else %}{{ onevone_meeting.teacher_nick_name }}{% endif %}</em>老师会在 <em>{{ onevone_meeting.start_time|date:"Y年m月d日" }}{{ onevone_meeting.start_time | date:"H:i"}}</em> 点的直播课中为你答疑</p>
+                        {% endif %}
+                    </div>
+                    <div class="article">
+                        <div class="txt">{% if onevone_meeting.question %}{{ onevone_meeting.question|safe }}{% else %}这个用户很懒，没有提交预约内容！{% endif %}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% include 'mz_lps4/module/div_footer.html' %}
+</div>
+{% include 'mz_lps4/popup/div_live_ready.html' %}
+{% endblock %}
+{% block toolbarDiv %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/lib/layer/layer.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript">
+$(function(){
+    $('.onLineDetail').on({'click':function(){
+        joinMeeting($(this).attr('id'))
+    }},'.enter');
+});
+function popupMsg(obj){
+    obj.modal({show:true, keyboard:false,backdrop: 'static'});
+    $('.close, .know').on('click', function(){
+        obj.modal('hide');
+    });
+}
+//加入1v1 直播函数
+function joinMeeting(meeting_id){
+    $.ajax({
+    type: "GET",
+    url: "/lps4/onevone_meeting_join_info/"+meeting_id+"/",
+    dataType: "json",
+    success: function(data){
+        if (data.success) {
+            $('#live-ready .web a').attr('href',data.data.web_join_url);
+            $('#live-ready .client a').attr('href',data.data.join_url);
+            popupMsg($('#live-ready'));
+
+        } else {
+            alert('直播预约的成功信息获取失败')
+        }
+    },
+    error: function(data){
+        console.log(data);
+    }
+    });
+}
+</script>
+{% endblock %}

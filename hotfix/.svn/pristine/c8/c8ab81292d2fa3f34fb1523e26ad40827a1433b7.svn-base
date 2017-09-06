@@ -1,0 +1,94 @@
+{% extends "mz_common/global.html" %}
+{% load article_filter %}
+{% block title %}麦子学院 - 1v1直播详情{% endblock %}
+{% block keywords %}麦子学院，1v1直播详情{% endblock %}
+{% block description %}1v1直播详情{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="/js/lib/layer/skin/layer.css">
+    <link rel="stylesheet" type="text/css" href="/css/personalCenter.css?v={{ time_stamp }}"/>
+    <link rel="stylesheet" type="text/css" href="/css/teaOneVOneLine.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block csstype %}oneVoneLine{% endblock %}
+{% block container %}
+    {% include 'header/index_header.html' %}
+    {% include 'mz_usercenter/div_user_header.html' %}
+    <div class="center personalCmain">
+        {% block usercenter_left_panel %}
+            {% include 'mz_usercenter/div_left_menu.html' %}
+        {% endblock %}
+        <div class="personalCmainR font14">
+            <div class="lineTit">
+                <a href="{{ back_url }}" class="go_back">
+                    <返回
+                </a>
+                <h3>约课详情</h3>
+            </div>
+            <div class="articleDetail">
+                <div class="card">
+                    <div class="live_title">
+                        <div class="time">
+                            <span>{{ onevone_meeting.start_time|date:"Y年m月d日" }}</span>
+                            <strong>
+                                {{ onevone_meeting.start_time | date:"H:i"}}-{{ onevone_meeting.end_time | date:"H:i"}}</strong>
+                        </div>
+                        {% if onevone_meeting.status == 'CREATE' or onevone_meeting.status == 'START' or onevone_meeting.status == 'DATED' %}
+                            <a href_url="{{ onevone_meeting.join_url }}" alt="进入直播" class="live-btn living" meeting_id="{{ onevone_meeting.id }}">
+                                <i class="_ing"></i>
+                                <span>进入直播</span>
+                            </a>
+                        {% elif onevone_meeting.status == 'CANCEL' %}
+                            <span class="live-btn">
+                                <i class="_cancel"></i>
+                                <span class="cancel_txt">已取消</span>
+                            </span>
+                        {% elif onevone_meeting.join_url %}
+                            <a href="{{ onevone_meeting.join_url }}" alt="回看录播" class="live-btn look_back">
+                                <i class="_ed"></i>
+                                <span>回看录播</span>
+                            </a>
+                        {% else %}
+                            <span class="live-btn">
+                                <i class="_zw"></i>
+                                <span class="zw_txt">暂无录播</span>
+                            </span>
+                        {% endif %}
+                    </div>
+                </div>
+                <article>
+                    <h3>答疑问题描述</h3>
+                    <div class="tea_info">
+                        <img src="{{ MEDIA_URL }}{{ onevone_meeting.user_head }}" class="avater">
+                        <strong class="tea_name">{% if onevone_meeting.user_real_name %}
+                            {{ onevone_meeting.user_real_name }}{% else %}
+                            {{ onevone_meeting.user_nick_name }}{% endif %}</strong>
+                        <span>申请于</span>
+                        <span class="register_time">{{ onevone_meeting.create_date_time | date:"Y-m-d H:i"}}</span>
+                    </div>
+                    <div class="content">
+                        <p>{% if onevone_meeting.question %}
+                            {{ onevone_meeting.question|safe }}
+                        {% elif not onevone_meeting.user_head %}
+                            没有用户预约本场直播
+                        {% else %}
+                            这个用户很懒，没有提交预约内容！
+                        {% endif %}</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}{% endblock %}
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/dev/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/js/lib/layer/layer.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".teacherICO").on("mouseover", function () {
+                layer.tips($(this).attr("title"), $(this), {
+                    tips: [1, '#333'] //还可配置颜色
+                });
+            });
+        });
+    </script>
+{% endblock %}

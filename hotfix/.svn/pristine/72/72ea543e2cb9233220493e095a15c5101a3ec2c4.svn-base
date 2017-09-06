@@ -1,0 +1,21 @@
+<div class="modal fade" id="interestCourse" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">请选择感兴趣的课程</h4>
+            </div>
+            <div class="modal-body">
+                <ul>
+                    {% for career in recommend_careers %}
+                        <li><a href="{% url 'course:course_detail' career.short_name  %}?do=like" onclick="zhuge.track('点击兴趣课程推荐', {'页面名称':'个人中心','课程名称':'{{ career.name }}'});"><img src="{{ MEDIA_URL }}{{ career.image }}"/><strong>{{ career.name }}</strong></a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <span>换一批</span>
+            </div>
+        </div>
+        <div class="close" data-dismiss="modal" aria-hidden="true">关闭</div>
+    </div>
+</div>
+<input type="hidden" id="user_center_course_record" value="{% if recommend_careers %}true{% else %}false{% endif %}">

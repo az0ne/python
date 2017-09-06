@@ -1,0 +1,98 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}{% if career_course.seo_title %}{{ career_course.seo_title }}{% else %}{{ career_course.name }}{% endif %} - 麦子学院{% endblock %}
+{% block keywords %}{% if career_course.seo_keyword %}{{ career_course.seo_keyword }}{% endif %}{% endblock %}
+{% block description %}{% if career_course.seo_description %}{{ career_course.seo_description }}{% endif %}{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/css/mz_wap/enter_style.css"/>
+{% endblock %}
+
+
+{% block container %}
+    <div class="courses-info">
+    	<h2>{{ career_course.name }}</h2>
+    	<p>{{ career_course.description }}</p>
+    	<ul class="infos">
+    		<li><em>{{ career_course.student_count }}</em>人正在学习</li>
+    		<li class="counts"><em>{{ total_courses }}</em>课程</li>
+    		<li class="times">{{ need_days }}天学习时长</li>
+    	</ul>
+    </div>
+    {% for stage in stages %}
+    <div class="courses-info">
+    	<h3>{{ stage.name }}</h3>
+    	<p>{{ stage.description }}</p>
+    	<div class="course_list">
+    		<ul>
+                {% for course in stage.course_list %}
+				<li>
+                    <a onclick="_MEIQIA('showPanel')">
+					<p style="position:relative">
+                        {% if course.is_click %}
+                    {% if course.course_status == 0 %}
+                        <span class="course-stage-state" style="position:absolute;right: 0"><img src="/static/images/word-b1.png" alt="更新中"/></span>
+                    {% else %}
+                        <span class="course-stage-state" style="position:absolute;right: 0"><img src="/static/images/word-b3.png" alt="已完结"/></span>
+                    {% endif %}
+                    {% if course.need_pay %}
+                        <span class="course-stage-state" style="left: 0; right: 0; top: 0;position:absolute;" ><img src="/static/images/label_ztb.png" alt="报班学员"/></span>
+                    {% endif %}
+                    {% else %}
+                        <span class="course-stage-state" style="position:absolute;right: 0"><img src="/static/images/word-b2.png" alt="即将开始"/></span>
+                        <img src="{{ MEDIA_URL }}{{ course.image }}" alt="{{ course.name }}" border="0">
+                    {% endif %}
+                        <img class="ui-imglazyload" data-url="{{ MEDIA_URL }}{{course.image}}" alt="{{ course.name }}"/>
+                    </p>
+					<div class="list_info">
+						<strong>{{ course.name }}</strong>
+						<span>预计学习时长：<mark>{% if course.need_days != None %}{{ course.need_days }}{% else %}0{% endif %}天</mark></span>
+					</div>
+                    <div class="need_pay" hidden>{{course.need_pay}}</div>
+				</a></li>
+                {% endfor %}
+			</ul>
+    	</div>
+    </div>
+    {% endfor %}
+    <footer>
+        © 2012-2016 www.maiziedu.com <br/>蜀ICP备13014270号-4 Version 5.0.0 release20160127
+    </footer>
+    <div class="foot-bottom enter-course-bottom" id="foot">
+        <a href="tel:400-862-8862">立即报名</a>
+        <a onclick="_MEIQIA('showPanel')">咨询小麦</a>
+    </div>
+	<div class="bg"></div>
+	<div class="tips-box">
+		<span class="close-box"></span>
+		<div class="tips">
+			<h4>{{course.name}}</h4>
+			<p>本课程为付费课程,报名学员即可进行完整学习哟!~ </p>
+			<a onclick="_MEIQIA('showPanel')">咨询小麦</a>
+		</div>
+	</div>
+{% endblock %}
+
+{% block custom_script %}
+    <script src="/static/js/mz_wap/zepto.js"></script>
+    <script src="/static/js/mz_wap/main.js"></script>
+    <script src="/static/js/mz_wap/imglazyload.js"></script>
+    <script>
+    $(function(){
+		//提示弹窗
+            $(".course_list li").each(function(){
+                if($(this).find(".need_pay").html() == 'True'){
+                    $(this).bind("click",function(){
+                        //console.log($(this).find(".need_pay").html());
+                        var text = $(this).find("strong").html();
+                        $(".tips h4").html(text);
+                        $(".bg").fadeIn();
+                        $(".tips-box").fadeIn();
+                    })
+                };
+            })
+            $(".close-box").bind("click",function(){
+                $(".bg").fadeOut();
+                $(this).parent().fadeOut();
+            });
+    });
+	</script>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% load date_convert_tag %}
+{% load my_filter %}
+{% for q in all_questions %}
+    <li>
+        <input class="object_id" type="hidden" value="{{ lesson_id }}"/>
+        <input class="last_id" type="hidden" value="{{ q.id }}"/>
+        <input class="answer_user_id" type="hidden" value="{{ q.user_id }}"/>
+        <input class="answer_nick_name" type="hidden" value="{{ q.nick_name }}"/>
+
+        <h2 class="questions-top">
+            {% if q.user_id == user.id %}
+                <a href="{% url 'home:index' %}" target="_blank" class="user-icon">
+            {% else %}
+                <a href="{% url 'u:index' q.user_id %}" target="_blank" class="user-icon">
+            {% endif %}
+            <img src="{{ MEDIA_URL }}{{ q.head }}"/>
+            {% if q.group_name == 'student' %}<i></i>{% endif %}
+            </a>
+            {% if q.user_id == user.id %}
+                <a href="{% url 'home:index' %}" target="_blank" class="nike-name">{{ q.nick_name }}</a>
+            {% else %}
+                <a href="{% url 'u:index' q.user_id %}" target="_blank" class="nike-name">{{ q.nick_name }}</a>
+            {% endif %}
+        </h2>
+
+        <p class="question-title">{{ q.comment|cutStrNN:200 }}</p>
+        {% if q.materials %}
+            <div class="questions-img">
+                {% for real_m, m in q.materials %}
+                    <img _src="{{ MEDIA_URL }}{{ real_m }}" src="{{ MEDIA_URL }}{{ m }}"/>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if q.object_content %}
+            <p class="question-current">提问于
+                <span>{{ q.object_content }}</span>
+            </p>
+        {% endif %}
+        {% if q.c_id %}
+            <div class="questions-reply">
+                <div class="left">
+                    {% if q.user_id == user.id %}
+
+                        <a href="{% url 'home:index' %}" target="_blank">
+                    {% else %}
+                        <a href="{% url 'u:index' q.c_user_id %}" target="_blank">
+                    {% endif %}
+                    <img src="{{ MEDIA_URL }}{{ q.c_head }}"/>
+                    {% if q.c_group_name == 'student' %}<i></i>{% endif %}
+                    </a>
+                </div>
+                <div class="right">
+                    {% if q.user_id == user.id %}
+                        <a href="{% url 'home:index' %}" target="_blank">{{ q.c_nick_name }}</a>
+                    {% else %}
+                        <a href="{% url 'u:index' q.c_user_id %}" target="_blank">{{ q.c_nick_name }}</a>
+                    {% endif %}
+                    {% if q.c_group_name == "teacher" %}
+                        <span class="teacher-mark">老师</span>
+                    {% endif %}
+                    <span class="reply-date">{% date_convert q.c_create_date %}</span>
+
+                    <p class="reply-con">{{ q.c_comment|cutStrNN:200 }}</p>
+                </div>
+            </div>
+        {% endif %}
+        <div class="questions-bottom">
+            <span>{% date_convert q.create_date %}</span>
+            <a href="javascript:void(0)" class="reply-total"><i></i>
+                <small>{{ q.discuss_count }}</small>
+            </a>
+            <a href="javascript:void(0)" class="good{% if q.is_praise %} jia-good{% endif %}"
+               data-discuss-id="{{ q.id }}"><i></i>
+                <small>{{ q.user_praise_count }}</small>
+            </a>
+        </div>
+    </li>
+{% endfor %}

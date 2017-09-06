@@ -1,0 +1,20 @@
+<div class="rating">
+    <div class="rating-box">
+        {% if onevone_meeting.star %}
+            <div class="rating-info">
+                <div class="rating-star star-2"></div>
+                <div class="remark-box font14">{{ onevone_meeting.suggest }}</div>
+            </div>
+        {% else %}
+            <h2 class="textC">请为本次约课评分</h2>
+            <div class="rating-star star-1 textC">
+                <input id="score" name="score" type="hidden">
+            </div>
+            <div class="textarea textC">
+                <textarea name="text-remark" id="remark" placeholder="请为老师的点评做出评价,将有助于我们改善相关服务"></textarea>
+                <div class="rated textC"><input type="button" class="submitBtn" value="评价"></div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+

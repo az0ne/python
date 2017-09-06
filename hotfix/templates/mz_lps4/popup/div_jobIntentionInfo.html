@@ -1,0 +1,63 @@
+    <div class="modal fade YaHei" id="jobIntentionInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-content zy_VideoDemo" style="width: 600px;">
+            <p class="color5e font18 pt">就业信息</p>
+            <div class="onejiongroup font14 color66">
+                <p class="ptitle font12 marginB10"><span class="colorf7f">*</span>注：就业信息一旦保存不可修改，请如实谨慎填写哦~ <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;填写后请签署就业协议，完成整个课程学习后，会有就业老师提供相应就业服务~</p>
+                <form action="{% url 'user:jobintentioninfo_save_3_1' %}" id="jobIntentionInfoForm" method="post">
+                <table class="color66 marginB10">
+                    <tr>
+                        <td class="bold t" align="right"><span class="colorf7f">*</span>学习目标</td><td><input name="studygoal"  type="text" class="jobIntentionInfoTxt" value="就业"></td>
+                    </tr>
+                    <tr>
+                        <td class="bold t" align="right"><span class="colorf7f">*</span>学历</td><td><select name="education" class="jobIntentionInfoTxt"> {% for degree in degrees %}<option>{{ degree }}</option>{% endfor %}</select></select></td>
+                    </tr>
+                    <tr>
+                        <td class="bold t" align="right"><span class="colorf7f">*</span>毕业院校</td><td><input name="university"  type="text" class="jobIntentionInfoTxt"></td>
+                    </tr>
+                    <tr>
+                        <td class="bold t" align="right"><span class="colorf7f">*</span>意向就业城市</td>
+                        <td class="job-city">
+                            <input name="goCity" id="goCity"  type="text" class="jobIntentionInfoTxt">
+                            <div class="city-container">
+                                <ul class="city-tab">
+                                    <li class="select">一线城市</li>
+                                    <li>二线城市</li>
+                                    <li>三线城市</li>
+                                </ul>
+                                <div class="city-wrap">
+                                    <div class="city-cont first"><span>北京</span><span>上海</span><span>广州</span><span>深圳</span><span>天津</span></div>
+                                    <div class="city-cont"><span>南京</span><span>武汉</span><span>沈阳</span><span>西安</span><span>成都</span><span>重庆</span><span>杭州</span><span>青岛</span><span>大连</span><span>宁波</span><span>济南</span><span>哈尔滨</span><span>长春</span><span>厦门</span><span>郑州</span><span>长沙</span><span>福州</span><span>苏州</span><span>无锡</span><span>乌鲁木齐</span><span>昆明</span><span>兰州</span><span>南昌</span><span>贵阳</span><span>南宁</span><span>合肥</span><span>太原</span><span>石家庄</span><span>呼和浩特</span><span>佛山</span><span>东莞</span><span>唐山</span><span>烟台</span><span>泉州</span><span>包头</span></div>
+                                    <div class="city-cont"><span>温州</span><span>珠海</span><span>大庆</span><span>西宁</span><span>海口</span><span>徐州</span><span>淄博</span><span>潍坊</span><span>洛阳</span><span>南通</span><span>常州</span><span>绍兴</span><span>台州</span><span>鞍山</span><span>中山</span><span>汕头</span><span>吉林</span><span>柳州</span><span>拉萨</span><span>邯郸</span><span>银川</span><span>秦皇岛</span><span>沧州</span><span>威海</span><span>济宁</span><span>临沂</span><span>德州</span><span>滨州</span><span>泰安</span><span>湖州</span><span>嘉兴</span><span>金华</span><span>秦州</span><span>镇江</span><span>盐城</span><span>扬州</span><span>桂林</span><span>惠州</span><span>湛江</span><span>江门</span><span>茂名</span><span>株洲</span><span>岳阳</span><span>衡阳</span><span>宝鸡</span><span>宜昌</span><span>襄樊</span><span>开封</span><span>许昌</span><span>平顶山</span><span>赣州</span><span>九江</span><span>芜湖</span><span>绵阳</span><span>齐齐哈尔</span><span>牡丹江</span><span>抚顺</span><span>本溪</span><span>丹东</span><span>辽阳</span><span>锦州</span><span>营口</span><span>承德</span><span>廊坊</span><span>邢台</span><span>大同</span><span>榆林</span><span>延安</span><span>天水</span><span>南阳</span><span>濮阳</span><span>连云港</span><span>常德</span></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="bold t" align="right"><span class="colorf7f">*</span>工作年限</td><td><select name="WorkingLife"  class="jobIntentionInfoTxt">{% for service_year in service_years %}<option>{{ service_year }}</option>{% endfor %}</select></select></td>
+                    </tr>
+                    <tr>
+                        <td class="bold t"><span class="colorf7f">*</span>在职与否</td><td><label class="statisticsRadio"><input type="radio" name="onthejob" value="1"><i></i>在职</label><label class="statisticsRadio"><input type="radio" name="onthejob" value="2"><i></i>不在职</label></td>
+                    </tr>
+                    <tr>
+                        <td class="bold t" align="right">职位</td><td><input type="text" name="position"  class="jobIntentionInfoTxt"></td>
+                    </tr>
+                    <tr>
+                        <td class="bold t" align="right">所在行业</td><td><input type="text" name="industry"  class="jobIntentionInfoTxt"></td>
+                    </tr>
+                    <tr>
+                        <td class="bold t" align="right"><span class="colorf7f">*</span>想从事的行业</td><td><input name="goIndustry"  type="text" class="jobIntentionInfoTxt"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textC"><input type="button" class="jobIntentionInfoBtn" value="保存"><input type="reset" style="display: none;" /></td>
+                    </tr>
+                </table>
+
+                <input type="hidden" name="career_id" id="career_id" value="{{ career_id }}"/>
+                <input type="hidden" name="class_id" id="class_id" value="{{ class_id }}"/>
+
+                </form>
+                <p class="errorInfo">保存失败！请重试！</p>
+            </div>
+
+        </div>
+    </div>

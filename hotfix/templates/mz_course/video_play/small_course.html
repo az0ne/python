@@ -1,0 +1,306 @@
+{% extends "mz_common/global.html" %} {% load date_convert_tag %} {% block title %}{% if lesson.seo_title %}{{ lesson.seo_title }}{% else %}{{ lesson.name }}{% endif %}视频教程-{{ course.name }}-麦子学院{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/small_course_video_play.css?v={{ time_stamp }}" />
+<link type="text/css" rel="stylesheet" href="/css/showBigImg.css?v={{ time_stamp }}" />
+<script type="text/javascript">
+	var $ad = "{% if ad_career_course.ad %}True{% endif %}",
+	    $groupName = "{{ group_name }}",
+	    $classId = "{{ class_id }}",
+	    $courseId = "{{ course.id }}",
+	    $lessonId = "{{ lesson.id }}",
+	    $thisUser = "{{ user.is_authenticated }}",
+	    $needPay = "{% if course.need_pay %}True{% endif %}",
+	    $isPaid = "{% if is_paid or class_id %}True{% endif %}",
+	    $videoLength = "{{ lesson.video_length }}",
+	    $videoExamComplete = "{{ VIDEO_EXAM_COMPLETE }}",
+	    $userItem = "{{ useritem }}",
+	    $userId = "{{ user.id }}",
+	    $MEDIAURL = "{{ MEDIA_URL }}",
+	    $ifHaveCareerCourse = "{{ career_course.short_name }}",
+	    $studentClass = "{{ student_class }}",
+	    $vipUrl = "{{ video_url }}",
+	    $lessonUrl = "{{ lesson.video_url }}"
+</script>
+{% endblock %}
+{% block container %}
+<!--视频播放顶部-->
+<div class="video_play_top">
+	<a href="{% url 'course:course_detail_view' course.id %}" class="go_back"></a>
+	<span class="lesson_name">{{ course.name }}</span>
+	<div class="zynewLogin colorff">
+        {% if user.is_authenticated %}
+        <div class="zynewLogin_div">
+            <div class="ldFeedback">
+                 <a id="feedbackfade" >意见反馈</a>
+                <div class="feedboxTip">
+                    <span class="closed">关闭</span>
+                    <p class="font14 color66">学习过程中的任何问题<br/>都可以在这里反馈哟</p>
+                </div>
+            </div>
+            <a href="{% url 'home:index' %}" target="0" class="img">
+	            <img src="{{ MEDIA_URL }}{{ user.avatar_middle_thumbnall }}">
+	            {% if student_class %}
+	            <em title="直通班学员" class="role vip"></em>
+	            {% elif group_name == 'teacher' %}
+	            <em title="金牌老师" class="role gold_tea"></em>
+	            {% endif %}
+            </a>
+            <span class="colorff font16 zynewLogin_div_name">
+                <a href="{% url 'home:index' %}" target="0" class="userName colorff">{{ user.nick_name }}</a><a class="sign_out colorff" href="{% url 'user:logout' %}">[退出]</a>
+            </span>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<div class="video">
+	<!--视频播放器右侧导师信息和提问-->
+    <div class="course_teacher">
+        {% if teachers %}
+        <h3>课程导师</h3>
+        <a href="{% url 'u:index' teachers.id %}" target="0">
+            <img src="{{ MEDIA_URL }}{{ teachers.avatar_small_thumbnall }}" alt="{{ teachers.nick_name }}">
+            <em title="金牌老师" class="role gold_tea"></em>
+        </a>
+        <a href="{% url 'u:index' teachers.id %}" class="teacher_name" target="0">{{ teachers.nick_name }}</a>
+        <div class="tea_intro scroll-pane"><div class="tea_scroll ">{{ teachers.description }}</div></div>
+        {% endif %}
+        <div class="message_wrap marginB29">
+            <textarea name="discuss" class="quiz_input" placeholder="在这里输入你的问题吧!"></textarea>
+            <a href="javascript:void(0)" class="upload-img upload_btn"></a>
+        </div>
+        <div class="submit_div">
+            <input type="button" class="submit" value="向老师提问">
+        </div>
+
+    </div>
+
+	<!--视频播放左侧章节数-->
+    <div class="catalog">
+        <span class="page prev"></span>
+        <span class="page next"></span>
+        <div class="lesson">
+        <div class="title"><span></span></div>
+            <ul style="margin-top: 0">
+                {% for lsn in lesson_list %}
+                <li>
+                {% if lesson.id == lsn.id %}
+                    <span href="{% url 'course:lesson_video_view' course.id lsn.id %}" class="selected" name="{{ forloop.counter }}.{{ lsn.name }}">{{ forloop.counter }}</span>
+                {% else %}
+                	{% if course.need_pay and forloop.counter > 2 %}
+                		<a href="{% url 'course:lesson_video_view' course.id lsn.id %}" class="needPay" name="{{ forloop.counter }}.{{ lsn.name }}">{{ forloop.counter }}</a>
+                	{% else %}
+						<a href="{% url 'course:lesson_video_view' course.id lsn.id %}" class="" name="{{ forloop.counter }}.{{ lsn.name }}">{{ forloop.counter }}</a>
+					{% endif %}
+                {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <!--视频播放器-->
+    <div class="play_panel">
+		{% include 'mz_course/video_play/play_area.html'%}
+    </div>
+</div>
+<!--视频播放器底部-->
+<div style="width:100%;background-color: #ddd;padding-top: 20px;">
+<div class="small_course_content">
+	<!--技能补充-->
+	<div class="content_right">
+    <div class="header"><span class="title">技能补充</span><a href="/course/all/" target="0" class="more">更多</a></div>
+    <div class="skill">
+        <ul>
+            {% for c in course_list %}
+            <li>
+                <div class="img">
+                    <a href="{% url 'course:course_detail_view' c.id %}" title="{{ c.name }}" target="0"><img src="{{ MEDIA_URL }}{{ c.image }}" alt="{{ c.name }}"></a>
+                </div>
+                <div class="content">
+                    <a href="{% url 'course:course_detail_view' c.id %}" target="0">{{ c.name }}</a>
+                    <p>{{ c.description }}</p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+	</div>
+    <div class="content_left">
+    	<!--tab切换-->
+        <div class="tab">
+            <ul>
+                <li class="interlocution selected">最新问答</li>
+                <li class="wiki_data">WIKI资料</li>
+                <li class="kj_download">课件下载</li>
+            </ul>
+            <div class="my_join"><em value="me" class=""></em><span>只看我参与的</span></div>
+        </div>
+        <div class="tab_content">
+        	<!--最新问答-->
+	        <div class="newest_QA">
+	            <!--隐藏域-->
+	            <input id="lesson_id" type="hidden" value="{{ lesson.id }}"/>
+	            <input id="lesson_name" type="hidden" value="{{ lesson.name }}"/>
+	            <input id="discuss_location" value="{{ discuss_location }}" type="hidden"/>
+
+	        {% if questions %}
+	            <ul class="QA_lists">
+	            {% include 'mz_course/video_play/all_questions_item.html' %}
+	            </ul>
+	            <div class="QA_more">加载更多↓</div>
+	        {% else %}
+	            <!-- <div class="empty empty_qa"><img src="/images/video_play/empty_QA_me.png"></div> -->
+	            <ul class="QA_lists" style="display: none;"></ul>
+	            <div class="QA_more" style="display: none;">加载更多↓</div>
+	            <div class="empty empty_qa"><img src="/images/video_play/empty_QA.png"></div>
+	        {% endif %}
+	        </div>
+	        <!--wiki资料-->
+	        <div class="wiki">
+	        	{% if wiki_item_list %}
+	            <ul>
+	                {% for wiki_item in wiki_item_list %}
+	                    {% url 'wiki:item_detail' wiki_item.course_short_name wiki_item.item_short_name as item_detail_url %}
+	                    <li><a href="{{ item_detail_url }}" title="{{ wiki_item.name }}" target="0"><img src="{{ MEDIA_URL }}{{ wiki_item.img_url }}" alt="{{ wiki_item.img_title }}"></a>
+	                        <div class="wiki_text">
+	                            <a href="{{ item_detail_url }}" title="{{ wiki_item.name }}" target="0"><h3>{{ wiki_item.name }}</h3></a>
+	                            <p>{{ wiki_item.tidy_content|slice:'150' }}...</p>
+	                        </div>
+	                    </li>
+	                {% endfor %}
+	            </ul>
+	            <div class="wiki_more"><a href="{% url 'wiki:index' %}" target="0">更多wiki>></a></div>
+	            {% else %}
+	            <div class="empty empty_wiki"><img src="/images/video_play/empty_wiki.png"></div>
+	            {% endif %}
+	        </div>
+	        <!--课件下载-->
+	        <div class="kj">
+	        	{% if course_resource %}
+	            <ul>
+	                {% for cw in course_resource %}
+	                <li>
+	                    <div class="kj_text">
+	                        <h3>{{ cw.name }}</h3>
+	                        <p>{{ cw.name }}</p>
+	                    </div>
+	                    <a
+	                        {% if user.is_authenticated and not course.need_pay or is_paid %}
+	                            href="{{ MEDIA_URL }}{{ cw.download_url }}" target="0"
+	                        {% else %}
+	                            href="javascript:void(0)"
+	                        {% endif %}>
+	                    </a>
+	                </li>
+	                {% endfor %}
+	            </ul>
+	            {% else %}
+	            <div class="empty empty_kj"><img src="/images/video_play/empty_kj.png"></div>
+	            {% endif %}
+	        </div>
+        </div>
+
+    </div>
+    
+    <!--用户反馈弹出层-->
+    {% include 'mz_lps3/feedback_box.html' %}
+    <!-- 查看职业课程大纲弹窗 -->
+    <div class="modal fade YaHei" id="check_lesson_lists" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-content" style="width: 470px;">
+            <i class="close"></i>
+            <div class="modal-body">
+                <h4 class="font24 color66 marginB29">亲爱的学员</h4>
+                <p class="font14 color66 marginB20">该课程还有更完整的<span class="color5e font20">职业课程大纲</span>哦~</p>
+                <p class="font14 color66 marginB29">体系化学习，会有更好的学习效果！</p>
+                <a target="0" href="{% if career_course %}{% url 'course:course_detail' career_course.short_name %}{% else %}{% url 'course:career_course_list' %}{% endif %}" class="check_lists font14 colorff">查看职业课程大纲</a>
+                <p class="font14 color66"><i class="check_box"></i>不再提醒</p>
+            </div>
+        </div>
+    </div>
+    <!-- 立即付费弹窗 -->
+    <div class="modal fade YaHei" id="just_pay" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-content" style="width: 400px;">
+            <i class="close"></i>
+            <h4 class="font18 color5e">直通班课程</h4>
+            <div class="modal-body">
+                <p class="color66 font14 marginB16">抱歉，该课程视频仅限该直通班学员观看哦~</p>
+                <div class="div_1">
+                    <p>立即报名，您可享有</p>
+                    <ul>
+                        <li><span>•</span>  免费观看所有课程视频</li>
+                        <li><span>•</span>  智能在线学习系统</li>
+                        <li><span>•</span>  名师小班指导</li>
+                        <li><span>•</span>  全国就业服务</li>
+                    </ul>
+                </div>
+                <div class="div_2">
+                    <!-- <p>现在开通试学班，只需要<span>488元</span></p> -->
+                    <p><a class="zdiv2_btn class53" target="0" onclick="_MEIQIA('showPanel')">立即咨询</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% include 'mz_course/video_bottom/insert_img_popup.html'%}
+</div>
+</div>
+<!--查看大图-->
+{% include 'mz_common/showBigImg.html' %}
+<!--footer-->
+{% include 'footer/footer_2.html' %}
+{% endblock %} {% block custom_script %}
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/jscrollbar/jquery.mousewheel.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/jscrollbar/jquery.jscrollbar.min.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/jquery/uiwidget.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/jquery/fileupload.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/jquery/jquery.cookie.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/jquery/global.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/layer/layer.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/dev/feedbackBox.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/video/video_play.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1680508" charset="utf-8"></script>
+<script type="text/javascript" src="/2016/src/lessonVideoPlay.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/small_course.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/showBigImg.js?v={{ time_stamp }}"></script>
+<script type="text/javascript">
+var jiathis_config = {
+    data_track_clickback: true,
+    shortUrl: false,
+    hideMore: false,
+    url: window.location.href,
+    title: "{{ lesson.name }}-{{ course.name }}-麦子学院",
+    summary: "我正在麦子学院学习{{ lesson.name }}-{{ course.name }},赶快和我一起来感受神奇的在线学习方式吧！——麦子学院，在线学习好工作。"
+}
+var setBodyWidth = function(){		
+		var bcss = document.body.className;
+		if(document.documentElement.clientWidth>1640) {
+			if (bcss != 'W_1380 YaHei ') {
+				document.body.className = 'W_1380 YaHei ';
+			}		
+		} else if(document.documentElement.clientWidth<1470){
+			if (bcss != 'W_1000 YaHei ') {
+				document.body.className = 'W_1000 YaHei ';
+			}
+		} 	
+	}		
+	setBodyWidth();
+	if ( window.addEventListener ) {
+		window.addEventListener( 'resize', function(){
+			setTimeout(setBodyWidth,600);
+		});
+	} else if ( window.attachEvent ) {
+		window['eresize'] = setBodyWidth; 
+		window['resize'] = function () {
+			window['eresize']( window.event );
+		};
+		window.attachEvent( 'onresize', function(){
+			setTimeout(window['resize'],600);
+		});
+	} else {
+		window['onresize'] = function(){
+			setTimeout(setBodyWidth,600);
+		};
+	}
+</script>
+{% endblock %}

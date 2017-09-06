@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="baidu-site-verification" content="TlN38QiORE"/>
+    <link href="{{ STATIC_URL }}css/base.css?65435321144" rel="stylesheet">
+    <link href="{{ STATIC_URL }}mz_lps3/css/style.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}images/favicon.ico"/>
+</head>
+<body style="background: #f5f5f5;">
+
+<div class="syllabus-container">
+    <h1 class="font30 textC color66">{{ tclass.career_course.name }}</h1>
+    {% for stage in stages %}
+        <dl>
+            <dt class="font22 color33">第{{ stage.number }}阶段：{{ stage.name }}</dt>
+            <dd>
+                <ul class="leve0">
+                    {% for task in stage.tasks %}
+                        <li>
+                            <a class="lsub">
+                                任务{{ forloop.counter }}：{{ task.name }}
+                            </a>
+                            <ol class="leve1" style="overflow: hidden; display: none;">
+                                {% for knowledge in task.knowledges %}
+                                    <li>
+                                        <a  class="lsub">
+                                            {{ forloop.counter }}.{{ knowledge.name }}
+                                        </a>
+                                        <ul class="leve2" style="overflow: hidden; display: none;">
+                                            {% for item in knowledge.items %}
+                                                <li><a>
+                                                    {{ forloop.parentloop.counter }}.{{ forloop.counter }}
+                                                    {% if item.obj_type == 'LESSON' %}
+                                                        （视频）{{ item.lesson_name }}
+                                                    {% elif item.obj_type == 'TEST' %}
+                                                        （试卷）{{ item.exam_title }}
+                                                    {% elif item.obj_type == 'PROJECT' %}
+                                                        （项目制作）{{ item.exam_title }}
+                                                    {% endif %}
+                                                </a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                {% endfor %}
+                                <li><a class="lsub">项目制作：{{ task.project_name }}</a>
+                                </li>
+                            </ol>
+
+
+                        </li>
+                    {% endfor %}
+                </ul>
+            </dd>
+        </dl>
+    {% endfor %}
+</div>
+<script type="text/javascript" src="{{ STATIC_URL }}mz_lps3/js/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+        $('.leve0 > li a').live('click', function () {
+
+            if ($('ol').hasClass('leve1')) {
+                $(this).siblings('.leve1').slideToggle();
+            }
+            ;
+        });
+
+        $('.leve1 > li a').live('click', function () {
+
+            if ($('ul').hasClass('leve2')) {
+                $(this).siblings('.leve2').slideToggle();
+            }
+            ;
+        });
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,578 @@
+@import 'var';
+.syllabusBanner .infos,
+.smallCourseVideo .info {
+	@extend %box-sizing;
+}
+
+.syllabusBanner .tips:before,
+.syllabusList h3:before,
+.syllabusList h3:after,
+.smallCourseTab .tabtit li:after {
+	content: "";
+	@extend %mid;
+}
+
+.syllabusBanner .infos span,
+.smallCourseVideo .info span,
+.syllabusBanner .tips:before,
+.syllabusList h3:after,
+.syllabusList .detail li a>span,
+.smallCourseCatalog .list .tips .time {
+	background-image: url(/static/images/mz_wap/wapv2Icon.png);
+	background-repeat: no-repeat;
+}
+
+.syllabusHeader .txt,
+.syllabusList .detail > p,
+.smallCourseSummary .summary .txt {
+	display: table;
+	height: 1px;
+}
+
+.syllabusBanner .infos,
+.smallCourseVideo .info {
+	width: 100%;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	height: 1.8rem;
+	font-size: 0.65rem;
+	background: rgba(0, 0, 0, 0.5);
+	padding: 0.55rem 0.65rem 0;
+}
+
+.syllabusBanner .infos span,
+.smallCourseVideo .info span {
+	height: 0.8rem;
+	line-height: 0.8rem;
+}
+
+.syllabusBanner .infos span:first-child,
+.smallCourseVideo .info span:first-child {
+	padding-right: 0.55rem;
+	border-right: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.syllabusBanner .infos span:last-child,
+.smallCourseVideo .info span:last-child {
+	margin-left: 0.5rem;
+}
+
+img {
+	display: block;
+}
+
+.smallCourse-stage-state {
+	padding: 0 .35rem;
+	line-height: .9rem;
+	border: 2px solid transparent;
+	font-size: .55rem;
+	position: absolute;
+	right: .25rem;
+	top: .25rem;
+	border-radius: .1rem;
+}
+
+.smallCourse-stage-state.complete {
+	color: #ff725f;
+	border-color: #ff725f;
+	background: rgba(80, 80, 80, .5);
+}
+
+.smallCourse-stage-state.updating {
+	color: #00c323;
+	border-color: #2bab21;
+	background: rgba(0, 255, 48, .2);
+}
+
+
+/*课程大纲页*/
+
+.syllabus {
+	background: #f3f3f3;
+}
+
+.syllabusBanner {
+	position: relative;
+	overflow: hidden;
+	color: #fff;
+}
+
+.syllabusBanner .tips {
+	position: absolute;
+	top: 0.4rem;
+	right: 0;
+	height: 1.15rem;
+	line-height: 1.15rem;
+	background: rgba(255, 255, 255, 0.45);
+	font-size: 0.6rem;
+	border-radius: 0.575rem 0 0 0.575rem;
+	padding: 0 .3rem 0 .6rem;
+}
+
+.syllabusBanner .tips:before {
+	width: 0.925rem;
+	height: 0.85rem;
+	background-position: -430px -140px;
+	margin: -2px 0.25rem 0 0;
+}
+
+.syllabusBanner mark {
+	color: #fff;
+}
+
+.syllabusBanner h2 {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 100%;
+	text-align: center;
+	height: 2.5rem;
+	font-size: 1.3rem;
+}
+
+.syllabusBanner .infos span:first-child {
+	background-position: -430px -176px;
+	padding-left: 0.8rem;
+}
+
+.syllabusBanner .infos span:last-child {
+	background-position: -430px -207px;
+	padding-left: 0.85rem;
+}
+
+.syllabusHeader,
+.syllabusList h3,
+.syllabusList .detail ul {
+	border-bottom: 2px solid #dce0e0;
+}
+
+.syllabusHeader {
+	background: #fff;
+	margin-top: 2.25rem;
+}
+
+.syllabusHeader .txt {
+	color: #373737;
+	font-size: 0.55rem;
+	padding: 0.4rem 0.65rem;
+	line-height: 1.05rem;
+}
+
+.syllabusList h3 {
+	font-size: 0.85rem;
+	color: #666;
+	font-weight: bold;
+	padding: 1.05rem 0 0.9rem;
+	background: #fff;
+	display: table;
+	width: 1px;
+	width: 100%;
+}
+
+.syllabusList h3 span {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	max-width: 12.75rem;
+	vertical-align: middle;
+}
+
+.syllabusList h3:before {
+	width: 0.6rem;
+	height: 0.725rem;
+	background: #5ecfba;
+	margin: 0 0.2rem 0 0;
+}
+
+.syllabusList h3:after {
+	width: 0.9rem;
+	height: 0.5rem;
+	background-position: -431px -237px;
+	float: right;
+	margin: 0.3rem 0.85rem 0 0;
+	-webkit-transition: transform 0.5s;
+	-moz-transition: transform 0.5s;
+	-o-transition: transform 0.5s;
+	transition: transform 0.5s;
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+
+.syllabusList .expand:after {
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+
+.syllabusList .detail {
+	height: 0;
+	overflow: hidden;
+	word-break: break-word;
+	-webkit-transition: height 0.5s;
+	-moz-transition: height 0.5s;
+	-o-transition: height 0.5s;
+	transition: height 0.5s;
+	font-size: 0.65rem;
+	color: #666;
+}
+
+.syllabusList .detail ul {
+	overflow: hidden;
+	padding: 0 0.5rem 0.3rem;
+}
+
+.syllabusList .detail ul li {
+	margin-bottom: 0.625rem;
+	padding: 0.25rem;
+	background: #fff;
+}
+
+.syllabusList .detail ul li p {
+	position: relative;
+}
+
+.syllabusList .detail ul li a {
+	display: block;
+}
+
+.syllabusList .detail ul li strong {
+	font-size: 0.75rem;
+	margin-top: 0.375rem;
+	display: table;
+	color: #666;
+}
+
+.syllabusList .detail li a>span {
+	font-size: 0.6rem;
+	line-height: .8rem;
+	color: #999;
+	margin: 0.25rem 0;
+	background-position: -430px -276px;
+	padding-left: 0.95rem;
+	display: table;
+}
+
+.syllabusList .detail > p {
+	line-height: 0.9rem;
+	padding: 0.3rem 0.8rem;
+}
+
+.syllabusEnter {
+	width: 2.25rem;
+	height: 2.25rem;
+	line-height: 1.05rem;
+	border-radius: 50%;
+	position: fixed;
+	bottom: 3rem;
+	right: 0.4rem;
+	z-index: 999;
+	background: #5ecfba;
+	font-size: 0.85rem;
+	font-weight: bold;
+	text-align: center;
+	padding: 0.5rem;
+	-webkit-box-shadow: 0.075rem 0.075rem 0.325rem rgba(0, 0, 0, 0.16);
+	box-shadow: 0.075rem 0.075rem 0.325rem rgba(0, 0, 0, 0.16);
+}
+
+.syllabusEnter a {
+	color: #fff!important;
+}
+
+.marB {
+	margin-bottom: 3.55rem;
+}
+
+
+/*小课程页*/
+
+.smallCourseVideo {
+	position: relative;
+	overflow: hidden;
+	color: #fff;
+}
+
+.smallCourseVideo > p {
+	position: relative
+}
+
+.smallCourseVideo .info span {
+	padding-left: 1.05rem;
+}
+
+.smallCourseVideo .info span:first-child {
+	background-position: -432px -304px;
+}
+
+.smallCourseVideo .info span:last-child {
+	background-position: -432px -331px;
+}
+
+.smallCourseTab {
+	width: 100%;
+	overflow: hidden;
+	background: #fff;
+}
+
+.smallCourseTab .tabtit {
+	width: 100%;
+	border-bottom: 2px solid #eaecec;
+	text-align: center;
+	height: 1.875rem;
+	line-height: 1.875rem;
+	color: #666;
+	font-size: 0.7rem;
+}
+
+.smallCourseTab .tabtit li {
+	width: pcent(213);
+	float: left;
+	position: relative;
+}
+
+.smallCourseTab .tabtit li:after {
+	visibility: hidden;
+	height: 0.1rem;
+	width: 100%;
+	background: #5ecfba;
+	position: absolute;
+	left: 0;
+	bottom: -2px;
+}
+
+.smallCourseTab .tabtit .on {
+	color: #5ecfba;
+}
+
+.smallCourseTab .tabtit .on:after {
+	visibility: visible;
+}
+
+.smallCourseTab .tabcon {
+	overflow: hidden;
+}
+
+.smallCourseTab .recommend {
+	border-bottom: 2px solid #e2e2e2;
+}
+
+.smallCourseTab .recommend h3 {
+	font-size: 0.8rem;
+	font-weight: bold;
+	color: #666;
+	height: 1.9rem;
+	line-height: 1.9rem;
+	background: #f3f3f3;
+	padding: 0 0.65rem;
+}
+
+.smallCourseTab .recommend ul {
+	padding: 0 0.65rem;
+}
+
+.smallCourseTab .recommend li {
+	border-bottom: 2px solid #eee;
+	padding: 0.65rem 0;
+}
+
+.smallCourseTab .recommend li:last-child {
+	border: none;
+}
+
+.smallCourseTab .recommend li p {
+	width: 5.75rem;
+	height: 3.625rem;
+	overflow: hidden;
+	float: left;
+}
+
+.smallCourseTab .recommend .info {
+	margin-left: 6.45rem;
+}
+
+.smallCourseTab .recommend .info strong {
+	font-size: 0.7rem;
+	color: #666;
+	line-height: 1.3;
+	max-height: 1.8rem;
+	overflow: hidden;
+	display: block;
+}
+
+.smallCourseTab .recommend .info span {
+	font-size: 0.6rem;
+	color: #999;
+	margin-top: 0.3rem;
+	display: block;
+}
+
+.smallCourseSummary .summary {
+	padding: 0.65rem;
+	overflow: hidden;
+	border-bottom: 2px solid #e2e2e2;
+}
+
+.smallCourseSummary .summary .image {
+	float: left;
+	width: 3.25rem;
+	height: 3.25rem;
+	border-radius: 50%;
+}
+
+.smallCourseSummary .summary img {
+	border-radius: 50%;
+}
+
+.smallCourseSummary .summary .info {
+	margin-left: 3.85rem;
+	padding-top: 0.45rem;
+}
+
+.smallCourseSummary .summary .info strong {
+	font-size: 0.75rem;
+	color: #333;
+	display: block;
+}
+
+.smallCourseSummary .summary .info span {
+	font-size: 0.65rem;
+	color: #666;
+	display: block;
+	margin-top: 0.5rem;
+}
+
+.smallCourseSummary .summary .txt {
+	font-size: 0.6rem;
+	line-height: 0.8rem;
+	color: #666;
+	margin-top: 0.375rem;
+}
+
+.smallCourseCatalog .list {
+	border-bottom: 2px solid #e2e2e2;
+}
+
+.smallCourseCatalog .list .tips {
+	padding: 0.3rem 0.65rem;
+	background: #fff9c9;
+	height: 1.3rem;
+	line-height: 1.3rem;
+	font-size: 0.55rem;
+}
+
+.smallCourseCatalog .list .tips span {
+	color: #666;
+}
+
+.smallCourseCatalog .list .tips .time {
+	font-size: 0.65rem;
+	margin-right: 0.7rem;
+	background-position: -430px -353px;
+	padding-left: 1rem;
+}
+
+.smallCourseCatalog .list .tips a {
+	width: 2.35rem;
+	height: 1.3rem;
+	text-align: center;
+	color: #fff;
+	background: #5ecfba;
+	border-radius: 3px;
+	float: right;
+}
+
+.smallCourseCatalog .list ol {
+	overflow: hidden;
+	padding: 0.45rem 0.65rem;
+}
+
+.smallCourseCatalog .list li {
+	border-bottom: 2px solid #eee;
+	padding: 0 0.3rem;
+}
+
+.smallCourseCatalog .list li a {
+	padding: .375rem 0;
+	color: #666;
+	font-size: 0.6rem;
+	display: table;
+	width: 100%;
+	height: 1px;
+}
+
+.smallCourseCatalog .list li span {
+	float: right;
+}
+
+.smallCourseCatalog .list li:last-child {
+	border: none;
+}
+
+.smallCourseCatalog .recommend .info span {
+	max-height: 1.55rem;
+	overflow: hidden;
+}
+
+.smallWiKi {
+	#wiki_lists {
+		li {			
+			font-size: 0;
+			border: none;
+			margin: 0 pxToRem(10);
+			a {
+				color: #3B3B3B;
+			}
+			img, div {
+				@extend %mtop;
+			}
+			
+			img {
+				width: pxToRem(36);
+				height: pxToRem(36);
+				margin-right: pxToRem(20);
+				margin-top: pxToRem(14);
+			}
+			div {
+				padding: pxToRem(14) 0;
+				width: pcent(580);
+				border-bottom: pxToRem(1) solid #ddd;
+			}
+			&:last-child {
+				div {
+					border-bottom: none;
+				}
+			}
+			h2 {
+				font-size: pxToRem(28);
+			}
+			span {
+				color: #FF9242;
+			}
+			p {
+				font-size: pxToRem(26);
+				height: pxToRem(80);
+				line-height: pxToRem(40);
+				overflow: hidden;
+			}
+		}
+	}
+	.more {
+		border-top: 1px solid #ddd;
+		height: pxToRem(80);
+		background-color: #fff;
+		text-align: right;
+		padding-right: pxToRem(20);
+		a {
+			font-size: pxToRem(26);
+			color: #3b3b3b;
+			line-height: pxToRem(79);
+		}
+	}
+}

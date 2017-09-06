@@ -1,0 +1,32 @@
+              <div class="tab-pane" id="download">
+                {% if course_resource_list %}
+                <div class="courseware-head"><i></i><span class="text">课程课件</span><i></i></div>
+                <table class="table">
+                  <tbody>
+                  {% load  download_icon_tag %}
+                  {% for item in course_resource_list %}
+                    <tr>
+                      <td width="9%"><img src="{% download_icon item.download_url %}"></td>
+                      <td width="36%">{{ item.name }}</td>
+                      <td width="55%" class="text-align-r"><a href="/uploads/{{ item.download_url }}" class="btn btn-micv5"><i class="v5-icon v5-icon-downloadsm"></i>下载</a></td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+                {% endif %}
+                {% if lesson_resource_list %}
+                <div class="courseware-head"><i></i><span class="text">本章节课件</span><i></i></div>
+                <table class="table">
+                  <tbody>
+                  {% load  download_icon_tag %}
+                  {% for item in lesson_resource_list %}
+                    <tr>
+                      <td width="9%"><img src="{% download_icon item.download_url %}"></td>
+                      <td width="36%">{{ item.name }}</td>
+                      <td width="55%" class="text-align-r"><a href="/uploads/{{ item.download_url }}" class="btn btn-micv5"><i class="v5-icon v5-icon-downloadsm"></i>下载</a></td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+                {% endif %}
+              </div>

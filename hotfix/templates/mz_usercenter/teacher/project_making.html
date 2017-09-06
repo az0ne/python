@@ -1,0 +1,73 @@
+{% extends "mz_common/global.html" %}
+{% load article_filter %}
+{% block title %}麦子学院 - 项目制作{% endblock %}
+{% block keywords %}麦子学院，项目制作{% endblock %}
+{% block description %}项目制作{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="/css/project_making.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block csstype %}oneVoneLine{% endblock %}
+{% block container %}
+    <script type="text/javascript">
+    var classId = '{{ class_id }}';
+    var stageTaskId = '{{ stage_task_id }}';
+    var studentId = '{{ student_id }}';
+    var coachId = '{{ coach_id }}';
+    var if_reply = '{{ if_reply }}';
+    </script>
+    {% include 'header/index_header.html' %}
+    <div class="container_main">
+        <div class="left">
+            {% include 'mz_lps4/module/div_project_production.html' %}
+        </div>
+        {% if is_task %}
+        <div class="right">
+            <h2 class="header">项目得分</h2>
+            <div class="grade">
+                <img src="/images/lps4/project_making/{{ score }}.png">
+                <p class="comment"{% if score == 'waiting' %}{% else %} style="display: inline-block"{% endif %}>
+                    {% if score == 'super' %}
+                        超出预期的完成了作业
+                    {% elif score == 'amazing' %}
+                        出色的完成了作业
+                    {% elif score == 'beautiful' %}
+                        完成了作业主要考核点，但仍有些许瑕疵
+                    {% elif score == 'change' %}
+                        完成了作业但并无出彩之处
+                    {% elif score == 'danger' %}
+                        学生的作业没有达到要求
+                    {% endif %}
+                </p>
+                <span class="grade_btn _btn" {% if score == 'waiting' %}style="display: inline-block"{% else %}style="display: none"{% endif %}>给项目评分</span>
+                <span class="change_btn _btn" {% if score == 'danger' %}style="display: inline-block"{% else %}style="display: none"{% endif %}>修改评分</span>
+            </div>
+            <div class="grade_float _hide">
+                <ul class="grade_level">
+                    <li class="selected"><img src="/images/lps4/project_making/super.png" class="super" name="S">
+                    </li>
+                    <li><img src="/images/lps4/project_making/amazing.png" class="amazing" name="A"></li>
+                    <li><img src="/images/lps4/project_making/beautiful.png" class="beautiful" name="B"></li>
+                    <li><img src="/images/lps4/project_making/change.png" class="change" name="C"></li>
+                    <li><img src="/images/lps4/project_making/danger.png" class="danger" name="D"></li>
+                </ul>
+                {% if if_reply %}{% else %}<p class="info">您还没有为该项目添加点评，确定只提交分数？</p>{% endif %}
+                <span class="sure_grade_btn">确定评分</span>
+                <i class="_close"></i>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}
+{% block footer %}{% endblock %}
+{% block toolbarDiv %}{% endblock %}
+{% block google %}{% endblock %}
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/lib/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="/2016/lib/ueditor/ueditor.all.min.js"></script>
+    <script type="text/javascript" src="/2016/lib/jquery/uiwidget.min.js"></script>
+    <script type="text/javascript" src="/2016/lib/jquery/fileupload.min.js"></script>
+    <script type="text/javascript" src="/2016/lib/layer/layer.js"></script>
+    <script type="text/javascript" src="/2016/src/project-production.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/project_making.js?v={{ time_stamp }}"></script>
+{% endblock %}

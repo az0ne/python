@@ -1,0 +1,112 @@
+// @function函数定义 */
+@function pxToRem($rem){
+    $max: length($rem);
+    $remVal:();
+    @for $i from 1 through $max{
+        @if (nth($rem, $i)!=0){
+            $val: nth($rem, $i)/100 * 1rem;
+            $remVal: append($remVal, $val);
+        }
+        @else{
+            $remVal: append($remVal, 0rem);
+        }
+    }
+    @return $remVal;
+}
+
+@function pcent($eleWidth,$bodyWidth: 640){
+    @return ($eleWidth / $bodyWidth) * 100%;
+}
+%box-sizing{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+%clearfix {
+    &:before, &:after {
+        content: '';
+        clear: both;
+        display: block;
+    }
+}
+%mid {
+    display: inline-block;
+    vertical-align: middle;
+}
+header {
+	// height: pxToRem(88);
+	padding: pxToRem(0 20);
+	background: #FFF;
+	border-bottom: pxToRem(2) solid #c0c8c5;
+	width: 100%;
+	@extend %box-sizing;
+	@extend %clearfix;
+	position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+	.logo {
+		font-size: 0;
+		display: block;
+		width: pxToRem(194);
+		height: pxToRem(88);
+		background: url(/static/images/mz_wap/wiki_logo.png) no-repeat left center;
+	    background-size: 100%;
+		float: left;
+	}
+	nav{
+		font-size: 0;
+		margin-left: pxToRem(16);
+		float: left;
+		height: pxToRem(88);
+		overflow: hidden;
+	a {
+		font-size: pxToRem(28);
+		line-height: pxToRem(84);
+		position: relative;
+		color: #9AA5A3;
+		margin: pxToRem(0 20);
+		@extend %box-sizing;
+		@extend %mid;
+		&.active{
+			border-bottom: pxToRem(4) solid #00DD87;
+			color: #000;
+		}
+	}
+	}
+	.wrap {
+		font-size: pxToRem(42);
+		margin-top: pxToRem(16);
+		float: right;
+		color: #9aa5a3;
+		b {
+			@extend %mid;
+			font-size: 0;
+		}
+		b:before {
+			width: pxToRem(40);			
+			height: pxToRem(40);
+			line-height: pxToRem(40);
+			font-family: 'mzicon';
+			font-weight: normal;					
+		}
+		.search-icon {
+			margin-top: pxToRem(-2);
+			&:before {				
+				content: "\e90f";
+				font-size: pxToRem(40);
+			}
+		}
+		.reader-icon {
+			margin-left: pxToRem(20);
+			&:before {
+				font-size: pxToRem(44);
+				content: "\e930";			
+			}
+		}
+		&:active{
+			color: #ff8c35;
+		}
+	}
+}

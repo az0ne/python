@@ -1,0 +1,104 @@
+/*
+    **search_result--搜索结果页面
+    **search_result_left--搜索结果左边页面
+    **search_result_right--搜索结果右边页面
+    **search_result_job_left--搜索结果职业技能左侧页面
+    **search_result_bg--新加的body类名，用于控制背景色
+    **search_result_wiki_left--WIKI技能
+    **search_result_article_left--文章干货
+    **no_content--无搜索内容
+    **interest--您可能感兴趣
+    **其余均为公共样式
+*/
+
+.search_result_bg{background: #f5f5f5;}
+.search_result img{width: 100%;display: block;}
+.search_result strong{font-weight: normal;}
+.search_result_left .navMenu a:before,.search_result_left .ad span,.search_result_job_left .list .chapter,.search_result_article_left .marks a,.search_result_article_left .marks span{background: url("/static/images/search_result_icon.png") no-repeat;}
+.search_result_left .navMenu a:before,.search_result_right h2:before,.search_result .interest h3:after{content: "";display: inline-block;vertical-align: middle;}
+.search_result{width:1135px;max-width:1140px;margin: 20px auto 90px;overflow: hidden;padding:5px 0 5px 5px;}
+.search_result_left,.search_result_right>div{background: #fff;border: 1px solid #e7e5e6;border-radius: 2px;box-shadow: 0 0 5px 0 rgba(0,0,0,.04);}
+.search_result_left{width:789px;float: left;padding: 0 20px;overflow: hidden;}
+.search_result_left .navMenu{border-bottom: 1px solid #e7e5e5;margin-top: 3px;color: #a7a7a7;line-height: 24px;padding: 17px 0;margin-bottom: 20px;}
+.search_result_left .navMenu a{color: #a7a7a7;margin:0 16px;}
+.search_result_left .navMenu a:first-child{margin-left: 0;}
+.search_result_left .navMenu a:hover,.search_result_left .navMenu a.active{color:#ff9342;}
+.search_result_left .navMenu a:before{height: 21px;margin-right: 5px;}
+.search_result_left .navMenu .skill:before{width: 18px;background-position: 0 0;margin-top: -3px;}
+.search_result_left .navMenu .wiki:before{width: 16px;background-position: 0 -60px;}
+.search_result_left .navMenu .article:before{width: 21px;background-position: 0 -118px;}
+.search_result_left .navMenu .skill:hover:before,.search_result_left .navMenu .skill.active:before{background-position: 0 -30px;}
+.search_result_left .navMenu .wiki:hover:before,.search_result_left .navMenu .wiki.active:before{background-position: 0 -89px;}
+.search_result_left .navMenu .article:hover:before,.search_result_left .navMenu .article.active:before{background-position: 0 -147px;}
+.search_result_left .ad{position: relative;overflow: hidden;}
+.search_result_left .ad a{width: 789px;overflow: hidden;display: block;}
+.search_result_left .ad img{width: 100%;}
+.search_result_left .ad span{position: absolute;right: 0;top: 0;width:25px;height: 25px;background-position: 0 -224px;text-indent: -9999px;cursor: pointer;}
+.search_result_job_left .list li,.search_result_article_left .list li{margin-top: 40px;}
+.search_result_left .list li{overflow: hidden;}
+.search_result_left .list .img{overflow: hidden;display: block;float: left;}
+.search_result_job_left .list .img,.search_result_article_left .list .img{width: 212px;}
+.search_result_job_left .list .txt,.search_result_article_left .list .txt{margin-left: 225px;}
+.search_result_left .list h3{font-size: 14px;font-weight: bold;}
+.search_result_left .list h3 a{color: #3b3b3b;}
+.search_result_left .list em{font-style: normal;color: #ff8960;}
+.search_result_left .list p{font-size: 12px;overflow:hidden;color: #5d5d5d;line-height: 1.8;margin: 17px 0;}
+.search_result_job_left .list p,.search_result_article_left .list p{height:63px;}
+.search_result_job_left .list dl{overflow: hidden;font-size: 12px;}
+.search_result_job_left .list dt,.search_result_left .list dd{height:22px;overflow: hidden;}
+.search_result_job_left .list dt{width: 320px;float: left;}
+.search_result_job_left .list dd{width: 220px;line-height:22px;float: right;color: #8c8c8c;text-align: right;}
+.search_result_job_left .list dt a,.search_result_right .skill a{color:#b1b1b1;line-height:22px;display:inline-block;margin-right:10px;background: #eaeaea;border-radius: 10px;font-weight: normal;padding:0 10px;}
+.search_result_job_left .list dt a:hover,.search_result_right .skill a:hover{background:#ff8960;color:#fff;}
+.search_result_job_left .list .chapter{margin-right:15px;background-position: 0 -254px;padding-left: 18px;}
+.search_result_job_left .list .num{margin-left:15px;}
+.search_result_job_left .list .num em{color: #8c8c8c;}
+.search_result h2{font-weight:bold;font-size: 14px;}
+.search_result_left h2{color:#6e6e6e;}
+.search_result_left .relate{margin-top: 36px;border-bottom: 1px solid #e7e5e5;padding-bottom: 28px;}
+.search_result_left .relate ul{overflow: hidden;margin: 10px 0 0 -26px;}
+.search_result_left .relate li{float: left;margin:14px 0 0 26px;}
+.search_result_left .relate a{color:#999;font-size:12px;text-decoration: underline;}
+.search_result_left .relate a:hover{color:#ff8960;}
+.search_result .zypage{margin:24px 0 20px;}
+.search_result .zypage_div{float: left;}
+.search_result .zypage_div a{border-radius: 4px;}
+.search_result .zypage_div .jp-current{font-weight: bold;}
+
+.search_result_right{width: 279px;float: right;overflow: hidden;padding:5px;margin-top: -5px;}
+.search_result_right h2{line-height: 25px;padding: 17px 10px;border-bottom: 1px solid #e0dfdf;}
+.search_result_right h2:before{width: 6px;height: 25px;background: #ff9342;border-radius: 3px;margin: -3px 10px 0 0;}
+.search_result_right .course ul{padding: 10px 8px;}
+.search_result_right .course strong{font-size:12px;color:#939393;padding: 0 6px;display: block;}
+.search_result_right .course a{line-height: 28px;display: block;}
+.search_result_right .course p{width:261px;height:113px;overflow:hidden;display: none;position: relative;}
+.search_result_right .course p>img{width: 100%;position: absolute;right: 0;top: 0;bottom: 0;left: 0;margin: auto;}
+.search_result_right .course li.active a{padding:5px 0 10px;}
+.search_result_right .course li.active strong{font-size: 14px;color: #686868;}
+.search_result_right .course li.active p{display: block;}
+.search_result_right .skill{margin-top: 25px;}
+.search_result_right .skill .menu{overflow: hidden;padding: 2px 10px 17px 0;}
+.search_result_right .skill a{margin: 13px 0 0 10px;font-size: 12px;}
+
+.search_result .no_content{text-align: center;color: #a9a9a9;margin: 40px 0;}
+.search_result .no_content p{width: 164px;height: 164px;margin: 0 auto;}
+.search_result .no_content strong{margin-top: 15px;display: block;}
+.search_result .interest{padding: 20px 0 36px;}
+.search_result .interest h3{color: #b9b9b9;font-size: 12px;font-weight: bold;}
+.search_result .interest h3:after{width:708px;border-top: 1px solid #e7e5e5;margin-left: 8px;}
+.search_result .interest ul{overflow: hidden;margin: 24px 0 0 -12px;}
+.search_result .interest li{width: 255px;float: left;margin-left: 12px;text-align: center;}
+.search_result .interest p{width: 255px;height: 162px;overflow: hidden;}
+.search_result .interest strong{color:#3b3b3b;font-size: 12px;margin-top: 16px;display: block;}
+
+.search_result_wiki_left .list li{margin-top: 32px;padding-bottom: 25px;border-bottom: 1px solid #ebeaea;}
+.search_result_wiki_left .img{width: 32px;height: 32px;padding: 1px;border: 1px solid #eaeaea;border-radius: 3px;}
+.search_result_wiki_left .txt{margin-left: 44px;}
+.search_result_wiki_left .txt h3{margin: 10px 0;}
+.search_result_wiki_left .list p{max-height: 42px;}
+
+.search_result_article_left .list p{height: 42px;margin: 27px 0;}
+.search_result_article_left .marks a,.search_result_article_left .marks span{color: #8c8c8c;line-height: 22px;padding-left: 20px;}
+.search_result_article_left .marks a{background-position: 0 -175px;}
+.search_result_article_left .marks span{background-position: 0 -277px;margin-left: 16px;}
+.search_result_article_left .marks a:hover{color: #ff9342;background-position: 0 -199px;}

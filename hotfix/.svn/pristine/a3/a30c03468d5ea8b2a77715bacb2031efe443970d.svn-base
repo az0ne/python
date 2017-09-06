@@ -1,0 +1,17 @@
+<header>
+    <span class="wrap">
+    	<b class="search-icon"></b>
+   	    <!-- <b class="reader-icon" id="login"></b> -->
+    </span>
+    <h2><a class="logo" href="/">麦子学院</a></h2>
+    <nav>
+        <a href="{% url 'course_list_all' %}" {% if nav_name == 'course' %}class="active"{% endif %}>课程库</a>
+        <a href="{% url 'wiki_index' %}" {% if nav_name == 'wiki' %}class="active"{% endif %}>WIKI库</a>
+    </nav>
+    {% if 1 %}
+        {% include 'mz_wap/module/div_search_layout.html' %}
+    {% endif %}
+    {% if course_filter %}
+	   {% include 'mz_wap/module/div_course_filter.html' %}
+    {% endif %}
+</header>

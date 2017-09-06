@@ -1,0 +1,17 @@
+  <div class="container-fluid container-banner">
+    <div class="container container-uinfo">
+      <div class="header-uinfo">
+        <div class="uinfo-head"><img id="avatar" src="{{ MEDIA_URL }}{{ user.avatar_url }}"></div>
+        <div class="uinfo-con">
+          <div class="user-name"><span>{{ user.nick_name }}</span></div>
+        </div>
+      </div>
+      <div class="uc-nav">
+        <ul>
+          <li {% if request.path == "/user/teacher/" %}class="active"{% endif %}><a href="{% url 'user:teacher_center' %}" class="visible-md visible-lg">{% if user.is_academic_teacher %}我的专业{% else %}我的班级{% endif %}</a><a href="{% url 'user:teacher_center' %}" class="visible-xs visible-sm">班级</a></li>
+          <li {% if request.path == "/user/message/" %}class="active"{% endif %}><a href="{% url 'user:user_mymessage' %}" class="visible-md visible-lg">我的消息</a><a href="{% url 'user:user_mymessage' %}" class="visible-xs visible-sm">消息</a>{% if new_message_count > 0 %}<span class="msg-tips">{{ new_message_count }}</span>{% endif %}</li>
+          <li {% if request.path == "/user/info/" %}class="active"{% endif %}><a href="{% url 'user:user_myinfo' %}" class="visible-md visible-lg">个人资料</a><a href="{% url 'user:user_myinfo' %}" class="visible-xs visible-sm">资料</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>

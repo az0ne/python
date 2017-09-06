@@ -1,0 +1,86 @@
+{% extends "mz_common/global.html" %}
+{% load article_filter %}
+{% block title %}麦子学院 - 1v1直播往期{% endblock %}
+{% block keywords %}麦子学院，1v1直播往期{% endblock %}
+{% block description %}1v1直播往期{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="/js/lib/layer/skin/layer.css">
+    <link rel="stylesheet" type="text/css" href="/css/personalCenter.css?v={{ time_stamp }}"/>
+    <link rel="stylesheet" type="text/css" href="/css/teaOneVOneLine.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block csstype %}oneVoneLine{% endblock %}
+{% block container %}
+    {% include 'header/index_header.html' %}
+    {% include 'mz_usercenter/div_user_header.html' %}
+    <div class="center personalCmain">
+        {% block usercenter_left_panel %}
+            {% include 'mz_usercenter/div_left_menu.html' %}
+        {% endblock %}
+        <div class="personalCmainR font14">
+            <div class="lineTit">
+                <a href="{% url 'home:teacher:onevone_meeting' %}" class="go_back"><返回</a>
+                <h3>往期约课列表</h3>
+            </div>
+            <ul class="lineList">
+                {% for m in onevone_meeting_list %}
+                    <li>
+                        <div class="lineDate">
+                            <strong>星期{{ m.weekday }}</strong>
+                            <span>{{ m.start_time | date:"Y年m月d日"}}</span>
+                        </div>
+                        <div class="listA">
+                            {% for onevone_meeting in m.data %}
+                                <div class="live_list">
+                                    <div class="lineTop">
+                                        <strong class="lineTime">直播时间&nbsp;{{ onevone_meeting.start_time | date:"H:i"}}-{{ onevone_meeting.end_time | date:"H:i"}}</strong>
+                                        <a href="" alt="进入直播" class="live-btn living">
+                                            <i class="_ing"></i>
+                                            <span>进入直播</span>
+                                        </a>
+                                        <!-- <a href="" alt="回看录播" class="live-btn look_back">
+                                            <i class="_ed"></i>
+                                            <span>回看录播</span>
+                                        </a>
+                                        <span class="live-btn">
+                                            <i class="_cancel"></i>
+                                            <span class="cancel_txt">已取消</span>
+                                        </span>
+                                        <span class="live-btn">
+                                            <i class="_zw"></i>
+                                            <span class="zw_txt">暂无录播</span>
+                                        </span> -->
+                                    </div>
+                                    <div class="lineCon">
+                                        <div class="lineTea">
+                                            <img src="" alt="马青">
+                                            <strong>马青</strong>
+                                            <span class="time">2016-11-22 19:18</span>
+                                        </div>
+                                        <div class="txt">
+                                            {% if onevone_meeting.question  %}
+                                                {{ onevone_meeting.question|safe }}
+                                            {% elif not onevone_meeting.user_id %}
+                                                没有用户预约本场直播
+                                            {% else %}
+                                                这个用户很懒，没有提交预约内容！
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <a class="look_more" href="{{ url }}id={{ onevone_meeting.id }}">查看更多>></a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="lineBottom">
+                {% include 'mz_common/paginater.html' %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}{% endblock %}
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/js/lib/layer/layer.js?v={{ time_stamp }}"></script>
+{% endblock %}

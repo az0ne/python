@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+from django.conf.urls import patterns, url
+
+from apps import mz_line
+
+urlpatterns = patterns('mz_line',
+                       url(r'^web/$', 'views.web', name="web"),
+                       url(r'^op/$', 'views.op', name="op"),
+                       url(r'^pm/$', 'views.pm', name="pm"),
+                       url(r'^python/$', 'views.python', name="python"),
+                       url(r'^ui/$', 'views.ui', name="ui"),
+                       url(r'^ai/$', "views.ai", name="ai"),
+)

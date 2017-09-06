@@ -1,0 +1,18 @@
+.tryStudentsCourseList{-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing: content-box;padding-bottom: 70px!important;}
+/*免费试学课程*/
+.tryStudentsCourseList li{min-height: 160px;padding-bottom: 5px!important;}
+.tryStudentsCourseList  .courseInfo strong,.tryStudentsCourseList  .classMeeting strong{font-weight: normal;display: inline-block;vertical-align: middle;line-height: normal;}
+.tryStudentsCourseList .courseInfo em{padding: 2px 5px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;border: 1px solid transparent;text-align: center;display: inline-block;vertical-align: middle;font-size: 12px;font-style: normal;margin-left: 8px;}
+.tryStudentsCourseList .courseInfo em.active{color: #00b38a;border-color: #6ed4c1;}
+.tryStudentsCourseList .courseInfo em.ordered{color: #ff721d;border-color: #ff8033;}
+.tryStudentsCourseList .courseInfo em.over{color: #999;border-color: #e0e0e0;}
+.tryStudentsCourseList .courseInfo .go-panel,.tryStudentsCourseList .classMeeting a{background: #5ecfba;color: #fff;text-align: center;line-height: 40px;border-radius: 3px;display: block;}
+.tryStudentsCourseList .courseInfo a:hover,.tryStudentsCourseList .classMeeting a:hover{color: #fff;}
+.tryStudentsCourseList .courseInfo{width: 338px;}
+.tryStudentsCourseList .courseInfo .day{margin: 4px 0 10px;}
+.tryStudentsCourseList .courseInfo .go-panel{width: 180px;}
+.tryStudentsCourseList .courseInfo .tip{padding-top: 6px;display: block;}
+.tryStudentsCourseList .classMeeting{padding-top: 60px;}
+.tryStudentsCourseList .classMeeting a{width: 100px;float: left;}
+.tryStudentsCourseList .classMeeting span{width: 170px;float: left;margin-right: 20px;}
+

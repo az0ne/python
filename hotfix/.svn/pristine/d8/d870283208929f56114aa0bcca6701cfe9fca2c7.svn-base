@@ -1,0 +1,77 @@
+{% extends "mz_backend/base.html" %}
+{% block title %}直播室列表{% endblock %}
+{% block container %}
+    <div id="forms" class="mt10">
+        <div class="box">
+            <div class="box_border">
+                <div class="box_top"><b class="pl15">查询条件</b></div>
+                <div class="box_center">
+                    <form action="{% url 'backend:live_room_list' %}" class="jqtransform">
+                        <table class="form_table pt15 pb15" width="750px" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td class="td_right">关键词：</td>
+                                <td class="">
+                                    <input type="text" name="keywords" class="input-text lh30" size="40" value="{% if request.REQUEST.keywords %}{{ request.REQUEST.keywords }}{% endif %}" placeholder="编辑编号\直播室ID">
+                                </td>
+                                <td class="td_right">状态：</td>
+                                <td>
+                                    <select name="live_is_open" class="select">
+                                        <option value="-1" {% if request.REQUEST.live_is_open == '-1' %}selected{% endif %}>全部</option>
+                                        <option value="0" {% if request.REQUEST.live_is_open == '0' %}selected{% endif %}>关闭</option>
+                                        <option value="1" {% if request.REQUEST.live_is_open == '1' %}selected{% endif %}>直播中</option>
+                                    </select>
+                                </td>
+                                <td class="td_right">
+                                    <input type="submit" value="提交查询" class="ext_btn ext_btn_submit">
+                                </td>
+                                <td class="td_right">
+                                    <a href="{% url 'backend:create_live_room' %}" class="ext_btn"><span class="add"></span>添加直播教室</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="table" class="mt10">
+        <div class="box span10 oh">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table">
+                <tr>
+                    <th>直播室ID</th>
+                    <th>对应班级</th>
+                    <th>直播老师</th>
+                    <th>直播状态</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+                {% for room in room_list %}
+                <tr class="tr">
+                    <td>{{ room.live_id }}</td>
+                    <td>{{ room.live_class.display_name }}</td>
+                    <td>{{ room.live_class.teacher.username }}({{ room.live_class.teacher.nick_name }})</td>
+                    <td>{% if room.live_is_open == 0 %}关闭{% else %}直播中{% endif %}</td>
+                    <td>{{ room.date_publish }}</td>
+                    <td><a href="{% url 'backend:update_live_room' %}?live_id={{ room.live_id }}&coding={{ room.live_class.coding }}">修改</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <div class="page mt10">
+                <div class="pagination">
+                    {% if room_list.has_previous %}
+                        <a href="?page={{ room_list.previous_page_number }}&keywords={{ request.REQUEST.keywords }}&live_is_open={{ request.REQUEST.live_is_open }}">上一页</a>
+                    {% endif %}
+
+                    <span class="current">
+                        {{ room_list.number }} of {{ room_list.paginator.num_pages }}
+                    </span>
+
+                    {% if room_list.has_next %}
+                        <a href="?page={{ room_list.next_page_number }}&keywords={{ request.REQUEST.keywords }}&live_is_open={{ request.REQUEST.live_is_open }}">下一页</a>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

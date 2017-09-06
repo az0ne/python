@@ -1,0 +1,45 @@
+<div class="personalCmainR font14">
+    <p class="personalCmainRtit font22 color33">个人主页</p>
+
+    <div class="teacherCenter">
+        <div class="teacherCenterMenu font16">
+            {% if teacher_intro_html %}
+                <a class="aH">简介及作品</a>|<a>课程</a>
+            {% endif %}
+
+        </div>
+        <div class="teacherCenterTabContent">
+            {% if teacher_intro_html %}
+                {{ teacher_intro_html }}
+            {% endif %}
+
+            {% if courses %}
+                <div {% if not teacher_intro_html %}class="cur"{% endif %}>
+                    <ul class="teacherCenterList">
+                        {% for c in courses %}
+                            <li><a href={% url 'course:course_detail_view' c.id %}>
+                                <div class="img"><img src={{ c.image.url }} alt="{{ c.name }}"></div>
+                                <div class="font">
+                                    <p class="color00 font20 bold marginB16">{{ c.name }}</p>
+
+                                    <p class="marginB16">{{ c.lesson_set.count }}章节&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ c.student_count }}位同学正在学习</p>
+                                </div>
+                            </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% else %}
+                <div class="textC nulldata {% if not teacher_intro_html %}cur{% endif %}">
+                    <p class="marginB29"><img src="/images/no_video.png"></p>
+
+                    <p class="font22 color33 marginB10">课程暂时空空</p>
+
+                    <p class="font14 color66 marginB10">优秀需要沉淀,老师想把最好的课程给你</p>
+
+                    <p><a href="{% url 'course:stage_course_list_all' %}" class="personalCbtn">查看麦子其他课程</a></p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>

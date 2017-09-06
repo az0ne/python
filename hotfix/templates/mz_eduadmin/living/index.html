@@ -1,0 +1,37 @@
+{% extends "mz_common/base4.html" %}
+{% block title %}直播排期 - 麦子学院{% endblock %}
+{% block baiduJS %}{% endblock %}
+{% block custom_css %}
+<style>
+body{ background: #f5f5f5;}
+</style>
+{% endblock %}
+
+{% block container %}
+{% include 'header/header.html' %}
+<section class="sManage center">
+
+	{% include 'mz_eduadmin/nav.html' %}
+    <div class="sManage_Sel color33 font16 marginB38">
+    	教务<select class="cs_select"><option value="{{ user.id }}" selected="selected">{{ user.staff_name }}</option><option value="0">全部</option></select>
+        <input type="button" value="确定" class="sManage_Sel_sreach_btn"><div class="selectEND">已选择：<span>{{ user.staff_name }}</span></div>
+    </div>
+    <!--直播排期的主要内容-->
+    <div id="living_content">
+    {% include 'mz_eduadmin/living/div_living_content.html' %}
+    </div>
+
+</section>
+
+<!--考勤-->
+<div class="modal fade" id="attendance" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+</div>
+{% endblock %}
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+{% block sea_script %}
+<script>seajs.use("/js/lps4/dist/main",function(main){main.loading("broadcastM");});</script>
+{% endblock %}
+{% block baidu %}{% endblock %}{% block 53kf %}{% endblock %}

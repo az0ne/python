@@ -1,0 +1,60 @@
+<h1 class="logo"><a href="/"></a></h1>
+<div class="user">
+    {% if not user.is_authenticated %}
+    <a class="default-user-icon"></a>
+    <p><a class="sign-in">登录</a> | <a class="register" href="/user/signup/" target="_blank">注册</a></p>
+    {% else %}
+    <div class="user-icon">
+        <a class="nike-pic" href="{% url 'home:index' %}" target="_blank"><img src="{{ MEDIA_URL }}{{ user.avatar_small_thumbnall }}" alt="{{ user.nick_name }}"/></a>
+        <span class="vip"></span>
+        {% for m in MENUS  %}
+        {% if 'lps4' == m.alias %}
+        {% if m.count %}
+        <span class="msg-num">{{ m.count }}</span>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+    </div>
+    <a class="nike-name">{{ user.nick_name }}</a>
+    {% endif %}
+</div>
+{% if is_normal_class %}
+    <div class="cut-time">
+    {% if end_days_list %}
+        <p>离毕业</p>
+        <span class="first">{{ end_days_list.0 }}</span>
+        <span class="second">{{ end_days_list.1 }}</span>
+        <span class="third">{{ end_days_list.2 }}</span>
+    {% else %}
+        <p>已毕业</p>
+    {% endif %}
+    </div>
+{% endif %}
+<ul id="left-nav">
+    {% for m in MENUS  %}
+    <li class="{{ m.cls }}{% if path_alias == m.alias %} now{% endif %}">
+        <a href="{{ m.link }}">
+            <span></span>
+            {% if m.name %}
+             <strong>{{ m.name }}</strong>
+            {% endif %}
+
+            {% if m.count and m.alias != 'lps4' %}
+             <i class="msg-num">{{ m.count }}</i>
+            {% endif %}
+        </a>
+    </li>
+    {% endfor %}
+
+    <!-- <li class="LPS now"><a href=""><span></span></a></li>
+    <li class="record"><a href=""><span></span><strong>足迹</strong></a></li>
+    <li class="answers"><a href=""><span></span><strong>问答</strong><i class="msg-num">9</i></a></li>
+    <li class="one-to-one"><a href=""><span></span><strong>1 V 1</strong><i class="msg-num">9999</i></a></li>
+    -->
+    <li class="last"></li>
+</ul>
+{% if not user.is_unlockstage and not user.is_teacher %}
+{% if not is_normal_class %}
+<div class="adviser"><a onclick="_MEIQIA('showPanel')"><span></span><strong>客服</strong></a><div class="adviser-tips">想报名或者学习中遇到任何问题，随时可以来咨询你的课程顾问~</div></div>
+{% endif %}
+{% endif %}

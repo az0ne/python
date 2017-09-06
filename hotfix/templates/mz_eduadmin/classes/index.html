@@ -1,0 +1,176 @@
+{% extends "mz_common/base4.html" %}
+{% block title %}{{ sclass.display_name }} LPS3.0 教务端 - 班级管理 - 麦子学院{% endblock %}
+{% block baiduJS %}{% endblock %}
+{% block custom_css %}
+<style>
+body{ background: #f5f5f5;}
+</style>
+{% endblock %}
+
+{% block container %}
+{% include 'header/header.html' %}
+<section class="sManage center">
+	{% include 'mz_eduadmin/nav.html' %}
+    <div class="sManage_Sel color33 font16">
+    	教务<input id="deanClassTxt" type="text" placeholder="请输入教务姓名" class="sManage_Sel_sreach_txt font14 sManage_Seltxt" value="{{ edu_admin_name }}">
+        <input type="button" value="确定" class="sManage_Sel_sreach_btn"><span class="red t5o font12 marginL10" style="opacity: 0;"></span>
+    </div>
+    <div class="font14 color66 sManage_Con">
+        班级数:<span>{{ edu_admin_class_info.classes_count }}</span>
+        总人数:<span>{{ edu_admin_class_info.students_count }}</span>
+        已毕业:<span>{{ edu_admin_class_info.graduate_students_count }}人</span>
+        已学完:<span>{{ edu_admin_class_info.finish_students_count }}人</span>
+        已退学:<span>{{ edu_admin_class_info.quit_students_count }}人</span>
+        正常:<span>{{ edu_admin_class_info.normal_students_count }}人</span>
+        落后:<span>{{ edu_admin_class_info.behind_students_count }}人</span>
+        休学:<span>{{ edu_admin_class_info.paused_students_count }}人</span>
+    	<a class="createClass">创建班级</a>
+    </div>
+
+    {% if is_empty %}
+        <div class="nodata"><span>暂未查询到班级信息哦~</span></div>
+    {% else %}
+        <table class="sManage_table color66">
+        <tr>
+        	<th style="width:68px">序号</th><th class="multiselect2" style="width:168px">专业 <i class="selArrowW"></th>
+            <th style="width:180px">班级编号</th>
+            <th style="width:114px;">班级人数</th>
+            <th class="multiselect1" style="width:134px;">班级状态<i class="selArrowW"></i></th>
+            <th style="width:106px;" class="multiselect3">教师<i class="selArrowW"></th><th style="width:106px;">教务</th><th>操作</th>
+        </tr>
+        {% for cls in class_info_list %}
+        <tr class="people">
+        	<td>{{ forloop.counter }}</td>
+            <td class-specialty="{{ cls.career_course }}">{{ cls.career_course }}</td>
+            <td class="color5e">{{ cls.class_no }}</td>
+            <td>{{ cls.current_student_count }}/{{ cls.student_count_limit }}</td>
+            <td class="color5e" class-state="{{ cls.class_status }}">{{ cls.class_status }}</td>
+            <td class="teacherName">
+                {% for teacher in cls.teachers %}
+                <span title="{{ teacher }}" class-tearcher="{{ teacher }}">{{ teacher }}</span>
+                {% endfor %}
+            </td>
+            <td>{{ cls.edu_admin }}</td>
+            <td>
+                <a href="javascript:;" class="teacherManage" class_id="{{ cls.class_id }}" onkeydown="if(event.keyCode==13){return false;}">教师管理</a>
+                {% for op in cls.class_operation%}
+                | <a data-target="#classMeg" data-toggle="modal" data-meg="{{ cls.class_no }}_{{ op.s_name }}_{{ cls.class_id }}">{{ op.name }}</a>
+                {% endfor %}
+            </td>
+        </tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+</section>
+<div class="eduadminBoxBg"></div>
+<!--创建班级-->
+<div id="createClass" class="ld_createClassBox">
+    <div class="title">
+        <a class="zy_newclose"></a>
+        <p class="color5e font18 pt">创建班级</p>
+    </div>
+    <div class="deanframe">
+        <form id="createClassForm">
+            <ul>
+                <li>
+                    <label class="tpl">选择专业<input type="hidden" name="career_course"></label>
+                    <span class="showmoew"><input type="text" class="deanframetxt createClassTxt csSreach" placeholder="输入搜索专业"></span>
+                </li>
+                <li style="line-height: 34px;">
+                    <label class="tpl">开课时间</label>
+                    <span class="selectTime"><select id="year1" name="open_yaer" style="margin-left:0;"></select>年<select id="month2" name="open_month"></select>月<select id="day3" name="open_day"></select>日</span>
+                </li>
+                <li style="line-height: 34px;">
+                    <label class="tpl">开课时长</label>
+                    <span class="open_time">
+                    <select name="open_time">
+                        <option>4</option>
+                        <option>3</option>
+                        <option>2</option>
+                        <option>1</option>
+                    </select>个月</span>
+                </li>
+                <li>
+                    <label class="tpl">班级编号<input type="hidden" name="class_no"></label>
+                    <span class="numberS" id="numberS"></span>
+                </li>
+            </ul>
+            <ul class="teachInfo">
+                <li class="teacher">
+                    <label class="tpl"><span>教师1</span><input type="hidden" name="teacher1"></label>
+                    <span class="showmoew"><input type="text" class="deanframetxt createClassTxt tearcherSreach" placeholder="输入教师姓名搜索" ></span>
+                    <em class="add">添加</em>
+                </li>
+                <li id="educational">
+                    <label class="tpl">教务<input type="hidden" name="edu_admin"></label>
+                    <span class="showmoew"><input type="text" class="deanframetxt createClassTxt deanSreach" placeholder="输入教务姓名搜索" ></span>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <label class="tpl">班级群号</label>
+                    <span><input type="text" class="deanframetxt text" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" name="qq_group"></span>
+                </li>
+                <li>
+                    <label class="tpl">群Key值</label>
+                    <span><input type="text" class="deanframetxt text" onkeyup="this.value=this.value.replace(/\W/g,'')" onafterpaste="this.value=this.value.replace(/\W/g,'')" name="key_group"></span>
+                </li>
+                <li class="QR_code">
+                    <input type="hidden" id="QRurl" name="image" value="">
+                    <div>
+                        <div class="tit"><strong>班级群二维码</strong><a href="javascript:;" class="file"><span>上传</span><input type="file" id="QRupload" name="image" accept="images/*"></a></div>
+                        <div class="con"><span class="showFile"><img src="/images/createClassQRImg.png" alt="二维码"/></span></div>
+                    </div>
+                </li>
+            </ul>
+            <div class="Btn">
+                <input type="button" class="deanframebtn deanframecreatebtn" model="leaveschool" value="提交">
+                <span class="errorFF t5o"></span>
+            </div>
+        </form>
+    </div>
+</div>
+<!--教师管理-->
+<div id="teacherManage" class="ld_teacherManage">
+    <div class="title">
+        <a class="zy_newclose"></a>
+        <p class="color5e font18 pt">教师管理</p>
+    </div>
+    <div class="body">
+        <form id="manageForm">
+            <div class="table">
+                <table>
+                    <tr class="th">
+                        <th class="num">教师数</th>
+                        <th>教师姓名</th>
+                        <th class="work">操作</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="addBox">
+                <div><input type="hidden" name="addteacher"/><input type="text" class="deanframetxt createClassTxt tearcherSreach" onkeydown="if(event.keyCode==13){return false;}" placeholder="输入教师姓名搜索" ></div>
+                <em class="add">添加</em>
+            </div>
+            <div class="Btn">
+                 <input type="button" class="deanframebtn deanframemanagebtn" value="提交">
+                 <span class="errorFF t5o"></span>
+            </div>
+        </form>
+    </div>
+</div>
+<!--消息-->
+<div class="modal fade" id="classMeg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-content zy_classMeg">
+    	<p>班级编号 Android20151111</p>
+        <p class="colorf76" style="margin-bottom:20px;">确定毕业？</p>
+        <p class="zy_classMeg_btn"><a class="a1">确定</a><a class="a2">取消</a></p>
+    </div>
+</div>
+{% endblock %}
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+{% block sea_script %}
+<script>seajs.use("/js/lps4/dist/main",function(main){main.loading("classM",{"newid":'{{ edu_admin_id }}'});});</script>
+{% endblock %}
+{% block baidu %}{% endblock %}{% block 53kf %}{% endblock %}

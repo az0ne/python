@@ -1,0 +1,37 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}麦子学院-lps介绍{% endblock %}
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/css/mz_wap/enter_style.css"/>
+{% endblock %}
+
+{% block container %}
+		<h1>在线教育过程管理系统<span>以大数据和人工智能重塑在线教育</span></h1>
+		<article class="online-edu">
+			<ul>
+				<li>自动生成学习计划</li>
+				<li>学习进度动态管理</li>
+				<li>导师实时监督指导</li>
+				<li>数据驱动智能匹配</li>
+				<li>自动生成学习计划</li>
+				<li>班级排名持续激励</li>
+				<li>个性学习即时互动</li>
+				<li>数据驱动智能匹配</li>
+			</ul>
+			<a href="{% url 'course_list_all' %}">找找想学的课程</a>
+		</article>
+        {% include 'mz_wap/footer.html' %}
+	    <div class="seek-floats course-seek-floats">
+			<a onclick="_MEIQIA('showPanel')">在线咨询</a>
+			<span>关闭</span>
+	    </div>
+{% endblock %}
+
+{% block custom_script %}
+	    <script src="/static/js/mz_wap/zepto.js"></script>
+	    <script src="/static/js/mz_wap/main.js"></script>
+	    <script src="/static/js/mz_wap/imglazyload.js"></script>
+{% endblock %}
+
+

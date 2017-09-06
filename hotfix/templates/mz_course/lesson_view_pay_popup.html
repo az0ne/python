@@ -1,0 +1,35 @@
+﻿{% if career_ids != '' %}
+<!--课程支付 弹出框-->
+<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content modal-content-add">
+            <div class="modal-body">
+                <p class="text-right visible-xs visible-sm visible-md visible-lg">
+                    <a href="" class="v5-close"><img src="/static/images/c.png"></a></p>
+                <div class="visible-xs visible-sm visible-md visible-lg">
+                    <div class="row-title">如果你想在名师的指导下迅速成为一名{{ cur_careercourse.name }}，那就现在报名吧！报名后你将会享受以下服务：</div>
+                    <div class="row row-youshi">
+                    <ul>
+                        <li><img src="/static/images/oval.png" />名师一对一指导</li>
+                        <li><img src="/static/images/oval.png" />在线知识要点自测</li>
+                        <li><img src="/static/images/oval.png" />真实项目制作</li>
+                        <li><img src="/static/images/oval.png" />保就业服务</li>
+                    </ul>
+                    </div>
+                    <div class="row payment-btn-add">
+                        <a href="{% url 'pay:pay_view' %}?career_ids={{ career_ids }}" target="_blank"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+$(function(){
+   $('.v5-close').click(function(event){
+       event.preventDefault();
+       $('#paymentModal').modal('hide');
+   });
+});
+</script>
+{% endif %}

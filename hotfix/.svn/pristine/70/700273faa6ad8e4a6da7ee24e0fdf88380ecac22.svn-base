@@ -1,0 +1,49 @@
+<div class="left">
+    <h2 class="living font22 color33">直播课</h2>
+
+    <div class="class-living start">
+        <i class="first"></i>
+
+        <p class="second">
+            <span class="font20 color33">{{ free488_class.first_meeting.week }}
+                                    <i class="font20 color33">{{ free488_class.first_meeting.time }}</i>
+            </span>
+            <span class="font16 color33">{{ free488_class.first_meeting.date }}</span>
+        </p>
+        {% if free488_class.first_meeting.status == free488_class.CLASS_MEETING_NOT_STARTED %}
+            <span class="three font14"
+                  countdown='{{ free488_class.first_meeting.countdown }}'>倒计时：<i id="day_show"></i><i
+                    id="hour_show"></i><i id="minute_show"></i><i id="second_show"></i></span>
+        {% endif %}
+        <!-- tastus-tag in未开始 out已结束 -->
+
+        {% if free488_class.first_meeting.status == free488_class.CLASS_MEETING_NOT_STARTED %}
+            <a class="button no-start" href="{{ free488_class.student_first_meeting_url }}"
+               target="_blank">未开始</a>
+        {% elif free488_class.first_meeting.status == free488_class.CLASS_MEETING_ONGOING %}
+            <a class="button in" href="{{ free488_class.student_first_meeting_url }}"
+               target="_blank in" onclick="zhuge.track('点击进入班会', {'阶段名称':'项目破冰','按钮位置':'进行中'});">进行中</a>
+        {% else %}
+            {% if free488_class.first_meeting.video_url %}
+                <a class="button in" href="{{ free488_class.first_meeting.video_url }}" target="_blank" onclick="zhuge.track('点击查看录播', {'阶段名称':'项目破冰','按钮位置':'查看录播'});">查看录播</a>
+            {% else %}
+                <a class="button out" href="javascript:void(0);">已结束</a>
+            {% endif %}
+        {% endif %}
+
+    </div>
+    <p class="tips font14 color66">Tips：在这次直播课中，老师会详细讲解项目的概念、完成方法、思路及要求哟~可提前进入直播间，准备好直播课环境。</p>
+
+    <h2 class="base-title font22 color33">基础必备</h2>
+
+    <p class="sub-title font12 color66">直播课开始前，您可以提前学习老师为您准备的基础资料</p>
+    <ul class="base-list">
+        {% for article in articles_materials %}
+            <li><a href="{{ article.article_url }}" onclick="zhuge.track('点击基础必备', {'阶段名称':'项目破冰','按钮位置':'基础必备'});">{{ article.article_title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="right">
+    {% include 'mz_lps3_free/student/learning_index_teacher_banner.html' %}
+</div>

@@ -1,0 +1,383 @@
+/* 把rem转换为rem */
+@import 'var';
+@import 'header-tab';
+@import 'search_style';
+@import 'toolbar.css';
+$bg:url('/static/images/mz_wap/search_result_icon.png') no-repeat;
+.wap_wiki{
+ %textOverflow{
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   overflow: hidden;
+ }
+ %wikiLeftImg{
+    width: pxToRem(36);
+    height: pxToRem(36);
+    font-size: 0;
+    overflow: hidden;
+    float: left;
+    margin-right: pxToRem(10);
+    img{
+     max-width: 100%;
+    }
+ }
+ %wikititle{
+    display: block;
+    font-size: pxToRem(28);
+    color: #3b3b3b;
+    height: pxToRem(40);
+    line-height: pxToRem(40);
+    @extend %textOverflow;
+ }
+ /*首页*/
+ header{
+  height: pxToRem(88);
+  padding: pxToRem(0 20);
+  background: #FFF;
+  border-bottom: 2px solid #C0C8C5;
+  @extend %box-sizing;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  .logo {
+   font-size: 0;
+   display: block;
+   width: pxToRem(194);
+   height: pxToRem(88);
+   background: url(/static/images/mz_wap/wiki_logo.png) no-repeat left center;
+   float: left;
+  }
+  nav{
+   font-size: 0;
+   margin-left: pxToRem(16);
+   float: left;
+   height: pxToRem(90);
+   overflow: hidden;
+   a {
+    font-size: pxToRem(28);
+    line-height: pxToRem(85);
+    position: relative;
+    color: #9AA5A3;
+    margin: pxToRem(0 26);
+    &.active{
+     border-bottom: pxToRem(6) solid #00DD87;
+     color: #000;
+    }
+   }
+  }
+  .search{
+   font-size: pxToRem(42);
+   margin-top: pxToRem(22);
+   float: right;
+   color: #9aa5a3;
+   &:before{
+    font-family: 'mzicon';
+    content: "\e910";
+   }
+   &:active{
+    color: #ff8c35;
+   }
+  }
+ }
+ .lists{
+  padding: pxToRem(98 20 0);
+  overflow: hidden;
+  &>section{
+   margin-top: pxToRem(10);
+   overflow: hidden;
+   h3{
+    color: #3b3b3b;
+    font-size: pxToRem(28);
+    font-weight: 800;
+    line-height: pxToRem(40);
+    &:before{
+     content: "";
+     height: pxToRem(24);
+     width: pxToRem(4);
+     background: #00DD87;
+     display: inline-block;
+     vertical-align: middle;
+     margin: pxToRem(-2 10 0 0);
+    }
+   }
+  }
+  ul{
+   margin: pxToRem(10 0 0 -20);
+  }
+  li{
+   width: 50%;
+   float: left;
+   a{
+    background: #F3F5F8;
+    margin: pxToRem(0 0 20 20);
+    padding: pxToRem(20);
+    display: block;
+   }
+   p{
+    @extend %wikiLeftImg;
+   }
+   strong{
+    @extend %wikititle;
+   }
+   span{
+    display: block;
+    margin-top: pxToRem(4);
+    font-size: pxToRem(24);
+    color: #9AA5A3;
+    line-height: pxToRem(34);
+    @extend %textOverflow;
+   }
+  }
+ }
+/*目录*/
+ .position{
+  padding: pxToRem(24);
+  line-height: pxToRem(40);
+  font-size: pxToRem(28);
+  color: #9AA5A3;
+  background: #fff;
+  border: 1px solid #C0C8C5;
+  @extend %textOverflow;
+  a{
+   color: #9AA5A3;
+   text-decoration: underline;
+   margin: pxToRem(0 6);
+   display: inline;
+  }
+  span{
+   color: #000;
+   margin-left: pxToRem(6);
+   display: inline;
+  }
+ }
+ .list_info{
+  padding: pxToRem(30);
+  background: url(/static/images/mz_wap/wiki_list_bg.png) no-repeat left bottom;
+  background-size: cover;
+  div>p{
+   @extend %wikiLeftImg;
+  }
+  div>h2{
+   @extend %wikititle;
+  }
+  &>p{
+   font-size: pxToRem(26);
+   color: #3B3B3B;
+   line-height: pxToRem(40);
+   margin-top: pxToRem(20);
+   @extend %display;
+  }
+ }
+ .list_catalog{
+  font-size: pxToRem(28);
+  ul{overflow: hidden;}
+  li{
+   margin-top: pxToRem(24);
+  }
+  h3{
+   font-weight: 600;
+   color: #3B3B3B;
+   padding: pxToRem(0 30);
+   &:before{
+    width: pxToRem(10);
+    height: pxToRem(10);
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    background: #00DD87;
+    margin-right: pxToRem(20);
+    border-radius: 50%;
+   }
+  }
+  nav{
+   margin-top: pxToRem(13);
+   a{
+    @include heights(70);
+    display: block;
+    color: #3B3B3B;
+    padding: pxToRem(0 30 0 60);
+    @extend %textOverflow;
+    &:active{
+     background: #F1F1F1;
+    }
+   }
+  }
+ }
+ /*文章页*/
+ article.article{
+  & > .title {
+    text-align: center;
+    font-size: pxToRem(36);
+    font-weight: bold;
+  }
+  padding: pxToRem(40 30);
+  overflow: hidden;
+  word-break: break-all;
+  color: #333;
+  font-size: pxToRem(28);
+  img{
+   max-width: 100%;
+  }
+ }
+ .wiki_share{
+  padding: pxToRem(0 30);
+  height: pxToRem(60);
+  width: pxToRem(418);
+  strong{
+   font-size: pxToRem(28);
+   color: #6B7573;
+   line-height: pxToRem(42);
+   float: left;
+  }
+  .bdshare_t{
+   height: pxToRem(58);
+   a{
+    padding: 0;
+    margin: pxToRem(0 12);
+    font-size: pxToRem(58);
+    background: none;
+    &:before{
+     font-family: 'mzicon';
+    }
+   }
+   .popup_qzone{
+    &:active:before{
+      color: #ffcf69;
+     }
+    &:before {
+     content: "\e90e";
+     color: #ffd987;
+    }
+   }
+   .popup_sqq{
+    &:active:before{
+      color: #7eddfd;
+     }
+    &:before {
+     content: "\e90d";
+     color: #9ae5ff;
+    }
+   }
+   .popup_tsina {
+    &:active:before {
+     color: #fc7a79;
+    }
+    &:before {
+     content: "\e912";
+     color: #ffb0af;
+    }
+   }
+  }
+ }
+ .wiki_art_menu{
+  text-align: center;
+  padding: pxToRem(0 30);
+  font-size: 0;
+  margin: pxToRem(68 0 0 -20);
+  li{
+   display: inline-block;
+   vertical-align: middle;
+   width: pxToRem(180);
+   margin-left: pxToRem(20);
+  }
+  a{
+   line-height: pxToRem(80);
+   font-size: pxToRem(28);
+   display: block;
+   color: #3B3B3B;
+   border: pxToRem(3) solid #3B3B3B;
+   border-radius: pxToRem(8);
+   font-weight: bold;
+   &:active{
+    background: #ebeded;
+   }
+   &.disabled{
+    color: #bcc8c6;
+    border-color: #bcc8c6;
+   }
+  }
+ }
+ .wiki_art_related{
+  margin:pxToRem(60 30 90);
+  border-top:2px solid #C0C8C5;
+  h3{
+   font-size: pxToRem(32);
+   line-height: pxToRem(45);
+   margin-top: pxToRem(40);
+   color: #3B3B3B;
+   font-weight: bold;
+  }
+  li{
+   margin-top: pxToRem(30);
+  }
+  a{
+   line-height: pxToRem(42);
+   display: block;
+   font-size: pxToRem(28);
+   color: #6B7573;
+   @extend %textOverflow;
+  }
+ }
+ .wiki_slip_directory{
+  position: fixed;
+  left: 0;
+  bottom: pxToRem(-720);
+  z-index: 999;
+  width: 100%;
+  max-height: pxToRem(700);
+  background: #FFF;
+  @include box-shadow(0px -6px 16px 0px rgba(0,0,0,0.1));
+  @include transition(all .3s);
+  .header{
+   height: pxToRem(72);
+   padding: pxToRem(30 30 0);
+   .closed{
+    float: right;
+    font-size: pxToRem(34);
+    color: #BCC8C6;
+    &:before {
+     font-family: 'mzicon';
+     content: "\e901";
+    }
+    &:active{color: #9aa5a3;}
+   }
+   h3{
+    font-size: pxToRem(36);
+    color: #3B3B3B;
+    line-height: pxToRem(42);
+    text-align: center;
+    font-weight: bold;
+   }
+  }
+  .list_catalog{
+    max-height: pxToRem(580);
+    padding-bottom: pxToRem(18);
+    overflow-y: auto;
+    -webkit-overflow-scrolling:touch;
+   a.cur{
+    color: #13CF86;
+   }
+   }
+  &.show{
+    bottom: 0;
+   }
+ }
+ .bgc{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: #000;
+  display: none;
+  -moz-opacity: 0;
+   opacity: 0;
+  @include transition(all .3s);
+  &.show{
+   display: block;
+   -moz-opacity: .2;
+   opacity: .2;
+  }
+ }
+}

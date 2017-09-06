@@ -1,0 +1,58 @@
+{% extends "mz_common/global.html" %}
+{% load article_filter %}
+{% block title %}麦子学院 - 1v1服务列表{% endblock %}
+{% block keywords %}麦子学院，1v1服务列表{% endblock %}
+{% block description %}1v1服务列表{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="/css/teaOneVOneService.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block csstype %}oneVoneServiceList{% endblock %}
+{% block container %}
+    {% include 'header/index_header.html' %}
+    <div class="onevoneList">
+        <div class="title font16">
+            <a class="created" href="{% url 'lps4:teacher_create_new_service' career_id student_id %}">新建1V1服务</a>
+            <p class="position"><a href="{% url 'home:teacher:onevone_service' %}">个人中心1V1 &gt;</a> <span>{{ user_name }}的服务列表</span></p>
+        </div>
+        <div class="list">
+            <ul>
+                {% for service in data %}
+                <li{% if service.teacher_unread > 0 %} class="new"{% endif %}>
+                    <div class="teacher">
+                        <p><img src="{{ MEDIA_URL }}{{ service.head }}" alt=""/></p>
+                        <strong>{{ service.nick_name }}</strong>
+                    </div>
+                    <div class="infos font14">
+                        <div class="text">{{ service.content|safe|content_brief:'20' }}</div>
+                        {% if service.source %}
+                        <span><em>来自任务：</em>{{ service.source }}</span>
+                        {% endif %}
+                        <div class="times">
+                            <a href="{% url 'lps4:onevone_service_detail' service.id %}">查看详情>></a>
+                            <span>{{ service.create_date }}</span>
+                        </div>
+                    </div>
+                    <span>{{ service.teacher_unread }}</span>
+                </li>
+                {% endfor %}
+            </ul>
+            <div style="" class="zypage yahei marginB38">
+                <div class="zypage_div" style="-moz-user-select: none;">
+                    {% for p in page_count_list %}
+                        {% if p.isdigit %}
+                            <a {% if p == page_index %}class="jp-current"{% endif %}
+                               href="{% url 'lps4:teacher_service_list' career_id student_id%}?page={{ p }}">{{ p }}</a>
+                        {% else %}
+                            <a><span>...</span></a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/teaOneVOneList.js?v={{ time_stamp }}"></script>
+{% endblock %}

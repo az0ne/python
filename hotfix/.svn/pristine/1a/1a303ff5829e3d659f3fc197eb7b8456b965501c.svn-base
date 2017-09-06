@@ -1,0 +1,61 @@
+{# 课程模块 breadcrumb #}
+
+<ul class="breadcrumb">
+    <li><a href="{% url 'nadmin:career_courses' %}">课程模块</a></li>
+
+    {# 判断是不是零散课程 #}
+
+    {% if not career_course and not stage and not career_courses and not is_career_courses_create %}
+
+        <li {%if is_courses%}class="active"{%endif%}><a href="#">零散课程</a></li>
+
+    {% else %}
+
+        {# 职业课程独有 #}
+
+        <li {%if is_career_courses%}class="active"{%endif%}
+        ><a href="{% url 'nadmin:career_courses' %}">职业课程</a></li>
+
+        {% if is_career_courses_create %}
+            <li class="active">新建职业课程</li>
+        {% endif %}
+
+        {% if is_career_courses_edit %}
+            <li class="active">{{ career_course.name|escape }}</li>
+        {% endif %}
+
+        {% if is_stage_create %}
+            <li><a href="#">{{ career_course.name|escape }}</a></li>
+            <li class="active">新建阶段</li>
+        {% endif %}
+
+        {% if is_stage_edit %}
+            <li><a href="#">{{ career_course.name|escape }}</a></li>
+            <li class="active">{{ stage.name|escape }}</li>
+        {% endif %}
+
+    {% endif %}
+
+    {# 通用部分 #}
+
+    {% if is_courses_create %}
+        <li class="active">新建课程</li>
+    {% endif %}
+
+    {% if is_courses_edit %}
+        <li class="active">{{ course.name|escape }}</li>
+    {% endif %}
+
+    {% if is_lessons_create %}
+        <li>{{ course.name|escape }}</li>
+        <li class="active">新建章节</li>
+    {% endif %}
+
+    {% if is_lessons_edit %}
+        <li>{{ course.name|escape }}</li>
+        <li class="active">{{ lesson.name|escape|truncatechars:12 }}</li>
+    {% endif %}
+
+</ul>
+
+

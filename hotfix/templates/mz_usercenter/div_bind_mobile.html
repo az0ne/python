@@ -1,0 +1,53 @@
+<div class="modal fade" id="newPhone" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm pcSmodal" style="width:400px;">
+        <div class="modal-content">
+            <a class="zy_close"></a>
+
+            {% block h2 %} <p class="pt color99"><span class="font18">新增手机号</span></p> {% endblock %}
+
+            <div class="newPhoneBox">
+                {% block label %}{% endblock%}
+                <p class="marginB10"><input type="text" class="pcsBasicTableTxt" placeholder="输入手机号"></p>
+
+                <p class="marginB10">滑动完成验证</p>
+
+                <div class="marginB10 captchaMy"></div>
+                <p><a class="personalCbtn">下一步</a></p>
+
+                <p class="megError"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="newPhone2" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm pcSmodal" style="width:400px;">
+        <div class="modal-content">
+            <a class="zy_close"></a>
+
+            <p class="pt color99"><span class="font18">手机验证</span></p>
+
+            <div class="newPhoneBox">
+                <p class="pm color66 marginB10">手机短信验证码已发送，请查收！</p>
+
+                <p class="marginB10 fg"><input type="text" class="pcsBasicTableTxt" style="width:180px;"
+                                               placeholder="短信验证码"><a>重发验证码</a></p>
+
+                <p><a class="personalCbtn">确定</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="newMeg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm pcSmodal" style="width:400px;">
+        <div class="modal-content textC">
+            <p class="font22 color33 p1">手机信息更新成功</p>
+
+            <p class="font14 color66 p2 marginB20"><span class="color5e">5</span>s后自动关闭</p>
+
+            <p><a class="personalCbtn cl">关闭</a></p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,138 @@
+{% extends "mz_backend/base.html" %}
+{% block title %}高校用户列表{% endblock %}
+{% block container %}
+    <link rel="stylesheet" href="/static/css/jquery.fileupload.css">
+    <script src="/static/js/jquery.ui.widget.js"></script>
+    <script src="/static/js/jquery.iframe-transport.js"></script>
+    <script src="/static/js/jquery.fileupload.js"></script>
+    <script src="/static/js/jquery.fileupload-process.js"></script>
+    <script src="/static/js/jquery.fileupload-validate.js"></script>
+    <script>
+        $(function(){
+            $('#file_upload').fileupload({
+                dropZone: null,
+                url: '/backend/acauser/import/',
+                autoUpload: true,
+                add:function(e,data){
+                  var uploadErrors = [];
+                  var acceptFileTypes = /^(xlsx)$/i;
+                  var filesize = data.originalFiles[0]['size']/(1024)/(1024);
+                  Ntype = data.originalFiles[0]['name'];
+                  Ntype = Ntype.substring(Ntype.length-4,Ntype.length);
+                  if(!acceptFileTypes.test(Ntype)){
+                      alert("文件格式不正确（xlsx）");
+                      uploadErrors.push('Not an accepted file type');
+                  }
+                  if(parseInt(filesize)>10) {
+                     alert("文件超过10M大小");
+                      uploadErrors.push('Filesize is too big');
+                  }
+                  if(uploadErrors.length==0){
+                    data.submit();
+                  }
+                },
+                done: function (e, data) {
+                    if(data.result == "success") {
+                        alert("批量导入成功");
+                        location.href = ""
+                    }
+                    else
+                        alert("批量导入失败");
+                }
+            })
+        })
+    </script>
+    <style type="text/css">
+        .td_right .sub-work{display: block;font-size: 12px;width: 105px;height: 30px;line-height: 30px;color: #fff;text-align: center;border-radius: 5px;background: #5ecfba;border:#68c8b6 solid 1px;}
+        .fileinput-button input {font-size: 12px; width:105px; height: 32px;}
+    </style>
+    <div id="forms" class="mt10">
+        <div class="box">
+            <div class="box_bacauser">
+                <div class="box_top"><b class="pl15">查询条件</b></div>
+                <div class="box_center">
+                    <form action="{% url 'backend:acauser_list' %}" class="jqtransform">
+                        <table class="form_table pt15 pb15" width="1050px" bacauser="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td class="td_right">关键词：</td>
+                                <td class="">
+                                    <input type="text" name="keywords" class="input-text lh30" size="40" value="{% if request.REQUEST.keywords %}{{ request.REQUEST.keywords }}{% endif %}" placeholder="帐号\姓名\学号\学院\专业">
+                                </td>
+                                <td class="td_right">大学：</td>
+                                <td>
+                                    <select name="university" class="select">
+                                    <option value="-1">--请选择--</option>
+                                        {% for university in university_list %}
+                                        <option value="{{ university.id }}" {% ifequal university.id|lower request.REQUEST.university %}selected{% endifequal %}>{{ university.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </td>
+                                <td class="td_right">
+                                    <input type="submit" value="提交查询" class="ext_btn ext_btn_submit">
+                                </td>
+                                <td class="td_right">
+                                    <span class="fileinput-button btn sub-work">
+                                        <span>批量导入</span>
+                                        <input id="file_upload" type="file" name="Filedata">
+                                    </span>
+                                </td>
+                                <td class="td_right">
+                                    <a href="{% url 'backend:acauser_export' %}?keywords={{ request.REQUEST.keywords }}&university={{ request.REQUEST.university }}" target="_blank" class="btn sub-work">批量导出</a>
+                                </td>
+                                <td class="td_right" style="width: 100px">
+                                    <a href="/static/test/高校学生信息导入模板.xlsx" target="_blank">导入模板</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="table" class="mt10">
+        <div class="box span10 oh">
+            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table">
+                <tr>
+                    <th width="150px">学生姓名</th>
+                    <th width="100px">学生学号</th>
+                    <th width="100px">唯一标识码</th>
+                    <th width="150px">专业</th>
+                    <th width="100px">学院</th>
+                    <th width="120px">大学</th>
+                    <th width="120px">关联帐号</th>
+                    <th width="120px">是否激活</th>
+                    <th width="50px">操作</th>
+                </tr>
+                {% for acauser in acausers %}
+                <tr class="tr">
+                    <td>{{ acauser.stu_name }}</td>
+                    <td>{{ acauser.user_no }}</td>
+                    <td>{{ acauser.verify_code }}</td>
+                    <td>{{ acauser.academic_course.name }}</td>
+                    <td>{{ acauser.owner_college.name }}</td>
+                    <td>{{ acauser.owner_university.name }}</td>
+                    <td>{% if acauser.user %}{{ acauser.user.username }}{% endif %}</td>
+                    <td>{{ acauser.is_binded }}</td>
+                    <td><a href="{% url 'backend:acauser_delete' %}?aid={{ acauser.id }}" onclick="return confirm('删除后无法恢复')">删除</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <div class="page mt10">
+                <div class="pagination">
+                    {% if acausers.has_previous %}
+                        <a href="?page={{ acausers.previous_page_number }}&keywords={{ request.REQUEST.keywords }}&university={{ request.REQUEST.university }}">上一页</a>
+                    {% endif %}
+
+                    <span class="current">
+                        {{ acausers.number }} of {{ acausers.paginator.num_pages }}
+                    </span>
+
+                    {% if acausers.has_next %}
+                        <a href="?page={{ acausers.next_page_number }}&keywords={{ request.REQUEST.keywords }}&university={{ request.REQUEST.university }}">下一页</a>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

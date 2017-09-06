@@ -1,0 +1,106 @@
+1、将microoh-v5.js中下面的代码移动到我们自己定义的js，在microoh-v5.js中不能保留这个代码不然会冲突
+$('.class-list li').click(function(){
+    event.preventDefault();
+    $(this).toggleClass('active');
+    if($(this).hasClass('active')){
+      $(this).siblings().removeClass('active');
+      $('#btn-okpay').removeClass('btn-micv5-disabled1').removeAttr('disabled');
+    }
+    else{
+      $('#btn-okpay').addClass('btn-micv5-disabled1').attr('disabled','disabled');
+    }
+  })
+2、课程搜索代码需要替换：
+//search
+    var $keywordGroup = $("#keyword-group"),
+        $careerCourses = $keywordGroup.find(".careercourses"),
+        $courses = $keywordGroup.find(".courses"),
+        isSearching = false,
+        SEARCHING_PLACEHOLDER = "<div><a href='javascript:void(0);'>搜索中...</a></div>",
+        EMPTY_PLACEHOLDER = "<div><a href='javascript:void(0);'>无</a></div>",
+        FAIL_PLACEHOLDER = "<div><a href='javascript:void(0);'>搜索中...</a></div>";
+
+    var creatCoursesHtml = function(courses, linkBaseUrl) {
+        var html = "";
+        courses.forEach(function(course) {
+            html += "<div><span style='background-color:#A8C310;'><img src=/uploads/" + course.image + ">" +
+                "</span><a href="+ linkBaseUrl + course.id +
+                ">" + course.name + "</a></div>";
+        });
+        return html;
+    };
+
+    $('#search').on({
+        click: function(event) {
+            event.stopPropagation();
+        },
+        focus: function() {
+            if($(this).val() == '') {
+                $('#hotkeyword').show();
+            } else {
+                $('#keyword-group').show();
+            }
+        },
+        keyup: function(event) {
+            var $currTarget = $(event.currentTarget),
+                keyword = $currTarget.val();
+
+            if(typeof keyword === "undefined" || keyword.length < 3) {
+                return;
+            }
+            if (isSearching === true) {
+                return;
+            }
+            isSearching = true;
+
+            $('#hotkeyword').hide();
+
+            if (keyword === "") {
+                $('#hotkeyword').show();
+                $('#keyword-group').hide();
+                isSearching = false;
+                return;
+            }
+
+            $courses.html(SEARCHING_PLACEHOLDER);
+            $careerCourses.html(SEARCHING_PLACEHOLDER);
+
+            $.get("/common/course/search/", {keyword: keyword})
+                .done(function(res) {
+                    // refresh courses
+                    if ("courses" in res && res["courses"].length > 0) {
+                        $courses.html(creatCoursesHtml(res["courses"], "lesson/"));
+                    } else {
+                        $courses.html(EMPTY_PLACEHOLDER);
+                    }
+
+                    // refresh career courses
+                    if ("career_courses" in res && res["career_courses"].length > 0) {
+                        $careerCourses.html(creatCoursesHtml(res["career_courses"], "course/"));
+                    } else {
+                        $careerCourses.html(EMPTY_PLACEHOLDER);
+                    }
+                })
+                .error(function(error) {
+                    $courses.html(FAIL_PLACEHOLDER);
+                    $careerCourses.html(FAIL_PLACEHOLDER);
+                }).
+                always(function() {
+                    isSearching = false;
+                    $('#keyword-group').show();
+                });
+
+        }
+    });
+
+    $('.search-dp').click(function(event) {
+        event.stopPropagation();
+    });
+
+    $('#hotkeyword').on("click", "a", function(event) {
+        event.preventDefault();
+        $('#search').val($(this).text());
+        $('#search').trigger("keyup");
+        $('#hotkeyword').hide();
+        $('#keyword-group').show();
+    });

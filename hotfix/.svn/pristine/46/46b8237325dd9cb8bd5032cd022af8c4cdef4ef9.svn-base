@@ -1,0 +1,151 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}{{seo.seo_title}}{% endblock %}
+{% block keywords %}{{seo.seo_keywords}}{% endblock %}
+{% block description %}{{seo.seo_description}}{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet"  href="/static/css/mz_wap/wap2.0.css"/>
+{% endblock %}
+{% block csstype %}syllabus{% endblock %}
+{% load course_filter %}
+{% block container %}
+		<div class="smallCourseVideo">
+			<p>
+				{% if course.course_status == 0 %}
+					<span class="smallCourse-stage-state updating">更新中</span>
+				{% else %}
+					<span class="smallCourse-stage-state complete">已完结</span>
+				{% endif %}
+				{% if course.need_pay %}
+					<span class="course-stage-state" style="left: 0; right: 0; top: 0;position:absolute;" ><img src="{{STATIC_URL}}images/label_ztb.png" alt="报班学员"/></span>
+				{% endif %}
+				<img class="ui-imglazyload" data-url="{{MEDIA_URL}}{{course.image}}" alt="{{course.name}}"/>
+			</p>
+			<div class="info">
+				<span>{{lessons|length}}章节</span>
+				<span>{{course.click_count}}次播放</span>
+			</div>
+		</div>
+		<div class="smallCourseTab" id="tabBox">
+			<ul class="tabtit hd">
+				<li class="on">课程简介</li>
+				<li>课程目录</li>
+                {% if wiki_item_list %}
+				<li>WIKI资料</li>
+                {% endif %}
+			</ul>
+			<div class="tabcon bd" id="tabBox-bd">
+				<div class="smallCourseSummary">
+					<article>
+						<div class="summary">
+							<a href="{% url 'teacher_detail' teacher.id %}">
+								<p class="image"><img class="ui-imglazyload" data-url="{{MEDIA_URL}}{{teacher.avatar_url}}" alt="{{teacher.nick_name}}"/></p>
+								<div class="info">
+									<strong>{{course.name}}</strong><span>主讲老师：{{teacher.nick_name}}</span>
+								</div>
+							</a>
+							<p class="txt">{{course.description}}</p>
+						</div>
+						{% if career_course or course_list %}
+						<div class="recommend">
+							<h3>相关推荐</h3>
+							<ul>
+								{% if career_course %}
+								<li><a href="{% url 'course:course_detail' career_course.short_name %}">
+									<p><img class="ui-imglazyload" data-url="{{MEDIA_URL}}{{career_course.image}}" alt="{{career_course.name}}"/></p>
+									<div class="info">
+										<strong>{{career_course.name}}</strong>
+										<span>{{career_course.student_count}}人正在学习</span>
+									</div>
+								</a></li>
+								{% endif %}
+
+								{% if course_list %}
+									{% for course in course_list %}
+									<li><a href="{% url 'career_course_video_list' course.id %}">
+										<p><img class="ui-imglazyload" data-url="{{MEDIA_URL}}{{course.image}}" alt="{{course.name}}"/></p>
+										<div class="info">
+											<strong>{{course.name}}</strong>
+											<span>{{course.click_count}}人正在学习</span>
+										</div>
+									</a></li>
+									{% endfor %}
+								{% endif %}
+							</ul>
+						</div>
+						{% endif %}
+					</article>
+				</div>
+				<div class="smallCourseCatalog">
+					<article>
+						<div class="list">
+							<div class="tips">
+								{% if career_course.short_name %}
+								<a href="{% url 'career_course_detail' career_course.short_name %}">查看</a><span class="time">{{course_video_length}}小时学习时长</span><span>更全面的职业课程大纲</span>
+								{% else %}
+								<span class="time">{{course_video_length}}小时学习时长</span>
+								{% endif %}
+							</div>
+							<ol>
+								{% for lesson in lessons %}
+								<li><a href="{% url 'lesson_detail' course.id lesson.id %}"><span>{{ lesson.video_length|second2duration }}</span>{{ forloop.counter }}.{{ lesson.name }}</a></li>
+								{% endfor %}
+							</ol>
+						</div>
+						<!--<div class="recommend">-->
+							<!--<h3>相关文章</h3>-->
+							<!--<ul>-->
+								<!--<li><a href="">-->
+									<!--<p><img class="ui-imglazyload" data-url="/static/images/mz_wap/smallCourseImg01.jpg" alt="聊聊iOS开发到底是什么"/></p>-->
+									<!--<div class="info">-->
+										<!--<strong>【206期】早读点：聊聊iOS开发到底是什么？</strong>-->
+										<!--<span>最现在iOS和Android系统的竞争已经进入了白热化阶段...</span>-->
+									<!--</div>-->
+								<!--</a></li>-->
+								<!--<li><a href="">-->
+									<!--<p><img class="ui-imglazyload" data-url="/static/images/mz_wap/smallCourseImg01.jpg" alt="聊聊iOS开发到底是什么"/></p>-->
+									<!--<div class="info">-->
+										<!--<strong>【206期】早读点：聊聊iOS开发到底是什么？</strong>-->
+										<!--<span>最现在iOS和Android系统的竞争已经进入了白热化阶段...</span>-->
+									<!--</div>-->
+								<!--</a></li>-->
+								<!--<li><a href="">-->
+									<!--<p><img class="ui-imglazyload" data-url="/static/images/mz_wap/smallCourseImg01.jpg" alt="聊聊iOS开发到底是什么"/></p>-->
+									<!--<div class="info">-->
+										<!--<strong>【206期】早读点：聊聊iOS开发到底是什么？</strong>-->
+										<!--<span>最现在iOS和Android系统的竞争已经进入了白热化阶段...</span>-->
+									<!--</div>-->
+								<!--</a></li>-->
+							<!--</ul>-->
+						<!--</div>-->
+					</article>
+				</div>
+				<div class="smallWiKi">
+					<article>
+						{% include 'mz_wap/module/div_wiki_lists.html' %}
+						<div class="more"><a href="{% url 'wiki_index' %}">更多WIKI ></a></div>
+					</article>					
+				</div>
+			</div>
+		</div>
+		<div class="marB"></div>
+		<div class="foot-bottom" id="foot">
+            <a href="tel:400-862-8862" class="phone">立即致电</a>
+	        <a onclick="_MEIQIA('showPanel')"  class="consulte">在线咨询</a>
+	   </div>
+{% endblock %}
+
+{% block custom_script %}
+		<script src="/static/js/mz_wap/zepto.js"></script>
+	    <script src="/static/js/mz_wap/imglazyload.js"></script>
+	    <script src="/static/js/mz_wap/main.js"></script>
+	    <script src="/static/js/mz_wap/slider.js" type="text/javascript"></script>
+	    <script type="text/javascript">
+		    TouchSlide({ slideCell:"#tabBox",
+				endFun:function(i){ //高度自适应
+					var bd = $("#tabBox-bd");
+					bd.parent().css("height",bd.children().eq(i).children().height());
+					if(i>0)bd.parent().css({"-webkit-transition":"200ms","-moz-transition":"200ms","transition":"200ms"});//添加动画效果
+				}
+			});
+	    </script>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'mz_usercenter/usercenter_base.html' %}
+
+{% block usercenter_right_panel %}
+    <div class="personalCmainR font14">
+        <p class="personalCmainRtit font22 color33">老版已报名课程</p>
+        <ul class="personalCenterOLDList">
+            {% for c in cstudent_list %}
+            <li style="background:{{ c.careercourse_color }};"><a href="{% url 'lps2:lps2_learning_detail' c.careercourse_id %}">
+                <img src={{ c.careercourse_image }}>
+                <p class="font16 bold">{{ c.careercourse_name }}</p>
+                <p>{{ c.class_coding }}班</p>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

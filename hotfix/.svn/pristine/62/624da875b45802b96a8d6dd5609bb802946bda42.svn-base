@@ -1,0 +1,31 @@
+
+
+<ul class="nav nav-tabs nav-append-content">
+    {% if is_edit %}
+    <li {% if active == "info" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:career_courses_edit' career_course.id %}">基本信息</a>
+    </li>
+    <li {% if active == "stages" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:career_courses_edit_stages' career_course.id %}">阶段管理</a>
+    </li>
+    <li {% if active == "pay" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:career_courses_edit_pay' career_course.id %}">支付模块</a>
+    </li>
+    {% else %}
+    <li {% if active == "info" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:career_courses_create' %}">基本信息</a>
+    </li>
+    <li class="disabled">
+        <a title="" data-placement="bottom" data-toggle="tooltip"
+            href="javascript:void(0);" data-original-title="请先提交基本信息">
+            阶段管理
+        </a>
+    </li>
+    <li class="disabled">
+        <a title="" data-placement="bottom" data-toggle="tooltip"
+           href="javascript:void(0);" data-original-title="请先提交基本信息">支付模块</a>
+    </li>
+    {% endif %}
+</ul>
+
+

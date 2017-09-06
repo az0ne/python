@@ -1,0 +1,210 @@
+html,body{width: 100%;height: 100%;}
+.teacherRecruitInfo li,.registerForm li input,.register,.applyForm .formBox input[type="text"],.applyForm .formBox textarea,.nopay .alink a{-moz-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+strong,span,a,.img img,.wapv12 img{display: block;}
+.wapPay .payment li.checked:after,.wapPay .payment .wx span:before,.applyForm .type li.checked:after,.applyForm dt,.applyForm .formReviewed .closed,.teacherDetail .infos li:before,.teacherDetail .slider a,.nopay .alink a:before{background-image: url(/static/images/mz_wap/wapv12Icon.png);background-repeat: no-repeat;}
+.wapPay .expand:after,.wapPay .payment .wx span:before,.applyForm .applyTitle span:before,.applyForm .experience p:after,.teacherDetail .infos li:before,.nopay .alink a:before,.nopay .cause li:before{display: inline-block;vertical-align: middle;}
+
+.teacherRecruitBanner{position: relative;overflow: hidden;}
+.teacherRecruitBanner .txt{width:100%;height:2.25rem;color: #fff;text-align: center;position: absolute;left: 0;right: 0;top: 0;bottom: 0;margin: auto;}
+.teacherRecruitBanner strong{font-size: .85rem;display: block;}
+.teacherRecruitBanner span{font-size: .5rem;display: block;margin-top: .3rem;}
+.teacherRecruitInfo{margin: 1rem .325rem 0;overflow: hidden;}
+.teacherRecruitInfo ul{overflow: hidden;}
+.teacherRecruitInfo li{float: left;width: 50%;padding: 0 .55rem;text-align: center;}
+.teacherRecruitInfo .img{margin: 0 1rem 0 1.7rem;}
+.teacherRecruitInfo .infos strong{font-size: .75rem;color: #333;margin-top: .5rem;}
+.teacherRecruitInfo span{font-size: .55rem;color: #666;margin-top: .2rem;}
+.teacherRecruitInfo .infos p{color: #999;font-size: .5rem;line-height: 1.7;margin-top: .5rem;border-bottom: .075rem dotted #ddd;padding-bottom: .6rem;}
+.teacherRecruitInfo em{font-weight: bold;margin-top: .3rem;}
+.teacherRecruitRequire{background: -webkit-gradient(linear, 0% 0%, 100% 0%, from(#00d499), to(#00c9e0)); background:-webkit-linear-gradient(left, #00d499, #00c9e0);background:-moz-linear-gradient(left, #00d499, #00c9e0);background:-o-linear-gradient(left, #00d499, #00c9e0);background:-ms-linear-gradient(left, #00d499, #00c9e0);overflow: hidden;color: #fff;padding: 1.25rem .875rem;margin-top: 1.25rem;text-align: center;}
+.teacherRecruitRequire strong,.teacherRecruitTea>strong{font-size: .85rem;font-weight: bold;}
+.teacherRecruitRequire ul{padding: 0 1.8rem 1.45rem;}
+.teacherRecruitRequire li{border: .15rem solid #fff;border-radius: .4rem;font-size: .65rem;font-weight: bold;margin-top: .8rem;padding: .8rem 0 .8rem 1.7rem;text-align: left;}
+.teacherRecruitRequire li span{display: block;font-weight: normal;}
+.teacherRecruitRequire li em{width: 1.7rem;height: 1.7rem;border-radius: 50%;background: #fff;color: #00d3a2;font-size: .8rem;text-align: center;line-height: 1.7rem;font-style: italic;float: left;margin: .35rem 0 0 -2.65rem;}
+.teacherRecruitRequire li:nth-child(3){padding: 1.1rem 0 1.1rem 1.7rem;line-height: .85rem;}
+.teacherRecruitRequire li:nth-child(3) em{margin-top: 0;}
+.teacherRecruitRequire>em{font-size: .65rem;font-weight: bold;}
+.teacherRecruitRequire p{font-size: .55rem;line-height: .85rem;display: table;margin: .5rem 0 .2rem;}
+.teacherRecruitTea{margin-top: 1.2rem;}
+.teacherRecruitTea>strong{color: #666;text-align: center;}
+.teacherRecruitTea .index-teacher{margin: 0 .625rem;}
+.teacherRecruit footer{background: none;padding:0 0 3.5rem;margin-top: 1.3rem;}
+.teacherRecruit footer p{border-top: .075rem solid #dce0e0;margin: 0 .625rem;padding-top: .6rem;}
+.teacherRecruit .foot-bottom{background: #fff;border-top: 2px solid #dce0e0;}
+.teacherRecruit .foot-bottom a:before{width:0;height: 0;}
+.teacherRecruit .foot-bottom a{color: #666;}
+.teacherRecruit .foot-bottom a:first-child{border-color: #f2f2f2;}
+.teacherRecruit .foot-bottom a:last-child{color: #00b38a;}
+
+.register{height:100%;width: 100%;background: #f5f5f5;padding: 1.2rem 0;}
+.register h2{text-align: center;font-size: 1rem;color: #333;}
+.registerForm{padding: 0 1.075rem;margin-top: .75rem;overflow: hidden;}
+.registerForm li{margin-top: .45rem;}
+.registerForm li span,.applyForm .formBox form>div.test div>span{height: 1.8rem;border: .075rem solid #e0e0e0;border-radius: .15rem;background: #fff;}
+.registerForm input{font-size: .65rem;font-family: "microsoft yahei";}
+.registerForm li input{height: 100%;width: 100%;border: 0;color: #999;padding: 0 .6rem;}
+.registerForm li em{color: #f84858;font-size: .5rem;padding: .3rem 0 .1rem;display: block;}
+.registerForm div span,.applyForm .formBox form>div.test div>span{margin-right: 6.4rem;}
+.registerForm div p,.applyForm .formBox form>div.test div>p{float: right;width:5.95rem;height: 1.95rem;line-height: 1.95rem;overflow: hidden;}
+.registerForm .sendphoneyzm{float:right;width:5.95rem;height: 1.95rem;}
+.registerForm .sendphoneyzm,.registerForm .btn{color: #fff;background: #5ecfba;border-radius: .15rem;border: .075rem solid #5ecfba;}
+.registerForm .sendphoneyzm.send,.registerForm .btn.send{background: #f5f5f5;border-color: #e0e0e0;color: #999;}
+.registerForm .field-invalid{border-color: #f84858;}
+.registerForm .btn{font-size: .75rem;width: 100%;height: 2.15rem;margin-top: .65rem;}
+
+.wapPay{padding-bottom: 3rem;}
+.wapPay .teacher,.wapPay .payEnroll{overflow: hidden;border-bottom: .075rem solid #eaecec;}
+.wapPay .teacher{padding: .85rem .625rem .625rem;}
+.wapPay .teacher dt{width:3.25rem;height:3.25rem;display:block;border-radius:50%;overflow:hidden;float: left;}
+.wapPay .teacher dd{margin-left: 3.85rem;}
+.wapPay .teacher strong{font-size: .85rem;margin-top: .2rem;display: table;}
+.wapPay .teacher span{font-size: .5rem;margin: .1rem 0;display: table;}
+.wapPay .teacher p{font-size: .6rem;color: #666;line-height: 1.5;padding-top: .4rem;display: table-cell;height: 1px;}
+.wapPay .expand{width:2.5rem;text-align:center;font-size: .6rem;color: #5ecfba;margin: .5rem auto 0;}
+.wapPay .expand:after{content:"∨";margin-left: .25rem;font-weight: bold;}
+.wapPay .teacher p.resume{font-size: .65rem;display:none;transform-origin: top center;padding-top: .5rem;}
+.wapPay .teacher p.show{animation: elastic .5s;-webkit-animation: elastic .5s;-moz-animation: elastic .5s;display: table;}
+@keyframes elastic{
+	0% {transform: scale(0);}
+	100%{transform: scale(1);}
+}
+@-webkit-keyframes elastic{
+	0% {transform: scale(0);}
+	100%{transform: scale(1);}
+}
+@-webkit-keyframes elastic{
+	0% {transform: scale(0);}
+	100%{transform: scale(1);}
+}
+.wapPay .resume em{font-weight: bold;}
+.wapPay .payEnroll{padding: .45rem .625rem;}
+.wapPay .payEnroll strong,.wapPay .payEnroll span{display: table-cell;font-size: .6rem;line-height: 1.75;}
+.wapPay .payEnroll span{color: #999;}
+.wapPay .payEnroll strong{color: #666;font-weight: bold;}
+.wapPay .payment{padding: 0 .625rem;overflow: hidden;margin-top: .7rem;}
+.wapPay .payment strong{font-size: .6rem;color: #999;}
+.wapPay .payment ul,.applyForm .type ul{margin:.4rem 0 0 -.4rem;overflow: hidden;}
+.wapPay .payment li,.applyForm .type li{float:left;margin: 0 0 .5rem .4rem;position:relative;}
+.wapPay .payment label,.wapPay .payment input[type="radio"]{width: 4.75rem;height: 1.5rem;display: block;}
+.wapPay .payment label,.applyForm .type label,.applyForm .formBox form>div>p,.applyForm .formBox .textarea{border: .075rem solid #dedede;border-radius: .15rem;}
+.wapPay .payment input[type="radio"],.applyForm .type input[type="radio"]{opacity: 0;}
+.wapPay .payment span,.applyForm .type li span{width:4.75rem;height:1.5rem;font-size: .6rem;color: #333;text-align: center;line-height: 1.5rem;top:0.075rem;left:0.075rem;overflow: hidden;position: absolute;}
+.wapPay .payment li.checked label,.applyForm .type li.checked label{border-color: #5ecfba;}
+.wapPay .payment li.checked:after,.applyForm .type li.checked:after{width:.65rem;height:.65rem;content:"";display:block;background-position:0 0;position: absolute;right:0;bottom: 0;}
+.wapPay .payment .wx span:before{content:"";width: 1.15rem;height: 1.15rem;background-position: -72px -47px;margin: -.05rem .5rem 0 0;}
+.wapPay .payment .mfq span:before{background-position: -72px -93px;}
+.wapPay .payment .interest span{height:1.4rem;line-height: 1.2;font-size: .55rem;padding: .05rem 0;}
+.wapPay .payInfo{width:100%;height:2.5rem;border-top: .075rem solid #eaecec;overflow: hidden;position: fixed;left: 0;bottom: 0;background: #fff;z-index: 999;}
+.wapPay .payOffBtn{width: 6.4rem;height: 2.5rem;float: right;background: #5ecfba;font-size: .75rem;color: #fff;font-weight: bold;}
+.wapPay .payInfo span{line-height: 2.5rem;margin-right: 7.25rem;text-align: right;font-size: .65rem;color: #666;}
+.wapPay .payInfo em{color: #f7735d;}
+
+/*讲师招募-表单*/
+.applyForm .formBox{padding: 0 1.05rem 2.75rem;background: #fff;}
+.applyForm .formBox:before{margin-left: -2.85rem;}
+.applyForm .formReviewed>div:before{margin-left: 1.85rem;}
+.applyForm .formBox .tip{font-size: .55rem;color: #666;padding: .6rem 0;display:table-cell;border-bottom: .075rem solid #eaeaea;}
+.applyForm .formBox form>div{margin-top: .2rem;}
+.applyForm .formBox form>div.lecturer{margin-top: .6rem;}
+.applyForm .formBox form>div.test div{margin-top: .4rem;}
+.applyForm .formBox form>div>strong{font-size: .6rem;color: #000;}
+.applyForm .type li{margin-bottom: 0;}
+.applyForm .type li span{color: #666;}
+.applyForm .type li.checked span{color: #00b38a!important;}
+.applyForm .formBox form>div>p{margin-top: .4rem;height: 1.8rem;}
+.applyForm .type label,.applyForm .type input[type="radio"],.applyForm .type li span{width:4.15rem;height: 1.8rem;display: block;}
+.applyForm .type li span{line-height: 1.8rem;}
+.applyForm .formBox input[type="text"],.applyForm .formBox select,.applyForm .formBox textarea{width: 100%;height: 100%;font-size: .6rem;color: #999;font-family: "microsoft yahei";padding: 0 .6rem;}
+.applyForm .formBox .textarea{height:8.375rem;margin-top: .4rem;}
+.applyForm .formBox textarea{padding: .6rem;}
+.applyForm .introduction em{font-size: .5rem;color: #999;display: block;margin-top: .3rem;}
+.applyForm .experience p{position: relative;}
+.applyForm .experience p:after{width:0;height: 0;content:"";border-left: .25rem solid transparent;border-right: .25rem solid transparent;border-top: .4rem solid #666;position: absolute;right: .6rem;top: .7rem;}
+.applyForm .captcha{margin-top: .4rem;}
+.applyForm .formBox form>div>span,.applyForm .formBox form>div .error,.applyForm .tacherProgramedTips{color: #f84858;font-size: .55rem;padding-top:.4rem;display:table-cell;font-style: normal;}
+.applyForm .formBox form>div .error,.applyForm .tacherProgramedTips{display: none;}
+,.applyForm .tacherProgramedTips{padding-top: 0;}
+.applyForm .formBox .field-invalid{border-color: #f84858;}
+.applyForm .submitBtn{width:100%;border-radius:.1rem;font-size: .75rem;background: #5ecfba;height: 2.1rem;color: #fff;font-family: "microsoft yahei";margin-top: .6rem;}
+
+.applyForm .formReviewed{width: 12.6rem;box-shadow: 0 0 0.15rem .075rem rgba(0,0,0,.3);}
+.applyForm .formSuccess{height: 7.85rem;}
+.applyForm .formFail{height: 7.85rem;}
+.applyForm dl{padding: 1.25rem;overflow: hidden;}
+.applyForm dt{width: 1.75rem;height: 1.75rem;float: left;}
+.applyForm .formSuccess dt{background-position: 0 -70px;}
+.applyForm .formFail dt{background-position: 0 -140px;}
+.applyForm dd{margin-left: 2.35rem;}
+.applyForm dd strong{font-size: .8rem;color: #666;}
+.applyForm dd p{font-size: .55rem;color: #999;margin-top: .4rem;}
+.applyForm .footA{height: 1.7rem;background: #f5f5f5;padding: .4rem 0;}
+.applyForm .footA a,.teacherDetail .banner a,.teacherDetail .word a{height: 1.7rem;line-height: 1.7rem;text-align: center;font-size: .6rem;color: #fff;background: #5ECFBA;border-radius: .1rem;}
+.applyForm .formSuccess dl{height: 2.9rem;}
+.applyForm .formSuccess a{width: 5.55rem;margin: 0 auto;}
+.applyForm .formReviewed .closed{width: 1.1rem;height: 1.1rem;background-position: -49px 0;text-indent: -9999rem;float: right;margin-top: -2.2rem;}
+.applyForm .formReviewed .closed:after{content:"";display: block;width: 2px;height: 1.25rem;background: #fff;margin: -.2rem auto 0;}
+.applyForm .formFail dl{height: 3.55rem;}
+.applyForm .formFail p{line-height: 1.4;}
+.applyForm .formFail em{color: #666;}
+.applyForm .formFail .footA{padding: .4rem .55rem;}
+.applyForm .formFail a{width: 5.1rem;float: left;margin:0 .325rem;}
+.applyForm .formFail .back{background: #ccc;}
+.applyForm .gt_mobile_holder svg g:last-child g:last-child{display: none;}
+
+.teacherDetail .banner{background: url(/static/images/mz_wap/teacherBannerBg.jpg) no-repeat;background-size: cover;background-position:left center;overflow: hidden;padding: 2rem .8rem 2.05rem;text-align: center;color: #fff;}
+.teacherDetail .banner .img{width: 3.75rem;height: 3.75rem;border-radius: 50%;overflow: hidden;box-shadow: 0 0 0 0.25rem rgba(204,204,204,.6);margin: 0 auto;}
+.teacherDetail .banner strong,.teacherDetail .banner span{display: table;width: 100%;}
+.teacherDetail .banner strong{font-size: .85rem;margin-top: .9rem;}
+.teacherDetail .banner span{font-size: .65rem;}
+.teacherDetail .banner p{font-size: .55rem;display: table;height: 1px;line-height: .85rem;margin-top: .8rem;}
+.teacherDetail .banner a{width: 6.2rem;margin: 1.25rem auto 0;}
+.teacherDetail .infos{padding: .8rem 0;margin:0 1rem;overflow: hidden;border-bottom: .05rem solid #e8e8e8;}
+.teacherDetail .infos li{float:left;width: 33.33%;text-align: center;font-size: .5rem;color: #666;}
+.teacherDetail .infos li:first-child{text-align: left;}
+.teacherDetail .infos li:last-child{text-align: right;}
+.teacherDetail .infos a{display: inline-block;text-align: left;}
+.teacherDetail .infos span{font-size: .55rem;}
+.teacherDetail .infos mark{font-size: .85rem;}
+.teacherDetail .infos li:before{content:"";width: 1.525rem;height: 1.525rem;background-position: -120px -60px;margin: -1.1rem .3rem 0 0;}
+.teacherDetail .infos li:first-child:before{background-position: -120px 1px;}
+.teacherDetail .infos li:last-child:before{background-position: -120px -120px;}
+.teacherDetail h3{font-size: 1rem;text-align: center;margin-top: 1.2rem;display: table;width: 100%;}
+.teacherDetail .slider{margin-top: 1rem;overflow: hidden;padding: 0 .625rem 1.5rem;text-align: center;position: relative;}
+.teacherDetail .slider strong{font-size: .65rem;color: #666;margin-top: .7rem;}
+.teacherDetail .slider span{font-size: .55rem;color: #999;margin-top: .2rem;}
+.teacherDetail .slider a{width: .875rem;height: 1.35rem;position: absolute;top: 50%;margin-top: -2.6rem;}
+.teacherDetail .slider .prev{background-position: 0 -210px;left: 1rem;}
+.teacherDetail .slider .next{background-position: -35px -210px;right: 1rem;}
+.teacherDetail .live{background: #f5f5f5;padding: 0 .625rem;overflow: hidden;margin-top: 0.7rem;}
+.teacherDetail .live li{border-left: .05rem solid #d7d7d7;margin-left: .9rem;padding: .5rem 0 0 .9rem;}
+.teacherDetail .live li:before{width: .55rem;height: .55rem;content:"";display: block;border-radius: 50%;background: #24bcac;box-shadow: 0 0 0 .255rem rgba(245,245,245,.9);float: left;margin:.25rem 0 0 -1.2rem;}
+.teacherDetail .live strong{font-size: .65rem;color: #333;display: table;line-height: 1.1rem;}
+.teacherDetail .live p{font-size: .55rem;color: #999;display: table;height: 1px;line-height: .8rem;padding-right: .6rem;}
+.teacherDetail .live em{font-size: .6rem;display: table;line-height: 1.7;}
+.teacherDetail .live li:first-child{padding-top: 0;}
+.teacherDetail .live li:last-child{padding-bottom: 1.45rem;}
+.teacherDetail .word{padding-bottom: 1.5rem;}
+.teacherDetail .word .txt{font-size: .6rem;color: #666;line-height: .95rem;display: table;height:1px;padding: 0 1rem;margin-top: .5rem;}
+.teacherDetail .word a{width: 6.25rem;margin: 1rem auto 0;}
+.teacherDetail .studentWork{overflow: hidden;background: #f5f5f5;}
+.teacherDetail .studentWork span{letter-spacing:.15rem;}
+.teacherDetail .studentWork .pageState span{font-size: .8rem;display: inline-block;}
+
+/*未支付*/
+.nopay{padding: 0 .75rem;overflow: hidden;}
+.nopay .cause,.nopay .tip{border-bottom: .05rem solid #e2e2e2;}
+.nopay .tip{padding: 2.55rem 0 1.2rem;text-align: center;}
+.nopay .tip img{width: 6.5rem;height: 6.5rem;margin: 0 auto;}
+.nopay .tip strong{font-size: .85rem;color: #333;margin-top: 1.3rem;}
+.nopay .tip span{font-size:.55rem;color:#868686;margin-top:.75rem;}
+.nopay .cause{padding: .8rem 0 .75rem;}
+.nopay .cause strong{font-size: .75rem;color: #5ECFBA;line-height: 2;}
+.nopay .cause li{color:#878787;font-size: .6rem;line-height: 1.55rem;}
+.nopay .cause li:before{content:"";width: .3rem;height: .3rem;border-radius: 50%;background: #D8D8D8;margin: 0 .5rem 0 .25rem;}
+.nopay .alink{margin: 1.5rem auto;width: 14rem;}
+.nopay .alink a{display: inline-block;width: 50%;text-align: center;font-size: .85rem;color: #333;}
+.nopay .alink .custom{border-left: .05rem solid #e2e2e2;}
+.nopay .alink a:before{content:"";width: 1.35rem;height: 1.2rem;margin: -2px .2rem 0 0;}
+.nopay .alink .rePayment:before{background-position: -126px -190px;}
+.nopay .alink .custom:before{background-position: -126px -243px;}

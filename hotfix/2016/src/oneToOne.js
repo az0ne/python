@@ -1,0 +1,3 @@
+/*! LPS4.0 2016-12-19
+*/
+function popupMsg(e){e.modal({show:!0,keyboard:!1,backdrop:"static"}),$(".close").on("click",function(){e.modal("hide")})}function perfectMyResume(){$("#perfectMyResume").modal("show"),"True"==is_force_pop_complete_resume?$("#perfectMyResume .close").remove():$("#perfectMyResume .close").on("click",function(){$("#perfectMyResume").modal("hide")})}$(function(){"True"==is_employment_contract&&"True"==is_pop_complete_resume&&perfectMyResume()});

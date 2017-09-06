@@ -1,0 +1,66 @@
+<ul class="nav nav-list">
+    <li class="nav-header">
+        <!--span class="fui-user"></span--> 用户模块
+    </li>
+    <li {% if current_nav_name == "students" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:users_students' %}">
+            学生帐号
+            <span class="badge pull-right">
+            {% if extra_info.students_count > 0 %}
+                {{ extra_info.students_count }}
+            {% else %}
+            0
+            {% endif %}
+            </span>
+        </a>
+    </li>
+    <li {% if current_nav_name == "teacher" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:users_teachers' %}">
+            教师帐号
+            <span class="badge pull-right">
+            {% if extra_info.teachers_count > 0 %}
+                {{ extra_info.teachers_count }}
+            {% else %}
+            0
+            {% endif %}
+            </span>
+        </a>
+    </li>
+
+    <li class="divider"></li>
+    <li class="nav-header">
+        <!--span class="fui-bookmark"></span--> 课程模块
+    </li>
+    <li {% if current_nav_name == "career_courses" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:career_courses' %}">
+            职业课程
+            <span class="badge pull-right">
+            {% if extra_info.career_courses_count > 0 %}
+                {{ extra_info.career_courses_count }}
+            {% else %}
+            0
+            {% endif %}
+            </span>
+        </a>
+    </li>
+    <li {% if current_nav_name == "individual_courses" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:courses' %}">
+            零散课程
+            <span class="badge pull-right">
+            {% if extra_info.individual_courses_count > 0 %}
+                {{ extra_info.individual_courses_count }}
+            {% else %}
+            0
+            {% endif %}
+            </span>
+        </a>
+    </li>
+
+    <li class="divider"></li>
+    <li class="nav-header">
+        <!--span class="fui-paypal"></span--> 支付模块
+    </li>
+</ul>
+
+
+

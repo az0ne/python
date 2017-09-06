@@ -1,0 +1,31 @@
+{% extends "mz_backend/base.html" %}
+{% block title %}加入班级{% endblock %}
+{% block container %}
+<form action="{% url 'backend:quit_class_save' %}" method="post">
+    {% csrf_token %}
+    <table width="800px">
+        <tr>
+            <td>
+                <h3>请仔细核对学生退班的信息，退班有风险，请谨慎操作！</h3>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>学生昵称：</b>{{ user.nick_name }},<b>Email:</b>{% if user.email %}{{ user.email }}{% else %}无{% endif %},<b>Mobile:</b>{% if user.mobile %}{{ user.mobile }}{% else %}无{% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <b>班级：</b>{{ classobj.display_name }},<b>老师：</b>{{ classobj.teacher_name }}，<b>班级QQ：</b>{{ classobj.qq }},<b>学生上限：</b>{{ classobj.student_limit }},<b>当前报名人数：</b>{{ classobj.current_student_count }}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="hidden" id="user_id" name="user_id" value="{{ user.id }}">
+                <input type="hidden" id="coding" name="coding" value="{{ classobj.coding }}">
+                <input type="submit" value="确定退出班级" class="ext_btn ext_btn_submit">
+            </td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

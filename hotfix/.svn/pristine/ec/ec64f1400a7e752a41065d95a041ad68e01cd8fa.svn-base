@@ -1,0 +1,219 @@
+.toolbar {
+    position: fixed;
+    right: 10px;
+    bottom: 4%;
+    z-index: 1020;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s
+}
+
+.toolbarbox {
+    width: 52px;
+    height: 169px;
+    background: #ffffff;
+    position: fixed;
+    right: 0;
+    bottom: 100px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, .09);
+    /*overflow: hidden;*/
+    color: #ffffff;
+
+}
+
+.toolbarbox img {
+    border: 0;
+    max-width: 100%;
+    margin-top: 10px;
+}
+
+.msg {
+    width: 52px;
+    height: 56px;
+    /*overflow: hidden;*/
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}
+.msg .msg-line{
+    position: absolute;
+    top: 60px;
+    left:21px;
+    width: 10px;
+    height: 1px;
+    border-bottom: 1px solid #e7e7e7;
+
+}
+img.msg-img {
+    position: absolute;
+    left: 8px;
+    top:10px;
+}
+.hidemsg {
+        width: 210px;
+    height: 40px;
+    line-height: 28px;
+    background: #10c46e;
+    text-align: center;
+    /* display: none; */
+    border-radius: 5px;
+    overflow: hidden;
+}
+.hidemsg div{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    pointer-events: none;
+    background-color: #ffffff;
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    -o-border-radius: 100%;
+    -ms-border-radius: 100%;
+    border-radius: 100%;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -ms-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+    display: inline-block;
+    width: 204px;
+    height: 204px;
+    -webkit-animation: ball-scale 1s 0s ease-in-out infinite;
+    -moz-animation: ball-scale 1s 0s ease-in-out infinite;
+    -ms-animation: ball-scale 1s 0s ease-in-out infinite;
+    -o-animation: ball-scale 1s 0s ease-in-out infinite;
+    animation: ball-scale 1s 0s ease-in-out infinite;
+}
+.hidemsg p{
+    line-height: 40px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 16px;
+}
+.hidemsgAfter{
+       width: 225px;
+    height: 40px;
+    position: relative;
+    left: -222px;
+    top: 11px;
+    border-radius: 5px;
+overflow: hidden;
+    cursor: pointer;
+}
+.hidemsgAfter :after {
+    content: '';
+    position: absolute;
+    top: 11px;
+    right: 7px;
+    display: block;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid #10c46e;
+
+}
+
+.mobel {
+    width: 52px;
+    height: 56px;
+    /*overflow: hidden;*/
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.hidemobelBox {
+    width: 173px;
+    height: 28px;
+    text-align: center;
+    background: #10c46e;
+    padding: 7px;
+    border-radius: 8px;
+    display: none;
+    position: absolute;
+    right: 63px;
+    top: 17px;
+    cursor: pointer;
+}
+
+.hidemobelBox :after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    right: -8px;
+    display: block;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid #10c46e;
+}
+
+
+.Rtop {
+    width: 52px;
+    height: 56px;
+    /*overflow: hidden;*/
+    text-align: center;
+    cursor: pointer;
+}
+.hideRtop {
+    width: 57px;
+    height: 28px;
+    line-height: 28px;
+    background: #10c46e;
+    text-align: center;
+    display: none;
+    position: absolute;
+    top: 128px;
+    right: 63px;
+    border-radius: 5px;
+}
+.hideRtop :after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    right: -7px;
+    display: block;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 8px solid #10c46e;
+
+}
+
+.tool-line {
+
+    width: 10px;
+    height: 1px;
+    border-bottom: 1px solid #e7e7e7;
+    margin: 0 auto;
+    margin-top: 10px;
+}
+
+@-webkit-keyframes ball-scale {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0)
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 0
+    }
+}
+
+@keyframes ball-scale {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0)
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 0
+    }
+}

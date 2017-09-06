@@ -1,0 +1,56 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/courses_breadcrumb.html" %}
+
+
+<div class="tabbable">
+{% include "mz_nadmin/parts/career_courses_edit_tabs.html" %}
+
+<div class="tab-content">
+<div class="tab-pane active">
+
+    <p>
+        <a href="{% url 'nadmin:stages_create' career_course.id %}" class="btn btn-xs btn-primary">
+            + 添加新阶段
+        </a>
+    </p>
+
+    {% include "mz_nadmin/modules/msgs.html" %}
+
+    {% if stages.object_list.count > 0 %}
+    <div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <th class="col-md-3">阶段名</th>
+            <th class="col-md-9">描述</th>
+        </thead>
+        <tbody>
+            {% for stage in stages %}
+            <tr>
+                <td>
+                    <a href="{% url 'nadmin:stages_edit' career_course.id stage.id %}">
+                        {{ stage.name|escape }}
+                    </a>
+                </td>
+                <td>{{ stage.description|truncatechars:64|escape|default:""  }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% include "mz_nadmin/modules/page_info.html" with items=stages %}
+    </div>
+    {% else %}
+    <p class="text-muted"><small>还没有任何阶段信息</small></p>
+    {% endif %}
+
+</div>
+</div>
+</div>
+
+
+{% endblock %}
+
+
+

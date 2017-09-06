@@ -1,0 +1,711 @@
+{% extends "mz_common/base.html" %}
+{% block title %}{% if cur_lesson.seo_title %}{{ cur_lesson.seo_title }}{% else %}{{ cur_lesson.name }}{% endif %} - {% if cur_careercourse %}{{ cur_careercourse.name }}{% else %}{{ cur_course.name }}{% endif %} - 麦子学院{% endblock %}
+{% block keywords %}{% if cur_lesson.seo_keyword %}{{ cur_lesson.seo_keyword }}{% endif %}{% endblock %}
+{% block description %}{% if cur_lesson.seo_description %}{{ cur_lesson.seo_description }}{% endif %}{% endblock %}
+{% block breadcrumb %}
+    <div class="container visible-md visible-lg">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'index_front' %}">首页</a></li>
+            {% if cur_careercourse %}
+                <li><a href="{% url 'course:career_course_list' %}">企业直通班</a></li>
+                <li><a href="{% url 'course:course_detail' cur_careercourse.short_name %}">{{ cur_careercourse.name }}</a></li>
+            {% endif %}
+            <li class="active">{{ cur_course.name }}</li>
+        </ol>
+    </div>
+{% endblock %}
+
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/css/jquery.fileupload.css">
+    <link rel="stylesheet" href="/static/css/imgareaselect-animated.css">
+{% endblock %}
+{% block container %}
+    <link rel="stylesheet" href="/static/css/videojs/video-js.css">
+    <script src="/static/js/videojs/video.js"></script>
+    <script>
+        videojs.options.flash.swf = "/static/js/videojs/video-js.swf"
+    </script>
+
+    <div class="container">
+        <div class="course-play">
+            <dl class="course-lead">
+                <dt>{{ cur_course.name }}<span class="course-lead-state" style="color:#1BBC9B">{% if cur_course.course_status == 0%}(更新中){% else %}(已完结){% endif %}</span></dt>
+                <dd>课程描述：{{ cur_course.description | safe }}</dd>
+            </dl>
+            <div class="course-play-container">
+                <div class="row popover-test-container">
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 course-play-box" id="videoZY" style="background-color: #000">
+                        {{ cur_lesson.video_url|safe }}
+{#                    <object width="750" height="422" id="polyvplayer5d11ffaed3d23f8eab53d0bc30f00fcb_5" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"><param value="http://player.polyv.net/videos/player.swf" name="movie"><param value="always" name="allowscriptaccess"><param value="Transparent" name="wmode"><param value="vid=5d11ffaed3d23f8eab53d0bc30f00fcb_5" name="flashvars"><param value="true" name="allowFullScreen"><embed width="750" height="422" flashvars="vid=5d11ffaed3d23f8eab53d0bc30f00fcb_5" allowfullscreen="true" name="polyvplayer5d11ffaed3d23f8eab53d0bc30f00fcb_5" wmode="Transparent" allowscriptaccess="always" type="application/x-shockwave-flash" src="http://player.polyv.net/videos/player.swf"></object>#}
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 course-play-list">
+                        <h1>课程章节</h1>
+
+                        <div id="playlist" class="playlist scroll-pane" style="overflow:hidden;">
+                            <ul>
+                                {% for item in lesson_list %}
+                                    <li {% if item.id == cur_lesson.id %}class="active_null"{% endif %}>
+                                        <a href="{% url 'course:lesson_view' careercourse item.course_id item.id %}"
+                                                {% if item.id == cur_lesson.id %} class="active"{% endif %}
+                                           lesson_id={{ item.id }}>{{ forloop.counter }}.&nbsp;{{ item.name }}</a>
+
+                                        {% if not user.is_authenticated %}
+                                            {% if forloop.counter >= 3 %}
+                                                <i class="v5-icon v5-icon-lock zyico2"></i>
+                                            {% endif %}
+                                        {% else %}
+                                            {% if cur_careercourse.short_name|lower == 'yuanhua' and cur_course.need_pay and not cur_careercourse.has_pay and  forloop.counter >= 3 %}
+                                                <i class="v5-icon v5-icon-lock zyico"></i>
+                                            {% endif %}
+
+                                        {% endif %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mc-interact">
+                    <!-- <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7"> -->
+                    <div class="pull-left">
+                        <div class="mc-interact-save">
+                            <a href="" class="favorite">
+                                {% if cur_course.is_favorite %}
+                                    <i class="v5-icon v5-icon-save v5-icon-saved"></i>
+                                    <span>已收藏</span>
+                                {% else %}
+                                    <i class="v5-icon v5-icon-save"></i>
+                                    <span>收藏</span>
+                                {% endif %}
+                            </a>
+                            <a href="javascript:void(0)" class="downloadv">
+                                <i class="v5-icon v5-icon-download"></i>
+                                <span>下载</span>
+                            </a>
+                        </div>
+                        <div class="mc-interact-share">
+                            <dl>
+                                <dt class="cf">
+                                    <!--
+                                    <a href="" class="v5-icon v5-icon-sina"></a>
+                                    <a href="" class="v5-icon v5-icon-qqzone"></a>
+                                    <a href="" class="v5-icon v5-icon-sina"></a>
+                                    -->
+                                <div class="bdsharebuttonbox">
+                                    <a title="分享到QQ空间" href="javascript:void(0);" class="v5-icon v5-icon-qqzone share"
+                                       id="qq" data-cmd="qzone">
+                                    </a>
+                                    <a title="分享到新浪微博" href="javascript:void(0);" class="v5-icon v5-icon-sina share"
+                                       id="sina" data-cmd="tsina">
+                                    </a>
+                                    <a title="分享到微信" href="javascript:void(0);" class="v5-icon v5-icon-weixin share"
+                                       id="weixin" data-cmd="weixin" data-toggle="modal" data-target="#wxfx">
+                                    </a>
+                                </div>
+                                </dt>
+                                <dd>分享给朋友</dd>
+                            </dl>
+                        </div>
+                        <!-- 评分脚本，搜索：@score -->
+                        <div class="mc-interact-raty">
+                            <ul>
+                                <li id="course_score_box">
+                                    {% if score %}
+                                        <div>
+                                            <span class="raty-name">课程评分</span>
+                                            <span class="raty-box"></span><span class="raty-num-gp">
+                      <span class="raty-num">{{ score }}</span>分</span>
+                                        </div>
+                                    {% else %}
+                                        <div class="course-score-tip">尚无课程评分！</div>
+                                    {% endif %}
+                                </li>
+                                <li id="user_score_box">
+                                    {% if my_score == 0 or my_score %}
+                                        <div class="user-score-tip">已评价</div>
+                                        {#<span style="display:inline;">{{ my_score }}分</span>#}
+                                    {% else %}
+                                        <div>
+                                            <span class="raty-name">您的评分</span>
+                                            <span class="raty-box"></span>
+                                            <span class="raty-num-gp" style="width: 60px;"><span id="raty-num" class="raty-num">0</span>分</span>
+                                            <span id="submit_btn" class="btn btn-micv5 " style="background-color: #808080; border: solid 1px #808080 ; cursor:not-allowed;">提交</span>
+                                        </div>
+                                    {% endif %}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5"> -->
+                    <div class="pull-right">
+                        <p>已有{{ cur_course.click_count }}位同学与你并肩作战<br>
+                            {% if cur_careercourse and cur_careercourse.qq %}
+                            更多学习交流，请加：<a href="http://shang.qq.com/wpa/qunwpa?idkey={{ cur_careercourse.qq_key }}" target="_blank"><img src="/static/images/QQqun.png">{{ cur_careercourse.qq }}</a>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+
+                <!--微信分享-->
+                <div class="modal fade" id="wxfx" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog wxfx-modal">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <p class="text-right"><a href="" class="v5-close"><img src="/static/images/c.png"></a>
+                                </p>
+
+                                <div class="wxfx">
+                                    <h1 class="text-micv5">分享到微信</h1>
+                                    <h4>用微信“扫一扫”下方的二维码，即可吧视频分享给您的好友或朋友圈。</h4>
+
+                                    <div class="wxfx-table">
+                                        <div class="wxfx-table-cell cell-l">
+                                            <h4><a href="/lesson/{{ cur_lesson.id }}"
+                                                   class="text-micv5">{{ cur_course.name }}</a></h4>
+                                        </div>
+                                        <div class="wxfx-table-cell cell-r">
+                                            <div id="qrcodeTable"></div>
+                                        </div>
+                                    </div>
+                                    <div class="wxfx-step text-center">
+                                        <img src="/static/images/weixinfx.png">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row course-play-info visible-md visible-lg">
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 aside-l">
+                        <ul class="course-play-tabs" role="tablist">
+                            <li class="active"><a href="#comm" role="tab" data-toggle="tab">学习交流</a></li>
+                            <!--               <li class="visible-md visible-lg"><a href="#exercise" role="tab" data-toggle="tab">在线练习</a></li> -->
+                            {% if cur_lesson.homework.code_exercise_type == 0 %}
+                                {% if  user.is_authenticated %}{% if cur_lesson.homework.description != "" %}
+                                    <li class="visible-md visible-lg"><a href="#submit" role="tab"
+                                                                         data-toggle="tab">作业提交</a></li>
+                                {% endif %}{% endif %}
+                                {% if lesson_resource_list or course_resource_list %}
+                                <li class="visible-md visible-lg"><a href="#download" role="tab" data-toggle="tab">课件下载</a></li>
+                                {% endif %}
+                            {% else %}
+                                {% if  user.is_authenticated %}{% if cur_lesson.homework.description != "" %}{% if cur_lesson.homework.upload_file %}
+                                    <li class="visible-md visible-lg"><a href="#submit" role="tab"
+                                                                         data-toggle="tab">作业提交</a></li>
+                                {% endif %}{% endif %}{% endif %}
+                                {% if lesson_resource_list or course_resource_list %}
+                                <li class="visible-md visible-lg"><a href="#download" role="tab" data-toggle="tab">课件下载</a></li>
+                                {% endif %}
+                                <!--zhouyi:新增 7-24-->
+                                <li class="visible-md visible-lg"><a href="#edit" role="tab" data-toggle="tab">随堂作业</a></li>
+                            {% endif %}
+                        </ul>
+                        <div class="tab-content">
+                            {% include 'mz_course/lesson_view_comm.html' %}
+                            <!-- {% include 'mz_course/lesson_view_exercise.html' %} -->
+                            {% if cur_lesson.homework.description != "" %}
+                                {% include 'mz_course/lesson_view_submit.html' %}
+                            {% endif %}
+                            {% if lesson_resource_list or course_resource_list %}
+                                {% include 'mz_course/lesson_view_download.html' %}
+                            {% endif %}
+                            <!--zhouyi:新增 7-24-->
+                            {% include 'mz_course/lesson_view_edit.html' %}
+                            <!--zhouyi:新增 7-24-->
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 aside-r">
+                        {% include 'mz_course/lesson_view_teacher.html' %}
+                        {% include 'mz_course/lesson_view_artcle.html' %}
+                    </div>
+                </div>
+                <!--zhouyi-->
+                <div style="border-bottom:2px solid #f1f1f1; width: 100%; font-size: 20px; color: #323232; padding: 10px 0; text-indent: 20px;">推荐课程</div>
+
+                 {% if rec_lesson_list %}
+                      <ul class="zy_tui">
+                     {% for rec_lesson in rec_lesson_list %}
+                     <li><a href="{{ rec_lesson.url }}">
+                        <img alt="{{ rec_lesson.lesson_name }}" src="/uploads/{{ rec_lesson.image }}">
+                        <div>
+                                <p title="{{ rec_lesson.lesson_name }}">
+                                {{ rec_lesson.lesson_name }}
+                                </p>
+                                <p title="{{ rec_lesson.course_name }}">
+                                {{ rec_lesson.course_name }}
+                                </p>
+                        </div>
+                        </a>
+                     </li>
+                     {% endfor %}
+                     </ul>
+                  {% endif %}
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <input type="hidden" value="{{ cur_lesson.id }}" id="lesson-id">
+    <!--二维码-->
+    <div class="ewm" id="ewm">
+        <p>APP可离线下载该课程</p>
+        <img src="/static/images/appcode.png">
+
+        <p>扫描二维码下载APP</p>
+    </div>
+
+
+<!--消息-->
+<div class="modal fade" id="xiaoxiModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="loginModalLabel">直通班课程</h4>
+            </div>
+            <div class="modal-body">
+                <p class="zp1">抱歉，该课程视频仅限该直通班学员观看哦~</p>
+                <div class="zdiv1">
+                    <p>立即报名，您可享有</p>
+                    <dl>
+                        <dd><span>•</span>  免费观看所有课程视频</dd>
+                        <dd><span>•</span>  智能在线学习系统</dd>
+                        <dd><span>•</span>  名师小班指导</dd>
+                        <dd><span>•</span>  全国就业服务</dd>
+                    </dl>
+                </div>
+                <div class="zdiv2">
+                    <p>现在开通试学班，只要<span class="colorf75">288元</span></p>
+                    <p><a class="zdiv2_btn" href="{% url 'pay:pay_view' %}?career_ids={{ career_ids }}" target="_blank">立即报名</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+{% block popup %}
+    {% include 'mz_course/lesson_view_pay_popup.html' %}
+    {% include 'mz_course/lesson_view_exam_popup.html' %}
+{% endblock %}
+
+
+
+{% block custom_script %}
+
+    <script src="/static/js/jquery.mousewheel.js"></script>
+    <!--    <script src="/static/js/jquery.jscrollpane.min.js"></script>-->
+    <script src="/static/js/jquery.cookie.js"></script>
+    
+    {% ifequal discuzz_provider 'LPS' %}
+    <script src="/static/js/mz-comment.js"></script>
+    {% endifequal %}
+
+    {% ifequal discuzz_provider 'FPS' %}
+    <script src="{{ FPS_HOST }}static/ueditor/ueditor.config.js"></script>
+    <script src="{{ FPS_HOST }}static/ueditor/ueditor.all.min.js"></script>
+    <script src="{{ FPS_HOST }}static/js/ajaxfps.js?4646546"></script>
+    {% endifequal %}
+
+    <script src="/static/js/jquery.ui.widget.js"></script>
+    <script src="/static/js/jquery.iframe-transport.js"></script>
+    <script src="/static/js/jquery.fileupload.js"></script>
+    <script src="/static/js/jquery.fileupload-process.js"></script>
+    <script src="/static/js/jquery.fileupload-validate.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.qrcode.js"></script>
+    <script type="text/javascript" src="/static/js/qrcode.js"></script>
+    <script src="/static/js/jquery.raty.js"></script>
+    <!--<script type="text/javascript" src="http://192.168.1.205:8087/group/static/js/ajaxfps.js"></script>-->
+
+    <script src="/static/js/layer/layer.min.js"></script>
+
+    <script>
+        function getPlayer(movieName) {
+            if (navigator.appName.indexOf("Microsoft") != -1) {
+                var reObj=window[movieName];
+                try
+                {
+                    if(reObj.length>0)
+                    {
+                    return reObj[0];
+                    }
+                    else
+                    {
+                    return reObj;
+                    }
+                }catch(e)
+                {
+
+                }
+
+            }
+            else {
+                return document[movieName];
+            }
+        }
+        var uploading = false;
+
+        var zysub=function(str,n){
+            var r=/[^\x00-\xff]/g;
+            if(str.replace(r,"mm").length<=n){return str;}
+            var m=Math.floor(n/2);
+            for(var i=m;i<str.length;i++){
+                if(str.substr(0,i).replace(r,"mm").length>=n){
+                    return str.substr(0,i)+"...";
+                }
+            }
+            return str;
+        }
+        // 获取视频开始播放的时间并从该时间播放
+        var video_current_time = $.cookie('lesson_{{ cur_lesson.id }}');
+        if (!video_current_time) video_current_time = 0;
+
+        var objID=document.getElementById("videoZY").getElementsByTagName("OBJECT")[0].attributes["id"].nodeValue+"";
+
+        var player=getPlayer(objID);
+        //player.j2s_seekVideo(video_current_time);
+        var boplay=true;
+        function s2j_onVideoSeek(){
+        }
+        function s2j_onPlayStart(){
+            if(!boplay) {
+                player.j2s_pauseVideo();
+            }
+        }
+        function s2j_onVideoPlay(){
+            if($("#playlist li.active_null a.active").next().hasClass('v5-icon-lock')){
+                player.j2s_pauseVideo();
+                login_popup("请先登录后再继续免费观看课程视频");
+                return false;
+            }
+        }
+        function s2j_onPlayOver(){
+            getPlayPostion();
+            $.cookie('lesson_{{ cur_lesson.id }}', null);
+
+            $("#playlist li.active_null").nextAll().find("a").each(function(){
+                lesson_id = $(this).attr("lesson_id");
+                if(lesson_id)
+                    location.href = "/lesson/"+lesson_id+"/?stageid={{ stageid }}";
+                return false;
+            });
+        }
+        if($("#playlist li.active_null a.active").next().hasClass('v5-icon-lock')){
+            boplay=false;
+            login_popup("请先登录后再继续免费观看课程视频");
+        }
+        getPlayPostion();
+
+        // 获取视频的播放进度
+        var is_poppup_exam = false; //是否弹出过考试测试框
+        function getPlayPostion(){
+            //将当前播放实际进度保存到cookie
+            current_position = Math.ceil(player.j2s_getDuration());
+            if(current_position){
+                $.cookie('lesson_{{ cur_lesson.id }}', current_position,{expires:7});
+                {% if user.is_authenticated %}
+                //判断视频是否播放到整体进度的95%
+                video_total_time = {{ cur_lesson.video_length }};
+                if(current_position/video_total_time > {{ VIDEO_EXAM_COMPLETE }}){
+                    if(!is_poppup_exam){
+                            {% if uncomplete_quiz_list %}
+                                //暂停视频、退出全屏并弹出考试测试框
+                                //player.requestFullscreen();
+                                player.j2s_pauseVideo();
+                                v5_popover_tpl('v5-popover-test','popover_test','popover-test-container','bottom','manual');
+                                $('.popover-test-container').popover('show');
+                            {% endif %}
+                        is_poppup_exam = true;
+                    }
+                    // 更新是否完成该章节的学习
+                    $.get("/lesson/{{ cur_lesson.id }}/update/status/");
+                }
+                {% endif %}
+            }
+            setTimeout(getPlayPostion,5000)
+        }
+        $(function () {
+        var zy_nnn= 0,zy_nbo=false,zy_nbo2=true;
+        $(".course-play-list li").each(function(){
+            zy_nnn++;
+            if($(this).hasClass("active_null")){
+                return false;
+            }
+        });
+        {% if user.is_authenticated and cur_careercourse.short_name|lower == 'yuanhua' and cur_course.need_pay and not cur_careercourse.has_pay %}
+            if(zy_nnn>2)
+                zy_nbo=true;
+        {% endif %}
+
+
+            $(".zy_tui li").each(function(){
+                var p1=$(this).find("p").eq(0);
+                var p2=$(this).find("p").eq(1);
+                p1.html(zysub(p1.attr("title"),30));
+                p2.html(zysub(p2.attr("title"),32));
+            });
+            cur_url = window.location.href
+            $('#qrcodeTable').qrcode({
+                render: "canvas",
+                text: cur_url,
+                height: 156,
+                width: 156,
+                typeNumber: -1,
+                correctLevel: QRErrorCorrectLevel.H,//纠错等级
+                background: "#f1f1f1",//背景颜色
+                foreground: "#000000"
+            });
+
+            lessid = $("#lesson-id").val();
+            $('#file_upload').fileupload({
+                dropZone: null,
+                url: '/lesson/student/job/upload/',
+                formData: {'lesson_id': lessid},
+                add: function (e, data) {
+                    var uploadErrors = [];
+                    var acceptFileTypes = /^(zip|rar)$/i;
+                    var filesize = data.originalFiles[0]['size'] / (1024) / (1024);
+                    Ntype = data.originalFiles[0]['name'];
+                    Ntype = Ntype.substring(Ntype.length - 3, Ntype.length);
+                    if (!acceptFileTypes.test(Ntype)) {
+                        $("#submit .tips-error").html("文件格式不正确（zip，rar）").show().delay(3000).fadeOut();
+                        uploadErrors.push('Not an accepted file type');
+                    }
+                    if (parseInt(filesize) > 10) {
+                        $("#submit .tips-error").html("文件超过10M大小").show().delay(3000).fadeOut();
+                        uploadErrors.push('Filesize is too big');
+                    }
+                    if (uploadErrors.length == 0) {
+                        uploading = true;
+                        data.submit();
+                    }
+                },
+                dataType: 'json',
+                autoUpload: true,
+                done: function (e, data) {
+                    $('.work-pro').delay(1000).fadeOut();
+                    $("#submit .success-msg").show().delay(1000).fadeOut();
+                    $('.sub-work >span').html('重新上传');
+                    uploading = false;
+                },
+                progressall: function (e, data) {
+                    var progress = parseInt(data.loaded / data.total * 100, 10);
+                    $('.work-pro').show();
+                    $('#progress .progress-bar').css(
+                            'width',
+                            progress + '%'
+                    );
+                    $('#progress .progress-bar').html(progress + '%');
+                }
+            }).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+            {% if cur_lesson.homework.upload_file != "" %}
+                $('.job-sub .sub-work > span').html('重新上传');
+            {% endif %}
+
+            //下载弹出框提示
+            v5_popover_tpl('v5-popover-ewm', 'ewm', 'downloadv', 'bottom', 'hover');
+            var pane = $('.playlist').jScrollPane({
+                autoReinitialise: true
+            });
+            var api = pane.data('jsp');
+            api.scrollToElement('.active_null', true);
+
+
+            {% if user.is_authenticated %}
+                {% if cur_lesson.is_popup and career_ids != '' %}
+                    player.j2s_pauseVideo();
+                    $('#paymentModal').modal('show');
+                {% endif %}
+            {% endif %}
+            setInterval(function(){
+                if(player.j2s_getDuration()>60&&zy_nbo&&zy_nbo2){
+                    zy_nbo2=false;
+                    player.j2s_pauseVideo();
+                    $('#xiaoxiModal').modal('show');
+                }
+            },1000)
+            //点击收藏/取消收藏
+            $('.favorite').on('click', function (event) {
+                event.preventDefault();
+                {% if not user.is_authenticated %}
+                    login_popup();
+                {% else %}
+                    $.ajax({
+                        cache: false,
+                        type: "get",
+                        url: "/course/{{ cur_course.id }}/favorite/update",
+                        async: true,
+                        success: function (data) {
+                            if (data.status == 'success') {
+                                if (data.message == "收藏成功") {
+                                    $('.favorite').children('i').addClass('v5-icon-saved');
+                                    $('.favorite').children('span').text('已收藏');
+                                } else if (data.message == "取消收藏成功") {
+                                    $('.favorite').children('i').removeClass('v5-icon-saved');
+                                    $('.favorite').children('span').text('收藏');
+                                }
+                            }
+                        }
+                    });
+                {% endif %}
+            });
+
+        });
+
+        (function ($) {
+            //载入相关文章
+            var related_article = $('#related-article');
+            var  article_url = related_article.attr('url')
+            function appendArticle(datas) {
+                var html = '<ul class="related-article-list color66">';
+                for (var i in datas){
+                    var url = datas[i].url;
+                    var title = datas[i].title;
+                    html +='<li>';
+                    html +='<a class="font14" href="'+url+'" target="_blank">'+title+'</a>';
+                    html += '</li>';
+                }
+                html +='</ul>';
+                related_article.append(html);
+            }
+
+            $.ajax({
+                type: "GET",
+                url: article_url,
+                dataType: "json",
+                beforeSend: function (xhr, settings) {
+
+                },
+
+                complete: function (msg) {
+{#                    console.log(msg)#}
+                },
+                success: function (data) {
+                    appendArticle(data.data);
+                },
+                error: function (msg) {
+                }
+            });
+        })(jQuery)
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('.share').click(function () {
+                sid = $(this).attr('id');
+                url = window.location.href;
+                title = document.title;
+                if (sid == "qq") {
+                    window.open("http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=" + url + "&title=" + title + "&summary=" + '内置文案', "_blank");
+                } else if (sid == "sina") {
+                    window.open("http://service.weibo.com/share/share.php?url=" + url + "&title=" + title, "_blank");
+                }
+            });
+            //微信分享
+            $('#wxfx .v5-close').click(function (event) {
+                event.preventDefault();
+                $('#wxfx').modal('hide');
+            })
+
+        });
+    </script>
+    <script>
+
+        // @score
+        // 课程评分
+        $(function () {
+
+            var CSbox = $('#course_score_box');
+            var ratyBox = $('.raty-box', CSbox);
+            var ratyNum = $('.raty-num', CSbox);
+            var iScore = {{ score }}; // 已有评分
+
+            ratyBox.raty({
+                path: '/static/images',
+                starOff: 'star-off.png',
+                starOn: 'star-on.png',
+                starHalf: 'star-half.png',
+                readOnly: true,
+                number: 5, // 星星
+                score: iScore // 当前评分
+            });
+            ratyNum.html(iScore); // 显示当前评分
+
+        });
+
+        // @score
+        // 用户评分
+        $(function () {
+
+            var USbox = $('#user_score_box');
+            var ratyBox = $('.raty-box', USbox);
+            var ratyNum = $('.raty-num', USbox);
+            var btn = $('.btn', USbox);
+            var iScore = 0; // 默认分数
+
+	        ratyBox.raty({
+		        path: '/static/images',
+		        starOff: 'star-off.png',
+		        starOn: 'star-on.png',
+		        starHalf: 'star-half.png',
+		        readOnly: false,
+		        half: false,
+		        halfshow: false,
+		        number: 5, // 星星
+		        precision: false,
+		        score: iScore, // 当前评分
+		        targetType: 'score',
+		        target: '#raty-num',
+                targetKeep : true,
+                /*mouseover: function (score) {
+		            ratyNum.html(score.toFixed(1));// 显示实时评分
+                },*/
+                click: function (score) {
+                    iScore = score.toFixed(1);
+	                $('#submit_btn').removeAttr("style");
+                    btn.click(function () {
+                            {% if user.is_authenticated %}
+                            var items = btn.closest('li').find('div');
+                            items.fadeOut('normal', function () {
+                                items.html('<div class="user-score-tip">已评价</div>');
+                            });
+                            $.post("/course/score/", {
+                                'csrfmiddlewaretoken':$.cookie('csrftoken'),
+                                'score': iScore,
+                                'course_id':{{ cur_course.id }},
+                                'user_id':{{ user.id }}
+                            }, function (data) {
+                                if (data.is_succeed) {
+                                    var CSbox = $('#course_score_box');
+                                    CSbox.html('<div><span class="raty-name">课程评分</span><span class="raty-box"></span><span class="raty-num-gp"><span class="raty-num">' + data.score + '</span>分</span></div>');
+                                    items.fadeIn('normal');
+                                    $('.raty-box', CSbox).raty({
+                                        path: '/static/images',
+                                        starOff: 'star-off.png',
+                                        starOn: 'star-on.png',
+                                        starHalf: 'star-half.png',
+                                        readOnly: true,
+                                        half: false,
+                                        number: 5, // 星星
+                                        precision: true,
+                                        score: data.score
+                                    });
+                                }
+                            });
+                            {% else %}
+                            login_popup();
+                            {% endif %}
+                        });
+                }
+            });
+            ratyNum.html(iScore); // 显示当前评分
+
+            
+
+        });
+    </script>
+{% endblock %}

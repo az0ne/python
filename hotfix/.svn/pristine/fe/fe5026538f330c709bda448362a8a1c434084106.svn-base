@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<title>院校专区</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="职业">
+<meta name="description" content="测试尘世">
+<meta name="baidu-site-verification" content="TlN38QiORE" />
+<link href="http://dev.microoh.com/static/css/base.css" rel="stylesheet">
+<link href="http://dev.microoh.com/static/css/microoh-v5.css" rel="stylesheet">
+<link href="http://dev.microoh.com/static/css/flat-ui.css" rel="stylesheet">
+<link href="../static/css/develop.css" rel="stylesheet">
+<link rel="shortcut icon" type="image/x-icon" href="http://dev.microoh.com/static/images/favicon.ico" />
+<!--[if lt IE 9]>
+<script src="http://dev.microoh.com/static/js/html5shiv.min.js"></script>
+<script src="http://dev.microoh.com/static/js/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="microoh-main">
+  <header class="navbar navbar-default navbar-fixed-top affix" data-offset-top="64">
+    <div class="container">
+      <div class="navbar-header"> <a class="navbar-brand" href="http://dev.microoh.com/" title="麦子学院"><img src="http://dev.microoh.com/static/images/logo.png"><img src="http://dev.microoh.com/static/images/logo-font.png"></a> </div>
+      <div class="collapse navbar-collapse" id="microoh-navbar-collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <li class="visible-xs visible-sm"><a href="http://dev.microoh.com/">首页</a></li>
+          <li><a href="http://dev.microoh.com/course/">企业直通班</a></li>
+          <li class="visible-md visible-lg"> <a href="http://bbstest.microoh.com">论坛</a> </li>
+          <li><a href="http://dev.microoh.com/common/apppage/">移动APP</a></li>
+        </ul>
+        <form class="navbar-form navbar-left" role="search" onSubmit="return false">
+          <div class="form-group"> <i class="v5-icon v5-icon-search"></i>
+            <input type="text" class="form-control" id="search" placeholder="搜索你感兴趣的课程">
+          </div>
+          <div class="search-dp" id="hotkeyword">
+            <!--推荐关键词-->
+            <div class="hotkeyword">
+              <h4>推荐搜索关键词</h4>
+              <ul class="cf">
+                <li>加载中……</li>
+              </ul>
+            </div>
+          </div>
+        </form>
+        <div class="v5-topbar-login">
+          <div class="v5-topbar-login-off"> <a href="#" onClick="login_popup()" class="visible-md visible-lg">登录</a> <a href="http://dev.microoh.com/user/mobile/login/" class="visible-xs visible-sm">登录</a> </div>
+        </div>
+        <div class="navbar-search-btn visible-xs visible-sm"> <a href="http://dev.microoh.com/common/mobile/search/" class="sch"></a> </div>
+      </div>
+      <div class="search-dp" id="keyword-group">
+        搜索结果
+        <div class="keyword-group scroll-pane">
+          <dl class="">
+            <dt>职业课程</dt>
+            <dd class="careercourses cf"></dd>
+          </dl>
+          <dl class="">
+            <dt>课程</dt>
+            <dd class="courses cf"></dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <!--  当前位置  -->
+  <!-- <div class="colleges-bg">
+    <div class="container visible-md visible-lg">
+      <ol class="breadcrumb">
+        <li><a href="http://dev.microoh.com/">首页</a></li>
+        <li class="active">院校专区</li>
+      </ol>
+    </div>
+  </div> -->
+
+
+  <!--  高校登录  -->
+  <div class="colleges-wrap colleges-login">
+    <div class="container">
+      <div class="colleges-login-m">
+        <h1>欢迎来到麦子学院-四川大学专区</h1>
+        <p class="about">请输入您的姓名、学号及唯一标识码以获取学习该专业课程的权限</p>
+        <div class="form-box">
+          <div class="itm"><input type="text" placeholder="请输入您的姓名"/></div>
+          <div class="itm"><input type="text" placeholder="请输入您的学号"/></div>
+          <div class="itm"><input type="text" placeholder="请输入您的唯一识别码"/></div>
+          <div class="btn-box"><button onclick="location.href='collegesLoginOK.html'">提交</button></div>
+          <div class="form-tip"><img src="/static/images/colleges/pic-11.png" alt=""/><span>错误提示</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="v5-footer colleges-foot">
+    <div class="container">
+      <div class="v5-footer-bottom">
+        <p>© 2012-2014 <a href="www.maiziedu.com">maiziedu.com</a> | 服务条款 | 蜀ICP备13014270号-4 Version 4.0.1 release20140721.1</p>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="/static/js/jquery-1.11.1.min.js"></script>
+  <script></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<div id="sub" style="display: none">
+{% for liveness_info in sub_liveness_info_list %}
+<li class="score-record-list-1 clear">
+    <span class="score-record-add fl">
+        {{ liveness_info.plus }}
+    </span>
+    <p class="score-record-intro fl">
+    {% if liveness_info.type == 1 %}完成了{{ liveness_info.plus_count }}个视频观看{% endif %}
+    {% if liveness_info.type == 2 %}完成了{{ liveness_info.plus_count }}个练习{% endif %}
+    {% if liveness_info.type == 3 %}完成了{{ liveness_info.plus_count }}个任务球{% endif %}
+    {% if liveness_info.type == 4 %}完成了{{ liveness_info.plus_count }}个约课{% endif %}
+    {% if liveness_info.type == 5 %}主动发起{{ liveness_info.plus_count }}个辅导{% endif %}
+    </p>
+    <span class="score-record-prompt fl {% if not liveness_info.is_ceiling %}dn{% endif %}">
+         (提示:“作业练习”积分已达到本期获取上限)
+    </span>
+</li>
+{% endfor %}
+</div>
+{% for date_rang, liveness_info_list in liveness_info_dict.items %}
+<div class="score-record-list-box">
+    <p class="score-record-time"><i>{{ date_rang }} </i>得分清单</p>
+    <div class="score-record-list">
+        <ul>
+            {% for liveness_info in liveness_info_list %}
+            <li class="score-record-list-1 clear">
+                <span class="score-record-add fl">
+                    {{ liveness_info.plus }}
+                </span>
+                <p class="score-record-intro fl">
+                {% if liveness_info.type == 1 %}完成了{{ liveness_info.plus_count }}个视频观看{% endif %}
+                {% if liveness_info.type == 2 %}完成了{{ liveness_info.plus_count }}个练习{% endif %}
+                {% if liveness_info.type == 3 %}完成了{{ liveness_info.plus_count }}个任务球{% endif %}
+                {% if liveness_info.type == 4 %}完成了{{ liveness_info.plus_count }}个约课{% endif %}
+                {% if liveness_info.type == 5 %}主动发起{{ liveness_info.plus_count }}个辅导{% endif %}
+                </p>
+                <span class="score-record-prompt fl {% if not liveness_info.is_ceiling %}dn{% endif %}">
+                     (提示:“作业练习”积分已达到本期获取上限)
+                </span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endfor %}

@@ -1,0 +1,64 @@
+{% extends "mz_common/global.html" %}
+{% block title %}项目制作{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/project-production.css?v={{ time_stamp }}"/>
+<link rel="stylesheet" type="text/css" href="/2016/lib/layer/skin/layer.css"/>
+<script type="text/javascript">
+    var classId = '{{ class_id }}';
+    var stageTaskId = '{{ stage_task_id }}';
+    var itemId = '{{ item_id }}';
+    var coachId = null;
+    var if_reply = '{{ if_reply }}';
+</script>
+{% endblock %}
+{% block csstype %}project-production{% endblock %}
+{% block container %}
+<!-- 顶部 -->
+<div class="header">
+    <a href="{% url 'lps4_index' career_id %}" class="back textC colorCC font14"></a>
+    <span class="font20 colorff s">{{ project_title }}
+        {% if is_task  %}
+        <span class="font12 colorff project-production-tag">项目制作</span></span>
+        {% endif %}
+    <div class="new-login colorff">
+        <div class="new-login-div">
+            <a href="/home/" target="_blank" class="img"><img src="{{ MEDIA_URL }}{{ user.avatar_url }}"></a>
+            <span class="colorff font16 new-login-name">{{ user.nick_name }}<a class="sign_out colorff" href="/user/logout/">[退出]</a></span>
+        </div>
+    </div>
+</div>
+<div class="main-container W1160">
+    <!-- 左边 -->
+    <div class="main-center fl">
+        {% include 'mz_lps4/module/div_project_production.html' %}
+    </div>
+    <!-- 右边 -->
+    <!--
+        pulling: 上传项目  提交项目后将获得项目评分
+        waiting: 等待评分  老师将为你的项目评分，<br/>请耐心等待...
+        amazing: A  出色的完成了作业
+        beautiful: B    完成了作业主要考核点，<br/>但仍有些许瑕疵
+        change: C   完成了作业但并无出彩之处
+        danger: D   学生的作业没有达到要求
+        super: S    超出预期的完成了作业
+    -->
+    {% if is_task %}
+    <div class="side-right {{ div_class }} fr">
+        <h2 class="font18 bold">项目得分</h2>
+        <div class="project-score font16 color66 textC">{{ div_content|safe }}</div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+{% block google %}{% endblock %}
+{% block footer%}{% endblock %}
+{% block baidu %}{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="/2016/lib/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" src="/2016/lib/jquery/uiwidget.min.js"></script>
+<script type="text/javascript" src="/2016/lib/jquery/fileupload.min.js"></script>
+<script type="text/javascript" src="/2016/lib/layer/layer.js"></script>
+<script type="text/javascript" src="/2016/src/project-production.js?v={{ time_stamp }}"></script>
+{% endblock %}

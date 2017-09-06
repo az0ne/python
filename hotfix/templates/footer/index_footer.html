@@ -1,0 +1,68 @@
+<!-- 首页使用的footer -->
+<div class="footer-container">
+    <div class="v5-footer-links cf">
+        <dl class="f-link">
+            <dt>友情链接</dt>
+            <dd>
+                <ul>
+                    <li>
+                        {% for link in links %}
+                            <a target="_blank" href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a>
+                            <span></span>
+                        {% endfor %}
+
+                    </li>
+                </ul>
+            </dd>
+        </dl>
+        <dl class="follow">
+            <dd>
+                <ul>
+                    <li><a href="http://weibo.com/microoh" rel="nofollow"><p><img src="images/weibo_code.png" alt="微博">
+                    </p>
+                        <p>关注麦子学院<br>新浪微博</p></a></li>
+                    <li style="margin-left: 34px;"><p><img src="images/weichat_code.png" alt="微信"></p>
+                        <p>关注麦子学院<br>官方微信</p></li>
+                </ul>
+            </dd>
+        </dl>
+        <dl class="webmap">
+            <dt>网站导航</dt>
+            <dd>
+                <ul>
+                    <li><a href="/common/about">关于我们</a></li>
+                    <li><a href="/course/">企业直通班</a></li>
+                    <li><a href="/common/join">加入我们</a></li>
+                    <li><a href="/common/contact">联系我们</a></li>
+                    <li><a href="/common/apppage/">下载APP</a></li>
+                    <!--<li><a href="http://q.maiziedu.com/common/feedback/publish/">意见反馈</a></li>-->
+                </ul>
+            </dd>
+        </dl>
+    </div>
+
+    <div class="copyright textR font14 color99">
+        <div class="copyright-box">
+            <img src="/images/index/logo_greyx2.png" class="ps-left" alt="logo">
+
+            <div class="ps-right">
+                © 2012-2017 www.maiziedu.com<br>蜀ICP备13014270号-4 Version 5.0.0 release20160127
+            </div>
+            <a href="https://www.anquan.org/authenticate/cert/?site=www.maiziedu.com&at=business" target="_blank"
+               class="industry-validate" rel="nofollow"><img src="/images/index/hangye_validate.png"></a>
+
+
+            <a id="_szfw_logo_" href="https://credit.szfw.org/CX20170413033625000350.html" target="_blank" rel="nofollow">
+                <img src="http://icon.szfw.org/sf.png" style="border:none;" alt="">
+            </a>
+
+        </div>
+    </div>
+    <script src="//static.anquan.org/static/outer/js/aq_auth.js"></script>
+    <script>
+        (function () {
+            document.getElementById("_szfw_logo_").oncontextmenu = function () {
+                return false;
+            }
+        })();
+    </script>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:gs="http://www.gensee.com/ec">
+<head>
+    <meta charset="utf-8"/>
+    <title>{{ class_video.live_room.live_class.career_course.name }}（班级：{{ class_video.play_subject }}）{{ class_video.create_time }}班会</title>
+    <script type="text/javascript" src="http://static.gensee.com/webcast/static/sdk/js/gssdk.js"></script>
+    <link href="http://static.gensee.com/webcast/static/sdk/css/bootstrap.css" type="text/css" rel="stylesheet">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <style type="text/css">
+        .videoDiv {
+            height: 600px; position: relative; overflow: hidden;
+        }
+
+        .docDiv {
+            height: 198px;
+            padding: 1px;
+        }
+        .zy_danmu{ position: absolute; top:00%; left: 0; height: 50px; width: 100%;}
+        .zy_danmu span{ position: absolute; top:6px; left: 100%; color:#ffffff; width: 1000px; font-weight: bold; font-size: 16px;}
+    </style>
+    <script type="text/javascript">
+        //1. 根据组获得通讯通道
+        var channel = GS.createChannel("testgroup");
+        //2. 通过通道监听互动调查事件
+        channel.bind("onVote", function (event) {
+            alert(event.data);
+        });
+        //2. 通过通道监听问答事件
+        channel.bind("onQA", function (event) {
+            alert(event.data.question);
+        });
+        //3.通过通道留言
+        channel.send("submitLeaveMessage", {
+            "content": "what's your name?"
+        });
+    </script>
+</head>
+<body style="background:url(/static/images/class_plan_play_bk.jpg);">
+<h2 align="center">{{ class_video.career_course_name }}（班级：{{ class_video.play_subject }}）{{ class_video.create_time }}班会</h2><br>
+
+<div class="container">
+    <div class="row-fluid">
+        <div class="videoDiv" >
+            <div class="zy_danmu"><span>{{ request.user.nick_name }}（UserId：{{ request.user.id }}），你好！你正在观看{{ class_video.career_course_name }}（班级：{{ class_video.play_subject }}）{{ class_video.create_time }} 班会录制视频。【麦子学院】</span></div>
+            <!-- Video Widget -->
+            <gs:video-vod site="maiziedu.gensee.com" ctx="training" ownerid='{{ play_id }}'
+{#                    {{ ownerid }}#}
+                          uname="user5623" authcode="{{ class_video.token}}" />
+        </div>
+        <div class="span6">
+            <div class="docDiv">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var xtime=15000, //显示时间
+        atime=10000; //循环时间
+    function antt(){
+        $(".zy_danmu span").css("left","100%").animate({"left":"-1000px"},xtime);
+        setTimeout("antt()",atime);
+    }
+    $(function(){
+        antt();
+    })
+</script>
+
+</body>
+</html>

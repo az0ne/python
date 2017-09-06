@@ -1,0 +1,32 @@
+{% extends "mz_common/global.html" %}
+{% block title %}麦子学院 - 1v1服务新建{% endblock %}
+{% block keywords %}麦子学院，1v1服务新建{% endblock %}
+{% block description %}1v1服务新建{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="http://ueditor.baidu.com/umeditor/themes/default/css/umeditor.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/teaOneVOneService.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block csstype %}oneVoneServiceList{% endblock %}
+{% block container %}
+    {% include 'header/index_header.html' %}
+    <div class="onevoneList">
+        <div class="title font16">
+            <p class="position"><a href="{% url 'home:teacher:onevone_service' %}">个人中心1V1 &gt;</a><a href="{% url 'lps4:teacher_service_list' career_id student_id %}">{{ student_name }}的服务列表 &gt;</a><span>新建学习建议</span></p>
+        </div>
+        <div id="divUE" class="createInfos">
+            <span class="font16">To：{{ student_name }}</span>
+            <div><script id="onevone_ueditor" name="content" type="text/plain" style="width:100%"></script></div>
+            <button id="sub_service_content" class="submit_reviews submit_reviews_create">提交</button>
+        </div>
+    </div>
+    <input id="onevone_service_sub_url" value="{% url 'lps4:teacher_create_new_service' career_id student_id %}" type="hidden">
+    <input id="onevone_service_list_url" value="{% url 'lps4:teacher_service_list' career_id student_id %}" type="hidden">
+{% endblock %}
+{% block footer %}{% endblock %}
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/lib/layer/layer.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/lib/ueditor/ueditor.config.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/lib/ueditor/ueditor.all.min.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/teaOneVOnedetail.js?v={{ time_stamp }}"></script>
+{% endblock %}

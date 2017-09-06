@@ -1,0 +1,82 @@
+<p class="font16 color33 pt marginB16">{{ usertask.stage_task.task.name }}</p>
+<div class="playlist2 scroll-pane" style="overflow:hidden;">
+    <ul class="d-task-list">
+        {% for knowledge in knowledges %}
+            <li class="{% if forloop.first %}first{% else %}d-odd{% endif %}
+                   {% if knowledge.is_done %}complete{% endif %}
+                   {% if not knowledge.is_undo and not knowledge.is_done %}active{% endif %}
+                   {% if all_menus_open or knowledge.knowledge_id == active_knowledge_id %}activeH {% endif %}
+                   ">
+                <div class="clearfix">
+                    <span>{{ forloop.counter }}.{{ knowledge.name }}</span>
+                    <span class="fr"><i class="d-icon-plus"></i></span>
+                </div>
+                <ol class="zyleve1">
+                    {% for item in knowledge.get_items %}
+                        <li class="{% if item.id == item_id %}liH{% endif %}">
+                            <a title="{{ forloop.parentloop.counter }}.{{ forloop.counter }}.{{ item.get_name }}" hid_href="{% url 'lps3:student_knowledgeitem' class_id stagetask_id item.id %}"
+                            {% if item.is_lesson or not item.is_undo %}
+                                href="{% url 'lps3:student_knowledgeitem' class_id stagetask_id item.id %}"
+                            {% elif item.can_be_unlocked %}
+                                {% if usertask.is_in_sequence != False %}
+                                    href="{% url 'lps3:student_knowledgeitem' class_id stagetask_id item.id %}"
+                                {% else %}
+                                    desc="task_is_lock"
+                                {% endif %}
+                            {% else %}
+                               desc="unlock"
+                            {% endif %}>
+
+                            {% if item.is_doing and not item.is_lesson %}
+                                <input type="hidden" class="zyunfinish" desc="unfinish">
+                            {% elif item.can_be_unlocked %}
+                                <input type="hidden" class="zyunfinish" desc="unfinish">
+                            {% endif %}
+
+                            <span class="fl">
+                            <i class="
+                            {% if item.obj_type == "LESSON" %}d-icon-lesson-video
+                            {% elif item.obj_type == "CODE" %}d-icon-lesson-data
+                            {% elif item.obj_type == "TEST" %}d-icon-lesson-note
+                            {% elif item.obj_type == "PROJECT" %}d-icon-lesson-code
+                            {% endif %}
+                            {% if item.is_doing %} half
+                            {% elif item.is_done %} complete{% endif %}
+                            "></i>
+                            {{ forloop.parentloop.counter }}.{{ forloop.counter }}.{{ item.get_name }}
+
+                        </span>
+                            {% if item.obj_type == "LESSON" %}
+                                <span class="color99 font12 marginR10">{{ item.get_video_length }}</span>
+                            {% endif %}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </li>
+        {% endfor %}
+        <li class="last {% if not usertask.is_going %}complete{% endif %}">
+            <div class="clearfix ">
+                <i class="project-do">项目制作</i>
+                <a title="{{ usertask.stage_task.task.project.title }}"
+                   hid_href="{% url 'lps3:student_project_task' class_id stagetask_id %}"
+                {% if all_items_have_done or usertask.has_done %}
+                    {% if usertask.is_in_sequence != False %}
+                   href="{% url 'lps3:student_project_task' class_id stagetask_id %}"
+                    {% else %}
+                   desc="task_is_lock"
+                    {% endif %}
+                {% endif %}
+                >
+                <span>{{ usertask.stage_task.task.project.title }}</span>
+                </a>
+            </div>
+        </li>
+
+    </ul>
+</div>
+
+<!-- 获取问卷的url -->
+<input id="questionnaire_url" type="hidden" value="{% url 'lps3f:student:q' class_id questionnaire_id %}"/>
+<!-- 提交问卷的url -->
+<input id="submit_url" type="hidden" value="{% url 'lps3f:student:sq' class_id questionnaire_id %}"/>

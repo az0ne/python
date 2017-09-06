@@ -1,0 +1,102 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/courses_breadcrumb.html" %}
+
+
+<div class="tabbable">
+{% include "mz_nadmin/parts/lesson_tabs.html" %}
+
+
+<div class="tab-content">
+<div class="tab-pane active">
+
+    {% include "mz_nadmin/modules/msgs.html" %}
+    {% include "mz_nadmin/modules/form_alert.html" %}
+
+    {% if lesson %}
+    <form class="form-horizontal" role="form"
+        action="{% url 'nadmin:lessons_edit' course.id lesson.id %}" method="post">
+    {% else %}
+    <form class="form-horizontal" role="form"
+        action="{% url 'nadmin:lessons_create' course.id %}" method="post">
+    {% endif %}
+
+    {% csrf_token %}
+
+    <div class="form-group {% if form.name.errors %}has-error{% endif %}">
+        <label class="col-md-2 control-label" for="search_keywords">
+            {{ form.name.label }}
+        </label>
+        <div class="col-md-4">
+            {{ form.name }}
+            <span class="help-block">
+            {% for error in form.name.errors %}
+                {{ error }}
+            {% endfor %}
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group {% if form.video_url.errors %}has-error{% endif %}">
+        <label class="col-md-2 control-label" for="search_keywords">
+            {{ form.video_url.label }}
+        </label>
+        <div class="col-md-8">
+            {{ form.video_url }}
+            <span class="help-block">
+            {% for error in form.video_url.errors %}
+                {{ error }}
+            {% endfor %}
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group {% if form.video_length.errors %}has-error{% endif %}">
+        <label class="col-md-2 control-label" for="search_keywords">
+            {{ form.video_length.label }}
+        </label>
+        <div class="col-md-2">
+            {{ form.video_length }}
+            <span class="help-block">
+            {% for error in form.video_length.errors %}
+                {{ error }}
+            {% endfor %}
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group {% if form.index.errors %}has-error{% endif %}">
+        <label class="col-md-2 control-label" for="search_keywords">
+            {{ form.index.label }}
+        </label>
+        <div class="col-md-2">
+            {{ form.index }}
+            <span class="help-block">
+            {% for error in form.index.errors %}
+                {{ error }}
+            {% endfor %}
+            </span>
+        </div>
+    </div>
+
+    <div class="row">
+        <hr>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+            <button type="submit" class="btn btn-sm btn-primary">保存</button>
+        </div>
+    </div>
+</form>
+</div>
+</div>
+</div>
+
+{% endblock %}
+
+
+
+

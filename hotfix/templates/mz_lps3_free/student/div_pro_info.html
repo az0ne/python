@@ -1,0 +1,20 @@
+<div class="pro-info">
+    <p class="desc font14 color66">{{ task_info.desc }}</p>
+    <ul class="desc-list">
+        <li><img src="{{ MEDIA_URL }}{{ free488_task_desc.img1 }}" alt="{{ free488_task_desc.title }}"></li>
+        <li><img src="{{ MEDIA_URL }}{{ free488_task_desc.img2 }}" alt="{{ free488_task_desc.title }}"></li>
+        <li><img src="{{ MEDIA_URL }}{{ free488_task_desc.img3 }}" alt="{{ free488_task_desc.title }}"></li>
+    </ul>
+    <div class="class-teacher">
+        <img class="left" src="{{ MEDIA_URL }}{{ teacher.avatar_url }}" alt="{{ teacher.staff_name }}">
+
+        <div class="right">
+            <p class="font12 color66 marginB10">
+                <span class="name font26">{{ teacher.staff_name }}</span>
+                麦子学院{{ teacher.show_position }}
+            </p>
+
+            <p class="font14 color66">{{ teacher.description }}</p>
+        </div>
+    </div>
+</div>

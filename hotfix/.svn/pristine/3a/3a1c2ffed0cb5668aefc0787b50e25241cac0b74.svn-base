@@ -1,0 +1,267 @@
+@import 'core/reset';
+@import 'core/common';
+@import 'core/var';
+@import 'core/function';
+
+@import 'header';
+@import 'toolbar';
+.course-list {
+	.head-container {
+		border-bottom: 1px solid #ddd;
+		box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+	}
+	.VLCico {
+		background: url(../images/lesson_video_lists.png) no-repeat; 
+	}
+	.main {
+		width: 100%;
+		background:#f5f5f5;
+	}
+	.container {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	.top-nav {
+		color:#999999;
+		padding:22px 0;
+		a {
+			color:#999999;
+		}
+	}
+	.course-nav {
+		background:#ffffff;
+		margin-right:14px;
+		width: 280px;
+		margin-bottom: 70px;
+		@extend .fl;
+		border: 1px solid #e6e6e6;
+		.child-level {
+			display: none;
+			position: absolute;
+			left: 278px;
+			top: -1px;
+			border:1px solid #e6e6e6;
+			background-color: #fff;
+			z-index: 100;
+			width: 500px;
+			text-indent: 0;
+			min-height: 245px;
+			box-shadow: 6px 4px 10px rgba(0, 0, 0, 0.1);
+			font-size: 0;
+			padding: 10px 5px;
+			a {
+				display: inline;
+				line-height: 36px;
+				@extend .font14;
+				padding: 0 20px;
+				border-right: 1px solid #e6e6e6;
+				color: #a9a9a9;
+				white-space: nowrap;
+				&:hover {
+					color:#5ecfba;
+				}
+				&:last-child {
+					border: none;
+				}
+			}
+		}
+		.parent-level {
+			display:block;
+			width:100%;
+			position: relative;
+			.all {
+				background-image: none;
+			}
+			.Now {
+				background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAQCAYAAAAvf+5AAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABlSURBVChTY2D4/58x/crB6Myrh2JAbAZcAKroP1Dh/8wrB+fiVIyiEK9ioHUgk8AmwjAuk+v//2capIpBHsYMNWyeA4UxCiAqBIhRRFzwEGMSyH1ERyHRiQKUWjKvHY4DYXzJDAABTf8T5fwiEgAAAABJRU5ErkJggg==);
+				& > a {
+					color: #5ecfba;
+				}
+			}
+			.None {
+				display: none;
+			}		
+			& > li {
+				border-bottom:1px solid #e6e6e6;
+				width:100%;				
+				@extend .font16;
+				text-indent: 30px;				
+				background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAQCAYAAAAvf+5AAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABfSURBVChTY/j//z/jmTNnos+ePRsDYjPgAiBFQPwfiufiVIymEKQBu2Ko1XORTMWrmAlk0uBUHI0Ratg8BwpjFIVEhQCxiggHD1EmgRxIdBQSnShAVp8+fToOhPElMwC6WDLtUJtIuQAAAABJRU5ErkJggg==);
+				background-repeat: no-repeat;
+				background-position-x: 92%;
+				background-position-y: center;
+				position: relative;
+				& > a {
+					display: block;
+					line-height: 60px;
+					color: #a9a9a9;
+					position: relative;
+				}
+				&:hover {
+					background-image: none;
+					box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
+					& > a {
+						color:#5ecfba;
+						&:after {
+							content: '';
+							position: absolute;
+							height: 60px;
+							border-left: 1px solid #fff;
+							top: 0;
+							right: -1px;
+							z-index: 101;	
+						}
+					}
+					.child-level {
+						display: block;
+					}
+				}
+			}
+		}
+		
+		.slide-more {
+			display: block;
+			height: 30px;
+			background-repeat: no-repeat;
+            background-position: center;
+		}
+		.slide-down {
+			background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAKCAYAAAC9vt6cAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABzSURBVChTjZKLDcAgCESxa7aruRHORL1GjaV8akJi4t1TD0hECjOfrbULe0rWRw9zLxlVI8gw16nHpaQAAJkQbQbkAVgHGpJquuCAafvKeklqnpl5EA9sZu1AZsBuPi9YAAk7pCGYjT2T/+Ytk4I2ZQN2Aw0tMvxab3bcAAAAAElFTkSuQmCC);
+		}
+		.slide-up {
+			background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAKCAYAAAC9vt6cAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAB1SURBVChTjZEBCsAgCEVb19zYzTqReSbXXwbD0hUIYb6f+lNyjogctdYTgbtXt8wrXBosGmVbpBXmBn3hfZEA/hdxYHRiu5nH8WDkg7e+2MXC0C5+yWPDoYhaNWYc8GTbSoSZr2QEQrtst68AkkR0I3a8tvUPrnky8V9B+60AAAAASUVORK5CYII=);
+		}
+	}
+	.course-lists-content {
+		width: 866px;
+		@extend .fl;
+		.zmm3 {
+			display: table;
+			width:100%;
+			background-color: #fff;
+			margin-bottom: 20px;
+			position: relative;
+			line-height: 56px;
+			& > div {
+				@extend .fl;
+				height:100%;
+				&.d2 {
+					width:90%;
+					a {
+						@extend .font16;
+						color:#999;
+						@extend .fl;
+						padding: 0 24px;						
+						&:hover {
+							color:#5ecfba;
+						}
+					}
+					a.aH {
+						border-bottom: 2px solid #5ecfba;
+						color:#5ecfba;
+					}
+				}
+			}
+		}
+		.guanggao {
+		    position: absolute;
+		    right: 10px;
+		    top: 0;
+		}		
+	}
+	.course-lists {
+		display: block;	
+		margin-bottom: 20px;
+		li{
+			@extend .fl;
+			width:280px;
+			background:#ffffff;
+			position: relative;
+			border:1px solid #e8e8e8;
+			margin-right:1.33%;
+			margin-bottom:1.33%;
+			a{
+				position: relative;
+				color:#010000;
+				width:100%;
+				display:block;
+				height: 250px;
+				& > div {
+					width:100%;
+					position: absolute;
+					z-index: 99;
+					height: 78px;
+				}
+			}
+			.description {
+				overflow: hidden;
+				line-height: normal;
+				display: none;
+				max-height: 32px;
+				line-height: 1.4;
+			}
+			&:nth-child(3n){
+				margin-right:0;
+			}
+			img{
+				width:100%;
+				vertical-align:top;
+				height: 174px;
+			}
+			div{
+				padding:16px 14px;
+				line-height:1.8;
+			}
+			&:hover{
+				border-color:#fff;
+				a {
+					color:#1bbc9b;
+					& > div {
+						height:auto;
+						background: #fff;
+					}
+					& > p,& > div{
+						box-shadow: 0 13px 14px rgba(0,0,0,.2);
+					}
+				}
+				.description {
+					color: #696868;
+				}				
+			}
+		}
+		.vip_user,.status_start,.status_on,.status_end {
+			display: block;
+			position: absolute;
+		}
+		.vip_user {
+			width: 68px;
+			height: 25px;
+			left: 0;
+			top: 0;
+			background-position: 0 -876px;
+		}
+		.status_start {
+			width: 58px;
+			height: 20px;
+			right: 5px;
+			top: 5px;
+			background-position: 0 -756px;
+		}
+		.status_on {
+			width: 46px;
+			height: 20px;
+			right: 5px;
+			top: 5px;
+			background-position: 0 -836px;
+		}
+		.status_end {
+			width: 46px;
+			height: 20px;
+			right: 5px;
+			top: 5px;
+			background-position: 0 -796px;
+		}
+	}
+	@import 'zypage';
+}
+@import 'footer';

@@ -1,0 +1,568 @@
+{% extends "mz_common/global.html" %}
+{% block title %}{{ career_course.seo_title_px }}{% endblock %}
+{% block keywords%}{{ career_course.seo_keyword_px }}{% endblock %}
+{% block description%}{{ career_course.seo_description_px }}{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/courseIntroduce.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block csstype %}course-introduce{% endblock %}
+{% block container %}
+{% include 'header/index_header.html' %}
+{% load date_convert_tag %}
+{% load my_filter %}
+<div class="section_1" style="background: url({{ MEDIA_URL }}{{ page_intro.img_url }}) center no-repeat;background-size: cover;">
+    <div class="inner">
+        <p class="title">企业直通班课程</p>
+        <h1>{{ page_intro.name }}</h1>
+        <p class="desc">{{ page_intro.short_info }}</p>
+        {% if request.user.is_authenticated %}
+            {% if is_normal_class %}
+                {% if short_name %}
+                    <div class="row_1"></div>
+                    <div class="row_2">
+                     <a class="try_learn" href="{% url 'lps4_index' short_name %}">继续学习</a>
+                    </div>
+                {% else %}
+                    {% if is_full_paid %}
+                    <div class="row_1"></div>
+                    <div class="row_2">
+                     <a class="try_learn" href="{% url 'course:access_to_class' course_id %}">继续学习</a>
+                    </div>
+                    {% else %}
+                    <div class="row_1"></div>
+                    <div class="row_2">
+                     <a class="try_learn" href="{% url 'course:access_to_class' course_id %}">继续学习</a>
+                     <a class="just_up" href="{% url 'pay:pay_view2' %}?career_id={{ career_id }}" target="_blank">支付余款</a>
+                    </div>
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                {% if short_name %}
+                    <div class="row_1"></div>
+                    <div class="row_2">
+                        <a class="try_learn" href="{% url 'lps4_index' short_name %}" >开始学习</a>
+                        <a class="just_up" href="{% url 'pay:pay_view2' %}?career_id={{ career_id }}" target="_blank">立即报名</a>
+                    </div>
+                {% else %}
+                    {% if career_course.enable_free_488 %}
+                        {% if is_488_free_class %}
+                            <div class="row_1"></div>
+                            <div class="row_2">
+                            <a class="try_learn" href="{% url 'lps3f:student:class_index' class_id %}">继续试学</a>
+                            <a class="just_up" href="{% url 'pay:pay_view2' %}?career_id={{ career_id }}" target="_blank">立即报名</a>
+                            </div>
+                        {% else %}
+                            {% if rest_time %}
+                                <div class="row_1">
+                                <p>离开课还有</p>
+                                <div class="time-item" cutdown="{{ rest_time }}">
+                                    <span id="day_show">00天</span><span id="hour_show">00时</span><span id="minute_show">00分</span><span id="second_show">00秒</span>
+                                </div>
+                                </div>
+                            {% else %}
+                                <div class="row_1"></div>
+                            {% endif %}
+                            <div class="row_2">
+                                {% if career_id == 139 %}
+                                {% else %}
+                                <a class="try_learn" href="{% url 'lps3f:syllabus' course_id %}" onclick="zhuge.track('点击免费试学', {'页面名称':'职业课程介绍页','按钮位置':'顶部免费试学','课程名称':'{{ page_intro.name }}'});">免费试学</a>
+                                {% endif %}
+                            <a class="just_up" href="{% url 'pay:pay_view2' %}?career_id={{ career_id }}" target="_blank">立即报名</a>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="row_1"></div>
+                        <div class="row_2">
+                        <a class="just_up" href="{% url 'pay:pay_view2' %}?career_id={{ career_id }}" target="_blank">立即报名</a>
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        {% else %}
+            {% if short_name %}
+                <div class="row_1"></div>
+                <div class="row_2">
+                    <a class="try_learn" href="{% url 'lps4_index' short_name %}" >开始学习</a>
+                    <a class="just_up" href="javascript:void(0)" data-toggle="modal" data-target="#loginModal">立即报名</a>
+                </div>
+            {% else %}
+                {% if career_course.enable_free_488 %}
+                {% if rest_time %}
+                <div class="row_1">
+                <p>离开课还有</p>
+                <div class="time-item" cutdown="{{ rest_time }}">
+                    <span id="day_show">0天</span><span id="hour_show">0时</span><span id="minute_show">0分</span><span id="second_show">0秒</span>
+                </div>
+                </div>
+                {% else %}
+                <div class="row_1"></div>
+                {% endif %}
+                    <div class="row_2">
+                        {% if career_id == 139 %}
+                        {% else %}
+                        <a class="try_learn" href="{% url 'lps3f:syllabus' course_id %}">免费试学</a>
+                        {% endif %}
+                    <a class="just_up" href="javascript:void(0)" data-toggle="modal" data-target="#loginModal">立即报名</a>
+                </div>
+                {% else %}
+                <div class="row_1"></div>
+                <div class="row_2">
+                    <a class="just_up" href="javascript:void(0)" data-toggle="modal" data-target="#loginModal">立即报名</a>
+                </div>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+{#        <div class="row_3">#}
+{#            <span>试学期报名立减<i> ¥ 880</i></span>#}
+{#        </div>#}
+    </div>
+</div>
+<div class="section_2">
+    
+    <ul class="tab_menu">
+        <li class="active"><span>课程介绍</span></li>
+        <li><span>课程互动</span></li>
+    </ul>
+
+    <div class="tab_box">
+        <div class="lesson_intro">
+            <div class="row_1">
+                <div class="inner">
+                    <div class="col_l">
+                        <p>{{ page_intro.info }}</p>
+                        <div class="person_num">
+                            <i></i>
+                            <div>
+                                <span>毕业学员</span>
+                                <span>{{ page_intro.student_count }}<em>人</em></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col_r">
+                        <p class="title">本课程所含实战项目来自于一线互联网公司</p>
+                        <ul>
+                            {% for enterprise in enterprises %}
+                            <li><img src="{{ MEDIA_URL }}{{ enterprise.img_url }}" alt="{{ enterprise.img_title }}"></li>
+                            {% endfor %}
+                        </ul>
+                        <p class="sub_title">优秀学员将有机会被推荐到以下岗位</p>
+                        {% for duty in duties %}
+                        <strong><span>{{ duty.name }}</span><span>（{{ duty.enterprise }}）</span></strong>
+                        {% endfor %}
+                    </div>
+                    <a href="javascript:" class="kf-btn 53kf" onclick="_MEIQIA('showPanel')">
+                        {% for duty in duties %}
+                            {% if forloop.first %}
+                                如何成为{{ duty.name }}
+                            {% endif %}
+                        {% endfor %}
+                    </a>
+                </div>
+            </div>
+            {% if career_id == 135 %}
+
+            {% else %}
+            <div class="row_2">
+                <div class="title_module">
+                    <h2 class="title">课程大纲</h2>
+                    <p class="sub_title">{{ page_intro.career_outline }}</p>
+                    <ul class="tab_nav">
+                        {% for outline in outlines %}
+                            {% if forloop.first %}
+                                <li class="active first">
+                            {% elif forloop.last %}
+                                <li class="last">
+                            {% else %}
+                                <li>
+                            {% endif %}
+                        <i class="num_{{ forloop.counter }}">{{ forloop.counter }}</i><span>{{ outline.name }}</span></li>
+                        {% endfor %}
+                        <li class="line"></li>
+                    </ul>
+                </div>
+                <div class="list_module">
+                    <div class="inner scroll-pane">
+                        <ul class="scroll_cards">
+                            {% for outline in outlines %}
+                            <li>
+                                <ol class="cards">
+                                    {% for task in outline.tasks %}
+                                    <li>
+                                        <div class="front t8o">
+                                            <p class="pro_name">项目实战</p>
+                                            <h3>{{ task.project_name }}</h3>
+                                            <ul class="pro_lists">
+                                                {% for knowledge in task.knowledges %}
+                                                    {% if forloop.counter < 6 %}
+                                                    <li>{{ knowledge.name }}</li>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% if not forloop.parentloop.counter == 5 %}
+                                                {% if forloop.counter == 1 %}
+                                                <li>直播课</li>
+                                                {% elif forloop.counter == 3%}
+                                                <li>直播课</li>
+                                                {% elif forloop.counter == 5 %}
+                                                <li>直播课</li>
+                                                {% endif %}
+                                            {% endif %}
+                                            </ul>
+                                        </div>
+                                        <div class="back t8o">
+                                            <p class="pro_name">项目实战</p>
+                                            <h3>{{ task.project_name }}</h3>
+                                            <p class="pro-desc font14">{{ task.project_description|cutStrNN:220|linebreaks }}</p>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
+                                </ol>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                   
+                </div>
+            </div>
+            {% endif %}
+            <div class="row_3">
+             <a href="javascript:" class="kf-btn 53kf outline" onclick="_MEIQIA('showPanel')">获取完整课程大纲</a>
+                <div class="teacher_module">
+                    <h2 class="title">课程老师</h2>
+                    <p class="sub_title">来自一线互联网公司的专家导师</p>
+                    <div class="slider_content">
+                        <ol class="user_nav">
+                            {% for teacher in teachers %}
+                            {% if forloop.first %}
+                            <li class="active" onclick="zhuge.track('课程老师', { '页面名称':'职业课程介绍页','按钮位置':'课程老师切换','课程老师':'{{ teacher.name }}'});">
+                            {% else %}
+                            <li onclick="zhuge.track('课程老师', { '页面名称':'职业课程介绍页','按钮位置':'课程老师切换','课程老师':'{{ teacher.name }}'});">
+                            {% endif %}
+                                <img src="{{ MEDIA_URL }}{{ teacher.avatar_url }}" alt="{{ teacher.title }}-{{ teacher.name }}"><i></i></li>
+                            {% endfor %}
+                        </ol>
+                        <ul class="slider_lists">
+                            {% for teacher in teachers %}
+                            <li>
+                            <img src="{{ MEDIA_URL }}{{ teacher.big_img_url }}" alt="{{ teacher.title }}">
+                            <div class="info">
+                                <h6>{{ teacher.name }}</h6>
+                                <h4>{{ teacher.title }}</h4>
+                                <p>{{ teacher.info }}</p>
+                            </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="student_module">
+                    <h2 class="title">学生作品</h2>
+                    <p class="sub_title">3个月获取1-2年的项目实战经验</p>
+                    <div class="works_show">
+                        <div class="bd">
+                            <ul class="bxslider">
+                                {% for student in students %}
+                                <li><img src="{{ MEDIA_URL }}{{ student.img_url }}" alt="作品{{ forloop.counter }}"></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <a class="next"></a>
+                        <a class="prev"></a>
+                        <span class="pageState"></span>
+                    </div>
+                    <a href="javascript:" class="kf-btn 53kf" onclick="_MEIQIA('showPanel')">申请参与项目实战</a>
+                </div>
+
+            </div>
+            <div class="row_4" style="background: url({{ MEDIA_URL }}{{ page_intro.story_img_url }}) no-repeat;background-size: cover;">
+                <div class="inner">
+                    <div class="student_desc">
+                        <h4>学员成功故事</h4>
+                        <p class="desc_con">{{ page_intro.story_info }}</p>
+                        <div class="student_vip">
+                            <p class="first">毕业学员</p>
+                            <p class="second">{{ page_intro.story_name }}</p>
+                            <p class="last">{{ page_intro.story_title }}</p>
+                        </div>
+                        <div class="video" onclick="zhuge.track('点击学员成功故事视频', {'页面名称':'职业课程介绍页','按钮位置':'学员成功故事视频播放'});"></div>
+                    </div>
+                </div>
+                <div class="video-warp">
+                    <div class="video-con">
+                        <video id="storyvideo" width="100%" height="100%">
+                            <source src="{{ page_intro.story_video_url }}" type='video/mp4' />
+                        </video>
+                        <a class="close-video" href="javascript:void(0)"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row_5">
+                <div class="inner">
+                    <h4>我们的学员已经加入这些一线的互联网公司</h4>
+                    <ol class="company_lists">
+                        <li><img src="/static/course_introduce/tengxun.png" alt="腾讯"></li>
+                        <li><img src="/static/course_introduce/alibaba.png" alt="阿里巴巴"></li>
+                        <li><img src="/static/course_introduce/baidu_2.png" alt="百度"></li>
+                        <li><img src="/static/course_introduce/xinlang.png" alt="新浪"></li>
+                    </ol>
+                    <h2 class="title">为什么你应该学习该课程？</h2>
+                    <p class="sub_title">{{ page_intro.reason }}</p>
+                    <div class="tab_module">
+                        <ul class="tab_nav">
+                            <li class="active">您将收获什么</li>
+                            <li>什么是职业课程</li>
+                        </ul>
+                        <div class="tab_con">
+                            <div>
+                                <ol class="lists_1">
+                                    <li>让面试官眼前一亮的技术作品集</li>
+                                    <li>个性化的商业项目实战辅导</li>
+                                    <li>全程1对1陪同的专业老师</li>
+                                    <li>一线互联网公司岗位推荐与精准职业规划</li>
+                                    <li>无限制使用课程所有视频及学习资料</li>
+                                    <li>和专业老师，优秀学员在线1对1沟通</li>
+                                    <li>来自一线互联网企业的专家教学</li>
+                                    <li>增加1-2年的实战工作经验</li>
+                                    <li>模拟真实班级的在线直播课</li>
+                                    <li>完全自由的学习时间支配</li>
+                                </ol>
+                                <a href="javascript:" class="kf-btn 53kf" onclick="_MEIQIA('showPanel')">了解保就业</a>
+                            </div>
+                            <div>
+                               <p>麦子学院职业课程是由麦子学院同多家国内外一线互联网公司共同打造，以实战及就业为导向的在线职业课程。我们采用国际公认金字塔教学模式，对学习的技能立即应用到实践项目中，学习有效性高达90%...<a href="/course/" target="_blank" onclick="zhuge.track('点击了解更多', {'页面名称':'职业课程介绍页','按钮位置':'什么是职业课程'});">了解更多</a></p>
+                               <ol class="lists_2">
+                                   <li class="first"><span>参与商业实战项目</span></li>
+                                   <li class="second"><span>面对面直播授课</span></li>
+                                   <li class="three"><span>1对1教学辅导</span></li>
+                                   <li class="four"><span>签订保就业协议</span></li>
+                                   <li class="five"><span>精准职业规划</span></li>
+                               </ol>
+                               <a href="javascript:" class="kf-btn 53kf">了解保就业</a>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="market_value">市场价格：<span>¥18000</span></p>
+                    <p class="maizi_price">麦子价格</p>
+                    <p class="maizi_value">¥{{ page_intro.net_price }}</p>
+                    <a href="javascript:" class="kf-btn 53kf" onclick="_MEIQIA('showPanel')">申请优惠</a>
+                </div>
+            </div>
+        </div>
+        <div class="course_inter">
+            <div class="course_interaction">
+                <div class="row_1">
+                    <h2>相关文章</h2>
+                    <ul>
+                        {% for article in tech_articles %}
+                        <li>
+                            <p class="tag">
+                            {% for tag in article.tag %}
+                            <a href="/article/tag/{{ tag.id }}/" target="_blank">{{ tag.name }}</a>
+                            {% endfor %}
+                            </p>
+                            <h3>{% if article.is_top %}<i>置顶{% endif %}</i><a href="/article/{{ article.id }}/" target="_blank">{{ article.title }}</a></h3>
+                            <p class="desc">{{ article.abstract }}</p>
+                            <ol class="news_img">
+                                {% if article.title_image1 %}
+                                <li><img src="{{ MEDIA_URL }}{{ article.title_image1 }}" alt="{{ article.title }}"></li>
+                                {% endif %}
+                                {% if article.title_image2 %}
+                                <li><img src="{{ MEDIA_URL }}{{ article.title_image2 }}" alt="{{ article.title }}"></li>
+                                {% endif %}
+                                {% if article.title_image3 %}
+                                <li><img src="{{ MEDIA_URL }}{{ article.title_image3 }}" alt="{{ article.title }}"></li>
+                                {% endif %}
+                            </ol>
+                            <div class="from">
+                                <div class="pos_l user_info">
+                                    <a class="user" href="/u/{{ article.user_id }}/" target="_blank"><img src="{{ MEDIA_URL }}{{ article.user_head }}"></a>
+                                    <a class="nike_name" href="/u/{{ article.user_id }}/" target="_blank">{{ article.nick_name }}</a>
+{#                                    <span class="from_where"></span>#}
+                                    <span class="from_link"><i>{% date_convert article.publish_date %}</i><a href="/article/{{ article.short_name }}/" target="_blank">{{ article.name }}</a></span>
+                                </div>
+                                <div class="pos_r">
+                                    <span class="views_num">{{ article.view_count }}</span>
+                                    <span class="praise_num">{{ article.praise_count }}</span>
+                                    <span class="answer_num">{{ article.replay_count }}</span>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+                {% if career_id == 135 %}
+                {% elif career_id == 137 %}
+                {% else %}
+                <div class="row_2">
+                    <h2>相关作品</h2>
+                    <ul class="related_lists">
+                        {% for article in student_articles %}
+                        <li>
+                            <a href="/article/{{ article.id }}/" target="_blank">
+                                <img src="{{ MEDIA_URL }}{{ article.title_image }}" alt="{{ article.title }}">
+                                <p class="num_total">
+                                    <span class="views_num">{{ article.view_count }}</span>
+                                    <span class="praise_num">{{ article.praise_count }}</span>
+                                    <span class="answer_num">{{ article.replay_count }}</span>
+                                </p>
+                            </a>
+                            <div class="info_box">
+                                <a class="title" href="/article/{{ article.id }}/" target="_blank">{{ article.title }}</a>
+                                <div class="user_info">
+                                    <a class="user" href="/u/{{ article.user_id }}/" target="_blank"><img src="{{ MEDIA_URL }}{{ article.user_head }}"></a>
+                                    <a class="nike_name" href="/u/{{ article.user_id }}/" target="_blank">{{ article.nick_name }}</a>
+{#                                    <span class="from_where">职业课程</span>#}
+{#                                    <span class="from_link"><i>发布于</i><a href="" target="_blank">就业指导</a></span> #}
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                <div class="row_3">
+                    <h2>相关问答</h2>
+
+                    <ul class="answer_lists">
+                        {% for discuss in discuss_list %}
+                        <li>
+                            <div class="left">
+                                <a href="/u/{{ discuss.user_id }}/" target="_blank"><img src="{{ MEDIA_URL }}{{ discuss.head }}" alt="{{ discuss.nick_name }}"></a>
+                            </div>
+                            <div class="right">
+                                <div class="from">
+                                    <div class="pos_l user_info">
+                                        <a class="nike_name" href="/u/{{ discuss.user_id }}/" target="_blank">{{ discuss.nick_name }}</a>
+{#                                        <span class="from_where">职业课程</span>#}
+                                        <span class="from_link"><i>{% date_convert discuss.create_date %}</i><a href="{% url 'course:lesson_video_view' course_id=discuss.course_id lesson_id=discuss.object_id %}" target="_blank">{{ discuss.name }}</a></span>
+                                    </div>
+{#                                    <div class="pos_r">#}
+{#                                        <san class="views_num">10000</san>#}
+{#                                        <san class="praise_num">10000</san>#}
+{#                                        <san class="answer_num">10000</san>#}
+{#                                    </div>#}
+                                </div>
+                                <p class="answer_con">
+                                    {{ discuss.comment }}
+                                </p>
+                                <ol class="reply_lists">
+                                    <li>
+                                        <div class="left">
+                                            <a href="/u/{{ discuss.child_user_id }}/" target="_blank"><img src="{{ MEDIA_URL }}{{ discuss.child_head }}" alt="{{ discuss.child_nick_name }}"></a>
+                                        </div>
+                                        <div class="right">
+                                            <div class="from">
+                                                <div class="pos_l user_info">
+                                                    <a class="nike_name" href="/u/{{ discuss.child_user_id }}/" target="_blank">{{ discuss.child_nick_name }}</a>
+{#                                                    <span class="from_where">职业课程</span>#}
+                                                    <span class="from_link"><i>{% date_convert discuss.child_create_date %}</i></span>
+                                                </div>
+                                            </div>
+                                            <p class="reply_con font14">
+                                                {{ discuss.child_comment }}
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% if 0 %}
+                <div class="row_4">
+                    <h2>相关资料</h2>
+                    <ul class="data_lists">
+                        <li>
+                            <h4>命名常量与变量命名常量与变量命名常量与变量命名常量与变量</h4>
+                            <p><span>来自于</span><a href="" target="_blank">Python Web前端开发</a></p>
+                        </li>
+                        <li>
+                            <h4>命名常量与变量命名常量与变量命名常量与变量命名常量与变量</h4>
+                            <p><span>来自于</span><a href="" target="_blank">Python Web前端开发</a></p>
+                        </li>
+
+                        <li>
+                            <h4>命名常量与变量命名常量与变量命名常量与变量命名常量与变量</h4>
+                            <p><span>来自于</span><a href="" target="_blank">Python Web前端开发</a></p>
+                        </li>
+                        <li>
+                            <h4>命名常量与变量命名常量与变量命名常量与变量命名常量与变量</h4>
+                            <p><span>来自于</span><a href="" target="_blank">Python Web前端开发</a></p>
+                        </li>
+                        <li>
+                            <h4>命名常量与变量命名常量与变量命名常量与变量命名常量与变量</h4>
+                            <p><span>来自于</span><a href="" target="_blank">Python Web前端开发</a></p>
+                        </li>
+                        <li>
+                            <h4>命名常量与变量命名常量与变量命名常量与变量命名常量与变量</h4>
+                            <p><span>来自于</span><a href="" target="_blank">Python Web前端开发</a></p>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block footer%}
+{% include 'footer/footer_1.html' %}
+{% if career_id == 135 %}
+
+{% elif career_id == 139 %}
+
+{% else %}
+<div class="section_4">
+    <div class="inner">
+        <div class="col_l">
+            <span class="m_title">{{ career_course.name }}</span>
+        </div>
+        <div class="col_r">
+{#            <span>试学期报名立减<i> ¥ 880</i></span>#}
+        {% if request.user.is_authenticated and is_normal_class %}
+            <a href="{% url 'course:access_to_class' course_id %}">继续学习</a>
+        {% else %}
+            {% if short_name %}
+                <a href="{% url 'lps4_index' short_name %}" >开始学习</a>
+            {% else %}
+                {% if career_course.enable_free_488 %}
+                <a href="{% url 'lps3f:syllabus' course_id %}" onclick="zhuge.track('点击免费试学', {'页面名称':'职业课程介绍页','按钮位置':'底部免费试学','课程名称':'{{ page_intro.name }}'});">免费试学</a>
+                {% else %}
+                <a href="{% url 'course:public_meeting_show' career_id %}">免费体验直播课</a>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/lib/superSlider/jquery.SuperSlide.2.1.1.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/jscrollbar/jquery.mousewheel.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/jscrollbar/jquery.jscrollbar.min.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/courseIntroduce.js?v={{ time_stamp }}"></script>
+<script>
+$(function () {
+        //点击弹出客服，添加.more
+        $('.53kf').unbind().click(function () {
+            $('#KFLOGO .Lelem').eq(0).trigger('click');
+        });
+        //显示客服
+        function showtips() {
+            $(".kftips").fadeIn();
+        }
+
+        setTimeout(function () {
+            showtips();
+        }, 10000);
+    });
+</script>
+{% endblock %}

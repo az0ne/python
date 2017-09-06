@@ -1,0 +1,28 @@
+{# 课程列表 table #}
+
+{% if courses.object_list.count > 0 %}
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <th style="col-md-5">课程名</th>
+            <th style="col-md-5">课程简介</th>
+            <th style="col-md-2">点击次数</th>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+            <tr>
+                <td>
+                    <a href="{% url edit_url_name course.id %}">{{ course.name|escape }}</a>
+                </td>
+                <td>{{ course.description|truncatechars:64|escape|default:"" }}</td>
+                <td>{{ course.click_count|default:0 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% include "mz_nadmin/modules/page_info.html" with items=courses %}
+</div>
+{% else %}
+<p class="text-muted"><small>还没有任何课程</small></p>
+{% endif %}
+

@@ -1,0 +1,20 @@
+{% if user.is_authenticated %}
+<div class="modal fade YaHei" id="ovo-service" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm" style="width: 624px;">
+        <div class="modal-content">
+			<a class="close"></a>
+			<h4>开启你的1对1专属导师服务</h4>
+			<div class="yueke-box">
+				<p>传统大班授课，学生问题太多，老师没有精力回答我！学习计划和别人一样，跟不上进度！基本靠自学。立即加入1对1专属导师服务，你将获得老师的全部专注力</p>
+				<span class="icon-6">定制专属学习计划</span>				
+				<span class="icon-2">个性化难点诊断建议</span>
+				<span class="icon-4">1对1直播3000分钟<sup>+</sup></span>
+				<span class="icon-5">实战指导16次<sup>+</sup></span>
+				<span class="icon-1">推荐就业服务</span>				
+			</div>
+			<a class="know">开始体验</a>
+        </div>
+    </div>
+</div>
+{% endif %}

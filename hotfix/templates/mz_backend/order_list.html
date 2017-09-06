@@ -1,0 +1,137 @@
+{% extends "mz_backend/base.html" %}
+{% block title %}订单列表{% endblock %}
+{% block container %}
+    <div id="forms" class="mt10">
+        <div class="box">
+            <div class="box_border">
+{#                <div class="box_top"><b class="pl15">查询条件</b></div>#}
+                <div class="box_center">
+                    <form action="{% url 'backend:order_list_view' %}" class="jqtransform">
+                        <table class="form_table pt15 pb15" width="750px" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+{#                                <td class="td_right">关键词：</td>#}
+{#                                <td class="">#}
+{#                                    <input type="text" name="keywords" class="input-text lh30" size="40" value="{% if request.REQUEST.keywords %}{{ request.REQUEST.keywords }}{% endif %}" placeholder="用户\订单号\支付宝交易号">#}
+{#                                </td>#}
+{#                                <td class="td_right">状态：</td>#}
+{#                                <td>#}
+{#                                    <select name="pay_status" class="select">#}
+{#                                        <option value="-1" {% if request.REQUEST.pay_status == '-1' %}selected{% endif %}>全部</option>#}
+{#                                        <option value="0" {% if request.REQUEST.pay_status == '0' %}selected{% endif %}>未支付</option>#}
+{#                                        <option value="1" {% if request.REQUEST.pay_status == '1' %}selected{% endif %}>支付成功</option>#}
+{#                                        <option value="2" {% if request.REQUEST.pay_status == '2' %}selected{% endif %}>支付失败</option>#}
+{#                                    </select>#}
+{#                                </td>#}
+{#                                <td class="td_right">#}
+{#                                    <input type="submit" value="提交查询" class="ext_btn ext_btn_submit">#}
+{#                                </td>#}
+                                <td class="td_right">
+                                    <a href="{% url 'backend:create_order' %}" class="ext_btn"><span class="add"></span>手动录入</a>
+                                </td>
+
+                                <td class="td_right">年：</td>
+                                <td><input id="export_year" type="text" border="5" class="input-text" style="width: 50px"></td>
+                                <td class="td_right">月：</td>
+                                <td><input id="export_month" type="text" border="5" class="input-text" style="width: 50px"></td>
+                                <td><button id="export_submit" type="button" style="width: 60px">导出</button></td>
+
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{#    <div id="table" class="mt10">#}
+{#        <div class="box span10 oh">#}
+{#            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="list_table">#}
+{#                <tr>#}
+{#                    <th width="150px">订单号</th>#}
+{#                    <th width="100px">金额</th>#}
+{#                    <th width="50px">状态</th>#}
+{#                    <th width="150px">用户</th>#}
+{#                    <th width="100px">支付类型</th>#}
+{#                    <th width="120px">下单时间</th>#}
+{#                    <th width="120px">支付宝交易号</th>#}
+{#                    <th width="120px">支付时间</th>#}
+{#                    <th width="50px">支付方式</th>#}
+{#                </tr>#}
+{#                {% for order in order_list %}#}
+{#                <tr class="tr" title="职业课程：{{ order.pay_careercourse.name }}；班级号：{{ order.pay_class.coding }}；对应阶段：{{ order.pay_stage.all }}">#}
+{#                    <td>{{ order.order_no }}</td>#}
+{#                    <td>{{ order.pay_price }}</td>#}
+{#                    <td>#}
+{#                        {% if order.pay_status == 0 %}未支付{% endif %}#}
+{#                        {% if order.pay_status == 1 %}支付成功{% endif %}#}
+{#                        {% if order.pay_status == 2 %}支付失败{% endif %}#}
+{#                    </td>#}
+{#                    <td>{{ order.user.username }}</td>#}
+{#                    <td>#}
+{#                        {% if order.pay_type == 0 %}全款{% endif %}#}
+{#                        {% if order.pay_type == 1 %}试学首付款{% endif %}#}
+{#                        {% if order.pay_type == 2 %}尾款{% endif %}#}
+{#                        {% if order.pay_type == 3 %}阶段款{% endif %}#}
+{#                    </td>#}
+{#                    <td>{{ order.date_add }}</td>#}
+{#                    <td>{% if order.trade_no %}{{ order.trade_no }}{% endif %}</td>#}
+{#                    <td>{% if order.date_pay %}{{ order.date_pay }}{% endif %}</td>#}
+{#                    <td>#}
+{#                        {% if order.pay_way == 1 %}网页支付宝{% endif %}#}
+{#                        {% if order.pay_way == 2 %}移动支付宝{% endif %}#}
+{#                    </td>#}
+{#                </tr>#}
+{#                {% endfor %}#}
+{#            </table>#}
+{#            <div class="page mt10">#}
+{#                <div class="pagination">#}
+{#                    {% if order_list.has_previous %}#}
+{#                        <a href="?page={{ order_list.previous_page_number }}&keywords={{ request.REQUEST.keywords }}&pay_status={{ request.REQUEST.pay_status }}">上一页</a>#}
+{#                    {% endif %}#}
+{##}
+{#                    <span class="current">#}
+{#                        {{ order_list.number }} of {{ order_list.paginator.num_pages }}#}
+{#                    </span>#}
+{##}
+{#                    {% if order_list.has_next %}#}
+{#                        <a href="?page={{ order_list.next_page_number }}&keywords={{ request.REQUEST.keywords }}&pay_status={{ request.REQUEST.pay_status }}">下一页</a>#}
+{#                    {% endif %}#}
+{#                </div>#}
+{##}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{% endblock %}
+
+{% block custom_script %}
+    <script type="text/javascript">
+    $(function(){
+        $("#export_submit").click(function(){
+            var url = "{% url 'backend:export_order' %}";
+            var year = $.trim($("#export_year").val());
+            var month = $.trim($("#export_month").val());
+
+            if ("" == year) {
+                alert("请输入年份");
+                return;
+            } else if("" == month) {
+                alert("请输入月份");
+                return;
+            }
+
+            var regex = /^(19|20)\d{2}((0\d{1})|10|11|12)$/;
+            var f_month = month;
+            if (f_month.length == 1) {
+                f_month = "0" + f_month
+            }
+            if (!regex.test(year+f_month)) {
+                alert("输入格式错误");
+                return;
+            }
+            year = "?year=" + year;
+            month = "&" + "month=" + month;
+            url = url + year + month;
+            window.location.href = url;
+        });
+    })
+</script>
+{% endblock %}

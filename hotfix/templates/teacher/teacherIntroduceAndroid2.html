@@ -1,0 +1,117 @@
+{% extends "mz_common/global.html" %}
+{% block title %}Android应用开发金牌讲师-android培训-麦子学院{% endblock %}
+{% block keywords%}Android，Android开发，安卓开发，android培训，android学习{% endblock %}
+{% block description%}麦子学院android应用开发金牌讲师—葛蓉老师，IT行业拥有7年多丰富的软件开发工作经验。曾经参与Android操作系统二十多个大型系统级项目开发，以及负责多媒体类、社交类、工具类等十多个Android应用研发。目前专注于Android研发和讲师工作，擅长把复杂的编程技能转换为浅显易懂的总结和案例，教授知识由浅入深，更加注重学生学习能力和解决问题能力的引导和培养。{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/teacherIntroduce.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block indexhead %}{% endblock %}
+
+{% block container %}
+{% include 'header/header.html' %}
+<div class="addTeacher_container">
+    <div class="addTeacher_banner">
+        <div class="teacher">
+            <span class="image"><a href="/u/20365/" target="_blank"><img src="http://www.maiziedu.com/uploads/avatar/2016/04/lyra_1.jpg" alt="Android应用开发金牌讲师"/></a></span>
+            <strong>葛蓉</strong>
+            <span>Android应用开发金牌讲师</span>
+            <p>IT行业拥有7年多丰富的软件开发工作经验。曾经参与Android操作系统二十多个大型系统级项目开发，以及负责多媒体类、社交类、工具类等十多个Android应用研发。目前专注于Android研发和讲师工作，擅长把复杂的编程技能转换为浅显易懂的总结和案例，教授知识由浅入深，更加注重学生学习能力和解决问题能力的引导和培养。</p>
+            <a href="{% url 'course:course_detail' 'android' %}" target="_blank">报名TA的课程</a>
+        </div>
+    </div>
+	<div class="info">
+        <ul>
+            <li>带班数<strong>13</strong></li>
+            <li>累积毕业人数<strong>510</strong></li>
+            <li>就业率<strong>97<span>%</span></strong></li>
+        </ul>
+    </div>
+    <div class="works">
+        <h3>讲师作品</h3>
+        <div class="works_bxslider">
+            <div  class="teach_bxslider">
+                 <ul>
+                    <li>
+                        <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceAndroid2Tea1.png" alt="fun玩物"/></p>
+                        <div class="text"><strong>fun玩物</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                    </li>
+                    <li>
+                        <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceAndroid2Tea2.png" alt="revoeue"/></p>
+                        <div class="text"><strong>revoeue</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                    </li>
+                </ul>
+            </div>
+            <a href="javascript:;" class="prev"></a>
+            <a href="javascript:;" class="next"></a>
+            <span class="pageState"></span>
+        </div>
+    </div>
+    <div class="experience">
+        <h3>讲师经历</h3>
+        <ul>
+            <li>
+                <span>2015</span>
+                <div class="infos">
+                    <strong>麦子学院</strong>
+                    <p>麦子学院Android应用开发金牌讲师，拥有多年的开发经验和教学经验。擅长分析需求提供解决方案，进而实现具体的商业价值。教学能力、团队管理能力极强。授课由浅入深，循序渐进。更加注重学生学习能力和解决问题能力的引导和培养，授之于鱼不如授之以渔！</p>
+                </div>
+            </li>
+            <li>
+                <span>2012</span>
+                <div class="infos">
+                    <strong>中科创达</strong>
+                    <p>参与研发二十多个大型Android系统级项目开发。</p>
+                    <em>参与项目</em>
+                    <p>索尼、TCL、NEC等多个系列产品</p>
+                </div>
+            </li>
+            <li>
+                <span>2010</span>
+                <div class="infos">
+                    <strong>迪智软件</strong>
+                    <p>Android高级软件开发工程师 负责多个工具软件、播放软件、即时通讯软件、社交软件的技术支持和开发。</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <dl class="sendWord">
+        <dt><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceAnd2Tea.jpg" alt="讲师寄语"/></dt>
+        <dd>
+            <h3>讲师寄语</h3>
+            <p>随着“后PC时代”的来临，Android系统正在成为全球最受欢迎的应用平台之一，互联网时代移动客户端的开发需求更需要大量Android方向的人才。人生在勤，不索何获！很荣幸，麦子学院老师能够助你一臂之力，引领你踏入前景更广阔的领地。</p>
+            <a href="{% url 'course:course_detail' 'android' %}" target="_blank">报名TA的课程</a>
+        </dd>
+    </dl>
+    <div class="stu_works">
+        <h3>学生作品</h3>
+        <div class="student_bxslider">
+            <div  class="stu_bxslider">
+                <ul>
+                    <li>
+                        <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceAndroid2Stu1.png" alt="学生作品"/>
+                    </li>
+                    <li>
+                        <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceAndroid2Stu2.png" alt="学生作品"/>
+                    </li>
+                    <li>
+                        <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceAndroid2Stu3.png" alt="学生作品"/>
+                    </li>
+                </ul>
+            </div>
+            <a href="javascript:;" class="prev"></a>
+            <a href="javascript:;" class="next"></a>
+            <span class="pageState"></span>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/lib/superSlider/jquery.SuperSlide.2.1.1.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/teacherIntroduce.js?v={{ time_stamp }}"></script>
+{% endblock %}

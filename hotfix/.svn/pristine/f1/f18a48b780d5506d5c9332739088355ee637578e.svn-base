@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="74" height="74" viewBox="0 0 74 74">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="37" y1="73.375" x2="37" y2="0.625" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#49e8c0"/>
+      <stop offset="0.99" stop-color="#aff9e7"/>
+      <stop offset="1" stop-color="#aff9e7"/>
+    </linearGradient>
+  </defs>
+  <circle id="course-ui-info-c9" class="cls-1" cx="37" cy="37" r="36.425"/>
+</svg>

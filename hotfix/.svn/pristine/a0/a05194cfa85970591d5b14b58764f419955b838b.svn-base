@@ -1,0 +1,336 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}IT职业在线教育讲师资料填写 - 麦子学院{% endblock %}
+{% block keywords %}麦子学院，IT职业培训，IT技能培训，IT在线教育，IT在线学习，编程学习，android,ios,php,java,python,html5,cocos2dx{% endblock %}
+{% block description %}麦子学院专注IT职业在线教育，现正在招募android开发、ios开发、平面设计、ui设计、物联网、产品经理、嵌入式、php开发、web前端、python开发等一系列IT技术讲师，让我们一起培养更多改变世界的人。{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet"  href="/static/css/mz_wap/stylev1.2.css"/>
+{% endblock %}
+{% block container %}
+		<div class="wapv12 applyForm">
+			<div class="formBox">
+				<p class="tip">您正在申请麦子讲师，需要花费您几分钟填写一些简单的资料</p>
+				<form action="" id="applyform">
+					<div class="type lecturer">
+						<strong>您申请的是：</strong>
+						<ul>
+							<li>
+								<label>
+									<input type="radio" data-required="true" data-descriptions="lecturer" data-describedby="tacherLecturer" name="lecturer" id="" value="1" />
+									<span>带班讲师</span>
+								</label>
+							</li>
+							<li>
+								<label>
+									<input type="radio" data-required="true" data-descriptions="lecturer" data-describedby="tacherLecturer" name="lecturer" id="" value="2" />
+									<span>录课讲师</span>
+								</label>
+							</li>
+						</ul>
+						<span id="tacherLecturer"></span>
+					</div>
+					<div class="type programed">
+						<strong>您想成为全职讲师吗?</strong>
+						<ul>
+							<li class="programed1">
+								<label>
+									<input type="radio" data-required="true" data-descriptions="programed" data-describedby="tacherProgramed" name="programed" id="" value="1" />
+									<span>兼职讲师</span>
+								</label>
+							</li>
+							<li class="programed2">
+								<label>
+									<input type="radio" data-required="true" data-descriptions="programed" data-describedby="tacherProgramed" name="programed" id="" value="2" />
+									<span>全职讲师</span>
+								</label>
+							</li>
+						</ul>
+						<em class="tacherProgramedTips">请先选择讲师类型</em>
+						<span id="tacherProgramed"></span>
+					</div>
+					<div class="name">
+						<strong>您的真实姓名：</strong>
+						<p><input type="text" data-required="true" data-pattern="^.{0,20}$" data-descriptions="name" data-describedby="teacherName" id="inputName" /></p>
+						<span id="teacherName"></span>
+					</div>
+					<div class="skill">
+						<strong>技术方向：</strong>
+						<p><input id="inputSkill" type="text" data-required="true" data-pattern="^.{0,30}$" data-descriptions="skill" data-describedby="teacherSkill" placeholder="您希望在麦子学院教授哪一门课程？" /></p>
+						<span id="teacherSkill"></span>
+					</div>
+					<div class="experience">
+						<strong>相关经验年限：</strong>
+						<p>
+							<select id="selectExperience">// data-required="true" data-descriptions="experience" data-describedby="teacherExperience">
+                                <option value="" selected="" disabled="disabled">请选择相关经验年限</option>
+                                <option value="1">3年以下</option>
+                                <option value="2">3至5年</option>
+                                <option value="3">5至8年</option>
+                                <option value="4">8年以上</option>
+                            </select>
+						</p>
+						<span id="teacherExperience"></span>
+					</div>
+					<div class="introduction">
+						<strong>个人简介：</strong>
+						<div class="textarea">
+							<textarea id="textareaResume" name="" data-required="true" data-pattern="^.{50,1000}$" data-descriptions="intro" data-describedby="teacherIntro" placeholder="请简要描述您任职的公司和相关项目经验"></textarea>
+						</div>							
+						<em>未经您的许可，麦子学院将不会对外公开您工作的相关信息</em>
+						<span id="teacherIntro"></span>
+						<i class="error">对不起，超过字数限制，请保证在1000字以内</i>
+					</div>
+					<div class="telphone">
+						<strong>手机号码：</strong>
+						<p><input id="inputPhone" type="text" data-required="true" data-pattern="^0?1[3|4|5|8][0-9]\d{8}$" data-describedby="teacherTelphone" data-descriptions="telphone" /></p>
+						<span id="teacherTelphone"></span>
+					</div>
+					<div class="qq">
+						<strong>QQ：</strong>
+						<p><input id="inputQQ" type="text" data-required="true" data-pattern="^\d{5,11}$" data-describedby="teacherQQ" data-descriptions="QQ" /></p>
+						<span id="teacherQQ"></span>
+					</div>
+					<div class="test">
+						<strong>验证码：</strong>
+						<div>
+							<p><img id="captcha_img"  onclick="get_captcha_image(captcha_image);" /></p>
+							<span><input type="text" id="captcha" data-required="true" data-descriptions="captchacode" value="" data-conditional="captcha" data-describedby="yzmtips" placeholder="验证码" /></span>
+						</div>
+						<span id="yzmtips"></span>
+					</div>
+					<input type="submit" class="submitBtn" value="提交审核"/>
+				</form>					
+			</div>
+			<div class="formReviewed formSuccess">
+				<span class="closed">关闭</span>
+				<dl>
+					<dt></dt>
+					<dd>
+						<strong>恭喜你，提交成功！</strong>
+						<p>我们会在48小时内联系您，请保持手机畅通。</p>
+					</dd>
+				</dl>
+				<div class="footA">
+					<a href="{% url 'teacher_recruit'%}">返回讲师招募页</a>
+				</div>				
+			</div>
+			<div class="formReviewed formFail">
+				<span class="closed">关闭</span>
+				<dl>
+					<dt></dt>
+					<dd>
+						<strong>对不起，提交失败！</strong>
+						<p>
+							<em>失败原因可能是：</em>
+							<span>1.您的网络设置有问题；</span>
+							<span>2.服务器出现了未知错误。</span>
+						</p>
+					</dd>
+				</dl>
+				<div class="footA">
+					<a href="{% url 'teacher_recruit'%}" class="back">返回讲师招募页</a>
+					<a onclick="$('#applyform').submit();">重新提交</a>
+				</div>				
+			</div>
+			<div class="bg"></div>
+		</div>
+
+	<input value="{{request.session.teacher_recruit_verify}}">
+{% endblock %}
+{% block custom_script %}
+		<script src="{{STATIC_URL}}js/mz_wap/jquery.min.js"></script>
+		<script src="{{STATIC_URL}}js/mz_wap/jquery-mvalidate.js" type="text/javascript"></script>
+		<script src="{{STATIC_URL}}js/captcha.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			var is_verify_flag = false;  //图片验证状态初始值
+			var lock = false;   //表单AJAX提交锁定
+			$(function(){
+				/**
+				 * [browser 判断平台]
+				 * @param test: 判断是否为Iphone
+				 */
+				var browser = {
+				  versions: function () {
+				  var u = navigator.userAgent, app = navigator.appVersion;
+					  return {//移动终端浏览器版本信息
+					   uc: u.indexOf('UCBrowser') > -1  //uc浏览器
+					  };
+				  } (),
+				  language: (navigator.browserLanguage || navigator.language).toLowerCase()
+				};
+				if(browser.versions.uc){
+					$(".applyForm .formReviewed").css("position","absolute");
+				};
+
+				get_captcha_image(captcha_image);  //获取验证码图片
+
+				$(".formReviewed .closed").bind("touchend",function(){
+					$(this).parent().removeClass("show");
+					$(".applyForm .bg").removeClass("show");
+				});
+				//弹窗显示后，不允许滑动页面
+				$(".applyForm .bg,.formReviewed").bind("touchmove",function(e){
+					e.preventDefault();
+				});
+				//讲师选择控制
+				$(".applyForm .type li").bind("touchend",function() {
+					$(this).parents(".type").children("span").html('');
+				});
+				$(".applyForm .programed li").bind("touchend",function() {
+					if($(".applyForm .lecturer li.checked input").val() == undefined){
+						$(".applyForm .tacherProgramedTips").show();
+					}
+				});
+				$(".applyForm .lecturer li").each(function() {
+					$(this).bind("touchend", function () {
+						$(this).addClass("checked").siblings().removeClass("checked");
+						$(".applyForm .tacherProgramedTips").hide();
+						$(".programed1 input").attr("checked", "checked");
+						var lecturerVal = $(".applyForm .lecturer li.checked input").val();
+						var programedVal = $(".applyForm .programed li.checked input").val();
+						$(".applyForm .programed li").bind("touchend", function () {
+							if (lecturerVal == 1) {
+								$(this).addClass("checked").siblings().removeClass("checked");
+
+							}
+						});
+						if (lecturerVal == 2) {
+							$(".applyForm .programed li").removeClass("checked");
+							$(".programed1").addClass("checked");
+							$(".programed1 input").attr("checked", "checked");
+							$("#tacherProgramed").html('');
+							$(".programed2 span").css("color", "#ccc");
+							$(".programed2").bind("touchend", function () {
+								$(".programed1").addClass("checked").siblings().removeClass("checked");
+							});
+						}
+						;
+						if (lecturerVal == 1) {
+							$(".programed1").addClass("checked").siblings().removeClass("checked");
+							$(".programed2 span").css("color", "#666");
+							$("#tacherProgramed").html('');
+						}
+					});
+				});
+				$("#applyform input[type='text'],#applyform textarea").keyup(function(){
+					$(this).parent("p").removeClass('field-invalid');
+					$(this).parent(".textarea").removeClass('field-invalid');
+					$(this).parent("p").siblings("span").html('');
+					$(this).parent("div").siblings("span").html('');
+				});
+				$("#applyform select").focus(function(){
+					$(this).parent("p").removeClass('field-invalid');
+					$(this).parent("p").siblings("span").html('');
+				});
+
+
+				<!--表单验证-->
+				$("#applyform").mvalidate({
+		            type:2,
+		            onKeyup:true,
+		            sendForm:true,
+		            firstInvalidFocus:true,
+		            valid:function(event,options){
+		            	console.log("验证通过！！！");
+		            	//Ajax 提交数据
+		            	if(!lock){
+		            		ajax_submit_form();
+		            	}
+		            	event.preventDefault();
+		            },
+		            conditional: {
+		            	captcha:function(){
+		            		<!--验证图片验证码-->
+		                    verify_code($("#captcha").val(),null,null,success_verify);
+							return is_verify_flag
+		                }
+		            },
+		            descriptions: {
+		                lecturer: {
+		                    required: '请选择讲师类型',
+		                    conditional: '请选择讲师类型'
+		                },
+		                programed: {
+		                	required: '请选择编制类型',
+		                	conditional: '请选择编制类型'
+		                },
+		                name: {
+		                    required: '请填写您的真实姓名',
+		                    pattern: '对不起，超出字数限制，请保证在20个字符以内'
+		                },
+		                skill: {
+		                	required: '请填写您的技术方向',
+		                    pattern: '对不起，超出字数限制，请保证在30个字符以内'
+		                },
+		                experience: {
+		                	required: '请选择您的工作年限',
+		                	conditional: '请选择您的工作年限'		                	
+		                },
+		                intro: {
+		                	required: '请填写您的工作描述',
+		                	pattern: '请将字数控制在50-1000以内'
+		                },
+		                telphone: {
+		                	required: '请填写您的联系方式',
+		                	pattern: '对不起，请填写有效手机号'		                	
+		                },
+		                QQ: {
+		                	required: '请填写您的QQ号',
+		                	pattern: '对不起，请输入5-11位纯数字'		                	
+		                },
+		                captchacode: {
+		                	required: '请输入验证码',
+		                	conditional: '验证码输入错误，请重新输入'
+		                }
+		            }
+		       });
+
+			});
+
+			<!--提交数据-->
+			function ajax_submit_form(){
+				lock = true;
+				var selectObj = document.getElementById("selectExperience");
+				var data={
+					lecturerType : $("input[name='lecturer']:checked").val(),
+					formation : $("input[name='programed']:checked").val(),
+					teacherRecruitName : $('#inputName').val(),
+					teacherRecruitSkill : $('#inputSkill').val(),
+					workingLife : selectObj.options[selectObj.selectedIndex].value,
+					teacherRecruitTextArea : $("#textareaResume").val(),
+					teacherRecruitPhone : $("#inputPhone").val(),
+					teacherRecruitQQ : $("#inputQQ").val(),
+					captcha_key:captcha_key,
+					code:$("#captcha").val(),
+				};
+				$.ajax({
+					type:"POST",
+					url:"{% url 'teacher_recruit_save'%}",
+					data:data,
+					dataType:"json",
+					success:function(data){
+						$(".applyForm .bg").addClass("show");
+						get_captcha_image(captcha_image);
+						window.is_verify_flag = false;
+						lock = false;
+						if (data["status"]){
+							$(".formSuccess").addClass("show");//审核成功
+						}
+						else{
+							$(".formFail").addClass("show");//审核失败
+						}
+					}
+				});
+			}
+
+		<!--获取验证图片回调函数-->
+		var captcha_image = function(image_url){
+			$("#captcha_img").attr("src",image_url);
+		}
+
+		<!--图片验证成功的回调函数-->
+		var success_verify = function(){
+			console.log("In function is_verify!")
+			window.is_verify_flag = true;
+		}
+		</script>
+{% endblock %}

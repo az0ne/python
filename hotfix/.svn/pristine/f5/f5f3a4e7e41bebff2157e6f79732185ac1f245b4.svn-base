@@ -1,0 +1,126 @@
+{% extends "mz_common/global.html" %}
+{% block title %}{{ seo.seo_title }}{% endblock %}
+{% block keywords%}{{ seo.seo_keyword }}{% endblock %}
+{% block description%}{{ seo.seo_description }}{% endblock %}
+
+{% block custom_css %}
+<link type="text/css" rel="stylesheet" href="/css/appPage.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block csstype %}app-page{% endblock %}
+{% block container %}
+{% include 'header/index_header.html' %}
+<div class="microoh-main">
+    <div class="container-fluid app-banner">
+        <div class="app-bt"></div>
+        <div class="container" style="padding-top: 80px;">
+            <div class="app-dn">
+                <div role="tabpanel">
+                    <div class="tab-content">
+                        <div id="iphone" class="tab-pane active" role="tabpanel"><img alt="麦子学院二维码" src="/static/images/appcode.png"></div>
+                        <div id="ipad" class="tab-pane" role="tabpanel"><img alt="麦子学院二维码" src="/static/images/appcode.png"></div>
+                        <div id="android" class="tab-pane" role="tabpanel"><img alt="麦子学院二维码" src="/static/images/appcode.png"></div>
+                        <div id="wp" class="tab-pane" role="tabpanel"><img alt="麦子学院二维码" src="/static/images/appcode.png"></div>
+                    </div>
+                    <ul role="tablist" class="app-nav-tabs cf">
+                        <li role="presentation"><a  target = "_blank" href="{{IOS_DOWN_URL}}" onclick="zhuge.track('iPhone版下载')"><img alt="麦子学院在线学习  iPhone版" src="/static/images/app-iphone.png"></a></li>
+                        <li role="presentation"><a  target = "_blank" href="{{ANDROID_DOWN_URL}}" onclick="zhuge.track('Android版下载')"><img alt="麦子学院在线学习  Android版" src="/static/images/app-android.png"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="app-container">
+        <div>
+            <img alt="全新UI交互" src="/static/images/app-s1.jpg">
+        </div>
+        <div class="app-bt"></div>
+    </div>
+    <div class="app-container">
+        <div>
+            <img alt="更加丰富的课程" src="/static/images/app-s2.jpg">
+        </div>
+        <div class="app-bt"></div>
+    </div>
+    <div class="app-container">
+        <div>
+            <img alt="语音搜索课程" src="/static/images/app-s3.jpg">
+        </div>
+        <div class="app-bt"></div>
+    </div>
+    <div class="app-container">
+        <div>
+            <img alt="麦子学院 - 一键收藏" src="/static/images/app-s4.jpg">
+        </div>
+        <div class="app-bt"></div>
+    </div>
+    <div class="app-container">
+        <div>
+            <img alt="离线下载课程" src="/static/images/app-s5.jpg">
+        </div>
+        <div class="app-bt"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+<div style=" background: #f5f5f5;" class="v5-footer">
+    <div class="container">
+        <div class="v5-footer-links cf visible-md visible-lg">
+            <dl class="f-link">
+                <dt>友情链接</dt>
+                <dd>
+                    <ul>
+                        {% if text_links %}
+                        <li class="cf">
+                        {% for link in text_links %}
+                        <a target="_blank" href="{{ link.callback_url }}" title="{{ link.description }}">{{ link.title }}</a>
+                        {% if not forloop.last %} <span></span> {% endif %}
+                        {% endfor %}
+                        </li>
+                        {% endif %}
+                    </ul>
+                </dd>
+            </dl>
+            <dl class="follow">
+                <dd>
+                    <ul>
+                        <li><a href="http://weibo.com/microoh"><p><img src="/static/images/weibo_code.png"></p><p>关注麦子学院<br>新浪微博</p></a></li>
+                        <li style="margin-left: 50px;"><p><img src="/static/images/weichat_code.png"></p><p>关注麦子学院<br>官方微信</p></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl class="webmap">
+                <dt>网站导航</dt>
+                <dd>
+                    <ul>
+                        <li><a href="/common/about">关于我们</a></li>
+                        <li><a href="/course/">企业直通班</a></li>
+                        <li><a href="/common/join">加入我们</a></li>
+                        <li><a href="/common/contact">联系我们</a></li>
+                        <li><a href="/common/apppage/">下载APP</a></li>
+                        <!--<li><a href="{{ FPS_HOST }}common/feedback/publish/">意见反馈</a></li>-->
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>
+<div class="v5-footer">
+    <div class="container">
+        <div class="v5-footer-bottom">
+            <p>© 2012-{% now "Y" %} <a href="http://www.maiziedu.com">www.maiziedu.com</a></p>
+            <p>蜀ICP备13014270号-4 Version 4.0.6 release20150115.1</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+<script type="text/javascript">
+    $(function(){
+        zhuge.track('进入APP下载');
+    })  
+</script>
+{% endblock %}

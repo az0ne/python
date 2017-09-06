@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/css/fx_sys.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/scholarship/scholarship.css"/>
+</head>
+<body>
+{#头部开始#}
+<div class="container-index">
+    <div class="top">
+        <a href="/" target="_blank" class="logo">
+            <img src="/images/index/logo_greenx2.png" alt="logo" class="logo-img">
+        </a>
+        <div class="user">
+            <i></i>
+            <div class="right"><p>{{ request.session.full_name }}({{ user.role_name }})</p><a
+                    href="{% url 'fxsys:logout' %}" class="logout">退出</a></div>
+        </div>
+    </div>
+
+{#    头部结束#}
+    <div class="content">
+        <div class=" scholarship-box">
+           <div class="score-overview-content clear">
+				<h3 class="score-overview-title">本期各项得分概况{% if user.liveness_update_date %}(截至于{{ user.liveness_update_date|date:"Y年m月d日H:i" }}得分){% endif %}</h3>
+				<div class="score-overview-progres">
+					<div class="progress-bar-div"style="margin-right: -1px; margin-bottom:-1px;">
+						<div class="score-overview-title-li">
+							观看视频
+						</div>
+						<div class="progress-box">
+							<div class="progress1" style="width: {{ liveness_infos.1.3 }}%;"></div>
+							<div class="watch-video-pro">
+								<i>{{ liveness_infos.1.0 }}</i>/{{ liveness_infos.1.2 }}
+							</div>
+						</div>
+						<div>
+							已获得<span class="have-obtained-scores">{{ liveness_infos.1.1 }}</span>分
+						</div>
+
+					</div>
+					<div class="progress-bar-div" style=" margin-bottom:-1px;">
+						<div class="score-overview-title-li">
+							完成练习
+						</div>
+						<div class="progress-box">
+							<div class="progress1" style="width: {{ liveness_infos.2.3 }}%;"></div>
+							<div class="watch-video-pro">
+								<i>{{ liveness_infos.2.0 }}</i>/{{ liveness_infos.2.2 }}
+							</div>
+						</div>
+						<div>
+							已获得<span class="have-obtained-scores">{{ liveness_infos.2.1 }}</span>分
+						</div>
+					</div>
+					<div class="progress-bar-div" style=" margin-bottom:-1px;margin-right:-1px">
+						<div class="score-overview-title-li">
+							完成任务球
+						</div>
+                        <div class="progress-box">
+							<div class="progress1" style="width: {{ liveness_infos.3.3 }}%;"></div>
+							<div class="watch-video-pro">
+								<i>{{ liveness_infos.3.0 }}</i>/{{ liveness_infos.3.2 }}
+							</div>
+						</div>
+						<div>
+							已获得<span class="have-obtained-scores">{{ liveness_infos.3.1 }}</span>分
+						</div>
+					</div>
+					<div class="progress-bar-div">
+						<div class="score-overview-title-li">
+							约课
+						</div>
+						<div class="progress-box">
+							<div class="progress1" style="width: {{ liveness_infos.4.3 }}%;"></div>
+							<div class="watch-video-pro">
+								<i>{{ liveness_infos.4.0 }}</i>/{{ liveness_infos.4.2 }}
+							</div>
+						</div>
+						<div>
+							已获得<span class="have-obtained-scores">{{ liveness_infos.4.1 }}</span>分
+						</div>
+					</div>
+					<div class="progress-bar-div" style="margin-top:-2px">
+						<div class="score-overview-title-li">
+							辅导
+						</div>
+						<div class="progress-box">
+							<div class="progress1" style="width: {{ liveness_infos.5.3 }}%;"></div>
+							<div class="watch-video-pro">
+								<i>{{ liveness_infos.5.0 }}</i>/{{ liveness_infos.5.2 }}
+							</div>
+						</div>
+						<div>
+							已获得<span class="have-obtained-scores">{{ liveness_infos.5.1 }}</span>分
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+            <div class="score-record-content">
+                <h3 class="score-record">得分记录</h3>
+                {% for date_rang, liveness_info_list in liveness_info_dict.items %}
+                <div class="score-record-list-box">
+                    <p class="score-record-time"><i>{{ date_rang }} </i>得分清单</p>
+                    <div class="score-record-list">
+                        <ul>
+                            {% for liveness_info in liveness_info_list %}
+                            <li class="score-record-list-1 clear">
+                                <span class="score-record-add fl">
+                                    {{ liveness_info.plus }}
+                                </span>
+                                <p class="score-record-intro fl">
+                                {% if liveness_info.type == 1 %}完成了{{ liveness_info.plus_count }}个视频观看{% endif %}
+                                {% if liveness_info.type == 2 %}完成了{{ liveness_info.plus_count }}个练习{% endif %}
+                                {% if liveness_info.type == 3 %}完成了{{ liveness_info.plus_count }}个任务球{% endif %}
+                                {% if liveness_info.type == 4 %}完成了{{ liveness_info.plus_count }}个约课{% endif %}
+                                {% if liveness_info.type == 5 %}主动发起{{ liveness_info.plus_count }}个辅导{% endif %}
+                                </p>
+                                <span class="score-record-prompt fl {% if not liveness_info.is_ceiling %}dn{% endif %}">
+                                     (提示:积分已达到本期获取上限)
+                                </span>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+                {% if is_page %}
+                <div class="score-record-list-add" last_id="{{ last_id }}">
+                    加载更多…
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script src="/static/js/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".score-record-list-add").click(function () {
+            var last_dom = $(".score-record-list ul").last();
+            var last_key = $(".score-record-time i").last().html();
+            $.ajax({
+                url:"{% url 'fxsys:score_record_more' %}",
+                data:{last_key: last_key, last_id: $(".score-record-list-add").attr("last_id")},
+                dataType:"json",
+                async: false,
+                type:"POST",
+                success:function (data) {
+                    if (data.success){
+                        if (data.data.last_id != 0){
+                            $(".score-record-list-add").attr("last_id",data.data.last_id);
+                        }
+                        $(".score-record-list-add").before(data.data.html);
+                        if ($("#sub").html() != ''){
+                            last_dom.append($("#sub").html());
+                        }
+                        $("#sub").remove();
+                    }
+
+                },
+            });
+        });
+    })
+
+</script>
+</html>

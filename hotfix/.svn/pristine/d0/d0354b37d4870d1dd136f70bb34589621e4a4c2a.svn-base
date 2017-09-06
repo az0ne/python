@@ -1,0 +1,105 @@
+﻿{% extends "mz_common/global.html" %}
+{% block title %}关于我们-麦子学院_专业的IT在线职业教育平台{% endblock %}
+{% block keywords%}IT自学APP，IT在线学习APP，麦子学院APP{% endblock %}
+{% block description%}麦子学院官方APP是IT在线学习移动端工具，不仅可以免费观看Android开发、iOS开发视频教程，还能离线缓存自定义章节，是您IT在线学习的好帮手！{% endblock %}
+{% block custom_css %}
+<link type="text/css" rel="stylesheet" href="/css/about.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block csstype %}about-page{% endblock %}
+{% block container %}
+{% include 'header/index_header.html' %}
+<div class="microoh-main" style="padding-top:0px;">
+	<div class="container">
+		<ol class="breadcrumb">
+            <li><a href="{% url 'index_front' %}">首页</a></li>
+            <li class="active">关于我们</li>
+        </ol>
+        <div id="tab">
+	        <div id="left-bar">
+				<ul>
+					<li class="buttom-border cur"><a href="/common/about"><span class="cn">关于我们</span><span class="en">About us</span></a></li>
+					<li class="buttom-border"><a href="/common/join"><span class="cn">加入我们</span><span class="en">Join us</span></a></li>
+					<li class="buttom-border"><a href="/common/contact"><span class="cn">联系我们</span><span class="en">Contacts</span></a></li>
+                    <!--<li><a href="{{ FPS_HOST }}common/feedback/"><span class="cn">意见反馈</span><span class="en">Feedback</span></a></li>-->
+				</ul>
+			</div>
+            <div class="tabCon">
+                <div class="cur" id="p1">
+                    <h2>关于我们</h2>
+                    <span class="line">
+                        <h3>重塑教育，做在线哈佛。</h3>
+                        <h3>麦子学院是什么?</h3>
+                        <p>麦子学院是成都麦子信息技术有限公司旗下一个IT在线教育平台，目前已有30万注册用户，10万以上APP下载量，5000小时视频内容。</p>
+                        <p>我们从不说空话，专注于IT在线教育，脱离传统教育的束缚，让你走哪学哪，想学就学。逗比的老师，贴心的助教，在这儿你能感受到来自五</p>
+                        <p>湖四海伙伴们热情和踏实的学习态度！</p>
+                    </span>
+                    <span class="line">
+                        <h3>麦子学院的理想</h3>
+                        <p>什么都不会没关系，想跳槽想加薪都可以，提升自己更不在话下。 </p>
+                        <p>只要你愿意，绝对为你找到一份相当靠谱的工作！成就你，我能行！ </p>
+                    </span>
+                    <span class="line">
+                        <h3>为什么要在麦子学院学习？</h3>
+                        <p>那么多的梦想，你不想实现？买的起大奔的人会天天挤公交吗？ </p>
+                        <p>想成为成功人士，脑袋里必须要有知识。一切不以要付出为目的的梦想都是耍流氓！ </p>
+                        <p>LPS系统、每周直播课、学习作业快速批改、保就业、班主任助教全程跟踪。 </p>
+                        <p>你看，离你完成梦想的道路是不是近了很多。  </p>
+                    </span>
+                    <span class="line">
+                        <h3>麦子学院有移动端吗？ </h3>
+                        <p>当然有啊，Android、iPhone、ipad、WP全部给你配齐了！  </p>
+                    </span>
+                    <span class="line">
+                    <h3>还有疑问？我们唠一唠！  </h3>
+                    </span>
+                    <span class="ico" id="ico-span">
+                        <ul>
+                            <li id='qq'></li>
+                            <a href='http://weibo.com/microoh'><li id='sina'></li></a>
+                            <li id='wx'></li>
+                        </ul>
+                        <span id="qun">QQ群:3968830</span>
+                        <span id="ewm"></span>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+        <div class="footers" style="margin-bottom:50px;"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer%}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+<script type="text/javascript">
+window.onload = function() {
+    qun = document.getElementById("qq");
+    wx = document.getElementById("wx");
+    icos(qun);
+    icos(wx);
+    function icos(b){
+        b.onmousemove = function(){
+            if(b.id =='qq'){
+                document.getElementById("qun").style.display = "block";
+            }else if(b.id =='wx'){
+                document.getElementById("ewm").style.display = "block";
+            }
+        }
+        b.onmouseout = function(){
+            if(b.id =='qq'){
+                document.getElementById("qun").style.display = "none";
+            }else if(b.id =='wx'){
+                document.getElementById("ewm").style.display = "none";
+            }
+        }
+    }
+}
+</script>
+{% endblock %}

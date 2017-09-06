@@ -1,0 +1,29 @@
+{% extends "mz_usercenter/usercenter_base.html" %}
+{% block usercenter_right_panel %}
+        <div class="personalCmainR font14 color33 personalInterlocutionDetail">   
+			<a href="{% url 'home:teacher:student_discuss' %}" class="back color33 font16"><< 返回学生问答</a>
+			{% include 'mz_usercenter/div_discuss_detail.html' %}
+        </div>
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block custom_script %}
+<script type="text/javascript" src="/2016/lib/layer/layer.js"></script>
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/studentmyanswerdetail.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2055164" charset="utf-8"></script>
+<script type="text/javascript">
+var jiathis_config = {
+    data_track_clickback: true,
+    shortUrl: false,
+    hideMore: false,
+    pic:'',
+    url:"{{ SITE_URL }}{% url 'u:public_discuss' problem_info.user_id  %}?p_id={{ problem_info.id }}",
+    title:"{{ problem_info.object_name }}",
+    summary:"我正在麦子学院学习{{ problem_info.object_name }}时遇到了一些问题需要你的帮助，赶快和我一起来讨论吧——麦子学院，在线学习好工作。"
+}
+</script>
+{% endblock %}

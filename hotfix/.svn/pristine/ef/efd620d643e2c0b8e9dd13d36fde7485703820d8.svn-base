@@ -1,0 +1,387 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>推荐_预约课程 | 麦子学院_IT在线教育专家</title>
+<meta name="description" content="IT在线教育推荐课程列表_Android开发_ios开发、海量高清IT自学视频教程。" />
+<link href="http://old.maiziedu.com/tuijian/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="http://old.maiziedu.com/tuijian/css/style.css" rel="stylesheet" type="text/css" />
+<script src="http://old.maiziedu.com/tuijian/js/jquery-1.7.2.min.js"></script>
+<script src="http://old.maiziedu.com/tuijian/js/bootstrap.js"></script>
+<script src="http://old.maiziedu.com/tuijian/js/script.js"></script>
+<script>
+<!-- 百度统计代码 -->
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?e3879546912fd4b2d6e909e064d49262";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<!-- GoogleAnalytics代码 -->
+<script>
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-61416428-1', 'auto');
+    ga('require', 'displayfeatures');
+    ga('send', 'pageview');
+{#  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){#}
+{#  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),#}
+{#  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)#}
+{#  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');#}
+{##}
+{#  ga('create', 'UA-61416428-1', 'auto');#}
+{#  ga('send', 'pageview');#}
+
+</script>
+<!-- GoogleAnalytics代码结束 -->
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="header-nav">
+	<div class='container mg-top'>
+		<a href="http://www.maiziedu.com/"><img class="logo" src="http://old.maiziedu.com/tuijian/images/logo.png" alt="logo" border="0"></a>
+		<ul class="navs"><li><a href="http://www.maiziedu.com/">首页</a></li><li><a href="http://www.maiziedu.com/courses-list">自学课程</a></li><li><a href="http://www.maiziedu.com/career-course-list">职业课程</a></li></ul>
+	</div>
+</div>
+<div class="line"></div>
+<div class='container'>
+	<div class="course"></div>
+</div>
+<div class='container'>
+	<div class="row">
+	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	      <a href="http://www.maiziedu.com/search/node/android%20type%3Acourse">
+	      <img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="android">
+	      <img src="http://old.maiziedu.com/tuijian/images/1_03.jpg" alt="android"></a>
+	      <div class="caption">
+	        <h4>Android<small class="xy">5650学员</small></h4>
+	        <p><a href="http://www.maiziedu.com/search/node/android%20type%3Acourse" class="btn btn-edu" role="button">立即观看</a></p>
+	      </div>
+	    </div>
+	  </div>
+	  	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	    	<a href="http://www.maiziedu.com/search/node/ios">
+	    	<img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="iOS">
+	      <img src="http://old.maiziedu.com/tuijian/images/1_05.jpg" alt="iOS"></a>
+	      
+	      <div class="caption">
+	        <h4>iOS<small class="xy">4387学员</small></h4>
+	        <p><a href="http://www.maiziedu.com/search/node/ios" class="btn btn-edu" role="button">立即观看</a></p>
+	      </div>
+	    </div>
+	  </div>
+
+	  	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	    	<a href="http://www.maiziedu.com/search/node/Cocos2d%20type%3Acourse">
+	      <img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="Cocos2d-x">
+	      <img src="http://old.maiziedu.com/tuijian/images/1_07.jpg" alt="Cocos2d-x"></a>
+	      <div class="caption">
+	        <h4>Cocos2d-x<small class="xy">2981学员</small></h4>
+	        <p><a href="http://www.maiziedu.com/search/node/Cocos2d%20type%3Acourse" class="btn btn-edu" role="button">立即观看</a></p>
+	      </div>
+	    </div>
+	  </div>
+
+	  	  <div class="col-sm-6 col-md-3">
+		<div class="thumbnail">
+	    	<a href="http://www.maiziedu.com/search/node/Swift%20type%3Acourse">
+	    	<img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="Swift">
+	      <img src="http://old.maiziedu.com/tuijian/images/1_24.jpg" alt="Swift"></a>
+	      <div class="caption">
+	        <h4>Swift<small class="xy">1329学员</small></h4>
+	        <p><a href="http://www.maiziedu.com/search/node/Swift%20type%3Acourse" class="btn btn-edu" role="button">立即观看</a></p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+		<div class="row">
+	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	    	<a href="http://www.maiziedu.com/search/node/drupal%20type%3Acourse">
+	    	<img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="Drupal">
+	      <img src="http://old.maiziedu.com/tuijian/images/1_15.jpg" alt="Drupal"></a>
+	      <div class="caption">
+	        <h4>Drupal<small class="xy">1772学员</small></h4>
+	        <p><a href="http://www.maiziedu.com/search/node/drupal%20type%3Acourse" class="btn btn-edu" role="button">立即观看</a></p>
+	      </div>
+	    </div>
+	  </div>
+	  	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	    	<a href="http://www.maiziedu.com/search/node/wp%20type%3Acourse">
+	    	<img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="WindowsPhone">
+	      <img src="http://old.maiziedu.com/tuijian/images/1_16.jpg" alt="WindowsPhone"></a>
+	      <div class="caption">
+	        <h4>WindowsPhone<small class="xy">3509学员</small></h4>
+	        <p><a href="http://www.maiziedu.com/search/node/wp%20type%3Acourse" class="btn btn-edu" role="button">立即观看</a></p>
+	      </div>
+	    </div>
+	  </div>
+
+	  	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	    	<a href="http://www.maiziedu.com/search/node/java%20type%3Acourse">
+	    	<img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="Java">
+	      <img src="http://old.maiziedu.com/tuijian/images/1_17.jpg" alt="Java"></a>
+	      <div class="caption">
+	        <h4>Java<small class="xy">8935学员</small></h4>
+	        <p><a href="http://www.maiziedu.com/search/node/java%20type%3Acourse" class="btn btn-edu" role="button">立即观看</a></p>
+	      </div>
+	    </div>
+	  </div>
+
+	  	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	    	<a href="http://www.maiziedu.com/search/node/Typescript%20type%3Acourse">
+	    	<img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="Typescript">
+	      <img src="http://old.maiziedu.com/tuijian/images/1_18.jpg" alt="Typescript"></a>
+	      <div class="caption">
+	        <h4>Typescript<small class="xy">1730学员</small></h4>
+	        <p><a href="http://www.maiziedu.com/search/node/Typescript%20type%3Acourse" class="btn btn-edu" role="button">立即观看</a></p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+	<div class="row">
+	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	    	<a href="http://www.maiziedu.com/search/node/%E7%A7%BB%E5%8A%A8%20type%3Acourse">
+	    	<img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="移动企业营销">
+	      <img src="http://old.maiziedu.com/tuijian/images/1_23.jpg" alt="移动企业营销"></a>
+	      <div class="caption">
+	        <h4>移动企业营销<small class="xy">1258学员</small></h4>
+	        <p><a href="http://www.maiziedu.com/search/node/%E7%A7%BB%E5%8A%A8%20type%3Acourse" class="btn btn-edu" role="button">立即观看</a></p>
+	      </div>
+	    </div>
+	  </div>
+	  	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	    	<a href="http://www.maiziedu.com/search/node/%E5%A4%A7%E6%95%B0%E6%8D%AE%20type%3Acourse">
+	    	<img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="大数据">
+	      <img src="http://old.maiziedu.com/tuijian/images/1_09.jpg" alt="大数据"></a>
+	      <div class="caption">
+	        <h4>大数据<small class="xy">953学员</small></h4>
+	        <p><a href="http://www.maiziedu.com/search/node/%E5%A4%A7%E6%95%B0%E6%8D%AE%20type%3Acourse" class="btn btn-edu" role="button">立即观看</a></p>
+	      </div>
+	    </div>
+	  </div>
+
+	</div>
+</div>
+
+<div class="line"></div>
+<div class='container'>
+	<div class="online"></div>
+</div>
+<div class='container'>
+	<div class="row">
+	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	      <a href="#" data-toggle="modal" data-target="#myModal">
+	      <img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="perl">
+	      <img src="http://old.maiziedu.com/tuijian/images/2 (5).jpg" alt="perl"></a>
+	      <div class="caption">
+	        <h4>perl<small class="xy">1623学员</small></h4>
+	        <p><a href="#" class="btn btn-edu" role="button" data-toggle="modal" data-target="#myModal">立即预约</a></p>
+	      </div>
+	    </div>
+	  </div>
+	  	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	    	<a href="#" data-toggle="modal" data-target="#myModal">
+	    	<img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="html5">
+	      <img src="http://old.maiziedu.com/tuijian/images/html5.jpg" alt="html5"></a>
+	      
+	      <div class="caption">
+	        <h4>html5<small class="xy">1982学员</small></h4>
+	        <p><a href="#" class="btn btn-edu" role="button" data-toggle="modal" data-target="#myModal">立即预约</a></p>
+	      </div>
+	    </div>
+	  </div>
+
+	  	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	    	<a href="#" data-toggle="modal" data-target="#myModal">
+	      <img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="Asp">
+	      <img src="http://old.maiziedu.com/tuijian/images/2 (2).jpg" alt="Asp"></a>
+	      <div class="caption">
+	        <h4>Asp<small class="xy">691学员</small></h4>
+	        <p><a href="#" class="btn btn-edu" role="button" data-toggle="modal" data-target="#myModal">立即预约</a></p>
+	      </div>
+	    </div>
+	  </div>
+
+	  	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	    	<a href="#" data-toggle="modal" data-target="#myModal">
+	    	<img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="Python">
+	      <img src="http://old.maiziedu.com/tuijian/images/2 (6).jpg" alt="Python"></a>
+	      <div class="caption">
+	        <h4>Python<small class="xy">1862学员</small></h4>
+	        <p><a href="#" class="btn btn-edu" role="button" data-toggle="modal" data-target="#myModal">立即预约</a></p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+		<div class="row">
+	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	    	<a href="#" data-toggle="modal" data-target="#myModal">
+	    	<img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="D语言">
+	      <img src="http://old.maiziedu.com/tuijian/images/2 (3).jpg" alt="D语言"></a>
+	      <div class="caption">
+	        <h4>D语言<small class="xy">1539学员</small></h4>
+	        <p><a href="#" class="btn btn-edu" role="button" data-toggle="modal" data-target="#myModal">立即预约</a></p>
+	      </div>
+	    </div>
+	  </div>
+	  	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	    	<a href="#" data-toggle="modal" data-target="#myModal">
+	    	<img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="rube">
+	      <img src="http://old.maiziedu.com/tuijian/images/2 (7).jpg" alt="rube"></a>
+	      <div class="caption">
+	        <h4>rube<small class="xy">593学员</small></h4>
+	        <p><a href="#" class="btn btn-edu" role="button" data-toggle="modal" data-target="#myModal">立即预约</a></p>
+	      </div>
+	    </div>
+	  </div>
+
+	  	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	    	<a href="#" data-toggle="modal" data-target="#myModal">
+	    	<img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="VBScript">
+	      <img src="http://old.maiziedu.com/tuijian/images/2 (8).jpg" alt="VBScript"></a>
+	      <div class="caption">
+	        <h4>VBScript<small class="xy">865学员</small></h4>
+	        <p><a href="#" class="btn btn-edu" role="button" data-toggle="modal" data-target="#myModal">立即预约</a></p>
+	      </div>
+	    </div>
+	  </div>
+
+	  	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	    	<a href="#" data-toggle="modal" data-target="#myModal">
+	    	<img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="Scala">
+	      <img src="http://old.maiziedu.com/tuijian/images/2 (1).jpg" alt="Scala"></a>
+	      <div class="caption">
+	        <h4>Scala<small class="xy">751学员</small></h4>
+	        <p><a href="#" class="btn btn-edu" role="button" data-toggle="modal" data-target="#myModal">立即预约</a></p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
+	<div class="row">
+	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	    	<a href="#" data-toggle="modal" data-target="#myModal">
+	    	<img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="ActionScript">
+	      <img src="http://old.maiziedu.com/tuijian/images/ActionScript.jpg" alt="ActionScript"></a>
+	      <div class="caption">
+	        <h4>ActionScript<small class="xy">1186学员</small></h4>
+	        <p><a href="#" class="btn btn-edu" role="button" data-toggle="modal" data-target="#myModal">立即预约</a></p>
+	      </div>
+	    </div>
+	  </div>
+	  	  <div class="col-sm-6 col-md-3">
+	    <div class="thumbnail">
+	    	<a href="#" data-toggle="modal" data-target="#myModal">
+	    	<img class="play" src="http://old.maiziedu.com/tuijian/images/play.png" alt="Erlang">
+	      <img src="http://old.maiziedu.com/tuijian/images/Erlang.jpg" alt="Erlang"></a>
+	      <div class="caption">
+	        <h4>Erlang<small class="xy">973学员</small></h4>
+	        <p><a href="#" class="btn btn-edu" role="button" data-toggle="modal" data-target="#myModal">立即预约</a></p>
+	      </div>
+	    </div>
+	  </div>
+
+	</div>
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">用户注册</h4>
+      </div>
+      <div class="modal-body">
+        <section id="box-login" class="box-login v5-input-txt">
+  
+       
+            <ul>
+                <li class="form-group"><input type="text" placeholder="请输入邮箱账号" name="account_l" maxlength="50" id="id_account_l" class="form-control"></li>
+                <li class="form-group"><input id="pwd" type="password" placeholder="请输入密码" name="password_l" id="id_password_l" class="form-control"></li>
+                <li class="form-group"><input id="pwd1" type="password" placeholder="确认密码" name="password_l" id="id_password_l" class="form-control"></li>
+            </ul>
+                  
+
+                    <div id="mesg" class="tips-error bg-danger"></div>
+        </section>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-edu" id="reg">注册预约</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footers">
+	<div class='container'>
+		<h2><a href="http://www.maiziedu.com/courses-list">更多免费课程</a></h2>
+		<h3>10秒急速注册，加入麦子学院，与二十万麦子共同进步！</h3>
+		<span class="btms"><button type="button" class="btn btn-success btns" data-toggle="modal" data-target="#myModal"><h4>立即加入</h4></button></span>
+	</div>
+</div>
+</body>
+</html>
+
+<!-- temp -->
+<script language="javascript" src="http://chat10.live800.com/live800/chatClient/floatButton.js?jid=2057226289&companyID=430494&configID=219065&codeType=custom"></script>
+<script language="javascript" src="http://chat10.live800.com/live800/chatClient/monitor.js?jid=2057226289&companyID=430494&configID=219055&codeType=custom"></script>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-51873363-14']);
+ _gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+ })();
+
+</script>
+</body>
+</html>
+
+

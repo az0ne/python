@@ -1,0 +1,194 @@
+{% extends "mz_common/global.html" %}
+{% load article_filter %}
+
+{% block title %}{{ item.name }}-{{ wiki_chapter.name }}-麦子学院{% endblock %}
+{% block keywords%}{{ item.name }}、{{ item.name }}学习、{{ wiki_chapter.name }}、{{ wiki_chapter.name }}学习{% endblock %}
+{% block description%}{{ item.content | content_brief:'200' }}{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/wikistyle.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block indexhead %}{% endblock %}
+
+{% block container %}
+{% include 'header/index_header.html' %}
+		<div class="wikiPage">
+			<div class="container">
+                <div class="wikiArticleNavBar">
+                    <div class="wikiPageNavBar">
+                        <strong><a href="{% url 'wiki:index' %}">全部教程</a></strong>
+                        <ul class="navBar">
+                            {% for type_course_data in type_course_data_list %}
+                            {% for k, v in type_course_data.items %}
+                            <li>
+                                <a href="{% url 'wiki:course_type' k.1 %}" title="{{ k.0 }}"><i><img src="{{ MEDIA_URL }}{{ k.2 }}" alt="{{ k.3 }}"/></i>{{ k.0 }}</a>
+                                <ul>
+                                    {% for course in v %}
+                                    <li><a href="{% url 'wiki:item_detail' course.short_name course.first_item_short_name %}" title="{{ course.name }}">{{ course.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            {% endfor %}
+                            {% endfor %}
+{#	                    <li>#}
+{#	                    	<a href=""><i><img src="images/wikiIco.png"/></i>HTML/CSS</a>#}
+{#	                    	<ul>#}
+{#	                    		<li><a href="">HTML教程</a></li>#}
+{#			                    <li><a href="">HTML简介</a></li>#}
+{#			                    <li><a href="">HTML编辑器</a></li>#}
+{#			                    <li><a href="">HTML基础</a></li>#}
+{#			                    <li><a href="">HTML元素</a></li>#}
+{#			                    <li><a href="">HTML属性</a></li>#}
+{#			                    <li><a href="">HTML标题</a></li>#}
+{#			                    <li><a href="">HTML段落</a></li>#}
+{#			                    <li><a href="">HTML文本格式化</a></li>#}
+{#			                    <li><a href="">HTML链接</a></li>#}
+{#	                    	</ul>#}
+{#	                    </li>#}
+{#	                    <li>#}
+{#	                    	<a href=""><i><img src="images/wikiIco.png"/></i>浏览器脚本</a>#}
+{#	                    	<ul>#}
+{#	                    		<li><a href="">HTML教程</a></li>#}
+{#			                    <li><a href="">HTML简介</a></li>#}
+{#			                    <li><a href="">HTML编辑器</a></li>#}
+{#			                    <li><a href="">HTML基础</a></li>#}
+{#			                    <li><a href="">HTML元素</a></li>#}
+{#			                    <li><a href="">HTML属性</a></li>#}
+{#	                    	</ul>#}
+{#	                    </li>#}
+{#	                    <li><a href=""><i><img src="images/wikiIco.png"/></i>服务端</a></li>#}
+{#	                    <li><a href=""><i><img src="images/wikiIco.png"/></i>移动端</a></li>#}
+{#	                    <li><a href=""><i><img src="images/wikiIco.png"/></i>数据库</a></li>#}
+{#	                    <li><a href=""><i><img src="images/wikiIco.png"/></i>产品运营</a></li>#}
+{#	                    <li><a href=""><i><img src="images/wikiIco.png"/></i>设计教程</a></li>#}
+{#	                    <li><a href=""><i><img src="images/wikiIco.png"/></i>智能硬件</a></li>#}
+{#	                    <li><a href=""><i><img src="images/wikiIco.png"/></i>开发工具</a></li>#}
+{#	                    <li><a href=""><i><img src="images/wikiIco.png"/></i>网站建设</a></li>#}
+                        </ul>
+                    </div>
+                    {% if wiki_ad %}<div class="wikiAdsense"><a href="{{ wiki_ad.url }}" title="{{ wiki_ad.img_title }}" target="_blank"><img src="{{ MEDIA_URL }}{{ wiki_ad.img_url }}" alt="{{ wiki_ad.img_title }}"/></a></div>{% endif %}
+                </div>
+				<div class="wikiPageNavBar wikiPageNavMenu">
+                {% for item_data in item_data_list %}
+                    {% for k, v in item_data.items %}
+                    <strong>{{ k }}</strong>
+                    <ul class="navBar">
+                        {% for itm in v %}<li><a href="{% url 'wiki:item_detail' course_short_name itm.short_name %}" title="{{ itm.name }}" {% if itm.id == item.id %} class="active"{% endif %}>{{ itm.name }}</a></li>{% endfor %}
+                    </ul>
+                    {% endfor %}
+                {% endfor %}
+	            </div>				
+				<div class="wikiArticleContent">
+					<div class="wikiPrevNextLinks">
+                        {% if prev_item %}<a href="{% url 'wiki:item_detail' course_short_name prev_item.short_name %}" title="{{ prev_item.name }}" class="prevLinks"><< {{ prev_item.name }}</a>{% endif %}
+                        {% if next_item %}<a href="{% url 'wiki:item_detail' course_short_name next_item.short_name %}" title="{{ next_item.name }}" class="nextLinks">{{ next_item.name }}>></a>{% endif %}
+					</div>
+                    <div class="cont">
+                        <h1>{{ item.name }}</h1>
+						<p>{{ item.content | safe }}<p>
+					</div>
+                    <div class="share-ibox">
+                        <div class="share-from">分享到：</div>
+                        <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+                            <a class="popup_qzone" data-cmd="qzone"></a>
+                            <a class="popup_sqq" data-cmd="tqq"></a>
+                            <a class="popup_tsina" data-cmd="tsina"></a>
+                        </div>
+                    </div>
+{#					<div class="cont">#}
+{#						<h1>HTML 教程- (HTML5 标准)</h1>#}
+{#						<p>您可以使用 HTML 来建立自己的 WEB 站点。</p>#}
+{#						<p>在本教程中，您将学习如何使用 HTML 来创建站点。</p>#}
+{#						<p>HTML 很容易学习！相信您能很快学会它！</p>#}
+{#					</div>#}
+{#					<div class="cont">#}
+{#						<h3>HTML 实例</h3>#}
+{#						<p>本教程包含了数百个 HTML 实例。</p>#}
+{#						<p>使用本站的编辑器，您可以轻松实现在线修改 HTML，并查看实例运行结果。</p>#}
+{#						<em>注意：对于中文网页需要使用 &lt; meta charset="utf-8"&gt;声明编码，否则会出现乱码。</em>#}
+{#					</div>#}
+{#					<div class="cont">#}
+{#						<div class="code">#}
+{#							<strong>实例</strong>#}
+{#							<div class="coding">#}
+{#								&lt;!DOCTYPE html&gt;<br>#}
+{#								&lt;html&gt;<br>#}
+{#								&lt;head&gt;<br>#}
+{#								&lt;meta charset="utf-8"&gt;<br>#}
+{#								&lt;title&gt;菜鸟教程(runoob.com)&lt;/title&gt;<br>#}
+{#								&lt;/head&gt;<br>#}
+{#								&lt;body&gt;<br><br>#}
+{#								&lt;h1&gt;我的第一个标题&lt;/h1&gt;<br>#}
+{#								<br>#}
+{#								&lt;p&gt;我的第一个段落。&lt;/p&gt;<br>#}
+{#								<br>#}
+{#								&lt;/body&gt;<br>#}
+{#								&lt;/html&gt;#}
+{#							</div>#}
+{#							<div class="try">#}
+{#								<a href="#">尝试一下</a>#}
+{#								<span>点击 "尝试一下" 按钮查看在线实例</span>#}
+{#							</div>#}
+{#						</div>#}
+{#						<a href="">开始学习HTML!</a>#}
+{#					</div>#}
+{#					<div class="cont">#}
+{#						<h3>HTML 实例</h3>#}
+{#						<p>在 HTML 手册中包含了数百个在线实例，您可以在线编辑并查看运行结果</p>#}
+{#						<a href="">查看 HTML 实例！</a>#}
+{#					</div>#}
+{#					<div class="cont">#}
+{#						<h3>HTML 参考手册</h3>#}
+{#						<p>在菜鸟教程中，我们提供了完整的 HTML 参考手册，其中包括标签、属性、颜色、实体等等。</p>#}
+{#						<a href="">HTML 标签参考手册</a>#}
+{#					</div>#}
+					<div class="wikiPrevNextLinks wikiPrevNextBottomLinks">
+						{% if prev_item %}<a href="{% url 'wiki:item_detail' course_short_name prev_item.short_name %}" title="{{ prev_item.name }}" class="prevLinks"><< {{ prev_item.name }}</a>{% endif %}
+                        {% if next_item %}<a href="{% url 'wiki:item_detail' course_short_name next_item.short_name %}" title="{{ next_item.name }}" class="nextLinks">{{ next_item.name }}>></a>{% endif %}
+					</div>
+					{% if relation_course or relation_articles and not prev_item %}
+                    <div class="wikiArticleAbout">
+						<h3>相关内容</h3>
+						<ul>
+                            {% if relation_course %}<li><a href="{% url 'course:course_detail_view' relation_course.id %}" title="{{ relation_course.name }}" target="_blank">·&nbsp;&nbsp;{{ relation_course.name }}</a></li>{% endif %}
+
+                            {% for r_course in recommend_courses %}
+                            <li><a href="{% url 'course:course_detail_view' r_course.id %}" title="{{ r_course.name }}" target="_blank">·&nbsp;&nbsp;{{ r_course.name }}</a></li>
+                            {% endfor %}
+
+                            {% for article in relation_articles %}
+                            <li><a href="{% url 'article_detail_view' article.id %}" title="{{ article.title }}" target="_blank">·&nbsp;&nbsp;{{ article.title }}</a></li>
+							{% endfor %}
+
+{#                            <li><a href="">·&nbsp;&nbsp;在 HTML 手册中包含了数百个在线实例</a></li>#}
+{#							<li><a href="">·&nbsp;&nbsp;在线编辑并查看运行结果</a></li>#}
+{#							<li><a href="">·&nbsp;&nbsp;全程开发板教学项目驱动教学？</a></li>#}
+{#							<li><a href="">·&nbsp;&nbsp;全程开发板教学项发板教学项目驱动教学？</a></li>#}
+{#							<li><a href="">·&nbsp;&nbsp;全程开发板教学项目驱动教学？</a></li>#}
+						</ul>
+					</div>
+                    {% endif %}
+				</div>				
+			</div>
+		</div>
+{% endblock %}
+{% block footer %}
+<div class="wikiFoot">
+    <div class="mainfoot2 textC font14 color99">
+        <img src="/images/footer_logo.png" class="marginB14" alt="logo"><br>
+        © 2012-2016 www.maiziedu.com<br>蜀ICP备13014270号-4 Version 5.0.0 release20160127
+    </div>
+</div>
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/wikiArticle.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" id="bdshare_js" data="type=tools&mini=1" ></script> 
+<script type="text/javascript" id="bdshell_js"></script> 
+<script type="text/javascript">
+window.bds_config = {
+    'bdDes':'{{ item.content | content_brief:"200" }}',
+    'bdText':'{{ item.name }}-{{ wiki_chapter.name }}-麦子学院'
+}
+document.getElementById('bdshell_js').src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
+</script>
+{% endblock %}

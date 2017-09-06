@@ -1,0 +1,88 @@
+{% extends "mz_common/global.html" %}
+{% block title %}加入我们-麦子学院_专业的IT在线职业教育平台{% endblock %}
+{% block keywords%}IT自学APP，IT在线学习APP，麦子学院APP{% endblock %}
+{% block description%}麦子学院官方APP是IT在线学习移动端工具，不仅可以免费观看Android开发、iOS开发视频教程，还能离线缓存自定义章节，是您IT在线学习的好帮手！{% endblock %}
+{% block custom_css %}
+<link type="text/css" rel="stylesheet" href="/css/joinUs.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block csstype %}join-us{% endblock %}
+{% block container %}
+{% include 'header/index_header.html' %}
+<div class="microoh-main" style="padding-top:0px;">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li>
+                <a href="/">首页</a>
+            </li>
+            <li class="active">加入我们</li>
+        </ol>
+        <div id="tab">
+            <div id="left-bar">
+                <ul>
+                    <li class="buttom-border"><a href="/common/about"><span class="cn">关于我们</span><span class="en">About us</span></a></li>
+                    <li class="buttom-border cur"><a href="/common/join"><span class="cn">加入我们</span><span class="en">Join us</span></a></li>
+                    <li class="buttom-border"><a href="/common/contact"><span class="cn">联系我们</span><span class="en">Contacts</span></a></li>
+                    <!--<li><a href="{{ FPS_HOST }}common/feedback/"><span class="cn">意见反馈</span><span class="en">Feedback</span></a></li>-->
+                </ul>
+            </div>
+            <div class="tabCon" style="width: 870px;">
+<div class="cur" id="p2">
+    <span class="ad">
+        <img src="/static/aboutus/Images/1.png" width='840px'></span>
+    <h2>加入我们</h2>
+     <p><b>联系方式:</b> 杨女士 929852270（QQ）&nbsp;&nbsp;028-69860627（电话） </p>
+     <p><b>简历投递邮箱:</b> hr@maiziedu.com  &nbsp;&nbsp; kristy@maiziedu.com </p>
+    <ul class='buttons'>
+        {% for department in departments %}
+        <li><a href="#{{ department.name }}">{{ department.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <span class="line">
+        <h3 id="和我们来一起玩">和我们来一起玩</h3>
+        <p>
+        和我们来一起玩<br>
+        在这里，工作氛围让每个人积极创新，为了美好的事情而努力；<br>
+        在这里，没那么多等级观念，你跟大家一样，随时可以提出自己的创意和想法；<br>
+        我们都是一流的人才，与聪明的人一起工作，你很快就能学到很多前沿的知识；<br>
+        我们的团队年轻有活力，沟通协作360°无死角无障碍。
+        </p>
+
+    </span>
+    <span class="line">
+        <h3 id="公司福利待遇">公司福利待遇：</h3>
+        <p>
+        1、薪金：全年13月薪、年终分红、月度奖金、5险1金、加班工资等；<br>
+        2、福利：免费提供健身场地、员工生日会、节庆、假期，以及各种提高生活质量的福利；<br>
+        3、氛围：24K纯金足量弹性工作制、团建和旅游活动等；<br>
+        4、环境：成都天府软件园美景护驾，高配电脑和人体工学椅，最重要的是有一群高效的年轻人；<br>
+        5、发展：克强总理所说的中国又一新兴产业，无限空间前景，扁平化的管理以及平等公开的晋升体系。
+        </p>
+    </span>
+
+    {% for depat in departments %}
+        <span class="line"><h3 id="{{ depat.name }}">{{ depat.name }}</h3></span>
+            {% for desc in depat.description %}
+            <span class="line">
+                <h4 id="">{{ desc.title }}</h4>
+                <br>
+                <br>
+                <p>{{ desc.desc|linebreaks }}</p>
+            </span>
+            {% endfor %}
+    {% endfor %}
+</div>
+</div>
+</div>
+        <div style="clear:both;"></div>
+        <div class="footers" style="margin-bottom:50px;"></div>
+    </div>
+</div>
+{% endblock %}
+{% block footer%}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+{% endblock %}

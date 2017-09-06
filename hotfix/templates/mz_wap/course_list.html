@@ -1,0 +1,82 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}{% if category != 'all' or tag != 'all' %}{% if sort_by != '0' %}{{ sort_by_chinese }}{% endif %}{% if tag == 'all' %}{{ category_name }}{% else %}{{ tag_name }}{% endif %}教程-{% if tag == 'all' %}{{ category_name }}{% else %}{{ tag_name }}{% endif %}学习-课程库-麦子学院{% else %}{% if sort_by != '0' %}{{ sort_by_chinese }}{% endif %}{{ seo.seo_title }}{% endif %}{% endblock %}
+{% block keywords %}{% if tag != 'all' %}{% if sort_by != '0' %}{{ sort_by_chinese }}{% endif %}{{ tag_name }}教程，{{ tag_name }}学习，{{ tag_name }}在线学习{% elif category != 'all' %}{% if sort_by != '0' %}{{ sort_by_chinese }}{% endif %}{{ category_name }}教程，{{ category_name }}学习，{{ category_name }}在线学习{% else %}{% if sort_by != '0' %}{{ sort_by_chinese }}{% endif %}{{ seo.seo_keyword }}{% endif %}{% endblock %}
+{% block description%}IT职业在线学习，视频教程免费观看，为软件开发人员提供包括python基础教程、产品经理教程、UI设计教程、web前端教程、网络运营教程、新媒体教程、Android开发教程、iOS开发教程、嵌入式开发教程、C语言教程、html5教程、php教程等多门编程语言在内的IT职业课程的学习。{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="/static/css/mz_wap/course_style.css"/>
+{% endblock %}
+{% block csstype %}course-list{% endblock %}
+{% block container %}
+    {% include 'mz_wap/module/wiki_header1.html' %}
+    {% include 'mz_wap/module/div_filter_layout.html' %}
+    <article class="course_list">
+        <ul>
+            {% for course in course_list %}
+                <li>
+                    <!--<a href="{% include 'mz_wap/53kf.html' %}">-->
+                    <a href="{% url 'course_detail' course.id %}">
+                        <div class="img-con"><img class="ui-imglazyload" data-url="{{ MEDIA_URL }}{{ course.image }}"
+                                                  alt="{{ course.name }}"/></div>
+                        <div class="list_info">
+                            <strong>{{ course.name }}</strong>
+                            <p>{{ course.description }}</p>
+                            <span><mark>{{ course.click_count }}</mark>人学习</span>
+                        </div>
+                    </a></li>
+                {% empty %}
+                <li class="no-search">
+                    <span>没有找到心仪的课程？</span>
+                    <a href="{% url 'course_list_all' %}">去课程库看看</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <!-- 分页 -->
+        {% include 'mz_wap/module/div_course_pagination.html' %}
+    </article>
+    <div id="page-id" hidden>{{ page_index }}</div>
+    <div id="career" hidden>{{ career }}</div>
+    <div id="category" hidden>{{ category }}</div>
+    <div id="sort_by" hidden>{{ sort }}</div>
+    <div id="has_next" hidden>{{ has_next }}</div>
+    <div id="search" hidden>{{ search }}</div>
+    {% include 'mz_wap/module/div_toolbar.html' %}
+    {% include 'mz_wap/login.html' %}
+{% endblock %}
+{% block custom_script %}
+    <script src="/static/js/mz_wap/zepto.js"></script>
+    <script src="/static/js/mz_wap/main.js"></script>
+    <script src="/static/js/mz_wap/imglazyload.js"></script>
+    <script src="{{ STATIC_URL }}js/mz_wap/login.js"></script>
+    <script src="{{ STATIC_URL }}js/mz_wap/search_suggest1.js"></script>
+    <script>
+        $(function () {
+            // 展开筛选浮层
+            $('#filter>a').off('click').on('click', function () {
+                console.log('aaaaa');
+                $('.filter-layout').animate({'bottom': '0'}, 300);
+            });
+            // 隐藏筛选浮层
+            $('.filter-layout').off('click').on('click', function (event) {
+                if ($(event.target).hasClass('filter-layout')) {
+                    $(this).animate({'bottom': '-110%'}, 300);
+                }
+            });
+            // 课程分类tab切换
+            $('.course-tabs>li').off('click').on('click', function () {
+                var name = $(this).attr('name');
+                $('#' + name).show().siblings().hide();
+                $(this).addClass('active').siblings().removeClass('active');
+            });
+            //搜索模块
+            $(".course-list .search").click(function () {
+                $("body").css("position", "fixed");
+                $("#searchwrap").animate({top: "0"}, 600);
+                $(".searchwrap .search_txt").val('').focus();
+            });
+            //
+            $(".child-level>a").tap(function () {
+                $(this).css('color', '#1BBC9B');
+            });
+        });
+    </script>
+{% endblock %}

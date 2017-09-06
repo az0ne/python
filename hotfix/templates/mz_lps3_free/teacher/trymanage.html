@@ -1,0 +1,146 @@
+{% extends "mz_common/base4.html" %}
+{% block title %}{{ seo.seo_title }}{% endblock %}
+{% block keywords %}{{ seo.seo_keyword }}{% endblock %}
+{% block description %}{{ seo.seo_description }}{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" href="/css/personalCenter.css">
+<link rel="stylesheet" type="text/css" href="/js/lib/layer/skin/layer.css">
+{% endblock %}
+{% block container %}
+    {% include 'header/header.html' %}
+    {% include 'mz_usercenter/div_user_header.html' %}
+    <div class="center personalCmain">
+        <p class="tryTeacherManageBack marginB20 "><a href="{% url 'home:teacher:free_classes' %}"><<返回个人中心</a></p>
+        <div class="tryTeacherManage">
+        	<div class="title">
+        		<span><strong>{{ class_rel.student_count }}</strong>人</span>
+        		<h3>{{ class_rel.ccourse_name }} &nbsp;&nbsp;&nbsp;{{ class_rel.class_name }}（{% if is_ongoing %}进行中{% else %}已结束{% endif %}）</h3>
+        	</div>
+
+			{% if not student_rel %}
+				<div class="tryTeacherNoStudents">
+					<p class="marginB29"><img src="{{ STATIC_URL }}images/noTryLearn.png"/></p>
+					<p class="font22 color66 marginB10">学员预约该试学班暂时空空</p>
+				</div>
+			{% else %}
+				<div class="tableBox">
+					<table border="0">
+						<thead>
+							<tr>
+								<th>序号</th>
+								<th>学员</th>
+								<th>电话</th>
+								<th>
+									首次班会
+									<span>
+										<a href="{% url 'lps3f:teacher:flush_meeting' class_id class_rel.first_meeting_id %}">
+											<img src="/static/images/tryTeacherRefresh.png" alt="刷新" class=""/>
+										</a>
+									</span>
+								</th>
+								<th>
+									答疑班会
+									<span>
+										<a href="{% url 'lps3f:teacher:flush_meeting' class_id class_rel.first_meeting_id %}">
+											<img src="/static/images/tryTeacherRefresh.png" alt="刷新" class=""/>
+										</a>
+									</span>
+								</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+						{% for s in student_rel %}
+							<tr>
+								<td>{{ forloop.counter }}</td>
+								<td><p><img src="{{ MEDIA_URL }}{{ s.avatar }}"/></p><strong>
+									{% if s.real_name %}{{ s.real_name }}{% else %}{{ s.nick_name }}{% endif %}</strong>
+								</td>
+								{% if s.mobile %}
+									<td>{{ s.mobile }}</td>
+								{% else %}
+									<td>暂无手机</td>
+								{% endif %}
+
+								{% if class_rel.first_meeting_status == '1' %}
+									{% if s.status_1 == 'absent' or not s.status_1 %}
+										<td class="noAttend">未参加</td>
+{#									{% elif not s.status_1 %}#}
+{#										<td>获取中...</td>#}
+									{% else %}
+										<td>参加</td>
+									{% endif %}
+								{% elif class_rel.first_meeting_status == '2' %}
+									<td>进行中</td>
+								{% else %}
+									<td>未开始</td>
+								{% endif %}
+
+								{% if class_rel.answer_meeting_status == '1' %}
+									{% if s.status_2 == 'absent' or not s.status_2 %}
+										<td class="noAttend">未参加</td>
+{#									{% elif not s.status_2 %}#}
+{#										<td>获取中...</td>#}
+									{% else %}
+										<td>参加</td>
+									{% endif %}
+								{% elif class_rel.answer_meeting_status == '2' %}
+									<td>进行中</td>
+								{% else %}
+									<td>未开始</td>
+								{% endif %}
+
+								<td>
+									{% if s.task_status == 'PASS' %}
+										<a class="CorrWork" pop_href="{% url 'lps3:teacher_student_project_task' class_id s.user_id class_rel.stage_task_id %}">
+											查看作业
+										</a>
+									{% elif s.task_status == 'DONE' %}
+										<a class="CorrWork" pop_href="{% url 'lps3:teacher_student_project_task' class_id s.user_id class_rel.stage_task_id %}">
+											批改作业
+										</a>
+									{% else %}
+										<a class="noWorks">
+											暂无作业
+										</a>
+									{% endif %}
+									<a class="LearnData" pop_href="{% url 'lps3f:teacher:teacher_task' class_id s.user_id class_rel.stage_task_id %}">
+										学习数据
+									</a>
+								</td>
+							</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			{% endif %}
+        </div>
+    </div>
+    <!--作业批改Modal-->
+    <div class="modal tryTeacherModal fade" id="tryTeacherCorrWork" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true"></div>
+	<!--学习数据Modal-->
+    <div class="modal tryTeacherModal fade" id="tryTeacherLearnData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true"></div>
+{% endblock %}
+
+{% block footer%}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block sea_script %}
+<script type="text/javascript">
+    seajs.use("/js/lps4/src/main",function(main){main.loading("trymanageteacher");});
+</script>
+{% endblock %}
+
+{% block 53kf %}
+<script>
+(function() {
+  var _53code = document.createElement("script");
+  _53code.src = "//tb.53kf.com/code/code/10111642/3";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(_53code, s);
+})();
+</script>
+{% endblock %}

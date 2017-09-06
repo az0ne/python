@@ -1,0 +1,23 @@
+<div class="modal-dialog modal-sm modal-content" style="width: 600px;">
+    <a class="close"></a>
+    <h4 class="font18 color5e">任务记录</h4>
+    <ul>
+        <li><a href="{{ fps_center }}{{ student_id }}" target="_blank"><img src="{{ MEDIA_URL }}{{avatar_url}}" alt=""></a><div><span class="student-name">{{nick_name}}</span><span class="finish-task">完成{{total_tasks}}个任务</span></div></li>
+        <li>
+            <ol>
+                <li><span>A</span><span>{{total_a}}</span></li>
+                <li><span>B</span><span>{{total_b}}</span></li>
+                <li><span>C</span><span>{{total_c}}</span></li>
+                <li><span>D</span><span>{{total_d}}</span></li>
+            </ol></li>
+        <li><span>共</span><span>{{total_number_score}}分</span></li>
+    </ul>
+
+    <div class="task-log-lists">
+        <ul>
+            {% for record in format_records %}
+                <li><div class="col-l">{{record.task_name}}</div><div class="col-r"><span class="marks">{{record.score}}</span><span class="scores">{{record.number_score}}</span></div></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

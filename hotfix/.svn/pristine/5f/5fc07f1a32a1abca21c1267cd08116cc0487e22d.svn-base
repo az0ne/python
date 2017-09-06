@@ -1,0 +1,322 @@
+{% extends "mz_wap/base.html" %}
+{% load article_filter %}
+{% block title %}{{ article.title }}-{{ article.tags.0.name }}-麦子学院{% endblock %}
+{% block keywords%}{{ article.tags.0.name }}，{{ article.tags.0.name }}学习，{{ article.tags.0.name }}教程{% endblock %}
+{% block description%}{{ article.content | content_brief:'200' }}{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="/static/css/mz_wap/article_detail.css">
+{% endblock %}
+{% block csstype %}search_result{% endblock %}
+{% block container %}
+    <div class="container">
+    <div class="img_show"><img src="" alt=""><em class="close_btn"></em></div>
+    <div class="div"></div>
+        <div class="article_header">
+            <p class="img">
+                {% if article.title_image %}
+                    <img class="ui-imglazyload" alt="{{ article.title }}" data-url="{{ MEDIA_URL }}{{ article.title_image }}">
+                {% else %}
+                    <img class="ui-imglazyload" alt="{{ article.title }}" src="\static\images\mz_wap\article_default.png">
+                {% endif %}
+            </p>
+            <div class="title">
+                <h3>{{ article.title }}</h3>
+                <p class="time">{{ article.html_publish_date }}</p>
+            </div>
+            <div class="praise{% if not is_like %} no_active{% endif %}"><span>{{ article.praise_count }}</span></div>
+        </div>
+        <div class="article_main">
+            {% if article.user_head %}
+            <div class="editor">
+                    <img class="ui-imglazyload" alt="{{ article.nick_name }}" data-url="{{ MEDIA_URL }}{{ article.user_head }}" src="/static/images/mz_wap/imgloading.gif">
+                <h3 class="name">{{ article.nick_name }}</h3>
+            </div>
+            {% endif %}
+            <div class="tag">
+                <ul>
+                    {% for tag in article_tags %}
+                        <li>{{ tag.name }}</li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+            <div class="text_content">{{ article.content|safe }}</div>
+        </div>
+        <div class="hot_tag">
+            <h3><span>热门标签</span></h3>
+            <ul>
+                {% for tag in hot_tags %}
+                    <li>
+                        <a href="{% url 'artilcle_list_tag_view' tag.id %}">{{ tag.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="relate_course">
+            <h3><span>相关课程</span></h3>
+            <a href="{% url 'career_course_detail' career_course.short_name %}">
+                <div class="img"><img class="ui-imglazyload" src="/static/images/mz_wap/imgloading.gif" alt="{{ career_course.name }}"
+                    data-url="{{ MEDIA_URL }}{{ career_course.image }}"></div>
+                <div class="txt">
+                    <h3>{{ career_course.name }}</h3>
+                    <p class="course_info">
+                        <span>{{ career_course.course_total }}课程</span><em>|</em><span>{{ career_course.need_days }}天学习时长</span>
+                    </p>
+                    <p class="study_num">{{ career_course.student_count }}人正在学习</p>
+                </div>
+            </a>
+
+        </div>
+        <div class="relate_discuss">
+            <h3><span>相关评论</span></h3>
+            <ul>
+            </ul>
+        </div>
+        <div class="publish_discuss">
+            <div class="discuss">
+            <span class="dis_txt">发表评论</span>
+            </div>
+            <em class="share_btn">分享</em>
+        </div>
+        <!--分享-->
+        <div class="share">
+            <div id="nativeShare"></div>
+            <div class="cancel_share"></div>
+        </div>
+        <!--分享end-->
+    </div>
+     <div class="discuss_area">
+            <div class="header">
+                <div class="layer">亲爱的小麦，请发表多于8个字评论哟！~</div>
+                <em class="cancel">取消</em>
+                <strong class="title">发表评论</strong>
+                <em class="send">发送</em>
+                <div class="content">
+                    <textarea name="discuss_txtarea" class="discuss_txtarea" placeholder="在这里说点什么吧"></textarea>
+                </div>
+            </div>
+        </div>
+    {% include 'mz_wap/login.html' %}
+{% endblock %}
+{% block custom_script %}
+    <script src="/static/js/mz_wap/zepto.js"></script>
+    <script src="/static/js/mz_wap/imglazyload.js"></script>
+    <script src="/static/js/mz_wap/main.js"></script>
+    <script src="{{ STATIC_URL }}js/mz_wap/login.js"></script>
+    <script src="{{ STATIC_URL }}js/mz_wap/share/nativeShare.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('.txt').find('p').removeAttr('style');
+            $('.text_content').find('*').removeAttr("style");
+
+            // 分享
+             var config = {
+                url: window.location.href,
+                title: $('title').text(),
+                desc: $("meta[name='description']").attr('content'),
+                img: window.location.host+$('.article_header img').attr('src'),
+                img_title: $('.article_header img').attr('alt'),
+                from: '麦子学院'
+            };
+            var share_obj = new nativeShare('nativeShare',config);
+            // 加载评论
+            $.ajax({
+                type: 'GET',
+                url: '/common/ajax/get/discuss',
+                data: {'object_type': 'ARTICLE', 'object_id': '{{ article.id }}'},
+                success: loadSuccess
+            });
+
+            // 加载更多评论返回函数
+            function loadSuccess(data) {
+                var html = '',
+                        parent_id,
+                        oList = $('.relate_discuss ul');
+                data = data.discuss;
+
+                if (data.length > 0) {
+                    for (var i = 0; i < data.length; ++i) {
+                        parent_id = data[i].id;
+                        if (data[i].parent_id == 0) {
+                            //添加父评论html
+                            html += '<li><div class="img"><img alt="' + data[i].nick_name + '" src="' + '{{ MEDIA_URL }}' + data[i].head + '"></div>';
+                            html += '<div class="txt"><h3 class="name">' + data[i].nick_name + '</h3><em>' + data[i].date + '</em>';
+                            html += '<p>' + data[i].content + '</p>';
+                            html += '<div class="btn" id="' + data[i].id + '" data-parent-id="0"><button name="reply" class="reply_btn">回复</button></div>';
+                            html += '<dl>';
+
+                            for (var j = 0; j < data.length; ++j) {
+                                if (data[j].parent_id == parent_id) {
+                                    //添加子评论html
+                                    html += '<dd><span class="pb_name">' + data[j].nick_name + '</span><span class="reply">回复 : </span>' + data[j].content + '</dd>';
+
+                                }
+                            }
+                            html += '</dl>';
+                            html += '</div></li>';
+                        }
+                    }
+                    oList.append(html);
+                }else{
+                    $('.relate_discuss').hide();
+                }
+            }
+
+            // 显示评论输入框div
+            $('.dis_txt').off('tap').on('tap', function () {
+            	{% if not user.is_authenticated %}
+		            $box.addClass("show");
+		            $bg.addClass("show");
+	            {% else %}
+		        	$('.discuss_txtarea').attr('parent-id',0);
+                    $('.layer').hide();
+		        	$('.discuss_area').css().animate({top: "0"}, 500);
+	        	{% endif %}
+            });
+            // 取消按钮绑定单击事件
+            $('.header>.cancel').off('tap').on('tap', function () {
+                $('.discuss_area').css().animate({top: "150%"}, 500);
+            });
+            // 单击return事件
+            // $('.discuss_txtarea').off('keydown').on('keydown', function (event) {
+            //     if (event.which === 13) {
+            //         vaildate_discuss($(this).val(),$(this).attr('parent-id'));
+            //         $('.relate_discuss').show();
+                    
+            //     }
+            // });
+            // 发送按钮绑定单击事件
+            $('.send').off('tap').on('tap', function () {
+                vaildate_discuss($('.discuss_txtarea').val(),$('.discuss_txtarea').attr('parent-id'));
+            });
+            // 文本域内容改变，隐藏错误提示
+            $('.discuss_txtarea').off('input propertychange').on('input propertychange', function () {
+                $('.header>.layer').hide();
+            });
+            // 验证文本域内容长度是否大于8个字符
+            function vaildate_discuss(dis_str,parent_id) {
+                if (dis_str.length < 8) {
+                    $('.header>.layer').text('亲爱的小麦，请发表多于8个字评论哟！~');
+                    $('.header>.layer').show();
+                } else {
+                    var parent_id = parent_id;
+                    var str = dis_str;
+                    $.ajax({
+                        type: 'POST',
+                        async: false,
+                        url: '/common/ajax/add/discuss',
+                        data: {
+                            'object_type': 'ARTICLE',
+                            'object_id': '{{ article.id }}',
+                            'parent_id': parent_id,
+                            'comment': '<p>'+str+'</p>'
+                        },
+                        success: function (data) {
+                        	if (data.success) {
+                                var html = '';
+                                if (parent_id==0){
+                                    html += '<li><div class="img"><img alt="' + '{{ request.user.nick_name }}' + '" src="' + '{{ MEDIA_URL }}' + '{{ request.user.avatar_small_thumbnall }}' + '"></div>';
+                                    html += '<div class="txt"><h3 class="name">' + '{{ request.user.nick_name }}' + '</h3><em>刚刚</em>';
+                                    html += '<p>' + str + '</p>';
+                                    html += '<div class="btn" id="' + data.id + '" data-parent-id="0"><button name="reply" class="reply_btn">回复</button></div></li>';
+                                    html += '<dl>';
+                                    $('.relate_discuss ul').prepend(html);
+                                }else{
+                                    html += '<dd><span class="pb_name">' + '{{ request.user.nick_name }}' + '</span><span class="reply">回复 : </span><p>'+str+'</p></dd>';
+                                    $('#'+parent_id).next('dl').prepend(html);
+                                }
+                                $('.layer').text('发送成功！');
+                                $('.layer').show();
+                                $('.relate_discuss').show();
+                                setTimeout("$('.discuss_area').css().animate({top: '150%'}, 500)",1000);
+                                setTimeout("$('.discuss_txtarea').val('')",1000);
+                            }else{
+                                alert('提交失败, 请稍后再试');
+                            }
+                        }
+                    });
+                }
+            }
+
+            // 显示分享div
+            $('.share_btn').off('tap').on('tap', function () {
+                $('.share').css().animate({bottom: "0"}, 800);
+            });
+            // 隐藏分享div
+            $('.cancel_share').off('tap').on('tap', function () {
+                $('.share').css().animate({bottom: "-100%"}, 800);
+            });
+            // 文本域获取焦点，更改边框颜色
+            $('.discuss_txtarea').off('focus').on('focus', function () {
+                $(this).parent('.content').addClass('actived');
+            });
+            // 文本域失去焦点，更改边框颜色
+            $('.discuss_txtarea').off('blur').on('blur', function () {
+                $(this).parent('.content').removeClass('actived');
+            });
+            // 点击热门标签，背景高亮
+            $('.hot_tag li').off('tap').on('tap',function(){
+                $(this).addClass('selected');
+            });
+            // 单击文章中的图片显示大图
+            $('.text_content').find('img').each(function(){
+                $(this).off('tap').on('tap',function(){
+                    var src = $(this).attr("src");
+                    var alt = $(this).attr("alt");
+                    $('.img_show').show();
+                    $('.div').show();
+                    $('.img_show>img').attr({'src': src,'alt': alt});
+                });
+            });
+            // 关闭大图
+            $('.close_btn').off('tap').on('tap',function(){
+                $('.img_show').hide();
+                $('.container>.div').hide();
+            });
+            $('.container>.div').off('tap').on('tap',function(){
+                $('.img_show').hide();
+                $(this).hide();
+            });
+
+            // 点赞
+            $('.praise').off('tap').on('tap', function () {
+                {% if not user.is_authenticated %}
+                    $('.praise').off('tap'); // 取消绑定事件，只触发一次
+                    var praise_num = parseInt($(this).children().text());
+                    praise_num += 1;
+                    $(this).children().text(praise_num);
+                    $(this).removeClass('no_active').children().show();
+                {% else %}
+                    if ($('.no_active')) {
+
+                        $.ajax({
+                            type: 'POST',
+                            url: '/common/ajax/like/article',
+                            data: {article_id: '{{ article.id }}'},
+                            success: function (data) {
+                                $('.praise').children().text(data.like_num);
+                            },
+                            complete: function () {
+                                $('.praise').removeClass('no_active').children().show();
+                            }
+                        });
+                    }
+                {% endif %}
+            });
+        });
+window.onload = function(){
+	$('.re_name').text($('.re_name').parents('txt').find('.name').text());
+	$('.reply_btn').on({'tap': function () {
+		var parent_id = $(this).parent('.btn').attr('id');
+        {% if not user.is_authenticated %}
+            $box.addClass("show");
+            $bg.addClass("show");
+        {% else %}
+        	$('.discuss_txtarea').attr('parent-id',parent_id);
+            $('.layer').hide();
+        	$('.discuss_area').css().animate({top: "0"}, 500);
+        {% endif %}
+    }});
+};
+</script>
+{% endblock %}

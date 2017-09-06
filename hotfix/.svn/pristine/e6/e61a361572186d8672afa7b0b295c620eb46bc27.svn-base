@@ -1,0 +1,91 @@
+{% extends "mz_wap/base.html" %}
+{% load article_filter %}
+
+{% block title %}{{ item.name }}-{{ wiki_chapter.name }}-麦子学院{% endblock %}
+{% block keywords%}{{ item.name }}、{{ item.name }}学习、{{ wiki_chapter.name }}、{{ wiki_chapter.name }}学习{% endblock %}
+{% block description%}{{ item.tidy_content | slice:'200' }}{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/mz_wap/wiki_style.css"/>
+{% endblock %}
+{% block csstype %}wap_wiki{% endblock %}
+{% block container %}
+    <div class="position"><a href="{% url 'index_front' %}">首页</a>><a href="{% url 'wiki_index' %}">WIKI库</a>><a href="{% url 'wiki_course_detail' course_short_name %}">{{ course.name }}</a>><span>{{ item.name }}</span></div>
+    <article class="article">
+        <h1 class="title">{{ item.name }}</h1>
+        {{ item.content | safe }}
+    </article>
+    <div class="wiki_share">
+        <strong>分享到：</strong>
+        <!--分享-->
+        <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+            <a class="popup_qzone" data-cmd="qzone"></a>
+            <a class="popup_sqq" data-cmd="tqq"></a>
+            <a class="popup_tsina" data-cmd="tsina"></a>
+        </div>
+        <!--分享end-->
+    </div>
+    <ul class="wiki_art_menu">
+        <li>{% if prev_item %}
+            <a href="{% url 'wiki_item_detail' course_short_name prev_item.short_name %}" title="{{ prev_item.name }}">上一节</a>
+        {% else %}
+            <a href="javascript:;" class="disabled">上一节</a>
+        {% endif %}</li>
+        <li><a href="javascript:;" class="showDir">目录</a></li>
+        <li>{% if next_item %}<a href="{% url 'wiki_item_detail' course_short_name next_item.short_name %}" title="{{ next_item.name }}">下一节</a>
+        {% else %}
+            <a href="javascript:;" class="disabled">下一节</a>
+        {% endif %}</li>
+    </ul>
+    <section class="wiki_art_related">
+        <h3>相关内容</h3>
+        <ul>
+            {% if relation_course %}<li><a href="{% url 'course_detail' relation_course.id %}" title="{{ relation_course.name }}" target="_blank">·&nbsp;&nbsp;{{ relation_course.name }}</a></li>{% endif %}
+
+            {% for r_course in recommend_courses %}
+            <li><a href="{% url 'course_detail' r_course.id %}" title="{{ r_course.name }}" target="_blank">·&nbsp;&nbsp;{{ r_course.name }}</a></li>
+            {% endfor %}
+
+            {% for article in relation_articles %}
+            <li><a href="{% url 'article_detail_view' article.id %}" title="{{ article.title }}" target="_blank">·&nbsp;&nbsp;{{ article.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </section>
+    <div class="wiki_slip_directory">
+        <div class="header"><a href="javascript:;" class="closed"></a><h3>目录</h3></div>
+        {% include 'mz_wap/module/div_wiki_directory.html' %}
+    </div>
+    <div class="bgc"></div>
+{% endblock %}
+
+{% block custom_script %}
+    <script src="{{STATIC_URL}}js/mz_wap/zepto.js"></script>
+    <script type="text/javascript" id="bdshare_js" data="type=tools&mini=1" ></script>
+    <script type="text/javascript" id="bdshell_js"></script>
+    <script type="text/javascript">
+    $(function(){
+        $('.wiki_art_menu .showDir').on('tap',function(){
+            $('.wiki_slip_directory, .bgc').addClass('show');
+            //$('body').css({'position':'fixed'});
+        });
+        $('.wiki_slip_directory .closed').on('tap',function(){
+            closedDir();
+        });
+        var $el = $(".wiki_slip_directory, .wiki_art_menu .showDir");
+        $el.on("tap",function(e){
+            e.stopPropagation();//阻止冒泡
+        });
+        $(document).on('tap',function(e){
+            closedDir();
+        });
+    });
+    function closedDir(){
+        $('.wiki_slip_directory, .bgc').removeClass('show');
+        $('body').removeAttr('style');
+    }
+    window.bds_config = {
+        'bdDes':'',
+        'bdText':'-麦子学院'
+    }
+    document.getElementById('bdshell_js').src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
+    </script>
+{% endblock %}

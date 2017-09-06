@@ -1,0 +1,180 @@
+{% extends "mz_common/base.html" %}
+{% block title %}我的班级{% endblock %}
+{% block keywords%}{% endblock %}
+{% block description%}{% endblock %}
+{% block second_header %}
+{% include "mz_user/teacher_header.html" %}
+{% endblock %}
+{% block container %}
+
+
+
+
+  <div class="container uc-boxb">
+    <div class="uc-h1"><a href="#" class="v5-icon v5-icon-add fr" data-toggle="modal" data-target="#createClass"></a>正在进行的班级</div>
+    <ul class="row uc-class">
+    {% for ing in classing %}
+      <li class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        <section style="background-color:{{ing.career_course.course_color}};">
+          <a href="{% url 'lps2:lps2_teach_plan' ing.id %}">
+          	<img src="{{ MEDIA_URL }}{{ ing.career_course.image }}">
+            <article>
+              <h3>{{ing.career_course.name}}</h3>
+              <p>{{ing.num_students}}位学员正在学习</p>
+            </article>
+          </a>
+          <a href="{% url 'lps2:lps2_teach_plan' ing.id %}" class="opt">管理班级</a>
+        </section>
+      </li>
+      {% endfor %}
+
+
+    </ul>
+
+<!--         <dl class="v5-course-paging cf">
+          <dt class="user-page-line"></dt>
+          <dd id="holdernew">
+            <a class="control control-left" id="new_backward"></a>
+            <div class='paginator_p_wrap' style="width:220px">
+              <div class='paginator_p_bloc'>
+                {% for i in pcount %}
+
+                      {% if i == 1%}
+                      <div class="paginator_p selected" style="width: 20px; margin: 0px 12px;">1</div>
+                      {% else%}
+                      <div class="paginator_p" style="width: 20px; margin: 0px 12px;">{{i}}</div>
+                      {% endif %}
+
+                {% endfor %}
+              </div>
+            </div>
+            <a class="control control-right" id="new_forward"></a>
+          </dd>
+        </dl> -->
+
+    <div class="uc-h1">已毕业的班级</div>
+    <ul class="row uc-class">
+            {% for fi in classfinish %}
+      <li class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+        <section style="background-color:{{fi.career_course.course_color}};">
+          <a href="">
+            <img src="{{ MEDIA_URL }}{{ fi.career_course.image }}">
+            <article>
+              <h3>{{fi.career_course.name}}</h3>
+              <p>{{fi.num_students}}位学员正在学习</p>
+            </article>
+          </a>
+          <a href="" class="opt">管理班级</a>
+        </section>
+      </li>
+      {% endfor %}
+    </ul>
+
+<!--       <dl class="v5-course-paging cf">
+        <dt class="user-page-line"></dt>
+        <dd id="holdernew">
+          <a class="control control-left" id="new_backward"></a>
+          <div class='paginator_p_wrap' style="width:220px">
+            <div class='paginator_p_bloc'>
+                {% for i in pagecount %}
+                      {% if i == 1%}
+                      <div class="paginator_p selected" style="width: 20px; margin: 0px 12px;">1</div>
+                      {% else%}
+                      <div class="paginator_p" style="width: 20px; margin: 0px 12px;">{{i}}</div>
+                      {% endif %}
+                {% endfor %}
+            </div>
+          </div>
+          <a class="control control-right" id="new_forward"></a>
+        </dd>
+      </dl> -->
+  </div>
+
+<!--创建班级-->
+<div class="modal fade" id="createClass" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="forgetpswModalLabel">创建班级</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal form-createclass" role="form" id="form-create-save">
+        {% csrf_token %}
+          <div class="form-group form-group-nomb">
+            <label for="" class="col-xs-4 col-sm-3 control-label v5-gutter">选择课程</label>
+            <div class="col-xs-8 col-sm-9 v5-gutter">
+              <select class="form-control" id="select_course" name="selectclass">
+
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-xs-4 col-sm-3 control-label v5-gutter">班级编号</label>
+            <div class="col-xs-8 col-sm-9 v5-control-label v5-gutter" id="class-no">请选择课程生成班级号</div>
+          </div>
+
+          <div class="form-group">
+            <label for="qun" class="col-xs-4 col-sm-3 control-label v5-gutter">QQ群号</label>
+            <div class="col-xs-8 col-sm-9 v5-gutter">
+              <input type="text" class="form-control" id="qun" name="qun" placeholder="请输入QQ群">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="meeting_duration" class="col-xs-4 col-sm-3 control-label v5-gutter">开班时长</label>
+            <div class="col-xs-8 col-sm-9 v5-gutter">
+              <select class="form-control" id="meeting_duration" name="meeting_duration">
+                  <option value="0">不设置（2.0的班级）</option>
+                  <option value="60">60天</option>
+                  <option value="75">75天</option>
+                  <option value="90" selected>90天</option>
+                  <option value="105">105天</option>
+                  <option value="120">120天</option>
+                  <option value="135">135天</option>
+                  <option value="150">150天</option>
+                  <option value="165">165天</option>
+                  <option value="180">180天</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-xs-12 col-sm-3 control-label v5-gutter">开课时间</label>
+            <div class="col-xs-8 col-sm-5 v5-gutter" id="date_year" >
+
+            </div>
+            <div class="col-xs-2 col-sm-1 v5-control-label v5-gutter">年</div>
+            <div class="col-sm-offset-3 col-xs-8 col-sm-3 v5-gutter v5-mt10" id="date_month">
+
+            </div>
+            <div class="col-xs-2 col-sm-1 v5-control-label v5-gutter v5-mt10">月</div>
+            <div class="col-xs-8 col-sm-3 v5-gutter v5-mt10" id="date_day">
+
+            </div>
+            <div class="col-xs-2 col-sm-1 v5-control-label v5-gutter v5-mt10">日</div>
+          </div>
+          <div class="form-group form-group-last">
+            <div class="col-sm-12">
+              <button type="button" id="create-class" class="btn btn-micv5 btn-block">保存</button>
+            </div>
+          </div>
+          <div class="form-group"><div class="tips-error bg-warning" id="class_msg"></div></div>
+          <input name="selectdate" id="selectdate" type="text" style="display: none;" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block custom_script %}
+<script src="/static/js/jquery.dateSelector.js"></script>
+<script type="text/javascript">
+$(function(){
+      $("#selectdate").dateSelector();
+    get_careercourse();
+    class_number();
+    create_class_save();
+});
+</script>
+{% endblock %}

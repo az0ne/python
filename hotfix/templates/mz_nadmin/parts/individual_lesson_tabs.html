@@ -1,0 +1,45 @@
+
+
+<ul class="nav nav-tabs nav-append-content">
+    {% if is_lesson_edit %}
+    <li {% if active == "info" %}class="active"{% endif %}>
+        <a href="">基本信息</a>
+    </li>
+    <li {% if active == "resource" %}class="active"{% endif %}>
+        <a href="">课件及源码</a>
+    </li>
+    <li {% if active == "online_exam" %}class="active"{% endif %}>
+        <a href="">在线练习</a>
+    </li>
+    <li {% if active == "homework" %}class="active"{% endif %}>
+        <a href="">提交作业</a>
+    </li>
+    <li {% if active == "paper" %}class="active"{% endif %}>
+        <a href="">随堂测验</a>
+    </li>
+    <li {% if active == "comments" %}class="active"{% endif %}>
+        <a href="">用户评论</a>
+    </li>
+    {% else %}
+    <li {% if active == "info" %}class="active"{% endif %}>
+        <a href="">基本信息</a>
+    </li>
+    <li class="disabled">
+        <a href="#">课件及源码</a>
+    </li>
+    <li class="disabled">
+        <a href="#">在线练习</a>
+    </li>
+    <li class="disabled">
+        <a href="#">提交作业</a>
+    </li>
+    <li class="disabled">
+        <a href="#">随堂测验</a>
+    </li>
+    <li class="disabled">
+        <a href="#">用户评论</a>
+    </li>
+    {% endif %}
+</ul>
+
+

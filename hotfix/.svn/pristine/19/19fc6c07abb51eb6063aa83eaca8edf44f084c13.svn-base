@@ -1,0 +1,440 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script type="text/javascript">
+    function is_int(x) {
+        var y = parseInt(x, 10);
+        return !isNaN(y) && x == y && x.toString() == y.toString();
+    }
+
+    function snap_callback_for_project_upload(data) {
+        if (data.result == null) {
+            console.log(data.msg);
+        } else {
+            var result = JSON.parse(data.result);
+            if (is_int(result.coach_id) == true) {
+                window.location.href = "/lps4/teacher_coach_project/" + result.coach_id + "/";
+                return;
+            }
+            if (is_int(result.class_id) == true && is_int(result.stage_task_id) == true && is_int(result.item_id) == true && is_int(result.lps_version) == true) {
+                if (result.lps_version == 4) {
+                    window.location.href = "/lps4/student_coach_project/" + result.class_id + "_" + result.stage_task_id + "_" + result.item_id + "/";
+                } else {
+                    if (result.item_id == 0){
+                        window.location.href = "/lps3/student/task_project/" + result.class_id + "_" + result.stage_task_id + "/";
+                    } else {
+                        window.location.href = "/lps3/student/item_project/" + result.class_id + "_" + result.stage_task_id + "_" + result.item_id + "/";
+                    }
+                }
+                return;
+            }
+        }
+    }
+
+    (function () {
+        var reg = RegExp(/.*?\/lps4\/teacher_coach_project\/\d+?/);
+        if (reg.test(window.location.href) == true) {
+            return;
+        }
+        reg = RegExp(/.*?\/lps4\/student_coach_project\/\d+?_\d+?_\d+?/);
+        if (reg.test(window.location.href) == true) {
+            return;
+        }
+        reg = RegExp(/.*?\/lps3\/student\/task_project\/\d+?_\d+?/);
+        if (reg.test(window.location.href) == true) {
+            return;
+        }
+        reg = RegExp(/.*?\/lps3\/student\/item_project\/\d+?_\d+?_\d+?/);
+        if (reg.test(window.location.href) == true) {
+            return;
+        }
+
+        var url_prefix = "";
+        reg = RegExp(/maiziedu.com/);
+        if (reg.test(window.location.hostname) == true) {
+            url_prefix = "https://snap.maiziedu.com/get/?snap_key=project_upload_";
+        } else {
+            url_prefix = "http://121.41.96.44:34000/get/?snap_key=project_upload_";
+        }
+
+        var url = "";
+
+        if ("{{request.user.is_student}}" == "True") {
+            url = url_prefix + encodeURIComponent("student_{{request.user.id}}") + "&callback=snap_callback_for_project_upload";
+        }
+        if ("{{request.user.is_teacher}}" == "True") {
+            url = url_prefix + encodeURIComponent("teacher_{{request.user.id}}") + "&callback=snap_callback_for_project_upload";
+        }
+
+        if (url == "") {
+            return;
+        }
+
+        var script = document.createElement("script");
+        script.setAttribute("src", url);
+        document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+</script>
+
+<script type="text/javascript">
+
+    var get_cookie = function(c_name) {
+        if (document.cookie.length > 0) {
+            var c_start = document.cookie.indexOf(c_name + "=");
+            if (c_start != -1) {
+                c_start = c_start + c_name.length + 1;
+                c_end = document.cookie.indexOf(";", c_start);
+                if (c_end == -1) {
+                    c_end = document.cookie.length;
+                }
+                return unescape(document.cookie.substring(c_start, c_end));
+            }
+        }
+        return "";
+    }
+
+    var set_cookie = function (c_name,value,exdays) {
+        var exdate = new Date();
+        exdate.setDate(exdate.getDate() + exdays);
+        var c_value = escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+        document.cookie = c_name + "=" + c_value + "; path=/";
+    }
+
+
+    /*
+     * set maiziuid
+    */
+
+    var uid_gen = function() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+        }
+        return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4();
+    }
+
+    if (get_cookie("maiziuid") == "") {
+        set_cookie("maiziuid", uid_gen(), 1024);
+    }
+
+    if (window.location.hostname.indexOf("maiziedu.com") >= 0) {
+        (function () {
+            var query_string = "url=" + escape(window.location.href) + "&";
+            query_string = query_string + "maiziuid=" + get_cookie("maiziuid") + "&";
+            query_string = query_string + "referrer=" + escape(document.referrer);
+
+            var url = "http://hit.maiziedu.com/?" + query_string + "&callback=" + new Date().getTime();
+            var script = document.createElement("script");
+            script.setAttribute("src", url);
+            document.getElementsByTagName("head")[0].appendChild(script);
+        })();
+    }
+
+</script>
+<script type="text/javascript">
+    //页面手机跳转
+    if(/AppleWebKit.*Mobile/i.test(navigator.userAgent) ||
+    (/MIDP|android|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))){
+        if(window.location.href.indexOf("{{mobile_site}}")<0){
+            window.location.href="{{mobile_site}}" + window.location.pathname;
+        }
+    }
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+<meta name="applicable-device" content="pc,mobile">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta content="true" name="HandheldFriendly">
+
+<meta name="keywords" content="{% block keywords%}{{ seo.seo_keywords }}{% endblock %}">
+<meta name="description" content="{% block description%}{{ seo.seo_description }}{% endblock %}">
+
+<title>{% block title %}{{ seo.seo_title }}{% endblock %}</title>
+<link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}images/favicon.ico" />
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/lps.css?v={{ time_stamp }}"/>
+
+{% block custom_css %}{% endblock %}
+{% block baiduJS %}
+<script type="text/javascript">
+<!-- 百度统计代码 -->
+var _hmt = _hmt || [];
+(function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?e3879546912fd4b2d6e909e064d49262";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+})();
+</script>
+{% endblock %}
+<script type="text/javascript">var _fps_site_url ='{{ FPS_HOST }}';var login_popupvar={% if request.GET.partner and request.GET.openid %}true{% else %}false{% endif %};</script>
+<script type="text/javascript" src="http://static.geetest.com/static/tools/gt.js"></script>
+<script type="text/javascript">
+window.zhuge = window.zhuge || [];
+window.zhuge.methods = "_init debug identify track trackLink trackForm page".split(" ");
+window.zhuge.factory = function(b) {
+    return function() {
+        var a = Array.prototype.slice.call(arguments);
+        a.unshift(b);
+        window.zhuge.push(a);
+        return window.zhuge;
+    }
+};
+for (var i = 0; i < window.zhuge.methods.length; i++) {
+    var key = window.zhuge.methods[i];
+    window.zhuge[key] = window.zhuge.factory(key);
+}
+window.zhuge.load = function(b, x) {
+    if (!document.getElementById("zhuge-js")) {
+        var a = document.createElement("script");
+        var verDate = new Date();
+        var verStr = verDate.getFullYear().toString()
+            + verDate.getMonth().toString() + verDate.getDate().toString();
+
+        a.type = "text/javascript";
+        a.id = "zhuge-js";
+        a.async = !0;
+        a.src = (location.protocol == 'http:' ? "http://sdk.zhugeio.com/zhuge-lastest.min.js?v=" : 'https://zgsdk.zhugeio.com/zhuge-lastest.min.js?v=') + verStr;
+        var c = document.getElementsByTagName("script")[0];
+        c.parentNode.insertBefore(a, c);
+        window.zhuge._init(b, x)
+    }
+};
+window.zhuge.load('7bdc65f630344e4fa3b5d23e5c096d35');
+//window.zhuge.load('7bdc65f630344e4fa3b5d23e5c096d35', {debug:true});
+</script>
+</head>
+<body class="YaHei {% block csstype %}{% endblock %}">
+<div id="maizi_trace_common_data" style="display: none;">
+  <p id="trace_pay_type_common_data" style="display: none;" value={{trace_pay_type}}></p>
+  <p id="trace_user_type_common_data" style="display: none;" value={{trace_user_type}}></p>
+  <p id="trace_career_name_common_data" style="display: none;" value={{trace_career_name}}></p>
+  <p id="trace_taskball_name_common_data" style="display: none;" value={{trace_taskball_name}}></p>
+  <p id="trace_project_name_common_data" style="display: none;" value={{trace_project_name}}></p>
+  <p id="trace_video_name_common_data" style="display: none;" value={{trace_video_name}}></p>
+</div>
+{% load my_filter %}
+{% block container %}{% endblock %}
+
+{% block footer%}
+<div class="footNewBox2 textC color99">
+    <p class="p">&copy; 2012-2016 <a href="http://www.maiziedu.com">www.maiziedu.com</a></p>
+    <p>蜀ICP备13014270号-4 Version 5.0.0 release20160127 </p>
+</div>
+{% endblock %}
+{#{% include "mz_lps3/feedback_box.html" %}#}
+<!--弹出层区块-->
+<!--登录-->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" style="width:400px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="loginModalLabel" style="font-size: 18px;">{% if request.GET.partner and request.GET.openid %}绑定已有账号{% else %}登录{% endif %}</h4>
+            </div>
+            <div class="modal-body">
+                <section class="box-login v5-input-txt" id="box-login">
+                    <form id="login_form" action="{% url 'user:login' %}" method="post" autocomplete="off">
+                        {% csrf_token %}
+                        <ul>
+                            <li class="form-group">{{ login_form.account_l }}</li>
+                            <li class="form-group">{{ login_form.password_l }}</li>
+                            {% if request.GET.partner and request.GET.openid %}
+                            <input type="hidden" name="partner" value="{{request.GET.partner}}">
+                            <input type="hidden" name="openid" value="{{request.GET.openid}}">
+                            {% endif %}
+                        </ul>
+                    </form>
+                    <p class="good-tips"><a id="btnForgetpsw" class="fr">忘记密码？</a>还没有账号？{% if request.GET.partner and request.GET.openid %}<a href="/user/signup/?reg_partner={{ request.GET.partner }}&amp;reg_openid={{ request.GET.openid }}" target="_blank" id="btnRegister">立即绑定新账号</a>{% else %}<a href="/user/signup/" target="_blank" id="btnRegister">立即注册</a>{% endif %}</p>
+                    <div>
+                        <button id="login_btn" type="button" class="btn btn-micv5 btn-block globalLogin">{% if request.GET.partner and request.GET.openid %}立即绑定{% else %}登录{% endif %}</button>
+                    </div>
+                    <div id="login-form-tips" class="tips-error bg-danger" style="display: none;">错误提示</div>
+                    {% if request.GET.partner and request.GET.openid %}
+
+                    {% else %}
+                    <div class="threeLogin"><span>其他方式登录</span><a class="nqq" href="{% url 'user:connect' %}?partner=qq"></a><a class="nwx" href="{% url 'user:connect' %}?partner=wechat"></a><!--<a class="nwb"></a>--></div>
+                    {% endif %}
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!--找回密码-->
+<div class="modal fade" id="forgetpswModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" data-toggle="modal" data-target="#loginModal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="forgetpswModalLabel" style="font-size: 18px;">找回密码</h4>
+            </div>
+            <div class="modal-body">
+                <section class="box-forgetpsw v5-input-txt" id="box-forgetpsw">
+                    <form id="find_password_form" action="{% url 'user:find_password' %}" method="post" autocomplete="off">
+                        {% csrf_token %}
+                        <ul>
+                            <li class="form-group">{{ find_password_form.account }}</li>
+                            <li class="form-group font14 color99">滑动完成验证</li>
+                            <li class="form-group"><div class="newcaptcha"></div></li>
+                        </ul>
+                        <div>
+                            <button id="findpassword_btn" type="button" class="btn btn-micv5 btn-block">提交</button>
+                        </div>
+                        <div id="findpassword-tips" class="tips-error bg-danger">错误提示</div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 忘记密码，手机验证码输入界面 -->
+<div class="modal fade" id="forgetpswMobileModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="forgetpswMobileModalLabel" style="font-size: 18px;">手机验证</h4>
+            </div>
+            <div class="modal-body">
+                <section class="box-forgetpsw v5-input-txt" id="box-forgetpsw-mobile-code">
+                    <form id="mobile_code_password_form" action="{% url 'user:find_password_mobile_code' %}" method="post" autocomplete="off">
+                        {% csrf_token %}
+                        <ul>
+                            <li class="form-group">{{ find_password_mobile_form.mobile_code_f }}
+                                <button type="button" class="send-verify font14">重发验证码</button>
+                            </li>
+                            <li class="form-group" id="mobile_code_password_form_message">手机短信验证码已发送，请查收！</li>
+                            {{ find_password_mobile_form.mobile_f }}
+                        </ul>
+                        <div>
+                            <button id="mobile_code_password_btn" type="button" class="btn btn-micv5 btn-block">下一步</button>
+                        </div>
+                        <div id="mobile_code_password-tips" class="tips-error bg-danger">错误提示</div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!--邮件验证-->
+<div class="modal fade" id="emailValidate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-content zy_email">
+        <a class="close"></a>
+        <p class="i"><img src="/static/images/zy_send.png"></p>
+        <p id="emailValidateEE">我们向您的邮箱<span>548748451@qq.com</span>发送了一封验证邮件</p>
+        <p>为保证您账号的安全和方便您参加我们的活动，邮箱完成验证才能继续学习哦</p>
+        <p class="a"><a target="_blank">去邮箱验证</a></p>
+        <p class="sendE2" style="display: none;">没收到，您可以查看您的垃圾邮件和被过滤邮件，也可以再次发送验证邮件（<span class="c5c">60s</span>）</p>
+        <p class="sendE">没收到，您可以查看您的垃圾邮件和被过滤邮件，也可以<a class="c5c">再次发送验证邮件</a></p>
+        <p class="zy_success t5o upmove"><img src="/static/images/zy_right.png"><span>验证邮件发送成功</span></p>
+    </div>
+</div>
+{% block toolbarDiv %}
+<div class="toolbar">
+    <a href="javascript:;" class="toolbar-item toolbar-item-weixin" onclick="_MEIQIA('showPanel')"></a>
+    <a href="javascript:;" class="toolbar-item toolbar-item-weibo" {% if user.is_unlockstage or user.is_teacher%}style="display: none;"{% endif %}>
+        <div class="lixianB">
+            <p><input type="text" class="intxt" id="telInput" placeholder="请输入您的电话号码"></p>
+            <p><input type="button" class="inbtn" id="callBtn" value="免费通话咨询" ></p>
+        </div>
+    </a>
+{#    <a href="{{ FPS_HOST }}common/feedback/publish/" target="_blank" class="toolbar-item toolbar-item-fankui"><span>意见反馈</span></a>#}
+        <!--<a id="feedbakbtn" class="toolbar-item toolbar-item-fankui"><span>意见反馈</span></a>-->
+    <a class="toolbar-item toolbar-item-gotop"><span>返回顶部</span></a>
+</div>
+{% endblock %}
+
+<script type="text/javascript" src="/js/index.js"></script>
+<script type="text/javascript">
+seajs.config({
+    base:"/js/lib/",
+    alias:{
+        "jquery"      :"jquery/jquery/1.11.3/jquery.js",
+        "bootstrap"   :"jquery/bootstrap/js/bootstrap.min.js",
+        "bootstrapCss":"jquery/bootstrap/css/bootstrap.min.css",
+        "bxslider"    :"jquery/bxslider/jquery.bxslider.js",
+        "bxsliderCss" :"jquery/bxslider/jquery.bxslider.css",
+        "textFiltered":"jquery/textFiltered.js",
+        "videojs1"    :"v/video.js",
+        "videocss"    :"v/video-js.css",
+        "videojs2"    :"video/video.js",
+        "dynamics"    :"../../common/dynamics.min.js",
+        "function"    :"../../common/function.js",
+        "select"      :"jquery/select.js",
+        "multiselect" :"jquery/multiselect.js",
+        "PicCarousel" :"jquery/PicCarousel.js",
+        "radio"       :"jquery/radio.js",
+        "Validform"   :"jquery/Validform/Validform_v5.3.2_min.js",
+        "Jcrop"       :"jquery/Jcrop/jquery.Jcrop.min.js",
+        "JcropCss"    :"jquery/Jcrop/jquery.Jcrop.min.css",
+        "echarts"     :"echarts/echarts.min.js",
+        "layerjs"     :"layer/layer.js",
+        "layerCss"    :"layer/skin/layer.css",
+        "effects"     :"jquery/jquery.effects.core.js",
+        "colors"      :"jquery/jquery.animate-colors-min.js",
+        "fileupload"  :"jquery/fileupload.js",
+        "uiwidget"    :"jquery/uiwidget.js",
+        "mousewheel"  :"jquery/jquery.mousewheel.js",
+        "jscrollpane" :"jquery/jquery.jscrollbar.min.js",
+        "global"      :"jquery/global.js",
+        "cookie"      :"jquery/jquery.cookie.js",
+        "swiperjs"    :"jquery/swiper/swiper-3.3.1.jquery.min.js",
+    },
+    preload: ['jquery'],
+    map: [
+        [ /^(.*\.(?:css|js|tpl))(.*)$/i, '$1?'+'v={{ time_stamp }}' ]
+    ]
+});
+</script>
+<script type="text/javascript" src="/2016/dev/maizi_trace.js?v={{ time_stamp }}"></script>
+{% block custom_script %}{% endblock %}
+{% block sea_script %}{% endblock %}
+
+{% block baidu %}
+<script type="text/javascript">
+  // 谷歌
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-61416428-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<script type="text/javascript">
+    // 离线宝
+    document.write('<script type="text/javascript"  data-lxb-uid="10986738" data-lxb-gid="198532" src="http://lxbjs.baidu.com/api/asset/api.js?t=' + new Date().getTime() + '" charset="utf-8"></scr' + 'ipt>' );
+    if(document.getElementById("callBtn"))
+    document.getElementById("callBtn").onclick = function () {
+        lxb.call(document.getElementById("telInput"));
+    }
+</script>
+{% endblock %}
+
+{% block 53kf %}
+{% if not user.is_unlockstage and not user.is_teacher%}
+<script type="text/javascript">
+{#    (function() {#}
+{#      var _53code = document.createElement("script");#}
+{#      _53code.src = "//tb.53kf.com/code/code/10111642/3";#}
+{#      var s = document.getElementsByTagName("script")[0];#}
+{#      s.parentNode.insertBefore(_53code, s);#}
+{#    })();#}
+     (function(m, ei, q, i, a, j, s) {
+        m[i] = m[i] || function() {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        j = ei.createElement(q),
+            s = ei.getElementsByTagName(q)[0];
+        j.async = true;
+        j.charset = 'UTF-8';
+        j.src = '//static.meiqia.com/dist/meiqia.js';
+        s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '_MEIQIA');
+    _MEIQIA('entId', 54180);
+     _MEIQIA('withoutBtn');
+{% endif %}
+</script>
+{% endblock %}
+</body>
+</html>

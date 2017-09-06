@@ -1,0 +1,219 @@
+{% extends "mz_common/base.html" %}
+{% block breadcrumb %}
+    <div class="colleges-bg">
+        <div class="container visible-md visible-lg">
+            <ol class="breadcrumb">
+                <li><a href="{% url 'index_front' %}">首页</a></li>
+                <li class="active">院校专区</li>
+            </ol>
+        </div>
+    </div>
+{% endblock %}
+
+{% block container %}
+<div class="colleges-wrap colleges-page">
+    <div class="container">
+        <h2><img src="/static/images/colleges/pic-14.png" alt="院校专区介绍"/>院校专区介绍</h2>
+        <p class="desc" style="font-size: 18px;">院校专区是麦子学院为全国高校师生量身打造的在线技能实训平台，院校专区通过LPS系统为高校提供企业一线课程资源，在线实训服务，学生大数据分析，充分体现校企合作成果，实现学生随时随地的技能提升，为高校提供学生学习行为监测、学习结果回馈和学习行为数据分析，协助高校教师快捷高效的教学，全力助推高校在线教育生态环境的持续健康发展。同时，院校专区完全与智联招聘，拉勾网等招聘平台合作，并配备专门就业服务部门，帮助高校和同学们解决实习就业和职业发展问题。</p>
+    </div>
+</div>
+<div class="colleges-wrap colleges-page colleges-bg">
+    <div class="container">
+        <div class="tab-btn-list center">
+            <div class="row">
+                <div class="col-xs-3 col-md-3 col-lg-3"><div class="itm"><img src="/static/images/colleges/pic-02.png" alt="it在线教育之企业技术课程"/><span class="text">企业技术课程</span></div></div>
+                <div class="col-xs-3 col-md-3 col-lg-3"><div class="itm"><img src="/static/images/colleges/pic-04.png" alt="it在线教育定制课程"/><span class="text">专区定制</span></div></div>
+                <div class="col-xs-3 col-md-3 col-lg-3"><div class="itm"><img src="/static/images/colleges/pic-06.png" alt="it在线培训效果把控"/><span class="text">效果把控</span></div></div>
+                <div class="col-xs-3 col-md-3 col-lg-3"><div class="itm"><img src="/static/images/colleges/pic-08.png" alt="it在线培训推荐高薪就业"/><span class="text">就业服务</span></div></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="colleges-wrap colleges-page colleges-tab-cnt-box">
+    <span class="arrow"><i></i></span>
+<div class="container">
+    <div class="tab-cnt-list">
+        <div class="itm">
+            <div class="col-xs-4 col-md-4">
+                <div class="right"><img src="/static/images/colleges/pic-01.png" alt=""/></div>
+            </div>
+            <div class="col-xs-8 col-md-8">
+                <div class="info">
+                    <h3>企业技术课程</h3>
+                    <p>院校专区课程内容由来自硅谷，台湾，大陆的一线企业工程师设计制作，包括facebook,谷歌，雅虎，微软，百度，腾讯，去哪儿网等，全项目导向，实时更新，干货分享。</p>
+                </div>
+            </div>
+        </div>
+        <div class="itm">
+            <div class="col-xs-4 col-md-4">
+                <div class="right"><img src="/static/images/colleges/pic-03.png" alt=""/></div>
+            </div>
+            <div class="col-xs-8 col-md-8">
+                <div class="info">
+                    <h3>专区定制</h3>
+                    <p>院校专区以LPS系统为框架，配备点播，直播，计划生成，测验，项目验收，社交，大数据分析等功能，课程内容与实训项目可根据校方需个性化定制，院校专区只属于你。</p>
+                </div>
+            </div>
+        </div>
+        <div class="itm">
+            <div class="col-xs-4 col-md-4">
+                <div class="right"><img src="/static/images/colleges/pic-05.png" alt="it在线培训效果把控"/></div>
+            </div>
+            <div class="col-xs-8 col-md-8">
+                <div class="info">
+                    <h3>效果把控</h3>
+                    <p>院校专区核心在于过程管理，实时监控学员的学习进度，实时提醒学员的相关任务，导师实时答疑与辅导，游戏化学习阶段考核，效果显而易见。</p>
+                </div>
+            </div>
+        </div>
+        <div class="itm">
+            <div class="col-xs-4 col-md-4">
+                <div class="right"><img src="/static/images/colleges/pic-07.png" alt="麦子学院为学员推荐就业"/></div>
+            </div>
+            <div class="col-xs-8 col-md-8">
+                <div class="info">
+                    <h3>就业服务</h3>
+                    <p>全国最强大的在线学习生态系统，实现学习，学习过程管理，社交，项目验收，就业全环节打通，智联招聘，拉勾网资源对接，专业就业服务团队全国软件园区紧缺人才服务，学员学习结束系统⽣生成数字模型简历，全国千万岗位定向服务。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!--  热门省份及城市  -->
+<div class="colleges-wrap colleges-page colleges-bg">
+    <div class="container">
+        <div class="hot-tag-box">
+            <h2><img src="/static/images/colleges/pic-15.png" alt="寻找我的大学"/>寻找我的大学</h2>
+            <div id="hotTagList">
+            {% if citys %}
+                {% for city in citys %}
+                    <a href="##" id="city_{{city.id}}">{{city.name}}</a>
+                {% endfor %}
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="colleges-wrap colleges-page">
+    <div class="container">
+        <div class="colleges-list">
+            <ul id="hotTagColleges" class="row"></ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer%}
+<!--  更多院校合作  -->
+<div class="colleges-wrap colleges-page colleges-cooperate">
+    <div class="container">
+        <h2><img src="/static/images/colleges/pic-13.png" alt="院校合作"/>更多院校合作</h2>
+        <p class="cooperate-info">我们期待与更多的高校进行合作，共建课程，请通过以下的方式与我们联系：<br/>
+        联系人：张老师<br/>
+        座机：028-86567913<br/>
+        QQ：916252114<br/>
+        邮箱：ocean@maiziedu.com<br/>
+        地址：四川省成都市天府软件园D区
+        </p>
+    </div>
+</div>
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+
+{% block custom_script %}
+<script src="/static/js/mz-index.js"></script>
+<script type="text/javascript" src="/static/js/layer/layer.min.js"></script>
+<script type="text/javascript">
+
+    /* 视频介绍 */    
+    $(function(){
+        $('#videoPopBtn').click(function(){
+            $.layer({
+                type : 1,
+                title : false,
+                closeBtn: [0, true],
+                shade: [0.5, '#000'],
+                area: ['800px', '440px'],
+                bgcolor: '#000',
+                border: [0],
+                shift: 'top',
+                page:{
+                    html : videoCnt( 'http://www.w3school.com.cn/example/html5/mov_bbb.mp4' ),
+                }
+            });
+        });
+        function videoCnt(url){
+            return '<video style="width:800px;height:440px" src="'+url+'" controls="controls"></video>'
+        }
+    });
+
+
+    /* 院校专区介绍 */
+    /* tab-btn-list 切换 */
+    $(function(){
+        var btn = $('.tab-btn-list .itm'), cnt = $('.tab-cnt-list .itm'), arrow = $('.colleges-tab-cnt-box .arrow');
+        btn.each(function(i,o){
+            o.index = i;
+        }).hover(function(){
+            run(this);
+        });
+        run( btn.eq(0)[0] );
+        function run(that){
+            if(btn.cur == that)return;
+            clearTimeout(btn.t);
+            btn.t = setTimeout(function(){
+                var o, s='itm-act';
+                o = btn.removeClass(s).eq(that.index).addClass(s);
+                cnt.hide().eq(that.index).stop().fadeIn();
+                arrow.stop().animate({ 'left' : o.offset().left + o.width()/2 - 15 });
+                btn.cur = that;
+            },50);
+        }
+    });
+
+
+    /* 热门省份及城市 */
+    /* hot-tag-box 切换院校 */
+    $(function(){
+        var tags = $('#hotTagList a'), collegeBox = $('#hotTagColleges');
+        collegeBox.parent().css({'minHeight' : 300});
+        tags.click(function(){
+            var that = $(this);
+            tags.removeClass('act');
+            that.addClass('act');
+            var city_id = that.attr('id').split("_")[1];
+            $.ajax({
+                type: "POST",
+                url: "/academic/school/list/",
+                data:{'city_id':city_id},
+                dataType: "json",
+                success: function(data){
+                    editHtml(data);
+                }
+            });
+
+        });
+        function editHtml(json){
+            var html='';
+            $.each(json,function(k,o){
+                html += '<li class="col-xm-3 col-md-3 col-lg-3 marg-bottom">';
+                html += '<div class="itm"><a href="';
+                html += o.href || 'javascript:;';
+                html += '"><span class="img"><img src="';
+                html += o.src || 'about:blank';
+                html += '" alt="';
+                html += o.name;
+                html +='"/></span>';
+                html += '</a></div></li>';
+            });
+            collegeBox.hide().html( html ).stop().fadeIn();
+        }
+
+        // 默认显示第一个tag
+        tags.eq(0).click();
+    });
+  </script>
+{% endblock %}

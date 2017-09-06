@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=0.5,maximum-scale=0.5,user-scalable=0" />
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <meta name="format-detection" content="telephone=no">
+		<title>课程详情</title>
+		<link rel="stylesheet" type="text/css" href="/static/css/mz_wap/wechat_wike.css"/>
+	</head>
+	<body>
+	<div class="pay">
+		<div class="base_info">
+			<p><span class="title course">课&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;程：</span><span class="cont">{{ course.name }}</span></p>
+			<p><span class="title">带班讲师：</span><span class="cont">{% if course.real_name %}{{ course.real_name }}{% else %}{{ course.nick_name }}{% endif %}</span></p>
+			<p><span class="title">讲师简历：</span><span class="cont tea_intro">{{ course.teacher_description }}</span></p>
+		</div>
+		<div class="pay_info">
+			<p><span class="title">课程价格：</span><span class="cont price">&#165;{{ course.price }}</span></p>
+			<p><span class="title">支付方式：</span><span class="cont wx_pay"><i></i>微信支付</span></p>
+		</div>
+		<div class="pay_btn">立即支付</div>
+
+	</div>
+    <script src="{{ STATIC_URL }}js/wap_wike/zepto.min.js" type="text/javascript"></script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.pay_btn').off('touchstart').on('touchstart',function(){
+                $(this).css({'background-color':'rgba(23, 156, 22,0.8)'});
+            });
+        });
+        wx.config({
+            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            appId: '{{ wechat_config.app_id }}', // 必填，公众号的唯一标识
+            timestamp: '{{ wechat_config.timestamp }}', // 必填，生成签名的时间戳
+            nonceStr: '{{ wechat_config.noncestr }}', // 必填，生成签名的随机串
+            signature: '{{ wechat_config.signature }}',// 必填，签名
+            jsApiList: ['chooseWXPay'] // 必填，需要使用的JS接口列表
+        });
+        var touchend = true;
+        $(".pay_btn").bind("touchend", function () {
+            if(touchend) {
+                touchend = false;
+                $.ajax({
+                    url: '/wike/order/?v={{ timestamp }}',
+                    data: {
+                        'course_id': '{{ course.id }}'
+                    },
+                    type: 'POST',
+                    success: function (data) {
+                        if (data.success) {
+                            wx.chooseWXPay({
+                                timestamp: data.data.timeStamp.toString(), // 支付签名时间戳
+                                nonceStr: data.data.nonceStr, // 支付签名随机串
+                                package: data.data.package, // 统一支付接口返回的prepay_id参数值
+                                signType: data.data.signType, // 签名方式
+                                paySign: data.data.paySign, // 支付签名
+                                success: function (res) {
+                                    // 支付成功后的回调函数
+                                    window.location.href = '/wike/course/{{ course.id }}/'
+                                }
+                            });
+                            touchend = true;
+                        } else {
+                            alert(data.message);
+                            touchend = true;
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+	</body>
+</html>

@@ -1,0 +1,77 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style type="text/css">
+body,table{
+font-size:12px;
+}
+table{
+table-layout:fixed;
+empty-cells:show;
+border-collapse: collapse;
+margin:0 auto;
+}
+td{
+height:30px;
+}
+h1,h2,h3{
+font-size:12px;
+margin:0;
+padding:0;
+}
+.table{
+border:1px solid #cad9ea;
+color:#666;
+}
+.table th {
+background-repeat:repeat-x;
+height:30px;
+}
+.table td,.table th{
+border:1px solid #cad9ea;
+padding:0 1em 0;
+text-align:center;
+}
+
+</style>
+</head>
+<body>
+<table width="90%" class="table">
+<tr>
+<th>职业课程</th>
+<th>试学款</th>
+<th>全款</th>
+<th>版本</th>
+</tr>
+{% for career_course in career_courses_3 %}
+<tr>
+<td>{{ career_course.name }}</td>
+<td>{{ career_course.beta_price }}</td>
+<td>{{ career_course.full_price }}</td>
+<td>{{ career_course.version }}</td>
+</tr>
+{% endfor %}
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+<tr>
+<th>职业课程</th>
+<th>试学款</th>
+<th>全款</th>
+<th>版本</th>
+</tr>
+{% for career_course in career_courses %}
+<tr>
+<td>{{ career_course.name }}</td>
+<td>{{ career_course.beta_price }}</td>
+<td>{{ career_course.full_price }}</td>
+<td>{{ career_course.version }}</td>
+</tr>
+{% endfor %}
+</table>
+</body>
+</html>

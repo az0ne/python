@@ -1,0 +1,11 @@
+{% for item in searchResults.result.items %}
+<li>
+    <a href="/wiki/{{ item.course_short_name }}/{{ item.short_name }}/">
+        <img src="{{ MEDIA_URL }}{{ item.course_img_url }}" alt="{{ item.course_name|safe }}">
+        <div>
+            <h2>{{ item.name|safe}}</h2>
+            <p>{{ item.tidy_content|safe }}</p>
+        </div>
+    </a>
+</li>
+{% endfor %}

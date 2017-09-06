@@ -1,0 +1,215 @@
+.banner {
+  height: 30.10667rem;
+  background-image: url(/static/images/new_wap_images/python-banner.png);
+  position: relative; }
+
+.mz-cuose-tab {
+  margin-top: -2.56rem; }
+  .mz-cuose-tab li.active a {
+    color: #22a0f6; }
+    .mz-cuose-tab li.active a:before {
+      background: #22a0f6; }
+  .mz-cuose-tab li.active b {
+    color: #22a0f6; }
+
+.banner-con {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6.4rem;
+  color: #fff;
+  text-align: center; }
+  .banner-con h2 {
+    font-size: 1.44rem;
+    line-height: 2.66667rem; }
+  .banner-con p {
+    font-size: 1.33333rem;
+    opacity: .8;
+    line-height: 1; }
+
+.banner-btns a {
+  width: 6.4rem;
+  height: 2.13333rem;
+  border-radius: 40;
+  margin: 0 0.34667rem; }
+  .banner-btns a.active {
+    background: none;
+    color: #8af9fa;
+    border-color: #8af9fa; }
+
+.mz-pm-cuose-tab-c1 {
+  padding: 1.06667rem 0 1.6rem; }
+
+.python-c1-list {
+  padding: 0 0.48rem; }
+  .python-c1-list li {
+    float: left;
+    width: 7.46667rem;
+    margin: 0 1.01333rem 0.64rem; }
+  .python-c1-list h3 {
+    height: 2.45333rem;
+    line-height: 2.45333rem;
+    color: #333;
+    font-size: 0.96rem;
+    position: relative; }
+    .python-c1-list h3:after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 1.33333rem;
+      height: 2px;
+      background: #22a0f6;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      -webkit-transform: translateX(-50%); }
+  .python-c1-list p {
+    color: #333;
+    opacity: .7;
+    font-size: 0.64rem;
+    line-height: 1.12rem;
+    margin-top: 0.64rem; }
+
+.python-c1-pic {
+  width: 3.41333rem;
+  height: 5.81333rem;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 0 auto; }
+
+.python-c1-pic01 {
+  background-image: url(/static/images/new_wap_images/python-c1-pic01.png); }
+
+.python-c1-pic02 {
+  background-image: url(/static/images/new_wap_images/python-c1-pic02.png); }
+
+.python-c1-pic03 {
+  background-image: url(/static/images/new_wap_images/python-c1-pic03.png); }
+
+.python-c1-pic04 {
+  background-image: url(/static/images/new_wap_images/python-c1-pic04.png); }
+
+.mz-m-btn {
+  background: #22a0f6;
+  box-shadow: 0 0.13333rem 1.22667rem rgba(34, 160, 246, 0.18);
+  -webkit-box-shadow: 0 0.13333rem 1.22667rem rgba(34, 160, 246, 0.18); }
+
+.mz-pm-cuose-tab-c2 {
+  padding: 1.6rem 0; }
+
+.mz-pm-cuose-tab-c3 {
+  padding: 1.6rem 0; }
+
+.python-c3-pic {
+  width: 2.88rem;
+  height: 2.88rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin: 0 auto; }
+
+.python-c3-pic01 {
+  background-image: url(/static/images/new_wap_images/python-c3-pic01.png); }
+
+.python-c3-pic02 {
+  background-image: url(/static/images/new_wap_images/python-c3-pic02.png); }
+
+.python-c3-pic03 {
+  background-image: url(/static/images/new_wap_images/python-c3-pic03.png); }
+
+.python-c3-pic04 {
+  background-image: url(/static/images/new_wap_images/python-c3-pic04.png); }
+
+.python-c3-pic05 {
+  background-image: url(/static/images/new_wap_images/python-c3-pic05.png); }
+
+.python-c3-pic06 {
+  background-image: url(/static/images/new_wap_images/python-c3-pic06.png); }
+
+.python-c3-list {
+  padding: 0.8rem 0.26667rem 0; }
+  .python-c3-list li {
+    width: 9.17333rem;
+    height: 6.50667rem;
+    background: #fff;
+    box-shadow: 0 0.08rem 0.53333rem rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 0.08rem 0.53333rem rgba(0, 0, 0, 0.1);
+    padding: 1.06667rem 0 0 0;
+    float: left;
+    margin: 0.53333rem 0.26667rem 0; }
+  .python-c3-list b {
+    display: block;
+    height: 1.86667rem;
+    line-height: 1.86667rem;
+    font-size: 0.8rem;
+    color: #2d2d2d; }
+
+.mz-cuose-tab-cp {
+  background: #eeeeee;
+  padding: 1.6rem 0; }
+
+.mz-cuose-tab-c4-icon {
+  background: #22a0f6;
+  box-shadow: 0 0.13333rem 0.53333rem rgba(35, 166, 255, 0.2);
+  -webkit-box-shadow: 0 0.13333rem 0.53333rem rgba(35, 166, 255, 0.2); }
+
+.course-des-c4-slider:before {
+  background: #22a0f6; }
+
+.course-des-c4-slider-bg {
+  background: rgba(29, 137, 210, 0.2); }
+
+.course-des-c4-slider-bg2 {
+  background: rgba(29, 137, 210, 0.5); }
+
+.course-des-c4-slider-bg2:before {
+  background: #219df2; }
+
+.course-des-c4-slid-txt a {
+  color: #219df2; }
+
+.course-des-c4-slider-pagination span.swiper-pagination-bullet-active {
+  border-color: #219df2; }
+
+.mz-cuose-tab-c9 {
+  background: #22a0f6; }
+
+.mz-cuose-tab-c9:before {
+  background: #84c8f6; }
+
+.online-to-offline-con-vs dd {
+  color: #22a0f6; }
+
+.description-five-list-num,
+.description-five-list-txt h6 {
+  color: #219df2; }
+
+.ly-course-item-title, .ly-li1-num, .mzedu-student-review-t, .review-bcontainer-t-l .mzedu-student-review-score, .review-bcontainer-txt-tec b, .review-bcontainer-contxt-add {
+  color: #22a0f6; }
+
+.ly-course-icon:before {
+  color: #22a0f6;
+  text-shadow: 0 0.13333rem 0.56rem rgba(34, 160, 246, 0.39);
+  -webkit-text-shadow: 0 0.13333rem 0.56rem rgba(34, 160, 246, 0.39); }
+
+.ly-course-list {
+  background-color: #beebff; }
+
+.ly-course-list-add {
+  color: #22a0f6; }
+  .ly-course-list-add i {
+    text-shadow: 0 0.13333rem 0.56rem rgba(34, 160, 246, 0.39);
+    -webkit-text-shadow: 0 0.13333rem 0.56rem rgba(34, 160, 246, 0.39); }
+
+.mzedu-student-review-score i {
+  text-shadow: 0 0 0.58667rem rgba(34, 160, 246, 0.2);
+  -webkit-text-shadow: 0 0 0.58667rem rgba(34, 160, 246, 0.2); }
+
+.review-bcontainer-contxt {
+  background-color: #beebff; }
+
+.review-bcontainer-txt-tec {
+  background-color: #b7d9ea; }
+
+.review-bcontainer-contxt-add i {
+  text-shadow: 0 0.13333rem 0.56rem rgba(34, 160, 246, 0.39);
+  -webkit-text-shadow: 0 0.13333rem 0.56rem rgba(34, 160, 246, 0.39); }

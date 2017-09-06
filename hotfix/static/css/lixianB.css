@@ -1,0 +1,22 @@
+.toolbar-item-weibo {
+    background-position: 0 -395px;
+    position: relative;
+    z-index: 1200;
+}
+.lixianB_B{
+    display: none;
+    position: absolute;
+    top: 54px;
+    right:-160px;
+    height: 40px;
+    width: 200px;
+    background: #FD9D06;
+    border-radius: 20px;
+    line-height: 40px;
+    color: #ffffff;
+    font-size: 16px;
+    text-align: center;
+    box-sizing: border-box;
+     /*padding-left: 20px;*/
+    overflow:hidden;
+}

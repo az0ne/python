@@ -1,0 +1,1217 @@
+{% extends "mz_common/base.html" %}
+{% block title %}学习计划{% endblock %}
+{% block breadcrumb %}
+    <div class="container visible-md visible-lg" xmlns="http://www.w3.org/1999/html">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'user:user_center' %}">我的课程</a></li>
+            <li class="active">{{ class_coding }}</li>
+        </ol>
+    </div>
+    {% if not cur_careercourse.is_unlock and cur_careercourse.deadline != None and request.user.is_student %}
+    <div class="breadcrumb-right-box">
+		<div class="container">
+			<div class="box-in">
+				<span><span class="text">您的首付体验有效期至{{ cur_careercourse.deadline }}</span>
+                <a href="{% url 'pay:pay_view2' %}?career_id={{ cur_careercourse.id }}" class="btn" target="_blank">支付余款</a></span>
+			</div>
+		</div>
+	</div>
+    {% endif %}
+{% endblock %}
+
+{% block container %}
+
+    <div class="p-nav box">
+        <div class="container webfont">
+            <a class="active" href="/lps2/learning/plan/{{ cur_careercourse.id }}">我的数据</a>
+            <a href="/lps2/learning/detail/{{ cur_careercourse.id }}">评测详情</a>
+            <a href="/lps2/learning/plan_class/{{ cur_careercourse.id }}">班级数据</a>
+        </div>
+    </div>
+
+    <div class="p-main" >
+        <div class="container">
+            <div class="sidebar">
+                <div id="tab_box_1" class="sidebar-in box" tab-role="tab-box">
+                    <div class="box-head clearfix webfont">
+                        <h2 class="pull-left"><span>学习计划</span></h2>
+                        <div class="pull-right" tab-role="btn-group"><span tab-role="btn" tab-target="1" class="active">未完成</span><span tab-role="btn" tab-target="2">已完成</span></div>
+                    </div>
+                    <div id="sidebar_body" class="box-body" tab-role="cnt-group">
+                        <div class="tab-cnt" tab-role="cnt" tab-mark="1">
+                            <div class="tab-cnt-in">
+
+
+{#                                <div class="item" onclick="$.commonTool.ruleShow();">#}
+{#                                    <div class="date">7月3日</div>#}
+{#                                    <div class="title"><span class="text">点击签署用户协议</span></div>#}
+{#                                    <ul>#}
+{#                                        <li><i class="dot"></i><span class="text">请点击查看并签署用户协议</span></li>#}
+{#                                        <li><i class="dot"></i><span class="text">签订完成后才能开始学习哦！</span></li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+{#                                <div class="item" onclick="$.commonTool.jiuyeShow();">#}
+{#                                    <div class="date">7月3日</div>#}
+{#                                    <div class="title"><span class="text">点击签署就业服务协议</span></div>#}
+{#                                    <ul>#}
+{#                                        <li><i class="dot"></i><span class="text">请点击查看并签署就业服务协议</span></li>#}
+{#                                        <li><i class="dot"></i><span class="text">签订完成后才能开始学习哦！</span></li>#}
+{#                                    </ul>#}
+{#                                </div>#}
+                                    <!--ZhouYi:新增 7-24-->
+{#                                    <div class="item zyclick" zz="1">#}
+{#                                       <a >#}
+{#                                            <div class="date">2015年7月30日 20:00</div>#}
+{#                                            <div class="title">#}
+{#                                                <span class="text">给带班老师评分</span>#}
+{##}
+{#                                            </div>#}
+{#                                            <ul>#}
+{#                                                <li><i class="dot"></i><span class="text">请对带班老师进行评分，以便给您提供更好的学习指导</span></li>#}
+{#                                            </ul>#}
+{#                                       </a>#}
+{#                                    </div>#}
+                                    <!--ZhouYi:新增-->
+<script>
+    //ZhouYi:新增 7-24
+    $.fn.serializeObject = function(){
+         var obj = {};
+         var count = 0;
+         $.each( this.serializeArray(), function(i,o){
+             var n = o.name, v = o.value;
+             count++;
+             obj[n] = obj[n] === undefined ? v
+             : $.isArray( obj[n] ) ? obj[n].concat( v )
+             : [ obj[n], v ];
+         });
+         obj.nameCounts = count + "";//表单name个数
+         return JSON.stringify(obj);
+     };
+    //弹出评分
+    var zyopen=function(pid){
+        console.log($(".zysrean"))
+        $(".zysrean").show();
+        $(".zysreanDiv").removeClass("scale0");
+        $("#zypid").val(pid)
+    }
+    var zyclose=function(){
+        $(".zysrean").hide();
+        $(".zysreanDiv").addClass("scale0");
+    }
+
+    //提交测试函数
+    function zyfun(){
+        var dataObj=$("#pingjia").serializeObject();
+        $("span.red").hide();
+        //jQuery.parseJSON
+        (dataObj.indexOf("ra1")<0)&&$(".ra1>span").show();
+        (dataObj.indexOf("ra2")<0)&&$(".ra2>span").show();
+        (dataObj.indexOf("ra3")<0)&&$(".ra3>span").show();
+        (dataObj.indexOf("ra4")<0)&&$(".ra4>span").show();
+        if(dataObj.indexOf("ra1")<0||dataObj.indexOf("ra2")<0||dataObj.indexOf("ra3")<0||dataObj.indexOf("ra4")<0) {
+            return false;
+        }
+        $("#pingjia").submit();
+
+    }
+$(function(){
+    $(".zyclick").click(function(){
+        zyopen($(this).attr("pid"));
+    })
+})
+</script>
+                                {% for user_task in user_task_list %}
+                                    {% if user_task.type == "giveScore_stu" %}
+                                        <div class="item zyclick" pid="{{ user_task.id  }}">
+                                           <a >
+                                                <div class="date">{{ user_task.create_datetime  }}</div>
+                                                <div class="title">
+                                                    <span class="text">{{ user_task.title }}</span>
+
+                                                </div>
+                                                <ul>
+                                                    <li><i class="dot"></i><span class="text">{{ user_task.content }}</span></li>
+                                                </ul>
+                                           </a>
+                                        </div>
+                                    {% endif %}
+                                    {% if user_task.type == "checkcontractuser" %}
+                                        <div class="item" onclick="$.commonTool.jiuyeShow();">
+                                            <div class="date">{{ user_task.create_datetime  }}</div>
+                                            <div class="title"><span class="text">{{ user_task.title }}</span></div>
+                                            <ul>
+                                                <li><i class="dot"></i><span class="text">请点击查看并签署就业服务协议</span></li>
+                                                <li><i class="dot"></i><span class="text">签订完成后才能开始学习哦！</span></li>
+                                            </ul>
+                                        </div>
+                                    {% endif %}
+                                    {% if user_task.type == "course" %}
+                                    <!--YS: LPS优化 1.8.1变动-->
+                                    <div class="item" zz="2"> <!--and user_task.is_ext != 1-->
+                                        {% if user_task.status == 0 %}
+                                        <div class="date">{{ user_task.create_datetime  }}</div>
+                                        <div class="title">
+                                            <span class="text">{{ user_task.title }}</span>
+                                            {% if user_task.is_ext == 1 %}
+                                                <img   style="margin-left: -10px" src="/static/lps2/images/word-1.png"/>
+                                            {% else %}
+                                                <img   style="margin-left: -10px" src="/static/lps2/images/word-8.png"/>
+                                            {% endif %}
+                                        </div>
+                                        <ul>
+                                            {% if user_task.text1 != "" %}
+                                            <li><i class="dot"></i><span class="text">{{ user_task.text1 }}</span></li>
+                                            {% endif %}
+
+
+                                            {% if user_task.text2 != "" %}
+                                            <li><i class="dot"></i><span class="text">{{ user_task.text2 }}</span></li>
+                                            {% endif %}
+                                        </ul>
+                                        {% endif %}
+                                        {% if user_task.status == 2 %}
+                                           <a href="/lps2/learning/detail/{{ cur_careercourse.id }}/?stage_id={{ user_task.stage_id }}">
+
+                                            <div class="date">{{ user_task.create_datetime  }}</div>
+                                            <div class="title">
+                                                <span class="text">{{ user_task.title }}</span>
+
+
+                                                {% if user_task.is_ext == 1 %}
+                                                    <img   style="margin-left: -10px" src="/static/lps2/images/word-1.png"/>
+                                                {% elif user_task.is_ext != 1%}
+                                                    <img   style="margin-left: -10px" src="/static/lps2/images/word-2.png"/>
+                                                {% endif %}
+
+
+                                            </div>
+                                            <ul>
+                                                {% if user_task.text1 != "" %}
+                                                <li><i class="dot"></i><span class="text">{{ user_task.text1 }}</span></li>
+                                                {% endif %}
+                                                {% if user_task.text2 != "" %}
+                                                <li><i class="dot"></i><span class="text">{{ user_task.text2 }}</span></li>
+                                                {% endif %}
+                                            </ul>
+                                        </a>
+                                        {% endif %}
+                                    </div>
+                                    <!--YS: LPS优化 1.8.1变动-->
+
+                                    {% endif %}
+
+
+                                    {% if  user_task.type == "classmeeting"%}
+                                       <div class="item" zz="1">
+                                           <a href="{% if user_task.status == 2 %} {{ user_task.join_url }}?nickname={{ user_task.nick_name }}&token={{ user_task.token }} {% else %} ### {% endif %}">
+
+                                                <div class="date">{{ user_task.startline }}</div>
+                                                <div class="title"><span class="text">
+                                                     {% if user_task.is_temp %}
+                                                            临时班会
+                                                        {% else %}
+                                                            周直播班会
+                                                        {% endif %}
+                                                </span>
+                                                    {% if user_task.status == 0 %}
+                                                        <img src="/static/lps2/images/word-3.png" alt=""/>
+                                                    {% else %}
+                                                        <img src="/static/lps2/images/word-2.png" alt=""/>
+                                                    {% endif %}
+
+                                                </div>
+                                                <ul>
+                                                    <li><i class="dot"></i><span class="text">{{ user_task.content }}</span></li>
+                                                </ul>
+                                           </a>
+                                        </div>
+
+                                    {% endif %}
+
+                                    {% if user_task.type == "fullprofile" %}
+
+                                    <div class="item personal_profile_btn" data-pic="{% if request.user.avatar_middle_thumbnall %}{{ request.user.avatar_middle_thumbnall }}{% endif %}">
+                                        <div class="date">{{ user_task.create_datetime }}</div>
+                                        <div class="title"><span class="text">完善个人资料</span></div>
+                                            <ul>
+			                                     <li><i class="dot"></i><span class="text">完善个人资料描述</span></li>
+                                            </ul>
+                                    </div>
+                                    {% endif %}
+                                    {% if user_task.type == "viewcontract" %}
+                                        <div class="item" onclick="$.commonTool.ruleShow();">
+                                            <div class="date">{{ user_task.create_datetime }}</div>
+                                            <div class="title"><span class="text">查看入学须知</span></div>
+{#                                            <div class="title"><span class="text">#}
+<!--{#			                                    <input type="button" class="btn btn-primary" value="点击查看学习协议" onclick="$.commonTool.ruleShow();" />#}-->
+{#                                    		</span></div>#}
+                                            <ul>
+                                                    <li><i class="dot"></i><span class="text">点击查看学习协议</span></li>
+                                            </ul>
+                                        </div>
+                                    {% endif %}
+                                    {% if user_task.type == "joinclass" %}
+
+                                        <div class="item">
+                                            <a href="/pay?career_ids={{ cur_careercourse.id }}">
+                                                <div class="date">{{ user_task.create_datetime }}</div>
+                                                <div class="title"><span class="text">报名班级</span></div>
+                                                <ul>
+                                                    <li><i class="dot"></i><span class="text">报名以后可以享受名师指导、真实项目制作、学员交流及保就业服务哦</span></li>
+                                                </ul>
+                                            </a>
+                                        </div>
+
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="tab-cnt plan-end" tab-role="cnt" tab-mark="2">
+                            <div class="tab-cnt-in">
+                                {% for user_task in user_task_finish_list %}
+                                    {% if user_task.type == "checkcontractuser" %}
+                                        <div class="item" onclick="$.commonTool.jiuyeShow();">
+                                            <div class="date">{{ user_task.create_datetime  }}</div>
+                                            <div class="title"><span class="text">{{ user_task.title }}</span></div>
+                                            <ul>
+                                                <li><i class="dot"></i><span class="text">请点击查看并签署就业服务协议</span></li>
+                                                <li><i class="dot"></i><span class="text">签订完成后才能开始学习哦！</span></li>
+                                            </ul>
+                                        </div>
+                                    <script>$(function(){$("#check_check").remove();$("#agree_agree").remove();$("#check_label").remove()})</script>
+                                    {% endif %}
+                                    {% if user_task.type == "giveScore_stu" %}
+                                        <div class="item" pid="{{ user_task.id  }}">
+                                            <div class="date">{{ user_task.create_datetime  }}</div>
+                                            <div class="title">
+                                                <span class="text">{{ user_task.title }}</span>
+
+                                            </div>
+                                            <ul>
+                                                <li><i class="dot"></i><span class="text">{{ user_task.content }}</span></li>
+                                            </ul>
+                                        </div>
+                                    {% endif %}
+                                    {% if user_task.type == "course" %}
+                                    <div class="item">
+                                        <div class="date" >{{ user_task.create_datetime |safe }}</div>
+
+                                        <div class="title"><span class="text" style="width: 150px;overflow: hidden">{{ user_task.title | safe }}</span>
+                                            {% if user_task.is_ext == 1 %}
+                                            <img  style="margin-left: 0px"  src="/static/lps2/images/word-1.png" alt=""/>
+                                        {% endif %}
+                                        </div>
+
+                                        <ul>
+                                            <li><i class="dot"></i><span class="text">{{ user_task.text1 }}</span></li>
+                                            <li><i class="dot"></i><span class="text">{{ user_task.text2 }}</span></li>
+                                        </ul>
+                                    </div>
+                                    {% endif %}
+                                    {% if  user_task.type == "classmeeting"%}
+                                        <div class="item">
+                                            <div class="date">{{ user_task.startline }}</div>
+                                            <div class="title"><span class="text">
+                                                 {% if user_task.is_temp %}
+                                                            临时班会
+                                                        {% else %}
+                                                            周直播班会
+                                                        {% endif %}
+                                            </span><img src="/static/lps2/images/word-6.png" alt=""/></div>
+                                            <ul>
+                                                <li><i class="dot"></i><span class="text">{{ user_task.content }}</span></li>
+                                            </ul>
+                                        </div>
+                                    {% endif %}
+                                    {% if user_task.type == "fullprofile" %}
+                                        <div class="item">
+                                            <div class="date">{{ user_task.create_datetime }}</div>
+                                            <div class="title"><span class="text">完善个人资料</span></div>
+                                            <ul>
+                                                <li><i class="dot"></i><span class="text">让更多的人认识你吧!</span></li>
+                                            </ul>
+                                        </div>
+                                    {% endif %}
+                                    {% if user_task.type == "viewcontract" %}
+                                        <div class="item" onclick="$.commonTool.ruleShow();">
+                                            <div class="date">{{ user_task.create_datetime }}</div>
+                                            <div class="title"><span class="text">点击查看学习协议</span></div>
+                                            <ul>
+                                                <li><i class="dot"></i><span class="text" >请查看该班级学习协议,请严格遵守学习规章制度</span></li>
+                                            </ul>
+                                         <!--<input type="button" class="btn btn-primary" value="点击查看学习协议" onclick="$.commonTool.ruleShow();" />-->
+                                        </div>
+                                        <script>$(function(){$("#agree_contract").remove();$("#check_contract").remove();$("#already_read_and_aggree").remove()})</script>
+                                    {% endif %}
+                                    {% if user_task.type == "joinclass" %}
+                                        <div class="item">
+                                            <div class="date">{{ user_task.create_datetime }}</div>
+                                            <div class="title"><span class="text">报名班级</span></div>
+                                            <ul>
+                                                <li><i class="dot"></i><span class="text">报名以后可以享受名师指导、真实项目制作、学员交流及保就业服务哦</span></li>
+                                            </ul>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="main">
+                <div class="row">
+                    <div class="main-b-a box">
+                        <div class="data_summary-lock">
+                        <div class="box-head clearfix webfont">
+                            <h2 class="pull-left"><span>学习数据</span></h2>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-a">
+                                    <div class="row"><span class="title">完成度</span></div>
+                                    <div class="row">
+                                        <div id="chart_1">
+                                            <canvas id="canvas_1" width="150" height="150"/>
+                                        </div>
+                                    </div>
+                                    <div class="row"><span class="chart-label"><img src="/static/lps2/images/state-2.png" alt=""/><span class="text">已完成</span></span><span class="chart-label"><img src="/static/lps2/images/state-1.png" alt=""/><span class="text">未完成</span></span></div>
+                                </div>
+                                <div class="col-b">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <span class="label"><img src="/static/lps2/images/ico-4.png" alt=""/><span>学习总时长</span></span>
+                                            <span class="value"><em class="num">{{ overview_data.total_study_time }}</em><span>小时</span></span>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <span class="label"><img src="/static/lps2/images/ico-3.png" alt=""/><span>学习状态</span></span>
+                                            <span class="value" ><em class="num"  id="status">{{overview_data.is_pause}}</em></span>
+                                        <script type="text/javascript">
+                                            $(function(){
+                                                var em_val = $("#status").html();
+                                                if(em_val == "正常"){
+                                                    $("#status").css("color","#5ECFBA");
+                                                }else{
+                                                    $("#status").css("color","#FF725F");
+                                                }
+                                            });
+                                        </script>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <span class="label"><img src="/static/lps2/images/ico-2.png" alt=""/><span>预计毕业时间</span></span>
+                                            <span class="value"><em class="num">{{ overview_data.plan_gradute_time }}</em></span>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <span class="label"><img src="/static/lps2/images/ico-1.png" alt=""/><span>班级排名</span></span>
+                                            <span class="value"><em class="num">{{ overview_data.class_sort_stu }}</em></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="main-b-b">
+                        <div class="col-2">
+                            <div class="box" id="tab_box_2">
+                                <div class="data_summary-lock">
+                                <div class="box-head clearfix webfont">
+                                    <h2 class="pull-left"><span>学习数据</span></h2>
+                                    <div class="pull-right" tab-role="btn-group"><span class="active" tab-role="btn" tab-target="1">完成计划</span><span tab-role="btn" tab-target="2">评测分数</span><span tab-role="btn" tab-target="3">学力增长</span></div>
+                                </div>
+                                <div class="box-body" tab-role="cnt-group">
+
+                                    <div class="tab-cnt" tab-role="cnt" tab-mark="1">
+                                        <div id="chart_2">
+                                            <canvas id="canvas_2" style="width:100%;height:300px"></canvas>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-cnt" tab-role="cnt" tab-mark="2">
+                                        <div id="chart_3">
+                                            <canvas id="canvas_3" style="width:100%;height:330px"></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="tab-cnt" tab-role="cnt" tab-mark="3">
+                                        <div id="chart_4">
+                                            <canvas id="canvas_4" style="width:100%;height:300px"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            <div class="box" id="tab_box_3">
+
+                                <div class="data_summary-lock">
+                                <div class="box-head clearfix webfont">
+                                    <h2 class="pull-left"><span>个人素质</span></h2>
+                                    <div class="pull-right" tab-role="btn-group"><span class="active" tab-role="btn" tab-target="1">素质雷达图</span><span tab-role="btn" tab-target="2">素质变化曲线</span></div>
+                                </div>
+                                <div class="box-body" tab-role="cnt-group">
+                                    <div class="tab-cnt" tab-role="cnt" tab-mark="1">
+                                        <div id="chart_5">
+                                            <canvas id="canvas_5" style="width:100%;height:300px"></canvas>
+                                        </div>
+                                    </div>
+                                    <div class="tab-cnt" tab-role="cnt" tab-mark="2">
+                                        <div id="chart_6">
+                                            <canvas id="canvas_6" style="width:100%;height:300px"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 完善个人资料 -->
+    <div id="user_panel" class="d-user-panel" style="display:none">
+        <h2 class="webfont">请完善你的个人信息以保证更好的学习</h2>
+        <form class="form-horizontal" id="user_profile" method="post" action="{% url 'lps2:student_profile_handler' %}" autocomplete="off">
+            <div class="form-group">
+                <label for="inputEmail3" class="col-sm-2 control-label img-label">上传头像</label>
+                <div class="col-sm-10">
+                    <span class="img-box">
+                        <a></a>
+                        <input id="update_photo" type="file" name="Filedata"/>
+                        <input id="update_photo_hidden" type="hidden" name="Filedata_hidden"/>
+                    </span>
+                    <span class="photo-h photo-h-tips photo-h-active">想在班级中更快地混脸熟就上传真实头像吧~</span>
+                    <span class="photo-h photo-h-slide"><span  id="photo_h_slide"></span></span>
+                    <span class="photo-h spanphoto-h-update"><span>正在上传</span><span id="avatar-upload-progress">25%</span></span>
+                    <span class="photo-h photo-h-ok"><img src="/static/lps2/images/ico-10.png"/></span>
+                    <div class="error-info avatar-error">请上传头像</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">真实姓名</label>
+                <div class="col-sm-10">
+                    <input style="margin-top:4px" type="text" class="" placeholder="请输入真实姓名" id="real_name" name="real_name">
+
+                    <div class="error-info name-error">请填写真实姓名</div>
+                </div>
+            </div>
+            <div class="form-group">
+				<label for="" class="col-sm-2 control-label">学习目标</label>
+				<div class="col-sm-10">
+					<!--<input type="text" class="" id="" placeholder="学习课程的目标是什么？如：就业、转行" id="study_goal" name="study_goal">-->
+                    <select style="margin-top: 4px" class="selectmenu" id="study_goal" name="study_goal"></select>
+                    <div><input type="text" style="display: none;" id="goal_text" name="goal_text" placeholder="请输入你的学习目标"/></div>
+					<!--<div class="error-info target-error">请填写学习目标</div>-->
+				</div>
+			</div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">专业基础</label>
+                <div class="col-sm-10">
+                    <!--<textarea class="form-control" id="" placeholder="介绍下你自己吧" id="description" name="description"></textarea>-->
+                    <select style="margin-top:4px" class="selectmenu" id="study_base" name="study_base"></select>
+                    <div><input type="text" style="display: none;" id="base_text" name="base_text" placeholder="请输入你的专业基础"/></div>
+                    <!--<div class="error-info info-error">请填写个人介绍</div>-->
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10 text-right">
+                    <input type="hidden" name="careercourse_id" value={{cur_careercourse.id}}>
+                    <input type="hidden" id="marginTop" name="marginTop" value="">
+                    <input type="hidden" id="marginLeft" name="marginLeft" value="">
+                    <input type="hidden" id="boxwidth" name="boxwidth" value="">
+                    <input type="hidden" id="boxheight" name="boxheight" value="">
+                    <input type="hidden" id="zoompicwidth" name="zoompicwidth" value="">
+                    <input type="hidden" id="zoompicheight" name="zoompicheight" value="">
+                    <span id="submit-tips" class="tips-error bg-danger">信息提示</span>
+                    <button type="button" id="user_profile_submit" class="btn btn-default" onclick="user_profile_form_submit()">提交</button>
+                </div>
+            </div>
+        </form>
+    </div>
+<style type="text/css">
+	#agreement ul li{
+        font-size: 12px;
+	}
+</style>
+
+
+
+
+    <!-- 查看教师须知 -->
+    <div id="xy_panel" class="d-xy-panel" style="display:none">
+        <h2>入学须知：学习制度</h2>
+        <div class="xy-box">
+            <div class="xy-box-in">
+                		<p id="agreement">
+                            亲爱的同学:<br />
+
+                            您好 ，欢迎您加入麦子学院学习大家庭 ，在这里，我们全体麦子学院同事会和您一起完成这段时间的学习 。<br />
+                            为了保障我们的教学质量，更好的服务于真心打算学习的同学，请遵守我们的学习制度，具体制度如下：<br /><br />
+                <ul  style="list-style-type:circle;">
+                        <span style="font-weight: 600">鼓励项（完成得积分，积分将来换礼品）：</span><br /><br />
+                            <li>&nbsp;每周完成学习计划100%以上</li>
+                            <li>&nbsp;积极在班级里讨论，积极的帮助其他同学解决问题</li>
+
+                        <br />
+                        <span style="font-weight: 600">警戒线（不要触碰，触碰就降级：退出班级群，麦子学院不再为你结果负责，不再提供一切人工指导）</span><br /><br />
+
+                            <li>&nbsp;每周完成度在25%以下叫“飘红”，连续三周飘红</li>
+                            <li>&nbsp;连续两次直播班会旷课</li>
+                            <li>&nbsp;失联（老师通过各种方式联系不到）两周以上</li>
+                        <br />
+                        <span style="font-weight: 600">小贴士：</span><br /><br />
+
+                            <li>&nbsp;如果暂时不能学习，可以跟带班老师沟通进行休学学习操作，这样不会影响你的学习评定.</li>
+                            <li>&nbsp;关于学习休学:由学员主动向带班老师提出申请，由班主任老师办理休学。</li>
+                            <li>&nbsp;休学时间<一周  保留所在班qq群和LPS</li>
+                            <li>&nbsp;休学时间≥一周 由专业老师评定，不达标的学员退出所在班qq群和LPS，进入下一个班级</li>
+                            <li>&nbsp;说明:试学学员、分期付款但不按时续费学员无休学权利.</li>
+                <br /><br />
+                            <li>&nbsp;试学班学员，入班后10个自然日（备注：即10天）可申请调换专业重新入班；</li>
+                            <li>&nbsp;全程班学员，入班后30个自然日（备注：即30天）可申请调换专业重新入班；</li>
+                            <li>&nbsp;超过规定日期，一律不再允许调换专业。</li>
+                            </ul><br />
+                            由于专业老师要做专业指导，原则上学员不能转让账号供给他人学习<br />
+                其它任何问题，都可以找你的老师<br />
+                <br />
+                关于降级和升级 ； 降级即保留LPS权限，但不再提供一切人工指导服务，包括无法参加直播，老师不答疑，退出班级交流群，麦子学院不再为你的学习结果负责 ； 降级后，继续飘红1周，即退班 ； 若降级后连续两周完成学习任务（“飘绿”），则升级，回到人工服务状态 。
+                <br>
+                关于就业：学员完成课程的项目制作与毕业时的项目答辩即为合格，合格学员负责推荐就业。
+                <br/><br/>
+
+
+                        <span style="font-weight: 600">各位同学，未来十年是IT的 ，让我们一起加油，在麦子学院，成为越来越专业的IT人才！</span><br />
+                        </p>
+
+            </div>
+        </div>
+        <div class="row">
+            <form>
+                <div class="pull-left checkbox">
+                    <label id="already_read_and_aggree"><input type="checkbox" id="check_contract" onclick="enable_submit()"/> 我已经阅读并同意以上协议</label>
+                </div>
+                <div class="pull-right">
+                    <button type="submit" disabled="disabled" class="btn btn-default" id="agree_contract" onclick="submit_stu_contract()">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- 麦子学院就业服务协议 -->
+    <div id="jiuye_panel" class="d-xy-panel" style="display:none">
+        <h2>麦子学院就业服务协议</h2>
+        <div class="xy-box">
+            <div class="xy-box-in">
+                <img src="/static/images/yinzhang.png" style="position:absolute;opacity:0.75;left:80px;top:10px" alt=""/>
+                <p style="margin:50px 0 20px;">
+                    <strong>甲方：</strong>
+                </p>
+{#                <p style="margin:50px 0 20px;">#}
+{#                    <strong>乙方：</strong>#}
+{#                </p>#}
+                <p>
+                    &nbsp;&nbsp;&nbsp;&nbsp;作为国内IT在线教育创新领导品牌，甲方将向乙方提供技术教学及就业服务。为清晰培训过程、提高培训质量，经双方沟通协商，甲、乙双方签订以下协议。甲方为本项目提供优质的教学、服务和管理，并承诺在完成本项目学习后获得良好的就业结果！
+                </p><br>
+                <span style="font-weight: 600">一、甲方责任、权利和义务</span><br /><br />
+                <p>
+                        1、甲方有责任在乙方培训期间，按照《学员学习异动管理条例》及学员相关管理规定对乙方进行严格管理，并根据规定对乙方表现进行评定考核；</p>
+<p>2、甲方承诺向乙方提供符合要求的技能培养内容和考核体系，并提供符合企业需求的相关培训课程，课程内容全部来源于国内外一线大师亲自设计制作；</p>
+<p>3、甲方承诺配备技术导师、班主任、就业辅导老师为学生提供教学、学习、就业服务管理；</p>
+<p>4、甲方承诺对于遵守并通过相关培训项目制作及考核的毕业学员，进入麦子学院雇主人才库，并做好就业安置与推荐服务，就业薪资不限城市（大学专、本科学历）不低于5000 元/月（税前)；</p>
+<p>5、如非乙方原因导致面试成功但未能通过1个月试用期（经甲方核实），甲方继续为乙方提供岗位机会；</p>
+<p>6、乙方参加培训后加入麦子学院实名交友圈，甲方为乙方提供终身的职业生涯跟踪指导服务，毕业后可在就业、转行、跳槽、升职等向甲方提出咨询，甲方将进行相关服务；</p>
+<p>7、甲方将联合全国部分创业孵化基地、国腾园、天府软件园等全国科技园区提供创业孵化咨询与服务；</p>
+                </p><br>
+                <span style="font-weight: 600">二、乙方责任、权利和义务</span><br /><br />
+                <p>1、乙方参加本项目后，须遵守《学员学习异动管理条例》及学员相关管理规定，同时积极配合各项教学计划，努力学习；</p>
+<p>2、乙方应承担实训期间的所有费用，并按照甲方要求进行入学、学习、就业等各项工作。</p><br>
+                <span style="font-weight: 600">三、就业服务标准</span><br /><br />
+                <p>学员同时满足以下四个条件方可享受甲方提供的就业服务：</p>
+<p>1、完成所有课程（项目制作、模拟面试等）并完成毕业考核；</p>
+<p>2、培训费用已缴清；</p>
+<p>3、提供《就业问卷调查表》和《个人简历》；</p>
+<p>4、观看就业指导课全部课程。</p><br>
+                <span style="font-weight: 600">四、有以下几种情况，不再提供就业服务</span><br /><br />
+                <p>1、乙方在获得甲方的面试通知后，不得私自放弃或更换他人，不得无故迟到和缺席，否则甲方有权取消乙方此后的推荐机会，甲方基于本合同的义务终止；</p>
+<p>2、乙方因疾病或心理生理障碍等不可抗拒因素而导致无法就业，则甲方不承担就业帮助义务。</p><br />
+                <span style="font-weight: 600">五、培训后退款</span><br /><br />
+<p>1、如乙方遵守《学员学习异动管理条例》及相关学员管理规定并通过考核顺利结业后，6个月内未能在对口岗位工作，可由乙方提出申请，经甲方核实后，甲方将全额退还乙方所有培训费用；</p>
+<p>2、就业未达标全额退费周期为：乙方提出退费申请后1个月内。</p><br />
+
+                <span style="font-weight: 600">六、不可抗力条款	</span><br /><br />
+                <p>对不可抗力所造成的影响，双方应及时协商解决办法和补救措施。因不可抗力不能履行协议的一方，应尽力采取合理措施减轻可能给对方造成的损失，否则应对由此而扩大的损失承担赔偿责任。本协议所称不可抗力，是指不能预见、不能避免、并不能克服的客观情况，如重大疾病、自然灾害、瘟疫、战争、骚乱等。</p><br />
+                <span style="font-weight: 600">七、适用法律及争议解决方法</span><br /><br />
+                <p>1、甲方拥有对本协议的解释权，协议的履行、解释及争议解决均适用中华人民共和国有关法律；</p>
+<p>2、双方在履行本协议中如发生争议，应先由双方协商解决。如协商不成，依法向甲方所在地人民法院提起诉讼。</p><br />
+                <span style="font-weight: 600">八、协议的补充、 变更、修改</span><br /><br />
+                <p>对本协议的任何补充、变更、修改应采用书面补充协议形式。补充协议在双方签署后与本协议具有同等法律效力。</p><br />
+                <span style="font-weight: 600">九、生效及终止条款</span><br /><br />
+                <p>1、本协议由学员点击“我已经阅读并同意以上协议”即生效。</p>
+<p>2、甲乙双方履行本协议的权利和义务后，协议终止。</p>
+{#                <p style="position: relative;"><img src="/static/images/yinzhang.png" style="position:absolute;opacity:0.75;left:80px;top:10px" alt=""/></p>#}
+{#                <br><br><br>#}
+{#                <p>甲方：（盖章）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;乙方：    </p>#}
+{#                <br><br><br>#}
+{#                <p>成都麦子信息技术有限公司</p>#}
+{#                <p>年     月     日                  年     月     日</p>#}
+            </div>
+        </div>
+        <div class="row">
+                <form action="">
+                    <div class="pull-left checkbox">
+                        <label id="check_label"><input type="checkbox" id="check_check" onclick="enable_submit_check()"> 我已经阅读并同意以上协议</label>
+                    </div>
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-default" disabled="disabled" id="agree_agree" onclick="submit_stu_check()">提交</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+
+
+{% endblock %}
+
+
+
+{% block footer%}
+    <div class="v5-footer colleges-foot 11">
+        <div class="container">
+            <div class="v5-footer-bottom">
+                <p>© 2012-2014 <a href="www.maiziedu.com">maiziedu.com</a> | 服务条款 | 蜀ICP备13014270号-4 Version 4.0.1 release20140721.1</p>
+            </div>
+        </div>
+    </div>
+
+    <!--ZhouYi:新增 7-24-->
+    <div class="zysrean"></div>
+    <div class="zysreanDiv yahei scale0 t5o">
+        <button onclick="zyclose()" class="close" type="button"></button>
+        <p class="pt">带班老师满意度评分</p>
+        <div class="c81">
+            <form action="/lps2/learning/plan/giveScore_students_handler/{{ cur_careercourse.id }}/" method="post" id="pingjia">
+            <p class="dpt">亲爱的同学们，我们非常希望你能留下对老师最真实的评价，这样我们能给你提供更好的学习指导哦~</p>
+            <p class="paddingL13 marginB10 ra1">1.带班老师解答问题的及时性评价<span class="red" style="display: none;">&nbsp;&nbsp;*此题为必选项，请选择！</span></p>
+            <p class="paddingL23 marginB20"><label class="zyradio "><input type="radio" name="ra1" value="1"><i></i>非常满意</label><label class="zyradio"><input type="radio" name="ra1" value="2"><i></i>满意</label><label class="zyradio"><input type="radio" name="ra1" value="3"><i></i>一般</label><label class="zyradio"><input type="radio" name="ra1" value="4"><i></i>不满意</label><label class="zyradio"><input type="radio" name="ra1" value="5"><i></i>非常不满意</label></p>
+            <p class="paddingL13 marginB10 ra2">2.带班老师的专业水平评价<span class="red" style="display: none;">&nbsp;&nbsp;*此题为必选项，请选择！</span></p>
+            <p class="paddingL23 marginB20"><label class="zyradio "><input type="radio" name="ra2" value="1"><i></i>非常满意</label><label class="zyradio"><input type="radio" name="ra2" value="2"><i></i>满意</label><label class="zyradio"><input type="radio" name="ra2" value="3"><i></i>一般</label><label class="zyradio"><input type="radio" name="ra2" value="4"><i></i>不满意</label><label class="zyradio"><input type="radio" name="ra2" value="5"><i></i>非常不满意</label></p>
+            <p class="paddingL13 marginB10 ra3">3.直播班会时老师的讲解水平评价<span class="red" style="display: none;">&nbsp;&nbsp;*此题为必选项，请选择！</span></p>
+            <p class="paddingL23 marginB20"><label class="zyradio "><input type="radio"  name="ra3" value="1"><i></i>非常满意</label><label class="zyradio"><input type="radio" name="ra3" value="2"><i></i>满意</label><label class="zyradio"><input type="radio" name="ra3" value="3"><i></i>一般</label><label class="zyradio"><input type="radio" name="ra3" value="4"><i></i>不满意</label><label class="zyradio"><input type="radio" name="ra3" value="5"><i></i>非常不满意</label></p>
+            <p class="paddingL13 marginB10 ra4">4.直播班会课，你觉得收获怎么样？<span class="red" style="display: none;">&nbsp;&nbsp;*此题为必选项，请选择！</span></p>
+            <p class="paddingL23 marginB20"><label class="zyradio "><input type="radio" name="ra4" value="1"><i></i>非常满意</label><label class="zyradio"><input type="radio" name="ra4" value="2"><i></i>满意</label><label class="zyradio"><input type="radio" name="ra4" value="3"><i></i>一般</label><label class="zyradio"><input type="radio" name="ra4" value="4"><i></i>不满意</label><label class="zyradio"><input type="radio" name="ra4" value="5"><i></i>非常不满意</label></p>
+            <p class="paddingL13 marginB20">5.你对带班老师还有什么意见？</p>
+            <p class="paddingL13 marginB10"><textarea class="zytextarea" name="txt"></textarea></p>
+            <p class="paddingL13 marginB20"><label class="zychk rH"><input type="checkbox" name="c1" checked="checked" value="1"><i></i>(是否匿名)留下姓名，可以更好地让老师跟进你得情况哦~</label></p>
+            <p class="textR marginB10"><input type="button" value="提交" class="zyBtn yahei" onclick="zyfun()"><input type="hidden" name="pid" id="zypid"></p>
+            </form>
+        </div>
+    </div>
+    <!--ZhouYi:新增 7-24-->
+
+{% endblock %}
+
+{% block custom_css %}
+    <link href="/static/lps2/css/panel.css" rel="stylesheet"/>
+    <link href="/static/lps2/css/dialogPage.css" rel="stylesheet"/>
+{% endblock %}
+
+{% block custom_script %}
+    <script type="text/javascript" src="/static/lps2/js/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="/static/lps2/js/mwheelIntent.js"></script>
+    <script type="text/javascript" src="/static/lps2/js/jquery.jscrollpane.min.js"></script>
+    <script type="text/javascript" src="/static/lps2/js/Chart.js"></script>
+    <script type="text/javascript" src="/static/lps2/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/static/lps2/js/Chart-extend.js"></script>
+    <script type="text/javascript" src="/static/lps2/js/common-tool.js"></script>
+    <script type="text/javascript" src="/static/lps2/js/mz-lps2-common.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.ui.widget.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.iframe-transport.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.fileupload.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.fileupload-process.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.fileupload-validate.js"></script>
+    <script type="text/javascript">
+
+
+
+    // 自动弹出就业协议
+    $(function(){
+        //ZhouYi:新增 7-24
+        //radio，checkbox按钮事件
+        $(".zyradio input").click(function(){
+            if(!$(this).parent().hasClass("rH")){
+                $(this).parent().addClass("rH").siblings().removeClass("rH");
+            }
+        });
+        $(".zychk input").click(function(){
+            if(!$(this).parent().hasClass("rH")){
+                $(this).parent().addClass("rH");
+            }
+            else{
+                $(this).parent().removeClass("rH");
+            }
+        });
+        //背景关闭
+        var zybo=true;
+        $(".zysreanDiv").hover(function(){
+            zybo=false;
+        },function(){
+            zybo=true;
+        })
+        $(".zysrean").click(function(){
+            zybo&&zyclose()
+        })
+        //-------END----
+
+        {% if need_complete_profile %}
+            $('.personal_profile_btn').trigger("click");
+        {% else %}
+            {% if need_complete_checkcontract %}
+                $.commonTool.jiuyeShow(false); // true，弹出显示右上角‘x’；false反之
+            {% endif %}
+        {% endif %}
+    });
+    $(function(){
+        $.post("/user/get_study_goal/",{},function(goals){
+            for (var i = 0;i < goals.length;i++){
+                var option = "<option>" +goals[i]["name"]+ "</option>";
+                $("#study_goal").append(option);
+            }
+{#            $("#study_goal").append("<option>其他</option>");#}
+        });
+
+        $.post("/user/get_study_base/",{},function(bases){
+            for (var j = 0;j < bases.length; j++) {
+                var option ="<option>" + bases[j]["name"] + "</option>";
+                $("#study_base").append(option);
+            }
+{#            $("#study_base").append("<option>其他</option>");#}
+        });
+        $("#study_goal").change(function(){
+            getOtherGoal();
+        });
+        $("#study_base").change(function(){
+            getOtherBase();
+        });
+
+{#        {% if request.user.is_student %}#}
+{#        //自动弹出完善资料框#}
+{#        $('.personal_profile_btn').trigger("click");#}
+{#        $('.layui-layer-close').hide();#}
+{#        {% endif %}#}
+
+        {% if is_look_screen %}
+            $.studentcommonTool.addLock('.data_summary-lock');
+{#            $.commonTool.addLock('.main');#}
+        {% endif %}
+        // 左边栏内容过多时，滚动
+        (function(){
+            var tabCnt = $('#sidebar_body .tab-cnt');
+            var tabCntIn = tabCnt.find('.tab-cnt-in');
+            tabCntIn.width( tabCntIn.width() );
+            tabCnt.jScrollPane({
+                verticalDragMinHeight: 50,
+                horizontalDragMinWidth: 50
+            });
+            var scrollBar = tabCnt.find('.jspVerticalBar');
+            scrollBar.hide();
+            tabCnt.hover(function(){
+                scrollBar.fadeIn();
+            },function(){
+                scrollBar.fadeOut();
+            });
+        }());
+
+        // 图表
+
+        // 总览--完成度
+        (function(){
+            // json数据
+            var chartData = [{
+                'value': {% if overview_data.real_extra_study_percent < 100 %} 100-{{ overview_data.real_extra_study_percent }} {% else %} 0 {% endif %},
+                'color': "#FFE68C",
+                'highlight': "#feedb1",
+                'label': "未完成"
+            },{
+                'value': {% if overview_data.real_extra_study_percent < 100 %}{{ overview_data.real_extra_study_percent }} {% else %} 100  {% endif %},
+                'color':"#5ecfba",
+                'highlight': "#70e0cb",
+                'label': "已完成"
+            }];
+            // 图表实例
+            $.chartExtend.Pie({
+                'canvas' : '#canvas_1',
+                'data' : chartData
+            });
+        }());
+
+        // tab内图表 : #tab_box_2
+        (function(){
+
+            var tab = $('#tab_box_2 [tab-role=btn]');
+
+            // 完成计划
+            tab[0]._initChart = function(){
+
+                var canvas = $('#canvas_2');
+                var chartBox = $('#chart_2');
+                var div = $('<div/>');
+                div.css({ 'width' : chartBox.width(), 'overflow' : 'hidden' });
+                div.append(canvas.css({'paddingBottom' : 10}));
+                chartBox.html('').append(div);
+
+                // json数据
+                var chartData = {{ accomplish_percenet_list | safe }}
+                // 2015-05-09 设置刻度跨幅
+				var stepInterval = 25;
+				(function(){
+					var max = 0, col;
+					$.each(chartData, function(i,o){
+						max = Math.max(max, o.plan_study_time, o.real_study_time);
+					});
+					col = Math.ceil(max / 5);
+{#					stepInterval = (Math.ceil(col / 25) || 1) * 25;#}
+				    stepInterval = col +(5-col%5);
+                })();
+
+                              // 图表实例
+                $.chartExtend.Line({
+                    'canvas' : '#canvas_2',
+                    'data' : chartData,
+                    'legend' : [{
+                        'dataKey' : 'real_study_time',
+                        'label' : '实际完成',
+                        'lineColor' : '#FFE68C'
+                    },{
+                        'dataKey' : 'plan_study_time',
+                        'label' : '计划完成',
+                        'lineColor' : '#5ecfba'
+                    }],
+                    'yStepWidth' : stepInterval,
+					'defaultStep': 5,
+					'suf' : '%' //后缀
+
+                });
+
+            };
+
+
+            // 评测分数
+            tab[1]._initChart = function(){
+                var canvas = $('#canvas_3');
+                var chartBox = $('#chart_3');
+                var div = $('<div/>');
+                div.css({ 'width' : chartBox.width(), 'overflow' : 'hidden' });
+                div.append(canvas.css({'marginBottom' : 10}));
+                chartBox.html('').append(div);
+
+                // json数据
+                var chartData = {{ course_score_list | safe}}
+                // 图表实例
+                $.chartExtend.Bar({
+                    'canvas' : '#canvas_3',
+                    'data' : chartData,
+                    'xStepWidth' : 100,
+                    'barValueSpacing' : 30,
+                    'legend' : [{
+                        'fillColor' : '#5ecfba',
+                        'strokeColor' : '#5ecfba'
+                    }]
+                });
+            };
+
+
+            // 学力增长
+            tab[2]._initChart = function(){
+
+                var canvas = $('#canvas_4');
+                var chartBox = $('#chart_4');
+                var div = $('<div/>');
+                div.css({ 'width' : chartBox.width(), 'overflow' : 'hidden' });
+                div.append(canvas.css({'marginBottom' : 10}));
+                chartBox.html('').append(div);
+
+                // json数据
+                var chartData = {{ study_point_list | safe}}
+                // 图表实例
+                $.chartExtend.Line({
+                    'canvas' : '#canvas_4',
+                    'data' : chartData,
+                    'legend' : [{
+                        'dataKey' : 'study_point',
+                        'label' : '学力增长',
+                        'lineColor' : '#FFE68C'
+                    }]
+                });
+            };
+        }());
+
+        // tab内图表 : #tab_box_3
+        (function(){
+
+            var tab = $('#tab_box_3 [tab-role=btn]');
+
+            // 素质雷达图
+            tab[0]._initChart = function(){
+
+                var canvas = $('#canvas_5');
+                var chartBox = $('#chart_5');
+                var div = $('<div/>');
+                div.css({ 'width' : chartBox.width(), 'overflow' : 'hidden' });
+                div.append(canvas.css({'marginBottom' : 10}));
+                chartBox.html('').append(div);
+
+                // json数据
+                var chartData = {{ cobweb_json | safe}}
+                // 图表实例
+                $.chartExtend.Radar({
+                    'canvas' : '#canvas_5',
+                    'data' : chartData,
+                    // 字段描述
+                    'labels' : [{
+                        'dataKey' : 'chart_capacity_alto',
+                        'label' : '沟通能力'
+                    },{
+                        'dataKey' : 'exe_capacity_alto',
+                        'label' : '执行能力'
+                    },{
+                        'dataKey' : 'initiative_alto',
+                        'label' : '主动性'
+                    }],
+                    // 图例说明
+                    'legend' : [{
+                        'label' : '能力参考',
+                        'lineColor' : 'rgba(255, 230, 140,1)',
+                        'fillColor' : 'rgba(255, 230, 140,.5)'
+                    },{
+                        'label' : '实际能力',
+                        'lineColor' : 'rgba(94, 207, 186,1)',
+                        'fillColor' : 'rgba(94, 207, 186,0.5)'
+                    }]
+                });
+            };
+
+
+            // 素质变化曲线
+            tab[1]._initChart = function(){
+
+                var canvas = $('#canvas_6');
+                var chartBox = $('#chart_6');
+                var div = $('<div/>');
+                div.css({ 'width' : chartBox.width(), 'overflow' : 'hidden' });
+                div.append(canvas.css({'paddingBottom' : 10}));
+                chartBox.html('').append(div);
+
+                // json数据
+                var chartData = {{ different_list | safe}}
+                // 图表实例
+                $.chartExtend.Line({
+                    'canvas' : '#canvas_6',
+                    'data' : chartData,
+                    'legend' : [{
+                        'dataKey' : 'exe_capacity',
+                        'label' : '执行力',
+                        'lineColor' : '#FFE68C'
+                    },{
+                        'dataKey' : 'initiative',
+                        'label' : '主动性',
+                        'lineColor' : '#5ecfba'
+                    },{
+                        'dataKey' : 'chart_capacity',
+                        'label' : '沟通力',
+                        'lineColor' : '#cfba5e'
+                    }],
+                    'suf' : '%' //后缀
+                });
+
+            };
+
+        }());
+
+
+
+
+        // 左边栏tab
+        $.commonTool.tab({
+            'tabBox' : '#tab_box_1'
+        });
+
+        // 学习数据tab
+        $.commonTool.tab({
+            'tabBox' : '#tab_box_2',
+            'transitionCallback' : function(btn,cnt){
+                // 每次切换都新创建图表
+                this._initChart && this._initChart();
+            }
+        });
+
+        // 个人素质tab
+        $.commonTool.tab({
+            'tabBox' : '#tab_box_3',
+            'transitionCallback' : function(btn,cnt){
+                // 每次切换都新创建图表
+                this._initChart && this._initChart();
+            }
+        });
+
+    });
+
+    </script>
+
+{#    查看学生个人协议#}
+    <script type="text/javascript">
+    function getOtherGoal() {
+        var sel_data = $("#study_goal").val();
+        if (sel_data == "其他") {
+            $("#goal_text").show();
+        } else {
+            $("#goal_text").hide();
+        }
+    }
+
+    function getOtherBase() {
+        var sel_data = $("#study_base").val();
+        if (sel_data == "其他") {
+            $("#base_text").show();
+        } else {
+            $("#base_text").hide();
+        }
+    }
+
+      function submit_stu_check() {
+          $.ajax({
+            url:"/lps2/learning/plan/check_contract_handler/",
+            type:"POST",
+            data:"careercourse_id="+{{cur_careercourse.id}},
+            dataType:"json",
+            async:false,
+            success:function(data){
+                console.info(data);
+            }
+          });
+
+
+        }
+
+      function submit_stu_contract() {
+
+          {#$.post("/lps2/learning/plan/stu_contract_handle/", {"careercourse_id":{{cur_careercourse.id}}}, function(data){console.info(data);});#}
+{#          location.reload();#}
+
+          {#火狐兼容性问题#}
+          $.ajax({
+            url:"/lps2/learning/plan/stu_contract_handle/",
+            type:"POST",
+            data:"careercourse_id="+{{cur_careercourse.id}},
+            dataType:"json",
+            async:false,
+            success:function(data){
+                console.info(data);
+            }
+          });
+
+
+        }
+
+    function enable_submit_check(){
+          var check_contract = document.getElementById("check_check");
+          var agree_contract = document.getElementById("agree_agree");
+          if (check_contract.checked == true) {
+              agree_contract.removeAttribute("disabled");
+          }
+          else{
+              agree_contract.setAttribute("disabled", "disabled");
+          }
+      }
+
+
+      function enable_submit(){
+          var check_contract = document.getElementById("check_contract");
+          var agree_contract = document.getElementById("agree_contract");
+          if (check_contract.checked == true) {
+              agree_contract.removeAttribute("disabled");
+          }
+          else{
+              agree_contract.setAttribute("disabled", "disabled");
+          }
+      }
+
+      function paycourse(){
+          location.href="/pay?career_ids={{ cur_careercourse.id }}";
+      }
+
+(function(){
+	$.studentcommonTool = {
+		'addLock' : function(elm,val,oParent){
+
+			elm = $(elm);
+			oParent = $(oParent);
+
+			var body = $(document.body);
+			var html = '';
+			html += '<div class="lock-panel" onclick="paycourse(this)"><div class="lock-panel-in">';
+			html += '<span class="lock"></span><span class="text">'+(val != null  ? '' : '报名后可查看学习数据！')+'</span>';
+			html += '</div></div>';
+			elm.each(function(i,o){
+				var pa;
+				var paOffset;
+				var paPosition;
+				var panel = elm.eq(i);
+				var lock = $(html);
+				var position = panel.css('position');
+				var w;
+				var h;
+				var offset;
+				var oPosition = {
+					'fixed' : 'fixed',
+					'relative' : 'relative',
+					'absolute' : 'absolute'
+				}
+				setSize();
+				pa.append( lock );
+				$(window).on('resize',function(){
+					setSize();
+				});
+				function setSize(){
+					w = panel.outerWidth();
+					h = panel.outerHeight();
+					offset = panel.offset();
+					lock.find('.lock-panel-in').width( w ).height( h );
+					/*if( !oPosition[ position ]  ){
+						panel.css('position','relative');
+					}*/
+					if(oParent.length){
+						if(oParent.length > 1){
+							pa = oParent.eq(i);
+						}else{
+							pa = oParent;
+						}
+						paOffset = pa.offset();
+						paPosition = pa.css('position');
+						if(paPosition !== 'absolute' && paPosition !== 'relative' && paPosition !== 'fixed'){
+							pa.css('position','relative');
+						}
+						lock.width( w ).height( h ).css({ 'left' : offset.left - paOffset.left, 'top' : offset.top - paOffset.top });
+					}else{
+						pa = body;
+						lock.width( w ).height( h ).css({ 'left' : offset.left, 'top' : offset.top });
+					}
+				}
+			});
+		}
+	};
+}());
+
+    </script>
+{% endblock %}

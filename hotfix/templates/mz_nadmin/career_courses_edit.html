@@ -1,0 +1,133 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/courses_breadcrumb.html" %}
+
+
+<div class="tabbable">
+{% include "mz_nadmin/parts/career_courses_edit_tabs.html" %}
+
+<div class="tab-content">
+<div class="tab-pane active">
+
+    {% include "mz_nadmin/modules/msgs.html" %}
+    {% include "mz_nadmin/modules/form_alert.html" %}
+
+    {% if career_course %}
+    <form class="form-horizontal" role="form"
+        action="{% url 'nadmin:career_courses_edit' career_course.id %}" method="post">
+    {% else %}
+    <form class="form-horizontal" role="form"
+        action="{% url 'nadmin:career_courses_create' %}" method="post">
+    {% endif %}
+
+    {% csrf_token %}
+
+    <div class="form-group {% if form.name.errors %}has-error{% endif %}">
+        <label class="col-md-2 control-label" for="name">
+            {{ form.name.label }}
+        </label>
+        <div class="col-md-4">
+            {{ form.name }}
+            <span class="help-block">
+            {% if form.name.errors %}
+                {% for error in form.name.errors %}
+                    {{ error }}
+                {% endfor %}
+            {% else %}
+                * 必填
+            {% endif %}
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group {% if form.short_name.errors %}has-error{% endif %}">
+        <label class="col-md-2 control-label" for="name">
+            {{ form.short_name.label }}
+        </label>
+        <div class="col-md-4">
+            {{ form.short_name }}
+            <span class="help-block">
+            {% if form.short_name.errors %}
+                {% for error in form.short_name.errors %}
+                    {{ error }}
+                {% endfor %}
+            {% else %}
+                * 必填
+            {% endif %}
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group {% if form.search_keywords.errors %}has-error{% endif %}">
+        <label class="col-md-2 control-label" for="search_keywords">
+            搜索关键词
+        </label>
+        <div class="col-md-5">
+            {{ form.search_keywords }}
+            <span class="help-block">
+            {% if form.search_keywords.errors %}
+                {% for error in form.search_keywords.errors %}
+                    {{ error }}
+                {% endfor %}
+            {% else %}
+                * 必填，多个关键词请以英文逗号分隔开
+            {% endif %}
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group {% if form.description.errors %}has-error{% endif %}">
+        <label class="col-md-2 control-label" for="description">
+            {{ form.description.label }}
+        </label>
+        <div class="col-md-8">
+            {{ form.description }}
+            <span class="help-block">
+            {% if form.description.errors %}
+                {% for error in form.description.errors %}
+                    {{ error }}
+                {% endfor %}
+            {% else %}
+                * 必填
+            {% endif %}
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group {% if form.market_page_url.errors %}has-error{% endif %}">
+        <label class="col-md-2 control-label" for="market_page_url">
+            {{ form.market_page_url.label }}
+        </label>
+        <div class="col-md-5">
+            {{ form.market_page_url }}
+            <span class="help-block">
+            {% if form.description.errors %}
+                {% for error in form.market_page_url.errors %}
+                    {{ error }}
+                {% endfor %}
+            {% else %}
+                * 必填，有效的 url 地址
+            {% endif %}
+            </span>
+        </div>
+    </div>
+
+    <div class="row">
+        <hr>
+    </div>
+
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+            <button type="submit" class="btn btn-sm btn-primary">保存</button>
+        </div>
+    </div>
+
+</form>
+</div><!--/.tab-pane-->
+</div><!--/.tab-content-->
+</div><!--/.tabbable-->
+{% endblock %}
+
+

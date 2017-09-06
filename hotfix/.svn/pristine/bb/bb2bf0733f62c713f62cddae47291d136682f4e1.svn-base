@@ -1,0 +1,41 @@
+<!--新增邮箱-->
+<div class="modal fade" id="addemailModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="addemailModalLabel">
+                    {% if user.email == "" or user.email == None %}
+                        新增邮箱
+                    {% else %}
+                        修改邮箱
+                    {% endif %}
+                </h4>
+            </div>
+            <div class="modal-body">
+                <section class="box-addemail" id="box-addemail">
+                    <form id="new_email_form" action="{% url 'user:user_update_email' %}" method="post" onsubmit="new_email_form_submit();return false;" autocomplete="off">
+                        {% csrf_token %}
+                    <ul class="form-horizontal v5-form-horizontal">
+                        <li class="row form-group">
+                            <div class="form-group cf">{{ update_email_form.email_ue }}</div>
+                        </li>
+                        <li class="row form-group">
+                            <div class="form-group cf">{{ update_email_form.captcha_ue }}<span class="v5-yzm fr"><a id='email-captcha-refresh' class="captcha-refresh" href="#">换一张</a></span></div>
+                        </li>
+                        <li class="row form-group v5-pdt">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-8">
+                                <button type="button" class="btn btn-micv5 btn-md btn-block" onclick="new_email_form_submit()">确定</button>
+                                {{ update_email_form.uid_ue }}
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </li>
+                    </ul>
+                    <div id="new_email_tips" class="tips-error bg-danger" {% if request.GET.popemail == "true" %}style="display: block"{% endif %}>{% if request.GET.popemail == "true" %}为正常使用论坛功能请完善邮箱信息{% else %}错误提示{% endif %}</div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

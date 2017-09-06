@@ -1,0 +1,19 @@
+
+<ul class="nav nav-tabs nav-append-content">
+    <li {% if tabs_active == "lessons" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:students_courses_info' student.id course.id %}">课程学习</a>
+    </li>
+    <li {% if tabs_active == "lesson_papers" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:students_courses_info_lessons_papers' student.id course.id %}">随堂测验</a>
+    </li>
+    <li {% if tabs_active == "lesson_homeworks" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:students_courses_info_lessons_homeworks' student.id course.id %}">随堂作业</a>
+    </li>
+    <li {% if tabs_active == "course_paper" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:students_courses_paper' student.id course.id %}">课程总测验</a>
+    </li>
+    <li {% if tabs_active == "course_project" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:students_courses_project' student.id course.id %}">项目制作</a>
+    </li>
+</ul>
+

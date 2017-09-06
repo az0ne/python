@@ -1,0 +1,6 @@
+{% load  datetime_convert_tag %}
+{% for dynamic in dynamics %}
+<li>
+    <a class="s" href="/u/{{ dynamic.user.id }}" target="_blank"><img src="{{ MEDIA_URL }}{{ dynamic.user.avatar_small_thumbnall }}"></a><a class="color5e" href="/u/{{ dynamic.user.id }}" target="_blank">{{ dynamic.user.nick_name }}</a>{{ dynamic.content|safe }}<span class="s2 color99">{% date_convert  dynamic.date_add%}</span>
+</li>
+{% endfor %}

@@ -1,0 +1,240 @@
+{% extends "mz_common/global.html" %}
+{% block title %}IT职业在线教育讲师招募 - 麦子学院{% endblock %}
+{% block keywords%}麦子学院，IT职业培训，IT技能培训，IT在线教育，IT在线学习，编程学习，android,ios,php,java,python,html5,cocos2dx{% endblock %}
+{% block description%}麦子学院专注IT职业在线教育，现正在招募android开发、ios开发、平面设计、ui设计、物联网、产品经理、嵌入式、php开发、web前端、python开发等一系列IT技术讲师，让我们一起培养更多改变世界的人。{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/teacherRecruit.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block indexhead %}{% endblock %}
+
+{% block container %}
+{% include 'header/index_header.html' %}
+<div class="teacherRecruit">
+    <div class="teacherRecruitBanner">
+        <p><img src="{{ STATIC_URL }}images/teacherRecruitBanner.jpg"/></p>
+        <div class="txt">
+            <strong>师者，所以传道受业解惑也</strong>
+            <span>麦子学院讲师招募中</span>
+        </div>
+    </div>
+    <div class="teacherRecruitInfo">
+        <ul>
+            <li>
+                <p><img src="{{ STATIC_URL }}images/teacherRecruitInfoImg1.jpg" alt="全职&兼职" /></p>
+                <div class="infos">
+                    <strong>带班讲师</strong>
+                    <span>足不出户，桃李天下</span>
+                    <p>带班老师可以灵活安排自己的时间，使用麦子学院提供的课程大纲开班教学，在线辅导学生学习，批改学生项目。</p>
+                </div>
+                <span><em>197</em>人已申请</span>
+            </li>
+            <li>
+                <p><img src="{{ STATIC_URL }}images/teacherRecruitInfoImg2.jpg" alt="兼职" /></p>
+                <div class="infos">
+                    <strong>录课讲师</strong>
+                    <span>与世界分享你的技术和经验</span>
+                    <p>录课老师根据麦子学院开设的专业录制自己的视频课程，将自己的多年技术经验总结成为麦子学院开班教学的视频教材。</p>
+                </div>
+                <span><em>219</em>人已申请</span>
+            </li>
+            <li class="lastLi">
+                <p><img src="{{ STATIC_URL }}images/teacherRecruitInfoImg3.jpg" alt="介绍大牛" /></p>
+                <div class="infos">
+                    <strong>介绍大牛当讲师</strong>
+                    <span>让Ta培养更多改变世界的人</span>
+                    <div class="share-ibox">
+                        <div class="jiathis_style">
+                            <a class="jiathis_button_cqq"></a>
+                            <a class="jiathis_button_qzone"></a>
+                            <a class="jiathis_button_weixin"></a>
+                            <a class="jiathis_button_tsina"></a>
+                        </div>
+                   </div>
+                    <p>如果您身边有能够成为麦子讲师的大牛，我们真诚的希望您能够向Ta分享本页面</p>
+                </div>
+            </li>
+        </ul>
+        <i>向下箭头</i>
+    </div>
+    <div class="teacherRecruitApply">
+        <h3>咨询电话： 028-69759682</h3>
+        <a href="{% url 'teacher_recruit_form' %}">申请成为麦子讲师</a>
+    </div>
+    <div class="teacherRecruitFlow" id="teacherRecruitFlow">
+        <div class="detail">
+            <h2>如何成为麦子讲师</h2>
+            <ul>
+                <li><strong>1</strong>热衷分享<em>+</em>3年以上大型项目经验</li>
+                <li class="li2"><strong>2</strong>提交在线申请<em>or</em>直接电话咨询 </li>
+                <li class="li3"><strong>3</strong>审核通过<em>&nbsp;</em>成为麦子讲师 </li>
+                <li class="li4"><strong>4</strong>获得高额回报<em>+</em>业内知名度 </li>
+            </ul>
+            <div class="major">
+                <h4>我们正在招募的专业</h4>
+                <p>产品经理、iOS应用开发、Android应用开发、python Web开发、Web前段开发、UI设计、游戏原画设计、软件测试、PHP Web开发、嵌入式开发、物联网开发</p>
+            </div>
+        </div>
+    </div>
+    <div class="gold-teacher marginB28 teacherRecruitTeacher">
+        <h2>他们都在麦子 </h2>
+        <div class="gold-slide">
+            <ul id="gold-list">
+                <li>
+                    <div class="inner-box">
+                        <img src="/images/index/gold_teacher_1.png" alt="王海宁-嵌入式Linux 开发金牌讲师">
+                        <div class="hover-mask"></div>
+                        <div class="hover-card">
+                            <h4 class="font18 colorff textC marginB10">王海宁</h4>
+                            <small class="font14 colorff textC marginB10">嵌入式Linux 开发金牌讲师</small>
+                            <p class="font12 colorff marginB29">9年物联网嵌入式Linux开发经验，曾任长虹集团高级嵌入式工程师，中国电信，中国移动三网融合智慧家庭某项目负责人，某大型嵌入式IT教育集团金牌讲师，精通ARM体系结构与接口开发，Linux应用编程及驱动开发，所讲授课程获得学生的一致好评。</p>
+                            <a href="{% url 'common:teacher_introduce' teacher_id=4 %}" target="_blank" onclick="zhuge.track('金牌讲师', {'页面名称':'首页','专业老师':'王海宁','专业课程':'嵌入式Linux开发'});">查看老师作品</a>
+                            <div class="teach-icon teach-icon-1"><img src="/images/index/teach-icon-1.png" alt="王海宁-嵌入式Linux 开发金牌讲师">
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="font18 textC">王海宁</h5>
+                    <p class="fonf14 textC color96">嵌入式Linux 开发金牌讲师</p>
+                </li>
+                <li>
+                    <div class="inner-box">
+                        <img src="/images/index/gold_teacher_2.png" alt="李景山-PHP 开发金牌讲师">
+                        <div class="hover-mask"></div>
+                        <div class="hover-card">
+                            <h4 class="font18 colorff textC marginB10">李景山</h4>
+                            <small class="font14 colorff textC marginB10">PHP 开发金牌讲师</small>
+                            <p class="font12 colorff marginB29">6年php开发及教学经验，翠花网络创始人、主要负责学员实训、授课经验丰富，讲课内容层次由浅入深，通俗易懂，善于活跃课堂气氛，学生在欢乐的气氛中学到知识，因材施教，注重对学生自我思考与解决问题能力的培养。融资千万级别邦印信息技术有限联合技术创始人，负责百万级网站流量的架构、开发、管理。</p>
+                            <a href="{% url 'common:teacher_introduce' teacher_id=48129 %}" target="_blank" onclick="zhuge.track('金牌讲师', {'页面名称':'首页','专业老师':'李景山','专业课程':'PHP开发'});">查看老师作品</a>
+                            <div class="teach-icon teach-icon-2"><img src="/images/index/teach-icon-2.png" alt="李景山-PHP 开发金牌讲师">
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="font18 textC">李景山</h5>
+                    <p class="fonf14 textC color96">PHP 开发金牌讲师</p>
+                </li>
+                <li>
+                    <div class="inner-box">
+                        <img src="/images/index/gold_teacher_3.png" alt="谭钧-Android 应用开发金牌讲师">
+                        <div class="hover-mask"></div>
+                        <div class="hover-card">
+                            <h4 class="font18 colorff textC marginB10">谭钧</h4>
+                            <small class="font14 colorff textC marginB10">Android 应用开发金牌讲师</small>
+                            <p class="font12 colorff marginB29">5年的app开发经验，负责过播放、社交、社区O2O、生鲜O2O、校园O2O等十余个项目的研发，对用户体验和精致化的Android开发研究深入。擅长把需求变成应用场景，通过研发转化为商业产品，教授学员研发和团队管理能力极强。多年Android开发及教学经验, 对移动开发有着独到的见解和深入的研究，其授课风格幽默风趣, 内容丰富充实, 善于结合工作、生活中的实际案例, 通过层层引导和深入浅出的方式加深学生对知识点的认识和理解。</p>
+                            <a href="{% url 'common:teacher_introduce' teacher_id=684 %}" target="_blank" onclick="zhuge.track('金牌讲师', {'页面名称':'首页','专业老师':'谭钧','专业课程':'Android应用开发'});">查看老师作品</a>
+                            <div class="teach-icon teach-icon-3"><img src="/images/index/teach-icon-3.png" alt="谭钧-Android 应用开发金牌讲师">
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="font18 textC">谭钧</h5>
+                    <p class="fonf14 textC color96">Android 应用开发金牌讲师</p>
+                </li>
+                <li>
+                    <div class="inner-box">
+                        <img src="/images/index/gold_teacher_4.png" alt="马青-UI 设计金牌讲师">
+                        <div class="hover-mask"></div>
+                        <div class="hover-card">
+                            <h4 class="font18 colorff textC marginB10">马青</h4>
+                            <small class="font14 colorff textC marginB10">UI 设计金牌讲师</small>
+                            <p class="font12 colorff marginB29">曾任职于上海gamania，上海Massiveblack。
+                                参与过多款娱乐产品的的方案界面设计及APP界面设计，熟悉项目开发交互流程，有着丰富的UI设计和培训经验。
+                                擅长界面设计、概念设计及传统美术绘画，作品多次发表于国内权威杂志《美术》和《中国版画年鉴》。</p>
+                            <a href="{% url 'common:teacher_introduce' teacher_id=3287 %}" target="_blank" onclick="zhuge.track('金牌讲师', {'页面名称':'首页','专业老师':'马青','专业课程':'UI设计'});">查看老师作品</a>
+                            <div class="teach-icon teach-icon-4"><img src="/images/index/teach-icon-4.png" alt="马青-UI 设计金牌讲师">
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="font18 textC">马青</h5>
+                    <p class="fonf14 textC color96">UI 设计金牌讲师</p>
+                </li>
+                <li>
+                    <div class="inner-box">
+                        <img src="/images/index/gold_teacher_5.png" alt="胡明星-Python Web开发金牌讲师">
+                        <div class="hover-mask"></div>
+                        <div class="hover-card">
+                            <h4 class="font18 colorff textC marginB10">胡明星</h4>
+                            <small class="font14 colorff textC marginB10">Python Web开发金牌讲师</small>
+                            <p class="font12 colorff marginB29">10余年Web开发经验，曾担任国内某在线教育平台研发经理一职，参与过会员营销、财务管理、游戏管理等三十余个大中型Web项目的设计与研发，项目体验人数超过千万，所教授学员超过千余人。负责过的项目：高新人才网，国信安基地网站，国信安百杰网站等。</p>
+                            <a href="{% url 'common:teacher_introduce' teacher_id=3472 %}" target="_blank" onclick="zhuge.track('金牌讲师', {'页面名称':'首页','专业老师':'胡明星','专业课程':'Python Web开发'});">查看老师作品</a>
+                            <div class="teach-icon teach-icon-5"><img src="/images/index/teach-icon-5.png" alt="胡明星-Python Web开发金牌讲师">
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="font18 textC">胡明星</h5>
+                    <p class="fonf14 textC color96">Python Web开发金牌讲师</p>
+                </li>
+                <li>
+                    <div class="inner-box">
+                        <img src="/images/index/gold_teacher_6.png" alt="敬文涛-iOS 应用开发金牌讲师">
+                        <div class="hover-mask"></div>
+                        <div class="hover-card">
+                            <h4 class="font18 colorff textC marginB10">敬文涛</h4>
+                            <small class="font14 colorff textC marginB10">iOS 应用开发金牌讲师</small>
+                            <p class="font12 colorff marginB29">索尼明星机型系统研发工程师之一，某千万级用户社交App核心成员之一，贵州省电子政务云平台顶层架构师之一，是国内早期的明星IOS工程师。</p>
+                            <a href="{% url 'common:teacher_introduce' teacher_id=4130 %}" target="_blank" onclick="zhuge.track('金牌讲师', {'页面名称':'首页','专业老师':'敬文涛','专业课程':'iOS应用开发'});">查看老师作品</a>
+                            <div class="teach-icon teach-icon-6"><img src="/images/index/teach-icon-6.png" alt="敬文涛-iOS 应用开发金牌讲师">
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="font18 textC">敬文涛</h5>
+                    <p class="fonf14 textC color96">iOS 应用开发金牌讲师</p>
+                </li>
+                <li>
+                    <div class="inner-box">
+                        <img src="/images/index/gold_teacher_7.png" alt="葛蓉-Android 应用开发金牌讲师">
+                        <div class="hover-mask"></div>
+                        <div class="hover-card">
+                            <h4 class="font18 colorff textC marginB10">葛蓉</h4>
+                            <small class="font14 colorff textC marginB10">Android 应用开发金牌讲师</small>
+                            <p class="font12 colorff marginB29">IT行业拥有7年多丰富的软件开发工作经验。曾经参与Android操作系统二十多个大型系统级项目开发，以及负责多媒体类、社交类、工具类等十多个Android应用研发。目前专注于Android研发和讲师工作，擅长把复杂的编程技能转换为浅显易懂的总结和案例，教授知识由浅入深，更加注重学生学习能力和解决问题能力的引导和培养。</p>
+                            <a href="{% url 'common:teacher_introduce' teacher_id=20365 %}" target="_blank" onclick="zhuge.track('金牌讲师', {'页面名称':'首页','专业老师':'葛蓉','专业课程':'Android应用开发'});">查看老师作品</a>
+                            <div class="teach-icon teach-icon-7"><img src="/images/index/teach-icon-7.png" alt="葛蓉-Android 应用开发金牌讲师">
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="font18 textC">葛蓉</h5>
+                    <p class="fonf14 textC color96">Android 应用开发金牌讲师</p>
+                </li>
+                <li>
+                    <div class="inner-box">
+                        <img src="/images/index/gold_teacher_8.png" alt="胡海亮-软件测试专业负责人">
+                        <div class="hover-mask"></div>
+                        <div class="hover-card">
+                            <h4 class="font18 colorff textC marginB10">胡海亮</h4>
+                            <small class="font14 colorff textC marginB10">软件测试专业负责人</small>
+                            <p class="font12 colorff marginB29">曾任Camelot Business Inc 集团高级测试工程师、主要从事银行性能测试，精通系统测试/web测试/性能测试等相关技术及理论体系。</p>
+                            <a href="{% url 'common:teacher_introduce' teacher_id=36413 %}" target="_blank" onclick="zhuge.track('金牌讲师', {'页面名称':'首页','专业老师':'胡海亮','专业课程':'软件测试'});">查看老师作品</a>
+                            <div class="teach-icon teach-icon-8"><img src="/images/index/teach-icon-8.png" alt="胡海亮-软件测试专业负责人">
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="font18 textC">胡海亮</h5>
+                    <p class="fonf14 textC color96">软件测试专业负责人</p>
+                </li>
+            </ul>
+        </div>
+        <ul class="gold-tab textR"></ul>
+    </div>
+    <div class="teacherRecruitJoin">
+        <strong>让我们一起培养更多改变世界的人</strong>
+        <em>咨询电话：028-69759682</em>
+        <a href="{% url 'teacher_recruit_form' %}">申请成为麦子讲师</a>
+    </div>
+</div>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=2055164" charset="utf-8"></script>
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/lib/superSlider/jquery.SuperSlide.2.1.1.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/teacherRecruit.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript">
+        var jiathis_config = {
+            pic:"http://"+window.location.host+"/static/images/teacherRecruitShare.png",
+            title:"麦子学院讲师招募",
+            summary:"将知识变为财富，麦子学院讲师招募计划已开启。了解详情请猛戳此链接。"
+        }
+    </script>
+{% endblock %}

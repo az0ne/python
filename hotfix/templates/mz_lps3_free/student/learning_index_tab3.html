@@ -1,0 +1,93 @@
+<div class="left">
+    <h2 class="score-title font22 color33">项目成绩</h2>
+
+    <div class="pro-score">
+        {% if user_task_info.status == 'DOING' %}
+            <span class="no-task">暂未提交作业</span>
+        {% elif user_task_info.status == "DONE" %}
+            <span class="wait">等待老师打分</span>
+        {% elif user_task_info.status == "PASS" %}
+            <div class="score"><p>获得成绩</p>
+                <span>{{ user_task_info.score }}</span></div>
+        {% endif %}
+    </div>
+    <div class="teacher-remark">
+
+        {% if user_task_info.status == 'PASS' %}
+            <p class="font18 color33">老师评语：</p>
+            {% if has_questionnaire %}
+                <p class="remark-con font14 color66">
+                    {{ user_task_info.remark }}
+                </p>
+            {% else %}
+                <span class="show-remark font14 color5e">查看评语</span>
+            {% endif %}
+
+
+        {% endif %}
+    </div>
+    <h2 class="answer-living font22 color33">项目答疑</h2>
+
+    <div class="class-living answer">试学QQ群内的老师随时准备为您解答任何疑问。</div>
+    <div class="class-living answer" style="display: none;">
+
+        <!--<i class="first"></i>
+
+        <p class="second"><span class="font20 color33">{{ free488_class.last_meeting.week }}
+                                <i class="font20 color33">{{ free488_class.last_meeting.time }}</i></span><span
+                class="font16 color33">{{ free488_class.last_meeting.date }}</span></p>
+        {% if free488_class.last_meeting.status == 0 %}
+            <span class="three font14" countdown="{{ free488_class.last_meeting.countdown }}">倒计时：<i
+                    id="day_show"></i><i id="hour_show"></i><i id="minute_show"></i><i id="second_show"></i></span>
+        {% endif %}-->
+        <!-- tastus-tag in进行中 out已结束 no-start未开始 -->
+
+        <!-- {% if free488_class.last_meeting.status == free488_class.CLASS_MEETING_NOT_STARTED %}
+            <a class="button no-start" href="{{ free488_class.student_last_meeting_url }}"
+               target="_blank">未开始</a>
+        {% elif free488_class.last_meeting.status == free488_class.CLASS_MEETING_ONGOING %}
+            <a class="button in" href="{{ free488_class.student_last_meeting_url }}"
+               target="_blank" onclick="zhuge.track('点击进入班会', {'阶段名称':'项目答疑','按钮位置':'进行中'});">进行中</a>
+        {% else %}
+            {% if free488_class.last_meeting.video_url %}
+                <a class="button in" href="{{ free488_class.last_meeting.video_url }}" target="_blank" onclick="zhuge.track('点击查看录播', {'阶段名称':'项目答疑','按钮位置':'查看录播'});">查看录播</a>
+            {% else %}
+                <a class="button out" href="javascript:void(0);">已结束</a>
+            {% endif %}
+        {% endif %}-->
+    </div>
+    <!--<p class="tips font14 color66">Tips：项目答疑结束的当天，为试学期的最后一天了哦~更完整的学习历程，可加入我们的直通班哦~</p>-->
+</div>
+<div class="right">
+    {% include 'mz_lps3_free/student/learning_index_teacher_banner.html' %}
+    <div class="student-data">
+        <h2 class="font22 color33">优秀学员作品</h2><span class="hover-tips">上传作业后，才可能下载源码哦~</span>
+        <ul class="student-list">
+            {% for work in task_good_works %}
+                <li>
+                    <i>{{ forloop.counter }}</i>
+                    <img src="{{ MEDIA_URL }}{{ work.img_url }}" alt="下载源码">
+
+                    <div class="info">
+                        <p class="font14 color66">{{ work.title }}</p>
+                        {% if user_task_info.status == "DONE" or user_task_info.status == "PASS" %}
+                            <a class="down-source" href="{{ work.code_url }}">下载源码</a>
+                        {% else %}
+                            <a class="down-source not" href="javascript:void(0)">下载源码</a>
+                        {% endif %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<!-- 对老师满意度调查弹窗 -->
+<div class="modal fade YaHei" id="satisfy-examen" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+     aria-hidden="true"></div>
+<!-- 获取问卷的url -->
+<input id="questionnaire_url" type="hidden" value="{% url 'lps3f:student:q' class_id questionnaire_id %}"/>
+<!-- 提交问卷的url -->
+<input id="submit_url" type="hidden" value="{% url 'lps3f:student:sq' class_id questionnaire_id %}"/>
+<!-- 评语 -->
+<input id="user_task_info_remark" type="hidden" value="{% if user_task_info.remark %}{{ user_task_info.remark }}{% endif %}"/>

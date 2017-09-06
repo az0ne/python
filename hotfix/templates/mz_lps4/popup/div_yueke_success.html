@@ -1,0 +1,17 @@
+{% if user.is_authenticated %}
+<div class="modal fade YaHei" id="yueke-success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm" style="width: 472px;">
+        <div class="modal-content">
+			<a class="close"></a>
+			<div class="yueke-box">
+				<h4>
+					<p>恭喜你，已预约成功。</p>
+					<span>课程顾问将在24小时之内联系你！</span>
+				</h4>
+			</div>
+			<a class="know">知道了</a>
+        </div>
+    </div>
+</div>
+{% endif %}

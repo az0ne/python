@@ -1,0 +1,306 @@
+{% extends "mz_common/base.html" %}
+{% block title %} {{ task.name }}- 麦子学院{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/src/feedbackstyle.css"/>
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}mz_lps3/css/style.css"/>
+<style type="text/css">
+    body {background: #f5f5f5;}
+</style>
+{% endblock %}
+{% block csstyle %}usertask{% endblock %}
+{% block container %}
+<div class="container">
+    <div class="new_nav color99 font14">
+        <a href="{% url 'lps3:student_class' class_id %}"><< 返回主任务面板</a>
+    </div>
+    <div class="zyMainLeft" style="padding:30px;">
+        <div class="d-task-progress d-progress-group marginB29">
+            <h1 class="marginB16">
+                {{ task.name }}
+                {% if task.video_guide %}
+                <a onclick="openVideo('{{ task.video_guide }}')">
+                    <img src="{{ STATIC_URL }}mz_lps3/images/gogo2.png"
+                         style="margin-left:2px;">
+                </a>
+                {% endif %}
+            </h1>
+
+            <p class="color99 font14 marginB29">
+                {{ task.desc }}
+            </p>
+
+            <div class="module-group clearfix">
+                <div class="d-progress-status marginB10 font14" id="d-status">
+                    <span class="d-value font22 bold color5e">{{ progress }}%</span>
+                    {% if usertask.status == "DOING" %}
+                        倒计时：<span class="colorf1 " {% if timeleft > 0 %}datat="{{ timeleft }}"{% endif %}>
+                            {% if timeleft <= 0 %}已超时{% endif %}</span>
+                    {% endif %}
+                </div>
+
+                <!-- Progress bar -->
+                <div id="progress_bar" s="{{ progress }}" class="ui-progress-bar ui-container">
+                    <div class="ui-progress" style="width: 0%;"></div>
+                </div>
+                <!-- /Progress bar -->
+            </div>
+        </div>
+        <div class="d-task-progress d-task-group">
+            <h2 class="marginB20">任务路线</h2>
+            {{ html_usertask_item_list }}
+        </div>
+    </div>
+    <div class="zyMainRight">
+        <div class="zyschedule">
+            {% if usertask.status == "DOING" %}
+                {% if is_just_beginning and first_item %}
+                    <a class="textC colorff font18 gostudy bold"
+                       href="{% url 'lps3:student_knowledgeitem' class_id stagetask_id first_item.id %}"
+                            >开始学习</a>
+                {% elif current_item %}
+                    <p class="color99 textC">上次学习到</p>
+                    <p class="color66 textC font14 marginB10">{{ current_item.get_name }}</p>
+                    <a class="textC colorff font18 gostudy bold"
+                       href="{% url 'lps3:student_knowledgeitem' class_id stagetask_id current_item.id %}"
+                            >继续学习</a>
+                {% endif %}
+            {% elif usertask.status == "FAIL" %}
+                <a class="textC colorff font18 gostudy bold"
+                   style="background-color:orange"
+                   href="{% url 'lps3:student_rebuild_task' class_id stagetask_id %}">
+                    未通过,点击重修
+                </a>
+            {% elif usertask.status == "REDOING" %}
+                <p class="textC colorff font18 gostudy bold">正在重修</p>
+            {% elif usertask.status == "DONE" %}
+                <p class="textC colorff font18 gostudy bold">已完成,正在等待老师打分</p>
+            {% elif usertask.status == "PASS" %}
+                <p class="textC colorff font18 gostudy bold">已通过,成绩:{{ usertask.score }}</p>
+            {% endif %}
+        </div>
+        {% if task.gift and usertask.status == "DOING" %}
+            <div class="d-section d-gift marginB20">
+                <div class="d-gift-group">
+                    <div class="fl">
+                        <p>最短完成时间：<span style="color:#ffad0f;">{{ task.excellent_time }}</span>天</p>
+
+                        <p>在最短时间内完成，并获得</p>
+
+                        <p>成绩<span style="color:#ffad0f;">A</span>，可获得精美奖品哟</p>
+                    </div>
+                    <img src="{{ task.gift.image.url }}" alt="" class="fr" style="width: 70px; height: 65px;">
+                </div>
+            </div>
+        {% endif %}
+        <div class="ldFeedback">
+            <a id="feedbackfade">
+                <p>
+                   <strong class="font14 color66">戳这里~~ </strong>
+                    <span class="color99 font12">告诉小麦你的任何问题和意见</span>
+                </p>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="VideoDemo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-content zy_VideoDemo" style="width: 800px;">
+        <a class="close"></a>
+
+        <div style="height: 400px;">
+            <video id="microohvideo" class="video-js vjs-default-skin vjs-big-play-centered"
+                   autoplay="autoplay" controls="controls" preload="none" width="100%" height="100%"
+                   poster="">
+                <source src="" type='video/mp4'/>
+            </video>
+        </div>
+
+    </div>
+</div>
+<!--用户反馈弹出层-->
+{% include 'mz_lps3/feedback_box.html' %}
+<!-- 班会消息弹窗 -->
+<div class="modal fade" id="live-start-0" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+</div>
+<div class="modal fade" id="live-start-1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+</div>
+{% if task_is_guide and is_just_beginning %}
+<div class="myguide">
+    <div class="myguide_top" style="top:0; left:0;"></div>
+    <div class="myguide_left" style="left:0;"></div>
+    <div class="myguide_right"></div>
+    <div class="myguide_bottom" style="height:67px;"></div>
+    <div class="myguide_left2" style="left:0;"></div>
+    <div class="myguide_right2"></div>
+    <div class="myguide_bottom2"></div>
+    <div class="zline"></div>
+    <img src="{{ STATIC_URL }}mz_lps3/images/font101.png" class="font101">
+    <img src="{{ STATIC_URL }}mz_lps3/images/font102.png" class="font102">
+    <img src="{{ STATIC_URL }}mz_lps3/images/font103.png" class="font103">
+</div>
+<script type="text/javascript">
+    $(function(){
+        //-------------新手引导--------------
+        $(".myguide").unbind().click(function(){
+            $(this).remove();
+        });
+        var modulegroup=$(".module-group");
+        var offset=modulegroup.offset();
+        var dtasklist=$(".d-task-list");
+        var offset2=$(".d-task-list").offset();
+        var padding=10;
+        var top1=offset.top-padding;
+        $(".myguide").height($("body").height());
+        $(".myguide_top").css({"height":top1+"px"});
+        $(".myguide_left").css({"top":top1+"px","height":modulegroup.height()+padding*2+"px","width":offset.left-padding+"px"});
+        $(".myguide_right").css({"top":top1+"px","height":modulegroup.height()+padding*2+"px","width":($(window).width()-(offset.left+modulegroup.width())-padding)+"px","left":(offset.left+modulegroup.width()+padding)+"px"});
+        $(".myguide_bottom").css({"top":(top1+modulegroup.height()+padding*2)+"px"});
+        $(".myguide_left2").css({"top":offset.top+modulegroup.height()+padding+$(".myguide_bottom").height()+"px","height":dtasklist.height()+"px","width":offset2.left-padding+"px"});
+        $(".myguide_right2").css({"top":offset.top+modulegroup.height()+padding+$(".myguide_bottom").height()+"px","height":dtasklist.height()+"px","width":($(window).width()-(offset2.left+dtasklist.width())-padding)+"px","left":(offset2.left+dtasklist.width()+padding)+"px"});
+        $(".myguide_bottom2").css({"top":parseInt($(".myguide_right2").css("top"),10)+dtasklist.height()+"px","height":$("body").height()-(parseInt($(".myguide_right2").css("top"),10)+dtasklist.height())+"px"});
+        var lastN=$(".d-task-list>li.last");
+        var offset3=lastN.offset();
+        $(".zline").css({"left":offset3.left-padding+"px","width":lastN.width()+padding*2+"px","top":offset3.top-5+"px"})
+        $(".myguide>.font101").css({"left":offset.left+40+"px","top":offset.top-70+"px"});
+        $(".myguide>.font102").css({"left":offset.left+40+"px","top":offset2.top-50+"px"});
+        $(".myguide>.font103").css({"left":offset.left+40+"px","top":offset3.top+70+"px"});
+        $(".myguide").show();
+         //-------------新手引导END--------------
+    })
+</script>
+{% endif %}
+{% endblock %}
+
+{% block footer%}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block custom_script %}
+<link rel="stylesheet" href="{{ STATIC_URL }}mz_lps3/css/video-js.css">
+<script type="text/javascript" src="{{ STATIC_URL }}mz_lps3/js/video.js"></script>
+<script type="text/javascript">videojs.options.flash.swf = "/static/js/videojs/video-js.swf"</script>
+<script type="text/javascript" src="{{ STATIC_URL }}mz_lps3/js/d-progress-bar.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}mz_lps3/js/student_message.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/js.feedbackBox.js"></script>
+<script type="text/javascript">
+    function openVideo() {
+        $("#microohvideo").children().attr("src", "{{ task.video_guide }}")
+        $('#VideoDemo').modal('show');
+
+    }
+    var ts = 0, cb, objb;
+    function timer(callback, obj) {
+        (callback) && (cb = callback)
+        var nts = ts;
+        var dd = parseInt(nts / 60 / 60 / 24, 10);
+        var hh = parseInt(nts / 60 / 60 % 24, 10);
+        var mm = parseInt(nts / 60 % 60, 10);
+        var ss = parseInt(nts % 60, 10);
+        dd = checkTime(dd);
+        hh = checkTime(hh);
+        mm = checkTime(mm);
+        ss = checkTime(ss);
+        (obj) && (objb = obj);
+        objb.html(dd + '天' + hh + '时' + mm + '分' + ss + '秒');
+        ts -= 1;
+        if (ts < 0) {
+            if (cb) {
+                cb.call();
+            }
+            ;
+            return;
+        }
+        setTimeout(timer, 1000);
+    }
+    function checkTime(i) {
+        if (i < 10) {
+            i = "0" + i;
+        }
+        return i;
+    }
+    //倒计时回调
+    function timecallback() {
+
+    }
+    $(function () {
+        var oProgress = $('#progress_bar .ui-progress');
+        oProgress.css('width', '0%');
+        oProgress.animateProgress(parseInt(oProgress.parent().attr("s"), 10), function () {
+        });
+        $(".d-task-list>li>div").unbind().click(function () {
+            if ($(this).parent().hasClass("activeH")) {
+                $(this).parent().removeClass("activeH");
+            } else {
+                $(this).parent().addClass("activeH");
+            }
+        });
+
+        if ($("#d-status .colorfa0").attr("datat")) {
+            ts = parseInt($("#d-status .colorfa0").attr("datat"), 10);
+            timer(timecallback, $("#d-status .colorfa0"));
+        }
+
+        //video
+        var player = videojs("microohvideo", {
+            controls: true,
+            playbackRates: [1, 1.25, 1.5, 2]
+        });
+
+        player.pause();
+        $(".zy_VideoDemo .close").unbind().click(function () {
+            player.pause();
+            $('#VideoDemo').modal('hide');
+        });
+        $('#VideoDemo').on('hide.bs.modal', function () {
+            player.pause();
+        });
+        $(".d-task-list .zyleve1 li a,.d-task-list > li.last a").unbind().click(function () {
+            if ($(this).attr("href")) {
+
+            }
+            else {
+                var num = $(".zyunfinish").length;
+                if (num > 0) {
+                    var li = $(".zyunfinish").eq(num - 1).parent().parent();
+                    if(!li.hasClass("error")) {
+                        li.addClass("error").children("a").append('<span class="colorf10 font12 marginR10 wei">未完成</span>');
+                    }
+                    if (li.parent().css("display") == "none") {
+                        li.parent().prev().trigger("click")
+                    }
+
+                    $('html,body').stop().animate({scrollTop: li.offset().top - 200}, 400);
+
+                }
+            }
+        });
+        // 班会倒计时消息
+        {% if cstudent.is_active %}
+        class_meeting_message({{student_id}}, {{class_id}});
+        {% endif %}
+    });
+</script>
+<!-- 诸葛io统计 -->
+<script type="text/javascript">
+    $(function(){
+        // 进入LPS列表页用户
+        zhuge.track("LPS列表页用户", {
+            "事件位置": "LPS任务列表页"
+        });
+
+        // 继续学习点击
+        $('.zyMainRight>.zyschedule>a').click(function () {
+            zhuge.track("继续学习点击", {
+                "事件位置": "LPS任务列表页"
+            });
+        });
+
+        // 知识点项点击
+        $('.d-task-list .zyleve1 li').click(function(){
+            zhuge.track("知识点项点击", {
+                "事件位置": "LPS任务列表页"
+            });
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "mz_backend/base.html" %}
+{% block title %}添加直播室{% endblock %}
+{% block container %}
+<form action="{% url 'backend:update_live_room' %}" method="post">
+    {% csrf_token %}
+    <table width="500px">
+        <tr>
+            <td colspan="2">
+                <h3>请填写正确的班级编号！</h3>
+            </td>
+        </tr>
+        <tr>
+            <td>直播室ID：{{ request.GET.live_id }}<input type="hidden" value="{{ request.GET.live_id }}" name="live_id"/></td>
+            <td>原来对应班级编号：{{ request.GET.coding }}</td>
+        </tr>
+        <tr>
+            <td>新对应的班级编号：</td>
+            <td><input type="text" name="coding" class="input-text lh25" size="30" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="修改直播室" class="ext_btn ext_btn_submit"></td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

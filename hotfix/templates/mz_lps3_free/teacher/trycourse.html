@@ -1,0 +1,138 @@
+{% extends 'mz_usercenter/usercenter_base.html' %}
+{% block usercenter_right_panel %}
+    <link rel="stylesheet" type="text/css" href="/static/mz_lps3/css/jquery.datetimepicker.css">
+    <div class="personalCmainR tryTeacher font14 color33">
+        <div class="tryTeacherTitle font22"><span role="button" class="addBtn"><em>+</em>新增试学班</span><strong>免费试学班级</strong>
+        </div>
+        {% if free_class_dict %}
+            <div class="tryTeacherCourseList">
+                {% for id,free_class in free_class_dict.items %}
+                    <div class="item">
+                        <p>
+                            <strong>{{ free_class.class_name }}</strong><em>（{{ free_class.class_status }}）</em><span>{{ free_class.career_course_name }}</span>
+                        </p>
+                        <ul>
+                            <li>
+                                <span>{{ free_class.class_meeting.0.content }}<em>{{ free_class.class_meeting.0.d_week }}（{{ free_class.class_meeting.0.d_date }}） {{ free_class.class_meeting.0.d_time }}</em></span>
+                                <a {% if free_class.class_meeting.0.class_meeting_status == '未开始' %} class="notStart" href="{{ free_class.class_meeting.0.join_url }}"{% endif %}{% if free_class.class_meeting.0.class_meeting_status == '进行中' %}class="meeting" href="{{ free_class.class_meeting.0.join_url }}"{% endif %}{% if free_class.class_meeting.0.class_meeting_status == '已结束' %} class="completed" href="javascript:void(0)"{% endif %} target="_blank"
+                                   >{{ free_class.class_meeting.0.class_meeting_status }}</a>
+                            </li>
+                            <li>
+                                <span>{{ free_class.class_meeting.1.content }}<em>{{ free_class.class_meeting.1.d_week }}（{{ free_class.class_meeting.1.d_date }}） {{ free_class.class_meeting.1.d_time }}</em></span>
+                                <a {% if free_class.class_meeting.1.class_meeting_status == '未开始' %} class="notStart" href="{{ free_class.class_meeting.1.join_url }}"{% endif %}{% if free_class.class_meeting.1.class_meeting_status == '进行中' %}class="meeting" href="{{ free_class.class_meeting.1.join_url }}"{% endif %}{% if free_class.class_meeting.1.class_meeting_status == '已结束' %} class="completed" href="javascript:void(0)"{% endif %} target="_blank"
+                                   >{{ free_class.class_meeting.1.class_meeting_status }}</a>
+                            </li>
+                        </ul>
+                        {% if free_class.class_status != '未开始' %}
+                            <div class="meetInfo">
+                                {% if  free_class.class_status == '进行中'%}
+                                <span><em></em>新增作业 <strong>{{ free_class.new_task_count }}</strong></span>
+                                {% endif %}
+                                <a href="{% url 'lps3f:teacher:class_index' id %}">进入管理面板</a>
+                            </div>
+                        {% endif %}
+
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="noTryLearn">
+                <p class="marginB29"><img src="{{ STATIC_URL }}images/noTryLearn.png"/></p>
+                <p class="font22 color33 marginB10">试学班暂时空空</p>
+            </div>
+        {% endif %}
+        {% include 'mz_common/paginater.html' %}
+    </div>
+{% endblock %}
+{% block usercenter_extend_div %}
+    <!--新建试学班Modal-->
+    <div class="modal tryTeacherModal fade" id="tryTeacherNewClassModal" tabindex="-1" role="dialog" aria-labelledby="ModalTitle">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="ModalTitle">新建试学班</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="{% url 'home:teacher:free_classes' %}" method="post" id="createFreeClassForms">
+                        <div class="tryTeacherNewClassAdd">
+                            <div class="form-group form-inline">
+                                <label class="control-label">专业</label>
+                                <select class="form-control" name="career_course" id="tryTeacherNewClassProfess">
+                                    <option value="0">请选择专业</option>
+                                    {% for career_course in career_course_list %}
+                                        <option value="{{ career_course.id }}">{{ career_course.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="first">
+                                <p class="marginB20"><strong>首次班会</strong><span class="error-tips"><em>*</em>同一时间点已有试学班，请重新选择日期或时间</span></p>
+                                <div class="form-group form-inline">
+                                    <label class="control-label">日期</label>
+                                    <input type="text" class="form-control datetimepickerDate" id="tryTeacherFirstDate" placeholder="年/月/日" name="first_date"/>
+                                </div>
+                                <div class="form-group form-inline">
+                                    <label class="control-label">时间</label>
+                                    <input type="text" class="form-control datetimepickerTime"  id="tryTeacherFirstTime" name="first_time" value="20:00"/>
+                                </div>
+                            </div>
+                            <div class="answer">
+                                <strong class="marginB20">答疑班会</strong>
+                                <div class="dates marginB10">
+                                    <label class="control-label">日期</label>
+                                    <span id="tryTeacherAnswerDate">2016/06/16</span>
+                                    <input hidden="hidden" name="answer_date" id="tryTeacherAnswerDateHidden" value="2016/06/16"/>
+                                </div>
+                                <div class="form-group form-inline">
+                                    <label class="control-label">时间</label>
+                                    <input type="text" class="form-control datetimepickerTime" id="tryTeacherAnswerTime" value="20:00" name="answer_time"/>
+                                </div>
+                            </div>
+                            <button type="button" class="btn create" hrf="{% url 'home:teacher:ajax_check_free_class' %}">创建</button>
+                        </div>
+                        <div class="tryTeacherNewClassResult">
+                            <div class="result marginB20">
+                                <p class="title"><strong>05.26-05.28（3天）</strong><span>iOS应用开发</span></p>
+                                <ul>
+                                    <li class="first"><span>首次班会</span><strong>周五（05.28）<em>18:00</em></strong></li>
+                                    <li class="answer"><span>答疑班会</span><strong>周五（05.28）<em>18:00</em></strong></li>
+                                </ul>
+                            </div>
+                            <button type="button" class="btn back">返回修改</button>
+                            <button type="button" class="btn confirm">确认创建</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal tryTeacherErrorBox fade" id="tryTeacherErrorBox" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+                <strong>创建失败</strong>
+                <span class="retry">请重试</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block footer %}
+    {% include 'footer/footer_1.html' %}
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/lib/layer/layer.js"></script>
+<script type="text/javascript" src="/2016/lib/jquery/jquery.datetimepicker.js"></script>
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/trycourseteacher.js?v={{ time_stamp }}"></script>
+{% endblock %}
+{% block 53kf %}
+    <script>
+        (function () {
+            var _53code = document.createElement("script");
+            _53code.src = "//tb.53kf.com/code/code/10111642/3";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(_53code, s);
+        })();
+    </script>
+{% endblock %}

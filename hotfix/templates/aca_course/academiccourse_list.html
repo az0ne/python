@@ -1,0 +1,73 @@
+{% extends "mz_common/base.html" %}
+
+{% block container %}
+<!--  高校介绍  -->
+<div class="colleges-wrap colleges-info colleges-info-top">
+    <div class="container">
+        <div class="row info-about">
+            <div class="col-md-3 col-lg-3">
+                <div class="img"><img src="{{ MEDIA_URL }}{{school.big_image}}" alt="{{ school.name }}"/></div>
+            </div>
+            <div class="col-md-9 col-lg-9">
+                <div class="info">
+                    <h3>{{ school.name }}</h3>
+                    <p>{{ school.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--  专业课程  -->
+<div class="colleges-wrap colleges-info">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                <div class="colleges-info-col-l">
+                    <div class="uc-h1">专业课程</div>
+                    <ul class="course-list">
+                        {% for course in acourse %}
+                        <li>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-3">
+                                    <div class="pic" style="background-color:{{ course.course_color }}"><i></i><img src="{{ MEDIA_URL }}{{ course.image}}" alt="{{ course.name }}"/></div>
+                                </div>
+                                <div class="col-xs-9 col-md-6">
+                                    <div class="text">
+                                        <div>
+                                            <h2>{{ course.name }}</h2>
+                                            <span>{{ course.course_type.name }}</span>
+                                        </div>
+                                        <p class="desc">{{ course.description }}</p>
+                                        <p class="else"><img src="/static/images/colleges/pic-18.png" alt=""/>{{ course.student_count }}人正在学习</p>
+                                    </div>
+                                </div>
+                                <div class="col-xs-3 col-md-3">
+                                    <div class="btn-box"><i></i><a class="btn" href="/academic/{{ university_id }}/{{ course.id }}/studentverify">立即学习</a></div>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <div class="colleges-info-col-r">
+                    <div class="uc-h1">院校通知</div>
+                    {% if msgs %}
+                    <ul class="notice-list">
+                        {% for msg in msgs %}
+                        <li><a href="{{ msg.url }}">{% if msg.title|length > 17 %}{{msg.title|slice:"16"}}...{% else %}{{ msg.title }}{% endif %}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <div class="notice-list-more"><a href="##">查看更多</a></div>
+                    {% else %}
+                    <div class="school-no-msg"></div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

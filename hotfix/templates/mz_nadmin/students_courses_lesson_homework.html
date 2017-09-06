@@ -1,0 +1,55 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/student_breadcrumb.html" %}
+
+<div class="tabbable">
+{% include "mz_nadmin/parts/student_course_tabs.html" %}
+
+<div class="tab-content">
+<div class="tab-pane active">
+
+{% include "mz_nadmin/modules/msgs.html" %}
+
+{% if lesson_homeworks.end_index >= 1 %}
+<div class="table-responsive">
+<table class="table table-bordered table-condensed table-striped table-hover">
+    <thead>
+        <th class="col-md-6">章节名</th>
+        <th class="col-md-6">完成状态</th>
+    </thead>
+    <tbody>
+        {% for lesson_homework in lesson_homeworks %}
+        <tr>
+            <td>
+                {{ lesson_homework.lesson.name }}
+            </td>
+            <td>
+                {% if lesson_homework.upload_file %}
+                    已完成
+                {% else %}
+                    未完成
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% include "mz_nadmin/modules/page_info.html" with items=lesson_homeworks %}
+
+{% else %}
+<p class="text-muted">
+    <small>没有任何随堂作业</small>
+</p>
+{% endif %}
+
+</div>
+
+{% endblock %}
+
+
+
+

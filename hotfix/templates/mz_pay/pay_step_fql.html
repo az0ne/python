@@ -1,0 +1,199 @@
+{% extends "mz_common/base.html" %}
+{% block title %}企业直通班报名付款 - 麦子学院{% endblock %}
+{% block custom_css %}
+<link href="/static/lps2/css/abc?201607251458" rel="stylesheet" />
+<link href="/static/lps2/css/panel.css" rel="stylesheet"/>
+<link href="/css/src/tryStudnets.css" rel="stylesheet"/>
+{% endblock %}
+{% block container %}
+<div class="p-main">
+    <div class="container">
+        <div class="pay-lesson-header marginB50"><h1 class="font24 color32">报名专业：{{ career_course.name }}</h1><h2 class="font20 color99">报名班级：{{ passresponse_data.class.name }}({{ passresponse_data.class.coding }})</h2></div>
+        <div class="pay-teacher-desc marginB50 clearfix">
+            <div class="teacher-icon fl"><img src="{{ MEDIA_URL }}{{ passresponse_data.teacher.avatar_url }}"></div>
+            <div class="teacher-info fl">
+                <h2 class="font20 marginB20"><span>{{ passresponse_data.teacher.nick_name }}</span>{{ passresponse_data.teacher.position }}</h2>
+                <p class="font14 color33 marginB20"><span>教学特点：</span><span>{{ passresponse_data.teacher.teach_feature|slice:"60"|default:"" }}</span></p>
+                <p class="font14 color33 marginB10"><span>个人简介：</span><span>{{ passresponse_data.teacher.description }}</span></p>
+            </div>
+        </div>
+        {% if passresponse_data.balance_pay != 0%}
+        <div class="pay-choice">
+            <!-- 全款支付方式开始 -->
+                {% if career_course.enable_free_488 and passresponse_data.buybtn_status == '0' %}
+                    <div class="employmentPreference marginB38">
+                    <span class="pay-label font18 color8e">学习目的：</span>
+                    <em class="i-group font18 checked">就业</em>
+                    <em class="i-group font18 interest">兴趣学习<br />（无需就业服务）</em>
+                    <span class="tips"><i></i><em>“保就业”，是麦子学院针对{{ passresponse_data.all_pay }}全款学员推出的承诺就业服务若选择"无需就业服务"，学习价格可享受立减{{ passresponse_data.jobless_discounted_price }}</em></span>
+        	        </div>
+                {%endif %}
+
+            <!-- 全款支付方式结束 -->
+
+            <!-- 申请分期支付方式开始 -->
+                <div class="price-box marginB29">
+                    <span class="pay-label font18 color8e">学费分期：</span>
+
+                    {% if passresponse_data.buybtn_status == '0' %}
+                        <em class="i-group all_pay font18 checked" pay_type="all_pay">首付款 : &yen;
+                        {{ passresponse_data.first_pay }}
+                        </em>
+                        {% if old_invit_new_status %}
+                        <span class="min_300 font16 color5d">已扣减红包200元</span>
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+                <div class="pay-type font18">
+                    <span class="pay-label color8e">支付方式：</span>
+                    <span class="pay-type-list">
+{#                    <em class="item meme font14" num="1"><img src="/static/images/meme_icon.png"/>分期</em>#}
+                    <em class="item font14 item-active" num="7"><img src="/static/images/fql_logo.png"/></em>
+                    </span>
+                </div>
+                <div class="end-money-box">
+                    <input id="submit_order" type="button" class="btn font18" value="申请分期"/>
+                </div>
+            <!-- 申请分期支付方式结束 -->
+        </div>
+        {% else %}
+        <!--新增-->
+        <div class="pay-choice">
+            <p class="textC font16 color33" style="background: #fff9df; width: 100%; padding: 20px 0;">正在为您生成订单信息，请稍后重试！如有疑问请与教务联系。</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+<!-- 点击支付成功|失败开始 -->
+<div class="modal fade YaHei" id="third-pay-tips" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog third-pay-innerbox">
+        <div class="modal-content">
+            <div class="third-pay-close">
+                <div class="index-pay-close"><img src="/static/images/third_pay_close.png"/></div>
+                </div>
+            <div class="third-pay-info">
+                <p class="font16 color33 marginB10">请您在新打开的第三方支付页面上完成支付</p>
+                <p class="font14 color66 marginB10">客服电话：<span>400-8628862</span></p>
+                <p class="font12 color99">支付完成前请不要关闭此窗口</p>
+                <input class="btn third-pay-success" type="button" id="pay-success" value="支付成功"/>
+                <input class="btn third-pay-fail" type="button" id="pay-fail" value="支付失败"/>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 点击支付成功|失败结束 -->
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block custom_script %}
+<script type="text/javascript">
+    $(function(){
+        // 点击支付成功|失败开始
+        //$('#third-pay-tips').modal('show');
+        // 项选择
+        function selectIten(opt){
+            var item = $(opt.dom),
+                itemSibling = opt.items ? $(opt.items) : item.siblings(),
+                actClass = opt.activeClass != null ? opt.activeClass : 'item-active';
+
+            if(item.hasClass(actClass)){
+                item.removeClass( actClass );
+            }else{
+                if(!opt.isMultiple){
+                    itemSibling.removeClass( actClass );
+                }
+                item.addClass( actClass );
+            }
+        };
+
+        //选择学习目的
+         $('.employmentPreference .i-group').click(function(){
+            $(this).addClass('checked').siblings().removeClass('checked');
+             if($(this).index() == 1){
+                 $(".pay-choice .all_pay").attr("pay_type",'all_pay');
+             }else{
+                 $(".pay-choice .all_pay").attr("pay_type",'jobless_all_pay');
+             }
+            return false;
+        });
+        $(".employmentPreference .tips i").hover(function(){
+            $(".employmentPreference .tips em").stop().fadeIn(200);
+        },function(){
+            $(".employmentPreference .tips em").stop().fadeOut(200);
+        });
+
+        // 选择金额
+        $('.price-box .i-group').click(function(){
+            $(this).addClass('checked').siblings().removeClass('checked');
+            if($(this).attr('pay_type')=='all_pay') {
+                $('#old_pay_amount,.min_300').show();
+                $('#pay_amount').html('报名金额：' + $(this).html().substr(6,10) + '元');
+            }else if($(this).attr('pay_type')=='first_pay'){
+                $('#old_pay_amount,.min_300').hide();
+                $('#pay_amount').html('报名金额：' + $(this).html().substr(6,9) + '元');
+            }
+            return false;
+        });
+
+        //选择支付方式
+        $(".pay-type-list em").live('click',function(){
+            $(this).addClass("item-active").siblings().removeClass("item-active");
+        });
+
+        $('#submit_order').click(function(){
+
+                gopay();
+
+
+        });
+    });
+
+
+function gopay(){
+    cur_career_id = '{{ career_course.id }}';
+    choose_pay_type = 1;
+    if($('.price-box .checked').attr('pay_type') == 'jobless_all_pay'){
+        choose_pay_type = 7;
+    }
+    choose_class_coding = '{{ passresponse_data.class.coding }}';
+    var service_provider=$(".pay-type-list").children(".item-active").attr("num");
+    phone = 0;
+    if(cur_career_id == undefined || choose_pay_type == undefined || choose_class_coding == undefined || service_provider ==undefined){
+        alert('支付信息不完整，不能支付');
+        return;
+    }
+    if(service_provider==5){
+        phone = $("#zy_user_mobile_tel").val();
+        window.location.href = "/pay/go/"+cur_career_id+"/"+choose_pay_type+"/"+choose_class_coding+"/"+service_provider+"/"+phone
+    }else{
+        window.open("/pay/go/"+cur_career_id+"/"+choose_pay_type+"/"+choose_class_coding+"/"+service_provider+"/"+phone,'_blank');
+        $('#third-pay-tips').modal('show');
+    }
+}
+
+$('#pay-success').click(function(){
+    var lps_version='{{ passresponse_data.lps_version }}';
+    if(lps_version=='3.0'){
+        window.location.href = "/lps3/student/class/{{ passresponse_data.class.id }}"
+    }else{
+        window.location.href = "/lps2/learning/plan/{{ passresponse_data.career_id }}"
+    }
+});
+
+
+$('#pay-fail').click(function(){
+    window.location.reload();
+});
+
+
+$('.third-pay-close img').on('click',function(){
+    $('#third-pay-tips').modal('hide');
+});
+
+
+</script>
+{% endblock %}

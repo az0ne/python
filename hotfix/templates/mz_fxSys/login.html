@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>麦子助学金-登陆</title>
+    <link href="/2016/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/fx_sys.css">
+</head>
+<body>
+<div class="container">
+    <a href="/" target="_blank">
+        <img src="/images/index/logo_greenx2.png" alt="logo" class="logo">
+    </a>
+    <div class="content">
+        <img src="/images/fxsys/fxsys_bg.png">
+        <div class="login">
+            <form class="form required-validate" action="{% url 'fxsys:login' %}" method="post" id="login-form">
+                <label class="login_lbl">用户登录</label>
+                <div class="form-group">
+                    <input type="text" name="username" class="username" placeholder="请输入手机号" value="{{ username }}">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" class="password" placeholder="请输入密码">
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="remember" class="remember">
+                    <label>记住我</label>
+                </div>
+                <p class="errormsg text-danger">{{ error }}</p>
+                <div class="form-group">
+                    <button type="submit" name="submit" id="login" class="btn btn-submit">登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/2016/lib/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/2016/lib/jquery/jquery.validate.js"></script>
+<script type="text/javascript" src="/2016/lib/jquery/jquery.cookie.min.js"></script>
+<script type="text/javascript">
+    var remember = $('.remember'), username = $('.username'), pwd = $('.password');
+    $(function () {
+        // 手机号码验证
+        jQuery.validator.addMethod("isMobile", function (value, element) {
+            var length = value.length;
+            var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;
+            return this.optional(element) || (length == 11 && mobile.test(value));
+        }, "请输入正确的手机号码！");
+        $('#login-form').validate({
+            rules: {
+                username: {
+                    required: true,
+                    isMobile: true
+                },
+                password: {
+                    required: true,
+                    rangelength: [6, 16]
+                }
+            },
+            messages: {
+                username: {
+                    required: '手机号不能为空！'
+                },
+                password: {
+                    required: '密码不能为空！',
+                    rangelength: '密码长度不合法，请输入6-16位字符！'
+                }
+            }
+        });
+        // 获取cookie
+{#         if ($.cookie('rmbUser')) {#}
+{#            remember.attr('checked', $.cookie('rmbUser'));#}
+{#            username.val($.cookie('uname'));#}
+{#            pwd.val($.cookie('pwd'));#}
+{#        }#}
+    });
+    // 记住账号
+{#    function remember_user() {#}
+{#        console.log(remember.is(':checked'));#}
+{#        if (remember.is(':checked')) {#}
+{#            console.log(username.val(),pwd.val());#}
+{#            $.cookie('rmbUser', 'true', {expires: 7});#}
+{#            $.cookie('uname', username.val(), {expires: 7});#}
+{#            $.cookie('pwd', pwd.val(), {expires: 7});#}
+{#        }#}
+{#        else {#}
+{#            $.cookie('rmbUser', 'false', {expires: -1});#}
+{#            $.cookie('uname', '', {expires: -1});#}
+{#            $.cookie('pwd', '', {expires: -1});#}
+{#        }#}
+{#    };#}
+
+{#    $('#login').off('click').on('click', function () {#}
+{#        remember_user();#}
+{#    });#}
+
+</script>
+</html>

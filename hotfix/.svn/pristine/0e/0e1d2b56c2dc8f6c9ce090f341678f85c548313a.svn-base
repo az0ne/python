@@ -1,0 +1,12 @@
+[program:microoh]
+command=/home/microoh/bin/guincorn blog.wsgi:application --bind 127.0.0.1:8000 --workers 4
+directory=/home/
+process_num=%(program_num)s_%(process_num)d
+umask=022
+startsecs=0
+stopwaitsecs=0
+redirect_stderr=true
+stdout_logfile=/home/logs/qfscu/supervisor_%(process_num)02d.log
+numprocs=1
+numprocs_start=0
+

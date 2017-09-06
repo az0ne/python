@@ -1,0 +1,35 @@
+{# 职业课程 编辑 tabs #}
+
+<ul class="nav nav-tabs nav-append-content">
+    {% if career_course %}
+
+    <li {% if tabs_active == "info" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:career_courses_edit' career_course.id %}">基本信息</a>
+    </li>
+    <li {% if tabs_active == "stages" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:stages' career_course.id %}">阶段管理</a>
+    </li>
+    <li {% if tabs_active == "pay" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:career_courses_edit_pay' career_course.id %}">支付模块</a>
+    </li>
+
+    {% else %}
+
+    {# 新建的情况下 #}
+    <li {% if tabs_active == "info" %}class="active"{% endif %}>
+        <a href="{% url 'nadmin:career_courses_create' %}">基本信息</a>
+    </li>
+    <li class="disabled">
+        <a href="javascript:void(0);">
+            阶段管理
+        </a>
+    </li>
+    <li class="disabled">
+        <a href="javascript:void(0);">支付模块</a>
+    </li>
+
+    {% endif %}
+</ul>
+
+
+

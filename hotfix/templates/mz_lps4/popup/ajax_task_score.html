@@ -1,0 +1,31 @@
+{% load my_filter %}
+<a class="zy_newclose"></a>
+<img src="{{ STATIC_URL }}mz_lps3/images/zy_mysuccess.png" class="zy_mysuccess_topI" alt="{{ task_name | cutStrNN:30}}">
+{% if passed %}
+<p class="font22 color33">恭喜你！</p>
+<p class="font16 color66">你提交的作业 <span class="color1b">{{ task_name | cutStrNN:30}}</span></p>
+<p class="font16 color66 marginB20">已通过！</p>
+{% else %}
+<p class="font22 color33">很遗憾</p>
+<p class="font16 color66">你提交的作业 <span class="color1b">{{ task_name | cutStrNN:30}}</span></p>
+<p class="font16 color66 marginB20">未通过</p>
+{% endif %}
+<div class="zy_mysuccess_scorers textC">
+	<div>
+	<p class="font14 color66" style="padding-top:10px;">获得成绩</p>
+	<p class="font30 color5e">{{ task_score }}</p>
+    </div>
+    {% if passed and time_excellent and gift %}
+    <div>
+    <p class="font14 color66" style="padding-top:10px; margin-bottom:8px;">获得额外礼物</p>
+    <p><img src="{{ MEDIA_URL }}{{ gift.image }}" style="width:30px; height:30px;"></p>
+    </div>
+    {% endif %}
+</div>
+<div class="zy_mytask_foot textC">
+    {% if passed %}
+    <a class="bold font14 colorff a2 go-on-study">继续学习</a>
+    {% else %}
+    <a class="bold font14 colorff a2 scf_newclose" rescore="{{ stage_task_id }}">重新学习</a>
+    {% endif %}
+</div>

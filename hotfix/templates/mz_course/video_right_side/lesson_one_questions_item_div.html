@@ -1,0 +1,57 @@
+{% load date_convert_tag %}
+{% if last_id == 0 %}
+    <div class="question-content">
+        <input class="last_id" type="hidden" value="{{ q.id }}"/>
+        <input class="answer_user_id" type="hidden" value="{{ q.user_id }}"/>
+        <input class="answer_nick_name" type="hidden" value="{{ q.nick_name }}"/>
+
+        <h2 class="questions-top">
+            {% if q.user_id == user.id %}
+                <a href="{% url 'home:index' %}" target="_blank" class="user-icon">
+            {% else %}
+                <a href="{% url 'u:index' q.user_id %}" target="_blank" class="user-icon">
+            {% endif %}
+            <img src="{{ MEDIA_URL }}{{ q.head }}"/>
+            {% if q.group_name == 'student' %}<i></i>{% endif %}
+            </a>
+            {% if q.user_id == user.id %}
+                <a href="{% url 'home:index' %}" target="_blank" class="nike-name">{{ q.nick_name }}</a>
+            {% else %}
+                <a href="{% url 'u:index' q.user_id %}" target="_blank" class="nike-name">{{ q.nick_name }}</a>
+            {% endif %}
+        </h2>
+
+        <p class="question-title">{{ q.comment }}</p>
+        {% if q.materials %}
+            <div class="questions-img">
+                {% for real_m, m in q.materials %}
+                    <img _src="{{ MEDIA_URL }}{{ real_m }}" src="{{ MEDIA_URL }}{{ m }}"/>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        {% if q.object_content %}
+            <p class="question-current">提问于
+                <span>{{ q.object_content }}</span>
+                <a class="reply-btn">回复</a>
+            </p>
+        {% endif %}
+
+        <div class="questions-bottom">
+            <span class="good{% if q.is_praise %} jia-good{% endif %}" data-discuss-id="{{ q.id }}"><i></i><small>{{ q.user_praise_count }}</small></span>
+
+            <div class="share">
+                <span>分享</span>
+
+                <div class="jiathis_style">
+                    <a class="jiathis_button_weixin"></a>
+                    <a class="jiathis_button_cqq"></a>
+                    <a class="jiathis_button_tsina"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
+<div class="question-lists">
+    {% include 'mz_course/video_right_side/lesson_one_questions_answer_div.html' %}
+</div>

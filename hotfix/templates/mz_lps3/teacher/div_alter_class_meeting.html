@@ -1,0 +1,37 @@
+ <form id="alter_classmeeting_info" class="modal-dialog modal-sm modal-content zy_myClassmeeting" method="post" action="{% url 'lps3:alter_classmeeting' classmeeting.id%}" autocomplete="off">
+    <a class="zy_newclose"></a>
+
+    <p class="color5e font18 pt">修改班会时间</p>
+
+    <div class="zy_myClassmeeting_div">
+        <table>
+            <tr>
+                <td style="width:84px;">班会主题<span class="colorf10">*</span></td>
+                <td><input name="subject" type="text" class="zy_mypersonal_txt zy_mypersonal_txt0" placeholder="二十字以内" maxlength="20" value="{{ classmeeting.content }}"></td>
+            </tr>
+            <tr>
+                <td>日期<span class="colorf10">*</span></td>
+                <td><input name="date" type="text" class="zy_mypersonal_txt datetimepicker2 zy_mypersonal_txt1" placeholder="年/月/日" value="{{ classmeeting.d_date }}"></td>
+            </tr>
+            <tr>
+                <td>时间<span class="colorf10">*</span></td>
+                <td><input name="time" type="text" class="zy_mypersonal_txt datetimepicker1 zy_mypersonal_txt2" placeholder="00:00"
+                           max="10" value="{{ classmeeting.d_time }}"></td>
+            </tr>
+            <tr>
+                <td>参加班级<span class="colorf10">*</span></td>
+                <td class="joinClass">
+                    <div class="joinClass_div">
+                        {% for class_coding in class_coding_lst %}
+                        <span class="inputgrey" title="{{ class_coding }}"><i>{{ class_coding }}</i></span>
+                        {% endfor %}
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="zy_mytask_foot textC">
+        <a type="button" id="alter_classmeeting_info_submit" class="bold font14 colorff a3 marginB10" onclick="classmeeting_form_alter()">确定</a>
+    </div>
+</form>

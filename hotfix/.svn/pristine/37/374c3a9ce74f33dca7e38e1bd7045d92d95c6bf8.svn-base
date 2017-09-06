@@ -1,0 +1,170 @@
+{% extends "mz_common/base4.html" %}
+{% block title %}{{ sclass.display_name }} LPS3.0 教务端 - 学生管理 - 麦子学院{% endblock %}
+{% block baiduJS %}{% endblock %}
+{% block custom_css %}
+<style>
+body {
+background: #f5f5f5;
+}
+</style>
+{% endblock %}
+
+{% block container %}
+{% include 'header/header.html' %}
+
+    <section class="sManage center" style="padding-bottom: 160px;">
+        {% include 'mz_eduadmin/nav.html' %}
+        <div class="sManage_Sel color33 font14">
+            教务<select class="sm_select" id="lps4dean">
+            {% for eduadmin in edu_admins %}
+                <option value="{{ eduadmin.0 }}"
+                        {% if eduadmin.0 == current_eduadmin %}selected{% endif %}>{{ eduadmin.1 }}</option>
+            {% endfor %}
+        </select>
+            班级<input id="deanClassTxt" type="text" placeholder="请输入班级编号"
+                     class="sManage_Sel_sreach_txt font14 sManage_Seltxt" value="{{ current_class.coding }}">
+            <input type="button" value="查看" class="sManage_Sel_sreach_btn" id="deanClassBtn">
+            <span class="red t5o font12 marginL10" style="opacity: 0;"></span>
+
+            <div class="sManage_Sel_sreach">
+                <input type="text" placeholder="请输入学生姓名" class="sManage_Sel_sreach_txt font14" id="deanClassTxt2"
+                       value="{{ query_string }}">
+                <input type="button" value="查询" class="sManage_Sel_sreach_btn" id="deanClassBtn2">
+            </div>
+        </div>
+        <div class="font14 color66 sManage_Con">
+            {% if current_class %}
+                专业：<span>{{ current_class.career_course.name }}</span>
+                老师：<span>{{ current_class.teacher_name }}</span>
+            {% endif %}
+            总人数：<span>{{ dashboard.total }}</span>
+            已毕业：<span>{{ dashboard.graduate }}</span>
+            已学完: <span>{{ dashboard.finish }}</span>
+            正常学习：<span>{{ dashboard.normal }}</span>
+            学习落后：<span>{{ dashboard.behind }}</span>
+            休学：<span>{{ dashboard.paused }}</span>
+            退学：<span>{{ dashboard.quit }}</span>
+            {% if current_class %}
+                <a class="exportxls" href="{% url 'lps3:eduadmin:students:export_class_students' current_class.id %}"
+                   target="_blank">导出Excel表格</a>
+            {% endif %}
+        </div>
+        {% if data %}
+            <table class="sManage_table color66">
+            <tr>
+                <th style="width:70px">序号</th>
+                <th style="width:159px">学生姓名</th>
+                <th class="multiselect1" style="width:114px">入班时间<i class="selArrowW"></i>
+                </th>
+                <th class="multiselect2" style="width:127px;">缴费情况<i class="selArrowW"></i>
+                </th>
+                <th class="multiselect3" style="width:114px;">学习状态<i class="selArrowW"></i></th>
+                <th style="width:261px;">学习阶段</th>
+                <th>操作</th>
+            </tr>
+            {% for student in data %}
+                <tr class="people">
+                    <td>{{ forloop.counter }}</td>
+                    <td
+                            {% if student.status_is_behind %}class="tname"
+                            {% elif student.show_status_gray %} class="tname greytname"
+                            {% else %} class="tname greentname"
+                            {% endif %}
+                            >
+                        <div class="img">
+                            <a target="_blank" href="/u/{{ student.model.id }}/">
+                                <img src="{{ MEDIA_URL }}{{ student.model.avatar_small_thumbnall }}">
+                    <span>{% if student.status_is_graduate %}已毕业
+                        {% elif student.status_is_finish %}已学完
+                    {% elif student.status_is_paused %}休学中
+                    {% elif student.status_is_quit %}已退学
+                    {% endif %}
+                    </span>
+                            </a>
+                            {% if not student.is_full_payment %}<i class="zyshi"></i>{% endif %}
+                        </div>
+                        <span>{{ student.show_name }}</span>
+                    </td>
+                    <td ttime="{{ student.join_in_class_timestamp }}">{{ student.join_in_class_date }}</td>
+                    <td pay-state="{% if student.is_full_payment %}全款{% else %}试学{% endif %}">
+                        {% if student.is_full_payment %}全款
+                        {% else %}试学{% if student.expiring_date %}<br> {{ student.expiring_date }}到期{% endif %}
+                        {% endif %}
+                    </td>
+                    <td Learning-state="{{ student.show_student_status }}">{{ student.show_student_status }}
+                    {% if student.status_is_graduate %}<br>{{ student.graduate_date }}
+                    {% elif student.status_is_quit %}<br>{{ student.quit_date }}
+                    {% endif %}
+
+                    </td>
+
+                    <td class="tstage">
+                        <hr/>
+                        {% for stage in student.stages %}
+                            <div {% if stage.is_finished %}class="finish"
+                                 {% elif stage.has_failed_task and stage.had_finished %}class="Errfinish"
+                                 {% elif stage.has_failed_task %}class="Erring"
+                                 {% elif stage.has_going %}class="ing"
+                                 {% else %}
+                                 {% endif %}
+                                    >
+                                <div class="tstage_child"><i></i>
+
+                                    <p class="marginB10">{{ stage.name }}
+                                        {% if stage.is_going %}
+                                            ({{ stage.count_task_finished }}/{{ stage.count_tasks }})
+
+                                        {% endif %}
+                                    </p>
+
+                                    <div>
+                                        {% for task in stage.tasks %}
+                                            <span>任务{{ forloop.counter }}：
+                                                {% if task.is_pass %}<b class="color5e">{{ task.score }}</b>
+                                                {% elif task.is_done %}<b>√</b>
+                                                {% elif task.is_fail %}<b class="red">{{ task.score }}</b>
+                                                {% else %}<b>--</b>
+                                                {% endif %}
+                                            </span>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </td>
+
+                    <td class="operation">
+                        <a href="{% url 'lps3:t_student_info' student.class_id student.model.id %}"
+                           target="_blank">详细</a>
+                        {% if user.id == student.class_eduadmin_id and student.can_be_operated %}
+                            <a data-target="#classTransfer"
+                               sid="ct_{{ student.class_id }}_{{ student.model.id }}">转班</a>
+                            <a data-target="#leaveschool" sid="ls_{{ student.class_id }}_{{ student.model.id }}">退学</a>
+                            <a data-target="#Dropoutschool" sid="ds_{{ student.class_id }}_{{ student.model.id }}">
+                                {% if student.status_is_paused %}复学{% else %}休学{% endif %}
+                            </a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+
+
+        </table>
+        {% else %}
+            <div class="nodata"><span>暂未查询到学生数据哦~</span></div>
+        {% endif %}
+    </section>
+
+    <div class="modal fade" id="leaveschool" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+         aria-hidden="true">
+    </div>
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block sea_script %}
+<script>seajs.use("/js/lps4/dist/main",function(main){main.loading("studentM",{"newid":'{{ current_class.id }}'});});</script>
+{% endblock %}
+{% block baidu %}{% endblock %}{% block 53kf %}{% endblock %}

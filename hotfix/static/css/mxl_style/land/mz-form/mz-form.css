@@ -1,0 +1,130 @@
+*{
+    margin:0;
+    padding:0;
+}
+.yz-form-container{
+    width:100%;
+    height:791px;
+    background:url(/static/images/mxl_images/land/mz-form/form-bg.png) no-repeat;
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/static/images/mxl_images/land/mz-form/form-bg.png',  sizingMethod='scale');
+    background-size: 100% 100%;
+    min-width: 1200px;
+}
+.yz-form-box{
+    width:700px;
+    margin:0 auto;
+    text-align: center;
+    padding-top:62px;
+}
+.yz-form-tit{
+    color: #ffffff;
+    font-size:44px;
+    font-weight: normal;
+    margin-bottom:48px;
+}
+.yz-form-tag{
+    color:#0098DF;
+    font-size:20px;
+}
+.yz-input-box{
+    width:100%;
+    height:70px;
+    border:1px solid #ffffff;
+    border-radius: 35px;
+    background:#ffffff;
+    margin-top:40px;
+    position: relative;
+    box-sizing: border-box;
+    line-height: 68px;
+}
+.yz-input-box input{
+    border:none;
+    outline: none;
+    width:100%;
+    height:100%;
+    border-radius: 35px;
+    color:#949CAC;
+    box-sizing: border-box;
+    font-size:20px;
+    padding-left:100px;
+}
+:-moz-placeholder {
+    color: #949CAC;
+}
+
+::-moz-placeholder {
+    color: #949CAC;
+}
+
+input:-ms-input-placeholder{
+    color: #949CAC;
+}
+
+input::-webkit-input-placeholder{
+    color:#949CAC;
+}
+.yz-name i{
+    display: block;
+    width: 25px;
+    height: 24px;
+    background:url(/static/images/mxl_images/land/mz-form/form_sprite.png) no-repeat;
+    background-position:0 -40px;
+    position: absolute;
+    z-index: 5;
+    top:23px;
+    left:34px;
+}
+.yz-phone i{
+    display: block;
+    width: 17px;
+    height:25px;
+    z-index:5;
+    position: absolute;
+    background: url(/static/images/mxl_images/land/mz-form/form_sprite.png) no-repeat;
+    background-position: 0 -80px;
+    top:23px;
+    left:38px;
+}
+.yz-errortip{
+    width:221px;
+    height:50px;
+    background:url(/static/images/mxl_images/land/mz-form/form_sprite.png) no-repeat;
+    background-position:-50px 0;
+    line-height:50px;
+    position: absolute;
+    right:-240px;
+    top:10px;
+    font-size:18px;
+    color: #ffffff;
+    display: none;
+}
+.yz-submit{
+    width:280px;
+    height:56px;
+    border-radius: 26px;
+    background:#00A1E9;
+    border: none;
+    outline: none;
+    font-size:20px;
+    color:#ffffff;
+    margin-top:60px;
+}
+.yz-submit:hover{
+    cursor: pointer;
+}
+.yz-error{
+
+    border:1px solid #F57675;
+}
+.yz-error input{
+    color:#F57675;
+}
+.yz-error .yz-errortip{
+    display: block;
+}
+.yz-name.yz-error i{
+    background-position: 0 0;
+}
+.yz-phone.yz-error i{
+    background-position:0 -120px;
+}

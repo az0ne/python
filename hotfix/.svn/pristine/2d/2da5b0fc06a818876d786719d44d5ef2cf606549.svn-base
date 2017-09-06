@@ -1,0 +1,62 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/student_breadcrumb.html" %}
+
+<div class="tabbable">
+{% include "mz_nadmin/parts/student_course_tabs.html" %}
+
+<div class="tab-content">
+<div class="tab-pane active">
+
+{% include "mz_nadmin/modules/msgs.html" %}
+
+{% if lesson_papers.end_index >= 1 %}
+<div class="table-responsive">
+<table class="table table-bordered table-condensed table-striped table-hover">
+    <thead>
+        <th class="col-md-4">章节名</th>
+        <th class="col-md-4">完成状态</th>
+        <th class="col-md-4">评测分数</th>
+    </thead>
+    <tbody>
+        {% for lesson_paper in lesson_papers %}
+        <tr>
+            <td>
+                {{ lesson_paper.lesson.name }}
+            </td>
+            <td>
+                {% if lesson_paper.lesson.is_complete %}
+                已完成
+                {% else %}
+                未完成
+                {% endif %}
+            </td>
+            <td>
+                {% if lesson_paper.accuracy >= 0 %}
+                    {{ lesson_paper.accuracy }}
+                {% else %}
+                    -
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% include "mz_nadmin/modules/page_info.html" with items=lesson_papers %}
+
+{% else %}
+<p class="text-muted">
+    <small>没有任何随堂测验</small>
+</p>
+{% endif %}
+
+</div>
+
+{% endblock %}
+
+
+

@@ -1,0 +1,117 @@
+{% extends "mz_common/base.html" %}
+{% block title %}python培训 - python开发工程师培训 - 麦子学院{% endblock %}
+{% block keywords%}python，python开发，python培训，python培训机构，python学习，python在线学习，python工程师{% endblock %}
+{% block description%}麦子学院，专业在线python培训机构，提供史上最靠谱的python开发培训课程，定制化python学习路线，名师在线指导，通过通俗易懂的讲解，丰富有趣的实战，轻松学习python，升级为实力派python工程师。{% endblock %}
+{% block breadcrumb %}
+    <div class="container visible-md visible-lg">
+        <ol class="breadcrumb" style="font-size: 14px">
+            <li><a href="{% url 'index_front' %}">首页</a></li>
+                <li><a href="{% url 'course:career_course_list' %}">企业直通班</a></li>
+            <li class="active">{{ cur_careercourse.name }}培训</li>
+        </ol>
+    </div>
+{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="/static/Lesson/css/jquery.bxslider.css">
+    <link rel="stylesheet" type="text/css" href="/static/Lesson/css/style22.css"/>
+{% endblock %}
+{% block container %}
+    <div class="container" style="position: relative;">
+        <ul class="zy_tab" style="z-index: 99">
+            <li class="liH">课程介绍<i></i></li>
+
+            <li><a href="{% url 'course:career_course_detail' couse_short_name %}">
+                课程大纲
+                <i></i></a>
+            </li>
+
+        </ul>
+    </div>
+
+
+<div style="width:1160px; margin:0 auto;" class="YaHei">
+	<div class="index_img"><img alt="麦子学院python培训" src="/static/Lesson/images/python_01.jpg"><a target="_blank" href="http://m.53kf.com/72114760/54/1" class="pabtn pabtn_po zzpp">了解详情<span>》</span></a></div>
+    <div class="index_img"><img alt="python课程怎么样" src="/static/Lesson/images/python_02.jpg"></div>
+    <div class="index_img"><img alt="python开发可以做什么" src="/static/Lesson/images/python_03.jpg"></div>
+    <div class="index_img"><img alt="python开发薪资怎么样" src="/static/Lesson/images/python_04.jpg"><a target="_blank" href="http://m.53kf.com/72114760/54/1" class="pabtn2 pabtn_po2 zzpp">点击咨询课程详情></a></div>
+    <div class="index_img"><img alt="麦子学院python培训的优势" src="/static/Lesson/images/python_05.jpg"></div>
+    <div class="index_img"><img alt="与众不同的python学习" src="/static/Lesson/images/python_06.jpg"></div>
+    <div class="index_img"><img alt="python学习路线" src="/static/Lesson/images/python_07.jpg"><a class="pabtn3 pabtn_po2" href="{% url 'course:career_course_detail' couse_short_name %}">查看更多免费课程></a></div>
+    <div class="pyhton_div">
+    	<p class="pyhton_div_tit textC" style="margin-bottom:30px;">麦子学院是如何保证学习效果的?</p>
+        <p class="textC font34 FFD610" style="margin-bottom:40px;">麦子学院自主研发 LPS在线学习过程管理系统，开启<br>在线教育教学管理智能时代！</p>
+        <p class="textC font18 FFD610" style="margin-bottom:20px;" id="bxslider_font">个性化定制学习进度</p>
+        <div class="zy_banner">
+            <ul class="bxslider">
+              <li ><img alt="个性化定制学习进度" src="/static/Lesson/images/webb001.jpg"></li>
+              <li ><img alt="重难知识点定期精讲，每周直播班会" src="/static/Lesson/images/webb002.jpg"></li>
+              <li ><img alt="阶段性项目实战演练，提升综合职业素养" src="/static/Lesson/images/webb003.jpg"></li>
+              <li ><img alt="数据学习结果预测，不断反馈调整学习计划" src="/static/Lesson/images/webb004.jpg"></li>
+              <li ><img alt="学习过程附加生成电子简历直接面向企业" src="/static/Lesson/images/webb005.jpg"></li>
+            </ul>  
+        </div>
+        <p class="textC"><img alt="python开发项目实战" src="/static/Lesson/images/python_14.png"></p>
+    </div>
+    <div class="index_img"><img alt="麦子学院资深python开发讲师" src="/static/Lesson/images/python_08.jpg"></div>
+    <div class="index_img"><img alt="麦子学院python开发就业保障" src="/static/Lesson/images/python_09.jpg"></div>
+    <div class="index_img"><img alt="如何学习python开发" src="/static/Lesson/images/python_10.jpg"></div>
+    <div class="index_img"><img alt="Python开发学习疑问" src="/static/Lesson/images/python_11.jpg"></div>
+    <div class="pyhton_div2 textC">
+    	<p class="pyhton_div2_tit">麦子学院Python Web工程师培训班</p>
+        <div class="footDivD">
+        	<p class="font30 bold po">每月限时开班</p>
+            <p class="font60 bold" style="color:#FD533C; padding-top:40px; margin-bottom:20px;">试学体验价688</p>
+            <p><a target="_blank" href="http://m.53kf.com/72114760/54/1" class="abtn zzpp">赶快抢名额</a></p>
+        </div>
+    </div>
+</div>  
+{% endblock %}
+
+{% block custom_script %}
+<script src="/static/Lesson/js/jquery.bxslider.js"></script>
+<script>
+$(function(){
+    $('.j_zixun,.zzpp').click(function(){
+        $('#KFLOGO .Lelem').trigger('click');return false;
+        });
+    $('.bxslider').bxSlider({
+        mode: 'horizontal',
+        auto: true,
+        hideControlOnEnd: true,
+        pager: true,
+        onSlideAfter: function ($slideElement, oldIndex, newIndex) {
+            $("#bxslider_font").html($slideElement.find("img").attr("alt"));
+        }
+    });
+});
+</script>
+{% endblock %}
+
+{#<script>#}
+{#    $(function(){#}
+{#        $('.j_zixun,.zzpp').click(function(){#}
+{#            //window.parent.iframeCl();#}
+{#        });#}
+{#		$('.bxslider').bxSlider({#}
+{#			mode: 'horizontal',#}
+{#			auto:true,#}
+{#			hideControlOnEnd:true,#}
+{#			pager:true,#}
+{#			onSlideAfter:function($slideElement, oldIndex, newIndex){#}
+{#				$("#bxslider_font").html($slideElement.find("img").attr("alt"));#}
+{#			}#}
+{#		});#}
+{#        showH();#}
+{#        $(window).load(function(){#}
+{#            showH();#}
+{#        })#}
+{#    });#}
+{#    function showH(){#}
+{#        window.parent.iframeH($("body").height());#}
+{#    }#}
+{#    function op(){#}
+{#        window.parent.iframeOp();#}
+{#    }#}
+{#</script>#}
+
+

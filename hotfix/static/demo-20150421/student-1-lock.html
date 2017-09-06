@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>学习计划</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="keywords" content=""/>
+<meta name="description" content=""/>
+<meta name="baidu-site-verification" content="TlN38QiORE"/>
+<link href="http://dev.microoh.com/static/css/base.css" rel="stylesheet"/>
+<link href="http://dev.microoh.com/static/css/microoh-v5.css" rel="stylesheet"/>
+<link href="http://dev.microoh.com/static/css/flat-ui.css" rel="stylesheet"/>
+<link href="http://dev.microoh.com/static/css/develop.css" rel="stylesheet"/>
+<link href="http://dev.microoh.com/static/css/jquery.jscrollpane.css" type="text/css" rel="stylesheet" media="all" />
+<link href="css/panel.css" rel="stylesheet"/>
+<link rel="shortcut icon" type="image/x-icon" href="http://dev.microoh.com/static/images/favicon.ico"/>
+<!--[if lt IE 9]>
+<script src="/static/js/html5shiv.min.js"></script>
+<script src="/static/js/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="microoh-main panel-special">
+
+	<header class="navbar navbar-default navbar-fixed-top affix" data-offset-top="64">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="http://dev.microoh.com/" title="麦子学院"><img src="http://dev.microoh.com/static/images/logo.png" alt="麦子学院logo"><img src="http://dev.microoh.com/static/images/logo-font.png" alt="麦子学院"></a>
+			</div>
+			<div class="collapse navbar-collapse" id="microoh-navbar-collapse">
+				<ul class="nav navbar-nav navbar-left">
+					<li class="visible-xs visible-sm"><a href="http://dev.microoh.com/">首页</a></li>
+					<li><a href="http://dev.microoh.com/course/">企业直通班</a></li>
+					<li><a href="http://dev.microoh.com/academic/home/">院校专区</a></li>
+					<li class="visible-md visible-lg"><a href="http://dev.microoh.com/user/goto/bbs/">论坛</a></li>
+					<li class="hidden-xs hidden-sm"><a href="http://dev.microoh.com/common/apppage/">移动APP</a></li>
+				</ul>
+				<form class="navbar-form navbar-left" role="search" onsubmit="return false">
+					<div class="form-group">
+						<i class="v5-icon v5-icon-search"></i>
+						<input type="text" class="form-control" id="search" placeholder="搜索你感兴趣的课程">
+					</div>
+					<div class="search-dp" id="hotkeyword" style="display: none;">
+						<!--推荐关键词-->
+						<div class="hotkeyword">
+							<h4>推荐搜索关键词</h4>
+							<ul class="cf">
+								<li><a href="javascript:void(0);">iOS</a></li>
+								<li><a href="javascript:void(0);">Android</a></li>
+								<li><a href="javascript:void(0);">嵌入式</a></li>
+							</ul>
+						</div>
+					</div>
+				</form>
+				<div class="v5-topbar-login">
+					<div class="v5-topbar-login-on cf visible-md visible-lg">
+						<dl>
+							<dt><a href="" class="dt-username"><span>cjw11</span><i class="v5-icon v5-icon-rd"></i></a></dt>
+						</dl>
+						<!--a href="http://dev.microoh.com/user/message/" class="dt-usermsg"><i class="v5-icon v5-icon-havemsg"></i><em>2</em></a-->
+					</div>
+					<div class="v5-topbar-login-on cf visible-xs visible-sm"><a href="http://dev.microoh.com/user/student/" class="user-t"><img src="http://dev.microoh.com/static/0624eaf0-cc47-11e4-9279-525400f5e194_big.jpg"></a></div>
+				</div>
+				<div class="navbar-search-btn visible-xs visible-sm"><a href="http://dev.microoh.com/common/mobile/search/" class="sch"></a></div>
+			</div>
+			<div class="search-dp" id="keyword-group" style="">
+				<!--搜索结果-->
+				<div class="keyword-group scroll-pane" style="overflow: hidden; padding: 0px; width: 0px;">
+					<div class="jspContainer" style="width: 0px; height: 360px;">
+						<div class="jspPane" style="padding: 0px; top: 0px; left: 0px; width: 0px;">
+							<dl class="">
+								<dt>职业课程</dt>
+								<dd class="careercourses cf"></dd>
+							</dl>
+							<dl class="">
+								<dt>课程</dt>
+								<dd class="courses cf"></dd>
+							</dl>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div class="container visible-md visible-lg">
+		<ol class="breadcrumb">
+			<li><a href="http://dev.microoh.com/user/center/">我的课程</a></li>
+			<li class="active">iOS应用开发工程师</li>
+		</ol>
+	</div>
+	
+	<div class="p-nav box">
+		<div class="container">
+			<a class="active" href="student-1-lock.html">我的数据</a>
+			<a href="student-2-lock.html">班级交流</a>
+		</div>
+	</div>
+
+	<div class="p-main">
+		<div class="container">
+			<div class="sidebar">
+				<div id="tab_box_1" class="sidebar-in box" tab-role="tab-box">
+					<div class="box-head clearfix">
+						<h2 class="pull-left"><span>学习计划</span></h2>
+						<div class="pull-right" tab-role="btn-group"><span tab-role="btn" tab-target="1" class="active">未完成</span><span tab-role="btn" tab-target="2">已完成</span></div>
+					</div>
+					<div id="sidebar_body" class="box-body" tab-role="cnt-group">
+						<div class="tab-cnt" tab-role="cnt" tab-mark="1">
+							<div class="tab-cnt-in">
+								<div class="item">
+									<div class="date">3月20日</div>
+									<div class="title"><span class="text">安卓基础开发</span><img src="images/word-1.png" alt=""/></div>
+									<ul>
+										<li><i class="dot"></i><span class="text">视频观看与随堂作业（1/15）</span></li>
+										<li><i class="dot"></i><span class="text">项目制作（1/5）</span></li>
+									</ul>
+								</div>
+								<div class="item">
+									<div class="date">3月20日</div>
+									<div class="title"><span class="text">安卓基础开发与环境搭建</span><img src="images/word-2.png" alt=""/></div>
+									<ul>
+										<li><i class="dot"></i><span class="text">视频观看与随堂作业（1/15）</span></li>
+										<li><i class="dot"></i><span class="text">项目制作（1/5）</span></li>
+									</ul>
+								</div>
+								<div class="item">
+									<div class="date">3月20日</div>
+									<div class="title"><span class="text">安卓基础开发与环境搭建与环境搭建与环境搭建</span><img src="images/word-3.png" alt=""/></div>
+									<ul>
+										<li><i class="dot"></i><span class="text">视频观看与随堂作业（1/15）</span></li>
+										<li><i class="dot"></i><span class="text">项目制作（1/5）</span></li>
+									</ul>
+								</div>
+								<div class="item">
+									<div class="date">3月20日</div>
+									<div class="title"><span class="text">安卓基础开发与环境搭建</span><img src="images/word-2.png" alt=""/></div>
+									<ul>
+										<li><i class="dot"></i><span class="text">视频观看与随堂作业（1/15）</span></li>
+										<li><i class="dot"></i><span class="text">项目制作（1/5）</span></li>
+									</ul>
+								</div>
+								<div class="item">
+									<div class="date">3月20日</div>
+									<div class="title"><span class="text">安卓基础开发与环境搭建</span><img src="images/word-2.png" alt=""/></div>
+									<ul>
+										<li><i class="dot"></i><span class="text">视频观看与随堂作业（1/15）</span></li>
+										<li><i class="dot"></i><span class="text">项目制作（1/5）</span></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="tab-cnt plan-end" tab-role="cnt" tab-mark="2">
+							<div class="tab-cnt-in">
+								<div class="item">
+									<div class="date">3月20日</div>
+									<div class="title"><span class="text">安卓基础开发与环境搭建与环境搭建与环境搭建</span><!-- <img src="images/word-3.png" alt=""/> --></div>
+									<ul>
+										<li><i class="dot"></i><span class="text">视频观看与随堂作业（1/15）</span></li>
+										<li><i class="dot"></i><span class="text">项目制作（1/5）</span></li>
+									</ul>
+								</div>
+								<div class="item">
+									<div class="date">3月20日</div>
+									<div class="title"><span class="text">安卓基础开发与环境搭建</span><!-- <img src="images/word-2.png" alt=""/> --></div>
+									<ul>
+										<li><i class="dot"></i><span class="text">视频观看与随堂作业（1/15）</span></li>
+										<li><i class="dot"></i><span class="text">项目制作（1/5）</span></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="main">
+				<div class="row">
+					<div class="main-b-a box">
+						<div class="box-head clearfix">
+							<h2 class="pull-left"><span>总览</span></h2>
+						</div>
+						<div class="box-body">
+							<div class="row">
+								<div class="col-a">
+									<div class="row"><span class="title">完成度</span></div>
+									<div class="row">
+										<div id="chart-01">
+											<canvas id="canvas_1" width="150" height="150"/>
+										</div>	
+									</div>
+									<div class="row"><span class="chart-label"><img src="images/state-2.png" alt=""/><span class="text">已完成</span></span><span class="chart-label"><img src="images/state-1.png" alt=""/><span class="text">未完成</span></span></div>
+								</div>
+								<div class="col-b">
+									<div class="row">
+										<div class="col-sm-6">
+											<span class="label"><img src="images/ico-4.png" alt=""/><span>学习总时长</span></span>
+											<span class="value"><em class="num">165</em><span>小时</span></span>
+										</div>
+										<div class="col-sm-6">
+											<span class="label"><img src="images/ico-3.png" alt=""/><span>学习状态</span></span>
+											<span class="value"><em class="num" style="color:#FF8CAC">暂停</em></span>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-sm-6">
+											<span class="label"><img src="images/ico-2.png" alt=""/><span>预计毕业时间</span></span>
+											<span class="value"><em class="num">4/20</em></span>
+										</div>
+										<div class="col-sm-6">
+											<span class="label"><img src="images/ico-1.png" alt=""/><span>班级排名</span></span>
+											<span class="value"><em class="num">2</em></span>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="main-b-b">
+						<div class="col-2">
+							<div class="box" id="tab_box_2">
+								<div class="box-head clearfix">
+									<h2 class="pull-left"><span>学习数据</span></h2>
+									<div class="pull-right" tab-role="btn-group"><span class="active" tab-role="btn" tab-target="1">完成计划</span><span tab-role="btn" tab-target="2">评测分数</span><span tab-role="btn" tab-target="3">学历增长</span></div>
+								</div>
+								<div class="box-body" tab-role="cnt-group">
+									<div class="tab-cnt" tab-role="cnt" tab-mark="1">
+										<div id="chart-02">
+											<canvas id="canvas_2" style="width:100%;height:280px"></canvas>
+										</div>
+									</div>
+									<div class="tab-cnt" tab-role="cnt" tab-mark="2">
+										<div id="chart-02">
+											<canvas id="canvas_3" style="width:100%;height:330px"></canvas>
+										</div>
+									</div>
+									<div class="tab-cnt" tab-role="cnt" tab-mark="3">
+										<div id="chart-02">
+											<canvas id="canvas_4" style="width:100%;height:330px"></canvas>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-2">
+							<div class="box" id="tab_box_3">
+								<div class="box-head clearfix">
+									<h2 class="pull-left"><span>个人素质</span></h2>
+									<div class="pull-right" tab-role="btn-group"><span class="active" tab-role="btn" tab-target="1">素质雷达图</span><span tab-role="btn" tab-target="2">素质变化曲线</span></div>
+								</div>
+								<div class="box-body" tab-role="cnt-group">
+									<div class="tab-cnt" tab-role="cnt" tab-mark="1">
+										<div id="chart-03">
+											<canvas id="canvas_5" style="width:100%;height:290px"></canvas>
+										</div>
+									</div>
+									<div class="tab-cnt" tab-role="cnt" tab-mark="2">
+										<div id="chart-03">
+											<canvas id="canvas_6" style="width:100%;height:290px"></canvas>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="v5-footer colleges-foot">
+		<div class="container">
+			<div class="v5-footer-bottom">
+				<p>© 2012-2014 <a href="www.maiziedu.com">maiziedu.com</a> | 服务条款 | 蜀ICP备13014270号-4 Version 4.0.1 release20140721.1</p>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<script type="text/javascript" src="http://dev.microoh.com/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="http://dev.microoh.com/static/js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="js/Chart.js"></script>
+<script type="text/javascript" src="js/Chart-extend.js"></script>
+<script type="text/javascript" src="js/common-tool.js"></script>
+<script type="text/javascript">
+	$(function(){
+
+		// 左边栏内容过多时，滚动
+		(function(){
+			var tabCnt = $('#sidebar_body .tab-cnt');
+			var tabCntIn = tabCnt.find('.tab-cnt-in');
+			tabCntIn.width( tabCntIn.width() );
+			tabCnt.jScrollPane({
+				verticalDragMinHeight: 50,
+				horizontalDragMinWidth: 50
+			});
+			var scrollBar = tabCnt.find('.jspVerticalBar');
+			scrollBar.hide();
+			tabCnt.hover(function(){
+				scrollBar.fadeIn();
+			},function(){
+				scrollBar.fadeOut();
+			});
+		}());
+
+		// 总览--完成度
+		(function(){
+			// json数据
+			var chartData = [{
+					'value': 25,
+					'color': "#FFE68C",
+					'highlight': "#feedb1",
+					'label': "未完成"
+				},
+				{
+					'value': 75,
+					'color':"#5ecfba",
+					'highlight': "#70e0cb",
+					'label': "已完成"
+				}];
+			// 图表实例
+			$.chartExtend.Pie({
+				'canvas' : '#canvas_1',
+				'data' : chartData
+			});
+		}());
+
+		// 完成计划
+		(function(){
+			// json数据
+			var chartData = [{
+					'date': '04/13',
+					'plan_study_time': 100,
+					'real_study_time': 80
+				},{
+					'date': '04/06',
+					'plan_study_time': 100,
+					'real_study_time': 120
+				}];
+			// 图表实例
+			$.chartExtend.Line({
+				'canvas' : '#canvas_2',
+				'data' : chartData,
+				'legend' : [{
+						'dataKey' : 'real_study_time',
+						'label' : '实际完成',
+						'lineColor' : '#FFE68C'
+					},{
+						'dataKey' : 'plan_study_time',
+						'label' : '计划',
+						'lineColor' : '#5ecfba'
+					}],
+				'suf' : '%' //后缀
+			});
+
+		}());
+
+		// 评测分数
+		(function(){
+			// json数据
+			var chartData = [{
+					//'stage':1,
+					//'course':2,
+					'course_name': 'IOS基础',
+					'course_score':80
+				},{
+					//'stage':1,
+					//'course':3,
+					'course_name': 'Android基础',
+					'course_score':90
+				}];
+			// 图表实例
+			$.chartExtend.Bar({
+				'canvas' : '#canvas_3',
+				'data' : chartData
+			});
+
+		}());
+
+		// 素质雷达图
+		(function(){
+			// json数据
+			var chartData = [{
+				'chart_capacity_alto': 60, // 汇总的沟通能力数值
+				'exe_capacity_alto': 80, // 汇总的执行能力数值
+				'initiative_alto': 88 //汇总的主动性数值
+			}];
+			// 图表实例
+			$.chartExtend.Radar({
+				'canvas' : '#canvas_5',
+				'data' : chartData,
+				// 字段描述
+				'labels' : [{
+					'dataKey' : 'chart_capacity_alto',
+					'label' : '沟通能力'
+				},{
+					'dataKey' : 'exe_capacity_alto',
+					'label' : '执行能力'
+				},{
+					'dataKey' : 'initiative_alto',
+					'label' : '主动性'
+				}],
+				// 图例说明
+				'legend' : [{
+					'label' : '综合能力',
+					'lineColor' : 'rgba(94, 207, 186,1)',
+					'fillColor' : 'rgba(94, 207, 186,0.5)'
+				}]
+			});
+		}());
+
+		// 素质变化曲线
+		(function(){
+			// json数据
+			var chartData = [{
+					'chart_capacity': 60,
+					'exe_capacity': 80,
+					'initiative': 88,
+					'date':'04/06'
+				},{
+					'chart_capacity': 60,
+					'exe_capacity': 80,
+					'initiative': 88,
+					'date':'04/13'
+				}];
+			// 图表实例
+			$.chartExtend.Line({
+				'canvas' : '#canvas_6',
+				'data' : chartData,
+				'legend' : [{
+						'dataKey' : 'chart_capacity',
+						'label' : '执行力',
+						'lineColor' : '#FFE68C'
+					},{
+						'dataKey' : 'exe_capacity',
+						'label' : '主动性',
+						'lineColor' : '#5ecfba'
+					},{
+						'dataKey' : 'initiative',
+						'label' : '沟通力',
+						'lineColor' : '#cfba5e'
+					}],
+				'suf' : '%' //后缀
+			});
+
+		}());
+
+
+
+
+		// 左边栏tab
+		$.commonTool.tab({
+			'tabBox' : '#tab_box_1',
+			'transitionCallback' : function(){}
+		});
+
+		// 学习数据tab
+		$.commonTool.tab({
+			'tabBox' : '#tab_box_2',
+			'transitionCallback' : function(){}
+		});
+
+		// 个人素质tab
+		$.commonTool.tab({
+			'tabBox' : '#tab_box_3',
+			'transitionCallback' : function(){}
+		});
+
+
+		// 加锁
+		$.commonTool.addLock('.p-main .main .box-body');
+
+	});
+</script>
+</body>
+</html>

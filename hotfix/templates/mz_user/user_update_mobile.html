@@ -1,0 +1,69 @@
+<!--设置新手机号/修改手机号-->
+<div class="modal fade" id="newMobilnumberModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="newMobilnumberModalLabel">
+                {% if user.mobile == "" or user.mobile == None %}
+                    新增手机号
+                {% else %}
+                    修改手机号
+                {% endif %}
+                </h4>
+            </div>
+            <div class="modal-body">
+                <section class="box-newMobilnumber" id="box-newMobilnumber">
+                    <form id="new_mobile_form" action="{% url 'user:user_update_mobile_sendsms' %}" method="post" onsubmit="new_mobile_form_submit();return false;" autocomplete="off">
+                        {% csrf_token %}
+                    <ul class="form-horizontal v5-form-horizontal">
+                        <li class="row form-group">
+                            <div class="form-group cf">{{ update_mobile_form.mobile_um }}</div>
+                        </li>
+                        <li class="row form-group">
+                            <div class="form-group cf">{{update_mobile_form.captcha_um}}<span class="v5-yzm fr"><a id='mobile-captcha-refresh' class="captcha-refresh" href="#">换一张</a></span></div>
+                        </li>
+                        <li class="row form-group v5-pdt">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-8">
+                                <button type="button" class="btn btn-micv5 btn-md btn-block" onclick="new_mobile_form_submit()">下一步</button>
+                                {{update_mobile_form.uid_um}}
+                            </div>
+                            <div class="col-sm-2"></div>
+                        </li>
+                    </ul>
+                    </form>
+                    <div id="new_mobile_tips" class="tips-error bg-danger">错误提示</div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 新增/修改手机号 验证短信验证码 -->
+<div class="modal fade" id="newMobilnumberNextModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="newMobilnumberNextModalLabel">手机验证</h4>
+            </div>
+            <div class="modal-body">
+                <section class="box-forgetpsw v5-input-txt" id="box-forgetpsw-mobile-code">
+                    <form id="mobile_code_update_mobile_form" action="{% url 'user:user_update_mobile' %}" method="post" onsubmit="mobile_code_update_mobile_form_submit();return false;" autocomplete="off">
+                        {% csrf_token %}
+                        <ul>
+                            <li class="form-group" id="mobile_code_password_form_message">手机短信验证码已发送，请查收！</li>
+                            <li class="form-group">{{ mobile_code_update_mobile_form.mobile_f }}</li>
+                            <li class="form-group">{{ mobile_code_update_mobile_form.mobile_code_f }}</li>
+                        </ul>
+                        <div>
+                            <button type="button" class="btn btn-micv5 btn-block" onclick="mobile_code_update_mobile_form_submit()">确定</button>
+                        </div>
+                        <div id="update_mobile_tips" class="tips-error bg-danger">错误提示</div>
+                    </form>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>

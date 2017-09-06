@@ -1,0 +1,505 @@
+/* 把rem转换为rem */
+ @import 'var';
+
+$bg: url(/static/images/mz_wap/search_result_icon.png) 0 0 no-repeat;
+.container{
+	.search_area{
+		z-index: 100;
+		position: fixed;
+		width: 100%;
+		top: 0;
+		left: 0;
+		.search_box{
+			width: 100%;
+			@extend %disbox;
+			margin-bottom: pxToRem(10);
+			padding: pxToRem(17 0);
+			height: pxToRem(75);
+			background: #fff;
+			-webkit-transform: translateZ(0);
+			@include box-shadow(0 pxToRem(2) pxToRem(6) rgba(0,0,0,0.1));
+			.search_border{
+				margin: pxToRem(0 15);
+				@include box-flex(1);
+				border: 2px solid #ffa968;
+				border-radius: pxToRem(8);
+				.search{
+					height: pxToRem(70);
+					width: 100%;
+					div{
+						position: relative;
+						height: 100%;
+						padding: pxToRem(0 10 0 30);
+						.search_txt{
+							width: 90%;
+							height: 100%;
+							box-sizing: border-box;
+							font-size: pxToRem(30);
+						}
+						.empty{
+							position: absolute;
+							top: pxToRem(14);
+							right: pxToRem(10);
+							z-index: 100;
+							width: pxToRem(40);
+							height: pxToRem(36);
+							background: $bg;
+							background-position: pxToRem(-48 -152);
+						}
+					}
+				}
+			}
+			.cancel{
+				display: none;
+				min-width: pxToRem(75);
+				line-height: pxToRem(75);
+				color: #ff9342;
+				font-size: pxToRem(30);
+			}
+		}
+	}
+	.suggest{
+		display: none;
+		opacity: 0.2;
+		@include transition(opacity 0.1s 0.4s);
+		position: absolute;
+		z-index: 10;
+		top: pxToRem(118);
+		left: 0;
+		width: 100%;
+		margin-top: pxToRem(-10);
+		padding-top: pxToRem(20);
+		background: #fff;
+		@include box-shadow(0 pxToRem(4) pxToRem(6) rgba(0,0,0,0.1));
+		.career_course,.search_teacher,.course_course{
+			font-size: 0;
+			padding-left: pxToRem(13);
+			border-top: 2px solid #e1e3e2;
+		}
+		.career_course,.search_teacher{
+			ul{
+				padding: pxToRem(20 0);
+				li{
+					padding: pxToRem(20 0);
+					a{	
+						height: pxToRem(121);
+						color: #000;
+						display: block;
+						.img{
+							height: pxToRem(121);
+							width: pxToRem(121);
+							margin: pxToRem(-3 16 0 0);
+							border-radius: 50%;
+							float: left;
+							overflow: hidden;
+						}
+						.txt{
+							font-size: pxToRem(26);
+							line-height: pxToRem(30);
+							margin-right: pxToRem(22);
+							h3{
+								display: inline-block;
+								color: #3c3c3c;
+								@include maxwidth(250);
+								font-weight: bold;
+								font-size: pxToRem(30);
+								margin-bottom: pxToRem(17);
+							}
+							em{
+								color: #a3a2a2;
+								@include maxwidth(200);
+								font-size: pxToRem(24);
+								float: right;
+							}
+							p{
+								color: #6b6b6b;
+								font-size: pxToRem(26);
+								@include maxheight(60);
+								@include multi-line-hidden(2);
+								em{
+									color: #ff8960;
+								}
+							}
+						}
+					}
+				}
+			}
+			&:before{
+				display: inline-block;
+				margin-left: pxToRem(-13);
+				padding: pxToRem(0 6 0 16);
+				background: #fff;
+				color: #919191;
+				font-size: pxToRem(24);
+				line-height: pxToRem(24);
+				margin-top: pxToRem(-12);
+				content: '职业课程';
+			}
+		}
+		.search_teacher{
+			&:before{
+				display: inline-block;
+				margin-left: pxToRem(-13);
+				padding: pxToRem(0 6 0 16);
+				background: #fff;
+				color: #919191;
+				font-size: pxToRem(24);
+				line-height: pxToRem(24);
+				margin-top: pxToRem(-12);
+				content: '职业导师';
+			}
+		}
+		.course_course{
+			ul{
+				padding: pxToRem(17 0);
+				li{
+					a{
+						display: block;
+						padding-right: pxToRem(22);
+						margin: pxToRem(23 0);
+						span{
+							font-size: pxToRem(26);
+							color: #6b6b6b;
+							@include maxwidth(420);
+						}
+						em{
+							@include maxwidth(160);
+							font-size: pxToRem(24);
+							color: #b1b1b1;
+							float: right;
+						}
+					}
+				}
+			}
+			&:before{
+				display: inline-block;
+				margin-left: pxToRem(-13);
+				padding: pxToRem(0 6 0 16);
+				background: #fff;
+				color: #919191;
+				font-size: pxToRem(24);
+				line-height: pxToRem(24);
+				margin-top: pxToRem(-12);
+				content: '职业技能';
+			}
+		}
+	}
+	.content{
+		margin-top: pxToRem(120);
+		.switch_btn{
+		    background: linear-gradient(#ffffff, #f3f3f3);
+		    margin-bottom: pxToRem(7);
+		    @include box-shadow( 0 pxToRem(1) pxToRem(1) rgba(225,227,226,1));
+		    font-size: 0;
+			height: pxToRem(108);
+			a{
+				display: inline-block;
+				cursor: pointer;
+				color: #a7a7a7;
+				margin: pxToRem(27 0 32 0);
+				width: pcent(213);
+				height: pxToRem(50);
+				text-align: center;
+				font-size: pxToRem(28);
+				position: relative;
+				&:before{
+					@extend %pseudo-class;
+					background: $bg;
+					width: pxToRem(44);
+					height: pxToRem(37);
+					margin-right: pxToRem(7);
+				}
+				&.active{
+					color: #ff9342;
+					&:after{
+						@extend %pseudo-class;
+						position: absolute;
+						left: 0;
+						bottom: pxToRem(-31);
+						width: 100%;
+						height: pxToRem(6);
+						background: #ffa800;
+					}
+					&:before{
+						background-position-x: pxToRem(-51);
+					}
+				}
+			}
+			.course_btn{
+				@extend %box-sizing;
+				&:before{
+					background-position: pxToRem(0 0);
+				}
+			}
+			.article_btn{
+				&:before{
+					background-position: pxToRem(0 -42);
+				}
+			}
+			.wiki_btn{
+				&:before{
+					background-position: pxToRem(0 -446);
+				}
+			}
+		}
+		.course,.article{
+			margin-bottom: pxToRem(32);
+			.ads{
+				min-height: pxToRem(108);
+				margin: pxToRem(0 9);
+				a{	
+					display: block;
+				}
+			}
+			.sear_result_article_list,.sear_result_course_list{
+				ul{
+					li{
+						border-bottom: pxToRem(1) solid #ddd;
+						a{	
+							color: #000;
+							margin: pxToRem(17 9);
+							display: block;
+							.img{
+								width: pxToRem(236);
+								height: pxToRem(150);
+								float: left;
+								overflow: hidden;
+							}
+							.txt{
+								height: pxToRem(150);
+								font-size: pxToRem(26);
+								line-height: pxToRem(30);
+								margin: pxToRem(0 10 0 254);
+								word-wrap:break-word; 
+								position: relative;
+								h3{
+									color: #3b3b3b;
+									@include maxwidth(360);
+									font-weight: bold;
+									font-size: pxToRem(30);
+									margin-bottom: pxToRem(10);
+								}
+								p{
+									color: #5d5d5d;
+									@include maxheight(60);
+									@include multi-line-hidden(2);
+									em{
+										color: #ff8960;
+									}
+								}
+								dl{
+									position: absolute;
+									bottom: 0;
+									overflow: hidden;
+									font-size: 0;
+									max-width: pxToRem(360);
+    								white-space: nowrap;
+									dd{
+										color: #8c8c8c;
+										@include fz-lh(22);
+										display: inline-block;
+										margin-right: pxToRem(15);
+									}
+								}
+								.chapter{
+									padding-right: pxToRem(11);
+									border-right: pxToRem(1) solid #ddd;
+									&:before{
+										@extend %pseudo-class;
+										width: pxToRem(17);
+										height: pxToRem(17);
+										margin-right: pxToRem(7);
+										background: $bg;
+										background-position: pxToRem( 0 -84);
+									}
+								}
+								.time{
+									&:before{
+										@extend %pseudo-class;
+										background: $bg;
+										height: pxToRem(23);
+										width: pxToRem(22);
+										margin: pxToRem(-4 7 0 0);
+										background-position: pxToRem(0 -103);
+									}
+								}
+								.tag{
+									&:before{
+										@extend %pseudo-class;
+										background: $bg;
+										height: pxToRem(22);
+										width: pxToRem(23);
+										margin: pxToRem(-4 7 0 0);
+										background-position: pxToRem(0 -130);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		.load_more{
+			margin-bottom: pxToRem(43);
+			a{
+				text-decoration: none;
+				@include fz-lh(30);
+				color: #ffa800;
+				display: block;
+				text-align: center;
+				margin: 0 auto;
+				padding: pxToRem(20 0);
+				max-width: pxToRem(326);
+				border: 2px solid #ffae11;
+				border-radius: pxToRem(35);
+				span{
+					
+				}
+			}
+		}
+		.empty_recommend{
+			ul{
+				overflow: hidden;
+				margin: pxToRem(20 9 30 0);
+				li{
+					display: inline-block;
+					width: 33.33%;
+					height: auto;
+					float: left;
+					a{
+						display: block;
+						margin: pxToRem(8);
+					}
+					.img{
+						overflow: hidden;
+						margin-bottom: pxToRem(10);
+					}
+					.course_name{
+						color: #333;
+						@include fz-lh(26);
+						@include maxheight(26);
+					}
+				}
+			}
+		}
+		/* 热门技能，相关搜索 */
+		.hot_skill, .relate_search,.empty_recommend{
+			font-size: pxToRem(24);
+			border-top: 2px solid #eee;
+			margin-top: pxToRem(16);
+			h3{
+				text-align: center;
+				font-size: 0;
+				span{
+					padding: pxToRem(0 4);
+					background: #fff;
+					font-size: pxToRem(24);
+					font-weight: bold;
+					margin: pxToRem(-12) auto 0;
+					line-height: pxToRem(24);
+				}
+			}
+		}
+		.hot_skill, .relate_search{
+			ul{
+				font-size: 0;
+				margin: pxToRem(54 30 18 5) ;
+				li{
+					@include fz-lh(30);
+					display: inline-block;
+					margin: pxToRem(0 0 43 25);
+					background: #eaeaea;
+					border-radius: pxToRem(23);
+					a{
+						color: #b1b1b1;
+						text-decoration: none;
+						padding: pxToRem(11 35);
+					}
+				}
+				.selected{
+					background: #ff9342;
+					a{
+						color: #fff;
+					}
+				}
+			}		
+		}
+		// wiki技能
+		.wiki_content {
+			border-bottom: pxToRem(1) solid #ddd;
+		}
+		#wiki_lists {
+			li {
+				color: #3B3B3B;
+				font-size: 0;
+				border: none;
+				img, div {
+					@extend %mtop;
+				}
+				
+				img {
+					width: pxToRem(36);
+					height: pxToRem(36);
+					margin-right: pxToRem(20);
+					margin-top: pxToRem(14);
+				}
+				div {
+					padding: pxToRem(14) 0;
+					width: pcent(580);
+					border-bottom: pxToRem(1) solid #ddd;
+				}
+				&:last-child {
+					div {
+						border-bottom: none;
+					}
+				}
+				h2 {
+					font-size: pxToRem(28);
+				}
+				em {
+					color: #FF9242;
+				}
+				p {
+					font-size: pxToRem(26);
+					height: pxToRem(80);
+					line-height: pxToRem(40);
+					overflow: hidden;
+				}
+			}
+		}
+		#pagination {
+			padding: pxToRem(40) 0;
+			font-size: 0;
+			text-align: center;
+			a, span {
+				@extend %mid;
+			}
+			.prev, .next {
+				width: pxToRem(20);
+				height: pxToRem(37);
+			}
+			.prev, .first {
+				margin-right: pxToRem(102);
+			}
+			.next, .last {
+				margin-left: pxToRem(102);
+			}
+			.prev {				
+				background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAlCAYAAABCr8kFAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC2SURBVEhLY2CgEPjEhsq5RgYcB+J3rtEB8RQZBzLMLTLgHtCw/1D8gmwDsRgGMnQPWQZiNyzwmm9yhDjJBo4aNhpmOBLNaNIYTkkDFMnQwhFWngFpMksNWIoBGvgBqYD8Dyww60gugpA1uEYFFiIbCGK7RwbkU2hoQM2ooUixPhqmo0lqNEeRHwKuUZgFiltUQBr5JoIKZ0xDyW9wwgtoJEOBhfNeilwINzQ6wM0tOjDXPz5eAAAJNn+DugC4cQAAAABJRU5ErkJggg==);
+			}
+			.next {				
+				background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAlCAYAAABCr8kFAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACqSURBVEhLY3CLCkh1jQz44BYZcMQ7LkSagVIAMgyI/4NxVMAtig0FuQxuIDUMBbkI5LJRQyGRNBqmFKfT0SQ1mqPoUqAEHqCofHaLDGxDKfYiA16QbaBrVFAZmmHAwiQwiywDsRsWUDpqGO4QGA0z0lPHaJgNcJi5RQfmYpYaZGZ0kF+Ahr1HM5C8UgMWMEDDjiIZSJlhIEPdkkOE3CMD8j2ig51JD31MHQAc+H7Z7iWeHQAAAABJRU5ErkJggg==);
+			}
+			.first {
+				background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAlCAYAAABCr8kFAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAC2SURBVEhLY2CgEBw+c0Zuz8ljx/ecOPZu38lj8RQZBzXsHtCw/yC898SxF2QbiG4Y1NA9ZBmIw7Brey4dFyfZwFHDRsMMR6IZTRrDKWmAIhlaOILLMygmr9SApRigIR+QDAMZWkdyEYSsAVjKFqIZ+H/PqeP5lBl68njNqKHIsT4apqNJipIstXc0R6EXKPtOnEijJEgZ0MOUogYnzCUohp48tpciF8INPXHCbe/JY7n7z58XAAA8/7IRdMQGowAAAABJRU5ErkJggg==);
+			}
+			.last {
+				background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAlCAYAAABCr8kFAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAACvSURBVEhLY9h78njqnhPHPuw5cfzInvPHpBkoBRDDjv2H4lsUGwp2GcJAkMGUGQpyEdiQUUOpFlGjYTqapEZzFO0LlOMHKCqf95w83oZc7O09cewF2QYCDSpDK0P/7zt1PIssA7EZBnRd6ahhuENgNMxITx2jYTbAYbb35LFc9FKD7IwO8gvQsPdoZRp5pQYsYICGHYUZSJHLYAYeu3JMaM+p4/n7Tp50Jj30MXUAADj+sPCIv6OQAAAAAElFTkSuQmCC);
+			}
+			span {
+				font-size: pxToRem(28);
+				color: #3b3b3b;
+			}
+		}
+	}
+}

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html xmlns:gs="http://www.gensee.com/ec">
+	<head>
+    	<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=0.5,maximum-scale=0.5,user-scalable=0" />
+	    <meta name="apple-mobile-web-app-capable" content="yes">
+	    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+	    <meta name="format-detection" content="telephone=no">
+		<title>{{wike.title}}</title>
+		<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}css/wapwike.css"/>
+		<div hidden><img src="{{STATIC_URL}}images/wapwike/weixin_share_logo.jpg"></div>
+<script type="text/javascript">
+
+    var get_cookie = function(c_name) {
+        if (document.cookie.length > 0) {
+            var c_start = document.cookie.indexOf(c_name + "=");
+            if (c_start != -1) {
+                c_start = c_start + c_name.length + 1;
+                c_end = document.cookie.indexOf(";", c_start);
+                if (c_end == -1) {
+                    c_end = document.cookie.length;
+                }
+                return unescape(document.cookie.substring(c_start, c_end));
+            }
+        }
+        return "";
+    }
+
+    var set_cookie = function (c_name,value,exdays) {
+        var exdate = new Date();
+        exdate.setDate(exdate.getDate() + exdays);
+        var c_value = escape(value) + ((exdays==null) ? "" : "; expires="+exdate.toUTCString());
+        document.cookie = c_name + "=" + c_value + "; path=/";
+    }
+
+
+    /*
+     * set maiziuid
+    */
+
+    var uid_gen = function() {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+        }
+        return s4() + s4() + s4() + s4() + s4() + s4() + s4() + s4();
+    }
+
+    if (get_cookie("maiziuid") == "") {
+        set_cookie("maiziuid", uid_gen(), 1024);
+    }
+
+    if (window.location.hostname.indexOf("maiziedu.com") >= 0) {
+        (function () {
+            var query_string = "url=" + escape(window.location.href) + "&";
+            query_string = query_string + "maiziuid=" + get_cookie("maiziuid") + "&";
+            query_string = query_string + "referrer=" + escape(document.referrer);
+
+            var url = "http://hit.maiziedu.com/?" + query_string + "&callback=" + new Date().getTime();
+            var script = document.createElement("script");
+            script.setAttribute("src", url);
+            document.getElementsByTagName("head")[0].appendChild(script);
+        })();
+    }
+</script>
+	</head>
+	<body>
+		<input class="openid" type="hidden" value="{{openid}}">
+		<input class="nick-name" type="hidden" value="{{nick_name}}">
+		<input class="head-image" type="hidden" value="{{head_image}}">
+		<input class="micro-course-id" type="hidden" value="{{wike.id}}">
+		<input class="auth-url" type="hidden" value="{{auth_url | escape}}">
+		<input class="is-login" type="hidden" value="{{login}}">
+
+		<div class="microClass">
+			<div class="shareBack">
+				<a href="{% url 'wike:wike_list' %}">返回</a>
+				<a class="relay">转发</a>
+			</div>
+			<div class="microClassVideo">
+				{% if wike.status == 0 %}
+					<div class="video"><img src="{{MEDIA_URL}}{{wike.playback_img}}"/></div>
+				{% elif wike.status == 1 %}
+					<em></em>
+					<video id="microClassVideo" src="{{wike.vod_url}}" poster="{{MEDIA_URL}}{{wike.playback_img}}"></video>
+				{% endif %}
+			</div>
+            <div class="microClassCount">
+                <ul></ul>
+                <span><strong>{{wike.student_count}}</strong>人正在学习</span>
+            </div>
+			<div class="microClassTab" id="microClassTab">
+				<div class="title">
+					<input type="hidden" id="show_current_stage" value="1">
+					<span data-hash="1">课程详情</span>
+					<span data-hash="2">课程问答</span>
+				</div>
+				<div class="content">
+					<div class="microClassTabInfo" data-hash="1">
+						<div class="teacher">
+							<p class="img"><img src="{{MEDIA_URL}}{{ wike.avatar_url}}"/></p>
+							<div class="txt">
+								<strong>{{ wike.nick_name }}老师</strong>
+								<p>{{ wike.description }}</p>
+							</div>
+						</div>
+						<div class="abstract">
+							<h3>课程简介</h3>
+							<p>{{ wike.info }}</p>
+						</div>
+						<div class="profession">
+							<h3>职业进阶课程</h3>
+                            <ul>
+							{% for career_course in wike.career_course_info %}
+								<li>
+                                    <a href="{% url 'course:course_detail' career_course.0 %}">
+                                        <p><img src="{{MEDIA_URL}}{{career_course.2}}"/></p>
+                                        <strong>{{career_course.1}}</strong>
+                                    </a>
+								</li>
+							{% endfor %}
+                            </ul>
+						</div>
+					</div>					
+					<div class="microClassChat" data-hash="2">
+						<div class="record">
+							<p class="tips">老师将在微信群中答疑，点赞数高的问题优先解答。<br/>答疑前，搜索关注“麦子学院”，发送“进群”，获取进群资格。<br/>答疑后，老师会在本页问题后同步更新回答。</p>
+							<ul class="ques">
+							</ul>
+						</div>
+						<div class="chatBox">
+							<span class="sendBtn">提问</span>
+							<span class="textBox"><input type="text" name="" id="microClassChatComment" value="" placeholder="{% if login %}请至少输入15字{% else %}微信登录后可以向老师提问{% endif%}" /></span>
+							<span class="tip">请至少输入15字</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="microClassShare microClassShareWx"><img src="/static/images/wapwike/microClassShareWxImg.png"/></div>
+		</div>
+		<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script type="text/javascript">
+
+			// JSDK
+			wx.config({
+				debug: false,// 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。移动端会通过弹窗来提示相关信息。如果分享信息配置不正确的话，可以开了看对应报错信息
+				appId: '{{wx_config.app_id}}',
+				timestamp: '{{wx_config.timestamp}}',
+				nonceStr: '{{wx_config.noncestr}}',
+				signature: '{{wx_config.signature}}',
+				jsApiList: [//需要使用的JS接口列表,分享默认这几个，如果有其他的功能比如图片上传之类的，需要添加对应api进来
+					'checkJsApi',
+					'onMenuShareAppMessage',
+					'onMenuShareQQ',
+					'onMenuShareQZone',
+					'onMenuShareTimeline',
+				]
+			});
+
+			//alert(location.href);
+			//alert(location.href.split('#')[0]);
+
+			// 分享的文案
+			var summary = "我正在麦子学院学最潮的互联网微课, 同桌的你快来!";
+
+			// 微信分享的配置
+			window.share_config = {
+				 "share": {
+					"imgUrl": "{{SITE_URL}}{{STATIC_URL}}images/wapwike/weixin_share_logo.jpg",
+					"desc" : summary,
+					"title" : "麦子微课｜{{wike.title}}",
+					"link": window.location.href.split('?')[0],//分享出去后的链接，这里可以将链接设置为另一个页面。
+					"success":function(){//分享成功后的回调函数，取消微信环境下，分享浮层的显示．
+						$(".microClassShareWx").hide(); //严格来说，应该先判断是否是显示的，如果是，则调整为隐藏．
+					},
+					'cancel': function () {// 用户取消分享后执行的回调函数，取消微信环境下，分享浮层的显示．
+						$(".microClassShareWx").hide();
+					}
+				}
+			};
+
+			// 覆盖默认的分享功能，仅需要覆盖 分享给好友和手机QQ
+			wx.ready(function () {
+				wx.onMenuShareAppMessage(share_config.share);//分享给好友
+				wx.onMenuShareQQ(share_config.share);//分享给手机QQ
+				wx.onMenuShareQZone(share_config.share); //分享到扣扣空间
+				wx.onMenuShareTimeline(share_config.share); //分享到微信朋友圈
+			});
+
+		</script>
+		<script src="/static/js/wap_wike/zepto.min.js" type="text/javascript"></script>
+		<script type="text/javascript" src="http://static.gensee.com/webcast/static/sdk/js/gssdk.js"></script>
+		<script type="text/javascript">
+		//点击播放图片隐藏该图片，显示出直播课程……
+		$(".microClassVideo").bind("touchend",function(){
+			$("#microClassVideo")[0].play();//播放视频
+			$('.microClassVideo em').hide();
+		});
+
+        $(function(){
+			//解决Iphone手机不支持fixed的问题
+			var $ele = $(".microClassChat .chatBox");
+			$ele.bind("touchend",function(e){
+				e.stopPropagation();//阻止冒泡
+			});
+			$(".microClassChat .textBox input").focus(function(){
+				$(this).parents(".chatBox").css("position","static");
+				$(".chatBox .tip").css({"position":"static","margin-top":"-8rem"});
+				$(".microClassChat").css("margin-bottom","0");
+				$(document).bind("touchend",function(e){
+					$("#microClassChatComment").blur();
+				});
+			});
+			$(".microClassChat .textBox input").blur(function(){
+				$(this).parents(".chatBox").css("position","fixed");
+				$(".chatBox .tip").css({"position":"absolute","margin-top":"-2.75rem"});
+				$(".microClassChat").css("margin-bottom","6.25rem");
+			});
+
+			//安卓才显示播放按钮
+			var browser = {
+				versions: function () {
+					var u = navigator.userAgent, app = navigator.appVersion;
+					return { //移动终端浏览器版本信息
+						android: u.indexOf('Android') > -1, //android终端
+					};
+				}(),
+			};
+			if (browser.versions.android) {
+				$('.microClassVideo em').show();
+			}
+
+			//哈希函数
+			var firstHash = window.location.hash.substring(1) || $('#show_current_stage').val();
+			var tabNav = $('.microClassTab .title span');
+    		var tabBox = $('.microClassTab .content>div');
+			window.bBtn = true;
+
+			window.onhashchange = function(){
+				if(window.bBtn){
+					window.location.reload();
+				}
+			};
+			if(!isNaN(firstHash) && firstHash < tabNav.length + 1){
+				switch(firstHash){
+					case firstHash:
+						tabNav.eq(firstHash - 1).addClass('on').siblings().removeClass('on');
+						tabBox.eq(firstHash - 1).show().siblings().hide();
+						break;
+				}
+			}else{
+				tabNav.eq(0).addClass('on').siblings().removeClass('on');
+				tabBox.eq(0).show().siblings().hide();
+			}
+			tabNav.bind("touchend",function(){
+				var hash = $(this).attr('data-hash');
+				window.location.hash = hash;
+				window.bBtn = false;
+				$(this).addClass('on').siblings().removeClass('on');
+				var index = tabNav.index(this);
+				tabBox.eq(index).show().siblings().hide();
+			});
+
+
+			//////  随机热门头像功能及函数:
+
+			var total_images = 30;
+			var need_images = 9;
+
+			// 头像太多, hardcode is stupid, so generate the head image url dynamically.
+			var generate_head_image_url = function(index){
+				return "{{STATIC_URL}}images/wapwike/head_images/" + index + "_small.png";
+			}
+
+			// 记录视频下方的参与用户的头像
+			var hot_head_images = {};
+
+			var generate_hot_images = function(){
+                  for (var i = 0; i < need_images; i++){  // 从头像中随机生成需要的hot_head_image
+                  while (true){
+                      var index = Math.floor(Math.random() * total_images);
+                      if (!hot_head_images[index]){ //不存在, 添加, 并跳出循环
+                          hot_head_images[index] = true;
+                          break;
+                      }
+                  }
+               }
+                var html = '';
+                for (key in hot_head_images){	// 渲染到页面
+                    html += '<li><img src="' + generate_head_image_url(key) + '" alt=""/></li>'
+                }
+                $(".microClassCount ul").html(html);
+            };
+
+			generate_hot_images();
+
+			//////  随机热门头像功能及函数结束
+
+
+			//////  问答部分的功能及函数:
+
+			// 判断是否登陆, 如果未登录, 则不允许相关操作
+			var make_sure_login = function(){
+				if($(".is-login").val().toLowerCase() != 'true'){  // 跳转前往鉴权页面
+					window.location.href=$(".auth-url").val();
+				}
+			}
+
+			// 构造问答
+			var construct_ask = function(data){
+				if(data){
+					var html = '';
+					for(item in data){
+						var ask = data[item];
+						html += '<li><div class="img"><img src="' + ask.head_image + '" alt="" /></div>';
+						html += '<div class="txt">';
+						if(ask.praise_count==0){
+							html += '<div class="user"><span id="' +ask.id + '">赞</span><strong>' + ask.nick_name + '</strong></div>';
+						} else {
+							if(ask.praised == 1){  // 当前用户已经点赞某个问答
+								html += '<div class="userx"><span class="praised" id="' +ask.id + '">' + ask.praise_count + '</span><strong>' + ask.nick_name + '</strong></div>';
+							} else {  //当前用户未对某个问答点赞
+								html += '<div class="user"><span id="' +ask.id + '">' + ask.praise_count + '</span><strong>' + ask.nick_name + '</strong></div>';
+							}
+						};
+						html += '<p>' + ask.content + '</p>';
+						html += '</div>'
+						if(ask.answer){
+							html += '<p class="item"><strong>老师回复：</strong>' + ask.answer + '</p>';
+						}
+						html += '</li>'
+					}
+					return html;
+				}
+				return '';
+			};
+
+			//  获取问答列表
+			var get_ask_list = function(){
+				var wike_course_id = "{{wike.id}}";  // todo: 从html页面获取
+				var openid = $('.openid').val();
+				$.ajax({
+					type: 'GET',
+					url: "{% url 'wike:wike_ask_list' %}",
+					data: {openid: openid,
+						   wike_course_id: wike_course_id},
+					success: function(data){
+							     if(data.status){
+							     	html = construct_ask(data.data);
+							     	if(html){
+							     		$(".ques").append(html);
+							     		$(".microClassChat .user span").bind("touchend", handle_ask_like);  //绑定点击事件
+							     	};
+							     }
+						     },
+				});
+			};
+
+			//　发送问答函数
+			var send_ask = function () {
+				make_sure_login();
+				var micro_course_id = $(".micro-course-id").val();
+				var openid = $(".openid").val();
+				var nick_name = $(".nick-name").val();
+				head_image = $(".head-image").val();
+				content = $("#microClassChatComment").val();
+				if(content.length < 15){  //发送内容为空，不予发送
+					$(".microClassChat .chatBox .tip").css("opacity","1");
+					return;
+				}else{
+					$(".microClassChat .chatBox .tip").css("opacity","0");
+				}
+
+				$.ajax({
+					type: 'POST',
+					url: "{% url 'wike:add_wike_ask' %}",
+					data: {micro_course_id: micro_course_id,
+						   openid: openid,
+						   nick_name: nick_name,
+						   head_image: head_image,
+						   content: content},
+					success: function(data){
+								console.log('success');
+								if(data.status){  //问题发布成功, 给用户提示
+									$("#microClassChatComment").val("问题发布成功, 请刷新页面查看");
+								}
+								var ask = {
+									id: data.data.id,
+									head_image: head_image,
+									nick_name: nick_name,
+									praise_count: 0,
+									content: content};
+
+								// 将发送的问题, 附加到问题列表, 绑定点赞事件
+								$(".record .ques").append(construct_ask([ask,]));
+								$(".microClassChat .user span").bind("touchend", handle_ask_like);
+								$("#microClassChatComment").val("").blur();
+								document.body.scrollTop = document.body.scrollHeight;
+							 },
+				});
+			}
+
+			// 发送问答点赞函数
+			var handle_ask_like = function(event){
+				if("{{login}}" == "True"){  // 发送点赞数据
+					var wike_ask_id = $(event.target).attr("id");
+					var openid = $(".openid").val();
+					$.ajax({
+						type: 'POST',
+						url: "{% url 'wike:like_wike_ask' %}",
+						data: {wike_ask_id: wike_ask_id,
+							   openid: openid},
+						success: function(data){
+									if(data.status){
+										$(event.target).addClass('praised');
+										$(event.target).text(data.data.praise_count);
+										$(event.target).unbind("touchend");
+									}
+								 },
+					});
+				} else {  // 跳转到鉴权页面
+					window.location.href=$(".auth-url").val();
+				};
+			}
+
+			// 页面加载完毕, 加载问答列表
+			get_ask_list();
+
+			// 点击问答内容(文本输入框)时, 判断并确保用户已登陆, 防止用户输入完成, 点击发送时, 才发现未登录, 造成输入文本丢失.
+			$(".chatBox").bind("touchend", make_sure_login);
+
+			// 发送问答
+			$(".sendBtn").bind("touchend", send_ask);
+
+
+			//////  问答部分结束
+
+
+			//////  视频播放相关功能及函数:
+
+			// 监听回放结束, 弹出分享
+			 media = document.getElementById("microClassVideo");
+			 if (media){
+				 var eventTester = function(e){
+					 media.addEventListener(e,function(){
+						 var ua = navigator.userAgent.toLowerCase();
+						 if(ua.match(/MicroMessenger/i)=="micromessenger") {
+							$(".microClassShareWx").show();//微信内网页的分享功能界面提醒
+						 };
+					 },false);
+				 };
+				 eventTester("ended");
+			 };
+
+			//////  视频播放相关功能及函数结束
+
+			//微信打开时, 关闭分享按钮
+            $("body").bind("touchend",function(e){
+            	if(e.target != $(".relay")[0]){
+                	$(".microClassShareWx").hide();
+                }
+            });
+			var ua = navigator.userAgent.toLowerCase();
+			if(ua.match(/MicroMessenger/i)=="micromessenger"){
+				$(".microClass .relay").bind("touchend",function(e){
+ 					$(".microClassShareWx").show();//微信内网页的分享功能界面提醒
+                    e.stopPropagation();
+				});
+			}else{
+				$(".microClass .shareBack .relay").hide();
+			}
+
+		});
+        </script>
+	</body>
+</html>

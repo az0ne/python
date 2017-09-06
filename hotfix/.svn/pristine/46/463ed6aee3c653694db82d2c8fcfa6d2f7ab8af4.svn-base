@@ -1,0 +1,133 @@
+{% extends "mz_common/global.html" %}
+{% load article_filter %}
+{% block title %}{{ article.title }}-{{ article.tags.0.name }}-麦子学院{% endblock %}
+{% block keywords%}{{ article.tags.0.name }}，{{ article.tags.0.name }}学习，{{ article.tags.0.name }}教程{% endblock %}
+{% block description%}{{ article.content | content_brief:'200' }}{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/articleDetail.css?v={{ time_stamp }}"/>
+<script type="text/javascript">
+    var thisUser = "{{ user.is_authenticated }}", articleId = "{{ article.id }}", MEDIAURL = "{{ MEDIA_URL }}";
+</script>
+{% endblock %}
+{% block csstype %}article-detail{% endblock %}
+{% block container %}
+{% include 'header/index_header.html' %}
+<!-- 面包屑 -->
+<div class="indexNav color99 font14 center">
+    <a href="{% url 'article_list_view' article_type.short_name %}">{{ article_type.name }}</a> > 文章详情
+</div>
+
+<div class="main_container">
+    <div class="layout_left fl">
+        <div class="article_detail">
+            <h1 class="font26 color33 marginB20">{{article.title}}</h1>
+            <p class="article_source font12 color99 marginB40"><span class="nick_name">{{article.nick_name}}</span><span class="datetime">{{article.html_publish_date}}</span>
+                {% for tag in article_tags %}
+                <a href="{% url 'artilcle_list_tag_view' tag.id %}" class="hot_tag color99" target="_blank">{{tag.name}}</a>
+                {% endfor %}
+            </p>
+            <!-- 文章正文开始 -->
+            <div id="article" style="word-break:break-all">{{article.content|safe}}
+            </div>
+            <!-- 文章正文结束 -->
+            <div class="article_foot">
+                <a href="javascript:void(0);" class="praise-btn{% if is_like %} good disabled_praise{% endif %}"><i></i><span class="font18 color66">赞 <i>{{ article.praise_count }}</i></span></a>
+                <div class="share-ibox">
+                    <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+                        <a class="popup_qzone" data-cmd="qzone"></a>
+                        <a class="popup_sqq" data-cmd="tqq"></a>
+                        <a class="popup_tsina" data-cmd="tsina"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="reviews_container">
+                {% if not user.is_authenticated %}
+                <div>
+                    <div class="reviews_textarea"><textarea name="reviews_textarea" placeholder="说点什么吧..." disabled="disabled"></textarea></div>
+                    <div class="not_sign">
+                        <p>请 <a href="javascript:void(0)">登录</a> 后参与讨论</p>
+                        <button class="disabled_reviews" disabled="disabled">提交评论</button>
+                    </div>
+                </div>
+                {% else %}
+                <div class="sign_reviews">
+                    <div class="col_l"><a href="{% url 'u:index' user.id %}" target="_blank"><img src="{{ MEDIA_URL }}{{ user.avatar_middle_thumbnall }}" alt=""></a></div>
+                    <div class="col_r">
+                        <p><span class="nike_name">{{ user.nick_name }}</span></p>
+                        <script id="reviews_ueditor" name="content" type="text/plain" style="width:100%"></script>
+                        <p class="submit_reviews"><span></span><button>提交评论</button></p>
+                    </div>
+                </div>
+                {% endif %}
+                <h2 class="reviews_num"></h2>
+                <div class="reviews_lists">
+                </div>
+                <p class="load_message">没有更多评论了</p>
+            </div>
+        </div>
+    </div>
+    <div class="layout_right fr">
+        {% if recommend_article %}
+        <div class="related_recommend">
+            <h2 class="font16 color33 marginB20">相关推荐 <span class="hot_tag_link"></span></h2>
+            <ul class="related_recommend_lists marginB29">
+                {% for a in recommend_article %}
+                    <li>
+                        <a href="{% url 'article_detail_view' a.id %}" target="_blank">{{ a.title }}</a>
+                        <p><span class="date_time">{{ a.html_publish_date }}</span><span class="nike_name">{{ a.nick_name }}</span></p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {% with article_type.short_name as article_type_s_name %}
+        {% include 'mz_common/article_hot_tag.html' %}
+        {% endwith %}
+
+        {% if career_course %}
+        <div class="related_lesson">
+            <h2 class="font16 color33 marginB20">相关课程</h2>
+            <ul class="related_lesson_lists marginB29">
+                <li>
+                    <a href="{% url 'course:course_detail' career_course.short_name %}" class="col_l" target="_blank"><img style="width: inherit; height: inherit;" src="{{ MEDIA_URL }}{{ career_course.image }}" alt="{{ career_course.name }}"></a>
+                    <div class="col_r">
+                        <h3><a href="{% url 'course:course_detail' career_course.short_name %}" target="_blank">{{career_course.name}}</a></h3>
+                        <p>{{career_course.course_total }}课程<i></i>{{career_course.need_days}}天学习时长</p>
+                        <p>{{career_course.student_count}}人正在学习</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        {% endif %}
+
+        {% include 'mz_common/article_ad.html' %}
+    </div>
+</div>
+<div id="divUE" style="display: none">
+    <script id="reviews_ueditor_small" name="content_small" type="text/plain" style="width:100%"></script>
+    <p class="submit_reviews"><span></span><button>回复</button></p>
+</div>
+{% endblock %}
+
+{% block footer%}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/lib/ueditor/ueditor.config.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/ueditor/ueditor.all.min.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/articleDetail.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" id="bdshare_js" data="type=tools&mini=1" ></script> 
+<script type="text/javascript" id="bdshell_js"></script> 
+<script type="text/javascript">
+window.bds_config = {
+    'bdDes':'{{ article.content | content_brief:"200" }}',
+    'bdText':'{{ article.title }}-{{ article.tags.0.name }}-麦子学院'
+}
+
+document.getElementById('bdshell_js').src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
+</script>
+{% endblock %}

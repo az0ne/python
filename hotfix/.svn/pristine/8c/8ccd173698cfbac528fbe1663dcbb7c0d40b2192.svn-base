@@ -1,0 +1,94 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/courses_breadcrumb.html" %}
+
+<div class="tabbable">
+{% include "mz_nadmin/parts/career_courses_edit_tabs.html" %}
+
+<div class="tab-content">
+<div class="tab-pane active">
+
+    {% include "mz_nadmin/modules/msgs.html" %}
+    {% include "mz_nadmin/modules/form_alert.html" %}
+
+    {# 这里不是传入的 page 对象 没有对 stage 进行分页处理 #}
+    {% if stages.count > 0 %}
+    <form role="form" action="{% url 'nadmin:career_courses_edit_pay_edit' career_course.id %}" method="post">
+
+    {% csrf_token %}
+
+    <div class="table-responsive">
+    <table class="table table-bordered table-condensed">
+        <thead>
+            <th class="col-md-6">阶段名</th>
+            <th class="col-md-3">价格</th>
+            <th class="col-md-3">包含在首付中</th>
+        </thead>
+        <tbody>
+        {% for stage in stages %}
+        <tr>
+            <td>
+                <a href="#">{{ stage.name|escape }}</a>
+            </td>
+            <td>
+                <input type="text" name="stage_{{ stage.id }}_price" value="{{ stage.price }}" class="form-control">
+            </td>
+            <td>
+
+                <label class="checkbox" for="stage_{{ stage.id }}_istry">
+                    <input data-toggle="checkbox" id="stage_{{ stage.id }}_istry"
+                        type="checkbox" name="stage_{{ stage.id }}_istry" {%if stage.is_try %}checked{%endif%}>
+                </label>
+
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="form-horizontal">
+    <div class="form-group has-feedback">
+        <label for="" class="col-md-2 control-label">
+            全款折扣
+        </label>
+        <div class="col-md-2">
+            <input type="text" class="form-control has-feedback" name="discount" value="{{ career_course_discount_pre }}">
+            <span class="form-control-feedback">%</span>
+        </div>
+    </div>
+    <div class="form-group has-feedback">
+        <label for="" class="col-md-2 control-label">
+            全款价格
+        </label>
+        <div class="col-md-2">
+            <p class="form-control-static">{{ stage_price_sum }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <hr>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-sm btn-primary">保存</button>
+        </div>
+    </div>
+
+    </form>
+    {% else %}
+    <p class="text-muted">
+        <small>没有任何阶段</small>
+    </p>
+    {% endif %}
+
+</div>
+</div>
+</div>
+
+{% endblock %}
+
+
+

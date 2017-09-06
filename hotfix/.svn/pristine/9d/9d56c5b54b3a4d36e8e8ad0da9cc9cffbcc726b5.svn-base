@@ -1,0 +1,20 @@
+{% load article_filter %}
+<div class="context-box scroll-pane">
+    <div class="stage-content">
+        <h4>往期1V1直播</h4>
+        <ul>
+            {% for onevone_meeting in old_onevone_meeting_list %}
+            <li>
+                <dl>
+                    <dt><p><img src="{{ MEDIA_URL }}{{ onevone_meeting.avatar_small_thumbnall }}" alt="{{ oneveone_meeting.real_name }}"/></p><strong>{% if oneveone_meeting.real_name%}{{ oneveone_meeting.real_name }}{% else %}{{ oneveone_meeting.nick_name }}{% endif %}</strong><i></i></dt>
+                    <dd>
+                        <span>{{ onevone_meeting.start_time|date:"Y年m月d日" }}</span>
+                        <strong>{{ onevone_meeting.start_time|date:"H:i" }}-{{ onevone_meeting.end_time|date:"H:i" }}</strong>
+                    </dd>
+                </dl>
+                <p>{% if onevone_meeting.question  %}{{ onevone_meeting.question|safe|content_brief:'90' }}{% else %}这个用户很懒，没有提交预约内容！{% endif %}<a meeting_id="{{ onevone_meeting.id }}" class="1v1info">查看详情</a></p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

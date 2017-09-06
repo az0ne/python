@@ -1,0 +1,109 @@
+{% extends 'mz_usercenter/usercenter_base.html' %}
+
+{% block usercenter_right_panel %}
+    <div class="personalCmainR font14 resume">
+        <div class="tabTit">
+            <a href="{% url 'home:student:resume_info' %}?preview=1">预览简历</a>
+            <ul>
+                <li class="cur personalTab">个人信息{% if user_info_finish == False or not start_work_time %}<em>[未完善]</em>{% endif %}</li>
+                <li class="workTab">工作经历{% if user_work_finish == False %}<em>[未完善]</em>{% endif %}</li>
+                <li class="eduTab">教育背景{% if user_edu_finish == False %}<em>[未完善]</em>{% endif %}</li>
+            </ul>
+        </div>
+        <div class="tabBox">
+            <div class="info cur">
+                <form class="form-horizontal" id="resumeForm" role="form">
+                    <div class="form-group">
+                        <label for="name" class="control-label">姓名</label>
+                        <div class="form-group-right">
+                            <input type="text" class="username" name="username" id="name" placeholder="请输入" value="{{ user_info.real_name }}">
+                            <em class="error"></em>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sex" class="control-label">性别</label>
+                        <div class="form-group-right">
+                            <div class="radio-inline {% if user_info.gender == 1 %}  active {% endif %}">
+                                <label><input type="radio" name="sex" id="sex" value="1" {% if user_info.gender == 1 %} checked {% endif %}>男</label>
+                            </div>
+                            <div class="radio-inline {% if user_info.gender == 2 %}  active {% endif %}" style="margin-left: 52px">
+                                <label><input type="radio" name="sex" id="sex" value="2" {% if user_info.gender == 2 %} checked {% endif %}>女</label>
+                            </div>
+                            <em class="error"></em>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="births" class="control-label">出生年月</label>
+                        <div class="form-group-right birSelect">
+                            <select id="year1" class="form-control"></select><select id="month2" class="form-control"></select><select id="day3" class="form-control"></select>
+                            <input type="hidden" name="birthday" class="births">
+                            <em class="error"></em>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="workDate" class="control-label">开始工作时间</label>
+                        <div class="form-group-right">
+                            <select id="workDate" name="worksTime" class="form-control"></select>
+                            <em class="error"></em>
+                        </div>
+                    </div>
+                    <a href="javascript:;" class="submitBtn"><input type="button" value="保存"/></a>
+                    <em class="save-tips"></em>
+                </form>
+            </div>
+            <div class="exper">
+                <ul class="experList">
+                    {% for worker in user_work %}
+                    <li id="{{ worker.id }}">
+                        <div class="boxTop">
+                            <span class="title"><span class="exper_start_time">{{ worker.start_time }}</span> — <span class="exper_end_time">{{ worker.end_time }}</span> | <span class="exper_company">{{ worker.company }}</span></span>
+                            <span class="handle"><em class="del">删除</em><em class="edit">编辑</em></span>
+                        </div>
+                        <div class="boxCon">
+                            <p><strong>工作岗位：</strong><span class="exper_work_title">{{ worker.title }}</span></p>
+                            <p><strong>工作描述：</strong><span class="exper_work_content">{{ worker.content }}</span></p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="add">+添加工作经历</div>
+            </div>
+            <div class="educ">
+                <ul class="experList">
+                    {% for edu in user_edu %}
+                    <li id="{{ edu.id }}">
+                        <div class="boxTop">
+                            <span class="title"><span class="educ_start_time">{{ edu.start_time }}</span> — <span class="educ_end_time">{{ edu.end_time }}</span> 丨<span class="educ_school">{{ edu.school }}</span></span>
+                            <span class="handle"><em class="del">删除</em><em class="edit">编辑</em></span>
+                        </div>
+                        <div class="boxCon">
+                            <span><em>专业名称：</em><span class="educ_major">{{ edu.major }}</span></span>
+                            <span><em>学历：</em><span class="educ_title">{{ edu.title }}</span></span>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="add">+添加教育经历</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block custom_script %}
+<script type="text/javascript">
+var birthtime = "{{ user_info.birthday }}",
+    worktime = "{{ start_work_time }}",
+    experStartTime = "2012-06-01",
+    experEndTime = "2014-03-01",
+    educStartTime = "2009-09-01",
+    educEndTime = "2012-06-01"
+</script>
+<script type="text/javascript" src="/2016/lib/layer/layer.js"></script>
+<script type="text/javascript" src="/2016/lib/jquery/function.js"></script>
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/personalCenterResume.js?v={{ time_stamp }}"></script>
+{% endblock %}
+
+
+
+

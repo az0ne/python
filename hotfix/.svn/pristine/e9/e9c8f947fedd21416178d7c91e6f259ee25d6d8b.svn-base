@@ -1,0 +1,296 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>预订常见问题</title>
+    <style type="text/css">
+        html{
+            color:#fff;background:#fff;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+        html,
+        body { margin: 0; padding: 0; }
+
+        /* 内外边距通常让各个浏览器样式的表现位置不同 */
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+            margin:0;padding:0;
+        }
+
+        /* 重设 HTML5 标签, IE 需要在 js 中 createElement(TAG) */
+        article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+            display:block;
+        }
+
+        /* HTML5 媒体文件跟 img 保持一致 */
+        audio,canvas,video {
+            display: inline-block;*display: inline;*zoom: 1;
+        }
+
+        /* 要注意表单元素并不继承父级 font 的问题 */
+        body,button,input,select,textarea{
+            font-family: "Microsoft YaHei", 微软雅黑, "STHei", 华文黑体, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: #666;
+            font-size: 14px;
+        }
+        input,select,textarea{
+            font-size:100%;
+        }
+
+        /* 去掉各Table  cell 的边距并让其边重合 */
+        table{
+            border-collapse:collapse;border-spacing:0;
+        }
+
+        /* IE bug fixed: th 不继承 text-align*/
+        th{
+            text-align:inherit;
+        }
+
+        /* 去除默认边框 */
+        fieldset,img{
+            border:0;
+        }
+
+        /* ie6 7 8(q) bug 显示为行内表现 */
+        iframe{
+            display:block;
+        }
+
+        /* 去掉 firefox 下此元素的边框 */
+        abbr,acronym{
+            border:0;font-variant:normal;
+        }
+
+        /* 一致的 del 样式 */
+        del {
+            text-decoration:line-through;
+        }
+
+        address,caption,cite,code,dfn,em,th,var {
+            font-style:normal;
+            font-weight:500;
+        }
+
+        /* 去掉列表前的标识, li 会继承 */
+        ol,ul {
+            list-style:none;
+        }
+
+        /* 对齐是排版最重要的因素, 别让什么都居中 */
+        caption,th {
+            text-align:left;
+        }
+
+        /* 来自yahoo, 让标题都自定义, 适应多个系统应用 */
+        h1,h2,h3,h4,h5,h6 {
+            font-size:100%;
+            font-weight:500;
+        }
+
+        q:before,q:after {
+            content:'';
+        }
+
+        /* 统一上标和下标 */
+        sub, sup {
+            font-size: 75%; line-height: 0; position: relative; vertical-align: baseline;
+        }
+        sup {top: -0.5em;}
+        sub {bottom: -0.25em;}
+
+
+
+        /* 让链接在 hover 状态下显示下划线 */
+        a{ text-decoration:none; color:#84a3e3; cursor:pointer; transition: all .3s ease;-moz-transition: all .3s ease; -webkit-transition: all .15s ease;-o-transition: all .15s ease;}
+        a:hover{ color:#4a7add; transition: all .3s ease;-moz-transition: all .3s ease; -webkit-transition: all .15s ease;-o-transition: all .15s ease;}
+        a:hover {
+            text-decoration:none;
+        }
+
+        /* 默认不显示下划线，保持页面简洁 */
+        ins,a {
+            text-decoration:none;
+        }
+
+        /* 清理浮动 */
+        .fn-clear:after {
+            visibility:hidden;
+            display:block;
+            font-size:0;
+            content:" ";
+            clear:both;
+            height:0;
+        }
+        .fn-clear {
+            zoom:1; /* for IE6 IE7 */
+        }
+
+        /* 隐藏, 通常用来与 JS 配合 */
+        body .fn-hide {
+            display:none;
+        }
+        /* 显示, 通常用来与 JS 配合 */
+        body .fn-show {
+            display:block;
+        }
+
+        /* 设置内联, 减少浮动带来的bug */
+        .fn-left,.fn-right {
+            display:inline;
+        }
+        .fn-left {
+            float:left;
+        }
+        .fn-right {
+            float:right;
+        }
+        i{ font-style:normal;}
+
+        /********去虚线框**********/
+        a{
+        blr: expression(this.onFocus=this.close());
+        } /* 只支持IE，过多使用效率低 */
+        a{
+        blr: expression(this.onFocus=this.blur());
+        } /* 只支持IE，过多使用效率低 */
+        a:focus {
+        -moz-outline-style: none;
+        } /* IE不支持 */
+        :focus {
+        outline: none;
+        } /* for Firefox */
+        html{
+            background-color: #eaeaeb;
+            overflow: auto;
+        }
+        body {
+            height: 538px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        .wrapper{
+            width: 241px;
+            background-color: #eaeaeb;
+            padding: 15px 30px 15px 14px;
+        }
+        h2{
+            width: 220px;
+            height: 16px;
+            padding: 0 0 11px 22px;
+            margin: 0 0 15px 0;
+            background: url(images/mark.png) no-repeat left 3px;
+            border-bottom: 1px solid #c7c7c8;
+            font-size: 15px;
+            overflow: hidden;
+            color: #333333;
+            *margin: 0 0 13px 0;
+        }
+        .wrapper ul li{
+            padding: 0 0 0 12px;
+            margin: 0 0 24px 0;
+            background: url(images/icon2.png) no-repeat left 4px;
+            *background: url(images/icon2.png) no-repeat left 6px;
+            *margin: 0 0 22px 0;
+        }
+        .wrapper ul li h3{
+            padding: 0 0 0 6px;
+            font-size: 12px;
+            line-height: 17px;
+            color: #818080;
+            cursor: pointer;
+            *line-height: 18px;
+
+        }
+        .wrapper ul li p{
+            width: 230px;
+            padding: 20px 0 22px 0;
+            font-size: 13px;
+            color: #333333;
+            border-bottom: 1px solid #c7c7c8;
+            display: none;
+        }
+        .wrapper ul li p em {
+            color: #F00;
+        }
+        .wrapper ul li.on{
+            background: url(images/icon1.png) no-repeat left 6px;
+        }
+        .wrapper ul li.on p{
+            display: block;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="wrapper">
+        <h2>常见问题</h2>
+        <ul>
+             <li class="">
+                 <h3>1.什么是LPS企业直通班？</h3>
+                 <p>LPS是麦子学院智能化学习系统，您可以根据您的学习进度随时调整学习计划，老师也能根据您的情况为您调整教学策略，所有数据都变为可视化，并且从您刚入班开始，您的LPS数据就会被实时记录，学习完成后直接附加到简历。</p>
+             </li>
+
+             <li class="">
+                 <h3>2.我没有基础，能够听懂你们的课程吗？</h3>
+                 <p>答：如果你基础稍微好一点学习的时间会短一些，可以提前进入项目阶段并就业比如3个月，如果没有基础导师会给你制定适合你的学习计划和进度，所以不用太担心。</p>
+             </li>
+
+             <li>
+                 <h3>3.学习时间持续多长？每周老师辅导多长时间呢？如果听不懂怎么解决？</h3>
+                 <p>答：学习时间为3～4个月，老师在线辅导+LPS学习+直播及班会+项目协同开发+实战考核，学习方式更加灵活，老师会为您讲解到掌握为止。</p>
+             </li>
+
+
+            <li>
+                <h3>4.我现在在上班/上学，时间怎么安排？</h3>
+                <p>答：如果是传统培训，固定时间固定地点可定会耽误你的时间，但在线教育每周固定会议时间只有2-4个小时，其他时间灵活安排，所以你不用辞职也不用逃课，这就是在线教育。</p>
+            </li>
+            <li>
+                <h3>5.现在线下传统学习机构那么多，跟他们比有什么优势呢？</h3>
+                <p>答：互联网在不断发展，我们的传统观念也要改变，在线教育必定是未来的主要方向。与传统培训相比，我们的学习方式灵活、 性价比高、 讲师资深、学习服务到位、实战项目分享、就业保障给力。</p>
+            </li>
+            <li>
+                <h3>6.有没有相关的课程安排？你们的课程是以前录制的，会不会过时？</h3>
+                <p>答：课程安排你可以参照我们的课程大纲。我们的视频课程就相当于老师用的课本，我们的老师会在课堂上讲解最新的知识和分享项目实战经验。</p>
+            </li>
+            <li>
+                <h3>7.我最近经济上有些压力，学费需要一次性缴清吗？是否可以优惠？</h3>
+                <p>答：不需要一次性缴清。688元即可加入班级开始学习，享受与全款一样的课程资料与教学服务，学习一个月满意后再付余款。</p>
+            </li>
+            <li>
+                <h3>8.对于学到知识对口就业，3~4个月的时间会不会太少了？</h3>
+                <p>答：我们的课程注重实战项目，导师远程协同研发，并且我们有标准的企业项目研发管理KPI考核，这些都是一般培训不会接触的，比如微软的项目就基本是遍布全球的开发者共同完成，会给大家1个月的项目时间，学成后有2-3个项目，这就是你就业的最重要砝码。</p>
+            </li>
+            <li>
+                <h3>9.你们的保就业保底薪究竟怎么保证，有协议保障吗？</h3>
+                <p>答：学习之前，我们会与你签订企业直通班学习协议书，如果学习结束最后不能顺利就业要么选择继续学习，要么我们会在你提出申请后的1个月内归还你的费用~你是没有损失的，只有麦子学院可以做到！</p>
+            </li>
+            <li>
+                <h3>10.之前有成功就业的学员吗？</h3>
+                <p>答：之前已经开了好多班了，你只要跟着我们的老师好好学习，按照老师的要求完成学习任务，就必须成功就业。</p>
+            </li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+        function changeImg(v){
+                if (v.className == 'on') {
+                    v.className = '';
+                } else {
+                    v.className = 'on';
+                }
+            };
+        window.onload = function(){
+            var question = document.getElementsByTagName('h3') ;
+            for (var i = 0; i<question.length; i++){
+                question[i].onclick = function(i){
+                    return function() {
+                        changeImg(question[i].parentNode);
+                    };
+                }(i);
+           }
+        }
+    </script>
+
+
+</body></html>

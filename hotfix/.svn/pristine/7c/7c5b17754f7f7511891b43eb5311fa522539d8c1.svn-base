@@ -1,0 +1,97 @@
+{% extends "mz_common/base.html" %}
+{% block title %}{{ seo.seo_title }}{% endblock %}
+{% block keywords%}{{ seo.seo_keyword }}{% endblock %}
+{% block description%}{{ seo.seo_description }}{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/static/about/css/style.css"/>
+<style type="text/css">
+.footDiv{ background:#002248; width:100%; padding:32px 0; text-align:center; line-height:2; color:#ffffff;}
+.zy_aboutDiv{background:#ffffff;  width:100%; display:table;}
+.zy_aboxT{width:860px; margin:0 auto; margin-bottom:80px;}
+.zy_aboxT p{ height:200px;}
+.zy_abox span{ color:#002248; font-size:18px; font-family:Arial, Helvetica, sans-serif; margin-right:10px;}
+.listDiv{ margin:0 auto; width:640px; background:url(img/a005.png) no-repeat; padding-left:84px; box-sizing:border-box;}
+.listDiv>ul{ width:100%; display:table;}
+.listDiv>ul li{ float:left; width:182px; padding:16px 0; background:#f5f5f5; color:#666666; text-align:center; margin:0 5px 5px 0;}
+.listDiv>ul li:nth-child(3n){ margin-right:0;}
+
+.zy_aboutDiv .about_wap{ display:none;}
+.wap_zfont1{ display:none;}
+.zy_aboxT .img1{float:right;margin-left:52px;}
+.zy_aboxT .img2{float:left; margin-right:78px;}
+.zy_aboxT .img3{float:right;margin-left:186px;}
+.wap_zfont2{ font-size:28px;}
+.listDiv .p11{padding:6px 0 60px;}
+.listDiv .p12{padding-bottom:4%;}
+.listDiv .p13{padding-top:4%;}
+.ff1{color:#002248; margin-bottom:120px;}
+.padding100{margin-bottom:60px; padding-top:100px;}
+
+@media screen and (max-width: 700px) {
+	.zy_aboutDiv>img{ display:none;}
+	.zy_aboutDiv .about_wap{ display:block; width:100%;}
+	.zy_aboxT{ width:100%;}
+	.listDiv{ padding:0 3% 0 16%; width:auto; box-sizing:border-box;}
+	.zfont1{ display:none;}
+	.wap_zfont1{ display:block; font-size:22px;}
+	.zy_aboxT{ font-size:14px;}
+	.zy_aboxT>p{ display:table; padding:3% 5% 10%;}
+	.zy_aboxT .img1{ float:none; margin:0; max-width:80%; display:block; margin:0 auto;}
+	.zy_aboxT .img2{float:none; margin:0; max-width:80%; display:block; margin:0 auto;}
+	.zy_aboxT .img3{float:none; margin:0; max-width:80%; display:block; margin:0 auto;}
+	.wap_zfont2{ font-size:22px;}
+	.listDiv{ background-image:url(img/a005WW.png); background-position:2% 0;}
+	.listDiv .p11{ padding:3% 0 14%;}
+	.listDiv > ul li{ width:49%; margin:0 2% 2% 0; font-size:13px;}
+	.listDiv > ul li:nth-child(3n){ margin-right:2%;}
+	.listDiv > ul li:nth-child(2n){ margin-right:0;}
+	.zy_aboutDiv{ font-size:13px;}
+	.listDiv > ul li>p{ font-size:14px;}
+	.zy_top_nav{ padding:2%;}
+	.ff1{ margin-bottom:10%;}
+	.zy_aboxT{ margin-bottom:10%;}
+	.padding100{margin-bottom:10%; padding-top:10%;}
+}
+</style>
+{% endblock %}
+
+{% block container %}
+<div class="zy_main YaHei">
+	<div class="container">
+    	<div class="zy_top_nav font14"><a href="">首页</a>  &gt;  专业课</div>
+        <div class="font16 zy_aboutDiv">
+        	<img src="img/about.jpg">
+            <a href="img/about_wap.jpg"><img src="img/about_wap.jpg" class="about_wap"></a>
+            <p class="font26 color33 textC zfont1" style="margin-bottom:30px; padding-top:50px;">让我们来看看怎么做吧，其实很简单</p>
+            <p class="font26 color33 textC wap_zfont1" style="margin-bottom:30px; padding-top:50px;">让我们来看看怎么做吧<br>其实很简单</p>
+            <div class="listDiv color66">
+                <p class="p11">如果你拿到了大神身份证，说明你的大学已经和麦子学院合作啦</p>
+                <p class="p12">请你选择一个感兴趣的QQ群加入，大神答疑，公开课，精彩活动不断</p>
+                <ul>
+                    <li>Android QQ群<p class="font16">群号:  <b>148989514</b></p></li>
+                    <li>嵌入式物联网 QQ群<p class="font16">群号:  <b>250949273</b></p></li>
+                    <li>Web前端 QQ群<p class="font16">群号: <b> 486792092</b></p></li>
+                    <li>原画 QQ群<p class="font16">群号:  <b>240722996</b></p></li>
+                    <li>产品经理 QQ群<p class="font16">群号:  <b>445195513</b></p></li>
+                    <li>Python Web QQ群<p class="font16">群号:  <b>338985564</b></p></li>
+                </ul>
+                <p class="p13" style="">去验证注册你所在学校的在线学习平台，点击登录，按照引导走就OK了（有问题群里问，地址不知道问老师呗）</p>
+            </div>
+            <p class="font26 color33 textC zfont1 padding100" style="">让我们最后看看在线技术平台是个什么东东吧！</p>
+            <p class="font26 color33 textC wap_zfont1 padding100">让我们最后看看<br>在线技术平台是个什么东东吧！</p>
+
+            <div class="zy_aboxT" style=" ">
+            	<p class="line2"><img src="img/a001.png" class="img1"><span style=" top:30px; position:relative; ">这里有来自全球，包括谷歌，雅虎，腾讯，百度，去哪儿网等一线工程师为你精心制作的3000多个小时IT领域技术视频课程，如果你重视他们，他们就能让你在毕业的时候有资本去任性。</span></p>
+                <p class="line2" style="height:300px;"><img src="img/a002.png" class="img2" style=""><span style=" top:30px; position:relative; ">除了这些视频课程，你所在的大学也会定期开通一个超牛的LPS智能在线学习系统，你只要在线根据要求进班后，不仅仅可以学习视频课程，更能生成属于你的学习计划，做测验，做项目等等等等，你距离任性更近了一步.</span></p>
+                <p class="line2"><img src="img/a003.png" class="img3" ><span style=" top:40px; position:relative; ">最后，如果你希望这些视频里大神亲自一对一的辅导你，让你在大学正常学习的同时，再请一个企业大神陪你度过大学时光，那你何止是任性，简直就是男神女神，什么好工作，高薪资都是小意思.</span></p>
+            </div>
+            <p class="color99 textC wap_zfont2 zfont1">大学的目的是为了进入企业，现在就让你提前进入企业</p>
+            <p class="color99 textC wap_zfont2 wap_zfont1">大学的目的是为了进入企业<br>现在就让你提前进入企业</p>
+            <p class="textC font20 ff1" style=" ">未来，你来</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block footer%}
+{% include 'footer/footer_1.html' %}
+{% endblock %}

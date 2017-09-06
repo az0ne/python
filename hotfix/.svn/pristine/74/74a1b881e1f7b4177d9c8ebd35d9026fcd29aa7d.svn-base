@@ -1,0 +1,495 @@
+# -*- coding: utf-8 -*-
+from django.core.urlresolvers import reverse
+from django.core.cache import cache
+from django.db import transaction
+from django.db.models.aggregates import Sum, Count
+from django.db.models.expressions import F
+from django.http.response import HttpResponse, Http404
+from django.shortcuts import get_object_or_404, render, redirect
+from mz_common.decorators import student_required
+import datetime
+import db.api.common.homepage
+from mz_course.models import CareerCourse, Stage, ShowStage, StudentProjectImage
+from mz_course.views import CourseIntroductionView
+from mz_user.models import UserProfile, MyCourse
+from mz_lps.models import Class, ClassStudents
+from db.api.lps.record import add_record_usercareer
+from db.api.course.career_course_intro import user_class_type, get_career_intro, get_career_intro_discuss, \
+    get_career_intro_tech_article, get_career_intro_student_article, free_class_start_time, get_career_course_info
+
+from db.api.lps.struct import get_course_syllabus
+from utils.logger import logger as log
+from utils.is_logined import is_logined
+from mz_lps4.class_dict import CAREER_ID_TO_SHORT_NAME
+
+
+# 判断空
+def judge_none(**kwargs):
+    for v in kwargs.values():
+        if not v:
+            return False
+    return True
+
+
+# 列表判断空
+def list_judge_none(list, *args):
+    for item in args:
+        if judge_none(**item):
+            list.append(item)
+
+
+def c_course_intro(request, course_id):
+    if course_id == 'ai':
+        html = 'mz_course/course_introduce/new_ai.html'
+        return render(request, html, locals())
+
+    if not is_logined(request):
+        if request.GET.has_key('gdt'):
+            html = cache.get('pagecache_px_%s_%s_html' % (course_id.lower(), request.GET.get('gdt')))
+        else:
+            html = cache.get('pagecache_px_%s_html' % course_id.lower())
+        if html:
+            return HttpResponse(html)
+
+    # 推广
+    if request.GET.has_key('gdt'):
+        gdt_str = request.GET.get('gdt')
+        rendered = course_popularize(request, course_id.lower(), request.GET.get('gdt'))
+        # 游客保存首页缓存
+        if not is_logined(request):
+            cache.set(
+                'pagecache_px_%s_%s_html' % (course_id.lower(), gdt_str), rendered, 5 * 60)
+        if rendered:
+            return rendered
+    # pm产品经理引导进npm新产品经理
+    if course_id.lower() == 'pm':
+        is_pop_npm_window = True
+
+    # 用careercourse_id取职业课程
+    cur_careercourse = CareerCourse.objects.filter(short_name=course_id)
+    c_course_has_value = False
+
+    if not cur_careercourse:
+        raise Http404
+
+    # 个人中心推荐课程记录
+    if request.user.is_authenticated():
+        if request.GET.get('do') == 'like':
+            add_record_usercareer(user_id=request.user.id, career_id=cur_careercourse[0].id)
+
+    # land介绍页面
+    dict_intro = dict(python="new_python.html",
+                      ui="new_ui.html",
+                      web="web.html",
+                      npm="new_pm.html",
+                      op="new_op.html",
+                      )
+    if dict_intro.has_key(course_id.lower()):
+        rendered = land_course_intro(request, course_id.lower(), dict_intro.get(course_id.lower()))
+        # 游客保存首页缓存
+        if not is_logined(request):
+            cache.set(
+                'pagecache_px_%s_html' % course_id.lower(), rendered, 5 * 60)
+        return rendered
+
+    # 试学介绍页面
+    if cur_careercourse[0].enable_free_488:
+        rendered = new_c_course_intro(request, course_id)
+        # 游客保存首页缓存
+        if not is_logined(request):
+            cache.set(
+                'pagecache_px_%s_html' % course_id.lower(), rendered, 5 * 60)
+        return rendered
+
+    cur_careercourse_values = cur_careercourse.values(
+        'name',
+        'brief_intro',
+        'description_px',
+        'seo_title_px',
+        'seo_keyword_px',
+        'seo_description_px',
+        'id_53kf',
+        'course_color_px',
+        'image_px',
+        'image_px_2')[0]
+
+    cur_careercourse = cur_careercourse[0]
+
+    # 判断页面所需careercourse相关字段是否齐全
+    c_course_has_value = judge_none(**cur_careercourse_values)
+
+    # 取老师
+    class_teachers = Class.objects.xall().filter(
+        career_course__short_name=course_id).values_list('teachers', flat=True)
+    teachers = UserProfile.objects.filter(
+        id__in=set(class_teachers)).values(
+        'id',
+        'nick_name',
+        'position',
+        'description',
+        'teacher_photo',
+        'avatar_middle_thumbnall')
+
+    # 确定可展示老师
+    show_teachers = []
+    list_judge_none(show_teachers, *teachers)
+
+    # 取展示阶段
+    showstages = ShowStage.objects.filter(
+        career_course__short_name=course_id).order_by('id')
+    showstages_values = showstages.values(
+        'name',
+        'description',
+        'task_knowledge_test',
+        'task_list',
+        'image_url')
+
+    # 确定可展示showstages
+    show_s_stages = []
+    list_judge_none(show_s_stages, *showstages_values)
+
+    # 取学生作品图片
+    studentprojectimage = StudentProjectImage.objects.filter(
+        career_course=cur_careercourse).order_by('id')
+    studentprojectimage_values = studentprojectimage.values('image_url')
+    # 确定可展示studentprojectimage
+    show_studentprojectimage = []
+    list_judge_none(show_studentprojectimage, *studentprojectimage_values)
+
+    # if 有开班且有可展示老师 and 有介绍页相关素材:
+    if c_course_has_value and show_teachers and show_s_stages and show_studentprojectimage:
+        careercourse_class_list = Class.objects.xall().filter(
+            career_course=cur_careercourse,
+            status=1,
+            is_closed=False,
+            is_active=True).filter(
+            class_type=Class.CLASS_TYPE_NORMAL).filter(
+            current_student_count__lt=F(
+                'student_limit')).order_by('id')
+
+        # 赋予价格
+        mz_c_course_price = 6000
+        # 判断careercourse_class_list是否为空
+        if careercourse_class_list:
+            lps_version = careercourse_class_list[0].lps_version
+
+            # 根据上面取到的lps_version取对应版本职业课麦子学院的价格
+            mz_c_course_price = Stage.objects.xall().filter(
+                career_course__short_name=course_id,
+                lps_version=lps_version).aggregate(Sum('price'))
+
+            if mz_c_course_price['price__sum']:
+                mz_c_course_price = mz_c_course_price['price__sum']
+
+        # 初始化"学习"按钮状态
+        button_study_status = 0
+        # 初始化"报名"按钮状态
+        button_pay_status = 0
+
+        if request.user.is_authenticated:
+            # 取学生是否在职业班
+            student_in_enterprise_class = ClassStudents.objects.filter(
+                user=request.user.id,
+                student_class__career_course__short_name=course_id).filter(
+                student_class__class_type=Class.CLASS_TYPE_NORMAL)
+
+            # if 在此职业班:
+            if student_in_enterprise_class.exists():
+                button_study_status = 1
+
+                # 取该专业课下阶段总数, 按lps_version分组
+                careercourse_stages = Stage.objects.xall().filter(
+                    career_course__short_name=course_id).values(
+                    'lps_version').annotate(Count('id'))
+
+                # 取该专业课下该学生已解锁阶段总数, 按lps_version分组
+                student_unlock_stages = Stage.objects.xall().filter(
+                    career_course__short_name=course_id,
+                    userunlockstage__user=request.user.id).values(
+                    'lps_version').annotate(Count('id'))
+                all_stages = list(careercourse_stages) + list(student_unlock_stages)
+
+                # 判断学生是否为全款学员, 若all_stages里没有重复项, 即为非全款学员
+                if len(all_stages) == len(set(map(str, all_stages))):
+                    button_pay_status = 1
+                # 若all_stages里有重复项, 即为全款学员
+                else:
+                    button_pay_status = 2
+
+        rendered = render(
+            request, "mz_course/career_courseD.html", locals())
+
+        # 跳介绍页
+        if course_id.lower() == 'business':
+            if mz_c_course_price == 6000:
+                mz_c_course_price = 4800
+            rendered = render(
+                request, "mz_course/career_course_sxy.html", locals())
+
+        # 游客保存首页缓存
+        if not is_logined(request):
+            cache.set(
+                'pagecache_px_%s_html' % course_id.lower(), rendered, 5 * 60)
+
+        return rendered
+    else:
+        # 跳大纲页
+        return redirect(reverse(
+            "course:career_course_detail",
+            kwargs=dict(course_id=course_id)))
+
+
+@student_required
+def access_to_class(request, course_id):
+    careercourse = get_object_or_404(CareerCourse, short_name=course_id)
+
+    student_in_enterprise_class_lps3 = ClassStudents.objects \
+        .filter(user=request.user.id, student_class__career_course=careercourse, student_class__lps_version='3.0') \
+        .filter(student_class__class_type=Class.CLASS_TYPE_NORMAL)
+
+    student_in_enterprise_class_lps2 = ClassStudents.objects \
+        .filter(user=request.user.id, student_class__career_course=careercourse) \
+        .filter(student_class__class_type=Class.CLASS_TYPE_NORMAL) \
+        .exclude(student_class__lps_version='3.0')
+
+    try_class = Class.objects.xall() \
+        .filter(career_course=careercourse, lps_version='3.0', class_type=Class.CLASS_TYPE_EXPERIENCE)
+
+    student_in_try_class = ClassStudents.objects \
+        .filter(user=request.user.id, student_class__career_course=careercourse, student_class__lps_version='3.0',
+                student_class__class_type=Class.CLASS_TYPE_EXPERIENCE)
+
+    @transaction.atomic()
+    def _join_exp_class():
+
+        # 添加到体验班
+        student_in_try_class = ClassStudents(user_id=request.user.id, student_class_id=try_class[0].id)
+        student_in_try_class.save()
+
+        # MyCourse记录
+        student_course = MyCourse.objects.filter(user_id=request.user.id, course=careercourse.id)
+        if not student_course:
+            student_course = MyCourse(user_id=request.user.id, course=careercourse.id, course_type=2)
+            student_course.save()
+
+        # 加学生count
+        exp_class = try_class[0]
+        exp_class.current_student_count += 1
+        exp_class.save()
+
+    # if 在3.0班(同一专业的3.0班和2.0班都报名的情况,优先进3.0班)
+    if student_in_enterprise_class_lps3:
+        # 跳3.0班
+        return redirect(reverse("lps3:student_class",
+                                kwargs=dict(class_id=student_in_enterprise_class_lps3[0].student_class_id)))
+    # elif 在2.0班
+    elif student_in_enterprise_class_lps2:
+        careercourse_id = get_object_or_404(CareerCourse, short_name=course_id).id
+        # 跳2.0班
+        return redirect(reverse("lps2:lps2_learning_plan", kwargs=dict(careercourse_id=careercourse_id)))
+    # elif 没有体验班
+    elif try_class:
+        # if 不在体验班 加班操作
+        if not student_in_try_class:
+            _join_exp_class()
+        # 跳3.0体验班
+        return redirect(reverse("lps3:student_class", kwargs=dict(class_id=try_class[0].id)))
+    # 跳无体验班错误
+    return HttpResponse(u"未找到该课程的体验班级,请联系客服!")
+
+
+# 新职业课程介绍页(取消488)
+def new_c_course_intro(request, course_id):
+    """
+    :param request:
+    :param course_id: 职业课程short_name
+    :return:
+    """
+    result = get_career_course_info(course_id)
+    if result.is_error():
+        raise Exception('get_career_course_info')
+    career_course = result.result()
+    if not career_course:
+        raise Http404
+
+    context_dict = {}
+
+    career_id = career_course['id']
+
+    if career_id in [135]:
+        career_course['enable_free_488'] = False
+
+    user = request.user
+    # user报名情况判断
+    if user.is_authenticated():
+        result = user_class_type(user_id=user.id, career_id=career_id)
+        if result.is_error():
+            raise Exception('user_class_type')
+        context_dict.update(result.result())
+
+    # 开课剩余时间(s)
+    rest_time = None
+    if career_course['enable_free_488']:
+        result = free_class_start_time(career_id)
+        if result.is_error():
+            raise Exception('free_class_start_time')
+        start_time = result.result()
+
+        if start_time:
+            seconds = (start_time[0]['startline'] - datetime.datetime.now()).total_seconds()
+            if seconds > 0:
+                rest_time = int(seconds)
+    # 介绍页相关数据
+    result = get_career_intro(career_id)
+    if result.is_error():
+        raise Exception('get_career_intro')
+    if not result.result()['page_intro']:
+        log.warn('career_course_intro have no mz_career_page data')
+        raise Exception(u'没有相关介绍页数据')
+    context_dict.update(result.result())
+    # page_intro = result.result()['page_intro']
+    # teachers = result.result()['teachers']
+    # students = result.result()['students']
+    # enterprises = result.result()['enterprises']
+    # duties = result.result()['duties']
+
+    # 评论
+    result = get_career_intro_discuss([str(result.result()['page_intro']['discuss_id1']),
+                                       str(result.result()['page_intro']['discuss_id2']),
+                                       str(result.result()['page_intro']['discuss_id3'])])
+    if result.is_error():
+        raise Exception('get_career_intro_discuss')
+    discuss_list = result.result()
+
+    # 相关文章
+    result = get_career_intro_tech_article(career_id)
+    if result.is_error():
+        raise Exception('get_career_intro_tech_article')
+    tech_articles = []
+    for article in result.result():
+        if article['tag']:
+            temp = article['tag'].split(',')
+            article['tag'] = [dict(
+                name=id_name.split('_')[1],
+                id=id_name.split('_')[0]
+            ) for id_name in temp]
+        tech_articles.append(article)
+    # 相关作品
+    result = get_career_intro_student_article(career_id)
+    if result.is_error():
+        raise Exception('get_career_intro_student_article')
+    student_articles = result.result()
+    outlines = []
+    if career_id != 135:
+        # 课程大纲
+        result = get_course_syllabus(career_id)
+        if result.is_error():
+            raise Exception('get_course_syllabus')
+        outlines = result.result()
+        if career_course['enable_free_488']:  # 去掉学习引导任务和免费488任务
+            outlines[0]['tasks'] = outlines[0]['tasks'][2:]
+        else:
+            outlines[0]['tasks'] = outlines[0]['tasks'][1:]
+        outlines = outlines[:4]
+    # 讲职业课程ID转换为短名称(优先进入LPS4.0在进入免费试学)
+    short_name = CAREER_ID_TO_SHORT_NAME.get(career_id)
+    context_dict.update(
+        {
+            'career_id': career_id,
+            'short_name': short_name,
+            'course_id': course_id,
+            'career_course': career_course,
+            'rest_time': rest_time,
+            # 'page_intro': page_intro,
+            # 'teachers': teachers,
+            # 'students': students,
+            # 'enterprises': enterprises,
+            # 'duties': duties,
+            'discuss_list': discuss_list,
+            'tech_articles': tech_articles,
+            'student_articles': student_articles,
+            'outlines': outlines,
+        }
+    )
+    return render(request, 'mz_course/course_introduce.html', context_dict)
+
+
+# land课程介绍页
+def land_course_intro(request, short_name, template):
+    """
+    :param request:
+    :param short_name: 职业课程short_name
+    :param template:
+    :return:
+    """
+    result = get_career_course_info(short_name)
+    if result.is_error():
+        raise Exception('get_career_course_info')
+    career_course = result.result()
+    if not career_course:
+        raise Http404
+
+    context_dict = {}
+
+    career_id = career_course['id']
+    user = request.user
+    # user报名情况判断
+    if user.is_authenticated():
+        result = user_class_type(user_id=user.id, career_id=career_id)
+        if result.is_error():
+            raise Exception('user_class_type')
+        context_dict.update(result.result())
+
+    # 讲职业课程ID转换为短名称(优先进入LPS4.0在进入免费试学)
+    short_name = CAREER_ID_TO_SHORT_NAME.get(career_id)
+    # 推荐课程
+    hot_courses = db.api.common.homepage.get_hot_course_list(_enable_cache=True)
+    if hot_courses.is_error():
+        hot_course_data_list = []
+    else:
+        hot_course_data_list = hot_courses.result()
+    hot_career_dict = {'ui': 0, 'web': 1, 'python': 2, 'npm': 3, 'op': 4}
+    try:
+        hot_course_datas = hot_course_data_list[hot_career_dict.get('ui')][1]
+    except Exception, e:
+        log.warn('e:{0}'.format(str(e)))
+        hot_course_datas = []
+
+    context_dict.update(
+        {
+            'career_id': career_id,
+            'short_name': short_name,
+            'hot_course_datas': hot_course_datas,
+        }
+    )
+    return render(request, 'mz_course/course_introduce/' + template, context_dict)
+
+
+def course_popularize(request, short_name, gdt_str):
+    """
+    课程推广
+    :param request:
+    :param short_name:
+    :param gdt_str:
+    :return:
+    """
+    dict_intro = {}
+    if gdt_str == "groupplacard":
+        dict_intro = dict(
+            # python="popularize-python.html",
+            # ui="popularize-ui.html",
+            # npm="popularize-pm.html",
+        )
+    if gdt_str == "qqshow":
+        dict_intro = dict(
+            # python="popularize-python.html",
+            # ui="popularize-ui.html",
+            # npm="popularize-pm.html",
+        )
+    if dict_intro.has_key(short_name):
+        return land_course_intro(request, short_name, gdt_str + '/' + dict_intro.get(short_name))
+
+
+def course_ai(request):
+    html = 'mz_course/course_introduce/new_ai.html'
+    return render(request, html, locals())

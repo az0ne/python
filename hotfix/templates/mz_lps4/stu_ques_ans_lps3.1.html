@@ -1,0 +1,444 @@
+{% extends "mz_common/global.html" %}
+{% block title %}问答{% endblock %}
+{% block keywords %}{% endblock %}
+{% block description %}{% endblock %}
+{% block csstype %}lps4_stu_ques_ans{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/lps4_stu_ques_ans.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block container %}
+    <div class="left-side">
+        {% include 'mz_lps4/module/div_left_side.html' %}
+    </div>
+    <div class="main-container">
+        {% include 'mz_lps4/module/div_header.html' %}
+        <div class="main-center">
+            <div class="ques_ans_box">
+                <div class="personalInterlocutionTeaState font14">
+                    <span class="all aH">全部</span>|<span class="noready">未读</span>
+                </div>
+                <div class="content" id="main" role="main">
+                    <div class="cur">
+                        <div class="list current">
+                            <div class="timeMark">
+                                <i></i>
+                                <span>8月20日</span>
+                            </div>
+                            <ul>
+                                <li discuss_id="3069">
+                                    <div class="studentInfo">
+                                        <a href="/u/159814/" class="toUserCenter" target="_blank">
+                                            <div class="img"><img src="http://www.maiziedu.com/uploads/avatar/19_samll.jpg"></div>
+                                            <strong class="txt">xiang_seven7777</strong>
+                                        </a>
+                                        <p class="times font12"><span>2016-08-31</span><em>13:07</em></p>
+                                        <em class="new"></em>
+                                    </div>
+                                    <div class="ques">
+                                        <p class="font14">一般的笔记本能运行这个webstorm开发工具么</p>
+                                        <div class="quesInfos">
+                                            <span>提问于<a class="objectHref" href="/course/421-5778/?p_id=3069" target="_blank">00:11&nbsp;&nbsp;实战项目（网页头部及搜索框的制作）</a></span>
+                                            <div class="interact">
+                                                <span class="like" data-discuss-id="3069">0</span>
+                                                <a href="?p_id=3069#comment" target="_blank" class="reply"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li discuss_id="2889">
+                                    <div class="studentInfo">
+                                        <a href="/u/115928/" class="toUserCenter" target="_blank">
+                                            <div class="img"><img src="http://www.maiziedu.com/uploads/avatar/27_samll.jpg"></div>
+                                            <strong class="txt">15013601068</strong>
+                                        </a>
+                                        <p class="times font12"><span>2016-08-31</span><em>13:07</em></p>
+                                    </div>
+                                    <div class="ques">
+                                        <p class="font14">老师讲得很详细哦老师讲得很详细哦老师讲得很详细哦老师讲得很详细哦老师讲得很详细哦</p>
+                                        <div class="quesInfos">
+                                            <span>提问于<a class="objectHref" href="/lps3/student/item/366_133_493/?p_id=2889" target="_blank">00:00&nbsp;&nbsp;课程介绍</a></span>
+                                            <div class="interact">
+                                                <span class="like parised" data-discuss-id="3069"></span>
+                                                <a href="?p_id=3069#comment" target="_blank" class="reply"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li discuss_id="1717">
+                                    <div class="studentInfo">
+                                        <a href="/u/101034/" class="toUserCenter" target="_blank">
+                                            <div class="img"><img src="http://www.maiziedu.com/uploads/avatar/2016/06/cd02a674-31dd-11e6-adb6-00163e004db2_small.jpg"></div>
+                                            <strong class="txt">我是救世主五号</strong>
+                                        </a>
+                                         <p class="times font12"><span>2016-07-31</span><em>13:07</em></p>
+                                    </div>
+                                    <div class="ques">
+                                        <p class="font14">老师 django怎么链接数据库呀？</p>
+                                         <ul>
+                                            <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                             <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                             <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                             <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                        </ul>
+                                        <div class="quesInfos">
+                                            <span>提问于<a class="objectHref" href="/course/276-2608/?p_id=1717" target="_blank">06:23&nbsp;&nbsp;Part2字符串String和变量Variable</a></span>
+                                            <div class="interact">
+                                                <span class="like" data-discuss-id="3069">22</span>
+                                                <a href="?p_id=1717#comment" target="_blank" class="reply"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li discuss_id="458">
+                                    <div class="studentInfo">
+                                        <a href="/u/14413/" class="toUserCenter" target="_blank">
+                                            <div class="img"><img src="http://www.maiziedu.com/uploads/avatar/20_middle.jpg"></div>
+                                            <strong class="txt">solovampire</strong>
+                                        </a>
+                                        <p class="times font12"><span>2016-06-22</span><em>21:31</em></p>
+                                    </div>
+                                    <div class="ques">
+                                        <p class="font14">课件不能下载</p>
+                                        <div class="quesInfos">
+                                            <span>提问于<a class="objectHref" href="/course/644-9413/?p_id=458" target="_blank">02:35&nbsp;&nbsp;课程简介</a></span>
+                                            <div class="interact">
+                                                <span class="like" data-discuss-id="3069">333</span>
+                                                <a href="?p_id=458#comment" target="_blank" class="reply"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="answer">
+                                        <a href="/u/2218/" class="img" target="_blank"><img src="http://www.maiziedu.com/uploads/avatar/5_middle.jpg"></a>
+                                        <div class="txt">
+                                            <div class="teacherInfos font12">
+                                                <a class="answerToUserCenter" href="/u/2218/" target="_blank">
+                                                    <span>漆来平</span>
+                                                    <em>老师</em>
+                                                </a>
+                                                <p class="times"><span>2016-06-22</span><em>21:31</em></p>
+                                            </div>
+                                            <p class="font14">回复漆来平:sssssss</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="list">
+                            <div class="timeMark">
+                                <i></i>
+                                <span>7月</span>
+                            </div>
+                            <ul>
+                                <li discuss_id="3069">
+                                    <div class="studentInfo">
+                                        <a href="/u/159814/" class="toUserCenter" target="_blank">
+                                            <div class="img"><img src="http://www.maiziedu.com/uploads/avatar/19_samll.jpg"></div>
+                                            <strong class="txt">xiang_seven7777</strong>
+                                        </a>
+                                        <p class="times font12"><span>2016-08-31</span><em>13:07</em></p>
+                                    </div>
+                                    <div class="ques">
+                                        <p class="font14">一般的笔记本能运行这个webstorm开发工具么</p>
+                                        <div class="quesInfos">
+                                            <span>提问于<a class="objectHref" href="/course/421-5778/?p_id=3069" target="_blank">00:11&nbsp;&nbsp;实战项目（网页头部及搜索框的制作）</a></span>
+                                            <div class="interact">
+                                                <span class="like parised" data-discuss-id="3069">0</span>
+                                                <a href="?p_id=3069#comment" target="_blank" class="reply"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li discuss_id="2889">
+                                    <div class="studentInfo">
+                                        <a href="/u/115928/" class="toUserCenter" target="_blank">
+                                            <div class="img"><img src="http://www.maiziedu.com/uploads/avatar/27_samll.jpg"></div>
+                                            <strong class="txt">15013601068</strong>
+                                        </a>
+                                        <p class="times font12"><span>2016-08-31</span><em>13:07</em></p>
+                                    </div>
+                                    <div class="ques">
+                                        <p class="font14">老师讲得很详细哦老师讲得很详细哦老师讲得很详细哦老师讲得很详细哦老师讲得很详细哦</p>
+                                        <div class="quesInfos">
+                                            <span>提问于<a class="objectHref" href="/lps3/student/item/366_133_493/?p_id=2889" target="_blank">00:00&nbsp;&nbsp;课程介绍</a></span>
+                                            <div class="interact">
+                                                <span class="like" data-discuss-id="3069">4444</span>
+                                                <a href="?p_id=3069#comment" target="_blank" class="reply"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li discuss_id="2889">
+                                    <div class="studentInfo">
+                                        <a href="/u/115928/" class="toUserCenter" target="_blank">
+                                            <div class="img"><img src="http://www.maiziedu.com/uploads/avatar/27_samll.jpg"></div>
+                                            <strong class="txt">15013601068</strong>
+                                        </a>
+                                        <p class="times font12"><span>2016-08-31</span><em>13:07</em></p>
+                                    </div>
+                                    <div class="ques">
+                                        <p class="font14">老师讲得很详细哦老师讲得很详细哦老师讲得很详细哦老师讲得很详细哦老师讲得很详细哦</p>
+                                        <div class="quesInfos">
+                                            <span>提问于<a class="objectHref" href="/lps3/student/item/366_133_493/?p_id=2889" target="_blank">00:00&nbsp;&nbsp;课程介绍</a></span>
+                                            <div class="interact">
+                                                <span class="like" data-discuss-id="3069">55555</span>
+                                                <a href="?p_id=3069#comment" target="_blank" class="reply"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li discuss_id="1717">
+                                    <div class="studentInfo">
+                                        <a href="/u/101034/" class="toUserCenter" target="_blank">
+                                            <div class="img"><img src="http://www.maiziedu.com/uploads/avatar/2016/06/cd02a674-31dd-11e6-adb6-00163e004db2_small.jpg"></div>
+                                            <strong class="txt">我是救世主五号</strong>
+                                        </a>
+                                         <p class="times font12"><span>2016-07-31</span><em>13:07</em></p>
+                                    </div>
+                                    <div class="ques">
+                                        <p class="font14">老师 django怎么链接数据库呀？</p>
+                                         <ul>
+                                            <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                             <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                             <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                             <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                        </ul>
+                                        <div class="quesInfos">
+                                            <span>提问于<a class="objectHref" href="/course/276-2608/?p_id=1717" target="_blank">06:23&nbsp;&nbsp;Part2字符串String和变量Variable</a></span>
+                                            <div class="interact">
+                                                <span class="like" data-discuss-id="3069"></span>
+                                                <a href="?p_id=1717#comment" target="_blank" class="reply"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li discuss_id="458">
+                                    <div class="studentInfo">
+                                        <a href="/u/14413/" class="toUserCenter" target="_blank">
+                                            <div class="img"><img src="http://www.maiziedu.com/uploads/avatar/20_middle.jpg"></div>
+                                            <strong class="txt">solovampire</strong>
+                                        </a>
+                                        <p class="times font12"><span>2016-06-22</span><em>21:31</em></p>
+                                    </div>
+                                    <div class="ques">
+                                        <p class="font14">课件不能下载</p>
+                                        <div class="quesInfos">
+                                            <span>提问于<a class="objectHref" href="/course/644-9413/?p_id=458" target="_blank">02:35&nbsp;&nbsp;课程简介</a></span>
+                                            <div class="interact">
+                                                <span class="like" data-discuss-id="3069"></span>
+                                                <a href="?p_id=458#comment" target="_blank" class="reply"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="answer">
+                                        <a href="/u/2218/" class="img" target="_blank"><img src="http://www.maiziedu.com/uploads/avatar/5_middle.jpg"></a>
+                                        <div class="txt">
+                                            <div class="teacherInfos font12">
+                                                <a class="answerToUserCenter" href="/u/2218/" target="_blank">
+                                                    <span>漆来平</span>
+                                                    <em>老师</em>
+                                                </a>
+                                                <p class="times"><span>2016-06-22</span><em>21:31</em></p>
+                                            </div>
+                                            <p class="font14">回复漆来平:sssssss</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="list">
+                            <div class="timeMark">
+                                <i></i>
+                                <span>2015年12月</span>
+                            </div>
+                            <ul>
+                                <li discuss_id="3069">
+                                    <div class="studentInfo">
+                                        <a href="/u/159814/" class="toUserCenter" target="_blank">
+                                            <div class="img"><img src="http://www.maiziedu.com/uploads/avatar/19_samll.jpg"></div>
+                                            <strong class="txt">xiang_seven7777</strong>
+                                        </a>
+                                        <p class="times font12"><span>2016-08-31</span><em>13:07</em></p>
+                                    </div>
+                                    <div class="ques">
+                                        <p class="font14">一般的笔记本能运行这个webstorm开发工具么</p>
+                                        <div class="quesInfos">
+                                            <span>提问于<a class="objectHref" href="/course/421-5778/?p_id=3069" target="_blank">00:11&nbsp;&nbsp;实战项目（网页头部及搜索框的制作）</a></span>
+                                            <div class="interact">
+                                                <span class="like parised" data-discuss-id="3069">0</span>
+                                                <a href="?p_id=3069#comment" target="_blank" class="reply"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li discuss_id="2889">
+                                    <div class="studentInfo">
+                                        <a href="/u/115928/" class="toUserCenter" target="_blank">
+                                            <div class="img"><img src="http://www.maiziedu.com/uploads/avatar/27_samll.jpg"></div>
+                                            <strong class="txt">15013601068</strong>
+                                        </a>
+                                        <p class="times font12"><span>2016-08-31</span><em>13:07</em></p>
+                                    </div>
+                                    <div class="ques">
+                                        <p class="font14">老师讲得很详细哦老师讲得很详细哦老师讲得很详细哦老师讲得很详细哦老师讲得很详细哦</p>
+                                        <div class="quesInfos">
+                                            <span>提问于<a class="objectHref" href="/lps3/student/item/366_133_493/?p_id=2889" target="_blank">00:00&nbsp;&nbsp;课程介绍</a></span>
+                                            <div class="interact">
+                                                <span class="like" data-discuss-id="3069"></span>
+                                                <a href="?p_id=3069#comment" target="_blank" class="reply"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li discuss_id="1717">
+                                    <div class="studentInfo">
+                                        <a href="/u/101034/" class="toUserCenter" target="_blank">
+                                            <div class="img"><img src="http://www.maiziedu.com/uploads/avatar/2016/06/cd02a674-31dd-11e6-adb6-00163e004db2_small.jpg"></div>
+                                            <strong class="txt">我是救世主五号</strong>
+                                        </a>
+                                         <p class="times font12"><span>2016-07-31</span><em>13:07</em></p>
+                                    </div>
+                                    <div class="ques">
+                                        <p class="font14">老师 django怎么链接数据库呀？</p>
+                                         <ul>
+                                            <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                             <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                             <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                             <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                        </ul>
+                                        <div class="quesInfos">
+                                            <span>提问于<a class="objectHref" href="/course/276-2608/?p_id=1717" target="_blank">06:23&nbsp;&nbsp;Part2字符串String和变量Variable</a></span>
+                                            <div class="interact">
+                                                <span class="like" data-discuss-id="3069"></span>
+                                                <a href="?p_id=1717#comment" target="_blank" class="reply"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li discuss_id="1717">
+                                    <div class="studentInfo">
+                                        <a href="/u/101034/" class="toUserCenter" target="_blank">
+                                            <div class="img"><img src="http://www.maiziedu.com/uploads/avatar/2016/06/cd02a674-31dd-11e6-adb6-00163e004db2_small.jpg"></div>
+                                            <strong class="txt">我是救世主五号</strong>
+                                        </a>
+                                         <p class="times font12"><span>2016-07-31</span><em>13:07</em></p>
+                                    </div>
+                                    <div class="ques">
+                                        <p class="font14">老师 django怎么链接数据库呀？</p>
+                                         <ul>
+                                            <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                             <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                             <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                             <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                        </ul>
+                                        <div class="quesInfos">
+                                            <span>提问于<a class="objectHref" href="/course/276-2608/?p_id=1717" target="_blank">06:23&nbsp;&nbsp;Part2字符串String和变量Variable</a></span>
+                                            <div class="interact">
+                                                <span class="like" data-discuss-id="3069"></span>
+                                                <a href="?p_id=1717#comment" target="_blank" class="reply"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li discuss_id="1717">
+                                    <div class="studentInfo">
+                                        <a href="/u/101034/" class="toUserCenter" target="_blank">
+                                            <div class="img"><img src="http://www.maiziedu.com/uploads/avatar/2016/06/cd02a674-31dd-11e6-adb6-00163e004db2_small.jpg"></div>
+                                            <strong class="txt">我是救世主五号</strong>
+                                        </a>
+                                         <p class="times font12"><span>2016-07-31</span><em>13:07</em></p>
+                                    </div>
+                                    <div class="ques">
+                                        <p class="font14">老师 django怎么链接数据库呀？</p>
+                                         <ul>
+                                            <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                             <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                             <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                             <li><img src="http://www.maiziedu.com/uploads/temp/2016/07/29/1f8bc333e69744849f8e2bbc4cc8b09d.png"></li>
+                                        </ul>
+                                        <div class="quesInfos">
+                                            <span>提问于<a class="objectHref" href="/course/276-2608/?p_id=1717" target="_blank">06:23&nbsp;&nbsp;Part2字符串String和变量Variable</a></span>
+                                            <div class="interact">
+                                                <span class="like" data-discuss-id="3069"></span>
+                                                <a href="?p_id=1717#comment" target="_blank" class="reply"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li discuss_id="458">
+                                    <div class="studentInfo">
+                                        <a href="/u/14413/" class="toUserCenter" target="_blank">
+                                            <div class="img"><img src="http://www.maiziedu.com/uploads/avatar/20_middle.jpg"></div>
+                                            <strong class="txt">solovampire</strong>
+                                        </a>
+                                        <p class="times font12"><span>2016-06-22</span><em>21:31</em></p>
+                                    </div>
+                                    <div class="ques">
+                                        <p class="font14">课件不能下载</p>
+                                        <div class="quesInfos">
+                                            <span>提问于<a class="objectHref" href="/course/644-9413/?p_id=458" target="_blank">02:35&nbsp;&nbsp;课程简介</a></span>
+                                            <div class="interact">
+                                                <span class="like" data-discuss-id="3069"></span>
+                                                <a href="?p_id=458#comment" target="_blank" class="reply"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="answer">
+                                        <a href="/u/2218/" class="img" target="_blank"><img src="http://www.maiziedu.com/uploads/avatar/5_middle.jpg"></a>
+                                        <div class="txt">
+                                            <div class="teacherInfos font12">
+                                                <a class="answerToUserCenter" href="/u/2218/" target="_blank">
+                                                    <span>漆来平</span>
+                                                    <em>老师</em>
+                                                </a>
+                                                <p class="times"><span>2016-06-22</span><em>21:31</em></p>
+                                            </div>
+                                            <p class="font14">回复漆来平:sssssss</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--
+                            <div class="textC nulldata">
+                                <p class="marginB29"><img src="/images/no_answer2.png"></p>
+                                <p class="font22 color33 marginB10">我的提问记录空空</p>
+                                <p class="font14 color66">暂时还没有提出过疑问</p>
+                                <p class="font14 color66 marginB10">赶快去课程视频下提问吧</p>
+                            </div>
+                        -->
+                    </div>
+                    <div>
+                        {% if my_problem_list %}
+                            <div class="list">
+                                <div class="timeMark">
+                                    <i></i>
+                                    <span>2015年12月</span>
+                                </div>
+                                <ul>
+                                {% for my_problem in my_problem_list %}
+                                    {% include 'mz_lps4/discuss/lps4_div_discuss.html' %}
+                                {% endfor %}
+                                </ul>
+                            </div>
+                        {% else %}
+                            <div class="textC nulldata">
+                                <p class="marginB29"><img src="/images/no_answer2.png"></p>
+                                <p class="font22 color33 marginB10">我的提问记录空空</p>
+                                <p class="font14 color66">暂时还没有提出过疑问</p>
+                                <p class="font14 color66 marginB10">赶快去课程视频下提问吧</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include 'mz_lps4/module/footer.html' %}
+    </div>
+{% endblock %}
+{% block footer %}{% endblock %}
+{% block custom_script %}
+    <script type="text/javascript" src="/js/common/wookmark2.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/lps4StuQuesAns.js?v={{ time_stamp }}"></script>
+{% endblock %}

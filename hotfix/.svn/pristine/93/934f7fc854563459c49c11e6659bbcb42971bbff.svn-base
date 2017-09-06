@@ -1,0 +1,11 @@
+<div class="choice-answer">
+    <h2>精选问答</h2>
+    <ul>
+        {% for dis in discuss %}
+        <li>
+            <a href="{% url 'course:lesson_video_view' course_id=dis.course_id lesson_id=dis.object_id %}?p_id={{ dis.id }}" target="_blank">{{ forloop.counter }}、{{ dis.comment }}</a>
+            <p><span class="views-num">{{ dis.views_num }}</span><span class="answer-num">{{ dis.discuss_count }}</span></p>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

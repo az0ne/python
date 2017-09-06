@@ -1,0 +1,39 @@
+{% extends "mz_common/base.html" %}
+{% block title %}{{ seo.seo_title }}{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+
+{% endblock %}
+{% block keywords%}{{ seo.seo_keyword }}{% endblock %}
+{% block description%}{{ seo.seo_description }}{% endblock %}
+
+{% block container %}
+<div class="zy_main yahei">
+	<div class="container">
+
+        <div class="zy_top_nav font14"><a href="{% url 'index_front' %}">首页</a>  >  企业直通班</div>
+      	<div class="textC marginB50">
+        	<p class="marginB20"><img src="/static/images/qyztb.png"></p>
+            <p class="marginB38 color99 font16">企业直通班是全新的在线教育产品，通过学习过程设计，回归因材施教的教育思想。给您与众不同学习体验的同时<br>让您节省学习时间与费用，快速入职名企</p>
+            <p class="ztb_new"><img src="/static/images/ztb_new.png"></p>
+        </div>
+
+        <ul class="course_list font12">
+            {% for career_course in career_courses %}
+                <li><a title="{{ career_course.name }}" href="{% url 'course:course_detail' career_course.short_name|lower %}">
+                    <div class="course_list_img"><img alt="{{ career_course.name }}" src="{{MEDIA_URL}}{{ career_course.image }}">{% if career_course.status == 2 %}<span class="hot">热门课程</span>{% endif %}{% if career_course.status == 1 %}<span class="soon">即将开班</span>{% endif %}</div>
+                    <div class="course_list_font color99">
+                        <p class="font20 color00 marginB20 pt">{{ career_course.name }}</p>
+                        <p class="marginB20">{{ career_course.description }}</p>
+                        <p class="pb"><span class="color66"><img src="/static/images/zy_ccc1.png" >{{ career_course.total_courses }}课程</span><span class="color66"><img src="/static/images/zy_ccc2.png" >{{ career_course.total_days }}天学习时长</span>{{ career_course.student_count }}人正在学习</p>
+                        <p class="pb pbPP"><span class="color66"><img src="/static/images/zy_ccc1.png" >{{ career_course.total_courses }}课程</span><span class="color66"><img src="/static/images/zy_ccc2.png" >{{ career_course.total_days }}天学习时长</span></p>
+                    </div>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+</div>
+    {% include 'mz_common/wapRmeg.html' %}
+{% endblock %}

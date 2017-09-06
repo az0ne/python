@@ -1,0 +1,45 @@
+{% extends "mz_common/base.html" %}
+{% block title %}直播班会{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="/css/src/feedbackstyle.css"/>
+    <link href="{{ STATIC_URL }}mz_lps3/css/style.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block container %}
+<div class="container">
+	<div class="new_nav color99 font14"><a href="{% url 'lps3:student_class' class_id %}"><< 返回主任务面板</a></div>
+	<p class="font30 color33"><a id="feedbackfade" class="color66 font12 ldFeedbackMeet">有问题时，戳这里~</a>直播班会</p>
+    {% for year,video_1 in video_dict.iteritems %}
+    <div class="d-year-row clearfix"><span class="d-year">{{ year }}</span></div>
+
+    <div class="d-month-list clearfix">
+        {% for month,video_lst in video_1.iteritems %}
+        {% if now_year == year and now_month == month %}
+        <div class="clearfix d-now-month">
+        {% else %}
+        <div class="clearfix">
+        {% endif %}
+            <div class="d-month-icon Arial font18 colorff textC">{{ month }}<span class="font12 YaHei">月</span></div>
+            {% for video in video_lst %}
+            <a class="d-item c-item-l d-active" href="{% url "lps3:class_meeting_player" class_id video.play_id %}" target="_blank">
+                <div class="d-itemL">
+                    <h2>{{ video.play_subject }}</h2>
+                    <span class="d-week">{{ video.d_week }}</span><span class="d-date">{{ video.d_date}}</span><span class="d-time">{{ video.d_time}}</span>
+                </div>
+                <div class="d-live-icon"></div>
+            </a>
+            {% endfor %}
+
+        </div>
+        {% endfor %}
+    </div>
+
+    {% endfor %}
+</div>
+     <!--用户反馈弹出层-->
+    {% include 'mz_lps3/feedback_box.html' %}
+    <script type="text/javascript" src="http://static.geetest.com/static/tools/gt.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/js.feedbackBox.js"></script>
+{% endblock %}
+{% block custom_script %}
+{% endblock %}

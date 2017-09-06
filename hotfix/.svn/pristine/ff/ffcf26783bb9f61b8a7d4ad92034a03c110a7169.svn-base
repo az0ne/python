@@ -1,0 +1,63 @@
+.vam {
+    display: inline-block;
+    vertical-align: middle;
+}
+.CLEARFIX {
+    content: '';
+    display: table;
+    clear: both;
+}
+.substr {
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    white-space:nowrap;
+    overflow:hidden;
+}
+
+.word-break {
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.transition {
+    -webkit-transition: all 0.3s ease-out 0s; 
+    -moz-transition: all 0.3s ease-out 0s; 
+    -o-transition: all 0.3s ease-out 0s; 
+    transition: all 0.3s ease-out 0s;
+}
+.W1160 {
+    width: 1160px;
+    margin: 0 auto;
+}
+
+%bgff {background-color: #fff;}
+
+@mixin transition($transition...){
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+
+@mixin box-sizing($boxSizing...){
+  -webkit-box-sizing: $boxSizing;
+     -moz-box-sizing: $boxSizing;
+          box-sizing: $boxSizing;
+};
+@mixin transform($transform...){
+    -moz-transform: $transform;
+    -webkit-transform: $transform;
+    -o-transform: $transform;
+    -ms-transform: $transform;
+    transform:$transform;
+}
+@mixin font_3_key($fz:16px,$lh:1,$clr:#fff){
+    font-size: $fz;
+    line-height: $lh;
+    color: $clr;
+}
+@mixin box-shadow($shadow...){
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    box-shadow: $shadow;
+}

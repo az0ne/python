@@ -1,0 +1,197 @@
+{% extends "mz_common/base.html" %}
+{% block title %}我的资料{% endblock %}
+{% block keywords%}{% endblock %}
+{% block description%}{% endblock %}
+{% block second_header %}
+{% if user.is_teacher %}
+    {% include "mz_user/teacher_header.html" %}
+{% else %}
+    {% if user.is_student %}
+        {% include "mz_user/student_header.html" %}
+    {% endif %}
+{% endif %}
+{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" href="/static/css/jquery.fileupload.css">
+<link rel="stylesheet" href="/static/css/imgareaselect-animated.css">
+{% endblock %}
+{% block container %}
+  <div class="uc-boxa">
+    <div class="uc-h1 visible-md visible-lg">基本资料</div>
+    <form class="form-horizontal uc-form" id="user_info_save" role="form" method="post" action="{% url 'user:user_info_save' %}">
+    {% csrf_token %}
+      <div class="form-group">
+        <label for="" class="col-xs-2 col-sm-2 control-label v5-hd-lable v5-gutter">头像</label>
+        <div class="col-xs-10 col-sm-10 dis-table v5-gutter">
+          <div class="user-hd dis-table-cell"><img id="avatar_small" src="{{ MEDIA_URL }}{{ user.avatar_small_thumbnall }}"></div>
+          <div class="update-hd dis-table-cell">
+          	<p class="visible-md visible-lg">支持jpg、gif、png或bmp格式的图片，文件须小于1M</p>
+            <a id="change-photo" href="#" data-toggle="modal" data-target="#cutimgModal">更改头像</a>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-xs-2 col-sm-2 control-label v5-gutter">姓名</label>
+        <div class="col-xs-10 col-sm-4 v5-gutter">
+          {{userform.nick_name}}
+        </div>
+        <div class="col-xs-1 col-sm-6 v5-control-label visible-md visible-lg"></div>
+      </div>
+      {% if user.is_teacher %}
+      <div class="form-group">
+        <label for="" class="col-xs-2 col-sm-2 control-label v5-gutter">职位</label>
+        <div class="col-xs-10 col-sm-4 v5-gutter">
+          {{userform.position}}
+        </div>
+        <div class="col-xs-1 col-sm-6 v5-control-label visible-md visible-lg"></div>
+      </div>
+      {% endif %}
+      <div class="form-group" id="city">
+        <label for="" class="col-xs-2 col-sm-2 control-label v5-gutter">城市</label>
+        <div class="col-xs-5 col-sm-3 v5-gutter">
+  		{{userform.prov}}
+        </div>
+        <div class="col-xs-5 col-sm-3 v5-gutter">
+           {{userform.city}}
+        </div>
+      </div>
+      {% if user.is_teacher %}
+      <div class="form-group">
+        <label for="" class="col-xs-2 col-sm-2 control-label v5-gutter">讲师介绍</label>
+        <div class="col-xs-10 col-sm-10 v5-gutter">
+          {{userform.description}}
+        </div>
+      </div>
+      {% endif %}
+      <div class="form-group">
+        <label for="" class="col-xs-2 col-sm-2 control-label v5-gutter">Q Q</label>
+        <div class="col-xs-10 col-sm-4 v5-gutter">
+          {{userform.qq}}
+        </div>
+        <div class="col-xs-1 col-sm-6 v5-control-label visible-md visible-lg"></div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-xs-2 col-sm-2 control-label v5-gutter">电话</label>
+        <div class="col-xs-10 col-sm-4 v5-gutter" style="line-height: 35px;width:500px;">
+            {% if user.mobile == "" or user.mobile == None %}
+                <a href="#newMobilnumber" id="newMobilnumber" onclick="newMobilnumber()" class="link-default">新增</a>
+                &nbsp;添加手机可增强账号安全性
+            {% else %}
+                {% if user.valid_mobile == 0 %}
+                    {{ user.mobile }}(未验证)
+                {% else %}
+                    {{ user.mobile }}(已验证)
+                {% endif %}
+            {% endif %}
+            <input type="hidden" id="id_mobile" name="mobile" value="{% if userform.mobile.value != None %}{{userform.mobile.value}}{% endif %}" />
+        </div>
+          {% if user.mobile != "" and user.mobile != None %}
+              <div class="col-xs-10 col-sm-6 v5-control-label" style="margin-left: 125px"><a href="#newMobilnumber" onclick="newMobilnumber()" data-toggle="modal" data-target="#updateMobileModal" class="link-default">修改手机</a></div>
+          {% endif %}
+      </div>
+      <div class="form-group">
+        <label for="" class="col-xs-2 col-sm-2 control-label v5-gutter">邮箱</label>
+        <div class="col-xs-10 col-sm-4 v5-gutter" style="line-height: 30px;width:500px;">
+            {% if user.email == "" or user.email == None %}
+                <a href="#addNewEmail" id="addNewEmail" onclick="addemail()" class="link-default">新增</a>
+                &nbsp;添加邮箱可用邮箱账号登录
+            {% else %}
+                {% if user.valid_email == 0 %}
+                    {{ user.email }}(未验证)
+                {% else %}
+                    {{ user.email }}(已验证)
+                {% endif %}
+            {% endif %}
+            <input type="hidden" id="id_email" name="email" value="{% if userform.email.value != None %}{{userform.email.value}}{% endif %}" />
+        </div>
+        {% if user.email != "" and user.email != None %}
+            {% if user.valid_email == 0 %}
+                <div class="col-xs-10 v5-control-label" style="margin-left: 125px"><a id="vaild_email" href="#vaild_email" onclick="user_info_email()" class="link-default">验证邮箱</a>&nbsp;|&nbsp;<a href="#addNewEmail" onclick="addemail()" class="link-default">修改邮箱</a></div>
+            {% else %}
+                <div class="col-xs-10 v5-control-label" style="margin-left: 125px"><a href="#addNewEmail" onclick="addemail()" class="link-default">修改邮箱</a></div>
+            {% endif %}
+        {% endif %}
+      </div>
+      <div class="form-group">
+        <label for="" class="col-xs-2 col-sm-2 control-label v5-gutter">密码</label>
+        <div class="col-xs-10 col-sm-10 v5-gutter v5-control-label">
+          <a href="#" data-toggle="modal" data-target="#resetpswModal" class="link-default">修改密码</a>
+        </div>
+      </div>
+        {% if request.user.is_student %}
+      <div class="form-group">
+        <label for="" class="col-xs-2 col-sm-2 control-label v5-gutter">学习目标</label>
+        <div class="col-xs-4 v5-gutter">
+            {{ userform.studygoal }}
+        </div>
+      </div>
+      <div class="form-group form-select-else-cnt" style="display:none">
+        <label class="col-xs-2 col-sm-2 control-label v5-gutter"></label>
+        <div class="col-xs-4 v5-gutter v5-control-label">
+          <input type="text" class="form-control" name="goal_text" placeholder="请输入你的学习目标" value="{{ user.study_goal }}"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="" class="col-xs-2 col-sm-2 control-label v5-gutter">学习基础</label>
+        <div class="col-xs-4 v5-gutter">
+            {{ userform.studybase }}
+        </div>
+      </div>
+       <div class="form-group form-select-else-cnt" style="display:none">
+        <label class="col-xs-2 col-sm-2 control-label v5-gutter"></label>
+        <div class="col-xs-4 v5-gutter v5-control-label">
+          <input type="text" class="form-control" name="base_text" placeholder="请输入你的学习基础" value="{{ user.study_base }}"/>
+        </div>
+      </div>
+        {% endif %}
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-2 v5-gutter">
+          <button type="button" class="btn btn-micv5 btn-block" id="user_save">保存</button>
+        </div>
+        <input type="hidden" id="default_p_c" value="{{user.city.province.id}}_{{user.city.id}}">
+        <input type="hidden" name="uid" value="{{user.id}}" />
+      </div>
+      <div class="form-group"><div id="msg" class="tips-error bg-warning"></div></div>
+    </form>
+  </div>
+{% endblock %}
+{% block popup %}
+    {% include 'mz_user/user_update_avatar.html' %}
+    {% include 'mz_user/user_update_password.html' %}
+    {% include 'mz_user/user_update_mobile.html' %}
+    {% include 'mz_user/user_update_email.html' %}
+{% endblock %}
+{% block custom_script %}
+<script src="/static/js/jquery.ui.widget.js"></script>
+<script src="/static/js/jquery.iframe-transport.js"></script>
+<script src="/static/js/jquery.fileupload.js"></script>
+<script src="/static/js/jquery.imgareaselect.js"></script>
+<script src="/static/js/mz-user.js"></script>
+      <script>
+    $(function(){
+
+        var aaa = $('#aaa').find("option:selected").text();
+        if(aaa == '其他'){
+            $('#aaa').closest('.form-group').next('.form-select-else-cnt').show();
+
+        }
+        var bbb = $('#bbb').find("option:selected").text();
+        if(bbb == '其他'){
+            $('#bbb').closest('.form-group').next('.form-select-else-cnt').show();
+
+        }
+
+      $('.form-select-val-else').on('change',function(){
+        var other = $(this);
+          console.log(other.find("option:selected").text());
+        var box = other.closest('.form-group').next('.form-select-else-cnt');
+        if( '其他' == other.find("option:selected").text() ){
+          box.show();
+        }else{
+          box.hide();
+        }
+      });
+    });
+  </script>
+{% endblock %}

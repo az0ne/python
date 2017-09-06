@@ -1,0 +1,441 @@
+$bg: url(../images/lps4/sprite1.png) 0 0 no-repeat;
+body {
+    background-color: #dee4e8;
+}
+    
+.left-side {
+    width: 110px;
+    height: 100%;
+    background-color: #1e343e;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+.main-container {
+    padding-left: 110px;
+    position: relative;
+    z-index: 50;
+    overflow: hidden;
+}
+.main-center {
+    margin-bottom: 120px;
+    margin-left: 20px;
+}
+.header {
+    height: 62px;
+    width: 100%;
+    background-color: #fff;
+    padding-right: 20px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+    position: relative;
+    z-index: 100;
+    .lps-icon {
+        width: 94px;
+        height: 100%;        
+        padding: 23px 27px 0;
+        border-right: 1px solid #e5e5e5;
+        @extend .fl;
+        span {
+            display: block;
+            height: 100%;
+            background: $bg;
+            background-position: 0 -277px;
+        }
+    }
+    .mobile-app {
+        display: block;
+        @extend .fr;
+        width: 167px;
+        height: 59px;
+        margin-top: 3px;
+        background: $bg;
+        background-position: 0 -325px;
+    }
+    .tab-nav {
+        li {
+            @extend .fl;
+            margin: 0 15px;           
+            @extend .textC;
+            position: relative;
+        }
+        a {
+            display: block;
+            line-height: 62px;
+            color: #969696;
+            @extend .font14;
+        }
+        .select {
+            a {
+                color: #ff9c00;
+            }
+            &:after {
+                content: '';
+                position: absolute;
+                left: 0;
+                bottom: 0;
+                width: 100%;
+                border-bottom: 2px solid #ff9c00;
+            }
+        }
+    }
+}
+.left-side {
+    .logo {
+        height: 62px;
+        border-bottom: 1px solid #15242b;
+        padding: 11px 0;
+        a {
+            display: block;
+            width: 40px;
+            height: 40px;
+            background: $bg;
+            margin: 0 auto;
+        }
+    }
+    .user {
+        height: 109px;
+        border-top: 1px solid #354952;
+        padding: 14px 10px;
+        .nike-pic {
+            display: block;
+            width: 56px;
+            height: 56px;
+            overflow: hidden;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            margin: 0 auto;
+            img {
+                width: 100%;
+            }
+        }
+        .nike-name {
+            color: #fff;
+            text-align: center;
+            display: block;
+            @extend .substr;
+        }
+        .default-user-icon {
+            display: block;
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 8px;
+            background: $bg;
+            background-position: 0 -1042px;
+        }
+        p {
+            @extend .textC;
+            color: #7f9199;
+            a {
+                @extend .font12;
+                color: #7f9199;
+            }
+        }
+    }
+    .user-icon {
+        position: relative;
+        margin-bottom: 8px;
+        .vip, .msg-num {
+            position: absolute;
+        }
+        .vip {
+            left: 54px;
+            top: 40px;
+            width: 18px;
+            height: 16px;
+            background: $bg;
+            background-position: 0 -49px;
+        }
+        .msg-num {
+            color: #fff;
+            background-color: #f00;
+            border: 2px solid #fff;
+            right: 5px;
+            top: 0;
+            border-radius: 50px;
+            @extend .font12;
+            padding: 0 5px;
+        }
+    }
+    .cut-time {
+        background-color: #14232a;
+        height: 68px;
+        padding: 12px 0;
+        font-size: 0;
+        text-align: center;
+        position: relative;
+        p {
+            color: #959595;
+            @extend .font12;
+            margin-bottom: 5px;
+        }
+        span {
+            @extend .vam;
+            width: 17px;
+            height: 23px;
+            line-height: 23px;
+            background: $bg;
+            background-position: 0 -75px;
+            margin-right: 3px;
+            @extend .font14;
+            color: #fff;
+        }
+        .third {
+            margin-right: 0;
+        }
+        &:before {
+            content: '';
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: -19px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            border-top: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #14232a;
+            border-left: 10px solid transparent;                
+        }
+    }
+    .LPS, .record, .answers, .one-to-one {
+        height: 114px;
+        border-top: 1px solid #354952;
+        border-bottom: 1px solid #15242b;
+        @extend .textC;
+        a {
+            display: block;
+            height: 100%;
+        }
+        span {
+            display: block;
+            margin: 0 auto;
+            height: 100%;
+            background: $bg;
+        }
+        strong {
+            font-weight: normal;
+            color: #626f78;
+        }
+    }
+    .last {
+       border-top: 1px solid #354952; 
+    }
+    .LPS {
+        a {
+            padding: 22px 30px;
+        }
+        span {
+            background-position: 4px -108px;
+        }
+    }
+    .record {
+        a {
+            padding: 29px 30px 24px;
+        }
+        span {
+            height: 35px;
+            background-position: 7px -187px;
+            margin-bottom: 10px;
+        }
+    }
+    .answers {
+        a {
+            padding: 30px 30px 21px;
+            position: relative;
+        }
+        span {
+            height: 35px;
+            background-position: 7px -233px;
+            margin-bottom: 13px;
+        }
+        .msg-num {
+            font-style: normal;
+            color: #fff;
+            background-color: #f00;
+            border: 2px solid #fff;
+            position: absolute;
+            left: 58px;
+            top: 15px;
+            border-radius: 50px;
+            @extend .font12;
+            padding: 0 5px;
+        }
+    }
+    .one-to-one {
+        a {
+            padding: 29px 30px 24px;
+            position: relative;
+        }
+        span {
+            height: 35px;
+            background-position: 7px -1108px;
+            margin-bottom: 10px;
+        }
+        .msg-num {
+            font-style: normal;
+            color: #fff;
+            background-color: #f00;
+            border: 2px solid #fff;
+            position: absolute;
+            left: 58px;
+            top: 15px;
+            border-radius: 50px;
+            @extend .font12;
+            padding: 0 5px;
+        }
+    }
+    .now {
+        position: relative;
+        &:before, &:after {
+            content: '';
+            position: absolute;
+        }
+        &:before {
+            width: 30px;
+            height: 114px;                
+            left: 0;
+            top: -1px;
+            background: $bg;
+            background-position: 0 -395px;
+        }
+        &:after {
+            right: 0;
+            top: 50%;
+            margin-top: -5px;
+            border-top: 10px solid transparent;
+            border-right: 10px solid #dee3e8;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid transparent;
+        }
+        strong {
+            color: #00d3a6;
+        }
+    }
+    .LPS.now {
+        span {
+            background-position: -60px -108px;
+        }
+    }
+    .record.now {
+        a {
+            padding: 24px 30px 24px;
+        }
+        span {
+            height: 46px;
+            background-position: -54px -182px;
+        }
+    }
+    .answers.now {
+        a {
+            padding: 20px 30px;
+        }
+        span {
+            height: 41px;
+            background-position: -54px -228px;
+        }
+    }
+    .one-to-one.now {
+        a {
+            padding: 24px 30px 24px;
+        }
+        span {
+            height: 46px;
+            background-position: 7px -2027px;
+        }
+    }
+    .adviser {
+        width: 110px;
+        height: 110px;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        @extend .textC;
+        // &:hover {
+        //     background-color: #1b2f38;
+        //     .adviser-tips {
+        //         display: block;
+        //     }
+        // }
+        a {
+            display: block;
+            padding: 22px 30px;
+            height: 100%;
+        }
+        span {
+            display: block;
+            height: 31px;
+            margin-bottom: 10px;
+            background: url(../images/lps4/sprite3.png) 0 0 no-repeat;
+            background-position: 8px -499px;
+        }
+        strong {
+            font-weight: normal;
+            color: #00d5a7;
+        }
+    }
+    .adviser-tips {
+        //display: none;
+        position: fixed;
+        width: 273px;
+        left: 120px;
+        bottom: 20px;
+        padding: 5px 16px;
+        background-color: #00d5a7;
+        color: #fff;
+        border-radius: 8px;
+        @extend .font16;
+        line-height: 24px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.09);
+        &:before {
+            content: '';
+            width: 0;
+            height: 0;
+            position: absolute;
+            left: -20px;
+            top: 19px;
+            border-right: 10px solid #00d5a7;
+            border-left: 10px solid transparent;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+        }
+    }
+}
+.footer {
+    width: 100%;
+    .copyright {
+        width: 100%;
+        height: 78px;
+        padding: 20px 0;
+        border-top: 1px solid #d5d5d5;
+    }
+    .copyright-box {
+        width: 100%;
+        margin: 0 auto;
+        position: relative;
+        &:before {
+            content: '';
+            display: block;
+            width: 129px;
+            height: 68px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -84px;
+            margin: 0 auto;
+            background: url(../images/lps4/footer_flower.png) 0 0 no-repeat;
+        }
+        .ps-left {
+            width: 284px;
+            height: 40px;
+            position: absolute;
+            left: 20px;
+            top: 0;
+        }
+        .ps-right {
+            position: absolute;
+            right: 20px;
+            top: 0;
+        }
+    }
+}

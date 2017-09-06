@@ -1,0 +1,391 @@
+{% load course_filter %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=0.5,maximum-scale=0.5,user-scalable=0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <title>{{ course.name }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/mz_wap/wechat_wike.css"/>
+</head>
+<body style="background: #fff">
+<h2 class="discuss_result discuss_result_hide">提问成功！</h2>
+<div id="course_detail" style="position: fixed; top: 0; bottom: 0; left: 0; overflow: scroll;-webkit-overflow-scrolling: touch; width: 100%">
+    <div class="video">
+        {% if not is_pay and lesson.need_pay %}
+            <div class="pay_inform">
+                <span>购买该课程可以观看全部课程</span>
+                <a href="{% url 'wike:wechat_course_pay' %}?course_id={{ course.id }}&v={{ timestamp }}" class="pay_btn">立即购买</a>
+            </div>
+        {% endif %}
+        <em></em>
+        <video id="video_play" width="100%" poster="/static/images/wapwike/video_default.png" controls="controls"
+               preload="auto" src="{{ lesson.video_url }}">
+        </video>
+    </div>
+    <div class="tab" id="tabBox">
+        <ul class="tabTit hd">
+            <li class="cd_tab on">课程详情</li>
+            <li class="qa_tab">课程问答{% if comment_count > 0 %}<em>{{ comment_count }}</em>{% endif %}</li>
+            {#				<li class="qa_tab">课程问答<em>99</em></li>#}
+        </ul>
+        <div class="content bd" id="tabBox-bd">
+            <!-- 课程详情内容 -->
+            <div class="cd_cont">
+                <div class="course_intro">
+                    <p class="title">{{ course.name }}</p>
+                    <p><i></i><span class="learn_num">{{ course.student_count }}人已学习</span></p>
+                </div>
+                <div class="tea">
+                    <div class="avatar">
+                        <img class="ui-imglazyload" src="{{ MEDIA_URL }}{{ course.avatar_url }}"
+                             data-url="{{ MEDIA_URL }}{{ course.avatar_url }}" alt="{{ course.teacher_name }}">
+                        <i class="job_tag gold_tea"></i>
+                    </div>
+                <span class="tea_name">{% if course.real_name %}{{ course.real_name }}{% else %}
+                    {{ course.nick_name }}{% endif %}</span>
+                    <span class="tea_title">金牌讲师</span>
+                    <p class="tea_intro">{{ course.teacher_description }}</p></div>
+                <div class="course_catalog">
+                    <p class="title">课程目录</p>
+                    <ol>
+                        {% for lsn in lesson_list %}
+                            <li>
+                                <a href="{% url 'wike:wechat_lesson' course.id lsn.id %}">
+                                    <span class="lesson_time">{{ lsn.video_length|second2duration }}</span>
+                                    <span class="lesson_name">
+                                        {% if lsn.need_pay %}
+                                            <span class="pay_state need_pay">付费</span>
+                                        {% else %}
+                                            <span class="pay_state">免费</span>
+                                        {% endif %}
+                                        {{ lsn.name }}
+                                    </span>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ol>
+                </div>
+                {% if faq %}
+                    <div class="FAQ">
+                        <p class="title">常见问题</p>
+                        {% for qa in faq %}
+                            <li>
+                                <div class="avatar">
+                                    <img src="{{ MEDIA_URL }}{{ qa.avatar_url }}"
+                                         data-url="{{ MEDIA_URL }}{{ qa.avatar_url }}" alt="{{ qa.nick_name }}">
+                                    <i class="std_tag pay_std"></i>
+                                </div>
+                                <span class="std_name">{{ qa.nick_name }}</span>
+                                <p class="question_cont">{{ qa.question }}。</p>
+                                <p class="answer_cont"><span>小麦回复：</span>{{ qa.answer }}</p>
+                            </li>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                    <div class="relative_course">
+                        <p class="title">相关职业课程</p>
+                        <div class="list">
+                            <a href="{% url 'course:course_detail' course.career_short_name %}" target="_self"
+                               style="background: {{ course.career_background_color }};">
+                                <img class="ui-imglazyload" src="{{ MEDIA_URL }}{{ course.career_image }}"
+                                     data-url="{{ MEDIA_URL }}{{ course.career_image }}" alt="{{ course.career_name }}">
+                            </a>
+                            <div class="text">
+                                <p class="course_name">{{ course.career_name }}</p>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+            <!-- 课程问答内容 -->
+            <div class="qa_cont">
+                <ul>
+                    {% for discuss in discuss_list %}
+                        <li id="{{ discuss.id }}" class="qa_list" data-name="{{ discuss.nick_name }}"
+                            data-id="{{ discuss.id }}">
+                            <div class="avatar"><img class="ui-imglazyload" src="{{ discuss.avatar_url }}"
+                                                     data-url="{{ discuss.avatar_url }}"
+                                                     alt="{{ discuss.nick_name }}"><i
+                                    class="std_tag pay_std"></i></div>
+                            <span class="std_name">{{ discuss.nick_name }}</span>
+                            <p class="question_1v1">{{ discuss.content }}</p>
+                            {% for child in discuss.child_discuss %}
+                                <p class="answer_1v1" data-id="{{ discuss.id }}">
+                                    <span>{{ child.nick_name }}回复：</span>{{ child.content }}</p>
+                            {% endfor %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="switch">
+    {% if not is_pay %}
+        <!-- 支付 -->
+        <div class="go_pay">
+            <span class="price_txt"
+                  data-price="{{ course.price }}">课程价格：&#165;&nbsp;<em>{{ course.price }}</em></span>
+            <span class="icon"><a onclick="_MEIQIA('showPanel')"><i></i></a></span>
+            <span class="lj_pay">立即购买</span>
+        </div>
+    {% endif %}
+    <!-- 问答 -->
+    <div class="qa_filed">
+        <div class="qa_box">
+            <div class="qa_border">
+                <input class="qa_txt" id="qa_txt" type="text" name="qa_txt" data-course-id="{{ course.id }}"
+                       data-parent-id="0" placeholder="{% if not is_pay %}付费用户可以向老师提问{% else %}向老师提问{% endif %}">
+            </div>
+            <button class="qa_btn">提问</button>
+        </div>
+    </div>
+</div>
+<div class="discuss_loading">
+	<div class="center"><img class="loading" src="/static/images/wapwike/Group-Copy.png">
+	</div>
+</div>
+
+<script src="{{ STATIC_URL }}js/wap_wike/zepto.min.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}js/mz_wap/imglazyload.js" type="text/javascript"></script>
+{#<script id="hz6d_flp_jquery" src="http://www8.53kf.com/minkh/js/jquery-1.4.2.flp.js?20121127002" charset="utf-8" type="text/javascript"></script>#}
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" type="text/javascript"></script>
+<script type="text/javascript">
+{#    function jump53kf() {  // 点击咨询,跳至可以记录来源的53kf页面#}
+{#        window.location.href = "http://www8.53kf.com/m.php?cid=72111642&style=6&language=zh-cn&charset=gbk&referer=" + encodeURIComponent(window.location.origin + window.location.pathname) + "&keyword=&tpl=crystal_blue&guest_id=10027268782006&tfrom=51&="#}
+{#    }#}
+
+ (function(m, ei, q, i, a, j, s) {
+        m[i] = m[i] || function() {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        j = ei.createElement(q),
+            s = ei.getElementsByTagName(q)[0];
+        j.async = true;
+        j.charset = 'UTF-8';
+        j.src = '//static.meiqia.com/dist/meiqia.js';
+        s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '_MEIQIA');
+    _MEIQIA('entId', 54180);
+     _MEIQIA('withoutBtn');
+
+
+    wx.config({
+            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+            appId: '{{ wechat_config.app_id }}', // 必填，公众号的唯一标识
+            timestamp: {{ wechat_config.timestamp }}, // 必填，生成签名的时间戳
+            nonceStr: '{{ wechat_config.noncestr }}', // 必填，生成签名的随机串
+            signature: '{{ wechat_config.signature }}',// 必填，签名
+            jsApiList: ['onMenuShareTimeline'] // 必填，需要使用的JS接口列表
+    });
+
+    wx.ready(function () {
+        wx.onMenuShareTimeline({
+        title: '{{ course.name }}', // 分享标题
+        link: '{{ share_url }}', // 分享链接
+        imgUrl: '{{ share_img }}', // 分享图标
+        success: function () {
+            // 用户确认分享后执行的回调函数
+        },
+        cancel: function () {
+            // 用户取消分享后执行的回调函数
+        }
+        });
+    });
+
+    var is_pay = {% if is_pay %}true{% else %}false{% endif %};
+    var pay_page = '{% url 'wike:wechat_course_pay' %}?course_id={{ course.id }}&v={{ timestamp }}';
+
+    function is_not_pay() {
+        if (!is_pay)
+            window.location.href = pay_page;
+    }
+
+    $(function () {
+        $('.ui-imglazyload').picLazyLoad();
+
+        var cd_qa_tab = $(".cd_tab,.qa_tab");
+        var discuss = $('.qa_cont');
+        var qa_txt = $('#qa_txt');
+        var qa_btn = $('.qa_btn');
+        // tab切换
+        cd_qa_tab.off('click').on('click', function (event) {
+            $(this).addClass('on').siblings().removeClass('on');
+            if ($(this).attr('class').indexOf('qa_tab') > -1) {
+                $('.qa_filed').show();
+                $('.go_pay').hide();
+                $('.qa_cont').show();
+                $('.cd_cont').hide();
+                $(this).find('em').hide();
+            } else {
+                $('.qa_filed').hide();
+                $('.go_pay').show();
+                $('.cd_cont').show();
+                $('.qa_cont').hide();
+            }
+        });
+
+        // 阻止冒泡
+        cd_qa_tab.bind('click', function (event) {
+            var e = window.event || event;
+            e.stopPropagation();
+        });
+
+        // 点击提问，回复
+        // var scroll_start = null, scroll_end = null;
+        discuss.off('touchstart').on('touchstart', '.qa_list', function (e) {
+            // scroll_start = document.body.scrollTop;
+            $(this).css({'background': '#f5f5f5'});
+        });
+        $(window).off('touchend').on('touchend', '.qa_list', function (e) {
+            $(this).css({'background': '#fff'});
+        });
+        discuss.off('click').on('click', '.qa_list', function (event) {  // 事件委托
+            event.stopPropagation();
+            var questioner = $(this).attr('data-name');
+            var parent_id = $(this).attr('data-id');
+
+            qa_txt.attr('data-parent-id', parent_id);
+            qa_txt.attr('placeholder', '回复' + questioner + ':');
+            qa_txt.focus();
+            qa_btn.text('提交');
+        });
+
+        var show_loading = false, interval_id = null,i = 1;
+        // 设置loading图片自动旋转
+        function rotateLoading(el) {
+            if(show_loading){
+            	interval_id = setInterval(function(){
+            		i++;
+            		el.css('transform','rotate('+1*i+'deg)');
+            	},0.1);
+            }else {
+                clearInterval(interval_id);
+            }
+        }
+
+        // 屏幕滚动条滚动，输入框失去焦点
+        $('#course_detail').off().on('click touchstart touchmove', function (e) {
+            if (document.activeElement.nodeName == 'INPUT') {
+            	qa_txt.attr('data-parent-id', '0');
+            	qa_txt.attr('placeholder', '{% if not is_pay %}付费用户可以向老师提问{% else %}向老师提问{% endif %}');
+                qa_txt.blur();
+            }
+        });
+        // 输入框失去焦点
+        qa_txt.off('blur').on('blur', function () {
+            qa_btn.text('提问');
+        });
+        // 输入框获得焦点
+        qa_txt.on('focus', function () {
+            if (!is_pay) {
+                is_not_pay();
+                return false;
+            }
+        });
+
+        $('.lj_pay').on('touchend', function () {
+            window.location.href = pay_page;
+        });
+
+        var dis_temp = '<li class="qa_list" data-name="" data-id=""><div class="avatar"><img src="" data-url="" alt=""><i class="std_tag pay_std"></i></div>' +
+                '<span class="std_name"></span><p class="question_1v1" ></p></li>';
+        var child_temp = '<p class="answer_1v1"><span>回复：</span></p>';
+        var is_submit = false;
+
+        qa_btn.off('touchend').on('touchend', function () {
+            if (!is_submit) {
+                is_submit = true;
+                if (!is_pay) {
+                    is_not_pay();
+                    return false;
+                }
+                var content = qa_txt.val().trim();
+                if (!Boolean(content)) {
+                    qa_txt.attr('placeholder', '请输入您的问题！');
+                } else {
+                    $.ajax({
+                        url: '/wike/post_discuss/',
+                        data: {
+                            'course_id': qa_txt.attr('data-course-id'),
+                            'parent_id': qa_txt.attr('data-parent-id'),
+                            'content': content
+                        },
+                        dataType: 'json',
+                        type: 'POST',
+                        beforeSend: function(){
+                            $('.discuss_loading').show();
+                            show_loading = true;
+                            rotateLoading($('.loading'));
+                            $('.loading').show();
+                            qa_txt.blur();
+                        },
+                        success: function (data) {
+                            if (data['success']) {
+                                var pd = data['data'];
+                                qa_txt.val('');
+                                qa_txt.attr('data-parent-id', '0');
+                                // qa_txt.attr('placeholder', '提交成功！');
+
+                                if (pd['parent_id'] == '0') {
+                                    var discuss = $(dis_temp);
+                                    discuss.attr('id', pd['id']);
+                                    discuss.find('img').attr({
+                                        'src': pd['avatar_url'],
+                                        'data-url': pd['avatar_url'],
+                                        'alt': pd['nick_name']
+                                    });
+                                    discuss.find('.std_name').text(pd['nick_name']);
+                                    discuss.attr({
+                                        'data-name': pd['nick_name'],
+                                        'data-id': pd['id']
+                                    });
+                                    discuss.find('.question_1v1').text(pd['content']);
+
+                                    $('div.qa_cont ul').append(discuss);
+                                } else {
+                                    $('#' + pd['parent_id']).append('<p class="answer_1v1"><span>' + pd['nick_name'] + '回复：</span>' + pd['content'] + '</p>')
+                                }
+
+                                qa_txt.attr('data-parent-id', '0');
+                                qa_txt.attr('placeholder', '{% if not is_pay %}付费用户可以向老师提问{% else %}向老师提问{% endif %}');
+
+                                $('.loading').hide();
+                                // $('.discuss_result').text('提问成功！').removeClass('discuss_result_hide').addClass('discuss_result_show');
+                                $('.discuss_result').text('提问成功！')
+                                $('.discuss_result').show();
+                                $('.discuss_loading').hide();
+                                show_loading = false;
+                                rotateLoading($('.loading'));
+                                setTimeout(function(){
+                                	$('.discuss_result').hide();
+                                },3000);
+                            }
+                            is_submit = false;
+                        },
+                        error: function () {
+                            is_submit = false;
+                            $('.loading').hide();
+                            $('.discuss_result').text('提问失败！')
+                            $('.discuss_result').show();
+                            // $('.discuss_result').text('提问失败！').removeClass('discuss_result_hide').addClass('discuss_result_show');
+                            $('.discuss_loading').hide();
+                            show_loading = false;
+                            rotateLoading($('.loading'));
+                            setTimeout(function(){
+                            	// $('.discuss_result').removeClass('discuss_result_show').addClass('discuss_result_hide');
+                            	('.discuss_result').hide();
+                            },3000);
+                        }
+                    });
+                }
+            }
+        });
+
+    });
+</script>
+</body>
+</html>

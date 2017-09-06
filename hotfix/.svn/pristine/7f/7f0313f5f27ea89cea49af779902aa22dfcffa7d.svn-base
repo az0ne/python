@@ -1,0 +1,110 @@
+{% extends "mz_backend/base.html" %}
+{% block title %}视频长度更新{% endblock %}
+{% block container %}
+    <div>
+        <form>
+            <table width="450px">
+                <tr><td>更新起始id</td><td><input id="update-time" type="text" class="input-text lh25"></td></tr>
+                <tr><td>更新数量（从起始id开始算起）</td><td><input id="update-count" type="text" class="input-text lh25"></td></tr>
+            </table>
+        </form>
+        <a href="#" class="perform-update-action">开始更新</a>
+        <a href="#" class="stop-update-action">停止更新</a>
+        <div class="updated-list"></div>
+    </div>
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript">
+
+var stop = false;
+$('.perform-update-action').click(function(e) {
+  e.preventDefault();
+  $(this).replaceWith('<div>更新中</div>');
+  load_lessons();
+});
+
+$('.stop-update-action').click(function(e) {
+  e.preventDefault();
+  stop = true;
+});
+
+var next = 0;
+
+function load_lessons() {
+  $.ajax({
+    type: "GET",
+    url: "/backend/update/video/length/lessons/",
+    data: (function() {
+      var params = {}
+      var value = $('#update-time').val()
+      if (value.length > 0) {
+        params.min_id = value;
+      }
+      value = $('#update-count').val()
+      if (value.length > 0) {
+        params.count = value;
+      }
+      return params;
+    })(),
+    dataType: "json",
+    async: false,
+    beforeSend: function() {},
+    complete: function(msg) {
+
+    },
+    success: function(data) {
+      update_next_video_length(data);
+    }
+  });
+
+}
+
+
+function update_next_video_length(lessons) {
+  $.ajax({
+    type: "GET",
+    url: "/backend/update/video/length/" + lessons[next].id,
+    dataType: "json",
+    async: false,
+
+    beforeSend: function() {},
+
+    complete: function(msg) {
+      if(stop) {
+        return
+      }
+      next += 1;
+      if (next < lessons.length) {
+        setTimeout(function() {
+          update_next_video_length(lessons);
+        }, 10)
+      } else {
+        $('.updated-list').append('<div style="color:#FF0000">更新完毕</div>');
+      }
+    },
+    success: function(data) {
+      console.log('loading ' + lessons[next].title);
+      if (data.status == 'success') {
+        console.log('append');
+        $('.updated-list').append('<div style="color:green">' + lessons[next].id + '   ' +
+          lessons[next].length + '   ' +
+          data.length + '   ' +
+          lessons[next].title + '</div>');
+      } else {
+        $('.updated-list').append('<div style="color:#FF0000">' + lessons[next].id + '   ' +
+          lessons[next].length + '   ' +
+          data.length + '   ' +
+          lessons[next].title + '</div>');
+      }
+
+    },
+    error: function() {
+      console.log('error, load next');
+      $('.updated-list').append('<div style="color:#FF0000">' + lessons[next].id + '   ' +
+        lessons[next].length + '   ' +
+        lessons[next].title + '</div>');
+    }
+  });
+}
+</script>
+{% endblock %}

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>麦子助学金</title>
+    <link href="/2016/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/2016/lib/bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/fx_sys.css">
+    <link rel="stylesheet" type="text/css" href="/css/fx_rul.css">
+</head>
+<body style="background-color: #ededed">
+<!-- 弹窗开始 -->
+<div class="sqtx_crean crean">
+    <div class="sqtx_prompt prompt">
+        <p>暂不支持在线提现，若满足提现条件，请与您的教学督导老师联系。</p>
+    </div>
+</div>
+{% if liveness_record %}
+{% ifequal liveness_record.status 1 %}
+<div class="reward_crean crean">
+    <div class="reward_prompt prompt">
+        <h3>奖学金收入提醒</h3>
+        <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;截止{{ liveness_record.start_time|date:"Y年m月d日" }}-{{ liveness_record.end_time|date:"Y年m月d日" }}，您的奖学金收入为<em>{{ liveness_record.profit }}</em>元，近30天周期内您的学习活跃度为<em>{{ liveness_record.liveness }}</em>分，以达到提现标准，我们将把这部分收入放入您的“可提现余额”内。
+        </p>
+        <a href="javascript:" class="off">关闭</a>
+    </div>
+</div>
+{% else %}
+<div class="reward_crean crean">
+    <div class="reward_prompt prompt">
+        <h3>奖学金收入提醒</h3>
+        <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;截止{{ liveness_record.start_time|date:"Y年m月d日" }}-{{ liveness_record.end_time|date:"Y年m月d日" }}，您的奖学金收入为<em>{{ liveness_record.profit }}</em>元，近30天周期内您的学习活跃度为<em>{{ liveness_record.liveness }}</em>分，未达到提现标准，我们将依照奖学金活动规则冻结本周期内的资金共计：<em>{{ liveness_record.profit }}</em>元。如有疑问请联系你的教务老师
+        </p>
+        <a href="javascript:" class="off">关闭</a>
+    </div>
+</div>
+{% endifequal %}
+
+
+{% endif %}
+
+<!--弹窗结束-->
+<div class="container-index">
+    <div class="top">
+        <a href="/" target="_blank" class="logo">
+            <img src="/images/index/logo_greenx2.png" alt="logo" class="logo-img">
+        </a>
+        <div class="user">
+            <i></i>
+            <div class="right"><p>{{ request.session.full_name }}({{ user.role_name }})</p><a
+                    href="{% url 'fxsys:logout' %}"
+                    class="logout">退出</a></div>
+        </div>
+    </div>
+    <div class="content" style="background-color: white;overflow: hidden;">
+        <h3>麦子奖学金提现规则</h3>
+        <hr style="margin-bottom: 48px;">
+        <ol>
+            <p>本规则适用于2017年3月1日及之后加入麦子学院奖学金计划的全体学员。2017年3月1日之前加入麦子学院助学金活动的学员按原有政策施行。</p>
+            <li>学员奖学金分为扶助奖学金和推广奖学金。</li>
+            <li>未参与学习的学员，即使已具备入会资格和获得了相应的扶助奖学金，但无提现资格。</li>
+            <li>学员获得的合法的推广奖学金，可在被推广人成功入学后向课程顾问老师或教学督导申请，一般7-15个工作日到账。</li>
+            <li>
+                学员未毕业或就业前，每月学习活跃度和完成度均大于80%者，方可享受扶助奖学金的提现资格，未满足上述条件者，学员当月获得的扶助奖学金将被永久冻结并无法提现。学员满足条件，可像教学督导老师申请提现，一般7-15个工作日到账。
+                <p class="title">每月学习活跃度和完成度考核标准：</p>
+                <table class="table  table-striped table-bordered myTable">
+                    <tr>
+                        <th >学生</th>
+                        <th class="th-width">分数</th>
+                        <th class="th-width">上限额次</th>
+                        <th class="th-width">分数上限</th>
+                    </tr>
+                    <tr>
+                        <td>行为：完整观看一个视频<br/>
+                            定义：在LPS课程中完整观看一个未学习的从0分钟到视频播放结束。
+                        </td>
+                        <td>0.5</td>
+                        <td>20</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>行为：完成一次练习<br/>
+                            定义：完成任务球的测试或提交任务球内的小项目。
+                        </td>
+                        <td>3</td>
+                        <td>1</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>行为：完成一个任务球<br/>
+                            定义：提交了任务球内的大项目并获得老师评分，得分时间以老师批改时间为准。
+                        </td>
+                        <td>5</td>
+                        <td>4</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>行为：完成一次约课<br/>
+                            定义：学生通过手机APP，向老师成功发起一次约课
+                        </td>
+                        <td>8</td>
+                        <td>1</td>
+                        <td>８</td>
+                    </tr>
+                    <tr>
+                        <td>行为：学生向老师发起一次辅导<br/>
+                            定义：学生通过电脑端LPS主动向老师发起辅导、APP中主动向老师发起辅导，或者继续回复你主动发起的辅导信息；学员在视频播放页中主动向老师发起的提问；<br/>
+                            注：老师主动发起的辅导，学生回复后不做加分计算； 3 8 24
+                        </td>
+                        <td>3</td>
+                        <td>8</td>
+                        <td>24</td>
+                    </tr>
+                </table>
+                <p class="title" style="color: #FF0000;">总分数达到52分则获得提现资格。</p>
+                <p>注：学员按月考核周期指，学员自开班之日起30天为一个考核月，并非自然月。</p>
+            </li>
+            <li>学员需按照《麦子学院学员守则》参与学习，非保就业的学员应在4个月内顺利完成学习和通过毕业；签订了保就业协议的学员则应当在4个月内顺利完成毕业，并在2个月内完成
+                就业。满足上述条件的学员，在毕业或就业后，将获得应得的全部扶助奖学金，但剩余扶助奖学金的发放仍按照《麦子学院就业创业奖学金政策2.0》中扶助奖学金的发放标准进行，按
+                日根据麦子学院所得利润及参与人数和规定比例进行发放，直到发满学员应得的全部扶助奖学金为止。学员符合上述条件，可在毕业或就业后，每月申请一次提现。提现时向教学督导老
+                师进行申请。
+                <p>但在学习期间因未满足提现条件而被永久冻结的扶助奖学金将不再发放。学员因个人原因无法按期顺利毕业或就业的，学院将终止扶助奖学金的发放，且之前未能提现的奖学金将被全部清零。</p>
+            </li>
+            <li>学员在申请提现时应按照政策规定扣除相应的手续费、个人所得税、平台服务费等应缴纳的相关费用，具体税率按照国家规定视具体金额而定。
+                目前学员申请提现将自动扣除7%的相关综合费用。
+            </li>
+            <li>
+
+                        <b>为了更好的提升产品经理课程的学习体验，产品经理课程奖学金提现规则如下，请悉知：
+                        </b>
+                        <br/>
+                        <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一个学习周期合格提现标准</b>
+                        <p>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学习完成从“全面深度预习”到“无漏设计之三大架构设计”七个视频及项目制作
+                        </p>
+
+                        <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二个学习周期提现合格标准</b>
+                        <p>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学习完成“需求文档写作到“五层级第三层-舒适”六个视频及项目制作
+                        </p>
+
+                        <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第三个学习周期提现合格标准</b>
+                        <p>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学习完成“五层级第四层-认同”到“互联网思维方式”上六个视频及项目制作
+                        </p>
+
+                        <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第四个学习周期提现合格标准</b>
+                        <p>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;学习完成“互联网思维方式下”到“产品经理职业规划指导”七个视频及项目制作
+                        </p>
+
+                        <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关于“产品经理”休学</b>
+                        <p>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;休学时如果没有达到该学习周期的标准，则不予提现，在复学后第一周期达到提现标准后则允许提现休学之前的冻结款项。
+                        </p>
+                    </li>
+            <li>本政策适用于2017年3月1日及之后加入此奖学金活动的人员，最终解释权归麦子学院所有，若政策有变化或调整，以最终变化和调整的最新版本为准。</li>
+        </ol>
+        <span style="margin-bottom: 30px;display: block;line-height: 33px;margin-top: 30px;">二〇一七年六月二十日</span>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="/2016/lib/bootstrap/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="/2016/lib/bootstrap/js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript">
+    var is_notify = '{{ liveness_record.is_notify|default_if_none:"" }}';
+    $(function () {
+        $('#datetimeStart').val('{{ start_date }}');
+        $('#datetimeEnd').val('{{ end_date }}');
+        if (is_notify == '0') {
+            $('.reward_crean').fadeIn("slow");
+        }
+
+    });
+    $('.zypage_div a').off('click').on('click', function () {
+        $(this).addClass('jp-current').siblings().removeClass('jp-current');
+    })
+    $("#datetimeStart").datetimepicker({
+        format: 'yyyy.mm.dd',
+        minView: 'month',
+        language: 'zh-CN',
+        autoclose: true,
+    }).on("click", function () {
+        $("#datetimeStart").datetimepicker("setEndDate", $("#datetimeEnd").val())
+    });
+    $("#datetimeEnd").datetimepicker({
+        format: 'yyyy.mm.dd',
+        minView: 'month',
+        language: 'zh-CN',
+        autoclose: true,
+    }).on("click", function () {
+        $("#datetimeEnd").datetimepicker("setStartDate", $("#datetimeStart").val())
+    });
+
+    $('#sqtx').off('click').on('click', function () {
+        $('.sqtx_crean').fadeIn("slow");
+    });
+
+    $('.sqtx_crean').off('click').on('click', function (event) {
+        var e = window.event || event;
+        e.stopPropagation();
+        $('.sqtx_crean').fadeOut("slow");
+    });
+
+    $('.reward_crean').off('click').on('click', function (event) {
+        var e = window.event || event;
+        e.stopPropagation();
+        $('.reward_crean').fadeOut("slow");
+    });
+
+    $('.off').off('click').on('click', function (event) {
+        var e = window.event || event;
+        e.stopPropagation();
+        $('.reward_crean').fadeOut("slow");
+        $.ajax({
+            url: '/fxsys/close_notify/',
+            type: 'get',
+            dataType: "json",
+            success: function (data) {
+            }
+        });
+    });
+
+    $('.sqtx_prompt').off('click').on('click', function (event) {
+        var e = window.event || event;
+        e.stopPropagation();
+    });
+
+</script>
+</html>

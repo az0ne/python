@@ -1,0 +1,76 @@
+.st-list-box {
+    width: auto;
+    height: 400px;
+    margin-top: 100px;
+}
+
+.tab1 .tab1-dream .container {
+    height: 300px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    overflow: hidden;
+    position: relative;
+}
+
+.tab1 .tab1-dream .container ul li {
+    list-style: none;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+}
+
+.tab1 .tab1-dream .container .big {
+    width: 240px;
+    height: 300px;
+}
+
+.tab1 .tab1-dream .container .small {
+    width: 180px;
+    height: 220px;
+}
+.tab1 .tab1-dream .slide-salary{
+    font-weight:bold;
+}
+.tab1 .tab1-dream .slide-name{
+    font-size: 16px;
+    font-weight:bold;
+}
+.tab1 .tab1-dream .img_big {
+    width: 240px;
+    height: 200px;
+    margin: 0 auto;
+    display: block;
+}
+
+.tab1 .tab1-dream .img_small {
+    width: 180px;
+    height: 120px;
+    margin: 0 auto;
+    display: block;
+}
+
+.tab1 .tab1-dream .text_small {
+    width: 180px;
+    background: #ffffff;
+    height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 auto;
+}
+
+.tab1 .tab1-dream .text_big {
+    width: 240px;
+    background: #ffffff;
+    height: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: 0 auto;
+}
+
+.tab1 .tab1-dream .item {
+    float: left;
+    position: absolute;
+}
+
+.tab1 .tab1-dream .slide-text-p {
+    margin-left: 5px;
+}

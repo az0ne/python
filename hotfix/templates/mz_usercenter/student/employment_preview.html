@@ -1,0 +1,36 @@
+{% extends 'mz_usercenter/usercenter_base.html' %}
+{% block usercenter_right_panel %}
+    <div class="personalCmainR font14 resume">
+        <div class="tabTit previewTit">
+            <a href="{% url 'home:student:resume_info' %}">完善简历</a>
+            <h3>简历预览</h3>
+        </div>
+        <ul class="previewList">
+            <li>
+                <h4>基本信息</h4>
+                <div class="con infos">
+                    <strong>{{ user_info.real_name }}</strong><em>{{ work_exp_year }}工作经验</em>丨<em>{{ user_info.gender_name }}</em>丨<em>{{ age }}岁</em>
+                </div>
+            </li>
+            <li>
+                <h4>工作经历</h4>
+                {% for worker in user_work %}
+                <div class="con workexper">
+                    <strong>{{ worker.start_time }} — {{ worker.end_time }} 丨{{ worker.company }}</strong>
+                    <p><em>工作岗位：</em><span>{{ worker.title }}</span></p>
+                    <p><em>工作描述：</em><span>{{ worker.content }}</span></p>
+                </div>
+                {% endfor %}
+            </li>
+            <li>
+                <h4>教育背景</h4>
+                {% for edu in user_edu %}
+                <div class="con edu">
+                    <strong>{{ edu.start_time }} — {{ edu.end_time }} 丨{{ edu.school }}</strong>
+                    <p><span><em>专业名称：</em>{{ edu.major }}</span><span><em>学历：</em>{{ edu.title }}</span></p>
+                </div>
+                {% endfor %}
+            </li>
+        </ul>
+    </div>
+{% endblock %}

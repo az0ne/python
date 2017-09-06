@@ -1,0 +1,35 @@
+<div class="personalCTop">
+    <div class="center">
+        <div class="img"><img src="{{ MEDIA_URL }}{{ head_user.avatar_url }}"
+                              alt="{% if head_user.show_position %}{{ head_user.get_teacher_major }}_{{ head_user.show_position }}_{% endif %}{{ head_user.staff_name }}"></div>
+        {% if head_user.is_edu_admin %}
+            <div class="fl colorff font14 font">
+                <p class="font26 marginB10">{{ head_user.staff_name }}<i class="personalCico educationalICO" title="教务"></i>
+                </p>
+
+                <p>{{ head_user.show_position }}</p>
+            </div>
+        {% elif head_user.is_teacher %}
+            <div class="fl colorff font14 font">
+                <p class="font26 marginB10">{{ head_user.staff_name }}<i class="personalCico teacherICO" title="金牌讲师"></i>
+                </p>
+
+                <p>{{ head_user.show_position }}</p>
+            </div>
+        {% elif head_user.is_student %}
+            <div class="fl colorff font14 font">
+                <p class="font26 marginB10">
+                    {{ head_user.nick_name }}
+                    {% if head_user.is_paying_subscriber %}
+                        <i class="personalCico sudentICO" title="直通班学员"></i>
+                    {% endif %}
+                </p>
+                {% if head_user.is_paying_subscriber %}
+                    <p>企业直通班学员</p>
+                {% else %}
+                    <p>普通用户</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</div>

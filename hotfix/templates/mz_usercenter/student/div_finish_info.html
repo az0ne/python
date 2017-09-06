@@ -1,0 +1,24 @@
+<div class="modal fade" id="pcSBasisMeg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    {% if is_lps4 %}
+    <div class="modal-dialog modal-sm pcSmodal" style="width:600px;">        
+        <div class="modal-content">
+            <h2><p class="color5e">亲爱的同学，恭喜你已经完善了学习信息</p><span class="font14">及时与你进行第一次的学习辅导，请保持通讯畅通哦</span></h2>
+            <div class="">
+                <p class="font20 textC bold">{{ klass.career_course.name }}专业“{% if teacher.real_name %}{{ teacher.real_name }}{% else %}{{ teacher.nick_name }}{% endif %}”老师联系方式</p>
+                <p class="wechart font16 color66 textC">{% if teacher.wechat %}{{ teacher.wechat }}{% endif %}</p>
+                <p class="qq font16 color66 textC">{% if teacher.qq %}{{ teacher.qq }}{% endif %}</p>
+                <p class="mobile font16 color66 textC">{% if teacher.mobile %}{{ teacher.mobile }}{% endif %}</p>
+                <a class="font20 textC bold" href="{% url 'lps4_index' career_id %}">开始学习</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="modal-dialog modal-sm pcSmodal" style="width:300px;">
+        <div class="modal-content">
+            <a class="zy_close"></a>
+            <p class="font22 color33 textC" style="padding:50px 0 20px;">保存成功！</p>
+            <p class="textC marginB29"><a class="personalCbtn">进入学习面板</a></p>
+        </div>
+    </div>
+    {% endif %}
+</div>

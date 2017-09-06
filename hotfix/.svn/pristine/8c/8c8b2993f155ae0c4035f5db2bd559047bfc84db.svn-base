@@ -1,0 +1,41 @@
+<div class="modal fade YaHei" id="enroll" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm" style="width: 625px;">
+        <div class="modal-content">
+            <a class="close"></a>
+            <ul class="tab-box">
+                <li class="first">
+                    <div class="enroll-head">
+                        <h3>报名后即可享受高额回报！</h3>
+                        <p class="yuan-sale">市场价：{{ px.old_price }}</p>
+                        <p class="sale">麦子特惠价：{{ px.price }}</p>
+                    </div>
+                    <span class="icon-1">推荐就业服务</span>
+                    <span class="icon-2">{{ lps_count.knowledge_item_count }}个知识点</span>
+                    <span class="icon-3">{{ lps_count.knowledge_lesson_count }}个录播课时</span>
+                    <span class="icon-4">30<sup>+</sup>直播课时</span>
+                    <span class="icon-5">{{ lps_count.project_count }}次项目实战</span>
+                    <span class="icon-6">LPS系统永久使用权</span>
+                </li>
+                <li>
+                    <div class="enroll-head">
+                        <h3>报名后即可享受高额回报！</h3>
+                        <p class="yuan-sale">市场价：{{ px.old_price }}</p>
+                        <p class="sale">麦子特惠价：{{ px.jobless_price }}</p>
+                    </div>
+                    <span class="icon-1">推荐就业服务</span>
+                    <span class="icon-2">{{ lps_count.knowledge_item_count }}个知识点</span>
+                    <span class="icon-3">{{ lps_count.knowledge_lesson_count }}个录播课时</span>
+                    <span class="icon-4">30<sup>+</sup>直播课时</span>
+                    <span class="icon-5">{{ lps_count.project_count }}次项目实战</span>
+                    <span class="icon-6">LPS系统永久使用权</span>
+                </li>
+            </ul>
+            <ul class="tab-nav">
+                <li class="select"><span>保就业班</span></li>
+                <li><span>免就业班</span></li>
+            </ul>
+            <a class="go-buy" href="{% url 'pay:pay_view2' %}?career_id={{ career_id }}" target="_blank">立即购买</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}注册页面 - 麦子学院{% endblock %}
+{% block keywords %}注册页面{% endblock %}
+{% block description %}注册页面{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet"  href="/static/css/mz_wap/stylev1.2.css"/>
+{% endblock %}
+{% block container %}
+		<!--<div hidden id="refer_url">{{refer_url}}</div>-->
+		<div class="wapv12 register">
+			<h2>欢迎加入麦子学院</h2>
+			<div class="registerForm">
+				<form action="" id="registerForm">
+					<ul>
+						<li>
+							<span><input type="text" value="" placeholder="手机号" id="telphone" /></span>
+							<em id="telphonetips"></em>
+						</li>
+						<li>
+							<div>
+								<p><img id="captcha_img" src="" /></p>
+								<span><input type="text" id="captcha" value="" placeholder="验证码" /></span>
+							</div>
+							<em id="yzmtips"></em>
+						</li>
+						<li>
+							<div>
+								<input type="button" name="" class="sendphoneyzm" id="sendphoneyzm" value="发送手机验证码" />
+								<span><input type="text" id="phoneyzm" value="" placeholder="手机验证码" /></span>
+							</div>	
+							<em id="phoneyzmtips"></em>
+						</li>
+						<li>
+							<span><input type="password" id="password" value="" maxlength="20" placeholder="密码 (6-20 数字,字母, 非空格)" /></span>
+							<em id="passwordtips"></em>
+						</li>
+					</ul>
+					<input type="button" class="btn" value="注册"/>
+				</form>
+			</div>
+		</div>
+{% endblock %}
+{% block custom_script %}
+		<script src="/static/js/mz_wap/zepto.1.2.0.js"></script>
+		<script src="{{STATIC_URL}}js/captcha.js" type="text/javascript"></script>
+		<script src="{{STATIC_URL}}js/mz_wap/signup.js" type="text/javascript"></script>
+{% endblock %}

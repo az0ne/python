@@ -1,0 +1,113 @@
+{% extends "mz_common/global.html" %}
+{% block title %}Android应用开发金牌讲师-android培训-麦子学院{% endblock %}
+{% block keywords%}Android，Android开发，安卓开发，android培训，android学习{% endblock %}
+{% block description%}麦子学院android应用开发金牌讲师—谭均老师，擅长把需求变成应用场景，通过研发转化为商业产品，教授学员研发和团队管理能力极强。多年Android开发及教学经验, 对移动开发有着独到的见解和深入的研究，其授课风格幽默风趣, 内容丰富充实, 善于结合工作、生活中的实际案例, 通过层层引导和深入浅出的方式加深学生对知识点的认识和理解。{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/teacherIntroduce.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block indexhead %}{% endblock %}
+
+{% block container %}
+{% include 'header/header.html' %}
+<div class="addTeacher_container">
+    <div class="addTeacher_banner">
+        <div class="teacher">
+            <span class="image"><a href="/u/684/" target="_blank"><img src="http://www.maiziedu.com/uploads/avatar/2015/05/4b31350e-0103-11e5-acbe-00163e02100b_middle.jpg" alt="Android应用开发金牌讲师"/></a></span>
+            <strong>谭钧</strong>
+            <span>Android应用开发金牌讲师</span>
+            <p>5年的app开发经验，负责过播放、社交、社区O2O、生鲜O2O、校园O2O等十余个项目的研发，对用户体验和精致化的Android开发研究深入。擅长把需求变成应用场景，通过研发转化为商业产品，教授学员研发和团队管理能力极强。多年Android开发及教学经验, 对移动开发有着独到的见解和深入的研究，其授课风格幽默风趣, 内容丰富充实, 善于结合工作、生活中的实际案例, 通过层层引导和深入浅出的方式加深学生对知识点的认识和理解。</p>
+            <a href="{% url 'course:course_detail' 'android' %}" target="_blank">报名TA的课程</a>
+        </div>
+    </div>
+	<div class="info">
+        <ul>
+            <li>带班数<strong>15</strong></li>
+            <li>累积毕业人数<strong>570</strong></li>
+            <li>就业率<strong>96<span>%</span></strong></li>
+        </ul>
+    </div>
+    <div class="works">
+        <h3>讲师作品</h3>
+        <div class="works_bxslider">
+            <div  class="teach_bxslider">
+                 <ul>
+                    <li>
+                        <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceAndroidTea1.jpg" alt="《情人汇》"/></p>
+                        <div class="text"><strong>《情人汇》</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                    </li>
+                    <li>
+                        <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceAndroidTea2.jpg" alt="《工业学院校园通》"/></p>
+                        <div class="text"><strong>《工业学院校园通》</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                    </li>
+                    <li>
+                        <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceAndroidTea3.jpg" alt="《KTV音乐播放器》"/></p>
+                        <div class="text"><strong>《KTV音乐播放器》</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                    </li>
+                </ul>
+            </div>
+            <a href="javascript:;" class="prev"></a>
+            <a href="javascript:;" class="next"></a>
+            <span class="pageState"></span>
+        </div>
+    </div>
+    <div class="experience">
+        <h3>讲师经历</h3>
+        <ul>
+            <li>
+                <span>2014</span>
+                <div class="infos">
+                    <strong>麦子学院</strong>
+                    <p>麦子学院Android应用开发金牌讲师，拥有丰富的开发经验和教学经验。擅长把需求变成应用场景，通过研发转化为商业产品，教学能力、团队管理能力极强。授课风趣幽默，注重理论基础与实际项目相结合，善于对技术原理的讲解以及学生自学能力的培养。</p>
+                </div>
+            </li><li>
+                <span>2011</span>
+                <div class="infos">
+                    <strong>电子科技大学信息中心</strong>
+                    <p>5年的Android APP开发、1年的Unity3D游戏引擎开发。对Phonegap跨平台框架有具体的开发经验、 熟悉app植入外部SDK（植入广告以及接入移动MM的付费）、 对产品的开发和设计、主要针对软件产品的功能可行性以及市场是否可盈利性以及用户的体验有很独到见解。 对AndroidApp开发有深入研究和个人见解。</p>
+                    <em>参与项目</em>
+                    <p>《移动校园》、《邻里通》、《社区平台管理软件》、《情人汇》、《KTV音乐软件》、以及游戏《熊猫去哪儿》</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <dl class="sendWord">
+        <dt><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceAndTea.jpg" alt="讲师寄语"/></dt>
+        <dd>
+            <h3>讲师寄语</h3>
+            <p>现在我们上课相对传统模式的教育来说，我们可以更加直观的看到每个学生真实的学习状态和一个学习进度，每个学生都有一套自己的清晰明了的学习路线，通过多元化的学习方式，完成每周的学习任务。</p>
+            <a href="{% url 'course:course_detail' 'android' %}" target="_blank">报名TA的课程</a>
+        </dd>
+    </dl>
+    <div class="stu_works">
+        <h3>学生作品</h3>
+        <div class="student_bxslider">
+            <div  class="stu_bxslider">
+                <ul>
+                    <li>
+                        <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceAndroidStu1.jpg" alt="学生作品"/>
+                    </li>
+                    <li>
+                        <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceAndroidStu2.jpg" alt="学生作品"/>
+                    </li>
+                    <li>
+                        <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceAndroidStu3.jpg" alt="学生作品"/>
+                    </li>
+                </ul>
+            </div>
+            <a href="javascript:;" class="prev"></a>
+            <a href="javascript:;" class="next"></a>
+            <span class="pageState"></span>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/lib/superSlider/jquery.SuperSlide.2.1.1.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/teacherIntroduce.js?v={{ time_stamp }}"></script>
+{% endblock %}

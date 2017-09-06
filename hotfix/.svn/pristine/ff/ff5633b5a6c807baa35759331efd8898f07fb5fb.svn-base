@@ -1,0 +1,35 @@
+<div id="submit" class="tab-pane">
+<div id="description_div">{{ cur_lesson.homework.description | safe }}</div>
+        {% if not user.is_authenticated %}
+
+        <div class="comment-input">
+          <textarea disabled="" placeholder="尚未登录" rows="3" class="form-control"></textarea>
+          <div class="not-logged">
+            <p>请先<a data-target="#loginModal" data-toggle="modal" href="#">登录</a>或<a data-target="#registerModal" data-toggle="modal" href="">注册</a></p>
+          </div>
+        </div>
+
+{% else %}
+
+        <!--开始上传-->
+        <div class="btn-box job-sub">
+          <!-- <button class="btn btn-micv5 btn-v5-lg" type="button">开始上传</button> -->
+     <!--       <input type="file" name="Filedata" id="file_upload"> -->
+          <span class="btn sub-work fileinput-button">
+              <span>选择作业</span>
+              <input id="file_upload" type="file" name="Filedata">
+          </span>
+
+        </div>
+
+<div class="progress work-pro" id="progress">
+        <div class="progress-bar progress-bar-success"></div>
+</div>  
+        <div class="success-tips"><span>上传此章作业（ZIP、RAR）</span></div>
+        <div class="tips-error bg-danger text-danger">错误提示</div>
+        <div class="success-tips success-msg">
+        <i class="v5-icon v5-icon-success"></i><span>此章节的作业已上传成功，继续努力！</span></div>
+
+{% endif %}
+
+</div>

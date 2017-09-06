@@ -1,0 +1,89 @@
+{% extends "mz_wap/base.html" %}
+{% block title %}支付页面{% endblock %}
+{% block keywords %}支付页面{% endblock %}
+{% block description %}支付页面{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet"  href="/static/css/mz_wap/stylev1.2.css"/>
+{% endblock %}
+{% block container %}
+		<div id="career_course_id" hidden>{{ career_course_id }}</div>
+		<div id="class_name" hidden>{{ class_code }}</div>
+		<div class="wapv12 wapPay">
+{#			<div class="teacher">#}
+{#				<dl>#}
+{#					<dt><img src="{{MEDIA_URL}}{{ class_info.avatar_url }}"/></dt>#}
+{#					<dd>#}
+{#						<strong>{{ class_info.nick_name }}</strong>#}
+{#						<span>{{ class_info.position }}</span>#}
+{#						<p><em>教学特点：</em>{{ class_info.teach_feature }}</p>#}
+{#						<a class="expand">展开</a>#}
+{#					</dd>#}
+{#				</dl>#}
+{#				<p class="resume"><em>个人简介：</em>{{ class_info.description }}</p>#}
+{#			</div>#}
+			<ul class="payEnroll">
+				<li>
+					<span>报名专业：</span>
+					<strong>{{ course_info.name }}</strong>
+				</li>
+{#				<li>#}
+{#					<span>报名班级：</span>#}
+{#					<strong>{{ class_info.coding }}</strong>#}
+{#				</li>#}
+			</ul>
+			<div class="payment payAims">
+				<strong>支付目的：</strong>
+				<ul>
+					<li class="checked">
+						<label>
+							<input type="radio" name="aims" value="employment" price="{{ course_info.net_price }}"/>
+							<span>就业</span>
+						</label>
+					</li>
+					<li class="interest">
+						<label>
+							<input type="radio" name="aims" value="interest" price="{{ course_info.jobless_price }}"/>
+							<span>兴趣学习<br>（无需就业服务）</span>
+						</label>
+					</li>
+				</ul>
+			</div>
+			<div class="payment payWay">
+				<strong>支付方式：</strong>
+				<ul>
+					<!--<li class="wx mfq">-->
+						<!--<label>-->
+							<!--<input type="radio" name="way" id="" value="mfq" />-->
+							<!--<span>么分期</span>-->
+						<!--</label>-->
+					<!--</li>-->
+					<!--<li>-->
+						<!--<label>-->
+							<!--<input type="radio" name="way" id="" value="fql" />-->
+							<!--<span><img src="/static/images/mz_wap/payFQLImg.png"/></span>-->
+						<!--</label>-->
+					<!--</li>-->
+					<!--<li class="wx">-->
+						<!--<label>-->
+							<!--<input type="radio" name="way" id="" value="weixin" />-->
+							<!--<span>微信支付</span>-->
+						<!--</label>						-->
+					<!--</li>-->
+					<li class="checked">
+						<label>
+							<input type="radio" name="way" id="" value="zfb" />
+							<span><img src="/static/images/mz_wap/payZFBImg.jpg"/></span>
+						</label>
+					</li>					
+				</ul>
+			</div>
+			<div class="payInfo">
+				<input type="button" class="payOffBtn" id="" value="确认" />
+				<span>合计：￥<em>{{ course_info.net_price }}</em></span>
+			</div>
+		</div>
+{% endblock %}
+{% block custom_script %}
+		<script src="{{STATIC_URL}}js/mz_wap/zepto.1.2.0.js" type="text/javascript"></script>
+		<script src="{{STATIC_URL}}js/mz_wap/register_career_course.js" type="text/javascript"></script>
+{% endblock %}

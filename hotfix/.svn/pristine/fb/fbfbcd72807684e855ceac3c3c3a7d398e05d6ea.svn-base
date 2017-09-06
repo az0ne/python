@@ -1,0 +1,123 @@
+{% extends "mz_common/global.html" %}
+{% load article_filter %}
+{% block title %}麦子学院 - 专业IT职业在线教育平台|ui设计培训|python培训|php培训|web前端培训{% endblock %}
+{% block keywords %}麦子学院，IT职业培训，IT技能培训，IT在线教育，IT在线学习，编程学习，android,ios,php,java,python,html5,cocos2dx{% endblock %}
+{% block description %}
+    麦子学院专注IT职业在线教育，提供android开发、ios开发、coocs2d-x、Unity3D、游戏原画、物联网、产品经理、嵌入式、php等一系列线上IT培训服务，推出在线教育智能化学习系统，保证在线学习效果，每年帮助上万名软件开发学习者成功就业。{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="/css/oneToOne.css?v={{ time_stamp }}"/>
+    <style type="text/css">html, body {
+        width: 100%;
+        height: 100%;
+    }</style>
+    <script type="text/javascript">
+        var is_pop_complete_resume = '{{ is_pop_complete_resume }}';
+        var is_force_pop_complete_resume = '{{ is_force_pop_complete_resume }}';
+        var is_employment_contract = '{{ is_employment_contract }}';
+        var career_id = '{{ career_id }}';
+        var start_time = '{{ start_time }}';
+        var end_time = '{{ end_time }}';
+    </script>
+{% endblock %}
+{% block csstype %}ono-to-one{% endblock %}
+{% block container %}
+    <div class="left-side">
+        {% include 'mz_lps4/module/div_left_side.html' %}
+    </div>
+    <div class="main-container">
+        {% include 'mz_lps4/module/div_header.html' %}
+
+        <div class="main-center">
+            <div class="main-content">
+                <div class="oto-tab-box">
+                    <div>
+                        {% if not data.onevone_meeting_list %}
+                            <div class="no-data font18 textC">
+                                你还有<b class="bold">{{ residue_count }}</b>次约课服务未使用<br/>请前往麦子学院APP端约课！
+                                <a class="textC font18 colorff" href="/common/apppage/">下载APP</a>
+                            </div>
+                        {% else %}
+                            <!-- 直接约课 -->
+                            <ul class="lists live-lists">
+                                {% for m in data.onevone_meeting_list %}
+                                    <li>
+                                        <div class="left">
+                                            <a href="{% url 'u:index' m.teacher_id %}" target="_blank">
+                                                <img src="{{ m.avatar }}" alt=""/>
+                                            </a>
+                                            <p>{{ m.teacher_name }}</p>
+                                            <span>金牌讲师</span>
+                                        </div>
+                                        <div class="right">
+                                            <div class="live-time">
+                                                <p class="font18">{{ m.start_year }}</p>
+                                                <p class="font24">{{ m.start_time }}-{{ m.end_time }}</p>
+                                                {% if m.status == '1' %}
+                                                    <a href="{{ m.join_url }}"
+                                                       class="live-btn come-in font12 bold textC" target="_blank">进入直播</a>
+                                                {% else %}
+                                                    <a href="{{ m.join_url }}"
+                                                       class="live-btn just-begin font12 bold textC" target="_blank">即将开始</a>
+                                                {% endif %}
+                                            </div>
+                                            <div class="info font14">{{ m.question }}</div>
+                                            <a href="{% url 'lps4:student_service' career_id %}?detail={{ m.id }}"
+                                               class="details font14">查看详情>></a>
+                                            <span class="date font14">申请于&nbsp;{{ m.create_time }}</span>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        {% if data.onevone_old_meeting_list %}
+                            <div class="live-line"><span class="font18 textC">往期约课</span></div>
+                        {% endif %}
+                        <!-- 往期约课 -->
+                        <ul class="lists old-lists">
+                            {% for m in data.onevone_old_meeting_list %}
+                                <li>
+                                    <div class="left">
+                                        <a href="" target="_blank">
+                                            <img src="{{ m.avatar }}" alt=""/>
+                                        </a>
+                                        <p>{{ m.teacher_name }}</p>
+                                        <span>金牌讲师</span>
+                                    </div>
+                                    <div class="right">
+                                        <div class="live-time">
+                                            <p class="font18">{{ m.start_year }}</p>
+                                            <p class="font24">{{ m.start_time }}-{{ m.end_time }}</p>
+                                            {% if m.status == '2' %}
+                                                <a class="live-btn cancel font12 bold textC">已取消</a>
+                                            {% elif m.join_url %}
+                                                <a href="{{ m.join_url }}" class="live-btn backend font12 bold textC" target="_blank">回看录播</a>
+                                            {% else %}
+                                                <a class="live-btn unlive font12 bold textC">暂无录播</a>
+                                            {% endif %}
+                                        </div>
+                                        <div class="info font14">{{ m.question }}</div>
+                                        <a href="{% url 'lps4:student_service' career_id %}?detail={{ m.id }}"
+                                           class="details font14">查看详情>></a>
+                                        <span class="date font14">申请于&nbsp;{{ m.create_time }}</span>
+                                    </div>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% include 'mz_lps4/module/div_footer.html' %}
+    </div>
+    {% include 'mz_lps4/popup/div_perfect_myresume.html' %}
+{% endblock %}
+{% block toolbarDiv %}{% endblock %}
+{% block google %}{% endblock %}
+{% block footer %}{% endblock %}
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/lib/ueditor/ueditor.config.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/lib/ueditor/ueditor.all.min34.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/oneToOne.js?v={{ time_stamp }}"></script>
+{% endblock %}

@@ -1,0 +1,37 @@
+<div class="modal-dialog modal-sm modal-content zy_classTransfer">
+    <a class="zy_newclose"></a>
+
+    <p class="color5e font18 pt">学生转班</p>
+
+    <div class="deanframe">
+        <form id="leaveschoolForm">
+        <table>
+            <tr>
+                <td class="tpl">学生姓名</td>
+                <td><input type="text" class="deanframetxt textgrey" value="{{ student_name }}" readonly disabled></td>
+            </tr>
+            <tr>
+                <td class="tpl">专业名称</td>
+                <td><input type="text" class="deanframetxt textgrey" value="{{ cstudent.student_class.career_course.name }}" readonly disabled></td>
+            </tr>
+            <tr>
+                <td class="tpl">班级编号</td>
+                <td><input type="text" class="deanframetxt textgrey" value="{{ cstudent.student_class.coding }}" readonly disabled></td>
+            </tr>
+            <tr>
+                <td class="tpl">转班编号</td>
+                <td><input type="text" class="deanframetxt" name="to_class" data-vail="toclass" data-vail-type="empty" value=""></td>
+            </tr>
+            <tr>
+                <td class="tpl" valign="top">备注信息</td>
+                <td><textarea class="deanframetxt" style="height:100px;" data-vail="remark" data-vail-type="empty" name="remark"></textarea></td>
+            </tr>
+            <tr>
+                <td class="tpl"></td>
+                <td><input type="button" class="deanframebtn" model="leaveschool" value="提交"><span
+                        class="megError color5e font12 t3out">*操作失败！</span></td>
+            </tr>
+        </table>
+        </form>
+    </div>
+</div>

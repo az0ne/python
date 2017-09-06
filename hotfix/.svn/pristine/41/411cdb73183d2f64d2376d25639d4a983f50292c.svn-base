@@ -1,0 +1,18 @@
+<!-- 插入图片弹窗 -->
+<div class="modal fade YaHei" id="insert-img" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 600px;">
+            <h3>插入图片</h3>
+                        
+            <div class="modal-body">
+                <ul id="insert-img-list" class="clearfix">
+                </ul>            
+            </div>
+            <div class="modal-foot">
+                <span class="msg font14 color66"><i>*</i>格式：.jpg,.png,.jpeg&nbsp;&nbsp;&nbsp;大小：500k以内</span>
+                <button class="cancel-insert-btn color66">取消</button>
+                <button class="insert-img-btn colorff">确认</button>
+            </div>           
+        </div>
+    </div>
+</div>

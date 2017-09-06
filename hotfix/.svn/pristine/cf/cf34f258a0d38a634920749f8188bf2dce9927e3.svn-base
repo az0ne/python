@@ -1,0 +1,61 @@
+{% extends "mz_common/global.html" %}
+{% load article_filter %}
+{% block title %}麦子学院 - 辅导列表{% endblock %}
+{% block keywords %}麦子学院，辅导列表{% endblock %}
+{% block description %}辅导列表{% endblock %}
+{% block csstype %}tutor-detailes-page{% endblock %}
+{% block custom_css %}
+    <link rel="stylesheet" type="text/css" href="/css/teaOneVOneTutor.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block container %}
+    {% include 'header/index_header.html' %}
+    <div class="main-center">
+        <div class="detailes-container" data-coach-id="{{ coach.id }}">
+
+            {% for comment in comment_list %}
+            <div class="detailes-item">
+                <div class="left">
+                    <a href="{% if comment.user_id == user.id %}{% url 'home:index' %}{% else %}{% url 'u:index' comment.user_id %}{% endif %}">
+                        <img src="{{ MEDIA_URL }}{{ comment.head }}" alt=""/>
+                    </a>
+                    <p class="font14 bold">{{ comment.nick_name }}</p>
+                </div>
+                <div class="right">
+                    {{ comment.comment|safe }}
+                    <p class="problem-time font14">
+                        {{ comment.create_date|date:"Y年m月d日 H:i" }}
+                        {% if forloop.first and coach.source %}
+                            提问于{% if coach.source_type == CoachUserType.STUDENT_VIDEO %} <a href="{% url 'course:lesson_video_view' coach.source_location_lps.3 coach.source_location_lps.4 %}?t={{ coach.t }}">{{ coach.source }}</a>{% else %} {{ coach.source }}{% endif %}
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+
+{#            <div class="detailes-item">#}
+{#                <div class="left">#}
+{#                    <a href="">#}
+{#                        <img src="/img/tryTeacherManageImg01.png" alt=""/>#}
+{#                    </a>#}
+{#                    <p class="font14 bold">Gavin老师</p>#}
+{#                </div>#}
+{#                <div class="right">#}
+{#                    <p class="problem-desc font14">2014年麦可网完成千万级A轮融资，并更名为”麦子学院“，同时通过“麦子圈”IT职业实名社交圈——提供包括企业招聘对接，猎头，项目外包，经验分享2014年麦可网完成千万级A轮融资，并更名为”麦子学院“，同时通过“麦子圈”IT职业实名社交圈——提供包括企业招聘对...</p>#}
+{#                    <img src="/img/teacherIntroduce/teacherIntroduceUiStu5.jpg" alt=""/>#}
+{#                </div>                    #}
+{#            </div>#}
+             <!-- 编辑器 -->
+            {% include 'mz_lps4/module/div_ueditor.html' %}
+        </div>
+    </div>
+{% endblock %}
+{% block footer %}{% endblock %}
+{% block toolbarDiv %}{% endblock %}
+{% block google %}{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/lib/ueditor/ueditor.config.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/ueditor/ueditor.all.min.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/lib/layer/layer.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/tutor_detail.js?v={{ time_stamp }}"></script>
+{% endblock %}

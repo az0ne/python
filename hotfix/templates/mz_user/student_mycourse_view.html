@@ -1,0 +1,149 @@
+{% extends "mz_common/base.html" %}
+{% block title %}我的课程{% endblock %}
+{% block keywords%}{% endblock %}
+{% block description%}{% endblock %}
+{% block second_header %}
+{% include "mz_user/student_header.html" %}
+{% endblock %}
+{% block container %}
+
+    <!-- 消息提示 -->
+    <div class="user-student-mycourse-tip" id="userStudentTip">
+        <div class="tip-box">
+            <div class="container">
+                <div class="tip-main"></div>
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript">
+        function setCookie(c_name, value, expiredays){
+            var exdate=new Date();
+            exdate.setDate(exdate.getDate() + expiredays);
+            document.cookie=c_name+ "=" + escape(value) + ((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
+            };
+        function getCookie(c_name){
+            if (document.cookie.length>0){//先查询cookie是否为空，为空就return ""
+                c_start=document.cookie.indexOf(c_name + "=")//通过String对象的indexOf()来检查这个cookie是否存在，不存在就为 -1　　
+                if (c_start!=-1){
+                    c_start=c_start + c_name.length+1//最后这个+1其实就是表示"="号啦，这样就获取到了cookie值的开始位置
+                    c_end=document.cookie.indexOf(";",c_start)//其实我刚看见indexOf()第二个参数的时候猛然有点晕，后来想起来表示指定的开始索引的位置...这句是为了得到值的结束位置。因为需要考虑是否是最后一项，所以通过";"号是否存在来判断
+                    if (c_end==-1) c_end=document.cookie.length
+                    return unescape(document.cookie.substring(c_start,c_end))//通过substring()得到了值。想了解unescape()得先知道escape()是做什么的，都是很重要的基础，想了解的可以搜索下，在文章结尾处也会进行讲解cookie编码细节
+                }
+            }
+            return "";
+        };
+        (function(){
+            var oBox = $('#userStudentTip').hide();
+            var main = $('.tip-main',oBox);
+            window.userStudentTip = function (text,href,btnText){
+                var html = '', close = $('<span class="tip-close"></span>');
+                html += '<span class="tip-cnt">';
+                html += text || '';
+                html += '</span><a href="';
+                html += href || 'javascript:;';
+                html += '" class="tip-btn">';
+                html += btnText || '立即激活';
+                html += '</a>';
+                main.html( html ).append(close);
+                oBox.slideDown();
+                close.click(function(event) {
+                    setCookie("is_closed","true",365)
+                    oBox.slideUp();
+                });
+            }
+
+        }());
+        {% if not academic_course %}
+            var is_closed = getCookie("is_closed");
+            if (is_closed != "true"){
+                // 三个参数： 提示内容、按钮链接、按钮文本
+                userStudentTip('高校专区已全新上线。如果学校已经给你分配了专业实训项目，请立即激活你的专业实训项目！',
+                        "{% url 'academiccourse:student_verify' 0 0 %}",'');
+
+            }
+        {% endif %}
+    </script>
+
+
+    <div class="container uc-boxb">
+        {% if academic_course %}
+        <div class="uc-h1">高校课程</div>
+        <div class="defult_div_course">
+            <ul class="row my-course">
+                {% for academic_course in academic_course_list %}
+                    <li class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                        <section style="background-color:{{ academic_course.course_color }};">
+                            <a href="{% url 'lps2:lps2_learning_plan' academic_course.id %}">
+                                <img src="{{ MEDIA_URL }}{{ academic_course.image }}">
+                                <article>
+                                    <h3>{{ academic_course.name }}</h3>
+                                    {% if academic_course.cur_ranking != "NotSignUp" %}
+                                        <p>班级排名：{{academic_course.cur_ranking}}/{{academic_course.stu_count}}</p>
+                                    {% else %}
+                                        <p>班级排名：未报名</p>
+                                    {% endif %}
+                                </article>
+                            </a>
+                            <a href="{% url 'lps2:lps2_learning_plan' academic_course.id %}" class="opt">继续学习</a>
+                        </section>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <div class="uc-h1">职业课程</div>
+        <div class="defult_div_course">
+        {% if career_course %}
+            <ul class="row my-course">
+                    {% for career_course in career_course_list %}
+                    <li class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                        <section style="background-color:{{ career_course.course_color }};">
+                            <a href="{% url 'lps2:lps2_learning_plan' career_course.id %}">
+                                <img src="{{ MEDIA_URL }}{{ career_course.image }}">
+                                <article>
+                                    <h3>{{ career_course.name }}</h3>
+                                    {% if career_course.cur_ranking != "NotSignUp" %}
+                                        <p>班级排名：{{career_course.cur_ranking}}/{{career_course.stu_count}}</p>
+                                    {% else %}
+                                        <p>班级排名：未报名</p>
+                                    {% endif %}
+                                </article>
+                            </a>
+                            <a href="{% url 'lps2:lps2_learning_plan' career_course.id %}" class="opt">继续学习</a>
+                        </section>
+                    </li>
+                    {% endfor %}
+            </ul>
+        {% else %}
+        <div class="defult_mycourse_div">
+            <button class="btn btn-micv5 btn-xlg" type="button" onclick="window.open('/course/')">去发现课程</button>
+            <span>你当前尚未学习任何课程哦</span>
+        </div>
+
+        {% endif %}
+        </div>
+
+        <div class="uc-h1">其他课程</div>
+        {% if course_list %}
+        <div class="row other-course">
+            {% for course in course_list %}
+            <article class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                <div class="lead-img"><img src="{{ MEDIA_URL }}{{ course.image }}"><a href="{% url 'course:course_recent_play' course.id %}" class="opt">继续学习</a></div>
+                <div class="artc-bt">
+                    <h3><a href="{% url 'course:course_recent_play' course.id %}" title="从Google 2014 I/O 大会看Android">{{ course.name }}</a></h3>
+                    <p>{{ course.recent_learned_lesson }}</p>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+            <div class="defult_mycourse_div">
+                <button class="btn btn-micv5 btn-xlg" type="button" onclick="window.open('/course/')">去发现课程</button>
+                <span>你当前尚未学习任何课程哦</span>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

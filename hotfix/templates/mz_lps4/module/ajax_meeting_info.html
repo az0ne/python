@@ -1,0 +1,70 @@
+<div class="context-box scroll-pane">
+    <div class="stage_detail">
+        <h4>1V1直播详情</h4>
+        {% if onevone_meeting %}
+         <div class="con" meeting_id="{{ onevone_meeting.id }}">
+
+            {% if onevone_meeting.user_id %}
+            <dl class="author">
+                <dt><p><img src="{{ MEDIA_URL }}{{ onevone_meeting.user_head }}" alt="{{ onevone_meeting.user_nick_name }}"/></p>
+                    <strong>{% if onevone_meeting.user_real_name %}{{ onevone_meeting.user_real_name }}{% else %}{{ onevone_meeting.user_nick_name }}{% endif %}</strong><i></i>
+                </dt>
+                <dd>{{ onevone_meeting.create_date_time|date:"Y年m月d日" }}</dd>
+            </dl>
+            {% endif %}
+
+            {% if onevone_meeting.status == 'DATED' and  not onevone_meeting.question %}
+            <div class="write">
+                    <a href="javascript:;" class="file">
+                        <input type="hidden" class="QRurl" name="image" value="">
+                        <img src="" alt="up"/>
+                        <span>上传图片</span>
+                        <input type="file" id="picUpload1" name="image" accept="images/*">
+                    </a>
+                    <div class="textarea">
+                        <textarea name="txt" id="" placeholder="请先录入你需要解决的问题，以便于导师（不能少于15字）"></textarea>
+                    </div>
+                    <input type="button" class="submitBtn disabled" value="确认提交" disabled>
+            </div>
+            {% else %}
+            <div class="article">
+                <p class="txt">{% if onevone_meeting.question  %}{{ onevone_meeting.question }}{% else %}这个用户很懒，没有提交预约内容！{% endif %}</p>
+                {% if onevone_meeting.image_path  %}
+                <p class="img"><img src="{{ onevone_meeting.image_path }}" alt="big_image"/></p>
+                {% endif %}
+            </div>
+            {% endif %}
+
+            <div class="card">
+                {% if onevone_meeting.status == 'ENDED' %}
+                <a {% if onevone_meeting.video_join_url %}target="_blank" href="{{ onevone_meeting.video_join_url }}"{% endif %}>
+                    <div class="tea">
+                        <p><img src="{{ MEDIA_URL }}{{ onevone_meeting.teacher_head }}" alt="{{ onevone_meeting.teacher_nick_name }}"></p>
+                        <strong>{% if onevone_meeting.teacher_real_name %}{{ onevone_meeting.teacher_real_name }}{% else %}{{ onevone_meeting.teacher_nick_name }}{% endif %}</strong>
+                        <i></i>
+                    </div>
+                    <div class="time">
+                        <span>{{ onevone_meeting.start_time|date:"Y年m月d日" }}</span>
+                        <strong>{{ onevone_meeting.start_time | date:"H:i"}}-{{ onevone_meeting.end_time | date:"H:i"}}</strong>
+                    </div>
+                    <span class="{% if onevone_meeting.video_join_url %}icon notfinished{% endif %}"></span>
+                </a>
+                {% else %}
+                 <a class="join_meeting">
+                    <div class="tea">
+                        <p><img src="{{ MEDIA_URL }}{{ onevone_meeting.teacher_head }}" alt="{{ onevone_meeting.teacher_nick_name }}"></p>
+                        <strong>{% if onevone_meeting.teacher_real_name %}{{ onevone_meeting.teacher_real_name }}{% else %}{{ onevone_meeting.teacher_nick_name }}{% endif %}</strong>
+                        <i></i>
+                    </div>
+                    <div class="time">
+                        <span>{{ onevone_meeting.start_time|date:"Y年m月d日" }}</span>
+                        <strong>{{ onevone_meeting.start_time | date:"H:i"}}-{{ onevone_meeting.end_time | date:"H:i"}}</strong>
+                    </div>
+                    <span class="icon finished"></span>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>

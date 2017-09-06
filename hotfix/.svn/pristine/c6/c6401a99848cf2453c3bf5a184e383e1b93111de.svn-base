@@ -1,0 +1,63 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/courses_breadcrumb.html" %}
+
+<div class="tabbable">
+{% include "mz_nadmin/parts/lesson_tabs.html" %}
+
+<div class="tab-content">
+<div class="tab-pane active">
+
+    <p>{% include "mz_nadmin/modules/msgs.html" %}</p>
+
+    {% if discusses.object_list.count > 0 %}
+    <div class="table-responsive">
+    <table class="table table-bordered table-condensed">
+        <thead>
+            <th class="col-md-2">ID</th>
+            <th class="col-md-6">评论内容</th>
+            <th class="col-md-3">评论时间</th>
+            <th class="col-md-1">操作</th>
+        </thead>
+        <tbody>
+            {% for discuss in discusses %}
+            <tr data-discuss_id="{{ discuss.id }}">
+                <td>
+                    {{ discuss.id }}
+                </td>
+                <td>
+                    {{ discuss.content|escape }}
+                </td>
+                <td>
+                    {{ discuss.date_publish|date:"Y/m/d m:d:h" }}
+                </td>
+                <td class="action_list">
+                    <span class="btn btn-xs btn-danger" data-action="delete">删除</span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% include "mz_nadmin/modules/page_info.html" with items=discusses %}
+    </div>
+    {% else %}
+    <p class="text-muted"><small>还没有任何评论</small></p>
+    {% endif %}
+
+</div><!--/.tab-pane-->
+</div>
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+window.page.name = "lesson_discusses";
+</script>
+{% endblock %}
+
+
+

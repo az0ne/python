@@ -1,0 +1,414 @@
+// @function函数定义 */
+@function pxToRem($rem){
+    $max: length($rem);
+    $remVal:();
+    @for $i from 1 through $max{
+        @if (nth($rem, $i)!=0){
+            $val: nth($rem, $i)/100 * 1rem;
+            $remVal: append($remVal, $val);
+        }
+        @else{
+            $remVal: append($remVal, 0rem);
+        }
+    }
+    @return $remVal;
+}
+.searchwrap {
+  width: 100%;
+  margin: 0 pxToRem(-20);
+  position: absolute;
+  opacity: 0;
+	z-index: -1;
+	transform: translate(45%,-12%) scale(0.01,0.2);
+}
+
+.searchwrap article {
+  margin: 0;
+}
+
+.searchwrap .search_content {
+  position: absolute;
+  top: pxToRem(120);
+}
+
+.searchwrap .ads {
+  min-height: pxToRem(108);
+  margin: pxToRem(0 9);
+}
+
+.searchwrap .ads a {
+  display: block;
+}
+
+.searchwrap .hot_skill {
+  font-size: pxToRem(24);
+  border-top: 2px solid #eee;
+  margin-top: pxToRem(16);
+}
+
+.searchwrap .hot_skill h3 {
+  text-align: center;
+  font-size: 0;
+}
+
+.searchwrap .hot_skill h3 span {
+  padding: pxToRem(0 4);
+  background: #fff;
+  font-size: pxToRem(24);
+  font-weight: bold;
+  margin: pxToRem(-12) auto 0;
+  line-height: pxToRem(24);
+}
+
+.searchwrap .hot_skill ul {
+  font-size: 0;
+  margin: pxToRem(54 30 18 5);
+}
+
+.searchwrap .hot_skill li {
+  font-size: pxToRem(30);
+  line-height: pxToRem(30);
+  display: inline-block;
+  margin: pxToRem(0 0 43 25);
+  background: #eaeaea;
+  border-radius: pxToRem(23);
+}
+
+.searchwrap .hot_skill li a {
+  color: #b1b1b1;
+  text-decoration: none;
+  padding: pxToRem(11 35);
+}
+
+.searchwrap .hot_skill ul .selected {
+  background: #ff9342;
+}
+
+.searchwrap .hot_skill ul .selected a {
+  color: #fff;
+}
+
+.searchwrap .search_area .search_box, .searchwrap .search_area .search_div {
+  display: box;
+  display: -moz-box;
+  display: -webkit-box;
+}
+
+.searchwrap .search_area {
+  z-index: 100;
+  position: relative;
+  width: 100%;
+}
+
+.searchwrap .search_area .search_box {
+  width: 100%;
+  margin-bottom: pxToRem(10);
+  padding: pxToRem(17 0);
+  height: pxToRem(75);
+  background: #fff;
+  -webkit-transform: translateZ(0);
+  -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.searchwrap .search_area .search_border {
+  margin: pxToRem(0 15);
+  -moz-box-flex: 1;
+  -webkit-box-flex: 1;
+  box-flex: 1;
+  border: 2px solid #ffa968;
+  border-radius: pxToRem(8);
+}
+
+.searchwrap .search_area .search_div {
+  height: pxToRem(70);
+  width: 100%;
+}
+
+.searchwrap .search_area .search_div div {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.searchwrap .search_area .search_div div .search_txt {
+  padding: pxToRem(0 10 0 30);
+  width: 90%;
+  height: 100%;
+  font-size: pxToRem(30);
+  box-sizing: border-box;
+  vertical-align: top;
+}
+
+.searchwrap .search_area .search_div div .empty {
+  position: absolute;
+  top: pxToRem(14);
+  right: pxToRem(10);
+  z-index: 100;
+  width: pxToRem(40);
+  height: pxToRem(40);
+  background: url(/static/images/mz_wap/close.png) 0 0 no-repeat;
+  background-size: 100%;
+  // background-position: -48px -152px;
+}
+
+.searchwrap .search_area .search_box .cancel {
+  min-width: pxToRem(75);
+  line-height: pxToRem(75);
+  color: #ff9342;
+  font-size: pxToRem(30);
+  vertical-align: top;
+}
+
+.searchwrap .suggest {
+  display: none;
+  -webkit-overflow-scrolling: touch;
+  opacity: 0.5;
+  -webkit-transition: opacity 0.5s 0.4s;
+  -moz-transition: opacity 0.5s 0.4s;
+  -o-transition: opacity 0.5s 0.4s;
+  transition: opacity 0.5s 0.4s;
+  position: absolute;
+  z-index: 10;
+  top: pxToRem(116);
+  left: 0;
+  width: 100%;
+  margin-top: pxToRem(-10);
+  padding-top: pxToRem(20);
+  background: #fff;
+  -webkit-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.searchwrap .career_course, .searchwrap .search_teacher, .searchwrap .course_course {
+  font-size: 0;
+  padding-left: pxToRem(13);
+  border-top: 2px solid #e1e3e2;
+}
+
+.searchwrap .career_course ul, .searchwrap .search_teacher ul {
+  padding: pxToRem(20 0);
+}
+
+.searchwrap .career_course li, .searchwrap .search_teacher li {
+  padding: pxToRem(20 0);
+}
+
+.searchwrap .career_course li a, .searchwrap .search_teacher li a {
+  height: pxToRem(121);
+  color: #000;
+  display: block;
+}
+
+.searchwrap .career_course li a .img, .searchwrap .search_teacher li a .img {
+  height: pxToRem(121);
+  width: pxToRem(121);
+  margin: pxToRem(-3 12 0 0);
+  border-radius: 50%;
+  float: left;
+  overflow: hidden;
+}
+
+.searchwrap .career_course li a .txt, .searchwrap .search_teacher li a .txt {
+  font-size: pxToRem(26);
+  line-height: pxToRem(30);
+  margin-right: pxToRem(22);
+}
+
+.searchwrap .career_course li a .txt h3, .searchwrap .search_teacher li a .txt h3 {
+  display: inline-block;
+  color: #3c3c3c;
+  max-width: pxToRem(250);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  font-size: pxToRem(30);
+  margin-bottom: pxToRem(15);
+}
+
+.searchwrap .career_course li a .txt em, .searchwrap .search_teacher li a .txt em {
+  color: #a3a2a2;
+  max-width: pxToRem(200);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: pxToRem(24);
+  float: right;
+}
+
+.searchwrap .career_course li a .txt p, .searchwrap .search_teacher li a .txt p {
+  color: #6b6b6b;
+  font-size: pxToRem(26);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.searchwrap .career_course li a .txt p em, .searchwrap .search_teacher li a .txt p em {
+  color: #ff8960;
+}
+
+.searchwrap .career_course:before, .searchwrap .search_teacher:before {
+  display: inline-block;
+  margin-left: pxToRem(13);
+  padding: pxToRem(0 6 0 16);
+  background: #fff;
+  color: #919191;
+  font-size: pxToRem(24);
+  line-height: pxToRem(24);
+  margin-top: pxToRem(-12);
+  content: '职业课程';
+}
+
+.searchwrap .search_teacher:before {
+  display: inline-block;
+  margin-left: pxToRem(-13);
+  padding: pxToRem(0 6 0 16);
+  background: #fff;
+  color: #919191;
+  font-size: pxToRem(24);
+  line-height: pxToRem(24);
+  margin-top: pxToRem(-12);
+  content: '职业导师';
+}
+
+.searchwrap .course_course ul {
+  padding: pxToRem(15 0);
+}
+
+.searchwrap .course_course li a {
+  display: block;
+  padding-right: pxToRem(22);
+  margin: pxToRem(23 0);
+}
+
+.searchwrap .course_course li a span {
+  font-size: pxToRem(26);
+  color: #6b6b6b;
+  max-width: pxToRem(420);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.searchwrap .course_course li a em {
+  max-width: pxToRem(160);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: pxToRem(24);
+  color: #b1b1b1;
+  float: right;
+}
+
+.searchwrap .course_course:before {
+  display: inline-block;
+  margin-left: pxToRem(13);
+  padding: pxToRem(0 6 0 16);
+  background: #fff;
+  color: #919191;
+  font-size: pxToRem(24);
+  line-height: pxToRem(24);
+  margin-top: pxToRem(-12);
+  content: '职业技能';
+}
+header{
+  z-index: 101;
+  border-bottom: 1px solid #e2e2e2;
+}
+#tab{
+  position: fixed;
+  top: pxToRem(88);
+  left: 0;
+  width: 100%;
+  height: pxToRem(70);
+  background-color: #FFF;
+  z-index: 100;
+  ul{
+    font-size: 0;
+    white-space: nowrap;
+    overflow-x: scroll;
+    li{
+      display: inline-block;
+      line-height: pxToRem(66);
+      margin-left: pxToRem(30);
+      box-sizing: border-box;
+      a{
+        font-size: pxToRem(26);
+        color: #000;
+        border-bottom: 2px solid transparent;
+      }
+      .on{
+        color: #f5a623;
+        border-bottom: 2px solid #f5a623;
+      }
+      &:last-child{
+        margin-right: pxToRem(30);
+      }
+    }
+  }
+}
+.sx{
+  padding-top: pxToRem(70);
+  p{
+    font-size: pxToRem(32);
+    text-align: center;
+    margin-bottom: pxToRem(20);
+    b{
+      font-size: pxToRem(34);
+    }
+  }
+  .btn{
+      width: pxToRem(256);
+      height: pxToRem(68);
+      line-height: pxToRem(68);
+      border-radius: 3px;
+      color: #ffffff;
+      font-size: pxToRem(26);
+      display: block;
+      margin: 0 auto;
+      background: #0bbda8;
+      text-align: center;
+      font-family: Microsoft Yahei;
+      margin-bottom: pxToRem(150);
+      margin-top: pxToRem(71);
+    }
+}
+.foot-bottom{
+  width: 100%;
+  height: pxToRem(88);
+  background: #5ecfba;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 999;
+  -webkit-transform: translateZ(0);
+  a{
+    width: 50%;
+    height: pxToRem(55);
+    line-height: pxToRem(55);
+    margin: pxToRem(15 0);
+    float: left;
+    text-align: center;
+    font-size: pxToRem(32);
+    color: #fff;
+    &:first-child{
+      border-right: 2px solid #86dbcb;
+      box-sizing: border-box;
+    }
+    &:before{
+      width: pxToRem(40);
+      height: pxToRem(40);
+      background-size: 907.89% 434.21%;
+      margin: -2px pxToRem(15) 0 0;
+      background-image: url(/static/images/mz_wap/index_icon.png);
+      background-repeat: no-repeat;
+    }
+  }
+  .phone{
+    background-position: 25% 31%;
+  }
+}

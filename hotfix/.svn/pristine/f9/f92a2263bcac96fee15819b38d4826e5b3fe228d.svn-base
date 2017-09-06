@@ -1,0 +1,18 @@
+<div class="header">
+    <div class="lps-icon"><span></span></div>
+    <a class="mobile-app" href="/common/apppage/" target="_blank"></a>
+    <ul class="tab-nav">
+        {% if path_alias == 'discuss' %}
+{#            <li class="select"><a href="javascript:;" url="{% url 'lps4:ajax_get_my_problem' %}">我的提问</a></li>#}
+{#            <li><a href="javascript:;" url="{% url 'lps4:ajax_get_my_answer' %}">我的回答</a></li>#}
+        {% else %}
+            {% for c in careers %}
+                {% if career_id == c.id %}
+                    <li class="select"><a>{{ c.name }}</a></li>
+                {% else %}
+                    <li><a href="{% url 'lps4_index' c.id %}">{{ c.name }}</a></li>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </ul>
+</div>

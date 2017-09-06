@@ -1,0 +1,426 @@
+<!-- header -->
+<div class="head-container">
+    <div class="header">
+        <div class="wrap">
+            <a class="logo fl" href="/" onclick="zhuge.track('点击header-logo')">
+                <h2>
+                    <img src="/images/logo2.png" alt="logo">
+                </h2>
+            </a>
+            <a class="vip_class fl font14" href="/course/" target="_blank">企业直通班</a>
+            <div class="header-search fl">
+                <input type="text" name="datasearch" autocomplete="off" class="data-search font16 color66"
+                       id="data-search" placeholder="搜索你感兴趣的课程" aria-haspopup="false" role="combobox" aria-owns="dd_box"
+                       aria-autocomplete="list">
+
+                <dl class="fLayerdl" id="fLayerdl" style="max-height: 180px; overflow-y: auto; display: none;">
+                    <dd val="产品经理" v2="undefined">
+                        <a href="/search/course/产品经理-1/" target="_blank">产品经理</a>
+                    </dd>
+                    <dd val="web前端" v2="undefined">
+                        <a href="/search/course/web前端-1/" target="_blank">web前端</a>
+                    </dd>
+                    <dd val="UI设计" v2="undefined">
+                        <a href="/search/course/UI设计-1/" target="_blank">UI设计</a>
+                    </dd>
+                    <dd val="Python" v2="undefined">
+                        <a href="/search/course/Python-1/" target="_blank">Python</a>
+                    </dd>
+                    <dd val="运营" v2="undefined">
+                        <a href="/search/course/运营-1/" target="_blank">运营</a>
+                    </dd>
+                </dl>
+
+                <!-- 输入搜索下拉单 -->
+                <div class="dd_listbox" id="dd_listbox" role="listbox"
+                     aria-expanded="true" id="dd_box" style="display: none;">
+                    <div class="dd_courseitem">职业课程<i></i></div>
+                    <div class="incld_careers" id="incld_careers"></div>
+                    <div class="dd_courseitem dd_tutor">职业导师<i></i></div>
+                    <div class="incld_teachers" id="incld_teachers"></div>
+                    <div class="dd_courseitem dd_craft">职业技能<i></i></div>
+                    <div class="course_name_ledg" id="course_name_ledg"></div>
+                </div>
+
+                <button class="search-btn"></button>
+                <div class="hot-words font14 color99">
+                    <a href="/search/course/产品经理-1/" target="_blank">产品经理</a>
+                    <a href="/search/course/web前端-1/" target="_blank">web前端</a>
+                    <a href="/search/course/ui-1/" target="_blank">ui</a>
+                </div>
+            </div>
+            <a class="mobile_app font16 color66 fl" href="/common/apppage/" target="_blank">移动APP</a>
+            <!--{% if show_wiki_enter %}
+            <a class="show_wiki font16 color66 fl" href="http://wiki.maiziedu.com/" target="_blank">Wiki</a>
+            {% else %}
+            <a class="mobile_app font16 color66 fl" href="/common/apppage/" target="_blank">移动APP</a>
+            {% endif %}-->
+            <div class="topRight" login="{{ user.is_authenticated }}">
+                {% if not user.is_authenticated %}
+                    <a class="a" href="/user/signup/" target="_blank">注册</a><a class="a globalLoginBtn">登录</a>
+                {% else %}
+                    <div class="top_user">
+                        <a class="top_meg top_megH" href="{% url 'home:base:get_my_message' %}" target="_blank">
+                            {% if not new_message_count == 0 %}<i class="Arial">{{ new_message_count }}</i>{% endif %}
+                        </a>
+                        <a class="ai" href="/home/" target="_blank"><img src="{{ MEDIA_URL }}{{ user.avatar_url }}"></a>
+                    <span class="nick_name">
+                        <a href="/home/" target="_blank" data-name="{{ user.nick_name }}"></a>
+                        <a class="sign_out" href="/user/logout/">[退出]</a>
+                    </span>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    /*输入搜索下拉单样式*/
+    .dd_listbox {
+        padding-top: 18px;
+        background-color: #FFFFFF;
+        width: 480px;
+        height: auto;
+        margin: 12px auto 0 auto;
+        z-index: 999;
+        position: absolute;
+        top: 42px;
+        left: 0;
+        border: silver 1px solid;
+        -moz-box-shadow: 0 0 4px #e3e2e2;
+        -webkit-box-shadow: 0 0 4px #e3e2e2;
+        box-shadow: 0 0 4px #e3e2e2;
+        font-size: 12px;
+    }
+
+    .chcourse {
+        height: 76px;
+    }
+
+    .chcourse:hover {
+        background-color: #eeecec;
+    }
+
+    .dd_courseitem {
+        height: 30px;
+        color: #939393;
+        line-height: 30px;
+        overflow: hidden;
+        padding-left: 20px;
+        -moz-border-radius: 8px 8px 0 0;
+        -webkit-border-radius: 8px 8px 0 0;
+        border-radius: 8px 8px 0px 0px;
+        position: relative;
+    }
+
+    .dd_courseitem i {
+        display: block;
+        width: 390px;
+        border-bottom: 1px solid #ededed;
+        position: absolute;
+        right: 20px;
+        top: 15px;
+    }
+
+    .dd_courseimg {
+        margin: 13px 13px 9px 20px;
+        display: inline-block;
+        float: left;
+        width: 40px;
+        height: 40px;
+    }
+
+    .dd_coursedescri {
+        padding-top: 3px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #6b6b6b;
+        width: 390px;
+    }
+
+    .f_radius {
+        -moz-border-radius: 9px;
+        -webkit-border-radius: 9px;
+        border-radius: 9px;
+        background-color: #cccccc;
+        color: #ffffff;
+        font-size: 12px;
+        height: 18px;
+        width: 125px;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .radius {
+        padding-left: 135px;
+        padding-top: 13px;
+    }
+
+    .dd_coursedescriname {
+        font-size: 16px;
+        padding-top: 11px;
+        color: #3c3c3c;
+        float: left;
+        margin-right: 13px;
+    }
+
+    .dd_tutor {
+        padding-left: 20px;
+        color: #939393;
+        margin-top: 6px;
+    }
+
+    .careerteacher {
+        margin-bottom: 10px;
+        height: 81px;
+    }
+
+    .careerteacher:hover {
+        background-color: #eeecec;
+    }
+
+    .courseteacher {
+        font-weight: 900;
+        font-size: 16px;
+        padding-top: 13px;
+        float: left;
+        padding-right: 10px;
+        color: #3b3b3b;
+    }
+
+    .ls {
+        padding-right: 10px;
+        padding-top: 16px;
+        float: left;
+        color: silver;
+    }
+
+    .teachertt {
+        padding-top: 18px;
+        color: silver;
+    }
+
+    .teacherdes {
+        clear: both;
+        position: relative;
+        top: -24px;
+        left: 74px;
+        width: 390px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #6b6b6b;
+    }
+
+    .dd_craft {
+        margin-top: -4px;
+        padding-left: 20px;
+        color: #939393;
+    }
+
+    .study_count {
+        color: #b1b1b1;
+        padding-top: 8px;
+    }
+
+    .course_info {
+        color: #6b6b6b;
+        padding-top: 8px;
+    }
+
+    .careercraft {
+        width: 446px;
+        padding-left: 20px;
+        height: 32px;
+    }
+
+    .careercraft a {
+        display: block;
+        overflow: hidden;
+    }
+
+    .careercraft:hover {
+        background-color: #eeecec;
+    }
+
+    .dd_moreinfo {
+        padding-left: 200px;
+        height: 27px;
+        color: #d3d3d3;
+    }
+
+    .more_result {
+        color: #d3d3d3;
+    }
+
+    .dd_listbox:before {
+        content: '';
+        display: inline-block;
+        padding: 7px;
+        background: #ffffff;
+        position: absolute;
+        top: -8px;
+        left: 20px;
+        box-shadow: -2px 0 0 rgba(255, 255, 255, 1), 0 -2px 5px rgba(0, 0, 0, .1), 0 2px 0 rgba(255, 255, 255, 1), 2px 0 5px rgba(0, 0, 0, .1);
+        transform: rotate(-45deg);
+        -ms-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+    }
+
+    #fLayerdl dd a {
+        display: block;
+        color: black;
+    }
+</style>
+
+<script type="text/javascript" src="/static/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript">
+
+    function flayer_show() {
+        $("#fLayerdl").show();
+        $("#dd_listbox").hide();
+    }
+
+    function flayer_hide(delay) {
+        if (delay) {
+            setTimeout("$('#fLayerdl').hide();", delay);
+        } else {
+            $('#fLayerdl').hide();
+        }
+
+    }
+
+    function listbox_show() {
+        $("#dd_listbox").show();
+        $("#fLayerdl").hide();
+    }
+
+    function listbox_hide(delay) {
+        if (delay) {
+            setTimeout("$('#dd_listbox').hide();", delay);
+        } else {
+            $("#dd_listbox").hide()
+        }
+    }
+
+
+    function searchajax(keyword) {
+        $.ajax({
+            url: "http://suggest.maiziedu.com/suggest/?app=course&keyword=" + keyword,
+            type: "GET",
+            dataType: "jsonp",
+            jsonp: "callback",
+            success: function (data) {
+                var courses = new Array();
+                var careers = new Array();
+                var teachers = new Array();
+
+                var teachers_repeat = new Array();
+                var careers_repeat = new Array();
+
+                data.forEach(function (obj) {
+                    obj["courses"].forEach(function (course) {
+                        courses.push({
+                            id: course["id"],
+                            name: obj["name"],
+                            student_count: course["student_count"]
+                        });
+
+                        course["careers"].forEach(function (career) {
+                            if (careers_repeat.indexOf(career["name"]) == -1) {
+                                careers.push({
+                                    name: career["name"],
+                                    short_name: career["short_name"],
+                                    image: career["image"],
+                                    description: career["description"],
+                                    student_count: career["student_count"]
+                                })
+                                careers_repeat.push(career["name"]);
+                            }
+
+                            career["teachers"].forEach(function (teacher) {
+                                if (teachers_repeat.indexOf(teacher["name"]) == -1) {
+                                    teachers.push({
+                                        "teacher_id": teacher["teacher_id"],
+                                        name: teacher["name"],
+                                        title: teacher["title"],
+                                        image: teacher["image"],
+                                        info: teacher["info"]
+
+                                    })
+                                    teachers_repeat.push(teacher["name"])
+                                }
+                            })
+                        })
+                    })
+                })
+                console.log(courses)
+                console.log(careers)
+                console.log(teachers)
+                if (courses.length == 0) {
+                    $('.dd_listbox').hide();
+                    return;
+                }
+
+                // coding
+                var tmp = "";
+                $(".careercraft").remove();
+                courses.forEach(function (course) {
+                    tmp = '<div class="careercraft"><a href="/course/' + course["id"] + '/"><p class="pull-left course_info">' + course["name"] + '</p><p class="pull-right study_count">' + course["student_count"] + '人正在学习</p></a></div>';
+                    $("#course_name_ledg").append(tmp);
+                })
+
+                $(".chcourse").remove();
+                careers.forEach(function (career) {
+                    tmp = '<div class="chcourse"><img src="/uploads/' + career["image"] + '" class="dd_courseimg img-circle"><a href="/course/' + career["short_name"] + '-px/" style="outline:none;"><p class="dd_coursedescriname">' + career["name"] + '</p><p class="radius"><span class="f_radius">毕业学员： <span class="finished_count">' + career["student_count"] + '</span>人</span></p><p class="dd_coursedescri">' + career["description"] + '</p>';
+                    $("#incld_careers").append(tmp);
+                })
+
+                $(".careerteacher").remove();
+                teachers.forEach(function (teacher) {
+                    tmp = '<div class="careerteacher"><a href="' + "/u/" + teacher["teacher_id"] + '/" style="outline:none;"><img src="/uploads/' + teacher["image"] + '" class="dd_courseimg img-circle"><p class="courseteacher">' + teacher["name"] + '</p><p class="ls">|</p><p class="teachertt">' + teacher["title"] + '</p><p class="teacherdes">' + teacher["info"] + '</p></a></div>'
+                    $("#incld_teachers").append(tmp);
+                })
+                if ($("#data-search").val()) {
+                    listbox_show();
+                }
+
+            }
+
+        })
+    }
+
+    $(document).ready(function () {
+        $("#data-search").focus(function () {
+            keywd = $("#data-search").val();
+            if (keywd == "") {
+                flayer_show();
+            } else {
+                searchajax(keywd);
+            }
+        }).blur(function () {
+            flayer_hide(100);
+        })
+
+        $("#data-search").keyup(function () {
+            keywd = $("#data-search").val();
+            if (keywd == "") {
+                listbox_hide();
+                flayer_show();
+                return;
+            }
+            searchajax(keywd);
+        }).blur(function () {
+            keywd = $("#data-search").val();
+            if (keywd == "") {
+                listbox_hide();
+                return;
+            }
+
+            listbox_hide(500);
+        })
+    })
+</script>

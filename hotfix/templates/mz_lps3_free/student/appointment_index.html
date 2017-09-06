@@ -1,0 +1,103 @@
+{% extends "mz_common/base4.html" %}
+{% block title %}{{ ccourse.name }}试学预约-{{ ccourse.name }}-麦子学院{% endblock %}
+{% block keywords %}{{ ccourse.name }},{{ ccourse.name }}学习,{{ ccourse.name }}在线学习{% endblock %}
+{% block description %}麦子学院{{ ccourse.name }}免费试学，是麦子学院根据{{ ccourse.name }}学习路线，面向广大学员开放的{{ ccourse.name }}课程免费学习服务，通过麦子{{ ccourse.name }}金牌讲师对相关知识点的讲解，让学员提前感受{{ ccourse.name }}学习的极致体验。{% endblock %}
+
+{% block csstype %}free-learn{% endblock %}
+
+{% block container %}
+    {% include 'header/header.html' %}
+    {#{% include 'mz_usercenter/div_user_header.html' %}#}
+    <div class="main-container">
+        <div class="breadcrumbs"><a href="{{ SITE_URL }}{% url 'lps3f:syllabus' course_short_name %}" class="font14 color66" onclick="zhuge.track('点击返回任务路线图', {'页面名称':'预约面板','按钮位置':'面包屑','课程名称':'{{ ccourse.name }}'});">&lt;&lt; 返回课程任务路线图</a></div>
+        <div class="free-con">
+            <h1 class="font30 color66">{{ free488_task_desc.title }}<a class="free-step font14 color5e" style="float: right;margin-top: 16px;">如何免费试学？</a></h1>
+
+            <div class="pro-info">
+                <p class="desc font14 color66">{{ task_info.desc }}</p>
+                <ul class="desc-list">
+                    <li><img src="{{ MEDIA_URL }}{{ free488_task_desc.img1 }}" alt="{{ free488_task_desc.title }}"></li>
+                    <li><img src="{{ MEDIA_URL }}{{ free488_task_desc.img2 }}" alt="{{ free488_task_desc.title }}"></li>
+                    <li><img src="{{ MEDIA_URL }}{{ free488_task_desc.img3 }}" alt="{{ free488_task_desc.title }}"></li>
+                </ul>
+            </div>
+            {% for free_class_info in free_class_info_list %}
+                <div class="class-teacher">
+                    <a href="{% url 'u:index' free_class_info.teacher.id %}" target="_blank"><img class="left" src="{{ MEDIA_URL }}{{ free_class_info.teacher.avatar_url }}"
+                         alt="{{ free_class_info.teacher.staff_name }}"></a>
+
+                    <div class="right">
+                        <p class="font12 color66">
+                            <span class="name font26">{{ free_class_info.teacher.staff_name }}</span>
+                            麦子学院{{ free_class_info.teacher.show_position }}
+                        </p>
+
+                        <p class="font14 color66">{{ free_class_info.teacher.description }}</p>
+                    </div>
+                </div>
+                <div class="appointment">
+                    <h2 class="font22 color33">预约试学</h2>
+                    <ol class="appointment-list">
+                        {% for free488_class in free_class_info.free488_class_list %}
+                            <li>
+                                <p class="one"><span
+                                        class="first font20 color33">{{ free488_class.class_time_range_text }}</span><span
+                                        class="second font14 color33">（{{ free488_class.class_time_range }}天）</span><a
+                                        href="javascript:void(0)" class="order font14" data-mobile="{{ user.mobile }}" data-class-id="{{ free488_class.class_id }}" onclick="zhuge.track('点击预约', {'页面名称':'预约面板','按钮位置':'预约试学','课程名称':'{{ ccourse.name }}'});">预约</a></p>
+
+                                <p class="two font14 color66">直播课</p>
+
+                                <p class="three"><span
+                                        class="first font16 color66">{{ free488_class.first_meeting.week }}</span><span
+                                        class="second font16 color66">（{{ free488_class.first_meeting.date }}）</span><span
+                                        class="third font16 color66">{{ free488_class.first_meeting.time }}</span></p>
+                            </li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            {% empty %}
+                {% if teacher %}
+                  <div class="class-teacher">
+                    <a href="{% url 'u:index' teacher.id %}" target="_blank">
+                    <img class="left" src="{{ MEDIA_URL }}{{ teacher.avatar_url }}"
+                         alt="{{ teacher.staff_name }}">
+                    </a>
+
+                    <div class="right">
+                        <p class="font12 color66">
+                            <span class="name font26">{{ teacher.staff_name }}</span>
+                            麦子学院{{ teacher.show_position }}
+                        </p>
+
+                        <p class="font14 color66">{{ teacher.description }}</p>
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="appointment">
+                    <!-- 无预约是显示 -->
+                    <p class="no-learn font14 color99">{% if user_id %}很抱歉，目前暂无该老师的预约试学班，你可以先去看看 {% else %}很抱歉，目前暂无老师的开设试学班，你可以先去看看{% endif %} <a href="{% url 'course:career_course_list' %}" target="_blank">其他专业</a></p>
+                </div>
+            {% endfor %}
+
+
+        </div>
+    </div>
+    {% include 'mz_lps3_free/student/div_popup.html' %}
+    <!-- 账号没有绑定手机号弹窗 -->
+    {% include 'mz_lps3_free/student/div_free_class_bind_mobile.html' %}
+    {% include 'mz_lps3_free/student/div_popup_tips.html' %}
+{% endblock %}
+
+{% block footer %}
+    {% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block sea_script %}
+    <script type="text/javascript">
+        var isMobile=false;
+        seajs.use("/js/lps4/src/main", function (main) {
+            main.loading("freeLearn");
+        });
+    </script>
+{% endblock %}

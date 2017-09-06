@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+
+    <title>老带新学费立减300！麦子学院为你助学加油！</title>
+    <link href="/static/css/develop.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}mz_lps4/bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="{{ STATIC_URL }}mz_lps4/js/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}mz_lps4/bootstrap/js/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+<script src="js/html5shiv.min.js"></script>
+<script src="js/respond.min.js"></script>
+<![endif]-->
+    <style type="text/css">
+        * {margin: 0;padding: 0;}
+        body {background: #fdfac9;font-family:'Microsoft Yahei';}
+        .share-introduce-container {position: relative;padding: 20px;}
+        .share-introduce-container .share-box {width: 100%;}
+        .share-introduce-container .wx-red-packets {width: 100%;margin-top: 20px;}
+        .font24 {font-size: 24px;}
+        .font20 {font-size: 20px;}
+        .font14 {font-size: 14px;}
+        .font18 {font-size: 18px;}
+        .color33 {color: #333;}
+        .color66 {color: #666;}
+        .marginB10 {margin-bottom: 10px;}
+        .marginB20 {margin-bottom: 20px;}
+        .bold {font-weight: bold;}
+        #wx-guid-tips .modal-content {background: transparent;-webkit-box-shadow: none;box-shadow: none;border: none;}
+        #wx-guid-tips .wx-arrow {
+            width: 15%;position: absolute;right: 8px;top: 10px;
+            transform:rotate(-14deg);
+            -ms-transform:rotate(-14deg);     /* IE 9 */
+            -moz-transform:rotate(-14deg);    /* Firefox */
+            -webkit-transform:rotate(-14deg); /* Safari 和 Chrome */
+            -o-transform:rotate(-14deg); 
+        }
+        #wx-guid-tips .share-box {position: absolute;left: 20px;top: 20px;width: 82%;}
+    </style>
+</head>
+
+<body>
+    <div class="share-introduce-container">
+        <div class="share-box">
+            <p class="font24 color33 bold marginB10">老带新学费立减300！麦子学院为你助学加油！猛戳此红包即可享受！</p>
+        </div>       
+        <a href="{{ invitation_link }}"><img class="wx-red-packets" src="{{STATIC_URL}}mz_lps4/images/wx-red-packets.png"/></a>
+
+    </div>
+    <!-- 微信引导弹窗开始 -->
+    <!-- <div class="modal fade YaHei" id="wx-guid-tips" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog wx-guid-innerbox">
+            <div class="modal-content">
+                <div class="wx-guid-info">
+                    <div class="share-box">
+                        <p class="font24 colorff bold">猛戳右上角!</p>
+                        <p class="font24 colorff bold marginB10">分享邀请链接，每报名一位好友，立返300现金红包！</p>
+                    </div>
+                    <img class="wx-arrow" src="{{STATIC_URL}}mz_lps4/images/wx-arrow.png"/>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- 微信引导弹窗结束 -->
+    <script type="text/javascript">
+        // $(function(){
+        //     $('#wx-guid-tips').modal('show');
+        // })
+    </script>
+</body>
+</html>

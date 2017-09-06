@@ -1,0 +1,357 @@
+{% extends "mz_common/base.html" %}
+{% block title %}{{ seo.seo_title }}{% endblock %}
+{% block keywords %}{{ seo.seo_keywords }}{% endblock %}
+{% block description %}{{ seo.seo_description }}{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" href="/css/personalCenter.css">
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}mz_lps3/css/style.css"/>
+<style type="text/css">
+    html,body {height: 100%;}
+    body {background: #f5f5f5;}
+    .microoh-main {padding-bottom: 0;}
+    .container {padding-top: 30px;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+    .article_footer {position: static;}
+    .hHide > * {opacity: 0;}
+    #demo {opacity: 1;position: absolute;top: 100px;left: 36%;z-index: 1000;margin-left: -100px;}
+</style>
+{% endblock %}
+{% load my_filter %}
+{% block container %}
+    {% if user.is_authenticated %}
+    {% include 'mz_usercenter/div_user_header.html' %}
+    {% endif %}
+    <div class="container">
+
+        <div class="zyMainLeft hHide" id="lineList">
+            <ul class="zyStageUl t8o">
+                {% for stage in stages %}
+                    <li class="li{{ forloop.counter }}">
+                        <div class="zyStageTit">{{ stage.name }}</div>
+                        {% for task in stage.tasks %}
+                            <div id="task_{{ task.id }}"
+                                    {% if forloop.counter == 1 and forloop.parentloop.counter == 1 %}
+                                 href="{% url 'lps3f:appointment' course_short_name %}"
+                                 class="zytrophy textC zystagego zystageInitial"
+                                    {% else %}
+                                 class="zytrophy textC zystageLock"
+                                    {% endif %}
+                                    onclick="zhuge.track('点击免费试学任务球', {'页面名称':'预约任务面板','按钮位置':'免费试学任务球','课程名称':'{{ course.name }}'});">
+                                {% if forloop.counter == 1 and forloop.parentloop.counter == 1 %}
+                                    <div class="ball-scale-multiple">
+                                        <span></span><span></span><span></span><span></span>
+                                    </div>
+                                {% endif %}
+                                <p class="YaHei font16">{{ task.name| cutStrNN:30 }}</p>
+
+                                <div class="outline-hover">
+                                    <h2 class="task-dot font16 color33">知识点：</h2>
+                                    {% for knowledge in task.knowledges %}                                    
+                                    <p class="font14 color66">{{ knowledge.name }}</p>
+                                    {% endfor %}
+                                </div>
+
+                            </div>
+                        {% endfor %}
+                    </li>
+                {% endfor %}
+            </ul>
+            <svg width="100%" height="100%" class="t8o" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <path stroke="#5ecfba" class="linestrokeD"/>
+                <path stroke="#ffffff" class="linestroke"/>
+            </svg>
+        </div>
+        <div class="zyMainRight">
+            <div class="billboard-con">
+                <div class="billboard marginB20">
+                    <h3 class="font16 color33 marginB20 bold">班级排名</h3>
+                    <ul class="billboard-lists marginB20">
+                        <li style="display: block;">
+                            <ol class="bill_1">                                        
+                                <li>
+                                    <a href="javascript:void(0)" target="_blank"><img src="/uploads/avatar/2016/06/132162ca-2d25-11e6-bbfa-00163e005436_big.jpg" alt="林夕羽"></a>
+                                    <span class="classmate-name">林夕羽</span>                                            
+                                    <span class="bill_first"></span>                                            
+                                </li>
+                                
+                                <li>
+                                    <a href="javascript:void(0)" target="_blank"><img src="/uploads/avatar/2015/06/e324635c-1b13-11e5-a62b-00163e02100b_big.jpg" alt="李云帆"></a>
+                                    <span class="classmate-name">李云帆</span>                                            
+                                    <span class="bill_second"></span>                                            
+                                </li>
+                                
+                                <li>
+                                    <a href="javascript:void(0)" target="_blank"><img src="/uploads/avatar/49_big.jpg" alt="靓靓"></a>
+                                    <span class="classmate-name">靓靓</span>                                            
+                                    <span class="bill_third"></span>                                            
+                                </li>                                        
+                            </ol>
+                        </li>
+                    </ul>
+                    <ul class="tab_menu">
+                        <li class="active"><i></i>成绩排名</li>
+                        <li><i></i>进度排名</li>
+                    </ul>
+                    <a class="check-billboard" href="javascript:void(0)">查看班级排名</a>
+                </div>
+                <div class="always-new marginB20" style="display: block;">
+                    <h3 class="font16 color33 marginB20 bold">班级动态</h3>
+                    <div class="scroll" style="height: 100px;">
+                        <ul class="always-new-list" style="margin-top: 0px;">
+                            <li>
+                            <a class="classmate-head"><img src="/uploads/avatar/2016/06/132162ca-2d25-11e6-bbfa-00163e005436_big.jpg" alt="林夕羽"></a>
+                            <a class="classmate-dynamic font12 color66"><span>林夕羽</span>在任务HTML+CSS基础入门获得了B评分</a><span class="font12 color66">18:14</span>
+                            </li>
+                            <li>
+                            <a class="classmate-head"><img src="/uploads/avatar/2016/06/132162ca-2d25-11e6-bbfa-00163e005436_big.jpg" alt="靓靓"></a>
+                            <a class="classmate-dynamic font12 color66"><span>靓靓</span>在任务HTML+CSS基础入门获得了B评分</a><span class="font12 color66">18:14</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="syllabus-guide zixun1">
+                    <div class="syllabus-guide-con">
+                        <p class="font14 color33">每一个直通班学员</p>
+                        <p class="font14 color33 marginB10">都有一个职业人脉圈</p>
+
+                        <a class="colorff font14 textC marginB20 class53" onclick="zhuge.track('点击立即咨询', {'页面名称':'预约任务面板','按钮位置':'查看班级排名','课程名称':'{{ course.name }}'});">立即咨询</a>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="zy_Rlive">
+                <p class="font16 bold color33 zy_Rlive_tit">直播课程</p>
+
+                <div class="zy_Rlive_mask">
+                    <ul class="zy_RliveList marginB20">
+                        <li>
+                            <p class="color66">临时班会</p>
+                            <p class="color33">星期五 08-29 20:00</p>
+                            <a class="font14 colorff textC a" href="javascript:;">未开始</a>
+                        </li>
+                    </ul>
+                    <a class="color66 font14 textC seeMore" href="javascript:;">查看过往课程录制视频</a>
+                </div>
+                <div class="syllabus-guide zixun2">
+                    <div class="syllabus-guide-con">
+                        <p class="font14 color33">加入直通班</p>
+                        <p class="font14 color33 marginB10">每周1-2次班会</p>
+
+                        <a class="colorff font14 textC marginB20 class53" onclick="zhuge.track('点击立即咨询', {'页面名称':'预约任务面板','按钮位置':'查看过往课程录制视频','课程名称':'{{ course.name }}'});">立即咨询</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id='demo'></div>
+    </div>
+{% include 'mz_lps3_free/student/div_popup_tips.html' %}
+<script type="text/javascript" src="{{ STATIC_URL }}mz_lps3/js/jquery.lazylinepainter-1.5.1.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}mz_lps3/js/svgData.js"></script>
+<script type="text/javascript">
+    (function ($) {
+        $(document).ready(function () {
+            // Setup your Lazy Line element.
+            // see README file for more settings
+            var userAgent = navigator.userAgent;
+            if (userAgent.indexOf("Safari") > -1 && userAgent.indexOf("Version/5") > -1) {
+            }
+            else {
+                $('#demo').lazylinepainter({
+                    'svgData': svgData,
+                    'strokeWidth': 2,
+                    'strokeColor': '#5ecfba',//'#dc908e',
+                    'onComplete': function () {
+                        $(".treeTip").show().addClass("zoomIn");
+                    },
+                    'onStart': function () {
+                        console.log('>> onStart');
+                    }
+                })
+                // Paint your Lazy Line, that easy!
+                var state = 'paint';
+                $('#demo').lazylinepainter(state);
+            }
+        })
+
+    })(jQuery);
+
+</script>
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block custom_script %}
+<script type='text/javascript' src="{{ STATIC_URL }}mz_lps3/js/stage.js"></script>
+<script type='text/javascript' src="{{ STATIC_URL }}mz_lps3/js/svganimations.js"></script>
+<script type='text/javascript' src="{{ STATIC_URL }}mz_lps3/js/select.js"></script>
+<script type='text/javascript' src="{{ STATIC_URL }}mz_lps3/js/d-progress-bar.js"></script>
+<script type='text/javascript' src="{{ STATIC_URL }}mz_lps3/js/student_message.js"></script>
+<script type='text/javascript' src="{{ STATIC_URL }}mz_lps3/layer/layer.js"></script>
+<script type='text/javascript' src='http://tb.53kf.com/kf.php?arg=10111642&style=3'></script>
+<script type='text/javascript'>
+    $(function () {
+        var sum = 0, isEnd = true;
+        var xp = 34, yp = 0;
+        var countS;
+        var ldata = [], pointL = [], isV = true, Vlen = 110, Clen = 0, isV2 = true;
+        var linum = $(".zyStageUl li").length;
+        $(".zyStageUl li").each(function (index, element) {
+            var pcountS = 0;
+            ($(this).prev().length > 0) && (pcountS = $(this).prev().data("countS"));
+
+            var num = $(this).children(".zytrophy").length;
+            sum += num;
+            pointL = [];
+            isV2 && (isV = true);
+            var jiS = 1, stactH = 0;
+            Clen = $(this).width() - 68;
+            clentW = $(this).width() / 5;
+            countS = parseInt(num / 4 + 1);
+            if (num % 4 == 0) countS = num / 4;
+            var cS = (countS + 1) * 2;
+            for (var i = 0; i < cS; i++) {
+                if (pcountS % 2 == 0 && i == 0 && pcountS != 0) {
+                    continue;
+                }
+                Vlen = 110;
+                (i > 1) && (Vlen = 170)
+                if (ldata.length == 0) {
+                    ldata.push(new zypoint(xp, 0));
+                }
+                else {
+                    if (isV) {
+                        yp += Vlen;
+                        isV = false;
+                        stactH += Vlen
+                    } else {
+                        var nn = num % 4 == 0 ? 4 : num % 4;
+                        (jiS >= countS && isV2) && (Clen = clentW * nn + clentW / 2);
+                        if (jiS <= countS && i != 0) {
+                            var pcount = 4;
+                            (jiS == countS) && (num % 4 != 0) && (pcount = num % 4)
+                            for (var j = 1; j <= pcount; j++) {
+                                var pLeft = clentW * j;
+                                (!isV2) && (pLeft = $(this).width() - clentW * j)
+                                pointL.push(new zypoint(pLeft, yp));
+                            }
+                        }
+                        if (isV2) {
+                            xp += Clen;
+                            isV2 = false;
+                        } else {
+                            xp -= Clen;
+                            isV2 = true;
+                        }
+                        isV = true;
+                        if (xp < 34) {
+                            xp = 34
+                        }
+                        ;
+                        (i != 0) && (jiS++);
+                    }
+                    if (linum == index + 1 && cS - 2 <= i) {
+                        (isEnd) && ldata.push(pointL[pointL.length - 1]);
+                        isEnd = false;
+                    }
+                    else
+                        ldata.push(new zypoint(xp, yp));
+                }
+            }
+            $(this).height(stactH).data("countS", countS);
+            var temporaryHeight = 0;
+            ($(this).prev().length > 0) && (temporaryHeight = yp - stactH);
+            $(this).data("th", yp - stactH);
+            for (var pp in pointL) {
+                $(this).children(".zytrophy").eq(pp).css({
+                    "left": pointL[pp].x,
+                    "top": pointL[pp].y - temporaryHeight
+                });
+            }
+        });
+        var lineData = [], anlineL = [], bocanvas = true;
+        for (var i in ldata) {
+            if (i != 0) {
+                lineData.push(new zyline(ldata[i - 1], ldata[i]));
+                $("#lineList").append('<span class="line"></span>');
+            }
+            if (bocanvas) {
+                anlineL.push(ldata[i]);
+                var studyObj = $(".zyStageUl .zystagego");
+                var temporaryH = 0;
+                (studyObj.parent().prev().length > 0) && (temporaryH = studyObj.parent().data("th"))
+                var top = parseInt(studyObj.css("top")) + temporaryH, left = parseInt(studyObj.css("left"));
+                if (top == ldata[i].y) {
+                    anlineL.push(new zypoint(left, top));
+                    bocanvas = false;
+                }
+            }
+        }
+
+        for (var i in lineData) {
+            var ll = lineData[i];
+            var llobj = $("#lineList .line").eq(i);
+            var lleft = ll.startX - 3, lright = ll.startY - 3;
+            if (ll.isVC()) {
+                llobj.addClass("zzVertical").height(ll.length());
+            }
+            else {
+                llobj.addClass("zzCross").width(ll.length());
+                if (ll.startX > ll.endX) {
+                    lleft = ll.endX - 3;
+                    lright = ll.endY - 3;
+                }
+            }
+            llobj.css({"left": lleft + "px", "top": lright + 20 + "px"});
+        }
+        var ML = '';
+        for (var i in anlineL) {
+            if (i == 0)
+                ML += "M" + anlineL[i].x + " " + (anlineL[i].y + 20) + " "
+            else
+                ML += "L" + anlineL[i].x + " " + (anlineL[i].y + 20) + " "
+        }
+        $("#lineList>svg path").attr("d", ML);
+        var explorer = window.navigator.userAgent;
+
+        setTimeout(function () {
+            $(".hHide").removeClass("hHide");
+            $("#demo").animate({opacity: 0}, 800, function () {
+                $(this).remove();
+            });
+            if (explorer.indexOf("MSIE") < 0) {
+                init();
+            }
+        }, 1000);
+
+        // 贴心小提示
+        if ('{{ show_guide }}'=='True') {
+            $('#free-tips').modal('show');
+        };
+
+
+        $('#free-tips .i-know').on('click', function(){
+            $('#free-tips').modal('hide');
+        })
+
+
+        //----------事件------------
+        $(".zystageInitial").on("click", function () {
+            location.href = $(this).attr("href");
+        });
+
+        $('.check-billboard, .tab_menu li').on('click',function(){
+            $('.zixun1').show();
+        });
+        $('.zy_Rlive a').on('click', function () {
+            $('.zixun2').show();
+        });
+
+        $(".class53").click(function() {
+            $("#KFLOGO .Lelem").eq(0).trigger("click");
+        });
+    });
+</script>
+{% endblock %}

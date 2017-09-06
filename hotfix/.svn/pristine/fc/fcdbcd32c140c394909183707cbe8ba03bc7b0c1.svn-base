@@ -1,0 +1,16 @@
+            <div class="v5-box">
+              <h1>讲师介绍</h1>
+              <div class="media teacher">
+                <a class="pull-left hascourse" href="/u/{{ cur_course.teacher.id }}/">
+                  <img src="/uploads/{{ cur_course.teacher.avatar_middle_thumbnall }}" alt="{% if cur_course.teacher.avatar_alt != None %}{{ cur_course.teacher.avatar_alt }}{% else %}麦子学院老师{% endif %}">
+                </a>
+                <div class="media-body">
+                  <h4 class="media-heading"><a href="/u/{{ cur_course.teacher.id }}/">{{ cur_course.teacher.nick_name }}</a></h4>
+                  <p>{{ cur_course.teacher.position }}</p>
+                  <a href="/home/s/course/{{ cur_course.teacher.id }}/" class="btn btn-micv5">查看他的课程</a>
+                </div>
+              </div>
+              <article>
+              	{{ cur_course.teacher.description }}
+              </article>
+            </div>

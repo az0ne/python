@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>操作失败</title>
+    <link href="/static/css/base.css" rel="stylesheet">
+    <link href="/static/css/microoh-v5.css" rel="stylesheet">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <style>
+    </style>
+</head>
+
+<body>
+
+    <div class="container c5f fontS18" style="text-align: center; width: 100%; padding: 30px 0;">
+            <i class="v5-icon v5-icon-wrong" style="vertical-align: middle;"></i><span style="vertical-align: middle; margin-left: 20px;">{{ reason | safe }}</span>
+    </div>
+
+</body>
+</html>

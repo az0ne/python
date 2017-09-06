@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <title>注册</title>
+    <link href="/static/css/base.css" rel="stylesheet">
+    <link href="/static/css/microoh-v5.css" rel="stylesheet">
+    <link href="/static/css/animate.css" rel="stylesheet">
+    <link href="/static/css/develop.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+<script src="/static/js/html5shiv.min.js"></script>
+<script src="/static/js/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+<header class="mobil-header">
+    <a href="javascript:history.go(-1)" class="a-left">返回</a>注册<a href="{% url 'user:mobile_login_view' %}" class="a-right">登录</a>
+</header>
+<div class="mobil-login-register">
+    <section class="box-register v5-input-txt" id="box-register">
+        <ul class="register-tabs" role="tablist">
+            <li class="active"><a href="#register-email" role="tab" data-toggle="tab" onclick="change_form('email_register_form')">邮箱注册</a></li>
+            <li><a href="#register-mobile" role="tab" data-toggle="tab" onclick="change_form('mobile_register_form')">手机注册</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane active" id="register-email">
+                <form id="email_register_form" action="{% url 'user:email_register' %}" method="post" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="form-group">{{email_register_form.email}}</div>
+                    <div class="form-group">{{email_register_form.password}}</div>
+                    <div class="form-group cf">{{email_register_form.captcha}}<span class="v5-yzm fr"></span></div>
+                </form>
+            </div>
+            <div class="tab-pane" id="register-mobile">
+                <form id="mobile_register_form" action="{% url 'user:mobile_register' %}" method="post" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="form-group cf">{{ mobile_register_form.mobile }}<span class="send-code fr"><button id="send_sms_btn" type="button" class="btn btn-micv5 btn-send" onclick="send_sms_code('mobile_register_form','register-tips')">发送验证码</button></span></div>
+                    <div class="form-group">{{ mobile_register_form.mobile_code }}</div>
+                    <div class="form-group">{{ mobile_register_form.password_m }}</div>
+                    <div class="form-group cf">{{mobile_register_form.captcha_m}}<span class="v5-yzm fr"></span></div>
+                </form>
+            </div>
+        </div>
+        <div class="mobil-login-register" style="display: none">
+            <section class="box-login v5-input-txt" id="box-login">
+                <form id="login_form" action="{% url 'user:login' %}" method="post" onsubmit="login_form_submit();return false;" autocomplete="off">
+                    {% csrf_token %}
+                    <ul>
+                        <li class="form-group">{{ login_form.account_l }}</li>
+                        <li class="form-group">{{ login_form.password_l }}</li>
+                    </ul>
+                    <input type="hidden" name="source_url" value="{{ request.GET.source_url }}">
+                </form>
+                <div>
+                    <button id="login_btn" type="button" class="btn btn-micv5 btn-block" onclick="login_form_submit('login-form-tips')">登录</button>
+                </div>
+                <div id="login-form-tips" class="tips-error bg-danger">错误提示</div>
+            </section>
+        </div>
+        <p class="good-tips">已经有账号？<a href="{% url 'user:mobile_login_view' %}">立即登录</a></p>
+        <div>
+            <button id="register_btn" type="button" class="btn btn-micv5 btn-block" onclick="register_form_submit()">注册并登录</button>
+        </div>
+        <div id="register-tips" class="tips-error bg-danger">错误提示</div>
+    </section>
+</div>
+<script src="/static/js/jquery-1.11.1.min.js"></script>
+<script src="/static/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/ie10-viewport-bug-workaround.js"></script>
+<script src="/static/js/mz-common.js"></script>
+</body>
+</html>

@@ -1,0 +1,691 @@
+{% extends "mz_common/base.html" %}
+
+{% block title %} 学员详情 {% endblock %}
+
+{% block breadcrumb %}
+<div class="container">
+<ol class="breadcrumb">
+    <li><a href="{% url 'user:teacher_center' %}">{% if request.user.is_academic_teacher %}我的专业{% else %}我的班级{% endif %}</a></li>
+    <li><a href="{% url 'lps:class_manage' class_.id %}">{{ class_.career_course.name }} {% if not request.user.is_academic_teacher %}{{ class_.display_name }} {% endif %}</a></li>
+    <li class="active">{{ class_student.user.username }}({{ class_student.user.nick_name }})</li>
+</ol>
+</div>
+{% endblock %}
+
+{% block container %}
+<div class="container">
+<div class="study-plan-teacher">
+
+<div class="row pause_status">
+    {% if not planning %}
+        <h1 class="ft20 fl">学习状态：尚未设置学习计划</h1>
+    {% else %}
+        {% if is_pause %}
+
+        <h1 class="ft20 fl">学习状态：暂停中</h1>
+        <button class="btn btn-micv5 fl restore_btn">恢复</button>
+
+        {% else %}
+
+        <h1 class="ft20 fl">学习状态：正在进行</h1>
+        <button class="btn btn-micv5 fl pause_btn">立即暂停</button>
+        <div class="pause_reason" style="display: none;">
+            <div class="col-sm-3" style="padding-right: 20px;">
+                <input type="text" name="reason" class="form-control" placeholder="请输入暂停原因">
+            </div>
+            <button class="btn btn-micv5 fl send_pause_reason_btn" style="width: 70px;">提交</button>
+        </div>
+
+        {% endif %}
+    {% endif %}
+</div>
+
+<div class="study-plan-teacher-container">
+{% for stage_index, stage in stages %}
+
+<div class="row list-header">
+    <em class="bg-v5">{{ stage_index }}</em>
+    <h1 class="ft20">第 {{ stage_index }} 阶段 - {{ stage.name }}</h1>
+</div>
+
+{% for course_index, course in stage.courses %}
+<div class="row {% if forloop.last %}list-body{% else %}list-border-none{% endif %}">
+<section class="fl">
+<dl>
+    <dt>
+        <h5>第 {{ course_index }} 课</h5>
+        <p>{{ course.name }}</p>
+    </dt>
+    <dd>
+
+    <div class="plan-block fl">
+        <div class="block-table-row">
+            <div data-toggle="modal" data-target="#coursestuModal_{{stage_index}}_{{course_index}}" class="block-table-cell">
+                <span>课程学习</span>
+                <p>{{ course.lesson_is_complete_count }}/{{ course.lessons_count }}</p>
+            </div>
+        </div>
+    </div>
+    {% if course.lesson_papers_count != 0 and course.lesson_paper_count > 0 %}
+    <div class="plan-block fl">
+        <div class="block-table-row">
+            <div data-toggle="modal" data-target="#quiztestModal_{{stage_index}}_{{course_index}}" class="block-table-cell">
+                <span>随堂测验</span>
+                {% if course.lesson_paper_count > 0 %}
+                <p>{{ course.lesson_paper_has_accuracy_count }}/{{ course.lesson_paper_count }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="plan-block fl">
+        <div class="block-table-row">
+            <div data-toggle="modal" data-target="#quizjobModal_{{stage_index}}_{{course_index}}" class="block-table-cell">
+                <span>随堂作业</span>
+                {% if course.lesson_homework_count > 0 %}
+                <p>{{ course.lesson_homework_complete_count }}/{{ course.lesson_homework_count }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {% if course.course_paper %}
+    <div class="plan-block fl">
+        <div class="block-table-row">
+            <div data-toggle="modal" class="block-table-cell">
+                <span>课程总测验</span>
+                <p>
+                    {% if course.course_paper.accuracy != None %}
+                    {{ course.course_paper.accuracy }}%
+                    {% else %}
+                    未完成
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if course.course_project != None %}
+        <div class="plan-block fl">
+            <div class="block-table-row">
+                <div data-toggle="modal" data-target="#project_{{ course.id }}_Modal" class="block-table-cell">
+                    <span>项目制作</span>
+                    
+                    {% if course.course_project.upload_file %}
+                        {% if course.course_project.score %}
+                            <p class="p-green">已打分:{{course.course_project.score}}</p>
+                        {% else %}
+                            <p class="p-green">已上传</p>
+                        {% endif %}
+                    {% else %}
+                    <p>未上传</p>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    </dd>
+</dl>
+</section>
+</div><!--/.list-body-->
+
+<!-- 课程列表 -->
+<div class="modal fade" id="coursestuModal_{{stage_index}}_{{course_index}}"
+    tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="lessonModalLabel">课程学习</h4>
+            </div>
+            <div class="modal-body" style="padding:0">
+                <div class="box-coursestu" id="box-lesson">
+                <ul class="modal-max-height scroll-pane">
+                    {% for lesson_index, lesson in course.lessons %}
+                    <li class="row">
+                        <div class="col-sm-9">{{ lesson.name }}</div>
+                        <div class="col-sm-3 text-center">
+                            {% if lesson.is_complete == True %}
+                                <i class="v5-icon v5-icon-rthb"></i>
+                            {% else %}
+                                <span>未观看</span>
+                            {% endif %}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--/.lessons_modal-->
+
+<!-- 随堂测试 -->
+<div class="modal fade" id="quiztestModal_{{stage_index}}_{{course_index}}"
+    tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="lessonexamModalLabel">随堂测验</h4>
+            </div>
+            <div class="modal-body" style="padding:0">
+                <div class="box-coursestu" id="box-lessonexam">
+                <ul class="modal-max-height scroll-pane">
+                    {% for lesson_index, lesson_paper in course.lesson_papers %}
+                    <li class="row">
+                        <div class="col-sm-9">{{ lesson_paper.lesson_name }}</div>
+                        <div class="col-sm-3 text-center">
+                            {% if lesson_paper.accuracy != None %}
+                            <span>准确率 {{ lesson_paper.accuracy }}%</span>
+                            {% else %}
+                            <span>未测试</span>
+                            {% endif %}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--/.modal-->
+
+<!-- 随堂作业 -->
+<div class="modal fade" id="quizjobModal_{{stage_index}}_{{course_index}}"
+    tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="homeworkModalLabel">随堂作业</h4>
+            </div>
+            <div class="modal-body" style="padding:0">
+                <div class="box-coursestu" id="box-homework">
+                <ul class="modal-max-height scroll-pane">
+                    {% for lesson_homework_index, lesson_homework in course.lesson_homeworks %}
+                    <li class="row">
+                        <div class="col-sm-9">{{ lesson_homework.lesson_name }}</div>
+                        <div class="col-sm-3 text-center">
+                            {% if lesson_homework.upload_file != None %}
+                            <a href="{{ MEDIA_URL }}{{ lesson_homework.upload_file }}" class="btn btn-micv5">
+                                下载
+                            </a>
+                            {% else %}
+                            <span>未提交</span>
+                            {% endif %}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div><!--/.modal-->
+
+
+<!-- 项目上传 -->
+ {% if course.course_project != None %}
+<div class="modal fade" id="project_{{ course.id }}_Modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm modal-custom">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="objectmdModalLabel">项目制作</h4>
+            </div>
+            <div class="modal-body modal-body-custom">
+                <div class="box-objectmd">
+                <div class="modal-line">
+                    <h4 class="ft20 defult-font-color">需求:</h4>
+                    <div class="p_scroll"><p style="word-break:break-all;">{% if course.course_project != None %}{{ course.course_project.description | safe }}{% endif %}</p></div>
+                </div>
+                <div class="modal-line">
+                    <h4 class="ft20 defult-font-color ml">项目制作:</h4>
+                    <span class="update-pro-msg">
+                        {% if course.course_project.upload_file == None %}
+                        <a class="no-update no-update-position">未上传任何附件</a>
+                        {% else %}
+                        <a class="yes-update" href="{{course.course_project.upload_file}}">项目文件</a>
+                        <span class="yes-update-msg">已上传</span>
+                        {% endif %}
+                    </span>
+                    {% if course.course_project.upload_file != None %}
+                    <a class="btn btn-micv5 btn-down-pro" href="{{course.course_project.upload_file}}">下载</a>
+                    {% endif %}
+                    <h4 class="ft20 defult-font-color defult-font-mg">老师打分:</h4>
+                    {% if course.course_project.score != None and  course.course_project.score != 0 %}
+                    <div class="score"><span>{{course.course_project.score}}</span>分</div>
+                    {% else %}
+                        <div class="row grade-box">
+                            <input type="text" name="score" class="form-control input-v5-sm text-center">
+                            <span>/100</span>
+                            <button data-toggle="tooltip" data-placement="top"
+                                data-course_project_record_id="{{ course.course_project.record_id }}"
+                                data-course_id="{{ course.id }}"
+                                data-user_id="{{ class_student.user.id }}"
+                                data-container="body" title="打分" class="send_score_btn btn btn-micv5 btn-v5-sm">
+                                <i class="v5-icon v5-icon-rt"></i></button>
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="modal-line modal-line-border">
+                    <h4 class="ft20 defult-font-color">老师评语:</h4>
+                    {% if not course.course_project.remark %}
+                    
+                    <div class="container-pingyu">
+                        <textarea class="pingyu" maxlength="100"></textarea>
+                        <button class="btn btn-micv5 btn-pingyu" data-course_project_record_id="{{ course.course_project.record_id }}"
+                         data-course_id="{{ course.id }}"
+                         data-user_id="{{ class_student.user.id }}">评语</button>
+                    </div>
+                    {% else %}
+                    <p style="word-wrap: break-word;">{{course.course_project.remark}}</p>
+                    {% endif %}
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<!--/.modal-->
+
+
+{# end course for #}
+{% endfor %}
+
+<div class="row list-header">
+    <em class="bg-v5">{{ stage_index }}</em><h1 class="ft20">额外任务</h1>
+</div>
+<div class="row list-body misson_item" style="border-bottom: none;">
+    <section class="fl">
+        <dl>
+            <dt></dt>
+            {% for misson_index, misson in stage.stage_missons %}
+            <dd>
+            <div class="plan-block fl">
+                <div class="block-table-row">
+                    <div class="block-table-cell misson_detail" data-misson_id={{ misson.id }}
+                        data-modal_id="edittaskModal_{{ stage_index }}" data-title="{{ misson.name }}"
+                        data-desc="{{ misson.description }}">
+                        <span>任务 {{ misson_index }}</span>
+                    </div>
+                </div>
+                {% if misson.score != None %}
+<!--                <div class="row grade-box">
+                    <p class="text-center">已打分 {{ misson.score }}</p>
+                </div>-->
+                {% else %}
+            <!--    <div class="row grade-box">
+                    <input type="text" name="misson_score" class="form-control input-v5-sm text-center">
+                    <span>/100</span>
+                    <button data-toggle="tooltip" data-placement="top"
+                        data-user_id="{{ class_student.user.id }}"
+                        data-misson_id="{{ misson.id }}"
+                        data-container="body" title="打分" class="send_misson_score_btn btn btn-micv5 btn-v5-sm">
+                        <i class="v5-icon v5-icon-rt"></i>
+                    </button>
+                </div>-->
+                {% endif %}
+            </div>
+            </dd>
+            {% endfor %}
+        </dl>
+    </section>
+    <a href="#" data-toggle="modal" data-target="#addtaskModal_{{ stage_index }}" class="add-task"></a>
+</div>
+
+<!--添加任务-->
+<div class="modal fade add_mission_modal" id="addtaskModal_{{ stage_index }}"
+    data-stage_id="{{ stage.id }}"
+    tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="addtaskModalLabel">添加任务</h4>
+      </div>
+      <div class="modal-body">
+        <div class="box-addtask" id="box-addtask">
+          <ul class="form-horizontal v5-form-horizontal">
+            <li class="row form-group">
+              <label for="" class="col-sm-3 control-label">任务名称：</label>
+              <div class="col-sm-9">
+                <input type="text" name="mission_name" class="form-control" placeholder="">
+              </div>
+            </li>
+            <li class="row form-group">
+              <label for="" class="col-sm-3 control-label">任务描述：</label>
+              <div class="col-sm-9">
+                  <textarea id="" name="mission_desc" class="form-control" rows=6></textarea>
+              </div>
+            </li>
+            <li class="row form-group v5-pdt">
+              <div class="col-sm-12">
+                <button type="button" class="btn btn-micv5 btn-v5-md btn-block new_mission_btn">创建任务</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--修改任务-->
+<div class="modal fade add_mission_modal" id="edittaskModal_{{ stage_index }}"
+    data-stage_id="{{ stage.id }}"
+    tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="addtaskModalLabel">修改任务</h4>
+      </div>
+      <div class="modal-body">
+        <div class="box-addtask" id="box-addtask">
+          <ul class="form-horizontal v5-form-horizontal">
+            <li class="row form-group">
+              <label for="" class="col-sm-3 control-label">任务名称：</label>
+              <div class="col-sm-9">
+                <input type="text" name="mission_name" class="form-control" placeholder="">
+              </div>
+            </li>
+            <li class="row form-group">
+              <label for="" class="col-sm-3 control-label">任务描述：</label>
+              <div class="col-sm-9">
+                  <textarea id="" name="mission_desc" class="form-control" rows=6></textarea>
+              </div>
+            </li>
+            <li class="row form-group v5-pdt">
+              <div class="col-sm-12">
+                <button type="button" class="btn btn-micv5 btn-v5-md btn-block edit_mission_btn">修改任务</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{# end stage for #}
+{% endfor %}
+
+</div><!--/.study-plan-teacher-container-->
+</div>
+</div>
+{% endblock %}
+
+{% block custom_script %}
+<script>
+$(function(){
+"use strict";
+
+$('.scroll-pane').jScrollPane({
+    autoReinitialise: true
+});
+
+
+$('.p_scroll').jScrollPane({
+      autoReinitialise: true
+});
+// 暂停操作
+
+var $pauseStatus = $(".pause_status"),
+    $pause = $(".pause_btn"),
+    $reasonInput = $pauseStatus.find("input[name='reason']"),
+    $pauseReasonForm = $(".pause_reason"),
+    $addMissionModal = $(".add_mission_modal"),
+    $missonItems = $(".misson_item"),
+    $courseProject = $(".modal-line");
+
+$pauseStatus.on("click", ".pause_btn", function(event) {
+    var $currTarget = $(event.currentTarget);
+    $pauseReasonForm.show();
+    $currTarget.hide();
+});
+
+$pauseStatus.on("click", ".send_pause_reason_btn", function(event) {
+    var $currTarget = $(event.currentTarget),
+        reason = $reasonInput.val();
+
+    // 是否需要判断原因是否为空？
+    $.post(
+        "{% url 'lps:pause_planning' %}",
+        {
+            reason: reason,
+            planning_id: "{{ planning.id }}",
+        }
+    )
+    .done(function(res) {
+        if (res === "ok") {
+            window.location.reload();
+        }
+    })
+    .error(function(xhr) {
+        alert("操作失败，请稍后再试一试吧");
+        console.dir(xhr);
+    })
+});
+
+$pauseStatus.on("click", ".restore_btn", function() {
+    var $currTarget = $(event.currentTarget);
+
+    $.post(
+        "{% url 'lps:restore_planning' %}",
+        {
+            "planning_id": "{{ planning.id }}"
+        }
+    )
+    .done( function(res) {
+        if (res === "ok") {
+            window.location.reload();
+        }
+    })
+    .error( function(xhr) {
+        alert("操作失败，请稍后再试一试吧");
+        console.dir(xhr);
+    });
+
+});
+
+$('.btn-pingyu').click(function(event) {
+    /* Act on the event */
+        var obj = $(this)
+        var courseProjectRecordId = $(this).data("course_project_record_id");
+        var courseId = $(this).data("course_id");
+        var userId = $(this).data("user_id");
+        var remark = $(this).prev().val();
+    if (remark) {
+        $.post(
+            "{% url 'lps:teacher_save_remark' %}",
+            {
+                course_project_record_id: courseProjectRecordId,
+                course_id: courseId,
+                user_id: userId,
+                remark:remark
+            }
+        )
+        .done( function(res) {
+            if (res[0] === "ok") {
+                obj.parent().html("<p style='word-wrap: break-word;'>"+res[1]+"</p>");
+            }else{
+                alert("未知错误！");
+            }
+        })
+        .error( function(xhr) {
+            alert("操作失败，请稍后再试一试吧");
+        });
+    } else {
+        alert("评语不能为空");
+    }
+
+});
+$courseProject.on("click", ".send_score_btn", function(event) {
+    var obj = $(this);
+    var $currentTarget = $(event.currentTarget),
+        score = $currentTarget.parents(".row").find("input[name='score']").val(),
+        courseProjectRecordId = $currentTarget.data("course_project_record_id"),
+        courseId = $currentTarget.data("course_id"),
+        userId = $currentTarget.data("user_id");
+
+    if (score != "" && !isNaN(score) && score >=0 && score <= 100) {
+        $.post(
+            "{% url 'lps:set_course_project_score' %}",
+            {
+                course_project_record_id: courseProjectRecordId,
+                course_id: courseId,
+                user_id: userId,
+                score: score
+            }
+        )
+        .done( function(res) {
+            if (res === "ok") {
+                var str = '<div class="score"><span>'+score+'</span>分</div>';
+                $(obj).parent().before(str);
+                 $(obj).parent().hide();
+
+            } else {
+                alert("操作失败, 请稍后再试一次吧");
+            }
+        })
+        .error( function(xhr) {
+            alert("操作失败，请稍后再试一试吧");
+        });
+    } else {
+        console.dir(score);
+        alert("请填入格式正确的数字");
+    }
+});
+
+$courseProject.on("click", ".download_code", function(event) {
+    var $currentTarget = $(event.currentTarget),
+        codeUrl = $currentTarget.data("code_url");
+
+    if (codeUrl) {
+        window.open(codeUrl, "_blank");
+    }
+});
+
+
+$addMissionModal.on("click", ".new_mission_btn", function(event) {
+    var $currentTarget = $(event.currentTarget),
+        $modal = $currentTarget.parents(".add_mission_modal"),
+        stageId = $modal.data("stage_id"),
+        missionName = $modal.find("input[name='mission_name']").val(),
+        missionDesc = $modal.find("textarea[name='mission_desc']").val();
+
+    // missionDesc 可以为空
+    if (missionName != "") {
+        $.post(
+            "{% url 'lps:add_mission' %}",
+            {
+                stage_id: stageId,
+                mission_name: missionName,
+                mission_desc: missionDesc
+            }
+        )
+        .done(function(res) {
+            if (res === "ok") {
+                $addMissionModal.modal("hide");
+                window.location.reload();
+            }
+        })
+        .error(function(xhr) {
+            console.dir(xhr);
+            alert("操作失败，请稍后再试一试吧");
+        });
+    }
+
+});
+
+
+$missonItems.on("click", ".send_misson_score_btn", function(event) {
+    var $currentTarget = $(event.currentTarget),
+        missonId = $currentTarget.data("misson_id"),
+        userId = $currentTarget.data("user_id"),
+        $missonItem = $currentTarget.parents(".misson_item"),
+        missonScore = $missonItem.find("input[name='misson_score']").val();
+
+    if (missonScore != "" && !isNaN(missonScore) && missonScore >=0 && missonScore <= 100) {
+        $.post(
+            "{% url 'lps:set_mission_score' %}",
+            {
+                mission_id: missonId,
+                user_id: userId,
+                score: missonScore
+            }
+        )
+        .done(function(res) {
+            if (res === "ok") {
+                window.location.reload();
+            }
+        })
+    } else {
+        console.dir(missonScore);
+        alert("请填入格式正确的数字");
+    }
+});
+
+$missonItems.on("click", ".misson_detail", function(event) {
+    var $currentTarget = $(event.currentTarget),
+        $modal = $("#" + $currentTarget.data("modal_id")),
+        misson_id = $currentTarget.data("misson_id"),
+        title = $currentTarget.data("title"),
+        desc = $currentTarget.data("desc");
+
+    $modal.find("input[name='mission_name']").val(title);
+    $modal.find("textarea[name='mission_desc']").text(desc);
+    $modal.data("mission_id", misson_id);
+
+    $modal.modal("show");
+});
+
+$addMissionModal.on("click", ".edit_mission_btn", function(event) {
+    var $currentTarget = $(event.currentTarget),
+        $modal = $currentTarget.parents(".add_mission_modal"),
+        stageId = $modal.data("stage_id"),
+        missionId = $modal.data("mission_id"),
+        missionName = $modal.find("input[name='mission_name']").val(),
+        missionDesc = $modal.find("textarea[name='mission_desc']").val();
+
+    // missionDesc 可以为空
+    if (missionName != "") {
+        $.post(
+            "{% url 'lps:edit_mission' %}",
+            {
+                mission_id: missionId,
+                mission_name: missionName,
+                mission_desc: missionDesc
+            }
+        )
+        .done(function(res) {
+            if (res === "ok") {
+                $addMissionModal.modal("hide");
+                window.location.reload();
+            }
+        })
+        .error(function(xhr) {
+            console.dir(xhr);
+            alert("操作失败，请稍后再试一试吧");
+        });
+    }
+
+});
+
+
+});
+</script>
+{% endblock %}
+
+

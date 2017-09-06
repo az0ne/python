@@ -1,0 +1,16 @@
+
+<ul class="breadcrumb">
+    <li><a href="#">用户模块</a></li>
+
+    {% if is_students %}
+    <li class="active"><a href="{% url 'nadmin:users_students' %}">学生用户</a></li>
+    {% endif %}
+
+    {% if is_students_edit %}
+    <li><a href="{% url 'nadmin:users_students' %}">学生用户</a></li>
+    <li class="active">{{ student.username }}</li>
+    {% endif %}
+
+</ul>
+
+

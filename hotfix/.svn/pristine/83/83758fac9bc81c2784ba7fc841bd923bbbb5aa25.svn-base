@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}mz_lps4/css/style.css"/>
+    <style>
+        /*.printMain{ margin: 60px auto; width: 740px; display: table; padding: 40px; background: #ffffff;}
+        .printMain .pt{ padding-bottom: 20px; border-bottom: 1px solid #e5e5e5; margin-bottom: 26px;}
+        .printMainTable{ width: 100%; margin-bottom: 20px;}
+        .printMainTable td{ padding: 8px 0;}
+        .printMainTable .t1{ width: 70px; text-align: right;}
+        .printMainTable .t2{ width: 160px;}
+        .printMain .ptTwo{ border-top: 1px solid #f5f5f5; padding-top: 26px;}
+        .printMain .ptThree{ padding: 10px 0;}
+        .printMain .ptThree>span{ margin-right: 10px;}
+        .downxls{ width: 100%; background: #f5f5f5; padding: 20px 0; text-align: center;}
+        .downxls>a{ display: inline-block; width: 160px; height: 40px; line-height: 40px; color: #999999; font-size: 14px; background: #ffffff;}
+        .downxls>a>img{ vertical-align: middle; margin-right: 10px;}
+        .downxls>a:hover{ opacity: .8;}*/
+    </style>
+</head>
+<body style="background: #f5f5f5;" class="yahei">
+
+<div class="printMain">
+    <p class="font30 color66 pt">{{ info.name }}</p>
+    <p class="color66 font18 marginB14">基本信息</p>
+    <table class="printMainTable color33 font14">
+        <tr>
+            <td class="t2">性别：</td><td class="t2">{{ info.sex }}</td>
+            <td style="width: 74px;">年龄：</td><td class="t2">{{ info.age }}</td>
+            <td class="t1" style="width: 156px;">QQ：</td><td >{{ info.qq }}</td>
+        </tr>
+        <tr>
+            <td class="t2">电话：</td><td class="t2">{{ info.mobile }}</td>
+            <td>邮箱：</td><td class="t2">{{ info.mail }}</td>
+            <td class="t1" style="width: 156px;">麦子账号：</td><td >{{ info.account }}</td>
+        </tr>
+        <tr>
+            <td class="t2">地址：</td><td colspan="5">{{ info.address }}</td>
+        </tr>
+        {% if info.description %}
+            <tr>
+                <td class="t2">自我评价：</td><td colspan="5">{{ info.description }}</td>
+            </tr>
+        {% endif %}
+    </table>
+    <p class="ptTwo font18 marginB14">学习信息</p>
+
+    <table class="printMainTable color33 font14" style="margin-bottom: 0;">
+        <tr>
+            <td class="t1">入学时间：</td><td style="width: 238px;">{{ info.start_study_time }}</td>
+            <td class="t1">带班老师：</td><td>{{ info.teacher_name }}</td>
+        </tr>
+        <tr>
+            <td class="t1">教务老师：</td><td>{{ info.eduadmin_name }}</td>
+            {% if info.user_study_goal %}
+                <td class="t1">学习目标：</td><td>{{ info.user_study_goal }}</td>
+            {% else %}
+                <td class="t1">学习目标：</td><td>{{ info.study_goal }}</td>
+            {% endif %}
+        </tr>
+        {% if not info.user_study_base_list %}
+            <tr>
+                <td class="t1">学习基础：</td><td colspan="3">{{ info.study_base }}</td>
+            </tr>
+        {% endif %}
+    </table>
+
+    {% if info.user_study_base_list %}
+        <table class="printMainTable color33 font14">
+            {% for study_base in info.user_study_base_list %}
+                {% if forloop.counter|divisibleby:2 %}{% else %}<tr>{% endif %}
+                    <td class="t1" style="width: 168px;">{{ study_base.name }}:</td><td>{{ study_base.level }}</td>
+                {% if forloop.counter|divisibleby:2 %}</tr>{% else %}{% endif %}
+            {% endfor %}
+        </table>
+    {% endif %}
+
+
+    <p class="ptTwo font18 marginB14">就业信息</p>
+    <table class="printMainTable color33 font14" style="margin-bottom: 0;">
+        <tr>
+            <td class="t1" style="width: 104px;">学历：</td><td style="width: 176px;">{{ info.education }}</td>
+            <td class="t1" style="width:100px;">毕业院校：</td><td>{{ info.graduate_institution }}</td>
+        </tr>
+        <tr>
+            <td class="t1">意向就业城市：</td><td>{{ info.intention_job_city }}</td>
+            <td class="t1">工作年限：</td><td>{{ info.service_year }}</td>
+        </tr>
+        <tr>
+            <td class="t1">在职情况：</td><td>{{ info.in_service }}</td>
+            <td class="t1">想从事的行业：</td><td>{{ info.to_industry }}</td>
+        </tr>
+        <tr>
+            <td class="t1">所在行业：</td><td>{{ info.industry }}</td>
+            <td class="t1">职位：</td><td>{{ info.position }}</td>
+        </tr>
+    </table>
+    <p class="ptTwo font18 marginB14">支付信息</p>
+    {% for pay in info.pay %}
+        <p class="ptThree color99"><span class="font18 color33">{{ pay.num }}</span></p>
+        <table class="printMainTable color33 font14">
+            <tr>
+                <td class="t1">支付课程：</td><td style="width: 238px;">{{ pay.pay_course }}</td>
+                <td class="t1">支付金额：</td><td>{{ pay.pay_amount }}</td>
+            </tr>
+            <tr>
+                <td class="t1">支付类型：</td><td>{{ pay.pay_type }}</td>
+                <td class="t1">支付方式：</td><td>{{ pay.pay_way }}</td>
+            </tr>
+            <tr>
+                <td class="t1">订单号：</td><td>{{ pay.pay_no }}</td>
+                <td class="t1">交易号：</td><td>{{ pay.pay_complete_no }}</td>
+            </tr>
+        </table>
+    {% endfor %}
+    <p class="ptTwo font18 marginB14">班会考勤</p>
+    <table class="printMainTable2 color33 font14">
+        <tr>
+            <th style="width:33.3%;">班会时间</th><th style="width:33.3%;">班会主题</th><th>考勤</th>
+        </tr>
+        {% for att in info.attendances %}
+        <tr>
+        	<td>{{ att.0 }}</td><td>{{ att.1 }}</td><td>{{ att.2 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <div class="downxls" >
+        <a href="/lps3/teacher/class/{{ class_id }}/export_student_info/{{ student_id }}/"><img src="{{ STATIC_URL }}mz_lps3/images/downxls.png">导出学籍信息</a>
+    </div>
+</div>
+</body>
+</html>

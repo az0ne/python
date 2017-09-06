@@ -1,0 +1,101 @@
+<div class="box-echart visible-md visible-lg">
+    <div class="title">
+        <div class="fr plan-day">
+    		    <span class="fl">
+    		    	{% if cur_careercourse.is_unlockstage %}课程计划天数：{{ cur_careercourse.plan_days_count }}天{% endif %}
+    		    </span>
+            <div class="fl plan-tip">
+                {% if cur_careercourse.is_unlockstage and not cur_careercourse.is_set_plan %}
+                <i class="v5-icon v5-icon-setting" onclick="planset()"></i>
+                <div class="plan-tip-box">
+                    点击可生成课程学习计划
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <h1 class="ft20">{{ cur_careercourse.name }}</h1>
+    </div>
+    <div class="row chart-legend">
+        <span class="myplan">我的学习计划</span>
+        <span class="legend"><i style="background-color: #1ABC9C;"></i>计划时间点</span>
+        <span class="legend"><i style="background-color: #E78964;"></i>实际时间点</span>
+    </div>
+    <div class="chart-container-box">
+        {% if not cur_careercourse.is_unlockstage or not cur_careercourse.is_set_plan or cur_careercourse.is_pause %}
+        <div class="chart-modal-box">
+            <div class="chart-modalbg"></div>
+            <div class="row chart-modal">
+                <div class="col-sm-12 text-center">
+                    {% if not cur_careercourse.is_unlockstage %}
+                    <p class="ft20">您还没有报名该职业课程哦，职业课程高薪保就业，随时随地跟踪你的记录，赶快来报名吧！</p>
+                    <button class="btn btn-micv5 btn-v5-md" style="width: 150px;" data-toggle="modal" data-target="#paymentModal">立即报名</button>
+                    {% else %}
+                        {% if not cur_careercourse.is_set_plan %}
+                            <p class="ft20">您还没有生成职业课程的学习计划，赶快来设置吧！</p>
+                            <button class="btn btn-micv5 btn-v5-md" style="width: 150px;" data-toggle="modal" data-target="#plansetModal">生成计划</button>
+                        {% else %}
+                            {% if cur_careercourse.is_pause %}
+                                <p class="ft20">您还在请假中，赶快恢复学习吧！</p>
+                                <button class="btn btn-micv5 btn-v5-md" style="width: 150px;" onclick="learning_restore()">恢复学习</button>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if cur_careercourse.is_unlockstage and cur_careercourse.is_set_plan and not cur_careercourse.is_pause %}
+        <div id="chart-container" class="chart-container">
+            <div class="learn-plan-charts">
+                <div class="fl">
+                    <ul class="process">
+                        <li class="li1">100%</li>
+                        <li class="li2">50%</li>
+                        <li class="li3">0</li>
+                    </ul>
+                </div>
+                <div id="chart-box" class="chart-box fl">
+                    <div class="right-size">
+                        <div class="chart-line">
+                            <ul class="table-name">
+                                <li style="width:110px;height:50px;">
+                                    <p class="font-color-es ">&nbsp;完成度(%)</p>
+                                </li>
+                            </ul>
+                            <div class="table-content" height="157">
+                                <ul class="odd">
+
+                                </ul>
+                                <ul class="even">
+
+                                </ul>
+                            </div>
+                            <ul class="table-line">
+
+                            </ul>
+                        </div>
+                        <div class="date">
+                            <ul height="25" class="table-date">
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="charts-box-canvas" ></div>
+                </div>
+                <div class="learn-plan-tips">
+                    <p>一些课程的提示数据</p>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% if cur_careercourse.is_pause %}
+<script>
+function learning_restore(){
+    $.get("learning/plan/{{ cur_careercourse.id }}/restore/", function(data){
+        window.location.reload()
+    });
+}
+</script>
+{% endif %}

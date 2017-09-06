@@ -1,0 +1,8 @@
+<div class="modal fade YaHei" id="appointment-success" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm" style="width: 540px;">
+        <div class="modal-content">
+
+        </div>
+    </div>
+</div>

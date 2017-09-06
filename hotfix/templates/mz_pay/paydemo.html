@@ -1,0 +1,47 @@
+<!--加上顶部和底部-->
+{% extends "mz_common/base.html" %}
+{% block title %}{{ seo.seo_title }}{% endblock %}
+{% block keywords%}{{ seo.seo_keyword }}{% endblock %}
+{% block description%}{{ seo.seo_description }}{% endblock %}
+{% block header %}
+    <header class="navbar navbar-default navbar-fixed-top" data-spy="affix" data-offset-top="64">
+{% endblock %}
+{% block container %}
+<div class="zy_main YaHei">
+	<div class="container">    
+    	<div class="payWeixi_tit"><span>所选课程：</span>{{ course }}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<span>支付金额：</span><span class="red">{{ fees }}</span>元</div>
+    	<div class="pay_demo">	
+            <p class="pt"><img src="/static/images/weixi_icon2.png">微信支付</p>
+            <ul class="pay_success_ul">
+                <li style="float:left;">
+                    <p class="p1"><img src="/static/images/weixi_sm.png">请用微信扫一扫<br>扫描二维码支付</p>
+                    <p><img src="{% url 'pay:wechat_pay_qrcode' trade_no %}"></p>
+                </li>
+                <li>
+                    <img src="/static/images/weixi_image.png">
+                </li>
+            </ul>
+            <p class="pb" style="display: none;"><a onclick="window.history.back(-1)" style="cursor:pointer;"><&nbsp;返回其他支付方式</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block custom_script %}
+    <script>
+        setInterval(function(){
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url:"/pay/wechat/order_status/{{ trade_no }}/",
+                async: true,
+                success: function(data) {
+                    if(data.status == "success"){
+                        if(data.pay_status == '1'){
+                            window.location = "/pay/wechat/paysuccess/{{ trade_no }}/"
+                        }
+                    }
+                },
+            });
+        },2000)
+    </script>
+{% endblock %}

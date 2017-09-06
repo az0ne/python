@@ -1,0 +1,45 @@
+{% extends "mz_common/base.html" %}
+
+{% block title %}
+    意见反馈提交成功-麦子学院
+{% endblock %}
+
+
+{% block custom_css %}
+<link href="/static/aboutus/Content/style.css" rel="stylesheet">
+{% endblock %}
+
+{% block container %}
+    <div class="microoh-main feedbackmain">
+
+        <div class="container zzcontainer">
+            <ol class="breadcrumb">
+                <li><a href="/">首页</a></li>
+                <li class="active">意见反馈</li>
+            </ol>
+            <div id="tab">
+                <div id="left-bar">
+                    <ul>
+                        <li class="buttom-border"><a href="/common/about"><span class="cn">关于我们</span><span class="en">About us</span></a></li>
+                        <li class="buttom-border"><a href="/common/join"><span class="cn">加入我们</span><span class="en">Join us</span></a></li>
+                        <li class="buttom-border"><a href="/common/contact"><span class="cn">联系我们</span><span class="en">Contacts</span></a></li>
+                        <li class="buttom-border cur"><a href="/common/feedback/"><span class="cn">意见反馈</span><span class="en">Feedback</span></a></li>
+                    </ul>
+                </div>
+                <div class="tabCon" style="width:870px; text-align:center;">
+                    <p style="padding:40px 0 20px;"><img src="{{ STATIC_URL }}images/zy_success.png"></p>
+                    <p style="font-size:24px; color:#333333">提交成功</p>
+                    <p style=" color:#333333; margin-bottom:20px;">感谢您的宝贵意见，我们会尽快给予答复，请耐心等待。</p>
+                    <a href="" class="feedbackClosed">关闭当前页面</a>
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+            <div style="margin-bottom:50px;" class="footers"></div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $(".zzcontainer").css("minHeight", $(window).height() - 145);
+        })
+    </script>
+{% endblock %}

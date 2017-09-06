@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8">
+
+    <link rel="stylesheet" href="/static/backend/css/login.css">
+    <script type="text/javascript" src="/static/backend/js/jquery.min.js"></script>
+	<title>后台登陆</title>
+</head>
+<body>
+	<div id="login_top">
+		<div id="welcome">
+			欢迎使用麦子学院管理系统
+		</div>
+		<div id="back">
+			<a href="http://www.maiziedu.com">返回首页</a>
+		</div>
+	</div>
+	<div id="login_center">
+		<div id="login_area">
+			<div id="login_form">
+				<form action="{% url 'backend:admin_login' %}" method="post">
+                    {% csrf_token %}
+					<div id="login_tip">
+						用户登录&nbsp;&nbsp;UserLogin
+					</div>
+					<div>{{ uf.username }}</div>
+					<div>{{ uf.password }}</div>
+					<div id="btn_area">
+						<input type="submit" name="submit" id="sub_btn" value="登&nbsp;&nbsp;录">&nbsp;&nbsp;
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="login_bottom">
+		版权所有&copy;maiziedu.com
+	</div>
+</body>
+</html>

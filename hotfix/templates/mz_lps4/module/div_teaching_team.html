@@ -1,0 +1,13 @@
+<div class="teaching-team">
+    <h2>你的教学团队</h2>
+    <ul>
+        {% for teacher in teachers %}
+        <li>
+            <a class="manager-icon" href="/u/{{ teacher.teacher_id }}/"><img src="{{ MEDIA_URL }}{{ teacher.avatar }}" alt="{{ teacher.nick_name }}"/><span>师</span></a>
+            <p class="manager-name">{% if teacher.real_name %}{{ teacher.real_name }}{% else %}{{ teacher.nick_name }}{% endif %}</p>
+            <a class="manager-qq" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={{ teacher.qq }}&site=qq&menu=yes">QQ 联系</a>
+        </li>
+        {% endfor %}
+
+    </ul>
+</div>

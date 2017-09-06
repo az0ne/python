@@ -1,0 +1,60 @@
+{% extends "mz_nadmin/base.html" %}
+
+
+{% block right %}
+{% include "mz_nadmin/parts/courses_breadcrumb.html" %}
+
+
+<div class="tabbable">
+{% include "mz_nadmin/parts/course_tabs.html" %}
+
+<div class="tab-content">
+<div class="tab-pane active">
+
+<p>
+    <a href="{% url 'nadmin:lessons_create' course.id %}"
+        class="btn btn-xs btn-primary">
+        + 创建新章节
+    </a>
+</p>
+
+{% include "mz_nadmin/modules/msgs.html" %}
+
+{% if lessons.end_index >= 1 %}
+<div class="table-responsive">
+<table class="table table-bordered table-hover">
+    <thead>
+        <th class="col-md-3">章节名称</th>
+        <th class="col-md-7">描述</th>
+        <th class="col-md-2">播放次数</th>
+    </thead>
+    <tbody>
+        {% for lesson in lessons %}
+        <tr>
+            <td>
+                <a href="#">
+                    {{ lesson.name }}
+                </a>
+            </td>
+            <td>
+                {{ lesson.description }}
+            </td>
+            <td>
+                {{ lesson.play_count }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% include "mz_nadmin/modules/page_info.html" with items=lessons %}
+</div>
+{% else %}
+<p class="text-muted"><small>还没有任何章节</small></p>
+{% endif %}
+
+</div>
+</div>
+</div>
+{% endblock %}
+
+

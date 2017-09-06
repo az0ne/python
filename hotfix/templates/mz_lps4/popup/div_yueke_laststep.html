@@ -1,0 +1,31 @@
+{% if user.is_authenticated %}
+<div class="modal fade YaHei" id="yueke-last-step" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm" style="width: 624px;">
+        <div class="modal-content">
+			<a class="close"></a>
+			<h4>点击预约立即开启全新的学习体验</h4>
+			<div class="yueke-box">
+				<label for="mibile">请验证你的手机，以便于更准确的通知你</label>
+				<input type="text" placeholder="请输入你的姓名" value="{% if user.real_name %}{{ user.real_name }}{% endif %}" name="ops-user-name" id="ops-user-name" class="phone-num"/>
+				<input type="text" placeholder="输入手机号" value="{% if user.mobile %}{{ user.mobile }}{% endif %}" name="phone-num" id="ops-phone-num" class="phone-num"/>
+				<select name="advisor" id="ops-advisor" class="advisor marginB20">
+					<option value="0">请预约你的专属顾问</option>
+					<option value="1">午休时段12：00-14：00</option>
+					<option value="2">下午时段15：00-16：00</option>
+					<option value="3">下班时段19：00-20：00</option>
+				</select>
+				<select name="status" id="ops-status" class="advisor">
+					<option value="1">在职</option>
+					<option value="0">在读</option>
+				</select>
+				<div class="verification-box">
+				    <input type="text" placeholder="请输入短信验证码" name="verification" id="ops-verification" class="verification"/>
+				    <input type="button" id="ops-send-verify" value="获取验证码" class="send-verif"/>
+				</div>
+			</div>
+			<a class="know">立即预约</a>
+        </div>
+    </div>
+</div>
+{% endif %}

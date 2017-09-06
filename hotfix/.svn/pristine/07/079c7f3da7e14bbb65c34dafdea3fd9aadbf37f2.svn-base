@@ -1,0 +1,13 @@
+{% load course_filter %}
+<p class="font16 color33 pt">课程目录</p>
+<div class="playlist scroll-pane" style="overflow:hidden;">
+    <ul class="video_part_lists">
+        {% for lsn in lesson_list %}
+        <li class="{% if forloop.counter <= 2 and lesson.id != lsn.id %}{% elif lesson.id == lsn.id %}liH{% else %}{% if course.need_pay and not is_paid %}need_pay{% endif %}{% endif %}">
+            <a href="{% url 'course:lesson_video_view' course.id lsn.id %}" class="font14 color66">
+                <span class="col_l">{{ forloop.counter }}.{{ lsn.name }}</span><span class="col_r color99">{{ lsn.video_length|second2duration }}</span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>

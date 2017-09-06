@@ -1,0 +1,12 @@
+<div style="" class="zypage yahei marginB38">
+    <div class="zypage_div" style="-moz-user-select: none;">
+        {% for p in page_count_list %}
+            {% if p.isdigit %}
+                <a {% if p == page_index %}class="jp-current"{% endif %}
+                   href="{{ url }}page_index={{ p }}">{{ p }}</a>
+            {% else %}
+                <a><span>...</span></a>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>

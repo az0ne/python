@@ -1,0 +1,15 @@
+<div class="add-qq-code">
+    <div class="qq-num">
+        <p class="bold">课程导师：{% if teacher.real_name %}{{ teacher.real_name }}{% else %}{{ teacher.nick_name }}{% endif %}</p>
+        {% if teacher.qq %}
+        <p>Q&nbsp;Q号: {{ teacher.qq }}</p>
+        {% endif %}
+        {% if teacher.wechat %}
+        <p>微信: {{ teacher.wechat }}</p>
+        {% endif %}
+        {% if teacher.mobile %}
+        <p>手机号: {{ teacher.mobile }}</p>
+        {% endif %}
+    </div>
+</div>
+

@@ -1,0 +1,343 @@
+{% extends "mz_common/global.html" %}
+{% block title %}{% if cur_careercourse.seo_title %}{{ cur_careercourse.seo_title }}{% else %}{{ cur_careercourse.name }}{% endif %} - 麦子学院{% endblock %}
+{% block keywords%}{% if cur_careercourse.seo_keyword %}{{ cur_careercourse.seo_keyword }}{% endif %}{% endblock %}
+{% block description%}{% if cur_careercourse.seo_description %}{{ cur_careercourse.seo_description }}{% endif %}{% endblock %}
+
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/course-detail.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block csstype %}course-detail{% endblock %}
+{% block container %}
+    {% include 'header/index_header.html' %}
+    <div class="container visible-md visible-lg">
+        <ol class="breadcrumb">
+            <li><a href="{% url 'index_front' %}">首页</a></li>
+            {% if course_scope == 0 %}
+                <li><a href="{% url 'course:career_course_list' %}">企业直通班</a></li>
+            {% elif course_scope == 1 %}
+                <li><a href="{% url 'academiccourse:academiccourse_list' cur_university.id %}">{{ cur_university.name }}</a></li>
+            {% endif %}
+            <li class="active">{{ cur_careercourse.name }}</li>
+        </ol>
+    </div>
+    <div class="container" style="position: relative;">
+        <div class="course-stage zy_tab2 zy_tabBB">
+            <div class="course-stage-lead" style="padding-bottom: 0;" >
+                <dl class="course-stage-dl">
+                    <dt style="font-size: 26px;">{{ cur_careercourse.name }}</dt>
+                    <dd>{{ cur_careercourse.description | safe }}</dd>
+                    {% if cur_careercourse.market_page_url != "" %}<dd><a href="{{ cur_careercourse.market_page_url }}" class="link-default" target="_blank">课程详细介绍</a></dd>{% endif %}
+                </dl>
+
+                <div class="zy_cd_new" style="border-bottom: 1px solid #eeeeee; padding-bottom: 30px;">
+                    <span><img src="/static/images/zy_ccc1.png">{{ total_courses }}课程</span><span><img src="/static/images/zy_ccc2.png">{{ cur_careercourse.need_days }}天学习时长</span><span class="col99">{{ cur_careercourse.student_count }}人正在学习</span>
+                    <div>
+
+                        {% if user.is_authenticated %}
+                            {% if cur_careercourse.buybtn_status != 2 %}
+{#                                {% if not cur_careercourse_class_list %}#}
+{#                                    <p class="btn btn-micv5 btn-xlg" style="background: #848484;">暂未开班,敬请期待</p>#}
+{#                                {% else%}#}
+                                    <a class="btn btn-micv5 btn-xlg" href="{% url 'pay:pay_view2' %}?career_id={{ cur_careercourse.id }}" target="_blank">{% if cur_careercourse.buybtn_status == 0 %}立即报名{% elif cur_careercourse.buybtn_status == 1 %}支付余款{% endif %}</a>
+                                    <a class="btn btn-micv5 btn-xlg" href="{% url 'pay:pay_view2' %}?career_id={{ cur_careercourse.id }}&loan=1" target="_blank">{% if cur_careercourse.buybtn_status == 0 %}分期支付{% elif cur_careercourse.buybtn_status == 1 %}分期支付{% endif %}</a>
+{#                                {% endif %}#}
+                            {% else %}
+{#                                <a class="btn btn-micv5 btn-xlg" href="javascript:learn_experience(this);">开始学习</a>#}
+                                <a class="btn btn-micv5 btn-xlg" href="{% url 'lps4_index' cur_careercourse.short_name %}">开始学习</a>
+                            {% endif %}
+                        {% else %}
+                            <a class="btn btn-micv5 btn-xlg" href="#" data-toggle="modal" data-target="#loginModal">立即报名</a>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+            {% if stages %}
+                {% for stage in stages %}
+                    <section>
+                        <dl class="course-stage-dl zygogo" id="go{{ stage.id }}">
+                            <dt>{{ stage.name }}</dt>
+                            <dd>{{ stage.description }}</dd>
+                        </dl>
+                        <div class="row course-stage-item">
+                            {% for course in stage.course_list %}
+                            <article class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                                <div class="lists">
+                                    <div class="lead-img">
+                                    {% if course.is_click %}
+                                        {% if user.is_authenticated %}
+                                            <a href="{% url 'course:course_recent_play' course.id %}?stageid={{ stage.id }}" title="{{ course.name }}">
+
+                                            <!--
+                                            <span class="course-stage-state"><img src="/static/images/word-b2.png" alt="更新中"/></span>
+                                            <span class="course-stage-state"><img src="/static/images/word-b2.png" alt="即将开始"/></span>
+                                            <span class="course-stage-state"><img src="/static/images/word-b3.png" alt="已完结"/></span>
+                                            -->
+    {#                                        <% if course.course_status==0 %>#}
+    {#                                            <span class="course-stage-state"><img src="/static/images/word-b2.png" alt="更新中"/></span>#}
+    {#                                        <% elif course.course_status==2 %>#}
+    {#                                            <span class="course-stage-state"><img src="/static/images/word-b2.png" alt="即将开始"/></span>#}
+    {#                                        <% else %>#}
+    {#                                            <span class="course-stage-state"><img src="/static/images/word-b3.png" alt="已完结"/></span>#}
+    {#                                        <% endif %>#}
+    {#                                        <img src="{{ MEDIA_URL }}{{ course.image }}" alt="{{ course.name }}" border="0"></a>#}
+                                        {% else %}
+                                            <a href="{% url 'course:course_detail_view' course.id %}" title="{{ course.name }}">
+    {#                                        <span class="course-stage-state"><img src="/static/images/word-b2.png" alt="即将开始"/></span>#}
+    {#                                        <img src="{{ MEDIA_URL }}{{ course.image }}" alt="{{ course.name }}" border="0"></a>#}
+                                        {% endif %}
+
+                                        {% if course.course_status == 0 %}
+                                            <span class="course-stage-state"><img src="/static/images/word-b1.png" alt="更新中"/></span>
+    {#                                    {% elif course.course_status == 2 %}#}
+    {#                                        <span class="course-stage-state"><img src="/static/images/word-b2.png" alt="即将开始"/></span>#}
+                                        {% else %}
+                                            <span class="course-stage-state"><img src="/static/images/word-b3.png" alt="已完结"/></span>
+                                        {% endif %}
+                                        {% if course.need_pay %}
+                                            <span class="course-stage-state" style="left: 0; right: auto; top: 0;"><img src="/static/images/label_ztb.png" alt="报班学员"/></span>
+                                        {% endif %}
+                                        <img src="{{ MEDIA_URL }}{{ course.image }}" alt="{{ course.name }}" border="0"></a>
+                                    {% else %}
+    {#                                    <div class="updateing" title = "课程更新中..."></div>#}
+                                        <span class="course-stage-state"><img src="/static/images/word-b2.png" alt="即将开始"/></span>
+                                        <img src="{{ MEDIA_URL }}{{ course.image }}" alt="{{ course.name }}" border="0">
+                                    {% endif %}
+                                </div>
+                                    <div class="artc-bt">
+                                        <h3>
+                                            {% if course.is_click %}
+                                                {% if user.is_authenticated %}
+                                                    <a href="{% url 'course:course_recent_play' course.id %}?stageid={{ stage.id }}" title="{{ course.name }}">{{ course.name }}</a>
+                                                {% else %}
+                                                    <!--未登录状态-->
+                                                    <a href="{% url 'course:course_detail_view' course.id %}" title="{{ course.name }}">{{ course.name }}</a>
+                                                {% endif %}
+                                            {% else %}
+                                                {{ course.name }}
+                                            {% endif %}
+                                        </h3>
+                                        <p class="description">{{ course.description }}</p>
+                                        <p class="row">
+                                            <span class="col-xs-6">预计学习时长：{% if course.need_days != None %}{{ course.need_days }}{% else %}0{% endif %}天</span>
+                                            {% if course.course_status == 0 and course.is_click %}
+                                                <span class="col-xs-6">已更新：{{ course.updated_course }}章</span>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </div>
+                            </article>
+                            {% endfor %}
+                        </div>
+                    </section>
+                {% endfor %}
+            {% else %}
+                <p class="text-center">暂无课程阶段信息</p>
+            {% endif %}
+            <div class="community_news">
+                <div class="warp">
+                    <dl class="course-stage-dl"><dt>相关文章</dt></dl>
+                    <ul>
+                        {% for article_data in article_data_list %}
+                        {% with article_data.0 as article_type %}
+                            {% with article_data.1 as article_list %}
+                            <li>
+                                {% if article_list %}
+                                <h3 class="font16 marginB16">
+                                    <a href="
+                                    {% if article_type.name == 'wiki笔记' %}
+                                        {% url 'wiki:index' %}
+                                    {% else %}
+                                        {% url 'article_list_view' article_type.short_name %}
+                                    {% endif %} " class="color33"> {{ article_type.name }} </a>
+                                </h3>
+                                {% for article in article_list %}
+                                    {% if forloop.counter == 1 %}
+
+                                    <a href="
+                                    {% if article.wiki_url %}
+                                        {{ article.wiki_url }}
+                                    {% else %}
+                                        {% url 'article_detail_view' article.id %}
+                                    {% endif %}" target="_blank"><img src="{{ MEDIA_URL }}{{ article.title_image }}" alt="{{ article.name }}"><span><!--<i>{{ article.name }}</i>-->{{ article.title }}</span></a>
+                                    {% else %}
+                                    <ol>
+                                        <li>
+                                            <a href="
+                                            {% if article.wiki_url %}
+                                                {{ article.wiki_url }}
+                                            {% else %}
+                                                {% url 'article_detail_view' article.id %}
+                                            {% endif %}" target="_blank"><!--<i>{{ article.name }}</i>-->{{ article.title }}</a></li>
+                                    </ol>
+                                    {% endif %}
+                                {% endfor %}
+                                {% endif %}
+                            </li>
+                            {% endwith %}
+                        {% endwith %}
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="friendLinks">
+                <div class="title">
+                    <span class="active">友情链接</span>
+                    <span>相关推荐</span>
+                </div>
+                <div class="content">
+                    <div class="nav" style="display: block;">
+                        {% for link in friend_links %}
+                            <a href="{{ link.url }}" target="_blank">{{ link.title }}</a>
+                        {% endfor %}
+                    </div>
+                    <div class="nav">
+                        {% for link in relate_links %}
+                            <a href="{{ link.url }}" target="_blank">{{ link.title }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="zy_rightBoxDD">
+            <ul class="zy_rightBox">
+                {% if stages %}
+                    {% for stage in stages %}
+                    <li  go="go{{ stage.id }}">
+                        <a>{{ forloop.counter }}</a>
+                       <p class="t5o">{{ stage.name }}<i></i></p>
+                    </li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+
+    </div>
+{% endblock %}
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/dev/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/course-detail.js?v={{ time_stamp }}"></script>
+<!-- 诸葛io统计 -->
+<script type="text/javascript">
+$(function(){
+    // 课程大纲页_搜索事件
+    $('.topSreachTxt').keyup(function(){
+        if (event.keyCode == 13){
+            zhuge.track("搜索", {
+                "事件位置": "课程大纲页",
+                "搜索关键词": $(this).val()
+            });
+        }
+    });
+
+    //企业直通班点击事件
+    $('.top_menu li').click(function(){
+        zhuge.track("导航栏", {
+            "事件位置": "课程大纲页",
+            "导航栏名称": $(this).find('span').text()
+        });
+    });
+
+    $('.top_menu_div a').click(function(event){
+        event.stopPropagation();
+        zhuge.track("企业直通班", {
+            "事件位置": "课程大纲页",
+            "课程": $(this).text()
+        });
+    });
+
+    // 登录点击事件
+    {% if user.is_authenticated %}
+        zhuge.identify(
+            "{{ user.id }}",
+            {
+                'name' : "{{ user.nick_name }}",
+                'avatar' : "{{ MEDIA_URL }}{{ user.avatar_url }}",
+                'email' :  "{{ user.email }}",
+                'qq' : "{{ user.qq }}",
+                "phone" : "{{ user.mobile }}"
+            }
+        );
+        zhuge.track("登录", {
+            "事件位置": "课程大纲页"
+        });
+    {% else %}
+        $(".topRight .a").eq(1).click(function(){
+            zhuge.track("登录", {
+                "事件位置": "课程大纲页"
+            });
+        });
+    {% endif %}
+
+    // 注册事件
+    $(".topRight .a").eq(0).click(function(){
+        zhuge.track("注册", {
+            "事件位置": "课程大纲页"
+        });
+    });
+
+    // 立即支付、分期支付
+    $('.zy_cd_new .btn-xlg').click(function(){
+        zhuge.track($(this).text(), {
+            "事件位置": "课程大纲页"
+        });
+    });
+
+    // 数字电梯
+    $('.zy_rightBox li').click(function(){
+        zhuge.track('数字电梯' + $(this).find('a').text(), {
+            "事件位置": '课程大纲页'
+        });
+    });
+
+    // 红包点击
+    $('.redPackets .red-top').click(function(){
+        zhuge.track("红包", {
+            "事件位置": '课程大纲页'
+        });
+    });
+
+    //在线客服
+    $('.toolbar a').eq(0).click(function(){
+        zhuge.track("在线客服", {
+            "事件位置": '课程大纲页'
+        });
+    });
+
+    //在线通话
+    $('.toolbar a').eq(1).click(function(){
+        zhuge.track("课程大纲页_免费通话", {
+            "事件位置": '课程大纲页'
+        });
+    });
+
+    // 意见反馈
+    $('.toolbar-item-fankui').click(function(){
+        zhuge.track("意见反馈", {
+            "事件位置": '课程大纲页'
+        });
+    });
+
+    // 面包屑点击
+    $('.breadcrumb li a').click(function(){
+        zhuge.track('面包屑点击-'+ $(this).text(), {
+            "事件位置": "课程大纲页"
+        });
+    });
+
+    // 点击视频播放
+    $('.course-stage-item article').click(function(){
+        zhuge.track("课程大纲页_视频播放", {
+            "事件位置": '课程大纲页'
+        });
+    })
+});
+
+</script>
+{% endblock %}

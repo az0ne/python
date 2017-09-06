@@ -1,0 +1,122 @@
+{% extends "mz_common/global.html" %}
+{% block title %}嵌入式金牌讲师-嵌入式培训-麦子学院{% endblock %}
+{% block keywords%}嵌入式，嵌入式开发，嵌入式培训，嵌入式学习{% endblock %}
+{% block description%}麦子学院嵌入式金牌讲师—付晓亮老师，6年嵌入式系统软硬件开发经验，致力于粒子加速器LLRF控制系统的设计与研发。{% endblock %}
+{% block custom_css %}
+<link rel="stylesheet" type="text/css" href="/css/teacherIntroduce.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block indexhead %}{% endblock %}
+
+{% block container %}
+{% include 'header/header.html' %}
+<div class="addTeacher_container">
+    <div class="addTeacher_banner">
+        <div class="teacher">
+            <span class="image"><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceqrssmall.jpg" alt="嵌入式金牌讲师"/></span>
+            <strong>付晓亮</strong>
+            <span>嵌入式金牌讲师</span>
+            <p>6年嵌入式系统软硬件开发经验，致力于粒子加速器LLRF控制系统的设计与研发。完成一个国家大型科学装置和多个不同能量级粒子加速器的LLRF控制系统的硬件设计调试和软件程序设计。熟练使用各种单片机，ARM，DSP和FPGA，熟练使用C，Python，C#，JS等语言，在windows/Linux/Mac OS 三个系统下开发软硬件系统。</p>
+            <a href="{% url 'course:course_detail' 'qrs' %}" target="_blank">报名TA的课程</a>
+        </div>
+    </div>
+	<div class="info">
+        <ul>
+            <li>带班数<strong>11</strong></li>
+            <li>累积毕业人数<strong>320</strong></li>
+            <li>就业率<strong>97<span>%</span></strong></li>
+        </ul>
+    </div>
+    <div class="works">
+        <h3>讲师作品</h3>
+        <div class="works_bxslider">
+            <div class="teach_bxslider">
+                <ul>
+                    <li>
+                        <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceQrsTea1.jpg" alt="粒子加速器网络远程控制软件"/></p>
+                        <div class="text"><strong>粒子加速器网络远程控制软件</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                    </li>
+                    <li>
+                        <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceQrsTea2.jpg" alt="嵌入式远程控制器"/></p>
+                        <div class="text"><strong>嵌入式远程控制器</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                    </li>
+                    <li>
+                        <p><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceQrsTea3.jpg" alt="小麦听书软件"/></p>
+                        <div class="text"><strong>小麦听书软件</strong><!--<span>国内第一套全面覆盖美术基础课程体系的原画职业课</span>--></div>
+                    </li>
+                </ul>
+            </div>
+            <a href="javascript:;" class="prev"></a>
+            <a href="javascript:;" class="next"></a>
+            <span class="pageState"></span>
+        </div>
+    </div>
+    <div class="experience">
+        <h3>讲师经历</h3>
+        <ul>
+            <li>
+                <span>2015</span>
+                <div class="infos">
+                    <strong>麦子学院</strong>
+                    <p>Python讲师，嵌入式讲师。具有丰富的工程经验和从电容电阻到操作系统APP的系统化设计思维。对嵌入式系统和互联网有浓厚兴趣，喜欢和学生分享自己的心得体会，并以实例和实用的项目让学生从实践中掌握知识。</p>
+                </div>
+            </li>
+            <li>
+                <span>2012</span>
+                <div class="infos">
+                    <strong>某大型科研机构</strong>
+                    <p>负责用于生产放射性示踪剂的医用粒子加速器LLRF控制系统人机交互界面设计。负责某国家重大科学工程中粒子加速器LLRF控制系统设计，安装，调试和维护。负责质子治癌粒子加速器LLRF控制系统设计，安装，调试。</p>
+                </div>
+            </li>
+            <li>
+                <span>2010</span>
+                <div class="infos">
+                    <strong>某大学电工电子创新中心</strong>
+                    <p>模拟电路，单片机，STM32，FPGA， DSP系统设计。完成基于单片机的智能家居防盗系统，基于FPGA的宽带功率放大器，基于FPGA的数码相册，基于FPGA的音频播放器，基于FPGA的数字鉴相器，基于DSP的无刷直流电机SVPWM控制，完成基于DSP的三相交流移相器设计。</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <dl class="sendWord">
+        <dt><img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceQrsTea.jpg" alt="讲师寄语"/></dt>
+        <dd>
+            <h3>讲师寄语</h3>
+            <p>选择一个行业，然后和这个行业里优秀的人学习经验，这是最快的学习方式。祝大家都能在麦子学院找到属于自己的行业，成为这个行业里最优秀的那一批人。</p>
+            <a href="{% url 'course:course_detail' 'qrs' %}" target="_blank">报名TA的课程</a>
+        </dd>
+    </dl>
+    <div class="stu_works">
+        <h3>学生作品</h3>
+        <div class="student_bxslider">
+            <div class="stu_bxslider">
+                <ul>
+                    <li>
+                        <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceQrsStu1.jpg"/>
+                    </li>
+                    <li>
+                        <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceQrsStu2.jpg"/>
+                    </li>
+                    <li>
+                        <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceQrsStu3.jpg"/>
+                    </li>
+                    <li>
+                        <img src="{{ STATIC_URL }}img/teacherIntroduce/teacherIntroduceQrsStu4.jpg"/>
+                    </li>
+                </ul>
+            </div>
+            <a href="javascript:;" class="prev"></a>
+            <a href="javascript:;" class="next"></a>
+            <span class="pageState"></span>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+
+{% block custom_script %}
+    <script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/lib/superSlider/jquery.SuperSlide.2.1.1.js?v={{ time_stamp }}"></script>
+    <script type="text/javascript" src="/2016/src/teacherIntroduce.js?v={{ time_stamp }}"></script>
+{% endblock %}

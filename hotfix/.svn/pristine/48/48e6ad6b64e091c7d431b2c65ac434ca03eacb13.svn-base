@@ -1,0 +1,6 @@
+<strong><a href="{% url 'wiki:index' %}">全部教程</a></strong>
+<ul class="navBar">
+    {% for type in type_list %}
+    <li><a href="{% url 'wiki:course_type' type.short_name %}" title="{{ type.name }}" {% if type.short_name == type_short_name %} class="active"{% endif %}><i><img src="{{ MEDIA_URL }}{{ type.img_url }}" {% if type.img_title %}alt="{{ type.img_title }}" {% endif %}/></i>{{ type.name }}</a></li>
+    {% endfor %}
+</ul>

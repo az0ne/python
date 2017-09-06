@@ -1,0 +1,99 @@
+{% extends "mz_common/global.html" %}
+{% block title %}{% if catagories != 'all' or tag != 'all' %}{% if sort_by != '0' %}{{ sort_by_chinese }}{% endif %}{% if tag == 'all' %}{{ catagory_name }}{% else %}{{ tag_name }}{% endif %}教程-{% if tag == 'all' %}{{ catagory_name }}{% else %}{{ tag_name }}{% endif %}学习-课程库-麦子学院{% else %}{% if sort_by != '0' %}{{ sort_by_chinese }}{% endif %}{{ seo.seo_title }}{% endif %}{% endblock %}
+{% block keywords%}{% if tag != 'all' %}{% if sort_by != '0' %}{{ sort_by_chinese }}{% endif %}{{ tag_name }}教程，{{ tag_name }}学习，{{ tag_name }}在线学习{% elif catagories != 'all' %}{% if sort_by != '0' %}{{ sort_by_chinese }}{% endif %}{{ catagory_name }}教程，{{ catagory_name }}学习，{{ catagory_name }}在线学习{% else %}{% if sort_by != '0' %}{{ sort_by_chinese }}{% endif %}{{ seo.seo_keyword }}{% endif %}{% endblock %}
+{% block description%}IT职业在线学习，视频教程免费观看，为软件开发人员提供包括python基础教程、产品经理教程、UI设计教程、web前端教程、网络运营教程、新媒体教程、Android开发教程、iOS开发教程、嵌入式开发教程、C语言教程、html5教程、php教程等多门编程语言在内的IT职业课程的学习。{% endblock %}
+{% block custom_css %}
+<link type="text/css" rel="stylesheet" href="/css/courseList.css?v={{ time_stamp }}"/>
+{% endblock %}
+{% block csstype %}course-list{% endblock %}
+{% block container %}
+{% include 'header/index_header.html' %}
+<div class="main">
+    <div class="container">
+        <div class="top-nav font14">
+            <a href="{% url 'index_front' %}">首页</a>
+            > <a href="{% url 'course:stage_course_list' 'all' 'all' sort_by 1 %}">课程库</a>
+            {% if catagories != 'all' %}
+                >  <a href="{% url 'course:stage_course_list' catagories 'all' sort_by 1 %}">{{ catagory_name }}</a>
+                {% if tag != 'all' %}
+                    >  <a href="{% url 'course:stage_course_list' catagories tag sort_by 1 %}">{{ tag_name }}</a>
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="course-nav">
+            <ul class="parent-level">
+                <li class="all{% if catagories == 'all' %} Now{% endif %}"><a href="{% url 'course:stage_course_list' 'all' 'all' sort_by 1 %}">全部</a></li>
+                {% for c in catagories_list %}
+                    <li class="{% if catagories == c.short_name %} Now{% endif %}{% if not c.is_default_show %} None{% endif %}">
+                        <a href="{% url 'course:stage_course_list' c.short_name 'all' sort_by 1 %}">{{ c.name }}</a>
+                        {% if c.tag_list %}
+                            <div class="child-level">
+                            {% for t in c.tag_list %}
+                                <a {% if tag == t.short_name %}style="color: #5ecfba"{% endif %} href="{% url 'course:stage_course_list' c.short_name t.short_name sort_by 1 %}">{{ t.name }}</a>
+                            {% endfor %}
+                            </div>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+            <a class="slide-more slide-down"></a>
+        </div>
+        <div class="course-lists-content">
+            <div class="zmm3">
+                <div class="d2">
+                    {% for k, v in sort_by_list_chinese %}
+                        <a {% if sort_by == k %}class="aH"{% endif %}
+                           href="{% url 'course:stage_course_list' catagories tag k 1 %}{% if keyword %}?catagory={{ keyword }}{% endif %}">
+                           {{ v }}
+                        </a>
+                    {% endfor %}
+                </div>
+                {% if ad %}
+                    <a title="{{ ad.title }}" class="guanggao" href="{{ ad.callback_url }}" target="_blank">
+                    <img alt="{{ ad.title }}" style="width: 500px; height: 40px;" src="{{ MEDIA_URL }}{{ ad.image_url }}">
+                    </a>
+                {% endif %}
+            </div>
+            <ul class="course-lists">
+                {% for course in course_list %}
+                    <li>
+                        <a title="{{ course.name }}" href="{% url 'course:course_detail_view' course.id %}">
+                            <p>
+                                <i class="VLCico{% if course.need_pay %} vip_user{% endif %}"></i>
+                                <i class="VLCico{% if course.course_status == 0 %} status_on {% else %} status_end{% endif %}"></i>
+                                <img alt="{{ course.name }}" src="{{ MEDIA_URL }}{{ course.image }}">
+                            </p>
+
+                            <div class="">
+                                <p class="font14">{{ course.name|slice:'16' }}</p>
+
+                                <p class="description">{{ course.description }}</p>
+
+                                <p class="color99">{{ course.click_count }}人正在学习</p>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% include 'mz_common/paginater_2.html' %}
+            {% if rows_count == 0 %}
+                <div style="text-align: center;color: gray;font-size: 16px;padding: 67px 0;">
+                <p><img src="/static/images/no_course.png"></p>
+                    <p>抱歉，暂无相关课程</p>
+                    <p>看看其他精彩课程吧</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include 'footer/footer_1.html' %}
+{% endblock %}
+{% block custom_script %}
+<script type="text/javascript" src="/2016/src/common.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/captcha.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/login.js?v={{ time_stamp }}"></script>
+<script type="text/javascript" src="/2016/src/courseList.js?v={{ time_stamp }}"></script>
+{% endblock %}

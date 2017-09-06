@@ -1,0 +1,61 @@
+
+<div class="personalInterlocutionDetailInfo" url="{% url 'u:ajax_get_answer_by_problem_id' problem_info.id %}" discuss_id={{ problem_info.id }}>
+    <a href="{% url 'u:index' problem_info.user_id %}" class="img" target="_blank">
+        <img src="{{ MEDIA_URL }}{{ problem_info.head }}"/>
+        {% if problem_info.group_name == 'student' %}
+        <i title="直通班学员"></i>
+        {% endif %}
+    </a>
+    <div class="infos">
+        <div class="user">
+            <p class="font14 color99"><span>{{ problem_info.create_date|date:'Y-m-d' }}</span><em>{{ problem_info.create_date|date:'H:i' }}</em></p>
+            <a href="{% url 'u:index' problem_info.user_id %}" class="font14" target="_blank">
+                <strong answer_user_id="{{ problem_info.user_id }}">{{ problem_info.nick_name }}</strong>
+            </a>
+        </div>
+        <p class="font16 color33">{{ problem_info.comment }}</p>
+        {% if problem_info.materials%}
+        <ul>
+            {% for  real_m, material in problem_info.materials %}
+            <li><img src="{{ MEDIA_URL }}{{ material }}"/></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <span class="font14">提问于<a target="_blank" {% if problem_info.object_href %}href="{{ problem_info.object_href }}"{% endif %}>{{ problem_info.object_content }}&nbsp;&nbsp;{{ problem_info.object_name }}</a><a href="javascript:void(0)" class="reply">回复</a></span>
+        <dl>
+            <dt data-discuss-id="{{ problem_info.id }}" {% if problem_info.is_praise %}class="parised"{% endif %}>{{ problem_info.user_praise_count }}</dt>
+            <dd>
+                <span class="font14 color99">分享</span>
+                <div class="jiathis_style">
+                    <a class="jiathis_button_weixin"></a>
+                    <a class="jiathis_button_cqq"></a>
+                    <a class="jiathis_button_tsina"></a>
+               </div>
+            </dd>
+        </dl>
+    </div>
+</div>
+<div class="personalInterlocutionDetailAnswer">
+    <div class="title color99 discuss_count">{{ problem_info.discuss_count }} 回答</div>
+    <ul>
+        {% include 'mz_usercenter/ajax_div_discuss_detail.html' %}
+    </ul>
+    <a href="javascript:void(0)" class="load-more">加载更多</a>
+    <div class="comment" id="comment">
+        <div class="img">
+            <img src="{{ MEDIA_URL }}{{ user.avatar_url }}"/>
+        </div>
+        <div class="commentBody">
+            {#<script id="reviews_ueditor" name="reviews_ueditor" type="text/plain"></script>#}
+            <div class="textarea">
+                <textarea name="" placeholder=""></textarea>
+            </div>
+            <div class="btnBottm">
+                <input type="button" class="btn" id="" value="回复" ajaxUrl="{% url 'home:ajax_discuss_post' %}"/>
+            {#<div class="feelings">#}
+            {#<span></span>#}
+            {#</div>#}
+            </div>
+        </div>
+    </div>
+</div>

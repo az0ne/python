@@ -1,0 +1,42 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+  <script type = 'text/javascript' src = "{% static 'js/career/book.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="page_title">
+    推荐书籍
+</div>
+<div class="search">
+  书籍名称：<input type="text" id="txtItem" style="width: 150px;" value="{{ name }}" />&nbsp;&nbsp;
+    <button type="button" class="btn btn-primary btn-xs" onclick="onQuery();">查询</button>
+  </br>
+    <button type="button" class="btn btn-default btn-xs" onclick="onAdd();">新增书籍</button>
+</div>
+</br>
+<div class="table-responsive">
+
+    <table class="table table-bordered  table-hover table-striped">
+        <tr>
+            <td class="td_title">书籍的封面</td>
+            <td class="td_title">书籍的名字</td>
+            <td class="td_title">作者</td>
+            <td class="td_title">简介</td>
+        </tr>
+
+        {% for book in books  %}
+        <tr>
+            <td class="td_cell">{{ book.pic }}</td>
+            <td class="td_cell">{{ book.name }}</td>
+            <td class="td_cell">{{ book.author }}</td>
+            <td class="td_cell">{{ book.description }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+  {% include "include/page.html" %}
+  {% include "include/confirmDialog.html" %}
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "js/user.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="page_title">
+        用户列表
+    </div>
+    <div class="search">
+        手机号：<input type="text" id="txtUserName" style="width: 150px;" value="{{ query.user_name }}" />&nbsp;&nbsp;
+        姓名：<input type="text" id="txtRealName" style="width: 150px;" value="{{ query.real_name }}" />&nbsp;&nbsp;
+        <button type="button" class="btn btn-primary btn-xs" onclick="onQuery();">查询</button>
+        <button type="button" class="btn btn-default btn-xs" onclick="onAdd();">新增</button>
+    </div>
+    <br/>
+    <div class="table-responsive">
+
+        <table class="table table-bordered  table-hover table-striped">
+            <tr>
+                <td class="td_title">用户id</td>
+                <td class="td_title">手机号</td>
+                <td class="td_title">姓名</td>
+                <td class="td_title">状态</td>
+                <td class="td_title">备注</td>
+                <td class="td_title">操作</td>
+            </tr>
+
+            {% for user in user_list  %}
+            <tr>
+                <td class="td_cell">{{ user.id }}</td>
+                <td class="td_cell">{{ user.user_name }}</td>
+                <td class="td_cell">{{ user.real_name }}</td>
+                {% if user.is_delete == 0 %}
+                    <td class="td_cell">{{ user.state }}</td>
+                {% else %}
+                    <td class="td_cell red">{{ user.state }}</td>
+                {% endif %}
+                <td class="td_cell">{{ user.remark }}</td>
+                <td class="td_cell">
+                    <button type="button" class="btn btn-default btn-xs" onclick="onUpdate('{{ user.id }}')">修改</button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="onStart('{{ user.id }}')">启用</button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="onStop('{{ user.id }}')">禁用</button>
+                </td>
+            </tr>
+            {% endfor %}
+
+
+        </table>
+    </div>
+
+    {% include "include/page.html" %}
+
+    {% include "include/confirmDialog.html" %}
+
+{% endblock %}

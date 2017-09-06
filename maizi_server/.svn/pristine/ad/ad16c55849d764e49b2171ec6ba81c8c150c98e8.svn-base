@@ -1,0 +1,42 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+  <script type = 'text/javascript' src = "{% static 'js/career/item_project.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="page_title">
+    项目
+</div>
+<div class="search">
+    <button type="button" class="btn btn-primary btn-xs" onclick="onAdd();">新增</button>
+</div>
+</br>
+<div class="table-responsive">
+
+    <table class="table table-bordered  table-hover table-striped">
+        <div style="display:None">
+          <input id = "item_id" value = "{{ item_id }}"/>
+          <input id = "vedio_id" value = "{{ project.id }}"/>
+        </div>
+        <tr>
+            <td class="td_title">项目ID</td>
+            <td class="td_title">项目URL</td>
+            <td class="td_title">项目名称</td>
+            <td class="td_title">操作</td>
+        </tr>
+
+        <tr>
+            <td class="td_cell">{{ project.id }}</td>
+            <td class="td_cell">{{ project.url }}</td>
+            <td class="td_cell">{{ project.name }}</td>
+
+            <td class="td_cell">
+                <button type="button" class="btn btn-default btn-xs" onclick="onUpdate('{{ project.id }}')">修改</button>
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+{% endblock %}

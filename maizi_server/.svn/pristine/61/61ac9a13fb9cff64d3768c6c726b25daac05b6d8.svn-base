@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        {% load staticfiles %}
+		<meta charset="UTF-8">
+		<title>麦子服务-登录</title>
+		<link rel="stylesheet" type="text/css" href="{% static "lib/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" %}"/>
+		<link rel="stylesheet" type="text/css" href="{% static "css/common.css" %}"/>
+        <link rel="stylesheet" type="text/css" href="{% static "css/login.css" %}"/>
+		<script type="text/javascript" src="{% static "lib/jquery.min.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/common.js" %}"></script>
+		<script type="text/javascript" src="{% static "js/login.js" %}"></script>
+
+	</head>
+	<body >
+		<div class="container-fluid" style="width: 100%;" >
+		    <div class="row" >
+		        <div class="col-xs-0"></div>
+
+		        <div class="col-xs-12 " >
+		            <div class="box" >
+		            	<h1 class="title">麦子服务</h1>
+
+		            	<input type="text" class="form-control borderSize" id="txtUserName" placeholder="请输入手机号" >
+		            	<div style="margin-top: 15px; margin-bottom: 15px;">
+                            <span id="spnUserName" class="fontColor">asdasdsad</span>
+                        </div>
+
+		            	<input type="password" class="form-control borderSize" id="txtPassword" placeholder="请输入密码">
+		            	<div style="margin-top: 15px; margin-bottom: 15px;">
+                            <span id="spnPassword" class="fontColor"></span>
+		            	</div>
+		            	<input type="button" id="btnLogin" class="btn  btn-lg btn-block btnlogin"  value="登录">
+		            </div>
+		        </div>
+
+		        <div class="col-xs-0" ></div>
+
+		    </div>
+
+	</div>
+	</body>
+</html>

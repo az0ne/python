@@ -1,0 +1,71 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "js/career/career.js" %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("input[name='rdoType'][value='{{ career.type }}']").attr("checked","checked");
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+
+
+    <form id="form1" name="form1">
+    <div class="op_panel">
+
+        <div class="table-responsive">
+
+        <table class="table table-bordered ">
+            <tr>
+                <td class="td_name">课程ID：</td>
+                <td class="td_content">
+                    <input type="text" readonly="readonly" id="txtCareerID" class="form-control borderSize mw" value="{{ career.id }}"/>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">课程名称：</td>
+                <td class="td_content">
+                    <input type="text" id="txtName" class="form-control borderSize mw" value="{{ career.name }}"/>
+                </td>
+                <td class="td_remark">必填
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">课程类型：</td>
+                <td class="td_content">
+                    &nbsp;&nbsp;
+                      <input type="radio" name="rdoType" id="rdoType0" value="0">线上
+                    &nbsp;&nbsp;
+                      <input type="radio" name="rdoType" id="rdoType1" value="1">线下
+                    &nbsp;&nbsp;
+                </td>
+                <td class="td_remark">必填
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">备注：</td>
+                <td class="td_content">
+                    <input type="text" id="txtRemark" class="form-control borderSize mw" value="{{ career.remark }}"/>
+                </td>
+                <td class="td_remark">选填
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div class="op_panel" style="text-align: center;">
+        <input type="button" id="btnAdd" class="btn btn-primary" onclick="onUpdateDo()"  value="确定">
+        &nbsp;&nbsp;
+        <input type="button" id="btnReturn" class="btn btn-default" onclick="onReturn()"  value="返回列表">
+    </div>
+
+    </div>
+
+    {% include "include/alertDialog.html" %}
+    </form>
+{% endblock %}

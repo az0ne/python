@@ -1,0 +1,64 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+{% block link %}
+  <script type = 'text/javascript' src = "{% static 'js/career/knowledge.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<form id="form1" name="form1">
+<div class="op_panel">
+
+    <div class="table-responsive">
+
+    <table class="table table-bordered ">
+        <tr>
+            <td class="td_name">知识点名称： </td>
+            <td class="td_content">
+                <input type="text" id="knowledge_name" class="form-control borderSize mw"/>
+            </td>
+            <td class="td_remark">必填，知识点名称
+            </td>
+        </tr>
+        <tr>
+            <td class="td_name">所属课程： </td>
+            <td class="td_content">
+              <select id="slctAssistant" class="sw">
+                              <option value="-1">请选择所属小课程</option>
+                              {% for course in courses %}
+                                  <option value="{{ course.id }}">{{ course.name }}</option>
+                              {% endfor %}
+              </select>
+            </td>
+            <td class="td_remark">必填，所属课程
+            </td>
+        </tr>
+        <tr>
+            <td class="td_name">知识点排序： </td>
+            <td class="td_content">
+                <input type="text" id="knowledge_order_index" class="form-control borderSize mw"/>
+            </td>
+            <td class="td_remark">必填，知识点排序序号
+            </td>
+        </tr>
+        <!-- <tr>
+            <td class="td_name">知识点URL: </td>
+            <td class="td_content">
+                <input type="text" id="knowledge_url" class="form-control borderSize mw"/>
+            </td>
+            <td class="td_remark">必填，知识点URL
+            </td>
+        </tr> -->
+    </table>
+</div>
+
+<div class="op_panel" style="text-align: center;">
+    <input type="button" id="btnAdd" class="btn btn-primary" onclick="onAddDo()"  value="确定">
+    &nbsp;&nbsp;
+    <input type="button" id="btnReturn" class="btn btn-default" onclick="onReturn()"  value="返回列表">
+</div>
+
+</div>
+
+{% include "include/alertDialog.html" %}
+</form>
+{% endblock %}

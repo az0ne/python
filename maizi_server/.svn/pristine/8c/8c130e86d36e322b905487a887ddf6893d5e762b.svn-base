@@ -1,0 +1,48 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+{% block link %}
+  <script type = 'text/javascript' src = "{% static 'js/career/career_land.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<form id="form1" name="form1">
+<div class="op_panel">
+
+    <div class="table-responsive">
+
+    <table class="table table-bordered ">
+      <tr>
+          <td class="td_content" style="display:None">
+              <input type="text" id="land_id" class="form-control borderSize mw" value="{{ land.id }}" >
+          </td>
+      </tr>
+        <tr>
+            <td class="td_name">职业课程名称： </td>
+            <td class="td_content">
+                <input type="text" id="land_name" class="form-control borderSize mw" value="{{ land.name }}">
+            </td>
+            <td class="td_remark">必填，职业课程名称
+            </td>
+        </tr>
+        <tr>
+            <td class="td_name">课程描述： </td>
+            <td class="td_content">
+                <input type="text" id="land_remark" class="form-control borderSize mw" value="{{ land.remark }}">
+            </td>
+            <td class="td_remark">填入课程描述
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="op_panel" style="text-align: center;">
+    <input type="button" id="btnAdd" class="btn btn-primary" onclick="onUpdateDo()"  value="确定">
+    &nbsp;&nbsp;
+    <input type="button" id="btnReturn" class="btn btn-default" onclick="onReturn()"  value="返回列表">
+</div>
+
+</div>
+
+{% include "include/alertDialog.html" %}
+</form>
+{% endblock %}

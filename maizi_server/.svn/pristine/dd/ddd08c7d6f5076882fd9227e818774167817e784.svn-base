@@ -1,0 +1,349 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "lib/pekeUpload-master/js/pekeUpload.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/student_sailer.js" %}"></script>
+    {#    <script type="text/javascript" src="{% static "lib/imgUP.js" %}"></script>#}
+
+{% endblock %}
+
+{% block content %}
+
+    <form id="form1" name="form1">
+        <input id="txtFileName" type="hidden" value=""/>
+        <input id="txtFileName1" type="hidden" value=""/>
+        <input id="txtFileName2" type="hidden" value=""/>
+        <input id="txtFileName3" type="hidden" value=""/>
+        <input id="txtExtension" type="hidden" value=""/>
+        <div class="op_panel">
+            <div>如果你进了这个页面，那恭喜你开单了，记得请我吃饭</div>
+            <div class="table-responsive">
+
+                <table class="table table-bordered ">
+                    <tr>
+                        <td class="td_name">麦子账号：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtAccount" class="form-control borderSize mw"/>
+                        </td>
+                        <td class="td_remark">必填，去找学员核实一下，最好是引导学员用手机注册，当然邮件也是可以的:)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">学员姓名：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtStudentName" class="form-control borderSize mw"/>
+                        </td>
+                        <td class="td_remark">必填，是身份证上的名字，不是网名哦
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">手机号：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtPhone" class="form-control borderSize mw"/>
+                        </td>
+                        <td class="td_remark">必填，哈哈，如果学员用手机号注册的麦子账号，你这里就可以复制粘贴了
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">QQ：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtQQ" class="form-control borderSize mw"/>
+                        </td>
+                        <td class="td_remark">必填，学员的qq，不是你的qq，加老师用的qq,你一定有办法拿到，加油
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">所在地：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtAddress" class="form-control borderSize mw"/>
+                        </td>
+                        <td class="td_remark">必填，目前所在地，写一个城市就可以了，不用细化到区县
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">所报专业：</td>
+                        <td class="td_content">
+                            <select id="slctCareer" class="mw mh">
+                                <option value="">请选择所报专业</option>
+                                {% for career in career_list %}
+                                    <option value="{{ career.id }}">{{ career.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td class="td_remark">必填，这个你一定知道，选一个就可以了。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">就业类型：</td>
+                        <td class="td_content">
+                            <label class="radio-label">
+                                <input type="radio" checked="checked" name="rdoCareerJob" id="rdoCareerJob0" value="0">非就业
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="rdoCareerJob" id="rdoCareerJob1" value="1">就业
+                            </label>
+                        </td>
+                        <td class="td_remark">必填，你肯定知道的
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">应付金额：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtPayMoney" class="form-control borderSize mw"/>
+                        </td>
+                        <td class="td_remark">必填，你肯定知道的,输入到元就可以了，比如：8999
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">优惠：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtReduction" class="form-control borderSize mw" value="0"/>
+                        </td>
+                        <td class="td_remark">必填，如果没有就写0,是填优惠了多少人民币，不是填几折
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="td_name">优惠后金额：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtPayReal" readonly="readonly" class="form-control borderSize mw "/>
+                        </td>
+                        <td class="td_remark">必填，优惠后金额，不需要劳驾您手动填写。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">付款方式：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtPayType" class="form-control borderSize mw"/>
+                        </td>
+                        <td class="td_remark">必填，什么xx分期啦，什么全款啦，什么线下支付啦，需要劳驾您手动填写。
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">付款单号：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtPayOrderNum" class="form-control borderSize mw"/>
+                        </td>
+                        <td class="td_remark">必填，付款单号，需要劳驾您手动填写。
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="td_name">付款凭证：</td>
+                        <td id="upimgtd">
+                            <div id="file-list"></div>
+                            <input type="file" name="file" id="file" class="file" multiple/>
+
+                        </td>
+                        </td>
+                        <td class="td_remark">
+                            必选，可以上传：png、jpg、doc、docx、pdf、xls、xlsx、ppt、pptx格式的文件,不能超过10M,<br/>
+                            不能选重复的文件,最多选择三张，请确认好一旦提交就不能修改啦
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="td_name">是否贷款：</td>
+                        <td class="td_content">
+                            <label class="radio-label">
+                                <input type="radio" checked="checked" name="rdoLoan" id="rdoLoan0" value="0">未贷款
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="rdoLoan" id="rdoLoan1" value="1">贷款
+                            </label>
+                        </td>
+                        <td class="td_remark">必填，你肯定知道的
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="td_name">贷款机构：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtLoanCompany" class="form-control borderSize mw"/>
+                        </td>
+                        <td class="td_remark">选填，如果贷款的话，请填写一下贷款机构
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="td_name">贷款模式：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtLoanType" class="form-control borderSize mw"/>
+                        </td>
+                        <td class="td_remark">选填，如果贷款的话，什么几加几啦这些
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">贷款申请人：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtLoanPerson" class="form-control borderSize mw" value=""/>
+                        </td>
+                        <td class="td_remark">选填，如果贷款的话，有可能时候是自己，有可能是别人
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">利息金额：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtLoanInterest" class="form-control borderSize mw" value="0"/>
+                        </td>
+                        <td class="td_remark">选填，如果贷款的话，要给多少利息
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="td_name">放款金额：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtLoanMoney" class="form-control borderSize mw" value="0"/>
+                        </td>
+                        <td class="td_remark">选填，如果贷款的话，需要填写
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="td_name">应补助金额（月）：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtSubsidy" class="form-control borderSize mw" value="0"/>
+                        </td>
+                        <td class="td_remark">选填，如果线下学员贷款的话，需要填写,按照每月来发放
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="td_name">销售人员：</td>
+                        <td class="td_content">
+                            <input type="text" readonly="readonly" id="txtSailer" class="form-control borderSize mw"
+                                   value="{{ sailer }}"/>
+                        </td>
+                        <td class="td_remark">必填，肯定是你，对不对？
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">成单时间：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtSailAt" class="form-control borderSize mw"/>
+                        </td>
+                        <td class="td_remark">必填，什么时候交的钱，你一定知道。记得要按这种格式写：2018-08-18
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">技术老师：</td>
+                        <td class="td_content">
+                            <select id="slctTeacher" class="mw mh">
+                                <option value="">请选择技术老师</option>
+                                {% for teacher in teacher_list %}
+                                    <option value="{{ teacher.id }}">{{ teacher.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td class="td_remark">必填，如果你不知道，赶紧去教学问一下
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">教务老师：</td>
+                        <td class="td_content">
+                            <select id="slctAssistant" class="mw mh">
+                                <option value="">请选择教务老师</option>
+                                {% for assistant in assistant_list %}
+                                    <option value="{{ assistant.id }}">{{ assistant.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td class="td_remark">必填，如果你不知道，赶紧去教务问一下
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">是否参加助学计划：</td>
+                        <td class="td_content">
+                            <label class="radio-label">
+                                <input type="radio" checked="checked" name="rdoReward" id="rdoReward0" value="0">不参加
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="rdoReward" id="rdoReward1" value="1">参加
+                            </label>
+                        </td>
+                        <td class="td_remark">必填，你肯定知道的
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">助学政策：</td>
+                        <td class="td_content">
+                            <select id="slctRewardMonth" class="mw mh">
+                                <option value="">请选择助学政策月份</option>
+                                <option value="1">1月</option>
+                                <option value="2">2月</option>
+                                <option value="3">3月</option>
+                                <option value="4">4月</option>
+                                <option value="5">5月</option>
+                                <option value="6">6月</option>
+                                <option value="7">7月</option>
+                                <option value="8">8月</option>
+                                <option value="9">9月</option>
+                                <option value="10">10月</option>
+                                <option value="11">11月</option>
+                                <option value="12">12月</option>
+                            </select>
+                        </td>
+                        <td class="td_remark">选填，政策每个月可能要变一次，所以才要选这个，我也没有办法
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">银行：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtBank" class="form-control borderSize mw"/>
+                        </td>
+                        <td class="td_remark">选填，如果要参加奖学金计划的话就要填，要写清楚是支行地址，比如中国建设银行高新区支行，别偷懒
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">银行账号：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtBankAccount" class="form-control borderSize mw"/>
+                        </td>
+                        <td class="td_remark">选填，如果要参加奖学金计划的话就要填，一定要核对清楚哦，你懂得
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">身份证号：</td>
+                        <td class="td_content">
+                            <input type="text" id="txtIDCard" class="form-control borderSize mw"/>
+                        </td>
+                        <td class="td_remark">必填，如果要参加奖学金计划的话就要填，一定要核对清楚哦，你懂得
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">销售备注：</td>
+                        <td class="td_content">
+                            <textarea rows="3" id="txtSailRemark"
+                                      class="form-control borderSize mw">{{ student.sail_remark }}</textarea>
+                        </td>
+                        <td class="td_remark">必填，有没有什么优惠的东西，贷款之类的东西，别客气，留了500字给你
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_name">学员情况：</td>
+                        <td class="td_content">
+                            <textarea rows="3" id="txtStudentRemark"
+                                      class="form-control borderSize mw">{{ student.student_remark }}</textarea>
+                        </td>
+                        <td class="td_remark">必填，在销售过程中的东西，能写的都写上，比如学生很土豪，留了500字给你，多少还是要写点
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div>
+                提交前仔细核对一下，要修改的话研发很麻烦的，萌萌哒~
+            </div>
+            <div class="op_panel" style="text-align: center;">
+                <input type="button" id="btnAdd" class="btn btn-primary" onclick="onAddDo()" value="确定">
+                &nbsp;&nbsp;
+                <input type="button" id="btnReturn" class="btn btn-default" onclick="onReturn()" value="返回列表">
+            </div>
+            <input type="hidden" id="getremark" style="visibility:hidden" value="{{ remark }}"/>
+
+        </div>
+        <br>
+        <br>
+        {% include "include/alertDialog.html" %}
+    </form>
+
+{% endblock %}

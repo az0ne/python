@@ -1,0 +1,50 @@
+body {
+	font-family: "微软雅黑";
+	background-color:  #ECEEF0;
+	
+}
+
+.title {
+	font-weight: 900;
+	text-align: center;
+	color: #2299EE;
+	margin-bottom: 50px;
+	font-size:  45px;
+	letter-spacing: 2px;
+}
+
+.selectbox{
+	background-color: white;
+}
+
+.box{
+	background-color: #F5F6F7;
+	width: 600px;
+	height: 450px;
+	margin: 50px auto;
+	padding: 20px;
+	border-radius: 20px;
+}
+.fontColor{
+	color: red;
+}
+.borderSize{
+	height: 50px;
+}
+.box .form-control {
+	background-color: #fff;
+}
+
+.box .tiptext {
+	height: 30px;
+	line-height: 30px;
+}
+
+.box .tiptext .selectbox {
+	margin-right: 5px;
+}
+.box .btnlogin{
+	background-color: #2299EE;
+	color: white;
+	height: 60px;
+}

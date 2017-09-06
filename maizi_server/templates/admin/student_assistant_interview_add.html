@@ -1,0 +1,74 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "js/student_assistant_interview.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+    <form id="form1" name="form1">
+    <div class="op_panel">
+        <div>
+            <input type="hidden" id="txtStudentID" value="{{ student_id }}">
+        </div>
+
+        <div class="table-responsive">
+
+        <table class="table table-bordered ">
+            <tr>
+                <td class="td_name">面试官姓名：</td>
+                <td class="td_content">
+                    <input type="text" id="txtInterviewer" class="form-control borderSize mw" value="" />
+                </td>
+                <td class="td_remark">必填，2~10个字
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td_name">面试时间：</td>
+                <td class="td_content">
+                    <input type="text" id="txtInterviewAt" class="form-control borderSize mw" value="" />
+                </td>
+                </td>
+                <td class="td_remark">必填，记得要按这种格式写：2018-08-18
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td_name">面试状态：</td>
+                <td class="td_content">
+                    <select id="slctState" class="mw mh">
+                        <option value="-1">请选择面试状态</option>
+                        <option value="0">未面试</option>
+                        <option value="1">不通过</option>
+                        <option value="2">通过</option>
+                   </select>
+                </td>
+                <td class="td_remark">必填
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td_name">面试情况：</td>
+                <td class="td_content">
+                    <textarea rows="3" id="txtRemark" class="form-control borderSize mw"></textarea>
+                </td>
+                <td class="td_remark">必填，面试情况，留了500字给你，多少还是要写点
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        提交前仔细核对一下，要修改的话研发很麻烦的，萌萌哒~
+    </div>
+    <div class="op_panel" style="text-align: center;">
+        <input type="button" id="btnAdd" class="btn btn-primary" onclick="onAddDo()"  value="确定">
+        &nbsp;&nbsp;
+        <input type="button" id="btnReturn" class="btn btn-default" onclick="onReturn('{{ student_id }}')"  value="返回列表">
+    </div>
+
+    </div>
+    <br>
+    <br>
+    {% include "include/alertDialog.html" %}
+    </form>
+{% endblock %}

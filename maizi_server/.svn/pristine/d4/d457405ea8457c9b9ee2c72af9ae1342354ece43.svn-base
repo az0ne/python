@@ -1,0 +1,70 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+  <script type = 'text/javascript' src = "{% static 'js/career/course_knowledge_item.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="page_title">
+    章节
+</div>
+<div class="search">
+    <!-- 章节：<input type="text" id="txtitem" style="width: 150px;" value="{{ name }}" />&nbsp;&nbsp;
+    <button type="button" class="btn btn-primary btn-xs" onclick="onQuery();">查询</button> -->
+    <button type="button" class="btn btn-primary btn-xs" onclick="onAdd();">新增章节</button>
+</div>
+</br>
+<div class="table-responsive">
+
+    <table class="table table-bordered  table-hover table-striped">
+        <tr>
+            <td class="td_title">章节id</td>
+            <td class="td_title">章节名称</td>
+            <td class="td_title">章节所属知识点</td>
+            <td class="td_title">章节所属课程</td>
+            <td class="td_title">章节排序索引</td>
+            <td class="td_title">章节类型</td>
+            <td class="td_title">状态</td>
+            <td class="td_title">操作</td>
+        </tr>
+
+        {% for item in items  %}
+        <tr>
+          <td class="td_content" style="display:None">
+              <input type="text" id="course_id" class="form-control borderSize mw" value="{{ item.course_id }}" >
+              <input type="text" id="knowledge_id" class="form-control borderSize mw" value="{{ item.knowledge_id }}" >
+              <input type="text" id="item_id" class="form-control borderSize mw" value="{{ item.id }}" >
+              <input type="text" id="item_type" class="form-control borderSize mw" value="{{ item.type }}" >
+              <input type="text" id="item_resource_id" class="form-control borderSize mw" value="{{ item.resource_id }}" >
+          </td>
+          <!-- <td class="td_content" style="display:None">
+              <input type="text" id="item_id" class="form-control borderSize mw" value="{{ item.id }}" >
+          </td> -->
+            <td class="td_cell">{{ item.id }}</td>
+            <td class="td_cell">{{ item.name }}</td>
+            <td class="td_cell">{{ item.knowledge_name }}</td>
+            <td class="td_cell">{{ item.course_name }}</td>
+            <td class="td_cell">{{ item.order_index }}</td>
+            <td class="td_cell">{{ item.type }}</td>
+
+            {% if item.state == '正常' %}
+                <td class="td_cell">{{ item.state }}</td>
+            {% else %}
+                <td class="td_cell red">{{ item.state }}</td>
+            {% endif %}
+            <td class="td_cell">
+                <button type="button" class="btn btn-default btn-xs" onclick="onUpdate('{{ item.id }}')">修改</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="onStart('{{ item.id }}')">启用</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="onStop('{{ item.id }}')">禁用</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="onManager('{{ item.id }}')">管理{{ item.type }}</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="onNote('{{ item.id }}')">笔记</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+  <!-- {% include "include/page.html" %} -->
+  {% include "include/confirmDialog.html" %}
+
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+{% block link %}
+  <script type = 'text/javascript' src = "{% static 'js/career/course.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<form id="form1" name="form1">
+<div class="op_panel">
+
+    <div class="table-responsive">
+
+    <table class="table table-bordered ">
+      <tr>
+          <td class="td_content" style="display:None">
+              <input type="text" id="course_id" class="form-control borderSize mw" value="{{ course.id }}" >
+          </td>
+      </tr>
+        <tr>
+            <td class="td_name">小课程名称： </td>
+            <td class="td_content">
+                <input type="text" id="course_name" class="form-control borderSize mw" value="{{ course.name }}">
+            </td>
+            <td class="td_remark">必填，小课程名称
+            </td>
+        </tr>
+        <tr>
+            <td class="td_name">小课程顺序： </td>
+            <td class="td_content">
+                <input type="text" id="course_index" class="form-control borderSize mw" value="{{ course.order_index }}">
+            </td>
+            <td class="td_remark">填入小课程顺序
+            </td>
+        </tr>
+        <tr>
+            <td class="td_name">小课程作者： </td>
+            <td class="td_content">
+                <input type="text" id="courseAuthor" class="form-control borderSize mw" value="{{ course.teacher_id }}">
+            </td>
+            <td class="td_remark">填入小课程作者id
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="op_panel" style="text-align: center;">
+    <input type="button" id="btnAdd" class="btn btn-primary" onclick="onUpdateDo()"  value="确定">
+    &nbsp;&nbsp;
+    <input type="button" id="btnReturn" class="btn btn-default" onclick="onReturn()"  value="返回列表">
+</div>
+
+</div>
+
+{% include "include/alertDialog.html" %}
+</form>
+{% endblock %}

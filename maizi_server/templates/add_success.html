@@ -1,0 +1,28 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript">
+        function onOp(op_url) {
+            window.location.href = op_url;
+        }
+
+        function onReturn(return_url) {
+            window.location.href = return_url;
+        }
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="op_panel" style="text-align: center;margin-top: 200px;">
+    操作成功，您可以：
+        &nbsp;&nbsp;
+        <input type="button" id="btnAdd" class="btn btn-primary" onclick="onOp('{{ op_url }}')"  value="继续操作">
+        &nbsp;&nbsp;
+        或者
+        &nbsp;&nbsp;
+        <input type="button" id="btnReturn" class="btn btn-default" onclick="onReturn('{{ return_url }}')"  value="返回列表">
+    </div>
+
+    </div>
+
+{% endblock %}

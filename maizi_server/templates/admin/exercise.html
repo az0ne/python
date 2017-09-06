@@ -1,0 +1,58 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "js/exercise.js" %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#slctCareer").val("{{ query.career_id }}");
+            $("#slctAssistant").val("{{ query.assistant_id }}");
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="page_title">
+        练习库
+    </div>
+    <div class="search">
+        关键字：<input type="text" id="txtKeywords" style="width: 150px;" value="{{ query.keywords }}" />
+
+        <button type="button" class="btn btn-primary btn-xs" onclick="onQueryAll();">查询</button>
+    </div>
+    <br/>
+    <div class="table-responsive">
+
+        <table class="table table-bordered  table-hover table-striped">
+            <tr>
+                <td class="td_title">题目id</td>
+                <td class="td_title">学员姓名</td>
+                <td class="td_title">所在专业</td>
+                <td class="td_title">技术老师</td>
+                <td class="td_title">教务老师</td>
+                <td class="td_title">休学开始时间</td>
+                <td class="td_title">休学结束时间</td>
+                <td class="td_title">休学理由</td>
+                <td class="td_title">操作</td>
+            </tr>
+
+            {% for log in log_list  %}
+            <tr>
+                <td class="td_cell">{{ log.id }}</td>
+                <td class="td_cell">{{ log.student_name }}</td>
+                <td class="td_cell">{{ log.career_name }}</td>
+                <td class="td_cell">{{ log.teacher_name }}</td>
+                <td class="td_cell">{{ log.assistant_name }}</td>
+                <td class="td_cell">{{ log.start_at | date:'Y-m-d'}}</td>
+                <td class="td_cell">{{ log.end_at | date:'Y-m-d'}}</td>
+                <td class="td_cell">{{ log.reason }}</td>
+                <td class="td_cell">
+                    <button type="button" class="btn btn-default btn-xs" onclick="onDetail('{{ log.id }}')">详细</button>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+       {% include "include/page.html" %}
+
+{% endblock %}

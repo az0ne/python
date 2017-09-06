@@ -1,0 +1,82 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "lib/pekeUpload-master/js/pekeUpload.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/student_sailer.js" %}"></script>
+
+{% endblock %}
+
+{% block content %}
+    <div class="page_title">
+        销售列表
+    </div>
+    <div class="search">
+        销售人员：<input type="text" id="txtSailer" style="width: 150px;" value="{{ query.sailer }}" />&nbsp;&nbsp;
+        麦子账号：<input type="text" id="txtAccount" style="width: 150px;" value="{{ query.account }}" />&nbsp;&nbsp;
+        学员姓名：<input type="text" id="txtStudentName" style="width: 150px;" value="{{ query.student_name }}" />&nbsp;&nbsp;
+        <br>
+        <br>
+        学员手机：<input type="text" id="txtPhone" style="width: 150px;" value="{{ query.phone }}" />&nbsp;&nbsp;
+        学员QQ：<input type="text" id="txtQQ" style="width: 150px;" value="{{ query.qq }}" />&nbsp;&nbsp;
+        开始时间:<input type="date" id="start_time" style="width: 150px;" value="{{ query.start_time }}" placeholder="开始时间" />&nbsp;&nbsp;
+        截止时间:<input type="date" id="end_time" style="width: 150px;" value="{{ query.end_time }}" placeholder="截止时间" />&nbsp;&nbsp;
+        <button type="button" class="btn btn-primary btn-xs" onclick="onQuery();">查询</button>
+        <button type="button" class="btn btn-default btn-xs " id="add-sailer-btn" onclick="onAddSail();">新增</button>
+        <input type="hidden" id="getremark" style="visibility:hidden" value="{{ remark }}" />
+        <button type="button" class="btn btn-primary btn-xs" onclick="excel_export();">导出学生信息</button>
+    </div>
+    <br/>
+    <div class="table-responsive">
+
+        <table class="table table-bordered  table-hover table-striped">
+            <tr>
+                <td class="td_title">学员id</td>
+                <td class="td_title">学员姓名</td>
+                <td class="td_title">麦子账号</td>
+                <td class="td_title">所在地</td>
+                <td class="td_title">手机</td>
+                <td class="td_title">QQ</td>
+                <td class="td_title">专业</td>
+                <td class="td_title">就业类型</td>
+                <td class="td_title">付费金额</td>
+                <td class="td_title">付费方式</td>
+                <td class="td_title">销售人员</td>
+                <td class="td_title">成单时间</td>
+                <td class="td_title">技术老师</td>
+                <td class="td_title">教务老师</td>
+                <td class="td_title">助学金</td>
+                <td class="td_title">操作</td>
+            </tr>
+
+            {% for student in student_list  %}
+            <tr>
+                <td class="td_cell">{{ student.id }}</td>
+                <td class="td_cell">{{ student.student_name }}</td>
+                <td class="td_cell">{{ student.account }}</td>
+                <td class="td_cell">{{ student.address }}</td>
+                <td class="td_cell">{{ student.phone }}</td>
+                <td class="td_cell">{{ student.qq }}</td>
+                <td class="td_cell">{{ student.career_name }}</td>
+                <td class="td_cell">{{ student.career_job_name }}</td>
+                <td class="td_cell">{{ student.pay_money }}</td>
+                <td class="td_cell">{{ student.pay_type }}</td>
+                <td class="td_cell">{{ student.sailer }}</td>
+                <td class="td_cell">{{ student.sail_at | date:'Y-m-d' }}</td>
+                <td class="td_cell">{{ student.teacher_name }}</td>
+                <td class="td_cell">{{ student.assistant_name }}</td>
+                <td class="td_cell">{{ student.reward_name }}</td>
+                <td class="td_cell">
+                    <button type="button" class="btn btn-default btn-xs remark201768" onclick="onUpdateSail('{{ student.id }}')">详细/修改</button>
+                </td>
+            </tr>
+            {% endfor %}
+
+
+        </table>
+    </div>
+
+    {% include "include/page.html" %}
+
+    {% include "include/confirmDialog.html" %}
+
+{% endblock %}

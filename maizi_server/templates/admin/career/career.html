@@ -1,0 +1,51 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "js/career/career.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="page_title">
+        职业课程列表
+    </div>
+    <div class="search">
+        <button type="button" class="btn btn-primary btn-xs" onclick="onQuery();">刷新</button>
+        <button type="button" class="btn btn-default btn-xs" onclick="onAdd();">新增</button>
+    </div>
+    <br/>
+    <div class="table-responsive">
+
+        <table class="table table-bordered  table-hover table-striped">
+            <tr>
+                <td class="td_title">课程id</td>
+                <td class="td_title">课程名称</td>
+                <td class="td_title">课程类型</td>
+                <td class="td_title">备注</td>
+                <td class="td_title">状态</td>
+                <td class="td_title">操作</td>
+            </tr>
+
+            {% for career in career_list  %}
+            <tr>
+                <td class="td_cell">{{ career.id }}</td>
+                <td class="td_cell">{{ career.name }}</td>
+                <td class="td_cell">{{ career.type_name }}</td>
+                <td class="td_cell">{{ career.remark }}</td>
+                {% if career.is_delete == 0 %}
+                    <td class="td_cell">{{ career.state }}</td>
+                {% else %}
+                    <td class="td_cell red">{{ career.state }}</td>
+                {% endif %}
+                <td class="td_cell">
+                    <button type="button" class="btn btn-default btn-xs" onclick="onUpdate('{{ career.id }}')">修改</button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="onStart('{{ career.id }}')">启用</button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="onStop('{{ career.id }}')">禁用</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    {% include "include/confirmDialog.html" %}
+
+{% endblock %}

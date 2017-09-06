@@ -1,0 +1,42 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+  <script type = 'text/javascript' src = "{% static 'js/career/item_vedio.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="page_title">
+    视频
+</div>
+<div class="search">
+    <button type="button" class="btn btn-primary btn-xs" onclick="onAdd();">新增</button>
+</div>
+</br>
+<div class="table-responsive">
+
+    <table class="table table-bordered  table-hover table-striped">
+        <div style="display:None">
+          <input id = "item_id" value = "{{ item_id }}"/>
+          <input id = "vedio_id" value = "{{ vedio.id }}"/>
+        </div>
+        <tr>
+            <td class="td_title">视频ID</td>
+            <td class="td_title">视频URL</td>
+            <td class="td_title">视频名称</td>
+            <td class="td_title">操作</td>
+        </tr>
+
+        <tr>
+            <td class="td_cell">{{ vedio.id }}</td>
+            <td class="td_cell">{{ vedio.url }}</td>
+            <td class="td_cell">{{ vedio.name }}</td>
+
+            <td class="td_cell">
+                <button type="button" class="btn btn-default btn-xs" onclick="onUpdate('{{ vedio.id }}')">修改</button>
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+{% endblock %}

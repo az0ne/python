@@ -1,0 +1,58 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+  <script type = 'text/javascript' src = "{% static 'js/career/course_knowledge.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="page_title">
+    小课程包含的知识点
+</div>
+<div class="search">
+  <!-- 课程名称：<input type="text" id="txtKnowledge" style="width: 150px;" value="{{ knowledge_list.name }}" />&nbsp;&nbsp;
+    <button type="button" class="btn btn-primary btn-xs" onclick="onQuery();">查询</button> -->
+    <button type="button" class="btn btn-default btn-xs" onclick="onAdd();">新增知识点</button>
+</div>
+</br>
+<div class="table-responsive">
+
+    <table class="table table-bordered  table-hover table-striped">
+        <tr>
+            <td class="td_title">知识点id</td>
+            <td class="td_title">知识点名称</td>
+            <td class="td_title">知识点所属课程</td>
+            <td class="td_title">知识点排序索引</td>
+            <td class="td_title">状态</td>
+            <td class="td_title">操作</td>
+        </tr>
+
+        {% for knowledge in knowledges  %}
+        <tr>
+            <td class="td_content" style="display:None">
+                <input type="text" id="course_id" class="form-control borderSize mw" value="{{ knowledge.course_id }}" >
+            </td>
+            <td class="td_cell">{{ knowledge.id }}</td>
+            <td class="td_cell">{{ knowledge.name }}</td>
+            <td class="td_cell">{{ knowledge.course_name }}</td>
+            <td class="td_cell">{{ knowledge.order_index }}</td>
+
+            {% if knowledge.state == '正常' %}
+                <td class="td_cell">{{ knowledge.state }}</td>
+            {% else %}
+                <td class="td_cell red">{{ knowledge.state }}</td>
+            {% endif %}
+
+            <td class="td_cell">
+                <button type="button" class="btn btn-default btn-xs" onclick="onUpdate('{{ knowledge.id }}')">修改</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="onStart('{{ knowledge.id }}')">启用</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="onStop('{{ knowledge.id }}')">禁用</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="onManager('{{ knowledge.id }}');">管理章节</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+  <!-- {% include "include/page.html"%} -->
+  {% include "include/confirmDialog.html" %}
+
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "lib/pekeUpload-master/js/pekeUpload.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/document.js" %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#file").pekeUpload({
+                "btnText": "请选择文件",
+                "url": "/upload/",
+                "allowedExtensions":"png|jpg|doc|docx|pdf|xls|xlsx|ppt|pptx",
+                "invalidExtError":"文件格式不正确",
+                "bootstrap":true,
+                "delfiletext":"移除",
+                "showPreview":false,
+                "limit":1,
+                "limitError":"只能上传一个文件",
+                "onFileError": function (file, error) {
+                    console.log(error);
+                },
+                "onFileSuccess":function (file, data) {
+                    console.log(data);
+                    if(data.code == true)
+                    {
+                        $("#txtFileName").val(data.file_name);
+                        $("#txtExtension").val(data.extension);
+                        console.log(data)
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <form id="form1" name="form1">
+    <div class="op_panel">
+
+        <div class="table-responsive">
+
+        <table class="table table-bordered ">
+            <tr>
+                <td class="td_name">文档名称：</td>
+                <td class="td_content">
+                    <input type="text" id="txtName" class="form-control borderSize mw"/>
+                </td>
+                <td class="td_remark">必填
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">作者：</td>
+                <td class="td_content">
+                    <input type="text" id="txtAuthor" class="form-control borderSize mw" />
+                </td>
+                <td class="td_remark">必填
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">类型：</td>
+                <td class="td_content">
+                    <select id="slctType" class="mw mh">
+                        <option value="">请选择类型</option>
+                        <option value="0">教务</option>
+                        <option value="1">教学</option>
+                        <option value="2">销售</option>
+                        <option value="3">运营</option>
+                    </select>
+                </td>
+                <td class="td_remark">必选
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td_name">文件：</td>
+                <td class="td_content">
+                    <input id="file" type="file" name="file" />
+                </td>
+                <td class="td_remark">必选，可以上传：png、jpg、doc、docx、pdf、xls、xlsx、ppt、pptx格式的文件,不能超过10M
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <input id="txtFileName" type="hidden" value="" />
+    <input id="txtExtension" type="hidden" value="" />
+
+    <div class="op_panel" style="text-align: center;">
+        <input type="button" id="btnAdd" class="btn btn-primary" onclick="onAddDo()"  value="确定">
+        <input type="button" id="btnReturn" class="btn btn-default" onclick="onReturn()"  value="返回列表">
+    </div>
+
+    </div>
+
+    {% include "include/alertDialog.html" %}
+    </form>
+{% endblock %}

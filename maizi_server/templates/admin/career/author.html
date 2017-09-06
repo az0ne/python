@@ -1,0 +1,44 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+  <script type = 'text/javascript' src = "{% static 'js/career/author.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="page_title">
+    课程作者
+</div>
+<div class="search">
+  课程作者姓名：<input type="text" id="txtItem" style="width: 150px;" value="{{ name }}" />&nbsp;&nbsp;
+    <button type="button" class="btn btn-primary btn-xs" onclick="onQuery();">查询</button>
+  </br>
+    <button type="button" class="btn btn-default btn-xs" onclick="onAdd();">新增作者</button>
+</div>
+</br>
+<div class="table-responsive">
+
+    <table class="table table-bordered  table-hover table-striped">
+        <tr>
+            <td class="td_title">作者头像url</td>
+            <td class="td_title">作者名字</td>
+            <td class="td_title">作者简介</td>
+            <td class="td_title">操作</td>
+        </tr>
+
+        {% for author in authors  %}
+        <tr>
+            <td class="td_cell">{{ author.head_url }}</td>
+            <td class="td_cell">{{ author.name }}</td>
+            <td class="td_cell">{{ author.info }}</td>
+            <td class="td_cell">
+                <button type="button" class="btn btn-default btn-xs" onclick="onUpdate('{{ author.id }}')">修改</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+  {% include "include/page.html" %}
+  {% include "include/confirmDialog.html" %}
+
+{% endblock %}

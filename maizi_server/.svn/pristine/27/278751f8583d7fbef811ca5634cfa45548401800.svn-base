@@ -1,0 +1,38 @@
+<div id="divPage" style="height:40px; padding-top: 10px; margin-left: 20px; margin-bottom: 10px;">
+        <input id="hdnRowsCount" type="hidden" value="{{ page.rowsCount }}"/>
+        <input id="hdnPageCount" type="hidden" value="{{ page.pageCount }}"/>
+        <input id="hdnPageIndex" type="hidden" value="{{ page.pageIndex }}"/>
+        <input id="hdnPageSize" type="hidden" value="{{ page.pageSize }}"/>
+        <input id="hdnQuery" type="hidden" value="{{ queryString }}"/>
+
+        <span>共</span>
+        <span id="spnRowsCount" style="color: red;">{{ page.rowsCount }}</span>
+        <span>条记录</span>
+
+        <span style="margin-left: 20px;">共</span>
+        <span id="spnPageCount" style="color: red;">{{ page.pageCount }}</span>
+        <span>页</span>
+
+        <span style="margin-left: 20px;">每页</span>
+        <select id="slctPageSize" style="width: 50px; display: inline;">
+          <option selected="selected">10</option>
+          <option>20</option>
+          <option>30</option>
+          <option>40</option>
+          <option>50</option>
+        </select>
+        <span>条记录</span>
+
+        <span style="margin-left: 20px;">第</span>
+        <span id="spnPageIndex" style="color: red;">{{ page.pageIndex }}</span>
+        <span>页</span>
+
+        <span style="margin-left: 20px;"><a id="hrfFirst" href="javascript:void(0);" onclick="page_onFirst({{ url }});">首页</a> </span>
+        <span style="margin-left: 20px;"><a id="hrfPreview" href="javascript:void(0);" onclick="page_onPreview({{ url }});">上一页</a> </span>
+        <span style="margin-left: 20px;"><a id="hrfNext" href="javascript:void(0);" onclick="page_onNext({{ url }});">下一页</a> </span>
+        <span style="margin-left: 20px;"><a id="hrfLast" href="javascript:void(0);" onclick="page_onLast({{ url }});">尾页</a> </span>
+        <span style="margin-left: 20px;">跳转至</span>
+        <input type="text" id="txtPageIndex" style="width: 50px;" >
+        <span>页</span>
+        <span style="margin-left: 20px;"><a id="hrfRedirect" href="javascript:void(0);" onclick="page_onRedirect({{ url }});">跳转</a> </span>
+    </div>

@@ -1,0 +1,59 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+  <script type = 'text/javascript' src = "{% static 'js/career/note.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="page_title">
+    笔记
+</div>
+<!-- <div class="search">
+    <button type="button" class="btn btn-primary btn-xs" onclick="onAdd();">新增章节</button>
+</div> -->
+</br>
+<div class="table-responsive">
+
+    <table class="table table-bordered  table-hover table-striped">
+        <tr>
+            <td class="td_title">笔记id</td>
+            <td class="td_title">笔记内容</td>
+            <td class="td_title">笔记所属章节</td>
+            <td class="td_title">笔记所属知识点</td>
+            <td class="td_title">笔记所属课程</td>
+            <td class="td_title">笔记所属用户</td>
+            <!-- <td class="td_title">操作</td> -->
+        </tr>
+
+        {% for note in notes  %}
+        <tr>
+          <td class="td_content" style="display:None">
+              <input type="text" id="course_id" class="form-control borderSize mw" value="{{ item.course_id }}" >
+              <input type="text" id="knowledge_id" class="form-control borderSize mw" value="{{ item.knowledge_id }}" >
+              <input type="text" id="item_id" class="form-control borderSize mw" value="{{ item.item_id }}" >
+              <input type="text" id="item_type" class="form-control borderSize mw" value="{{ item.type }}" >
+              <input type="text" id="item_resource_id" class="form-control borderSize mw" value="{{ item.resource_id }}" >
+          </td>
+            <td class="td_cell">{{ note.id }}</td>
+            <td class="td_cell">{{ note.content }}</td>
+            <td class="td_cell">{{ note.item_id }}</td>
+            <td class="td_cell">{{ note.knowledge_id }}</td>
+            <td class="td_cell">{{ note.course_id }}</td>
+            <td class="td_cell">{{ item.user_id }}</td>
+
+            <!-- <td class="td_cell">
+                <button type="button" class="btn btn-default btn-xs" onclick="onUpdate('{{ note.id }}')">修改</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="onStart('{{ item.id }}')">启用</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="onStop('{{ item.id }}')">禁用</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="onManager('{{ item.id }}')">管理{{ item.type }}</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="onNote('{{ item.id }}')">笔记</button>
+            </td> -->
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+  <!-- {% include "include/page.html" %} -->
+  {% include "include/confirmDialog.html" %}
+
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "js/teacher.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+    <form id="form1" name="form1">
+    <div class="op_panel">
+
+        <div class="table-responsive">
+
+        <table class="table table-bordered ">
+            <tr>
+                <td class="td_name">教师ID：</td>
+                <td class="td_content">
+                    <input type="text" readonly="readonly" id="txtteacherID" class="form-control borderSize mw" value="{{ teacher.id }}"/>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">教务姓名：</td>
+                <td class="td_content">
+                    <input type="text" id="txtName" class="form-control borderSize mw" value="{{ teacher.name }}"/>
+                </td>
+                <td class="td_remark">必填
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">手机号：</td>
+                <td class="td_content">
+                    <input type="text" id="txtPhone" class="form-control borderSize mw"  value="{{ teacher.phone }}"/>
+                </td>
+                <td class="td_remark">必填
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">QQ：</td>
+                <td class="td_content">
+                    <input type="text" id="txtQQ" class="form-control borderSize mw"  value="{{ teacher.qq }}"/>
+                </td>
+                <td class="td_remark">必填
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div class="op_panel" style="text-align: center;">
+        <input type="button" id="btnAdd" class="btn btn-primary" onclick="onUpdateDo()"  value="确定">
+        &nbsp;&nbsp;
+        <input type="button" id="btnReturn" class="btn btn-default" onclick="onReturn()"  value="返回列表">
+    </div>
+
+    </div>
+
+    {% include "include/alertDialog.html" %}
+    </form>
+{% endblock %}

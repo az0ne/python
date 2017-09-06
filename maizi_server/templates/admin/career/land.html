@@ -1,0 +1,54 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+  <script type = 'text/javascript' src = "{% static 'js/career/career_land.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="page_title">
+    职业课程
+</div>
+<div class="search">
+    <!-- <button type="button" class="btn btn-primary btn-xs" onclick="onQuery();">刷新</button> -->
+    <button type="button" class="btn btn-default btn-xs" onclick="onAdd();">新增</button>
+</div>
+</br>
+<div class="table-responsive">
+
+    <table class="table table-bordered  table-hover table-striped">
+        <tr>
+            <td class="td_title">课程id</td>
+            <td class="td_title">课程名称</td>
+            <td class="td_title">课程描述</td>
+            <td class="td_title">状态</td>
+            <td class="td_title">操作</td>
+        </tr>
+
+        {% for land in land_list  %}
+        <tr>
+            <td class="td_cell">{{ land.id }}</td>
+            <td class="td_cell">{{ land.name }}</td>
+            <td class="td_cell">{{ land.remark }}</td>
+
+            {% if land.state == '正常' %}
+                <td class="td_cell">{{ land.state }}</td>
+            {% else %}
+                <td class="td_cell red">{{ land.state }}</td>
+            {% endif %}
+
+            <td class="td_cell">
+                <button type="button" class="btn btn-default btn-xs" onclick="onUpdate('{{ land.id }}')">修改</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="onStart('{{ land.id }}')">启用</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="onStop('{{ land.id }}')">禁用</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="onManager('{{ land.id }}')">小课程</button>
+
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+  {% include "include/page.html" %}
+  {% include "include/confirmDialog.html" %}
+
+{% endblock %}

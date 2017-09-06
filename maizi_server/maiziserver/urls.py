@@ -1,0 +1,49 @@
+from django.conf.urls import patterns, include, url
+from django.conf import settings
+from django.conf.urls.static import static
+# emit bg activity 
+import maiziserver.bgtask.tasks
+from maiziserver.website.admin.views_student import excel_export, assistant_excel_export
+
+urlpatterns = patterns('',
+    # Examples:
+    # url(r'^$', 'maiziserver.views.home', name='home'),
+    # url(r'^blog/', include('blog.urls')),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
+    url(r'^$', 'maiziserver.website.admin.views_user.index',name='index'),
+    url(r'^login/$', 'maiziserver.website.admin.views_user.index', name='index'),
+    url(r'^user/login/$', 'maiziserver.website.admin.views_user.user_login', name='user_login'),
+    url(r'^user/login_out/$', 'maiziserver.website.admin.views_user.user_login_out', name='user_login_out'),
+    url(r'^home/$', 'maiziserver.website.admin.views_student.student_sailer', name='student_sailer'),
+
+    url(r'^user/',include("maiziserver.urlsp.user_urls")),
+    url(r'^assistant/',include("maiziserver.urlsp.assistant_urls")),
+    url(r'^career/',include("maiziserver.urlsp.career_urls")),
+    url(r'^teacher/',include("maiziserver.urlsp.teacher_urls")),
+    url(r'^student_sailer/',include("maiziserver.urlsp.student_sailer_urls")),
+    url(r'^student_assistant/',include("maiziserver.urlsp.student_assistant_urls")),
+    url(r'^student_assistant_',include("maiziserver.urlsp.student_assistant_urls")),
+
+    # add by zhouyufan on 05/08/2017
+    url(r'^career/knowledge/$', 'maiziserver.website.admin.views_knowledge.knowledge', name='knowledge'),
+    url(r'^career/vedio/$', 'maiziserver.website.admin.views_vedio.vedio', name='vedio'),
+
+    url(r'^document/$', 'maiziserver.website.admin.views_document.document', name='document'),
+    url(r'^document/add/$', 'maiziserver.website.admin.views_document.document_add', name='document_add'),
+    url(r'^document/add/do/$', 'maiziserver.website.admin.views_document.document_add_do', name='document_add_do'),
+
+    url(r'^upload/$', 'maiziserver.website.admin.views_common.upload', name='upload'),
+    url(r'^upload/ratio/$', 'maiziserver.website.admin.views_common.upload', name='upload'),
+    url(r'^add/success/$', 'maiziserver.website.admin.views_common.add_success', name='add_success'),
+    url(r'^update/success/$', 'maiziserver.website.admin.views_common.update_success', name='update_success'),
+
+    url(r'^download/document/$', 'maiziserver.website.admin.views_document.download_document', name='download_document'),
+    #url(r'^admin/', include(admin.site.urls))
+
+    url(r'^uploads/document/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.UPLOAD_DOCUMENT_DIRS}),
+
+    url(r'^excel_export/$', excel_export, name='excel_export'),
+
+    url(r'^assistant/excel_export/$', assistant_excel_export, name='assistant_excel_export'),
+) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+

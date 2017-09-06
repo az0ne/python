@@ -1,0 +1,55 @@
+.td_title
+{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.td_cell
+{
+    font-size: 14px;
+}
+
+.red{
+    color: red;
+}
+
+.td_name
+{
+    vertical-align: middle !important;
+    height: 60px;
+    width: 150px;
+    font-size: 14px;
+    text-align: right;
+}
+
+.td_content
+{
+    vertical-align: middle !important;
+    width: 360px;
+    font-size: 14px;
+}
+
+.td_remark
+{
+    vertical-align: middle !important;
+    font-size: 12px;
+    color: gray;
+    vertical-align: middle;
+}
+.upImgBox .upImgDiv{
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+}
+
+.upImgDiv img{
+    display: block;
+    width: 100%;
+}
+.pkuparea{
+    margin-bottom: 10px;
+}
+
+.pekecontainer div{
+    margin-bottom: 10px;
+}

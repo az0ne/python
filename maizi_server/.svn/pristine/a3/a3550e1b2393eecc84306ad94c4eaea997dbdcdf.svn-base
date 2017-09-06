@@ -1,0 +1,68 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "js/user.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+    <form id="form1" name="form1">
+    <div class="op_panel">
+
+        <div class="table-responsive">
+
+        <table class="table table-bordered ">
+            <tr>
+                <td class="td_name">手机号：</td>
+                <td class="td_content">
+                    <input type="text" id="txtUserName" class="form-control borderSize mw"/>
+                </td>
+                <td class="td_remark">必填，用户手机号
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">姓名：</td>
+                <td class="td_content">
+                    <input type="text" id="txtRealName" class="form-control borderSize mw" />
+                </td>
+                <td class="td_remark">必填，用户真实姓名
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">密码：</td>
+                <td class="td_content">
+                    <input type="password" id="txtPassword" class="form-control borderSize mw" />
+                </td>
+                <td class="td_remark">必填，密码以字母开头，长度在6~18之间，只能包含字符、数字和下划线
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">确认密码：</td>
+                <td class="td_content">
+                    <input type="password" id="txtPassword2" class="form-control borderSize mw"/>
+                </td>
+                <td class="td_remark">必填
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">备注：</td>
+                <td class="td_content">
+                    <input type="text" id="txtRemark" class="form-control borderSize mw"/>
+                </td>
+                <td class="td_remark">选填，可以随便写点什么
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div class="op_panel" style="text-align: center;">
+        <input type="button" id="btnAdd" class="btn btn-primary" onclick="onAddDo()"  value="确定">
+        &nbsp;&nbsp;
+        <input type="button" id="btnReturn" class="btn btn-default" onclick="onReturn()"  value="返回列表">
+    </div>
+
+    </div>
+
+    {% include "include/alertDialog.html" %}
+    </form>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "js/monitor/learn_activity.js" %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#slctCareer").val("{{ query.career_id }}");
+            $("#slctAssistant").val("{{ query.assistant_id }}");
+            $("#slctTeacher").val("{{ query.teacher_id }}");
+            $("#slctReward").val("{{ query.reward }}");
+            $("#slctCareerJob").val("{{ query.career_job }}");
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="page_title">
+        学习活跃
+    </div>
+    <div class="search">
+
+        时间查询
+        最后登陆
+        最后沟通
+        连续未学习（天）
+        活跃学分
+        <br/>
+        学员姓名
+        <input type="text" id="txtStudentName" style="width: 150px;" value="{{ query.student_name }}"/>&nbsp;&nbsp;
+        课程类型
+        <select id="slctCareerJob" class="sw ">
+            <option value="-1">请选择就业类型</option>
+            <option value="0">非就业</option>
+            <option value="1">就业</option>
+        </select>
+        专业
+        <select id="slctCareer" class="sw">
+            <option value="-1">请选择所报专业</option>
+            {% for career in career_list %}
+                <option value="{{ career.id }}">{{ career.name }}</option>
+            {% endfor %}
+        </select>
+        显示休学
+        显示已经阅读
+        <button type="button" class="btn btn-primary btn-xs" onclick="onQuery();">查询</button>
+
+    </div>
+    <br/>
+    <div class="table-responsive">
+
+        <table class="table table-bordered  table-hover table-striped">
+            <tr>
+                <td class="td_title">学员ID</td>
+                <td class="td_title">学员姓名</td>
+                <td class="td_title">手机</td>
+                <td class="td_title">课程类型</td>
+                <td class="td_title">专业</td>
+                <td class="td_title">连续未学习（天）</td>
+                <td class="td_title">活跃学分</td>
+                <td class="td_title">最后登陆时间</td>
+                <td class="td_title">最后沟通时间</td>
+                <td class="td_title">最后沟通人</td>
+                <td class="td_title">沟通记录</td>
+            </tr>
+
+            {% for student in student_list %}
+                <tr>
+                    <td class="td_cell">{{ student.student_id }}</td>
+                    <td class="td_cell">{{ student.studentName }}</td>
+                    <td class="td_cell">{{ student.phone }}</td>
+                    <td class="td_cell">{{ student.job_type }}</td>
+                    <td class="td_cell">{{ student.career_name }}</td>
+                    <td class="td_cell">{{ student.consecutive_days }}</td>
+                    <td class="td_cell">{{ student.total_score }}</td>
+                    <td class="td_cell">{{ student.last_login | date:'Y-m-d' }}</td>
+                    <td class="td_cell">{{ student.last_communication_date | date:'Y-m-d' }}</td>
+                    <td class="td_cell">{{ student.assistant_name }}</td>
+                    <td class="td_cell">
+                        <button type="button" class="btn btn-default btn-xs"
+                                onclick="onUpdateAssistant('{{ student.phone }}')">操作
+                        </button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    {% include "include/page.html" %}
+
+    {% include "include/confirmDialog.html" %}
+
+{% endblock %}

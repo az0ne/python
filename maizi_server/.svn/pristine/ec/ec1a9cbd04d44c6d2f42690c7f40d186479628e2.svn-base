@@ -1,0 +1,106 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+{% block link %}
+  <script type="text/javascript" src="{% static "lib/pekeUpload-master/js/pekeUpload.js" %}"></script>
+  <script type = 'text/javascript' src = "{% static 'js/career/book.js' %}"></script>
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+
+        // $("#file").change(function(){
+        //
+        //   var f = $(this)[0].files[0];
+
+
+
+          // $.ajaxFileUpload({
+          //   url:"/upload/ratio/",
+          //   fileElementId:file,
+          //   dataType:"json"
+          //   success:function(data,status){},
+          //   error:function(data,status){}
+          // });
+
+        $("#file").pekeUpload({
+              "btnText": "请选择文件",
+              "url": "/upload/",
+              "allowedExtensions":"png",
+              "invalidExtError":"文件格式不正确",
+              "bootstrap":true,
+              "delfiletext":"移除",
+              "showPreview":false,
+              "limit":1,
+              "limitError":"只能上传一个文件",
+              "onFileError": function (file, error) {
+                  console.log(error);
+              },
+              "onFileSuccess":function (file, data) {
+                  console.log(data);
+                  if(data.code == true)
+                  {
+                      $("#txtFileName").val(data.file_name);
+                      $("#txtExtension").val(data.extension);
+                  }
+              }
+          });
+
+      });
+  </script>
+{% endblock %}
+
+{% block content %}
+<form id="form1" name="form1">
+<div class="op_panel">
+
+    <div class="table-responsive">
+
+    <table class="table table-bordered ">
+        <tr>
+            <td class="td_name">书籍名称 </td>
+            <td class="td_content">
+                <input type="text" id="book_name" class="form-control borderSize mw"/>
+            </td>
+            <td class="td_remark">书籍名称
+            </td>
+        </tr>
+        <tr>
+            <td class="td_name">书籍简介 </td>
+            <td class="td_content">
+                <input type="text" id="book_description" class="form-control borderSize mw" />
+            </td>
+            <td class="td_remark">书籍简介
+            </td>
+        </tr>
+        <tr>
+            <td class="td_name">书籍作者 </td>
+            <td class="td_content">
+                <input type="text" id="book_author" class="form-control borderSize mw" />
+            </td>
+            <td class="td_remark">书籍作者
+            </td>
+        </tr>function
+        <tr>
+            <td class="td_name">书籍封面：</td>
+            <td class="td_content">
+                <input id="file" type="file" name="file" accept='png'/>
+            </td>
+            <td class="td_remark">必选，可以上传：png格式的文件,不能超过10M
+            </td>
+        </tr>
+    </table>
+</div>
+
+<input id="txtFileName" type="hidden" value="" />
+<input id="txtExtension" type="hidden" value="" />
+
+<div class="op_panel" style="text-align: center;">
+    <input type="button" id="btnAdd" class="btn btn-primary" onclick="onAddDo()"  value="确定">
+    &nbsp;&nbsp;
+    <input type="button" id="btnReturn" class="btn btn-default" onclick="onReturn()"  value="返回列表">
+</div>
+
+</div>
+
+{% include "include/alertDialog.html" %}
+</form>
+{% endblock %}

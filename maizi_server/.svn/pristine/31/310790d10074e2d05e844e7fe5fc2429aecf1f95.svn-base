@@ -1,0 +1,129 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "js/student_assistant.js" %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#slctCareer").val("{{ query.career_id }}");
+            $("#slctAssistant").val("{{ query.assistant_id }}");
+            $("#slctTeacher").val("{{ query.teacher_id }}");
+            $("#slctReward").val("{{ query.reward }}");
+            $("#slctCareerJob").val("{{ query.career_job }}");
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="page_title">
+        学员列表
+    </div>
+    <div class="search">
+        麦子账号：<input type="text" id="txtAccount" style="width: 150px;" value="{{ query.account }}" />&nbsp;&nbsp;
+        学员姓名：<input type="text" id="txtStudentName" style="width: 150px;" value="{{ query.student_name }}" />&nbsp;&nbsp;
+        教务老师：
+        <select id="slctAssistant" class="sw">
+                        <option value="-1">请选择教务老师</option>
+                        {% for assistant in assistant_list %}
+                            <option value="{{ assistant.id }}">{{ assistant.name }}</option>
+                        {% endfor %}
+        </select>
+        <br>
+        <br>
+        所报专业：
+        <select id="slctCareer" class="sw">
+                        <option value="-1">请选择所报专业</option>
+                        {% for career in career_list %}
+                            <option value="{{ career.id }}">{{ career.name }}</option>
+                        {% endfor %}
+        </select>
+
+        技术老师：
+        <select id="slctTeacher" class="sw ">
+                        <option value="-1">请选择技术老师</option>
+                        {% for teacher in teacher_list %}
+                            <option value="{{ teacher.id }}">{{ teacher.name }}</option>
+                        {% endfor %}
+        </select>
+
+        就业类型：
+        <select id="slctCareerJob" class="sw ">
+                        <option value="-1">请选择就业类型</option>
+                        <option value="0">非就业</option>
+                        <option value="1">就业</option>
+        </select>
+
+        助学金：
+        <select id="slctReward" class="sw ">
+                        <option value="-1">请选择是否参加</option>
+                        <option value="0">不参加</option>
+                        <option value="1">参加</option>
+        </select>
+        <br/>
+        开学时间:<input type="date" id="start_time" style="width: 150px;" value="{{ query.start_time }}" placeholder="开学时间" />&nbsp;&nbsp;
+        到开学时间:<input type="date" id="end_time" style="width: 150px;" value="{{ query.end_time }}" placeholder="到开学时间" />&nbsp;&nbsp;
+
+        <button type="button" class="btn btn-primary btn-xs" onclick="onQuery();">查询</button>
+        <button type="button" class="btn btn-primary btn-xs" onclick="excel_export();">导出学生信息</button>
+
+    </div>
+    <br/>
+    <div class="table-responsive">
+
+        <table class="table table-bordered  table-hover table-striped">
+            <tr>
+                <td class="td_title">学员id</td>
+                <td class="td_title">学员姓名</td>
+                <td class="td_title">麦子账号</td>
+                <td class="td_title">所在地</td>
+                <td class="td_title">手机</td>
+                <td class="td_title">QQ</td>
+                <td class="td_title">专业</td>
+                <td class="td_title">就业类型</td>
+                <td class="td_title">销售人员</td>
+                <td class="td_title">成单时间</td>
+                <td class="td_title">技术老师</td>
+                <td class="td_title">教务老师</td>
+                <td class="td_title">助学金</td>
+                <td class="td_title">开学时间</td>
+                <td class="td_title">毕业时间</td>
+                <td class="td_title">阶段</td>
+                <td class="td_title">状态</td>
+                <td class="td_title">就业公司</td>
+                <td class="td_title">操作</td>
+            </tr>
+
+            {% for student in student_list  %}
+            <tr>
+                <td class="td_cell">{{ student.id }}</td>
+                <td class="td_cell">{{ student.student_name }}</td>
+                <td class="td_cell">{{ student.account }}</td>
+                <td class="td_cell">{{ student.address }}</td>
+                <td class="td_cell">{{ student.phone }}</td>
+                <td class="td_cell">{{ student.qq }}</td>
+                <td class="td_cell">{{ student.career_name }}</td>
+                <td class="td_cell">{{ student.career_job_name }}</td>
+                <td class="td_cell">{{ student.sailer }}</td>
+                <td class="td_cell">{{ student.sail_at | date:'Y-m-d' }}</td>
+                <td class="td_cell">{{ student.teacher_name }}</td>
+                <td class="td_cell">{{ student.assistant_name }}</td>
+                <td class="td_cell">{{ student.reward_name }}</td>
+                <td class="td_cell">{{ student.start_at | date:'Y-m-d' }}</td>
+                <td class="td_cell">{{ student.graduate_at | date:'Y-m-d' }}</td>
+                <td class="td_cell">{{ student.stage_name }}</td>
+                <td class="td_cell">{{ student.state_name }}</td>
+                <td class="td_cell">{{ student.company }}</td>
+                <td class="td_cell">
+                    <button type="button" class="btn btn-default btn-xs" onclick="onUpdateAssistant('{{ student.id }}')">详细/修改</button>
+                </td>
+            </tr>
+            {% endfor %}
+
+
+        </table>
+    </div>
+
+    {% include "include/page.html" %}
+
+    {% include "include/confirmDialog.html" %}
+
+{% endblock %}

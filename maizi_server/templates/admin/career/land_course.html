@@ -1,0 +1,34 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+  <script type = 'text/javascript' src = "{% static 'js/career/land_course.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="page_title">
+    小课程
+</div>
+<div class="search">
+    <button type="button" class="btn btn-default btn-xs" onclick="onAdd('{{ land_id }}');">新增小课程</button>
+</div>
+</br>
+<div class="table-responsive">
+
+    <table class="table table-bordered  table-hover table-striped">
+        <tr>
+            <td class="td_title">小课程id</td>
+            <!-- <td class="td_title">操作</td> -->
+        </tr>
+
+        {% for course in courses  %}
+        <tr>
+            <td class="td_cell">{{ course.course_id }}</td>
+            <!-- <td class="td_cell"> -->
+                <!-- <button type="button" class="btn btn-default btn-xs" onclick="onUpdate('{{ course.course_id }}')">修改</button> -->
+            <!-- </td> -->
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

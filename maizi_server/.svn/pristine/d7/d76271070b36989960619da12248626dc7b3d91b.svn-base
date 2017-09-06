@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        {% load staticfiles %}
+		<meta charset="UTF-8">
+		<title>麦子服务</title>
+        <link rel="stylesheet" type="text/css" href={% static "lib/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" %}/>
+        <link rel="stylesheet" type="text/css" href={% static "css/common.css" %}/>
+        <link rel="stylesheet" type="text/css" href={% static "css/header.css" %}/>
+        <link rel="stylesheet" type="text/css" href={% static "css/menu.css" %}/>
+        <link rel="stylesheet" type="text/css" href={% static "css/table.css" %}/>
+
+		<script type="text/javascript" src={% static "lib/jquery.min.js" %}></script>
+        <script src="{% static "lib/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js" %}"></script>
+        <script type="text/javascript" src={% static "js/common.js" %}></script>
+        <script type="text/javascript" src={% static "js/home.js" %}></script>
+        <script type="text/javascript" src={% static "js/page.js" %}></script>
+
+        {% block link %}
+
+        {% endblock %}
+
+
+
+		<style>
+			::-webkit-scrollbar  
+			{  
+			    width: 8px;
+			    height: 8px;
+			    background-color: #EBEBEB;  
+			}  
+			  
+			::-webkit-scrollbar-thumb  
+			{  
+			    border-radius: 6px;  
+			    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);  
+			    background-color: #CBCBCB;  
+			}  
+
+		</style>
+	</head>
+	<script type="text/javascript">
+		
+		$(document).ready(function() {
+			setScroll();
+		});
+		
+		$(window).resize(function() {
+			setScroll();
+		});
+		
+		
+		function setScroll()
+		{
+			var viewHeight = $(window).height();
+			var viewWidth = $(window).width();
+
+			$("#divMain").height(viewHeight);
+			$("#divMain").width(viewWidth);
+
+			$("#divMenu").height(viewHeight - 50);
+			$("#divContent").height(viewHeight - 50);
+			
+			if (viewWidth > 1100)
+			{
+				$("#divContent").width(viewWidth - 200);
+			}
+			else
+			{
+				$("#divContent").width(1100 - 200);
+			}
+		}
+		
+	</script>
+	
+	<body style="margin: 0; padding: 0px;overflow:scroll;overflow-y:hidden;overflow-x:hidden;">
+		<div id="divMain" style="overflow-x: auto; overflow-y:hidden;">
+
+            {% include "include/header.html" %}
+
+
+			<div style="width: 100%; min-width: 1100px; background-color: #EBEBEB;">
+				<div id="divMenu" style="float: left; width: 200px; background-color: #F5F5F5;">
+					{% include "include/menu/career.html" %}
+				</div>
+				<div id="divContent"  style="float: left; background-color: #EBEBEB; overflow-y: auto; overflow-x: hidden;">
+                    {% block content%}
+
+                    {% endblock %}
+				</div>
+
+            </div>
+
+
+		</div>
+	</body>
+</html>

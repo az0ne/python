@@ -1,0 +1,359 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "js/student_assistant.js" %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#slctCareer").val("{{ student.career_id }}");
+            $("#slctAssistant").val("{{ student.assistant_id }}");
+            $("#slctTeacher").val("{{ student.teacher_id }}");
+            $("#slctRewardMonth").val("{{ student.reward_month }}");
+            $("input[name='rdoCareerJob'][value='{{ student.career_job }}']").attr("checked","checked");
+            $("input[name='rdoReward'][value='{{ student.reward }}']").attr("checked","checked");
+            $("#slctStage").val("{{ student.stage }}");
+            $("#slctState").val("{{ student.state }}");
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <form id="form1" name="form1">
+    <div class="op_panel">
+        <div>如果你发现这里有信息是错的，并且不能修改，那就去对应的销售人员改，让请吃饭</div>
+        <div class="table-responsive">
+
+        <table class="table table-bordered ">
+            <tr>
+                <td class="td_name">学员ID：</td>
+                <td class="td_content">
+                    <input type="text" readonly="readonly" id="txtStudentID" class="form-control borderSize mw" value="{{ student.id }}"/>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">麦子账号：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtAccount" class="form-control borderSize mw" value="{{ student.account }}"/>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">学员姓名：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtStudentName" class="form-control borderSize mw" value="{{ student.student_name }}"/>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">手机号：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtPhone" class="form-control borderSize mw" value="{{ student.phone }}"/>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">QQ：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtQQ" class="form-control borderSize mw" value="{{ student.qq }}"/>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">所在地：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtAddress" class="form-control borderSize mw" value="{{ student.address }}"/>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">所报专业：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtCareerName" class="form-control borderSize mw" value="{{ student.career_name }}"/>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">就业类型：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtCareerJobName" class="form-control borderSize mw" value="{{ student.career_job_name }}"/>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">付款金额：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtPayMoney" class="form-control borderSize mw" value="{{ student.pay_money }}"/>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">付款方式：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtPayType" class="form-control borderSize mw" value="{{ student.pay_type }}"/>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">优惠：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtReduction" class="form-control borderSize mw" value="{{ student.reduction }}" />
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td_name">是否贷款：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtLoanName" class="form-control borderSize mw"  value="{{ student.loan_name }}" />
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td_name">贷款机构：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtLoanCompany" class="form-control borderSize mw"  value="{{ student.loan_company }}" />
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td_name">贷款模式：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtLoanType" class="form-control borderSize mw" value="{{ student.loan_type }}" />
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">贷款申请人：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtLoanPerson" class="form-control borderSize mw"  value="{{ student.loan_person }}" />
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">利息金额：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtLoanInterest" class="form-control borderSize mw"   value="{{ student.loan_interest }}" />
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td_name">放款金额：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtLoanMoney" class="form-control borderSize mw"   value="{{ student.loan_money }}" />
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td_name">应补助金额（月）：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtSubsidy" class="form-control borderSize mw"    value="{{ student.subsidy }}" />
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">销售人员：</td>
+                <td class="td_content">
+                    <input type="text" readonly="readonly" id="txtSailer" class="form-control borderSize mw" value="{{ student.sailer }}"/>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">成单时间：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtSailAt" class="form-control borderSize mw" value="{{ student.sail_at | date:'Y-m-d' }}"/>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">技术老师：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtTeacherName" class="form-control borderSize mw" value="{{ student.teacher_name }}"/>
+                </td>
+                <td class="td_remark">
+                    <button type="button" class="btn btn-primary btn-xs" onclick="onChangeTeacher('{{ student.id }}');">更换教师</button>
+                    选错了不在这里换，选错了让销售去换，这里的换是其他原因换。
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">教务老师：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtAssistantName" class="form-control borderSize mw" value="{{ student.assistant_name }}"/>
+                </td>
+                <td class="td_remark">
+                    <button type="button" class="btn btn-primary btn-xs" onclick="onChangeAssistant('{{ student.id }}');">更换教务</button>
+                    选错了不在这里换，选错了让销售去换，这里的换是其他原因换。
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td_name">是否参加助学计划：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtRewardName" class="form-control borderSize mw" value="{{ student.reward_name }}"/>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">助学政策：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtRewardMonth" class="form-control borderSize mw" value="{{ student.reward_month }}"/>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">银行：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtBank" class="form-control borderSize mw" value="{{ student.bank }}" />
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">银行账号：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtBankAccount" class="form-control borderSize mw" value="{{ student.bank_account }}" />
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">身份证号：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtIDCard" class="form-control borderSize mw" value="{{ student.idcard }}" />
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">销售备注：</td>
+                <td class="td_content">
+                    <textarea readonly="readonly" rows="3" id="txtSailRemark" class="form-control borderSize mw" >{{ student.sail_remark }}</textarea>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">学员情况：</td>
+                <td class="td_content">
+                    <textarea readonly="readonly" rows="3" id="txtStudentRemark" class="form-control borderSize mw">{{ student.student_remark }}</textarea>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td_name"></td>
+                <td class="td_content">
+                    以下的东西需要你来录入和修改
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td_name">开始学习日期：</td>
+                <td class="td_content">
+                    <input type="text" id="txtStartAt" class="form-control borderSize mw" value="{{ student.start_at | date:'Y-m-d' }}" />
+                </td>
+                <td class="td_remark">
+                    必填，什么时候开始学习？得去问问学生。记得要按这种格式写：2018-08-18
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">毕业日期：</td>
+                <td class="td_content">
+                    <input type="text" id="txtGraduateAt" class="form-control borderSize mw" value="{{ student.graduate_at | date:'Y-m-d' }}" />
+                </td>
+                <td class="td_remark">
+                    必填，按照服务期推算以下就知道啦。
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">当前阶段：</td>
+                <td class="td_content">
+                   <select id="slctStage" class="mw mh">
+                        <option value="-1">请选择学生当前阶段</option>
+                        <option value="0">学习未开始</option>
+                        <option value="1">学习期</option>
+                        <option value="2">结业期</option>
+                        <option value="3">就业期</option>
+                        <option value="4">服务结束</option>
+                   </select>
+                </td>
+                <td class="td_remark">
+                    看看lps的任务球，再推算以下就知道了，以后会做成自动提醒的。
+                    <button type="button" class="btn btn-primary btn-xs" onclick="onAddCommunication('{{ student.id }}');">阶段沟通记录</button>
+
+                    <button type="button" class="btn btn-primary btn-xs" onclick="onAddInterview('{{ student.id }}');">面试记录</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">当前状态：</td>
+                <td class="td_content">
+                   <select id="slctState" class="mw mh">
+                        <option value="-1">请选择学生当前状态</option>
+                        <option value="0">正常</option>
+                        <option value="1">休学</option>
+                        <option value="2">放弃</option>
+                        <option value="3">退学</option>
+                        <option value="4">失联</option>
+                   </select>
+                </td>
+                <td class="td_remark">
+                    学生的状态记得在这里改。
+                    如果是休学或延长休学，就记得继续添加一条记录。
+                    <button type="button" class="btn btn-primary btn-xs" onclick="onAddSuspend('{{ student.id }}');">休学记录</button>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="td_name">就业公司：</td>
+                <td class="td_content">
+                    <input type="text" id="txtCompany" class="form-control borderSize mw" value="{{ student.company }}" />
+                </td>
+                <td class="td_remark">
+                    选填，有就填，没有就算了。
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="op_panel" style="text-align: center;">
+        <input type="button" id="btnAdd" class="btn btn-primary" onclick="onUpdateDo()"  value="确定">
+        &nbsp;&nbsp;
+        <input type="button" id="btnReturn" class="btn btn-default" onclick="onReturn()"  value="返回列表">
+
+    </div>
+
+
+    </div>
+    <br>
+    <br>
+    {% include "include/alertDialog.html" %}
+    </form>
+{% endblock %}

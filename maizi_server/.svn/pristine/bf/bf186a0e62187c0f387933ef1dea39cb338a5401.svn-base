@@ -1,0 +1,33 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+  <script type = 'text/javascript' src = "{% static 'js/career/project.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="page_title">
+    项目
+</div>
+<div class="table-responsive">
+
+    <table class="table table-bordered  table-hover table-striped">
+        <tr>
+            <td class="td_title">项目ID</td>
+            <td class="td_title">项目URL</td>
+            <td class="td_title">项目名称</td>
+        </tr>
+
+        {% for project in projects  %}
+        <tr>
+            <td class="td_cell">{{ project.id }}</td>
+            <td class="td_cell">{{ project.url }}</td>
+            <td class="td_cell">{{ project.name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+  {% include "include/page.html" %}
+  {% include "include/confirmDialog.html" %}
+
+{% endblock %}

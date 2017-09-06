@@ -1,0 +1,51 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "js/student_assistant_interview.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="page_title">
+        面试记录
+    </div>
+    <div class="search">
+        <button type="button" class="btn btn-primary btn-xs" onclick="onQuery();">刷新</button>
+        <button type="button" class="btn btn-default btn-xs" onclick="onAdd();">新增</button>
+        <input type="hidden" id="txtStudentID" value="{{ query.student_id }}">
+    </div>
+    <br/>
+    <div class="table-responsive">
+
+        <table class="table table-bordered  table-hover table-striped">
+            <tr>
+                <td class="td_title">记录id</td>
+                <td class="td_title">学员姓名</td>
+                <td class="td_title">所学专业</td>
+                <td class="td_title">面试时间</td>
+                <td class="td_title">面试官</td>
+                <td class="td_title">面试状态</td>
+                <td class="td_title">面试评价</td>
+                <td class="td_title">操作</td>
+            </tr>
+
+            {% for log in log_list  %}
+            <tr>
+                <td class="td_cell">{{ log.id }}</td>
+                <td class="td_cell">{{ log.student_name }}</td>
+                <td class="td_cell">{{ log.career_name }}</td>
+                <td class="td_cell">{{ log.interview_at | date:'Y-m-d'}}</td>
+                <td class="td_cell">{{ log.interviewer }}</td>
+                <td class="td_cell">{{ log.state_name }}</td>
+                <td class="td_cell">{{ log.remark }}</td>
+                <td class="td_cell">
+                    <button type="button" class="btn btn-default btn-xs" onclick="onUpdate('{{ log.id }}')">详细/修改</button>
+                </td>
+            </tr>
+            {% endfor %}
+
+
+        </table>
+    </div>
+
+
+{% endblock %}

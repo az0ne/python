@@ -1,0 +1,59 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+{% block link %}
+  <script type = 'text/javascript' src = "{% static 'js/career/course_knowledge_item.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<form id="form1" name="form1">
+<div class="op_panel">
+
+    <div class="table-responsive">
+
+    <table class="table table-bordered ">
+      新增章节
+      <tr>
+          <td class="td_content" style="display:None">
+              <input type="text" id="course_id" class="form-control borderSize mw" value="{{ course_id }}" >
+              <input type="text" id="knowledge_id" class="form-control borderSize mw" value="{{ knowledge_id }}" >
+          </td>
+      </tr>
+      <tr>
+          <td class="td_name">章节名称： </td>
+          <td class="td_content">
+                <input type="text" id="item_name" class="form-control borderSize mw"/>
+          </td>
+          <td class="td_remark">必填，章节名称
+          </td>
+      </tr>
+      <tr>
+          <td class="td_name">章节类型： </td>
+          <td id = 'item_type' class="td_content">
+                <input type="radio"  style="display:inline" class="radio" name="type" value = '1' checked/>视频
+                <input type="radio"  style="display:inline" class="radio" name="type" value="0" />作业
+          </td>
+          <td class="td_remark">必填，知识点类型
+          </td>
+      </tr>
+      <tr>
+          <td class="td_name">章节排序： </td>
+          <td class="td_content">
+                <input type="text" id="item_order_index" class="form-control borderSize mw"/>
+          </td>
+          <td class="td_remark">必填，章节排序
+          </td>
+      </tr>
+    </table>
+</div>
+
+<div class="op_panel" style="text-align: center;">
+    <input type="button" id="btnAdd" class="btn btn-primary" onclick="onAddDo()"  value="确定">
+    &nbsp;&nbsp;
+    <input type="button" id="btnReturn" class="btn btn-default" onclick="onReturn()"  value="返回列表">
+</div>
+
+</div>
+
+{% include "include/alertDialog.html" %}
+</form>
+{% endblock %}

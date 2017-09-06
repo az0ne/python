@@ -1,0 +1,41 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "js/exercise_type.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="page_title">
+        练习分类列表
+    </div>
+    <div class="search">
+    分类名称：<input type="text" id="txtExerciseType" style="width: 150px;" value="{{ query.exercise_type }}" />
+        <button type="button" class="btn btn-primary btn-xs" onclick="onQuery();">查询</button>
+        <button type="button" class="btn btn-default btn-xs" onclick="onAdd();">新增</button>
+    </div>
+    <br/>
+    <div class="table-responsive">
+
+        <table class="table table-bordered  table-hover table-striped">
+            <tr>
+                <td class="td_title">分类id</td>
+                <td class="td_title">分类名称</td>
+                <td class="td_title">操作</td>
+            </tr>
+
+            {% for exercise_type in exercise_type_list  %}
+            <tr>
+                <td class="td_cell">{{ exercise_type.id }}</td>
+                <td class="td_cell">{{ exercise_type.exercise_type }}</td>
+                <td class="td_cell">
+                    <button type="button" class="btn btn-default btn-xs" onclick="onUpdate('{{ exercise_type.id }}')">修改</button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="onViewExercise('{{ exercise_type.id }}')">查看题目</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+    {% include "include/confirmDialog.html" %}
+
+{% endblock %}

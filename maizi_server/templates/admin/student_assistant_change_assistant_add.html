@@ -1,0 +1,73 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "js/student_assistant_change_assistant.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+    <form id="form1" name="form1">
+    <div class="op_panel">
+        <div>
+            没有提供修改和删除功能，如果新增错了，赶紧带上零食去找研发
+            <input type="hidden" id="txtStudentID" value="{{ student_id }}">
+            <input type="hidden" id="txtOldAssistantID" value="{{ student.assistant_id }}">
+        </div>
+
+        <div class="table-responsive">
+
+        <table class="table table-bordered ">
+            <tr>
+                <td class="td_name">现任教务：</td>
+                <td class="td_content">
+                    <input readonly="readonly" type="text" id="txtOldTeacherName" class="form-control borderSize mw"  value="{{ student.assistant_name }}"/>
+                </td>
+                <td class="td_remark">改不了，现在是谁就是谁。
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">更换为：</td>
+                <td class="td_content">
+                    <select id="slctNewAssistant" class="mw mh">
+                        <option value="">请选择教务老师</option>
+                        {% for assistant in assistant_list %}
+                            <option value="{{ assistant.id }}">{{ assistant.name }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                </td>
+                <td class="td_remark">必填，现在要换成谁？
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">更换时间：</td>
+                <td class="td_content">
+                    <input type="text" id="txtChangeAt" class="form-control borderSize mw" />
+                </td>
+                <td class="td_remark">必填，记得要按这种格式写：2018-08-18
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">更换理由：</td>
+                <td class="td_content">
+                    <textarea rows="3" id="txtReason" class="form-control borderSize mw"></textarea>
+                </td>
+                <td class="td_remark">必填，比如离职，比如不满意老师之类的，留了500字给你，多少还是要写点
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div>
+        提交前仔细核对一下，要修改的话研发很麻烦的，萌萌哒~
+    </div>
+    <div class="op_panel" style="text-align: center;">
+        <input type="button" id="btnAdd" class="btn btn-primary" onclick="onAddDo()"  value="确定">
+        &nbsp;&nbsp;
+        <input type="button" id="btnReturn" class="btn btn-default" onclick="onReturn('{{ student_id }}')"  value="返回列表">
+    </div>
+
+    </div>
+    <br>
+    <br>
+    {% include "include/alertDialog.html" %}
+    </form>
+{% endblock %}

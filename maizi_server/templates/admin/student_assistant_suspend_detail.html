@@ -1,0 +1,59 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "js/student_assistant_suspend.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+    <form id="form1" name="form1">
+    <div class="op_panel">
+        <div class="table-responsive">
+
+        <table class="table table-bordered ">
+            <tr>
+                <td class="td_name">教务老师：</td>
+                <td class="td_content">
+                    <input type="text" id="txtAssistantName" class="form-control borderSize mw" value="{{ suspend.assistant_name }}" />
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">休学开始时间：</td>
+                <td class="td_content">
+                    <input type="text" id="txtStartAt" class="form-control borderSize mw"  value="{{ suspend.start_at }}" />
+                </td>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">休学结束时间：</td>
+                <td class="td_content">
+                    <input type="text" id="txtEndAt" class="form-control borderSize mw"  value="{{ suspend.end_at }}" />
+                </td>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+            <tr>
+                <td class="td_name">休学理由：</td>
+                <td class="td_content">
+                    <textarea rows="3" id="txtContent" class="form-control borderSize mw">{{ suspend.reason }}</textarea>
+                </td>
+                <td class="td_remark">
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="op_panel" style="text-align: center;">
+        <input type="button" id="btnReturn" class="btn btn-default" onclick="goBack()"  value="返回列表">
+    </div>
+
+    </div>
+    <br>
+    <br>
+    {% include "include/alertDialog.html" %}
+    </form>
+{% endblock %}

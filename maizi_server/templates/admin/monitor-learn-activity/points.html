@@ -1,0 +1,56 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script>
+        $(document).ready(function () {
+            phone = window.location.href.match(/\d+$/)[0];
+
+            $("#communication_all").attr("href","/student_assistant_communication_all/?phone=" + phone );
+
+
+        })
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="page_title">
+        <a href="javascript:;" id="communication_all">沟通记录</a>
+        <a href="#">活跃学分</a>
+        <div>
+        <span style="font-size:24px;">学习活跃</span>
+        <span style="font-size:36px; margin-left: 10px;color:rgb(34, 153, 239);">{{ total_score }}</span>
+        </div>
+    </div>
+
+
+    <br/>
+    <div class="table-responsive">
+
+        <table class="table table-bordered  table-hover table-striped">
+            <tr>
+                <td class="td_title">时间</td>
+                <td class="td_title">观看视频</td>
+                <td class="td_title">完成练习</td>
+                <td class="td_title">完成任务</td>
+                <td class="td_title">约课</td>
+                <td class="td_title">辅导</td>
+                <td class="td_title">总分</td>
+            </tr>
+
+
+            {% for data in result_list %}
+                <tr>
+                    <td class="td_cell">{{ data.1 }}年{{ data.0 }}月</td>
+                    <td class="td_cell">{{ data.2.n1 }}</td>
+                    <td class="td_cell">{{ data.2.n2 }}</td>
+                    <td class="td_cell">{{ data.2.n3 }}</td>
+                    <td class="td_cell">{{ data.2.n4 }}</td>
+                    <td class="td_cell">{{ data.2.n5 }}</td>
+                    <td class="td_cell">{{ data.2.n6 }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+
+{% endblock %}

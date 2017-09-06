@@ -1,0 +1,58 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+  <script type = 'text/javascript' src = "{% static 'js/career/land_course.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="page_title">
+    小课程
+</div>
+<div class="search">
+  小课程名称：<input type="text" id="txtitem" style="width: 150px;" value="{{ name }}" />&nbsp;&nbsp;
+    <button type="button" class="btn btn-primary btn-xs" onclick="onQuery();">查询</button>
+    <button type="button" class="btn btn-default btn-xs" onclick="onAdd();">新增小课程</button>
+</div>
+</br>
+<div class="table-responsive">
+
+    <table class="table table-bordered  table-hover table-striped">
+        <tr>
+            <td class="td_title">小课程id</td>
+            <td class="td_title">小课程名称</td>
+            <td class="td_title">小课程排序</td>
+            <td class="td_title">小课程所属职业课程</td>
+            <td class="td_title">小课程作者</td>
+            <td class="td_title">状态</td>
+            <td class="td_title">操作</td>
+        </tr>
+
+        {% for course in course_list  %}
+        <tr>
+            <td class="td_cell">{{ course.id }}</td>
+            <td class="td_cell">{{ course.name }}</td>
+            <td class="td_cell">{{ course.order_index }}</td>
+            <td class="td_cell">{{ course.career_name }}</td>
+            <td class="td_cell">{{ course.author_name }}</td>
+
+            {% if course.state == '正常' %}
+                <td class="td_cell">{{ course.state }}</td>
+            {% else %}
+                <td class="td_cell red">{{ course.state }}</td>
+            {% endif %}
+
+            <td class="td_cell">
+                <button type="button" class="btn btn-default btn-xs" onclick="onUpdate('{{ course.id }}')">修改</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="onStart('{{ course.id }}')">启用</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="onStop('{{ course.id }}')">禁用</button>
+                <button type="button" class="btn btn-default btn-xs" onclick="onManager('{{ course.id }}')">知识点</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+  {% include "include/page.html" %}
+  {% include "include/confirmDialog.html" %}
+
+{% endblock %}

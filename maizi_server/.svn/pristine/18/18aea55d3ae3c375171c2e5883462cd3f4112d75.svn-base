@@ -1,0 +1,58 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "js/document.js" %}"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#slctType").val("{{ query.type }}");
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="page_title">
+        文档列表
+    </div>
+    <div class="search">
+        文档名称：<input type="text" id="txtName" style="width: 150px;" value="{{ query.name }}" />&nbsp;&nbsp;
+
+        <select id="slctType" class="sw">
+            <option value="" selected>请选择类型</option>
+            <option value="0">教务</option>
+            <option value="1">教学</option>
+            <option value="2">销售</option>
+            <option value="3">运营</option>
+        </select>
+
+        <button type="button" class="btn btn-primary btn-xs" onclick="onQuery();">查询</button>
+    </div>
+    <br/>
+    <div class="table-responsive">
+
+        <table class="table table-bordered  table-hover table-striped">
+            <tr>
+                <td class="td_title">ID</td>
+                <td class="td_title">文档名称</td>
+                <td class="td_title">作者</td>
+                <td class="td_title">格式</td>
+                <td class="td_title">类型</td>
+                <td class="td_title">操作</td>
+            </tr>
+
+            {% for document in document_list  %}
+            <tr>
+                <td class="td_cell">{{ document.id }}</td>
+                <td class="td_cell">{{ document.name }}</td>
+                <td class="td_cell">{{ document.author }}</td>
+                <td class="td_cell">{{ document.extension }}</td>
+                <td class="td_cell">{{ document.type_name }}</td>
+                <td class="td_cell">
+                    <button type="button" class="btn btn-default btn-xs" onclick="onDownload('{{ document.id }}')">下载</button>
+                </td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+
+{% endblock %}

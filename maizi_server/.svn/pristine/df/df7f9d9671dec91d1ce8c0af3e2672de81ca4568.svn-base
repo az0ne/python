@@ -1,0 +1,49 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+  <script type = 'text/javascript' src = "{% static 'js/career/knowledge.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="page_title">
+    知识点
+</div>
+<div class="search">
+  知识点名称：<input type="text" id="txtitem" style="width: 150px;" value="{{ name }}" />&nbsp;&nbsp;
+
+    <button type="button" class="btn btn-primary btn-xs" onclick="onQuery();">查询</button>
+    <!-- <button type="button" class="btn btn-default btn-xs" onclick="onAdd();">新增</button> -->
+</div>
+</br>
+<div class="table-responsive">
+
+    <table class="table table-bordered  table-hover table-striped">
+        <tr>
+            <td class="td_title">知识点id</td>
+            <td class="td_title">知识点名称</td>
+            <td class="td_title">知识点所属课程</td>
+            <td class="td_title">知识点排序索引</td>
+            <td class="td_title">状态</td>
+        </tr>
+
+        {% for knowledge in knowledge_list  %}
+        <tr>
+            <td class="td_cell">{{ knowledge.id }}</td>
+            <td class="td_cell">{{ knowledge.name }}</td>
+            <td class="td_cell">{{ knowledge.course_name }}</td>
+            <td class="td_cell">{{ knowledge.order_index }}</td>
+
+            {% if land.state == '正常' %}
+                <td class="td_cell">{{ knowledge.state }}</td>
+            {% else %}
+                <td class="td_cell red">{{ knowledge.state }}</td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+  {% include "include/page.html" %}
+  {% include "include/confirmDialog.html" %}
+
+{% endblock %}

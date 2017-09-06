@@ -1,0 +1,47 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "js/student_assistant_change_assistant.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="page_title">
+        教务更换记录
+    </div>
+    <div class="search">
+        <button type="button" class="btn btn-primary btn-xs" onclick="onQuery();">刷新</button>
+        <button type="button" class="btn btn-default btn-xs" onclick="onAdd();">更换</button>
+        <input type="hidden" id="txtStudentID" value="{{ query.student_id }}">
+    </div>
+    <br/>
+    <div class="table-responsive">
+
+        <table class="table table-bordered  table-hover table-striped">
+            <tr>
+                <td class="td_title">记录id</td>
+                <td class="td_title">学员姓名</td>
+                <td class="td_title">旧教务</td>
+                <td class="td_title">新教务</td>
+                <td class="td_title">更换原因</td>
+                <td class="td_title">更换时间</td>
+                <td class="td_title">操作人员</td>
+            </tr>
+
+            {% for log in log_list  %}
+            <tr>
+                <td class="td_cell">{{ log.id }}</td>
+                <td class="td_cell">{{ log.student_name }}</td>
+                <td class="td_cell">{{ log.old_assistant_name }}</td>
+                <td class="td_cell">{{ log.new_assistant_name }}</td>
+                <td class="td_cell">{{ log.reason }}</td>
+                <td class="td_cell">{{ log.change_at | date:'Y-m-d' }}</td>
+                <td class="td_cell">{{ log.op_person }}</td>
+            </tr>
+            {% endfor %}
+
+
+        </table>
+    </div>
+
+
+{% endblock %}

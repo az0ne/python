@@ -1,0 +1,33 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+  <script type = 'text/javascript' src = "{% static 'js/career/vedio.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="page_title">
+    视频
+</div>
+<div class="table-responsive">
+
+    <table class="table table-bordered  table-hover table-striped">
+        <tr>
+            <td class="td_title">视频ID</td>
+            <td class="td_title">视频URL</td>
+            <td class="td_title">视频名称</td>
+        </tr>
+
+        {% for vedio in vedios  %}
+        <tr>
+            <td class="td_cell">{{ vedio.id }}</td>
+            <td class="td_cell">{{ vedio.url }}</td>
+            <td class="td_cell">{{ vedio.name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+  {% include "include/page.html" %}
+  {% include "include/confirmDialog.html" %}
+
+{% endblock %}

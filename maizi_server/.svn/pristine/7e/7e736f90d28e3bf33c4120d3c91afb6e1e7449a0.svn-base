@@ -1,0 +1,53 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+{% block link %}
+    <script type="text/javascript" src="{% static "js/assistant.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="page_title">
+        教务列表
+    </div>
+    <div class="search">
+        <button type="button" class="btn btn-primary btn-xs" onclick="onQuery();">刷新</button>
+        <button type="button" class="btn btn-default btn-xs" onclick="onAdd();">新增</button>
+    </div>
+    <br/>
+    <div class="table-responsive">
+
+        <table class="table table-bordered  table-hover table-striped">
+            <tr>
+                <td class="td_title">教务id</td>
+                <td class="td_title">姓名</td>
+                <td class="td_title">手机号</td>
+                <td class="td_title">QQ</td>
+                <td class="td_title">状态</td>
+                <td class="td_title">操作</td>
+            </tr>
+
+            {% for assistant in assistant_list  %}
+            <tr>
+                <td class="td_cell">{{ assistant.id }}</td>
+                <td class="td_cell">{{ assistant.name }}</td>
+                <td class="td_cell">{{ assistant.phone }}</td>
+                <td class="td_cell">{{ assistant.qq }}</td>
+                {% if assistant.is_delete == 0 %}
+                    <td class="td_cell">{{ assistant.state }}</td>
+                {% else %}
+                    <td class="td_cell red">{{ assistant.state }}</td>
+                {% endif %}
+                <td class="td_cell">
+                    <button type="button" class="btn btn-default btn-xs" onclick="onUpdate('{{ assistant.id }}')">修改</button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="onStart('{{ assistant.id }}')">启用</button>
+                    <button type="button" class="btn btn-default btn-xs" onclick="onStop('{{ assistant.id }}')">禁用</button>
+                </td>
+            </tr>
+            {% endfor %}
+
+
+        </table>
+    </div>
+
+    {% include "include/confirmDialog.html" %}
+
+{% endblock %}

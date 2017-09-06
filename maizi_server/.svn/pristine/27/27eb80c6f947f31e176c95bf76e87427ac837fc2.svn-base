@@ -1,0 +1,69 @@
+
+.title{
+	padding-left:15px ;
+	height: 50px;
+	line-height: 50px;
+	font-size: 30px;
+	color: white;
+	font-weight: 900;
+}
+
+.nav span{
+	float: left;
+	height: 50px;
+	line-height: 50px;
+	font-size: 16px;
+}
+.nav span a{
+	margin-right: 20px;
+	color: white;
+}
+
+.nav .tag{
+	float: left;
+	height: 50px;
+	line-height: 50px;
+    width: 60px;
+	color: white;
+	text-decoration: none;
+	text-align: center;
+}
+
+.applications
+{
+    width: 600px;
+	height: 500px;
+	position: absolute;
+    background-color: white;
+	top: 50px;
+	z-index: 2;
+}
+
+.appTitleDiv
+{
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.appTitle
+{
+    font-size: 20px;
+}
+
+.appList li{
+	float: left;
+    margin-right: 20px;
+    margin-top: 10px;
+}
+
+.appIcon{
+	font-size: 16px;
+}
+
+.op{
+    padding-left:15px ;
+	height: 50px;
+	line-height: 50px;
+	font-size: 20px;
+	color: white;
+}

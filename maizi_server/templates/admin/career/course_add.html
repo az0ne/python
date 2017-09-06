@@ -1,0 +1,64 @@
+{% extends 'home.html' %}
+{% load staticfiles %}
+{% block link %}
+  <script type = 'text/javascript' src = "{% static 'js/career/course.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<form id="form1" name="form1">
+<div class="op_panel">
+
+    <div class="table-responsive">
+
+    <table class="table table-bordered ">
+        <tr>
+            <td class="td_name">小课程名称： </td>
+            <td class="td_content">
+                <input type="text" id="course_name" class="form-control borderSize mw"/>
+            </td>
+            <td class="td_remark">必填，小程名称
+            </td>
+        </tr>
+        <tr>
+            <td class="td_name">小课程排序： </td>
+            <td class="td_content">
+                <input type="text" id="course_order_index" class="form-control borderSize mw" />
+            </td>
+            <td class="td_remark">填入小课程排序
+            </td>
+        </tr>
+        <tr>
+            <td class="td_name">小课程所属职业课程： </td>
+            <td class="td_content">
+              <select id="slcLand" class="sw ">
+                              <option value="-1">请选择职业课程</option>
+                              {% for career in careers %}
+                                  <option value="{{ career.id }}">{{ career.name }}</option>
+                              {% endfor %}
+              </select>
+            </td>
+            <td class="td_remark">选择小课程所属的职业课程
+            </td>
+        </tr>
+        <tr>
+            <td class="td_name">小课程的作者 </td>
+            <td class="td_content">
+              <input type="text" id="courseAuthor" class = "form-control borderSize mw"></input>
+            </td>
+            <td class="td_remark">填写小课程的作者的ID
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div class="op_panel" style="text-align: center;">
+    <input type="button" id="btnAdd" class="btn btn-primary" onclick="onAddDo()"  value="确定">
+    &nbsp;&nbsp;
+    <input type="button" id="btnReturn" class="btn btn-default" onclick="onReturn()"  value="返回列表">
+</div>
+
+</div>
+
+{% include "include/alertDialog.html" %}
+</form>
+{% endblock %}
